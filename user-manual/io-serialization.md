@@ -418,6 +418,7 @@ The [NettyTransport][NettyTransport] is a TCP-based transport built on [Netty](h
 Transport transport = new NettyTransport();
 ```
 
+{:.bs-callout .bs-callout-info}
 For test cases, Copycat provides the [LocalTransport][LocalTransport] which mimics the behavior of a network based transport via threads and executors.
 
 [Javadoc]: http://kuujo.github.io/copycat/api/{{ site.javadoc-version }}/
