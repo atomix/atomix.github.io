@@ -27,7 +27,7 @@ to access the collection classes:
 <dependency>
   <groupId>net.kuujo.copycat</groupId>
   <artifactId>copycat-collections</artifactId>
-  <version>0.6.0-SNAPSHOT</version>
+  <version>{{ site.version }}</version>
 </dependency>
 ```
 
@@ -166,7 +166,7 @@ to access the atomic classes:
 <dependency>
   <groupId>net.kuujo.copycat</groupId>
   <artifactId>copycat-atomic</artifactId>
-  <version>0.6.0-SNAPSHOT</version>
+  <version>{{ site.version }}</version>
 </dependency>
 ```
 
@@ -241,7 +241,7 @@ to access the coordination classes:
 <dependency>
   <groupId>net.kuujo.copycat</groupId>
   <artifactId>copycat-coordination</artifactId>
-  <version>0.6.0-SNAPSHOT</version>
+  <version>{{ site.version }}</version>
 </dependency>
 ```
 

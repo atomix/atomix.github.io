@@ -158,7 +158,7 @@ and [resource](#resources) dependencies.
 <dependency>
   <groupId>net.kuujo.copycat</groupId>
   <artifactId>copycat-all</artifactId>
-  <version>0.6.0-SNAPSHOT</version>
+  <version>{{ site.version }}</version>
 </dependency>
 ```
 
@@ -169,7 +169,7 @@ project add the `copycat` dependency:
 <dependency>
   <groupId>net.kuujo.copycat</groupId>
   <artifactId>copycat</artifactId>
-  <version>0.6.0-SNAPSHOT</version>
+  <version>{{ site.version }}</version>
 </dependency>
 ```
 
@@ -181,7 +181,7 @@ for most use cases:
 <dependency>
   <groupId>net.kuujo.copycat</groupId>
   <artifactId>copycat-netty</artifactId>
-  <version>0.6.0-SNAPSHOT</version>
+  <version>{{ site.version }}</version>
 </dependency>
 ```
 
@@ -191,7 +191,7 @@ Finally, to add specific [resources](#resources) as dependencies, add one of the
 <dependency>
   <groupId>net.kuujo.copycat</groupId>
   <artifactId>copycat-collections</artifactId>
-  <version>0.6.0-SNAPSHOT</version>
+  <version>{{ site.version }}</version>
 </dependency>
 ```
 

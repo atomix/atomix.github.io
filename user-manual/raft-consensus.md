@@ -99,7 +99,7 @@ The `RaftServer` class is provided in the `copycat-server` module:
 <dependency>
   <groupId>net.kuujo.copycat</groupId>
   <artifactId>copycat-server</artifactId>
-  <version>0.6.0-SNAPSHOT</version>
+  <version>{{ site.version }}</version>
 </dependency>
 ```
 
