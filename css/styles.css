@@ -1,22 +1,12 @@
-/*
-A Bootstrap 3.1 affix sidebar template
-from http://bootply.com
-
-This CSS code should follow the 'bootstrap.css'
-in your HTML file.
-
-license: MIT
-author: bootply.com
-*/
-
-
-/* Sticky footer styles
--------------------------------------------------- */
+/** GENERAL */
 
 html,
 body {
   height: 100%;
-  /* The html and body elements cannot have any padding or margin. */
+}
+
+body {
+ padding-top:50px;
 }
 
 /* Wrapper for page content to push down footer */
@@ -30,10 +20,11 @@ body {
   padding: 0 0 60px;
 }
 
-
-body {
- padding-top:50px;
+.affix-top, .affix {
+  position: static;
 }
+
+/** MASTHEAD */
 
 #masthead { 
  min-height:250px;
@@ -55,23 +46,32 @@ body {
   }
 }
 
-.navbar-bright {
- background-color:#111155;
- color:#fff;
+/** SIDEBAR */
+
+#sidebar > .nav ul {
+  /* hide sidebar sub menus by default */
+  display: none;
+  font-size: 12px;
+  
+  /** Nav styles */
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
 }
 
-.affix-top,.affix{
- position: static;
+/* show sub menu when parent is active */
+#sidebar > .nav > .active > ul {
+  display: block;
 }
 
 @media (min-width: 979px) {
-  #sidebar.affix-top {
+  #sidebar .affix-top {
     position: static;
-  	margin-top:30px;
-  	width:228px;
+    margin-top:30px;
+    width:228px;
   }
   
-  #sidebar.affix {
+  #sidebar .affix {
     position: fixed;
     top:70px;
     width:228px;
@@ -79,19 +79,21 @@ body {
 }
 
 #sidebar li.active {
-  border:0 #eee solid;
-  border-right-width:5px;
+    border:0 #eee solid;
+    border-right-width:4px;
 }
 
-/* Set the fixed height of the footer here */
+#sidebar li li.active {
+    border:0 #eee solid;
+    border-left-width:4px;
+}
+
+/* FOOTER */
 #footer {
   height: 60px;
   background-color: #f5f5f5;
 }
 
-/*#wrap > .container {
-  padding: 60px 15px 0;
-}*/
 .container .credit {
   margin: 20px 0;
   text-align: center;
