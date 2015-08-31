@@ -13,12 +13,14 @@
 {{ content }}
         </div>
         <div class="col-md-3 hidden-sm hidden-xs" id="sidebar">
+          <div class="nav nav-stacked well affix" id="nav">
 {% if page.menu == "getting-started" %}
 {% capture sidemenu %}{% include getting-started-menu.md %}{% endcapture %}
 {% elsif page.menu == "user-manual" %}
 {% capture sidemenu %}{% include user-manual-menu.md %}{% endcapture %}
 {% endif %}
 {{ sidemenu | markdownify }}
+          </div>
         </div>
     	</div>
   </div>
@@ -31,7 +33,7 @@
 
 <!-- Adjust sidebar links -->
 <script type="text/javascript">
-$("#sidebar > ul > li > a").each(function() {
+$("#nav > ul > li > a").each(function() {
   var parentRef = $(this).attr('href');
   $(this).attr('href', '{{ site.baseurl }}/{{ page.menu }}/' + parentRef);
   if (window.location.href.indexOf(parentRef) > -1) {

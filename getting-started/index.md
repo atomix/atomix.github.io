@@ -18,7 +18,7 @@ copycat.create("test-lock", DistributedLock.class).thenAccept(lock -> {
 
 Copycat's API is fully asynchronous and relies heavily on Java 8's [CompletableFuture][CompletableFuture].
 
-#### DistributedMap
+### DistributedMap
 
 **Synchronous API**
 
@@ -49,7 +49,7 @@ DistributedMap<String, String> map = copycat.create("test-map", DistributedMap.c
 });
 ```
 
-#### DistributedSet
+### DistributedSet
 
 **Synchronous API**
 
@@ -78,7 +78,7 @@ DistributedSet<String> set = copycat.create("test-set", DistributedSet.class).th
 });
 ```
 
-#### DistributedLock
+### DistributedLock
 
 **Synchronous API**
 
@@ -105,7 +105,7 @@ DistributedLock lock = copycat.create("test-lock", DistributedLock.class).thenAc
 });
 ```
 
-#### DistributedLeaderElection
+### DistributedLeaderElection
 
 **Synchronous API**
 

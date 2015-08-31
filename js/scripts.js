@@ -1,19 +1,7 @@
-/* activate scrollspy menu */
-// var $body   = $(document.body);
-// var navHeight = $('.navbar').outerHeight(true) + 10;
+/** scroll spy */
+$('body').scrollspy({ target: '#sidebar' })
 
-// $body.scrollspy({
-// 	target: '#sidebar',
-// 	offset: navHeight
-// });
-
-// $('#sidebar').affix({
-//     offset: {
-//       top: $('#sidebar').offset().top
-//     }
-// });
-
-/* smooth scrolling sections */
+/** smooth scrolling */
 $('a[href*=#]:not([href=#])').click(function() {
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
       var target = $(this.hash);

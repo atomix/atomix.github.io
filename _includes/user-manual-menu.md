@@ -1,4 +1,3 @@
-{:.nav .nav-stacked .well .affix}
 * [Introduction](introduction)
    * [The CAP theorem](#the-cap-theorem)
    * [Copycat's consistency model](#consistency-model)
