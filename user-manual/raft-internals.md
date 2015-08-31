@@ -49,7 +49,7 @@ Raft servers are responsible for participating in elections and replicating stat
 
 Each Raft server maintains a single [Transport](#transport) *server* and *client* which is connected to each other member of the Raft cluster at any given time. Each server uses a single-thread event loop internally to handle requests. This reduces complexity and ensures that order is strictly enforced on handled requests.
 
-<h2 id="state-machines-1">State machines</h2>
+<h2 id="internal-state-machines">State machines</h2>
 
 Each server is configured with a [state machine](#state-machines) to which it applies committed [commands](#commands) and [queries](#queries). State machines operations are executed in a separate *state machine* thread to ensure that blocking state machine operations do not block the internal server event loop.
 
@@ -65,7 +65,7 @@ Copycat's Raft implementation relies on a typical implementation of Raft's elect
 
 In addition to necessarily adhering to the typical Raft election process, Copycat's Raft implementation uses a pre-vote protocol to improve availability after failures. The pre-vote protocol (described in section `4.2.3` of the [Raft dissertation](https://ramcloud.stanford.edu/~ongaro/thesis.pdf)) ensures that only followers that are eligible to become leaders can participate in elections. When followers elections timeout, prior to transitioning to candidates and starting a new election, each follower polls the rest of the cluster to determine whether their log is up-to-date. Only followers with up-to-date logs will transition to *candidate* and begin a new election, thus ensuring that servers that can't win an election cannot disrupt the election process by resetting election timeouts for servers that can win an election.
 
-<h2 id="commands-1">Commands</h2>
+<h2 id="internal-commands">Commands</h2>
 
 Copycat's Raft implementation separates the concept of *writes* from *reads* in order to optimize the handling of each. *Commands* are state machine operations which alter the state machine state. All commands submitted to a Raft cluster are proxied to the leader, written to disk, and replicated through the Raft log.
 
@@ -87,7 +87,7 @@ Finally, [queries](#queries) are optionally allowed to read stale state from fol
 
 *For more on linearizable semantics, see the [sessions](#sessions) documentation*
 
-<h2 id="queries-1">Queries</h2>
+<h2 id="internal-queries">Queries</h2>
 
 *Queries* are state machine operations which read state machine state but do not alter it. This is critical because queries are never logged to the Raft log or replicated. Instead, queries are applied either on a follower or the leader based on the configured per-query *consistency level*.
 
@@ -115,7 +115,7 @@ Clients' *version* numbers are based on feedback received from the cluster when 
 
 Log consistency for inconsistent queries is determined  by checking whether the server's log's *lastIndex* is greater than or equal to the *commitIndex*. That is, if the last *AppendEntries* RPC received by the server did not contain a *commitIndex* less than or equal to the log's *lastIndex* after applying entries, the server is considered out-of-sync and queries are forwarded to the leader.
 
-<h2 id="sessions-1">Sessions</h2>
+<h2 id="internal-sessions">Sessions</h2>
 
 Copycat's Raft implementation uses sessions to provide linearizability for commands submitted to the cluster. Sessions represent a connection between a `RaftClient` and a `RaftServer` and are responsible for tracking communication between them.
 
