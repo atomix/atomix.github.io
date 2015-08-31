@@ -35,12 +35,13 @@
 <script type="text/javascript">
 $("#nav > ul > li > a").each(function() {
   var parentRef = $(this).attr('href');
-  $(this).attr('href', '{{ site.baseurl }}/{{ page.menu }}/' + parentRef);
-  // if (window.location.href.indexOf(parentRef) > -1) {
-  //   $(this).parent().find("ul").each(function () {
-  //     $(this).css('display', 'block');
-  //   });
-  // }
+  var newRef = '{{ site.baseurl }}/{{ page.menu }}/' + parentRef
+  $(this).attr('href', newRef);
+  $(this).parent().find("ul > li a").each(function () {
+    var childHref = $(this).attr('href');
+    $(this).attr('href', newRef + childHref);
+    $(this).attr('data-target', childHref);
+  });
 });
 </script>
 
