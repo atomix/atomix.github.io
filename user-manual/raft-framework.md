@@ -4,25 +4,25 @@ menu: user-manual
 title: Raft consensus algorithm
 ---
 
-## Raft consensus algorithm
+# Raft consensus algorithm
 
 Copycat is built on a standalone, feature-complete implementation of the [Raft consensus algorithm][Raft]. The Raft implementation consists of three Maven submodules:
 
-#### copycat-protocol
+### copycat-protocol
 
 The `copycat-protocol` submodule provides base interfaces and classes that are shared between both the [client](#copycat-client) and [server](#copycat-server) modules. The most notable components of the protocol submodule are [commands][Command] and [queries][Query] with which the client communicates state machine operations, and [sessions][Session] through which clients and servers communicate.
 
-#### copycat-server
+### copycat-server
 
 The `copycat-server` submodule is a standalone [Raft][Raft] server implementation. The server provides a feature-complete implementation of the [Raft consensus algorithm][Raft], including dynamic cluster membership changes and log compaction.
 
 The primary interface to the `copycat-server` module is [RaftServer][RaftServer].
 
-#### copycat-client
+### copycat-client
 
 The `copycat-client` submodule provides a [RaftClient][RaftClient] interface for submitting [commands][Command] and [queries][Query] to a cluster of [RaftServer][RaftServer]s. The client implementation includes full support for linearizable commands via [sessions][Session].
 
-### RaftClient
+## RaftClient
 
 The [RaftClient][RaftClient] provides an interface for submitting [commands](#commands) and [queries](#queries) to a cluster of [Raft servers](#raftserver).
 
@@ -51,11 +51,11 @@ Once a `RaftClient` has been created, connect to the cluster by calling `open()`
 client.open().thenRun(() -> System.out.println("Successfully connected to the cluster!"));
 ```
 
-#### Client lifecycle
+### Client lifecycle
 
 When the client is opened, it will connect to a random server and attempt to register its session. If session registration fails, the client will continue to attempt registration via random servers until all servers have been tried. If the session cannot be registered, the `CompletableFuture` returned by `open()` will fail.
 
-#### Client sessions
+### Client sessions
 
 Once the client's session has been registered, the `Session` object can be accessed via `RaftClient.session()`.
 
@@ -69,7 +69,7 @@ client.session().onReceive(message -> System.out.println("Received " + message))
 
 When events are sent from a server state machine to a client via the `Session` object, only the server to which the client is connected will send the event. Copycat servers guarantee that state machine events will be received by the client session in the order in which they're sent even if the client switches servers.
 
-### RaftServer
+## RaftServer
 
 The [RaftServer][RaftServer] class is a feature complete implementation of the [Raft consensus algorithm][Raft]. `RaftServer` underlies all distributed resources supports by Copycat's high-level APIs.
 
@@ -111,7 +111,7 @@ server.open().thenRun(() -> System.out.println("Server started successfully!"));
 
 The returned `CompletableFuture` will be completed once the server has connected to other members of the cluster and, critically, discovered the cluster leader. See the [server lifecycle](#server-lifecycle) for more information on how the server joins the cluster.
 
-#### Server lifecycle
+### Server lifecycle
 
 Copycat's Raft implementation supports dynamic membership changes designed to allow servers to arbitrarily join and leave the cluster. When a `RaftServer` is configured, the `Members` list provided in the server configuration specifies some number of servers to join to form a cluster. When the server is started, the server begins a series of steps to either join an existing Raft cluster or start a new cluster:
 
@@ -123,7 +123,7 @@ When a member *joins* the cluster, a *join* request will ultimately be received 
 
 Once a node has fully joined the Raft cluster, in the event of a failure the quorum size will not change. To leave the cluster, the `close()` method must be called on a `RaftServer` instance. When `close()` is called, the member will submit a *leave* request to the leader. Once the leaving member's configuration has been removed from the cluster and the new configuration replicated and committed, the server will complete the close.
 
-### Commands
+## Commands
 
 Commands are operations that modify the state machine state. When a command operation is submitted to the Copycat cluster, the command is logged to disk or memory (depending on the [Storage](#storage) configuration) and replicated via the Raft consensus protocol. Once the command has been stored on a majority cluster members, it will be applied to the server-side [StateMachine](#state-machines) and the output will be returned to the client.
 
@@ -148,7 +148,7 @@ public class Set<T> implements Command<T> {
 
 The [Command][Command] interface extends [Operation][Operation] which is `Serializable` and can be sent over the wire with no additional configuration. However, for the best performance users should implement [CopycatSerializable][CopycatSerializable] or register a [TypeSerializer][TypeSerializer] for the type. This will reduce the size of the serialized object and allow Copycat's [Serializer](#serializer) to optimize class loading internally during deserialization.
 
-### Queries
+## Queries
 
 In contrast to commands which perform state change operations, queries are read-only operations which do not modify the server-side state machine's state. Because read operations do not modify the state machine state, Copycat can optimize queries according to read from certain nodes according to the configuration and [may not require contacting a majority of the cluster in order to maintain consistency](#query-consistency). This means queries can significantly reduce disk and network I/O depending on the query configuration, so it is strongly recommended that all read-only operations be implemented as queries.
 
@@ -161,7 +161,7 @@ public class Get<T> implements Query {
 
 As with [Command][Command], [Query][Query] extends the base [Operation][Operation] interface which is `Serializable`. However, for the best performance users should implement [CopycatSerializable][CopycatSerializable] or register a [TypeSerializer][TypeSerializer] for the type.
 
-#### Query consistency
+### Query consistency
 
 By default, [queries](#queries) submitted to the Copycat cluster are guaranteed to be linearizable. Linearizable queries are forwarded to the leader where the leader verifies its leadership with a majority of the cluster before responding to the request. However, this pattern can be inefficient for applications with less strict read consistency requirements. In those cases, Copycat allows [Query][Query] implementations to specify a `ConsistencyLevel` to control how queries are handled by the cluster.
 
@@ -185,7 +185,7 @@ Copycat provides four consistency levels:
 * `ConsistencyLevel.LINEARIZABLE_LEASE` - Provides best-effort optimized linearizability by forcing all reads to go through the leader but allowing most queries to be executed without contacting a majority of the cluster so long as less than the election timeout has passed since the last time the leader communicated with a majority
 * `ConsistencyLevel.SERIALIZABLE` - Provides serializable consistency by allowing clients to read from followers and ensuring that clients see state progress monotonically
 
-### State machines
+## State machines
 
 State machines are the server-side representation of state based on a series of [commands](#commands) and [queries](#queries) submitted to the Raft cluster.
 
@@ -222,7 +222,7 @@ protected void configure(StateMachineExecutor executor) {
 }
 ```
 
-#### Commits
+### Commits
 
 As [commands](#commands) and [queries](#queries) are logged and replicated through the Raft cluster, they gain some metadata that is not present in the original operation. By the time operations are applied to the state machine, they've gained valuable information that is exposed in the [Commit][Commit] wrapper class:
 
@@ -237,7 +237,7 @@ protected Object get(Commit<GetQuery> commit) {
 }
 ```
 
-#### Sessions
+### Sessions
 
 Sessions are representative of a single client's connection to the cluster. For each `Commit` applied to the state machine, an associated `Session` is provided. State machines can use sessions to associate clients with state changes or even send events back to the client through the session:
 
@@ -258,7 +258,7 @@ for (Session session : context().sessions()) {
 }
 ```
 
-#### Commit cleaning
+### Commit cleaning
 
 As commands are submitted to the cluster and applied to the Raft state machine, the underlying [log](#log) grows. Without some mechanism to reduce the size of the log, the log would grow without bound and ultimately servers would run out of disk space. Raft suggests a few different approaches of handling log compaction. Copycat uses the [log cleaning](#log-cleaning) approach.
 
