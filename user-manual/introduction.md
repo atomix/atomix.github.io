@@ -8,9 +8,11 @@ title: Introduction
 
 Copycat is a framework for consistent distributed coordination. At the core of Copycat is a generic implementation of the [Raft consensus algorithm][Raft]. On top of Raft, Copycat provides a high level API for creating and managing arbitrary user-defined replicated state machines such as maps, sets, locks, or user-defined resources. Resources can be created and modified by any replica or client in the cluster.
 
-Copycat clusters consist of at least one [replica](#copycatreplica) and any number of [clients](#copycatclient). *Replicas* are stateful nodes that actively participate in the Raft consensus protocol, and *clients* are stateless nodes that modify system state remotely.
+Copycat clusters consist of at least one [replica](#copycatreplica) and any number of [clients](#copycatclient). *Replicas* are stateful nodes that actively participate in the Raft consensus protocol, and *clients* are stateless nodes that modify system state remotely. When a cluster is started, the replicas in the cluster coordinate with one another to elect a leader.
 
-When a cluster is started, the replicas in the cluster coordinate with one another to elect a leader. Once a leader has been elected, all state changes (i.e. writes) are proxied to the cluster leader. When the leader receives a write, it persists the write to [disk](#storage) and replicates it to the rest of the cluster. Once a write has been received and persisted on a majority of replicas, the write is committed and guaranteed not to be lost.
+![Copycat cluster](http://s24.postimg.org/3jrc7yuad/IMG_0007.png)
+
+Once a leader has been elected, all state changes (i.e. writes) are proxied to the cluster leader. When the leader receives a write, it persists the write to [disk](#storage) and replicates it to the rest of the cluster. Once a write has been received and persisted on a majority of replicas, the write is committed and guaranteed not to be lost.
 
 Because the Copycat cluster is dependent on a majority of the cluster being reachable to commit writes, the cluster can tolerate a minority of the nodes failing. For this reason, it is recommended that each Copycat cluster have at least 3 or 5 replicas, and the number of replicas should always be odd in order to achieve the greatest level of fault-tolerance. The number of replicas should be calculated as `2f + 1` where `f` is the number of failures to tolerate.
 
