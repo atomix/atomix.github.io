@@ -36,11 +36,11 @@
 $("#nav > ul > li > a").each(function() {
   var parentRef = $(this).attr('href');
   $(this).attr('href', '{{ site.baseurl }}/{{ page.menu }}/' + parentRef);
-  if (window.location.href.indexOf(parentRef) > -1) {
-    $(this).parent().find("ul").each(function () {
-      $(this).css('display', 'block');
-    });
-  }
+  // if (window.location.href.indexOf(parentRef) > -1) {
+  //   $(this).parent().find("ul").each(function () {
+  //     $(this).css('display', 'block');
+  //   });
+  // }
 });
 </script>
 
