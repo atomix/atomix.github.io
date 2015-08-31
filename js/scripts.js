@@ -1,11 +1,17 @@
 /* activate scrollspy menu */
-var $body   = $(document.body);
-var navHeight = $('.navbar').outerHeight(true) + 10;
+// var $body   = $(document.body);
+// var navHeight = $('.navbar').outerHeight(true) + 10;
 
-$body.scrollspy({
-	target: '#sidebar',
-	offset: navHeight
-});
+// $body.scrollspy({
+// 	target: '#sidebar',
+// 	offset: navHeight
+// });
+
+// $('#sidebar').affix({
+//     offset: {
+//       top: $('#sidebar').offset().top
+//     }
+// });
 
 /* smooth scrolling sections */
 $('a[href*=#]:not([href=#])').click(function() {

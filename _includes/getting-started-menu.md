@@ -1,4 +1,4 @@
-{:.nav .nav-stacked .affix}
+{:.nav .nav-stacked .well .affix}
 * Getting Started
   * [Distributed Map](#distributedmap)
   * [Distributed Set](#distributedset)

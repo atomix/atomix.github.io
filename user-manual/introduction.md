@@ -4,7 +4,7 @@ menu: user-manual
 title: Introduction
 ---
 
-## Introduction
+# Introduction
 
 Copycat is a framework for consistent distributed coordination. At the core of Copycat is a generic implementation of the [Raft consensus algorithm][Raft]. On top of Raft, Copycat provides a high level API for creating and managing arbitrary user-defined replicated state machines such as maps, sets, locks, or user-defined resources. Resources can be created and modified by any replica or client in the cluster.
 
@@ -20,7 +20,7 @@ Because the Copycat cluster is dependent on a majority of the cluster being reac
 
 [Hazelcast](http://hazelcast.org/) - Hazelcast is a fast, in-memory data grid that, like Copycat, exposes rich APIs for operating on distributed object But whereas Hazelcast chooses [availability over consistency in the face of a partition](https://en.wikipedia.org/wiki/CAP_theorem), Copycat is designed to ensure that data is never lost in the event of a network partition or other failure. Like ZooKeeper, this requires that Copycat synchronously replicate all writes to a majority of the cluster and persist writes to disk, much like ZooKeeper.
 
-### The CAP theorem
+## The CAP theorem
 
 [The CAP theorem][CAP] is a frequently referenced theorem that states that it is impossible for a distributed system to simultaneously provide *Consistency*, *Availability*, and *Partition tolerance*. All distributed systems must necessarily sacrifice either consistency or availability, or some level of both, in the event of a partition.
 
@@ -28,7 +28,7 @@ By definition, high-throughput, high-availability distributed databases like [Ha
 
 Alternatively, systems like [ZooKeeper](https://zookeeper.apache.org/) which fall under the *C* and *P* in the CAP theorem are generally designed to store small amounts of mission critical state. CP systems provide strong consistency guarantees like [linearizability](https://en.wikipedia.org/wiki/Linearizability) and [sequential consistency](https://en.wikipedia.org/wiki/Sequential_consistency) even in the face of failures, but that level of consistency comes at a cost: availability. CP systems like ZooKeeper and Copycat are consensus-based and thus can only tolerate the loss of a minority of servers.
 
-### Consistency model
+## Consistency model
 
 In terms of the CAP theorem, Copycat falls squarely in the CP range. That means Copycat provides configurable strong consistency levels - [linearizability](https://en.wikipedia.org/wiki/Linearizability) for writes and reads, and optional weaker [serializability](https://en.wikipedia.org/wiki/Serializability) for reads - for all operations. Linearizability says that all operations must take place some time between their invocation and completion. This means that once a write is committed to the cluster, all clients are guaranteed to see the resulting state. 
 
@@ -38,7 +38,7 @@ Unlike [ZooKeeper](https://zookeeper.apache.org/), Copycat natively supports lin
 
 *See the [Raft implementation details](#raft-implementation-details) for more information on consistency in Copycat*
 
-### Fault-tolerance
+## Fault-tolerance
 
 Because Copycat falls on the CP side of the CAP theorem, it favors consistency over availability, particularly under failure. In order to ensure consistency, Copycat's [consensus protocol](#raft-consensus-algorithm) requires that a majority of the cluster be alive and operating normally to service writes.
 
@@ -54,7 +54,7 @@ In the event of a failure of the leader, the remaining servers in the cluster wi
 
 In the event of a partition, if the leader is on the quorum side of the partition, it will continue to operate normally. Alternatively, if the leader is on the non-quorum side of the partition, the leader will detect the partition (based on the fact that it can no longer contact a majority of the cluster) and step down, and the servers on the majority side of the partition will elect a new leader. Once the partition is resolved, nodes on the non-quorum side of the partition will join the quorum side and receive updates to their log from the remaining leader.
 
-### Project structure
+## Project structure
 
 Copycat is designed as a series of libraries that combine to form a framework for managing fault-tolerant state in a distributed system. The project currently consists of 14 modules, each of which implements a portion of the framework's functionality. The components of the project are composed hierarchically, so lower level components can be used independently of most other modules.
 
@@ -84,7 +84,7 @@ A rough outline of Copycat's project hierarchy is as follows (from high-level to
    * [Listener][Listener]
    * [Context][Context]
 
-### Dependencies
+## Dependencies
 
 Copycat is designed to ensure that different components of the project ([resources](#resources), [Raft](#raft-consensus-algorithm), [I/O](#io--serialization), etc) can work independently of one another and with minimal dependencies. To that end, *the core library has zero dependencies*. The only components where dependencies are required is in custom `Transport` implementations, such as the [NettyTransport][NettyTransport].
 
@@ -128,7 +128,7 @@ Finally, to add specific [resources](#resources) as dependencies, add one of the
 </dependency>
 ```
 
-### The Copycat API
+## The Copycat API
 
 Copycat provides a high-level path-based API for creating and operating on custom replicated state machines. Additionally, Copycat provides a number of custom [resources](#resources) to aid in common distributed coordination tasks:
 
@@ -138,7 +138,7 @@ Copycat provides a high-level path-based API for creating and operating on custo
 
 Resources are managed via a [Copycat][Copycat] instance which is shared by both [clients](#copycatclient) and [replicas](#copycatreplica). This allows Copycat clients and servers to be embedded in applications that don't care about the context. Resources can be created and operated on regardless of whether the local `Copycat` instance is a [CopycatClient][CopycatClient] or [CopycatReplica][CopycatReplica].
 
-#### CopycatReplica
+### CopycatReplica
 
 The [CopycatReplica][CopycatReplica] is a [Copycat][Copycat] implementation that is responsible for receiving creating and managing [resources](#resources) on behalf of other clients and replicas and receiving, persisting, and replicating state changes for existing resources.
 
@@ -191,7 +191,7 @@ Once created, the replica can be used as any `Copycat` instance to create and op
 
 Internally, the `CopycatReplica` wraps a [RaftClient][RaftClient] and [RaftServer][RaftServer] to communicate with other members of the cluster. For more information on the specific implementation of `CopycatReplica` see the [RaftClient](#raftclient) and [RaftServer](#raftserver) documentation.
 
-#### CopycatClient
+### CopycatClient
 
 The [CopycatClient][CopycatClient] is a [Copycat][Copycat] implementation that manages and operates on [resources](#resources) by communicating with a remote cluster of [replicas](#copycatreplica).
 
@@ -222,19 +222,19 @@ copycat.open().thenRun(() -> {
 
 The `CopycatClient` wraps a [RaftClient][RaftClient] to communicate with servers internally. For more information on the client implementation see the [Raft client documentation](#raftclient).
 
-### Thread model
+## Thread model
 
 Copycat is designed to be used in an asynchronous manner that provides easily understood guarantees for users. All usage of asynchronous APIs such as `CompletableFuture` are carefully orchestrated to ensure that various callbacks are executed in a deterministic manner. To that end, Copycat provides the following single guarantee:
 
 * Callbacks for any given object are guaranteed to always be executed on the same thread
 
-#### Asynchronous API usage
+### Asynchronous API usage
 
 Copycat's API makes heavy use of Java 8's [CompletableFuture][CompletableFuture] for asynchronous completion of method calls. The asynchronous API allows users to execute multiple operations concurrently instead of blocking on each operation in sequence. For information on the usage of `CompletableFuture` [see the CompletableFuture documentation][CompletableFuture].
 
 Most examples in the following documentation will assume asynchronous usage of the `CompletableFuture` API. See [synchronous API usage](#synchronous-api-usage) for examples of how to use the API synchronously.
 
-#### Synchronous API usage
+### Synchronous API usage
 
 Copycat makes heavy use of Java 8's [CompletableFuture][CompletableFuture] in part because it allows users to easily block on asynchronous method calls. The following documentation largely portrays asynchronous usage. To block and wait for a `CompletableFuture` result instead of registering an asynchronous callback, simply use the `get()` or `join()` methods.
 
@@ -246,7 +246,7 @@ CompletableFuture<String> future = map.get("foo");
 String result = future.get();
 ```
 
-### Resources
+## Resources
 
 The true power of Copycat comes through provided and custom [Resource][Resource] implementation. Resources are named distributed objects that are replicated and persisted in the Copycat cluster. Each name can be associated with a single resource, and each resource is backed by a replicated state machine managed by Copycat's underlying [implementation of the Raft consensus protocol](#raft-consensus-algorithm).
 
@@ -258,7 +258,7 @@ DistributedMap<String, String> map = copycat.create("/test-map", DistributedMap.
 
 Copycat uses the provided `Class` to create an associated [StateMachine](#state-machines) on each replica. This allows users to create and integrate [custom resources](#custom-resources).
 
-#### Persistence model
+### Persistence model
 
 Copycat clients and replicas communicate with each other through [sessions](#sessions). Each session represents a persistent connection between a single client and a complete Copycat cluster. Sessions allow Copycat to associate resource state changes with clients, and this information can often be used to manage state changes in terms of sessions as well.
 
@@ -269,7 +269,7 @@ Some Copycat resources expose a configurable `PersistenceMode` for resource stat
 
 The `EPHEMERAL` persistence mode allows resource state changes to be reflected only as long as the session that created them remains alive. For instance, if a `DistributedMap` key is set with `PersistenceMode.EPHEMERAL`, the key will disappear from the map when the session that created it expires or is otherwise closed.
 
-#### Consistency levels
+### Consistency levels
 
 When performing operations on resources, Copycat separates the types of operations into two categories:
 

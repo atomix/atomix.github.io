@@ -5,7 +5,7 @@ title: I/O & Serialization
 ---
 
 
-## I/O & Serialization
+# I/O & Serialization
 
 Copycat provides a custom I/O and serialization framework that it uses for all disk and network I/O. The I/O framework is designed to provide an abstract API for reading and writing bytes on disk, in memory, and over a network in a way that is easily interchangeable and reduces garbage collection and unnecessary memory copies.
 
@@ -16,7 +16,7 @@ The I/O subproject consists of several essential components:
 * [Storage](#storage) - A low-level ordered and indexed, self-cleaning `Log` designed for use in the [Raft consensus algorithm][Raft]
 * [Transport](#transports) - A low-level generalization of asynchronous client-server messaging
 
-### Buffers
+## Buffers
 
 Copycat provides a [Buffer][Buffer] abstraction that provides a common interface to both memory and disk. Currently, four buffer types are provided:
 
@@ -49,7 +49,7 @@ assert buffer.readBoolean();
 
 See the [Buffer API documentation][Buffer] for more detailed usage information.
 
-#### Bytes
+### Bytes
 
 All `Buffer` instances are backed by a `Bytes` instance which is a low-level API over a fixed number of bytes. In contrast to `Buffer`, `Bytes` do not maintain internal pointers and are not dynamically resizeable.
 
@@ -67,7 +67,7 @@ bytes.resize(2048);
 
 When in-memory bytes are resized, the memory will be copied to a larger memory space via `Unsafe.copyMemory`. When disk backed bytes are resized, disk space will be allocated by resizing the underlying file.
 
-#### Buffer pools
+### Buffer pools
 
 All buffers can optionally be pooled and reference counted. Pooled buffers can be allocated via a `PooledAllocator`:
 
@@ -91,11 +91,11 @@ Alternatively, `Buffer` extends `AutoCloseable`, and buffers can be released bac
 buffer.close();
 ```
 
-### Serialization
+## Serialization
 
 Copycat provides an efficient custom serialization framework that's designed to operate on both disk and memory via a common [Buffer](#buffers) abstraction.
 
-#### Serializer
+### Serializer
 
 Copycat's serializer can be used by simply instantiating a [Serializer][Serializer] instance:
 
@@ -142,7 +142,7 @@ com.mycompany.SerializableType2
 
 Users should annotate all `CopycatSerializable` types with the `@SerializeWith` annotation and provide a serialization ID for efficient serialization. Alley cat reserves serializable type IDs `128` through `255` and Copycat reserves `256` through `512`.
 
-#### Pooled object deserialization
+### Pooled object deserialization
 
 Copycat's serialization framework integrates with [object pools](#buffer-pools) to support allocating pooled objects during deserialization. When a `Serializer` instance is used to deserialize a type that implements `ReferenceCounted`, Copycat will automatically create new objects from a `ReferencePool`:
 
@@ -158,7 +158,7 @@ Person person = serializer.readObject(buffer);
 person.close();
 ```
 
-#### Serializable type resolution
+### Serializable type resolution
 
 Serializable types are resolved by a user-provided [SerializableTypeResolver][SerializableTypeResolver]. By default, Copycat uses a combination of the 
 
@@ -198,7 +198,7 @@ serializer.register(Bar.class);
 
 Additionally, Copycat supports serialization of `Serializable` and `Externalizable` types without registration, but this mode of serialization is inefficient as it requires that Copycat serialize the full class name as well.
 
-#### Registration identifiers
+### Registration identifiers
 
 Types explicitly registered with a `Serializer` instance can provide a registration ID in lieu of serializing class names. If given a serialization ID, Copycat will write the serializable type ID to the serialized `Buffer` instance of the class name and use the ID to locate the serializable type upon deserializing the object. This means *it is critical that all processes that register a serializable type use consistent identifiers.*
 
@@ -212,7 +212,7 @@ serializer.register(Bar.class, 2);
 
 Valid serialization IDs are between `0` and `65535`. However, Copycat reserves IDs `128` through `255` for internal use. Attempts to register serializable types within the reserved range will result in an `IllegalArgumentException`.
 
-#### CopycatSerializable
+### CopycatSerializable
 
 Instead of writing a custom `TypeSerializer`, serializable types can also implement the `CopycatSerializable` interface. The `CopycatSerializable` interface is synonymous with Java's native `Serializable` interface. As with the `Serializer` interface, `CopycatSerializable` exposes two methods which receive both a [Buffer](#buffers) and a `Serializer`:
 
@@ -271,7 +271,7 @@ Serializer serializer = new Serializer();
 serializer.register(Foo.class);
 ```
 
-#### TypeSerializer
+### TypeSerializer
 
 At the core of the serialization framework is the [TypeSerializer][TypeSerializer]. The `TypeSerializer` is a simple interface that exposes two methods for serializing and deserializing objects of a specific type respectively. That is, serializers are responsible for serializing objects of other types, and not themselves. Copycat provides this separate serialization interface in order to allow users to create custom serializers for types that couldn't otherwise be serialized by Copycat.
 
@@ -340,7 +340,7 @@ public class ListSerializer implements TypeSerializer<List> {
 }
 ```
 
-### Storage
+## Storage
 
 The [Storage][Storage] API provides an interface to a low-level ordered and index self-cleaning log designed for use in the [Raft consensus algorithm](#raft-consensus-algorithm). Each server in a Copycat cluster writes state changes to disk via the [Log][Log]. Logs are built on top of Copycat's [Buffer](#buffers) abstraction, so the backing store can easily be switched between memory and disk.
 
@@ -353,7 +353,7 @@ Storage storage = Storage.builder()
   .build();
 ```
 
-#### Log
+### Log
 
 *Note: Much of the following is relevant only to Copycat internals*
 
@@ -383,7 +383,7 @@ Offset indexes are also responsible for tracking entries that have been [cleaned
 
 Entries in the log are always keyed by an `index` - a monotonically increasing 64-bit number. But because of the nature of [log cleaning](#log-cleaning) - allowing entries to arbitrarily be removed from the log - the log and its segments are designed to allow entries to be missing *at any point in the log*. Over time, it is expected that entries will be cleaned and compacted out of the log. The log and segments always store entries in as compact a form as possible. Offset indexes contain only entries that have been physically written to the segment, and indexes are searched with a binary search algorithm during reads.
 
-#### Log cleaning
+### Log cleaning
 
 The most critical component of Copycat's [Log][Log] design relates to log cleaning. Cleaning is the process of removing arbitrary entries from the log over time. Copycat's `Log` is designed to facilitate storing operations on a state machine. Over time, as state machine operations become irrelevant to a state machine's state, they can be marked for deletion from the log by the `clean(index)` method.
 
@@ -408,7 +408,7 @@ Log cleaning works by simply creating a new segment at the start of the segment 
 
 This graphic depicts the cleaning process. As entries are appended to the log, some older entries are marked for cleaning (the grey boxes). During the log cleaning process, a background thread iterates through the segment being cleaned (the bold boxes) and discards entries that have been `clean`ed (the bold white boxes). In the event that two neighboring segments have been compacted small enough to form a single segment, they will be combined into one segment (the last row). This ensures that the number of open files remains more or less constant as entries are cleaned from the log.
 
-### Transports
+## Transports
 
 The [Transport][Transport] API provides an interface that generalizes the concept of asynchronous client-server messaging. `Transport` objects control the communication between all clients and servers throughout a Copycat cluster. Therefore, it is essential that all nodes in a cluster use the same transport.
 

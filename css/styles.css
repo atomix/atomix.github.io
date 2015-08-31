@@ -23,11 +23,6 @@ pre {
   /* Pad bottom by footer height */
   padding: 0 0 60px;
 }
-
-.affix-top, .affix {
-  position: static;
-}
-
 /** MASTHEAD */
 
 #masthead { 
@@ -52,41 +47,53 @@ pre {
 
 /** SIDEBAR */
 
-#sidebar > .nav ul {
-  /* hide sidebar sub menus by default */
-  display: none;
-  font-size: 12px;
-  list-style: none;
-}
-
-/* show sub menu when parent is active */
-#sidebar > .nav > .active > ul {
-  display: block;
+.affix-top, .affix{
+ position: static;
 }
 
 @media (min-width: 979px) {
   #sidebar .affix-top {
     position: static;
     margin-top:30px;
-    width:228px;
+    width:263px;
   }
   
   #sidebar .affix {
     position: fixed;
     top:70px;
-    width:228px;
+    width:263px;
   }
 }
 
-#sidebar li.active {
-    border:0 #eee solid;
-    border-right-width:4px;
+/*
+#sidebar > .nav > li > a {
+  padding: 2px;
 }
 
-#sidebar li li.active {
-    border:0 #eee solid;
-    border-left-width:4px;
+#sidebar > .nav ul {
+  display: none;
+  font-size: 12px;
+  list-style: none;
+  padding-left: 20px;
 }
+
+#sidebar > .nav > .active > ul {
+  display: block;
+}
+
+#sidebar li a {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#sidebar ul > li li {
+  font-size: 12px;
+}
+
+#sidebar li.active > a {
+    border-right: 2px solid #777777
+}*/
 
 /* FOOTER */
 #footer {

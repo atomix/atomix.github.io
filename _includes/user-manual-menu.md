@@ -1,4 +1,4 @@
-{:.nav .nav-stacked .affix}
+{:.nav .nav-stacked .well .affix}
 * [Introduction](introduction)
    * [The CAP theorem](#the-cap-theorem)
    * [Copycat's consistency model](#consistency-model)
@@ -14,7 +14,7 @@
    * [What are resources?](#resources)
       * [Persistence modes](#persistence-model)
       * [Consistency levels](#consistency-levels)
-* [Managing state in Copycat with resources](distributed-resources)
+* [Managing state with resources](distributed-resources)
    * [Working with collections](#distributed-collections)
       * [Sets](#distributedset)
       * [Maps](#distributedmap)

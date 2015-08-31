@@ -4,7 +4,7 @@ menu: user-manual
 title: Distributed resources
 ---
 
-## Distributed resources
+# Distributed resources
 
 Copycat provides a number of resource implementations for common distributed systems problems. Currently, the provided resources are divided into three subsets that are represented as Maven submodules:
 
@@ -12,7 +12,7 @@ Copycat provides a number of resource implementations for common distributed sys
 * [Distributed atomic variables](#distributed-atomic-variables) - `DistributedAtomicValue`, etc
 * [Distributed coordination tools](#distributed-coordination) - `DistributedLock`, `DistributedLeaderElection`, etc
 
-### Distributed collections
+## Distributed collections
 
 The `copycat-collections` module provides a set of asynchronous, distributed collection-like [resources](#resources). The resources provided by the collections module do not implement JDK collection interfaces because Copycat's APIs are asynchronous, but their methods are equivalent to their blocking counterparts and so collection resources can be easily wrapped in blocking collection interfaces.
 
@@ -26,7 +26,7 @@ If your project does not depend on `copycat-all`, you must add the `copycat-coll
 </dependency>
 ```
 
-#### DistributedSet
+### DistributedSet
 
 The [DistributedSet][DistributedSet] resources provides an asynchronous API similar to that of `java.util.Set`.
 
@@ -55,7 +55,7 @@ set.add("Hello world!").join();
 assert set.contains("Hello world!").get();
 ```
 
-##### Expiring values
+#### Expiring values
 
 `DistributedSet` supports configurable TTLs for set values. To set a TTL on a value, simply pass a `Duration` when adding a value to the set:
 
@@ -72,7 +72,7 @@ set.add("Hello world!", Duration.ofSeconds(1)).thenAccept(succeeded -> {
 
 Note that TTL timers are deterministically controlled by the cluster leader and are approximate representations of wall clock time that *should not be relied upon for accuracy*.
 
-##### Ephemeral values
+#### Ephemeral values
 
 In addition to supporting time-based state changes, `DistributedSet` also supports session-based changes via a configurable [PersistenceMode](#persistence-mode). When a value is added to the set with `PersistenceMode.EPHEMERAL`, the value will disappear once the session that created the value is expired or closed.
 
@@ -84,7 +84,7 @@ set.add("Hello world!", PersistenceMode.EPHEMERAL).thenRun(() -> {
 });
 ```
 
-#### DistributedMap
+### DistributedMap
 
 The [DistributedMap][DistributedMap] resources provides an asynchronous API similar to that of `java.util.Map`.
 
@@ -113,7 +113,7 @@ map.put("foo", "Hello world!").join();
 assert map.get("foo").get().equals("Hello world!");
 ```
 
-##### Expiring keys
+#### Expiring keys
 
 `DistributedMap` supports configurable TTLs for map keys. To set a TTL on a key, simply pass a `Duration` when adding a key to the map:
 
@@ -125,7 +125,7 @@ map.put("foo", "Hello world!", Duration.ofSeconds(1)).thenRun(() -> {
 
 Note that TTL timers are deterministically controlled by the cluster leader and are approximate representations of wall clock time that *should not be relied upon for accuracy*.
 
-##### Ephemeral keys
+#### Ephemeral keys
 
 In addition to supporting time-based state changes, `DistributedMap` also supports session-based changes via a configurable [PersistenceMode](#persistence-mode). When a key is added to the map with `PersistenceMode.EPHEMERAL`, the key will disappear once the session that created the key is expired or closed.
 
@@ -137,7 +137,7 @@ map.put("foo", "Hello world!", PersistenceLevel.EPHEMERAL).thenRun(() -> {
 });
 ```
 
-### Distributed atomic variables
+## Distributed atomic variables
 
 The `copycat-atomic` module provides a set of distributed atomic variables modeled on Java's `java.util.concurrent.atomic` package. The resources provided by the atomic module do not implement JDK atomic interfaces because Copycat's APIs are asynchronous, but their methods are equivalent to their blocking counterparts and so atomic resources can be easily wrapped in blocking interfaces.
 
@@ -151,7 +151,7 @@ If your project does not depend on `copycat-all`, you must add the `copycat-atom
 </dependency>
 ```
 
-#### DistributedAtomicValue
+### DistributedAtomicValue
 
 The [DistributedAtomicValue][DistributedAtomicValue] resource provides an asynchronous API similar to that of `java.util.concurrent.atomic.AtomicReference`.
 
@@ -180,7 +180,7 @@ value.set("Hello world!").join();
 assert value.get().get().equals("Hello world!");
 ```
 
-##### Expiring value
+#### Expiring value
 
 `DistributedAtomicValue` supports configurable TTLs for values. To set a TTL on the value, simply pass a `Duration` when setting the value:
 
@@ -192,7 +192,7 @@ value.set("Hello world!", Duration.ofSeconds(1)).thenRun(() -> {
 
 Note that TTL timers are deterministically controlled by the cluster leader and are approximate representations of wall clock time that *should not be relied upon for accuracy*.
 
-##### Ephemeral value
+#### Ephemeral value
 
 In addition to supporting time-based state changes, `DistributedAtomicValue` also supports session-based changes via a configurable [PersistenceMode](#persistence-mode). When the value is set with `PersistenceMode.EPHEMERAL`, the value will disappear once the session that created the value is expired or closed.
 
@@ -204,7 +204,7 @@ value.set("Hello world!", PersistenceMode.EPHEMERAL).thenRun(() -> {
 });
 ```
 
-### Distributed coordination
+## Distributed coordination
 
 The `copycat-coordination` module provides a set of distributed coordination tools. These tools are designed tofacilitate decision making and communication in a distributed system.
 
@@ -218,7 +218,7 @@ If your project does not depend on `copycat-all`, you must add the `copycat-coor
 </dependency>
 ```
 
-#### DistributedLock
+### DistributedLock
 
 The [DistributedLock][DistributedLock] resources provides an asynchronous API similar to that of `java.util.concurrent.locks.Lock`.
 
@@ -249,7 +249,7 @@ lock.lock().join();
 lock.unlock().join();
 ```
 
-#### DistributedLeaderElection
+### DistributedLeaderElection
 
 The [DistributedLeaderElection][DistributedLeaderElection] resource provides an asynchronous API for coordinating tasks among a set of clients.
 
@@ -303,7 +303,7 @@ election.onElection(epoch -> {
 
 In the event that a `DistributedLeaderElection` wins an election and loses its leadership without the node crashes, it's likely that the client's session expired due to a failure to communicate with the cluster.
 
-#### DistributedTopic
+### DistributedTopic
 
 The [DistributedTopic][DistributedTopic] resource provides an asynchronous API for sending publish-subscribe messages between clients. Messages sent via a `DistributedTopic` are linearized through the client's [Session][Session]. This means messages are guaranteed to be delivered exactly once and in the order in which they were sent to all sessions that are active at the time the message is sent.
 
@@ -331,7 +331,7 @@ topic.onMessage(message -> {
 
 When a message is sent to a topic, the message will be logged and replicated like any state change via Copycat's underlying [Raft](#raft-consensus-algorithm) implementation. Once the message is stored on a majority of servers, the message will be delivered to any client [sessions](#sessions) alive at the time the message was sent.
 
-### Custom resources
+## Custom resources
 
 The Copycat API is designed to facilitate operating on arbitrary user-defined resources. When a custom resource is created via `Copycat.create`, an associated state machine will be created on each Copycat replica, and operations submitted by the resource instance will be applied to the replicated state machine. In that sense, think of a `Resource` instance as a client-side object and a `StateMachine` instance as the server-side representation of that object.
 
