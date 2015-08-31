@@ -189,7 +189,7 @@ Copycat opted to sacrifice some complexity to state machines in favor of more ef
 
 ![Raft log compaction](http://s21.postimg.org/fvlvlg9lz/Raft_Compaction_New_Page_3.png)
 
-*This illustration depicts the process of compacting the segmented log by iterating over segments, removing cleaned entries, and combining segments.*
+*This illustration depicts the process of compacting the segmented log by iterating over segments, removing cleaned entries, and combining segments. Grey blocks represent entries that have been cleaned but not yet removed from the log. Colored blocks represent entries that are still represented in the state machine and have not been cleaned.*
 
 This compaction model means that Copycat's Raft protocol must be capable of accounting for entries missing from the log. When entries are replicated to a follower, each entry is replicated with its index so that the follower can write entries to its own log in the proper sequence. Entries that are not present in a server's log or in an *AppendEntries* RPC are simply skipped in the log. In order to maintain consistency, it is critical that state machines implement log cleaning correctly.
 
