@@ -63,6 +63,7 @@
    * [Sessions](#sessions-1)
    * [Membership changes](#membership-changes)
    * [Log compaction](#log-compaction)
+   * [Protocol reference](#protocol-reference)
 * [Utilities](utilities)
    * [Working with builders](#builders)
    * [Working with event listeners](#listeners)

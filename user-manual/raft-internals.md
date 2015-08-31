@@ -6,34 +6,37 @@ title: Raft consensus algorithm
 
 # Raft implementation details
 
-Copycat is built on a feature-complete implementation of the [Raft consensus algorithm][Raft] which has been developed over a period of more than two years. The implementation goes beyond the [original Raft paper](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf) and includes a majority of the full implementation described in Diego Ongaro's [Raft dissertation](https://ramcloud.stanford.edu/~ongaro/thesis.pdf), including:
-
+Copycat is built on a feature-complete implementation of the [Raft consensus algorithm][Raft] which has been developed over a period of more than two years. The implementation goes well beyond the [original Raft paper](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf) and includes a majority of the full implementation described in Diego Ongaro's [Raft dissertation](https://ramcloud.stanford.edu/~ongaro/thesis.pdf) in addition to several extensions to the algorithm, including:
 * Asynchronous [Raft server](#servers)
 * Asynchronous [Raft client](#clients)
 * Pre-vote [election protocol](#elections)
 * [Session](#sessions)-based linearizable [writes](#commands)
-* Serializable [reads](#queries)
+* Batched [reads](#queries) from leaders
+* Lease-based [reads](#queries) from leaders
+* Serializable [reads](#queries) from followers
 * [Session](#session)-based [state machine events](#server-events)
 * [Membership changes](#membership-changes)
 * [Log compaction](#log-compaction)
 
-In some cases, Copycat's Raft implementation diverges from recommendations. For instance, Raft dictates that all reads and writes be executed through the leader node, but Copycat's Raft implementation supports per-request consistency levels that allow clients to sacrifice linearizability and read from followers. Similarly, Raft literature recommends snapshots as the simplest approach to log compaction, but Copycat prefers log cleaning to promote more consistent performance throughout the lifetime of a cluster.
+In some cases, Copycat's Raft implementation diverges from recommendations. For instance, Raft dictates that all reads and writes be executed through the leader node, but Copycat's Raft implementation supports per-request consistency levels that allow clients to sacrifice linearizability and read from followers. Similarly, Raft literature recommends snapshots as the simplest approach to log compaction, but Copycat prefers log cleaning to promote more consistent performance throughout the lifetime of a cluster. In other cases, Copycat's Raft implementation extends those described in the literature. For example, Copycat's Raft implementation extends the concept of sessions introduced in 
 
-It's important to note that when Copycat does diverge from the Raft norm, it does so using well-understood alternative methods that are described in the Raft literature and frequently discussed on Raft discussion forums. Copycat does not attempt to alter the fundamental correctness of the algorithm but rather extends it to promote usability in real-world use cases.
+It's important to note that wherever Copycat diverges from standards and recommendations with relation to the Raft consensus algorithm, it does so using well-understood alternative methods that are either described in the Raft literature or frequently discussed on Raft discussion forums. Copycat does not attempt to alter the fundamental correctness of the algorithm but rather seeks to extend it to promote usability in real-world use cases.
 
 The following documentation details Copycat's implementation of the Raft consensus algorithm and in particular the areas in which the implementation diverges from the recommendations in Raft literature and the reasoning behind various decisions.
 
 ## Clients
 
-Copycat's Raft client is responsible for connecting to a Raft cluster and submitting [commands](#commands-1) and [queries](#queries-1).
+Copycat's Raft client is responsible for connecting to a Raft cluster and submitting [commands](#commands) and [queries](#queries).
 
-The pattern with which clients communicate with servers diverges slightly from that which is described in the Raft literature. Copycat's Raft implementation uses client communication patterns that are closely modeled on those of [ZooKeeper](https://zookeeper.apache.org/). Clients are designed to connect to and communicate with a single server at a time. There is no correlation between the client and the Raft cluster's leader. In fact, clients never even learn about the leader.
+The pattern with which clients communicate with servers diverges slightly from that which is described in the Raft literature. Copycat's Raft implementation uses client communication patterns that are closely modeled on those of [ZooKeeper](https://zookeeper.apache.org/). The reasoning behind this design decision is to allow optional fast [serializable](https://en.wikipedia.org/wiki/Serializability) reads from followers at the expense of a potential extra network hop for [linearizable](https://en.wikipedia.org/wiki/Linearizability) reads and writes.
+
+Clients are designed to connect to and communicate with a single server at a time. There is no correlation between the client and the Raft cluster's leader. In fact, clients never even learn about the leader. Copycat ensures that writes from a client will always be applied in program order and a client will never see history go back in time, even when clients have to switch servers due to network or other failures.
 
 ![Client communication](http://s24.postimg.org/cnl5uo6hh/IMG_0006.png)
 
 *This illustration depicts the pattern in which clients communicate with Copycat's Raft cluster. Each client connects to a random server in the cluster and submits commands and queries through that server. Clients make every attempt to remain connected to the same server, but may switch servers if the one to which they're connected dies, is partitioned from the leader, or is otherwise behaving poorly (based on timeouts).*
 
-When a client is started, the client connects to a random server and attempts to [register a new session](#session-1). If the registration fails, the client attempts to connect to another random server and register a new session again. In the event that the client fails to register a session with any server, the client fails and must be restarted. Alternatively, once the client successfully registers a session through a server, the client continues to submit [commands](#commands-1) and [queries](#queries-1) through that server until a failure or shutdown event.
+When a client is started, the client connects to a random server and attempts to [register a new session](#sessions). If the registration fails, the client attempts to connect to another random server and register a new session again. In the event that the client fails to register a session with any server, the client fails and must be restarted. Alternatively, once the client successfully registers a session through a server, the client continues to submit [commands](#commands) and [queries](#queries-1) through that server until a failure or shutdown event.
 
 Once the client has successfully registered its session, it begins sending periodic *keep alive* requests to the cluster. Clients are responsible for sending a keep alive request at an interval less than the cluster's *session timeout* to ensure their session remains open.
 
@@ -41,20 +44,19 @@ If the server through which a client is communicating fails (the client detects 
 
 ## Servers
 
-Raft servers are responsible for participating in elections and replicating state machine [commands](#commands-1) and [queries](#queries-1) through the Raft log.
+Raft servers are responsible for participating in elections and replicating state machine [commands](#commands) and [queries](#queries) through the Raft log.
 
 Each Raft server maintains a single [Transport](#transport) *server* and *client* which is connected to each other member of the Raft cluster at any given time. Each server uses a single-thread event loop internally to handle requests. This reduces complexity and ensures that order is strictly enforced on handled requests.
 
 ## State machines
 
-Each server is configured with a [state machine](#state-machines-1) to which it applies committed [commands](#commands-1) and [queries](#queries). State machines operations are executed in a separate *state machine* thread to ensure that blocking state machine operations do not block the internal server event loop.
+Each server is configured with a [state machine](#state-machines) to which it applies committed [commands](#commands) and [queries](#queries). State machines operations are executed in a separate *state machine* thread to ensure that blocking state machine operations do not block the internal server event loop.
 
-Servers maintain both an internal state machine and a user state machine. The internal state machine is responsible for maintaining internal system state such as [sessions](#sessions-1) and [membership](#membership-changes) and applying *commands* and *queries* to the user-provided `StateMachine`.
+Servers maintain both an internal state machine and a user state machine. The internal state machine is responsible for maintaining internal system state such as [sessions](#sessions) and [membership](#membership-changes) and applying *commands* and *queries* to the user-provided `StateMachine`.
 
 ## Elections
 
-Copycat's Raft implementation relies on a typical implementation of Raft's election protocol to elect a leader for the cluster.
-Leaders are responsible for receiving and replicating state changes (i.e. [commands](#commands)) to followers.
+Copycat's Raft implementation relies on a typical implementation of Raft's election protocol to elect a leader for the cluster. Leaders are responsible for receiving and replicating state changes (i.e. [commands](#commands)) to followers.
 
 ![Raft cluster](http://s24.postimg.org/3jrc7yuad/IMG_0007.png)
 
@@ -80,9 +82,9 @@ When a client submits a command to the cluster, it tags the command with a monot
 
 Sequence numbers are also used to provide linearizability for commands submitted to the cluster by clients by storing command output by sequence number and deduplicate commands as they're applied to the state machine. If a client submits a command to a server that fails, the client doesn't necessarily know whether or not the command succeeded. Indeed, the command could have been replicated to a majority of the cluster prior to the server failure. In that case, the command would ultimately be committed and applied to the state machine, but the client would never receive the command output. Session-based linearizability ensures that clients can still read output for commands resubmitted to the cluster, but that requires that leaders allow commands with old *sequence* numbers to be logged and replicated.
 
-Finally, [queries](#queries-1) are optionally allowed to read stale state from followers. In order to do so in a manner that ensures serializability (state progresses monotonically) when the client switches between servers, the client needs to have a view of the most recent state for which it has received output. When commands are committed and applied to the user-provided state machine, command output is [cached in memory for linearizability](#sessions-1) and the command output returned to the client along with the *index* of the command. Thereafter, when the client submits a query to a follower, it will ensure that it does not see state go back in time by indicating to the follower the highest index for which it has seen state.
+Finally, [queries](#queries) are optionally allowed to read stale state from followers. In order to do so in a manner that ensures serializability (state progresses monotonically) when the client switches between servers, the client needs to have a view of the most recent state for which it has received output. When commands are committed and applied to the user-provided state machine, command output is [cached in memory for linearizability](#sessions) and the command output returned to the client along with the *index* of the command. Thereafter, when the client submits a query to a follower, it will ensure that it does not see state go back in time by indicating to the follower the highest index for which it has seen state.
 
-*For more on linearizable semantics, see the [sessions](#sessions-1) documentation*
+*For more on linearizable semantics, see the [sessions](#sessions) documentation*
 
 ## Queries
 
@@ -100,21 +102,27 @@ If the query is `LINEARIZABLE` or `LINEARIZABLE_LEASE`, the server will forward 
 
 `LINEARIZABLE_LEASE` queries are handled by the leader under the assumption that once the leader has verified its leadership with a majority of the cluster, it can assume that it will remain the leader for at least an election timeout. When a lease-based linearizable query is received by the leader, it will check to determine the last time it verified its leadership with a majority of the cluster. If more than an election timeout has elapsed since it contacted a majority of the cluster, the leader will immediately attempt to verify its leadership before applying the query to the user-provided state machine. Otherwise, if the leadership was verified within an election timeout, the leader will immediately apply the query to the user-provided state machine and respond with the state machine output.
 
+If the query is `SERIALIZABLE`, the receiving server performs a consistency check to ensure that its log is not too far out-of-sync with the leader to reliably service a query. If the receiving server's log is in-sync, it will wait until the log is caught up until the last index seen by the requesting client before servicing the query.
+
 ![Inconsistent queries](http://s24.postimg.org/5ln88h2vp/IMG_0011.png)
 
 *This illustration depicts the route through which serializable (potentially stale) queries travel in Copycat's Raft cluster. Serializable queries are evaluated directly on the server to which the client is connected.*
 
-If the query is `SERIALIZABLE`, the receiving server performs a consistency check to ensure that its log is not too far out-of-sync with the leader to reliably service a query. If the receiving server's log is in-sync, it will wait until the log is caught up until the last index seen by the requesting client before servicing the query. When queries are submitted to the cluster, the client provides a *version* number which specifies the highest index for which it has seen a response. Awaiting that index when servicing queries on followers ensures that state does not go back in time if a client switches servers. Once the server's state machine has caught up to the client's *version* number, the server applies the query to its state machine and response with the state machine output.
+When queries are submitted to the cluster, the client provides a *version* number which specifies the highest index for which it has seen a response. Awaiting that index when servicing queries on followers ensures that state does not go back in time if a client switches servers. Once the server's state machine has caught up to the client's *version* number, the server applies the query to its state machine and response with the state machine output.
 
 Clients' *version* numbers are based on feedback received from the cluster when submitting commands and queries. Clients receive *version* numbers for each command and query submitted to the cluster. When a client submits a command to the cluster, the command's *index* in the Raft replicated log will be returned to the client along with the output. This is the client's *version* number. Similarly, when a client submits a query to the cluster, the server that services the query will respond with the query output and the server's *lastApplied* index as the *version* number.
 
-Log consistency for inconsistent queries is determined  by checking whether the server's log's `lastIndex` is greater than or equal to the `commitIndex`. That is, if the last *AppendEntries* RPC received by the server did not contain a `commitIndex` less than or equal to the log's `lastIndex` after applying entries, the server is considered out-of-sync and queries are forwarded to the leader.
+Log consistency for inconsistent queries is determined  by checking whether the server's log's *lastIndex* is greater than or equal to the *commitIndex*. That is, if the last *AppendEntries* RPC received by the server did not contain a *commitIndex* less than or equal to the log's *lastIndex* after applying entries, the server is considered out-of-sync and queries are forwarded to the leader.
 
 ## Sessions
 
 Copycat's Raft implementation uses sessions to provide linearizability for commands submitted to the cluster. Sessions represent a connection between a `RaftClient` and a `RaftServer` and are responsible for tracking communication between them.
 
-Certain failure scenarios can conceivably result on client commands being applied to the state machine more than once. For instance, if a client submits a command to the cluster and the leader logs and replicates the command before failing, the command may actually be committed and applied to state machines on each node. In that case, if the client resubmits the command to another node, the command will be applied twice to the state machine. Sessions solve this problem by temporarily storing command output in memory and deduplicating commands as they're applied to the state machine.
+Section 6.3 of the [Raft dissertation](https://ramcloud.stanford.edu/~ongaro/thesis.pdf) describes the need for sessions:
+
+> Suppose a client submits a command to a leader and the leader appends the command to its log and commits the log entry, but then it crashes before responding to the client. Since the client receives no acknowledgment, it resubmits the command to the new leader, which in turn appends the command as a new entry in its log and also commits this new entry. Although the client intended for the command to be executed once, it is executed twice.
+
+Linearizability requires that each operation appear to execute instantaneously some time between its invocation and completion. There are all sorts of complications with clients resubmitting commands to the cluster. Copycat uses sessions to cache state machine output and deduplicate commands as they're applied to the state machine, thus allowing clients to arbitrarily resubmit commands to the cluster, ensuring the appearance of linearizability for clients.
 
 ### How it works
 
@@ -122,7 +130,7 @@ When a client connects to Copycat's Raft cluster, the client chooses a random Ra
 
 Once the *register* request has been committed, the leader replies to the request with the *index* of the registration entry in the Raft log. Thereafter, the registration *index* becomes the globally unique *session ID*, and the client must submit commands and queries using that index.
 
-Once a session has been registered, the client must periodically submit *keep alive* requests to the Raft cluster. As with *register* requests, *keep alive* requests are logged and replicated by the leader and ultimately applied to an internal state machine. Keep alive requests also contain an additional `sequence` number which specifies the last command for which the client received a successful response, but more on that in a moment.
+Once a session has been registered, the client must periodically submit *keep alive* requests to the Raft cluster. As with *register* requests, *keep alive* requests are logged and replicated by the leader and ultimately applied to an internal state machine. Keep alive requests also contain an additional *sequence* number which specifies the last command for which the client received a successful response, but more on that in a moment.
 
 In the event of a network partition or other loss of quorum, Raft can require an arbitrary number of election rounds to elect a new leader. Normally, the number of elections required is low, particularly with the [pre-vote protocol](#elections). Nevertheless, clients cannot keep their sessions alive during election periods since they can't write to the leader. In order to ensure client sessions don't timeout during elections, Copycat expands upon the Raft election protocol to reset all session timeouts when a new leader is elected as part of the process for committing commands from prior terms. When a new leader is elected, the leader's first action is to commit a *no-op* entry. That no-op entry contains a timestamp to which all session timeouts will be reset when the entry is committed and applied to the internal state machine on each server. This ensures that even if a client cannot communicate with the cluster for more than a session timeout during an election, the client can still maintain its session as long as it commits a keep alive request within a session timeout *after* the new leader is elected.
 
@@ -225,6 +233,149 @@ delete 3
 ```
 
 At that point, if commands are replayed to the state machine, the state machine will see that the `delete` does not actually result in the absence of state since the state never existed to begin with. Each server in the cluster will periodically replay early entries that have been persisted on all servers to a clone of the state machine to allow it to clean tombstones that relate to invalid state. This is a clever way to clean tombstones from the log by essentially *never* cleaning tombstones that delete state, and instead only cleaning tombstones that are essentially irrelevant.
+
+## Protocol reference
+
+The following is complete documentation for each of Copycat's RPCs. In some cases, requests/responses have variables in addition to those described in the Raft literature.
+
+### Register request/response
+
+Register requests/responses are used by a client to register a new session with the cluster.
+
+#### RegisterRequest
+* `connection` - the `UUID` identifier of the client's connection. This is used by servers to identify the transport `Connection` on which to send [events](#server-events) published by server-side state machines
+
+#### RegisterResponse
+* `status` - the status of the response, either `OK` or `ERROR`
+* `session` - the unique ID of the registered session. This is directly correlated with the `RegisterEntry` logged to the Raft replicated log
+* `members` - the full cluster membership. This allows clients to locate and connect to previously unknown servers after registering a session
+* `timeout` - the session timeout. This is the configured session timeout of the leader at the time the session was registered.
+
+### Keep alive request/response
+
+Keep alive requests/responses are used by clients to keep their sessions alive.
+
+#### KeepAliveRequest
+* `session` - the unique ID of the client's session
+* `command` - the highest [command](#commands) sequence number for which the client has received a response. This is used by the server to free completed commands from memory
+* `event` - the highest [event](#server-events) for which the client has received an in-sequence message. This is used by the server to free received events from memory
+
+#### KeepAliveResponse
+* `status` - the status of the response, either `OK` or `ERROR`
+* `members` - the full cluster membership. This allows clients to locate and connect to previously unknown servers after registering a session
+
+### Command request/response
+
+Command requests/responses are used by clients to submit [commands](#commands) to the cluster. Command requests can be submitted in any order and as many times as is necessary to complete the command. Internal server state machines are idempotent and sequence commands internally.
+
+#### CommandRequest
+* `session` - the unique ID of the client's session
+* `sequence` - the sequential identifier of the command being submitted
+* `command` - the command to submit, commit, and apply to the state machine
+
+#### CommandResponse
+* `status` - the status of the response, either `OK` or `ERROR`
+* `version` - the version of the state machine response. This is the *lastApplied* index of the state machine (the *index* of the applied command)
+* `result` - the command result
+
+### Query request/response
+
+Query requests/responses are used by clients to submit [queries](#queries) to the cluster. Query requests are submitted with state *version* numbers that servers use to enforce sequential consistency, ensuring the client does not see state go back in time.
+
+#### QueryRequest
+* `session` - the unique ID of the client's session
+* `version` - the highest *version* for which the client has received either a `CommandResponse` or `QueryResponse`
+* `query` - the query to submit and apply to the state machine
+
+#### QueryResponse
+* `status` - the status of the response, either `OK` or `ERROR`
+* `version` - the version of the state machine response. This is the *lastApplied* index *when the query was applied to the state machine*
+* `result` - the query result
+
+### Publish request/response
+
+Publish requests/responses are used by servers to send state machine [events](#server-events) to clients via [sessions](#sessions). Events are guaranteed to be received exactly-once by the client in the order in which they were sent by the server.
+
+#### PublishRequest
+* `session` - the unique ID of the session for which the event is being sent
+* `sequence` - the event sequence number. This is used by the client to ensure events are received in the order in which they're sent
+* `message` - the event message
+
+#### PublishResponse
+* `status` - the status of the response, either `OK` or `ERROR`
+* `sequence` - the highest in-order event sequence number for which the client has received an event. This allows the client to immediately notify the server of missing events so they can be resent
+
+### Poll request/response
+
+Poll requests/responses are sent by followers during the *pre-vote* stage of the election process. They're used not to elect new leaders, but to verify that a follower can become a leader before transitioning into the *candidate* state and starting a new election.
+
+#### PollRequest
+* `term` - the term for which the follower wants to start a new election
+* `candidate` - the unique server ID of the follower
+* `logIndex` - the follower's last log index
+* `logTerm` - the follower's last log entry term
+
+#### PollResponse
+* `status` - the status of the response, either `OK` or `ERROR`
+* `term` - the term of the voting server
+* `accepted` - a boolean indicating whether the poll was accepted
+
+### Vote request/response
+
+Vote requests/responses are user by *candidates* during the election process to request votes from other servers.
+
+#### VoteRequest
+* `term` - the term for which the candidate is being elected
+* `candidate` - the unique server ID of the candidate
+* `logIndex` - the candidate's last log index
+* `logTerm` - the candidate's last log entry term
+
+#### VoteResponse
+* `status` - the status of the response, either `OK` or `ERROR`
+* `term` - the term of the voting server
+* `voted` - a boolean indicating whether the receiving server voted for the candidate
+
+### Append request/response
+
+Append requests/responses are used to replicate and commit entries in the server. Copycat's append entries RPCs are slightly modified to support tracking the highest index replicated on all servers for [cleaning tombstones from the log](#log-compaction).
+
+#### AppendRequest
+* `term` - the leader's term
+* `leader` - the leader's unique server ID
+* `logIndex` - the index prior to the entries being sent
+* `logTerm` - the term of the entry prior to the entries being sent
+* `entries` - the entries to replicate
+* `commitIndex` - the leader's commit index. This is representative of the highest index replicated on a majority of servers as viewed by the leader
+* `globalIndex` - the global commit index. This is representative of the highest index replicated on *all* servers as viewed by the leader
+
+#### AppendResponse
+* `status` - the status of the response, either `OK` or `ERROR`
+* `term` - the term of the responding server
+* `succeeded` - a boolean indicating whether the append was successful
+* `logIndex` - the last index in the responding server's log. When `succeeded` is `false`, this can be used by the leader to reset the *nextIndex* to send to the follower to `logIndex + 1`
+
+### Join request/response
+
+Join requests are sent by joining servers to join an existing cluster.
+
+#### JoinRequest
+* `member` - the `Member` object for the server joining the cluster
+
+#### JoinResponse
+* `status` - the status of the response, either `OK` or `ERROR`
+* `index` - the index of the resulting `ConfigurationEntry` logged and replicated by the leader
+* `active` - the set of active, voting `Members` in the cluster
+* `passive` - the set of passive, non-voting `Members` in the cluster, normally including the joining member
+
+### Leave request/response
+
+Leave requests/responses are sent by servers to leave an existing cluster.
+
+#### LeaveRequest
+* `member` - the `Member` object for the server leaving the cluster
+
+#### LeaveResponse
+* `status` - the status of the response, either `OK` or `ERROR`
 
 *See chapter 5 of Diego Ongaro's [Raft dissertation](https://ramcloud.stanford.edu/~ongaro/thesis.pdf) for more on log compaction*
 
