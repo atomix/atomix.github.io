@@ -6,11 +6,49 @@ title: Distributed resources
 
 # Distributed resources
 
+The true power of Copycat comes through provided and custom [Resource][Resource] implementation. Resources are named distributed objects that are replicated and persisted in the Copycat cluster. Each name can be associated with a single resource, and each resource is backed by a replicated state machine managed by Copycat's underlying [implementation of the Raft consensus protocol](#raft-consensus-algorithm).
+
+Resources are created by simply passing a `Resource` class to one of Copycat's `create` methods:
+
+```java
+DistributedMap<String, String> map = copycat.create("/test-map", DistributedMap.class);
+```
+
+Copycat uses the provided `Class` to create an associated [StateMachine](#state-machines) on each replica. This allows users to create and integrate [custom resources](#custom-resources).
+
 Copycat provides a number of resource implementations for common distributed systems problems. Currently, the provided resources are divided into three subsets that are represented as Maven submodules:
 
 * [Distributed collections](#distributed-collections) - `DistributedSet`, `DistributedMap`, etc
 * [Distributed atomic variables](#distributed-atomic-variables) - `DistributedAtomicValue`, etc
 * [Distributed coordination tools](#distributed-coordination) - `DistributedLock`, `DistributedLeaderElection`, etc
+
+### Persistence model
+
+Copycat clients and replicas communicate with each other through [sessions](#sessions). Each session represents a persistent connection between a single client and a complete Copycat cluster. Sessions allow Copycat to associate resource state changes with clients, and this information can often be used to manage state changes in terms of sessions as well.
+
+Some Copycat resources expose a configurable `PersistenceMode` for resource state change operations. The persistence mode specifies whether a state change is associated directly with the client's `Session`. Copycat exposes two persistence modes:
+
+* `PersistenceMode.PERSISTENT` - State changes persist across session changes
+* `PersistenceMode.EPHEMERAL` - State changes are associated directly with the session that created them
+
+The `EPHEMERAL` persistence mode allows resource state changes to be reflected only as long as the session that created them remains alive. For instance, if a `DistributedMap` key is set with `PersistenceMode.EPHEMERAL`, the key will disappear from the map when the session that created it expires or is otherwise closed.
+
+### Consistency levels
+
+When performing operations on resources, Copycat separates the types of operations into two categories:
+
+* *commands* - operations that alter the state of a resource
+* *queries* - operations that query the state of a resource
+
+The [Raft consensus algorithm](#raft-consensus-algorithm) on which Copycat is built guarantees linearizability for *commands* in all cases. When a command is submitted to the cluster, the command will always be forwarded to the cluster leader and replicated to a majority of servers before being applied to the resource's state machine and completed.
+
+Alternatively, Copycat allows for optional trade-offs in the case of *queries*. These optimizations come at the expense of consistency. When a query is submitted to the cluster, users can often specify the minimum consistency level of the request by providing a `ConsistencyLevel` constant. The four minimum consistency levels available are:
+
+* `ConsistencyLevel.LINEARIZABLE` - Provides guaranteed linearizability by forcing all reads to go through the leader and verifying leadership with a majority of the Raft cluster prior to the completion of all operations
+* `ConsistencyLevel.LINEARIZABLE_LEASE` - Provides best-effort optimized linearizability by forcing all reads to go through the leader but allowing most queries to be executed without contacting a majority of the cluster so long as less than the election timeout has passed since the last time the leader communicated with a majority
+* `ConsistencyLevel.SERIALIZABLE` - Provides serializable consistency by allowing clients to read from followers and ensuring that clients see state progress monotonically
+
+Overloaded methods with `ConsistencyLevel` parameters are provided throughout Copycat's resources wherever it makes sense. In many cases, resources dictate the strongest consistency levels - e.g. [coordination](#distributed-coordination) - and so weaker consistency levels are not allowed.
 
 ## Distributed collections
 
