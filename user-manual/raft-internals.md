@@ -18,6 +18,10 @@ Copycat's Raft client is responsible for connecting to a Raft cluster and submit
 
 The pattern with which clients communicate with servers diverges slightly from that which is described in the Raft literature. Copycat's Raft implementation uses client communication patterns that are closely modeled on those of [ZooKeeper](https://zookeeper.apache.org/). Clients are designed to connect to and communicate with a single server at a time. There is no correlation between the client and the Raft cluster's leader. In fact, clients never even learn about the leader.
 
+![Client communication](http://s4.postimg.org/lm41kic4d/IMG_0006.png)
+
+This illustration depicts the pattern in which clients communicate with Copycat's Raft cluster. Each client connects to a random server in the cluster and submits commands and queries through that server. Clients make every attempt to remain connected to the same server, but may switch servers if the one to which they're connected dies, is partitioned from the leader, or is otherwise behaving poorly (based on timeouts).
+
 When a client is started, the client connects to a random server and attempts to [register a new session](#session-1). If the registration fails, the client attempts to connect to another random server and register a new session again. In the event that the client fails to register a session with any server, the client fails and must be restarted. Alternatively, once the client successfully registers a session through a server, the client continues to submit [commands](#commands-1) and [queries](#queries-1) through that server until a failure or shutdown event.
 
 Once the client has successfully registered its session, it begins sending periodic *keep alive* requests to the cluster. Clients are responsible for sending a keep alive request at an interval less than the cluster's *session timeout* to ensure their session remains open.
@@ -38,11 +42,22 @@ Servers maintain both an internal state machine and a user state machine. The in
 
 ## Elections
 
+Copycat's Raft implementation relies on a typical implementation of Raft's election protocol to elect a leader for the cluster.
+Leaders are responsible for receiving and replicating state changes (i.e. [commands](#commands)) to followers.
+
+![Raft cluster](http://s4.postimg.org/pwnatu6l9/IMG_0007.png)
+
+This illustration depicts the structure of a Raft cluster.
+
 In addition to necessarily adhering to the typical Raft election process, Copycat's Raft implementation uses a pre-vote protocol to improve availability after failures. The pre-vote protocol (described in section `4.2.3` of the [Raft dissertation](https://ramcloud.stanford.edu/~ongaro/thesis.pdf)) ensures that only followers that are eligible to become leaders can participate in elections. When followers elections timeout, prior to transitioning to candidates and starting a new election, each follower polls the rest of the cluster to determine whether their log is up-to-date. Only followers with up-to-date logs will transition to *candidate* and begin a new election, thus ensuring that servers that can't win an election cannot disrupt the election process by resetting election timeouts for servers that can win an election.
 
 ## Commands
 
 Copycat's Raft implementation separates the concept of *writes* from *reads* in order to optimize the handling of each. *Commands* are state machine operations which alter the state machine state. All commands submitted to a Raft cluster are proxied to the leader, written to disk, and replicated through the Raft log.
+
+![Client commands](http://s4.postimg.org/7icrpuual/IMG_0010.png)
+
+This illustration depicts the route through which commands travel in the cluster. Commands are submitted to the server to which the client is connected and forwarded to the leader for persistence and replication.
  
 When the leader receives a command, it writes the command to the log along with a client provided *sequence number*, the *session ID* of the session which submitted the command, and an approximate *timestamp*. Notably, the *timestamp* is used to provide a deterministic approximation of time on which state machines can base time-based command handling like TTLs or other timeouts.
 
@@ -66,9 +81,17 @@ When a query is submitted to the Raft cluster, as with all other requests the qu
 
 If the query is `LINEARIZABLE` or `LINEARIZABLE_LEASE`, the server will forward the query to the leader.
 
+![Consistent queries](http://s4.postimg.org/7icrpuual/IMG_0010.png)
+
+This illustration depicts the route through which linearizable queries travel in Copycat's Raft cluster. Linearizable queries are submitted to the server to which the client is connected and forwarded to the leader for evaluation.
+
 `LINEARIZABLE` queries are handled by the leader by contacting a majority of the cluster before servicing the query. When the leader receives a linearizable read, if the leader is in the process of sending *AppendEntries* RPCs to followers then the query is queued for the next heartbeat. On the next heartbeat iteration, once the leader has successfully contacted a majority of the cluster, queued queries are applied to the user-provided state machine and the leader responds to their respective requests with the state machine output. Batching queries during heartbeats reduces the overhead of synchronously verifying the leadership during reads.
 
 `LINEARIZABLE_LEASE` queries are handled by the leader under the assumption that once the leader has verified its leadership with a majority of the cluster, it can assume that it will remain the leader for at least an election timeout. When a lease-based linearizable query is received by the leader, it will check to determine the last time it verified its leadership with a majority of the cluster. If more than an election timeout has elapsed since it contacted a majority of the cluster, the leader will immediately attempt to verify its leadership before applying the query to the user-provided state machine. Otherwise, if the leadership was verified within an election timeout, the leader will immediately apply the query to the user-provided state machine and respond with the state machine output.
+
+![Inconsistent queries](http://s4.postimg.org/qopyt1asd/IMG_0011.png)
+
+This illustration depicts the route through which serializable (potentially stale) queries travel in Copycat's Raft cluster. Serializable queries are evaluated directly on the server to which the client is connected.
 
 If the query is `SERIALIZABLE`, the receiving server performs a consistency check to ensure that its log is not too far out-of-sync with the leader to reliably service a query. If the receiving server's log is in-sync, it will wait until the log is caught up until the last index seen by the requesting client before servicing the query. When queries are submitted to the cluster, the client provides a *version* number which specifies the highest index for which it has seen a response. Awaiting that index when servicing queries on followers ensures that state does not go back in time if a client switches servers. Once the server's state machine has caught up to the client's *version* number, the server applies the query to its state machine and response with the state machine output.
 
@@ -105,7 +128,13 @@ protected Object get(Commit<GetQuery> commit) {
 }
 ```
 
-Rather than connecting to the leader, Copycat's Raft clients connect to a random node and writes are proxied to the leader. When an event is published to a client by a state machine, only the server to which the client is connected will send the event ot the client, thus ensuring the client only receives one event from the cluster. In the event that the client is disconnected from the cluster (e.g. switching servers), events published through sessions are linearized in a manner similar to that of commands.
+Rather than connecting to the leader, Copycat's Raft clients connect to a random node and writes are proxied to the leader. When an event is published to a client by a state machine, only the server to which the client is connected will send the event ot the client, thus ensuring the client only receives one event from the cluster.
+
+![Session events](http://s4.postimg.org/7xo1ivg7x/IMG_0012.png)
+
+This illustration depicts the how session events can be produced to one client or set of clients based on the input of another client, similar to a message queue. The client furthest to the left submits a command to the cluster, and once the command is applied to the server on the right, the two clients connected to it receive a `publish`ed event.
+
+In the event that the client is disconnected from the cluster (e.g. switching servers), events published through sessions are linearized in a manner similar to that of commands.
 
 When an event is published to a client by a state machine, the event is queue in memory with a sequential ID for the session. Clients keep track of the highest sequence number for which they've received an event and send that sequence number back to the cluster via *keep alive* requests. As keep alive requests are logged and replicated, servers clear acknowledged events from memory. This ensures that all servers hold unacknowledged events in memory until they've been received by the client associated with a given session. In the event that a session times out, all events are removed from memory.
 
