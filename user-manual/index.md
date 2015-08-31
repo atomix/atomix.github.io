@@ -10,5 +10,7 @@ Documentation is still under active development. The following documentation is 
 
 [Javadoc]: http://kuujo.github.io/copycat/api/{{ site.javadoc-version }}/
 
+<div id="user-manual-index">
 {% capture usermanual %}{% include user-manual-menu.md %}{% endcapture %}
 {{ usermanual | markdownify }}
+</div>
