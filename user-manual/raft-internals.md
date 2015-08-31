@@ -6,7 +6,17 @@ title: Raft consensus algorithm
 
 # Raft implementation details
 
-Copycat's implementation of the [Raft consensus algorithm][Raft] has been developed over a period of over two years. In most cases, it closely follows the recommendations of the Diego Ongaro's [Raft dissertation](https://ramcloud.stanford.edu/~ongaro/thesis.pdf), but sometimes it diverges from the norm. For instance, Raft dictates that all reads and writes be executed through the leader node, but Copycat's Raft implementation supports per-request consistency levels that allow clients to sacrifice linearizability and read from followers. Similarly, Raft literature recommends snapshots as the simplest approach to log compaction, but Copycat prefers log cleaning to promote more consistent performance throughout the lifetime of a cluster.
+Copycat is built on a feature-complete implementation of the [Raft consensus algorithm][Raft] which has been developed over a period of more than two years. The implementation goes beyond the [original Raft paper](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf) and includes a majority of the full implementation described in Diego Ongaro's [Raft dissertation](https://ramcloud.stanford.edu/~ongaro/thesis.pdf), including:
+* Asynchronous [Raft server](#servers)
+* Asynchronous [Raft client](#clients)
+* Pre-vote [election protocol](#elections)
+* [Session](#sessions)-based linearizable [writes](#commands)
+* Serializable [reads](#queries)
+* [Session](#session)-based [state machine events](#server-events)
+* [Membership changes](#membership-changes)
+* [Log compaction](#log-compaction)
+
+In some cases, Copycat's Raft implementation diverges from recommendations. For instance, Raft dictates that all reads and writes be executed through the leader node, but Copycat's Raft implementation supports per-request consistency levels that allow clients to sacrifice linearizability and read from followers. Similarly, Raft literature recommends snapshots as the simplest approach to log compaction, but Copycat prefers log cleaning to promote more consistent performance throughout the lifetime of a cluster.
 
 It's important to note that when Copycat does diverge from the Raft norm, it does so using well-understood alternative methods that are described in the Raft literature and frequently discussed on Raft discussion forums. Copycat does not attempt to alter the fundamental correctness of the algorithm but rather extends it to promote usability in real-world use cases.
 
