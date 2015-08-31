@@ -4,8 +4,6 @@ menu: getting-started
 title: Getting Started
 ---
 
-# Getting Started
-
 The high-level [Copycat API](#the-copycat-api) is a single interface that aids in managing stateful resources (e.g. maps, sets, locks, leader elections) in a distributed system. The `Copycat` API is heavily influenced by [Hazelcast's](http://hazelcast.org/) API.
 
 The one critical method in Copycat's high-level API is the `create` method. The `create` method gets or creates a user-defined distributed resource.

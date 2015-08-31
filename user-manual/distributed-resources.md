@@ -1,10 +1,8 @@
 ---
 layout: content
 menu: user-manual
-title: Distributed resources
+title: Distributed Resources
 ---
-
-# Distributed resources
 
 The true power of Copycat comes through provided and custom [Resource][Resource] implementation. Resources are named distributed objects that are replicated and persisted in the Copycat cluster. Each name can be associated with a single resource, and each resource is backed by a replicated state machine managed by Copycat's underlying [implementation of the Raft consensus protocol](#raft-consensus-algorithm).
 

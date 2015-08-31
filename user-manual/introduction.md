@@ -4,8 +4,6 @@ menu: user-manual
 title: Introduction
 ---
 
-# Introduction
-
 Copycat is a framework for consistent distributed coordination. At the core of Copycat is a generic implementation of the [Raft consensus algorithm][Raft]. On top of Raft, Copycat provides a high level API for creating and managing arbitrary user-defined replicated state machines such as maps, sets, locks, or user-defined resources. Resources can be created and modified by any replica or client in the cluster.
 
 Copycat clusters consist of at least one (but usually 3 or 5) [replica](#copycatreplica) and any number of [clients](#copycatclient). *Replicas* are stateful nodes that actively participate in the Raft consensus protocol, and *clients* are stateless nodes that modify system state remotely. When a cluster is started, the replicas in the cluster coordinate with one another to elect a leader.

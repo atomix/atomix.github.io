@@ -1,10 +1,8 @@
 ---
 layout: content
 menu: user-manual
-title: Raft consensus algorithm
+title: Raft Implementation Details
 ---
-
-# Raft implementation details
 
 Copycat is built on a feature-complete implementation of the [Raft consensus algorithm][Raft] which has been developed over a period of more than two years. The implementation goes well beyond the [original Raft paper](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf) and includes a majority of the full implementation described in Diego Ongaro's [Raft dissertation](https://ramcloud.stanford.edu/~ongaro/thesis.pdf) in addition to several extensions to the algorithm, including:
 

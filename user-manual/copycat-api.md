@@ -1,10 +1,8 @@
 ---
 layout: content
 menu: user-manual
-title: Introduction
+title: Copycat API
 ---
-
-# The Copycat API
 
 Copycat provides a high-level path-based API for creating and operating on custom replicated state machines. Additionally, Copycat provides a number of custom [resources](#resources) to aid in common distributed coordination tasks:
 

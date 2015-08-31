@@ -4,9 +4,6 @@ menu: user-manual
 title: I/O & Serialization
 ---
 
-
-# I/O & Serialization
-
 Copycat provides a custom I/O and serialization framework that it uses for all disk and network I/O. The I/O framework is designed to provide an abstract API for reading and writing bytes on disk, in memory, and over a network in a way that is easily interchangeable and reduces garbage collection and unnecessary memory copies.
 
 The I/O subproject consists of several essential components:

@@ -7,42 +7,72 @@
 
 {% include header.html %}
 
+<div class="page-header" id="content">
   <div class="container">
-  	<div class="row">
-        <div class="col-md-9" id="content">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>{{ page.title }} </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+	<div class="row">
+    <div class="col-md-9" id="content">
+
+{% if page.menu == "user-manual" %}
+      <div class="hidden-md hidden-lg" id="toc">
+        <h2>Table of Contents</h2>
+{% capture toc %}{% include user-manual-menu.md %}{% endcapture %}
+{{ toc | markdownify }}
+      </div>
+{% endif %}
 {{ content }}
-        </div>
-        <div class="col-md-3 hidden-sm hidden-xs" id="sidebar">
-          <div class="nav nav-stacked well affix" id="nav">
+      </div>
+
+{% if page.menu != "none" %}
+      <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div class="nav nav-stacked well affix" id="nav">
 {% if page.menu == "getting-started" %}
 {% capture sidemenu %}{% include getting-started-menu.md %}{% endcapture %}
 {% elsif page.menu == "user-manual" %}
 {% capture sidemenu %}{% include user-manual-menu.md %}{% endcapture %}
 {% endif %}
 {{ sidemenu | markdownify }}
-          </div>
         </div>
-    	</div>
-  </div>
+      </div>
+{% endif %}
 
+    </div>
+  </div>
 </div>
 
 {% include footer.html %}
 
 {% include scripts.html %}
 
-<!-- Adjust sidebar links -->
 <script type="text/javascript">
-$("#nav > ul > li > a").each(function() {
-  var parentRef = $(this).attr('href');
-  var newRef = '{{ site.baseurl }}/{{ page.menu }}/' + parentRef
-  $(this).attr('href', newRef);
-  $(this).parent().find("ul > li a").each(function () {
-    var childHref = $(this).attr('href');
-    $(this).attr('href', newRef + childHref);
-    $(this).attr('data-target', childHref);
+  // Adjust user manual TOC when for small screens
+  $("#toc > ul > li > a").each(function() {
+    var currentPath = window.location.pathname
+    var parentRef = $(this).attr('href');
+    if (currentPath.indexOf(parentRef) > -1) {
+      $(this).parent().css('display', 'block');
+    }
   });
-});
+
+  // Adjust sidebar links
+  $("#nav > ul > li > a").each(function() {
+    var parentRef = $(this).attr('href');
+    var newRef = '{{ site.baseurl }}/{{ page.menu }}/' + parentRef
+    $(this).attr('href', newRef);
+    $(this).parent().find("ul > li a").each(function () {
+      var childHref = $(this).attr('href');
+      $(this).attr('href', newRef + childHref);
+      $(this).attr('data-target', childHref);
+    });
+  });
 </script>
 
 	</body>

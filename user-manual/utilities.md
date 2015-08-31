@@ -4,8 +4,6 @@ menu: user-manual
 title: Utilities
 ---
 
-# Utilities
-
 The following documentation explains the usage of various utility APIs provided by the `copycat-common` module.
 
 ## Builders
