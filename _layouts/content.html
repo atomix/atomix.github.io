@@ -7,7 +7,7 @@
 
 {% include header.html %}
 
-<div class="page-header">
+<div class="header page-header">
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
@@ -19,7 +19,11 @@
 
 <div class="doc-container container">
 	<div class="row">
+{% if page.menu == "none" %}
+    <div class="col-md-12">
+{% else %}
     <div class="col-md-9">
+{% endif %}
 
 {% if page.menu == "user-manual" %}
       <div class="hidden-md hidden-lg" id="toc">
