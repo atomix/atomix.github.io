@@ -7,7 +7,7 @@
 
 {% include header.html %}
 
-<div class="page-header" id="content">
+<div class="page-header">
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
@@ -17,9 +17,9 @@
   </div>
 </div>
 
-<div class="container">
+<div class="doc-container container">
 	<div class="row">
-    <div class="col-md-9" id="content">
+    <div class="col-md-9">
 
 {% if page.menu == "user-manual" %}
       <div class="hidden-md hidden-lg" id="toc">
@@ -32,8 +32,8 @@
       </div>
 
 {% if page.menu != "none" %}
-      <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-        <div class="nav nav-stacked well affix" id="nav">
+      <div class="col-md-3 hidden-xs hidden-sm sidebar" id="sidebar-col">
+        <div class="nav well affix" id="sidebar">
 {% if page.menu == "getting-started" %}
 {% capture sidemenu %}{% include getting-started-menu.md %}{% endcapture %}
 {% elsif page.menu == "user-manual" %}
@@ -63,7 +63,7 @@
   });
 
   // Adjust sidebar links
-  $("#nav > ul > li > a").each(function() {
+  $("#sidebar > ul > li > a").each(function() {
     var parentRef = $(this).attr('href');
     var newRef = '{{ site.baseurl }}/{{ page.menu }}/' + parentRef
     $(this).attr('href', newRef);

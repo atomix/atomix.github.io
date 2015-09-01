@@ -1,5 +1,5 @@
 /** scroll spy */
-$('body').scrollspy({ target: '#sidebar' })
+$('body').scrollspy({ target: '#sidebar-col' })
 
 /** smooth scrolling */
 $('a[href*=#]:not([href=#])').click(function() {
