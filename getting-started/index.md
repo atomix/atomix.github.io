@@ -16,10 +16,12 @@ copycat.create("test-lock", DistributedLock.class).thenAccept(lock -> {
 
 Copycat's API is fully asynchronous and relies heavily on Java 8's [CompletableFuture][CompletableFuture].
 
+{% include sync-top-tabs.html %}
+
 ### DistributedMap
 
-{% include sync-tabs.html %}
 {::options parse_block_html="true" /}
+<div class="tab-content">
 <div class="tab-pane active sync">
 ```java
 DistributedMap<String, String> map = copycat.create("test-map", DistributedMap.class).get();
@@ -49,11 +51,12 @@ DistributedMap<String, String> map = copycat.create("test-map", DistributedMap.c
 });
 ```
 </div>
+</div>
 
 ### DistributedSet
 
-{% include sync-tabs.html %}
 {::options parse_block_html="true" /}
+<div class="tab-content">
 <div class="tab-pane active sync">
 ```java
 DistributedSet<String> set = copycat.create("test-set", DistributedSet.class).get();
@@ -81,11 +84,12 @@ DistributedSet<String> set = copycat.create("test-set", DistributedSet.class).th
 });
 ```
 </div>
+</div>
 
 ### DistributedLock
 
-{% include sync-tabs.html %}
 {::options parse_block_html="true" /}
+<div class="tab-content">
 <div class="tab-pane active sync">
 ```java
 DistributedLock lock = copycat.create("test-lock", DistributedLock.class).get();
@@ -111,11 +115,12 @@ DistributedLock lock = copycat.create("test-lock", DistributedLock.class).thenAc
 });
 ```
 </div>
+</div>
 
 ### DistributedLeaderElection
 
-{% include sync-tabs.html %}
 {::options parse_block_html="true" /}
+<div class="tab-content">
 <div class="tab-pane active sync">
 ```java
 DistributedLeaderElection election = copycat.create("test-election", DistributedLeaderElection.class).get();
@@ -137,6 +142,7 @@ DistributedLeaderElection election = copycat.create("test-election", Distributed
   });
 });
 ```
+</div>
 </div>
 
 [Javadoc]: http://kuujo.github.io/copycat/api/{{ site.javadoc-version }}/
