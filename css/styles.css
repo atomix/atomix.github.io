@@ -11,9 +11,8 @@ body {
   font-size: 16px;
 }
 
-pre {
-  white-space: nowrap;
-  word-wrap: normal;
+a {
+  color: rgb(0, 157, 183);
 }
 
 h1 {
@@ -33,14 +32,18 @@ h1 {
 
 /* Navbar */
 
+.navbar .navbar-brand, .navbar-default .navbar-nav > li > a {
+  color: rgb(0, 157, 183);
+}
+
 .navbar {
   font-size: 18px;
   background-color: #fff;
 }
 
 .navbar-brand {
+  /*font-weight: bold;*/
   padding-top: 18px;
-  font-weight: 500;
 }
 
 .navbar-nav {
@@ -49,6 +52,7 @@ h1 {
 }
 
 .navbar-nav > li > a {
+  color: rgb(0, 157, 183);
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -60,10 +64,10 @@ h1 {
 /* Page header */
 
 .page-header {
-  background-color: #0C7979;
+  background-color: #0C6979;
   color: #fff;
   margin: 0 0 25px;
-  padding: 9.5px 0 22px;
+  padding: 16.5px 0 22px;
 }
 
 /** Masthead */
@@ -98,6 +102,13 @@ h1 {
   max-width: 100%;
 }
 
+.doc-container pre {
+  white-space: nowrap;
+  word-wrap: normal;
+  background: #474949;
+  border: 0px;
+}
+
 #toc > ul > li {
   display: none;
 }
@@ -108,21 +119,20 @@ h1 {
 
 /* Sidebar */
 
-.affix-top, .affix {
-  position: static;
-}
+/*#sidebar .affix-top, .affix {
+  position: fixed;
+}*/
 
 @media (min-width: 979px) {
   #sidebar-col .affix-top {
     position: static;
-    margin-top:30px;
-    width:263px;
+    width: 263px;
   }
   
   #sidebar-col .affix {
     position: fixed;
-    top:70px;
-    width:263px;
+    top: 70px;
+    width: 263px;
   }
 
   #sidebar ul > .active > ul {
@@ -139,7 +149,6 @@ h1 {
 }
 
 #sidebar > ul {
-  padding-top: 5px;
   padding-left: 10px;
 }
 
@@ -154,7 +163,7 @@ h1 {
 }
 
 #sidebar ul > li > a {
-  padding-top: 5px;
+  padding-bottom: 5px;
   padding-left: 5px;
   position: relative;
   display: block; 
