@@ -6,17 +6,15 @@ title: Copycat API
 
 Copycat provides a high-level path-based API for creating and operating on custom replicated state machines. Additionally, Copycat provides a number of custom [resources](#resources) to aid in common distributed coordination tasks:
 
-* [Distributed atomic variables](#distributed-atomic-variables)
-* [Distributed collections](#distributed-collections)
-* [Distributed coordination tools](#distributed-coordination)
+* [Distributed atomic variables]({{ site.baseurl }}/user-manual/distributed-resources#distributed-atomic-variables)
+* [Distributed collections]({{ site.baseurl }}/user-manual/distributed-resources#distributed-collections)
+* [Distributed coordination tools]({{ site.baseurl }}/user-manual/distributed-resources#distributed-coordination)
 
 Resources are managed via a [Copycat][Copycat] instance which is shared by both [clients](#copycatclient) and [replicas](#copycatreplica). This allows Copycat clients and servers to be embedded in applications that don't care about the context. Resources can be created and operated on regardless of whether the local `Copycat` instance is a [CopycatClient][CopycatClient] or [CopycatReplica][CopycatReplica].
 
 ## CopycatReplica
 
-The [CopycatReplica][CopycatReplica] is a [Copycat][Copycat] implementation that is responsible for receiving creating and managing [resources](#resources) on behalf of other clients and replicas and receiving, persisting, and replicating state changes for existing resources.
-
-Users should think of replicas as stateful nodes. Because replicas are responsible for persisting and replicating resource state changes, they require more configuration than [clients](#copycatclient).
+The [CopycatReplica][CopycatReplica] is a [Copycat][Copycat] implementation that is responsible for receiving creating and managing [resources](#resources) on behalf of other clients and replicas and receiving, persisting, and replicating state changes for existing resources. Users should think of replicas as stateful nodes. Since replicas are responsible for persisting and replicating resource state changes, they require more configuration than [clients](#copycatclient).
 
 To create a `CopycatReplica`, first you must create a [Transport](#transport) via which the replica will communicate with other clients and replicas:
 
@@ -67,9 +65,7 @@ Internally, the `CopycatReplica` wraps a [RaftClient][RaftClient] and [RaftServe
 
 ## CopycatClient
 
-The [CopycatClient][CopycatClient] is a [Copycat][Copycat] implementation that manages and operates on [resources](#resources) by communicating with a remote cluster of [replicas](#copycatreplica).
-
-Users should think of clients as stateless members of the Copycat cluster.
+The [CopycatClient][CopycatClient] is a [Copycat][Copycat] implementation that manages and operates on [resources](#resources) by communicating with a remote cluster of [replicas](#copycatreplica). Users should think of clients as stateless members of the Copycat cluster.
 
 To create a `CopycatClient`, use the client [Builder](#builders) and provide a [Transport][Transport] and a list of `Members` to which to connect:
 

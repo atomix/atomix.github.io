@@ -19,7 +19,7 @@ $sideBar.affix({
 })
 
 $(window).resize(function() {
-    $sidebar.affix("checkPosition");
+  $sidebar.affix("checkPosition");
 });
 
 /** smooth scrolling */

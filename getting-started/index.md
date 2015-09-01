@@ -18,8 +18,9 @@ Copycat's API is fully asynchronous and relies heavily on Java 8's [CompletableF
 
 ### DistributedMap
 
-**Synchronous API**
-
+{% include sync-tabs.html %}
+{::options parse_block_html="true" /}
+<div class="tab-pane active sync">
 ```java
 DistributedMap<String, String> map = copycat.create("test-map", DistributedMap.class).get();
 
@@ -31,9 +32,10 @@ if (value.equals("value")) {
   map.putIfAbsent("otherkey", "othervalue", Duration.ofSeconds(1)).join();
 }
 ```
+</div>
 
-**Asynchronous API**
-
+{::options parse_block_html="true" /}
+<div class="tab-pane async">
 ```java
 DistributedMap<String, String> map = copycat.create("test-map", DistributedMap.class).thenAccept(map -> {
   map.put("key", "value").thenRun(() -> {
@@ -46,11 +48,13 @@ DistributedMap<String, String> map = copycat.create("test-map", DistributedMap.c
   });
 });
 ```
+</div>
 
 ### DistributedSet
 
-**Synchronous API**
-
+{% include sync-tabs.html %}
+{::options parse_block_html="true" /}
+<div class="tab-pane active sync">
 ```java
 DistributedSet<String> set = copycat.create("test-set", DistributedSet.class).get();
 
@@ -60,9 +64,10 @@ if (set.contains("value").get()) {
   set.add("othervalue", Duration.ofSeconds()).join();
 }
 ```
+</div>
 
-**Asynchronous API**
-
+{::options parse_block_html="true" /}
+<div class="tab-pane async">
 ```java
 DistributedSet<String> set = copycat.create("test-set", DistributedSet.class).thenAccept(set -> {
   set.add("value").thenRun(() -> {
@@ -75,11 +80,13 @@ DistributedSet<String> set = copycat.create("test-set", DistributedSet.class).th
   });
 });
 ```
+</div>
 
 ### DistributedLock
 
-**Synchronous API**
-
+{% include sync-tabs.html %}
+{::options parse_block_html="true" /}
+<div class="tab-pane active sync">
 ```java
 DistributedLock lock = copycat.create("test-lock", DistributedLock.class).get();
 
@@ -89,9 +96,10 @@ lock.lock().join();
 // Unlock the lock
 lock.unlock().join();
 ```
+</div>
 
-**Asynchronous API**
-
+{::options parse_block_html="true" /}
+<div class="tab-pane async">
 ```java
 DistributedLock lock = copycat.create("test-lock", DistributedLock.class).thenAccept(lock -> {
   lock.lock().thenRun(() -> {
@@ -102,11 +110,13 @@ DistributedLock lock = copycat.create("test-lock", DistributedLock.class).thenAc
   });
 });
 ```
+</div>
 
 ### DistributedLeaderElection
 
-**Synchronous API**
-
+{% include sync-tabs.html %}
+{::options parse_block_html="true" /}
+<div class="tab-pane active sync">
 ```java
 DistributedLeaderElection election = copycat.create("test-election", DistributedLeaderElection.class).get();
 
@@ -114,9 +124,10 @@ election.onElection(epoch -> {
   System.out.println("Elected leader!");
 }).join();
 ```
+</div>
 
-**Asynchronous API**
-
+{::options parse_block_html="true" /}
+<div class="tab-pane async">
 ```java
 DistributedLeaderElection election = copycat.create("test-election", DistributedLeaderElection.class).thenAccept(election -> {
   election.onElection(epoch -> {
@@ -126,6 +137,7 @@ DistributedLeaderElection election = copycat.create("test-election", Distributed
   });
 });
 ```
+</div>
 
 [Javadoc]: http://kuujo.github.io/copycat/api/{{ site.javadoc-version }}/
 [CAP]: https://en.wikipedia.org/wiki/CAP_theorem
