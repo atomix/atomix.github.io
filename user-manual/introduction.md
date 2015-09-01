@@ -60,6 +60,7 @@ Copycat is designed as a series of libraries that combine to form a framework fo
 
 A rough outline of Copycat's project hierarchy is as follows (from high-level to low-level):
 
+{:.well}
 * [Resources][Resource]
    * [Distributed collections][collections] (artifact ID: `copycat-collections`)
    * [Distributed atomic variables][atomic] (artifact ID: `copycat-atomic`)
