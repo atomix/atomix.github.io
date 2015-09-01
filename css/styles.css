@@ -45,8 +45,8 @@ body, h1, h2, h3, h4, h5, p>strong {
 }
 
 .navbar-brand {
-  font-weight: 800;
-  letter-spacing: 2px;
+  font-weight: 600;
+  letter-spacing: 1px;
   padding-top: 18px;
 }
 
@@ -84,8 +84,6 @@ body, h1, h2, h3, h4, h5, p>strong {
 .banner {
   padding-top: 101px; 
   padding-bottom: 95px; 
-  padding-left: 60px;
-  padding-right: 60px;
 }
 
 .banner h1 {
@@ -149,24 +147,49 @@ body, h1, h2, h3, h4, h5, p>strong {
 
 /* Sidebar */
 
-/*#sidebar .affix-top, .affix {
-  position: fixed;
-}*/
-
-@media (min-width: 979px) {
-  #sidebar-col .affix-top {
-    position: static;
-    width: 263px;
-  }
-  
-  #sidebar-col .affix {
-    position: fixed;
-    top: 70px;
-    width: 263px;
-  }
-
+/*@media screen and (min-width: 1200px) {
   #sidebar ul > .active > ul {
     display: block;
+  }
+
+  .affix-bottom, .affix {
+      width: 263px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .affix {
+    position: fixed;
+    top: 80px;
+  }
+}*/
+
+@media screen and (min-width: 992px) {
+  #sidebar ul > .active > ul {
+    display: block;
+  }
+
+  /* Widen the fixed sidebar */
+  #sidebar.affix, 
+  #sidebar.affix-bottom {
+    width: 213px;
+  }
+
+  #sidebar.affix {
+    position: fixed; /* Undo the static from mobile first approach */
+    top: 80px;
+  }
+
+  #sidebar.affix-bottom {
+    position: absolute; /* Undo the static from mobile first approach */
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  /* Widen the fixed sidebar again */
+  #sidebar.affix-bottom,
+  #sidebar.affix {
+    width: 263px;
   }
 }
 
@@ -180,6 +203,11 @@ body, h1, h2, h3, h4, h5, p>strong {
 
 #sidebar > ul {
   padding-left: 10px;
+}
+
+#sidebar ul > .active > a { 
+  color: #c7254e;
+  border-right: 2px solid #777777;
 }
 
 #sidebar > ul > li > ul li {
@@ -197,11 +225,6 @@ body, h1, h2, h3, h4, h5, p>strong {
   padding-left: 5px;
   position: relative;
   display: block; 
-}
-
-#sidebar ul > .active > a {
-  font-weight: bold;
-  border-right: 2px solid #777777;
 }
 
 /* Footer */
