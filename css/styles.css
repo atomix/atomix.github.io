@@ -11,7 +11,7 @@ body {
 }
 
 a {
-  color: rgb(0, 157, 183);
+  color: #009DB7;
 }
 
 h1 {
@@ -20,6 +20,11 @@ h1 {
 
 body, h1, h2, h3, h4, h5, p>strong {
   font-family: 'Open Sans', sans-serif;
+}
+
+code {
+  color: rgb(51, 51, 51);
+  background-color: #f7f7f7;
 }
 
 /* Wrapper for sticky footer */
@@ -89,9 +94,9 @@ body, h1, h2, h3, h4, h5, p>strong {
   border-right: 2px solid #e7e7e7;
 }
 
-/* */
+/* Header */
 
-.header {
+.header h1, h2, h3, h4, h5 {
   color: #fff;
 }
 
@@ -107,13 +112,19 @@ body, h1, h2, h3, h4, h5, p>strong {
 }
 
 .banner {
-  padding-top: 101px; 
-  padding-bottom: 95px; 
+  padding-top: 68px;
+  padding-bottom: 63px;
 }
 
 .banner h1 {
-  font-size: 80px;
+  font-size: 100px;
   padding-bottom: 19px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: bold;
+}
+
+.banner h2 {
+  font-weight: 200;
 }
 
 .banner .doc-btn {
@@ -142,27 +153,38 @@ body, h1, h2, h3, h4, h5, p>strong {
   margin-top: 40px;
 }
 
-.doc-container .no-margin-top {
+.docs .no-margin-top {
   margin-top: 0px;
 }
 
-.doc-container p {
+.docs h2, h4 {
+   color: #038FA7;
+}
+
+.docs h1, h3, h5 {
+   color: #d14;
+}
+
+.docs p {
   margin-bottom: 20px;
 }
 
-.doc-container img {
+.docs img {
   max-width: 100%;
 }
 
-.doc-container pre {
+.docs pre {
   white-space: nowrap;
   word-wrap: normal;
-  background: #474949;
-  border: 0px;
+}
+
+.docs pre code {
+  background-color: #f5f5f5;
 }
 
 .docs {
   font-family: 'Merriweather', sans-serif;
+  font-size: 15px;
 }
 
 .docs .tab-pane {
@@ -182,23 +204,6 @@ body, h1, h2, h3, h4, h5, p>strong {
 }
 
 /* Sidebar */
-
-/*@media screen and (min-width: 1200px) {
-  #sidebar ul > .active > ul {
-    display: block;
-  }
-
-  .affix-bottom, .affix {
-      width: 263px;
-  }
-}
-
-@media screen and (min-width: 992px) {
-  .affix {
-    position: fixed;
-    top: 80px;
-  }
-}*/
 
 @media screen and (min-width: 992px) {
   #sidebar ul > .active > ul {
@@ -231,6 +236,7 @@ body, h1, h2, h3, h4, h5, p>strong {
 
 #sidebar {
   padding: 0;
+  font-size: 15px;
 }
 
 #sidebar ul {
@@ -242,7 +248,7 @@ body, h1, h2, h3, h4, h5, p>strong {
 }
 
 #sidebar ul > .active > a { 
-  color: #c7254e;
+  color: #d14;
 }
 
 #sidebar > ul > li > ul li {
@@ -273,11 +279,12 @@ body, h1, h2, h3, h4, h5, p>strong {
 
 #footer {
   height: 60px;
-  background-color: #f5f5f5;
+  margin-top: 30px;
+  background-color: #eee;
 }
 
-.container .credit {
-  margin: 20px 0;
+#footer .credit {
+  margin: 19px 0;
   text-align: center;
 }
 
