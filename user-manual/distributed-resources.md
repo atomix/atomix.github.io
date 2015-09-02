@@ -468,6 +468,7 @@ public class Value<T> extends Resource {
 }
 ```
 
-*Important: See [Raft state machine documentation][state-machines] for details on cleaning commits from the log*
+{:.callout .callout-danger}
+Important: See [Raft state machine documentation][state-machines] for details on cleaning commits from the log
 
 {% include common-links.html %}
