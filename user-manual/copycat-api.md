@@ -4,7 +4,7 @@ menu: user-manual
 title: Copycat API
 ---
 
-Copycat provides a high-level path-based API for creating and operating on custom replicated state machines. Additionally, Copycat provides a number of custom [resources](#resources) to aid in common distributed coordination tasks:
+Copycat provides a high-level path-based API for creating and operating on custom replicated state machines. Additionally, Copycat provides a number of custom [resources] to aid in common distributed coordination tasks:
 
 * [Distributed atomic variables]({{ site.baseurl }}/user-manual/distributed-resources#distributed-atomic-variables)
 * [Distributed collections]({{ site.baseurl }}/user-manual/distributed-resources#distributed-collections)
@@ -14,9 +14,9 @@ Resources are managed via a [Copycat][Copycat] instance which is shared by both 
 
 ## CopycatReplica
 
-The [CopycatReplica][CopycatReplica] is a [Copycat][Copycat] implementation that is responsible for receiving creating and managing [resources](#resources) on behalf of other clients and replicas and receiving, persisting, and replicating state changes for existing resources. Users should think of replicas as stateful nodes. Since replicas are responsible for persisting and replicating resource state changes, they require more configuration than [clients](#copycatclient).
+The [CopycatReplica][CopycatReplica] is a [Copycat][Copycat] implementation that is responsible for receiving creating and managing [resources] on behalf of other clients and replicas and receiving, persisting, and replicating state changes for existing resources. Users should think of replicas as stateful nodes. Since replicas are responsible for persisting and replicating resource state changes, they require more configuration than [clients](#copycatclient).
 
-To create a `CopycatReplica`, first you must create a [Transport](#transport) via which the replica will communicate with other clients and replicas:
+To create a `CopycatReplica`, first you must create a [Transport][io-transports] via which the replica will communicate with other clients and replicas:
 
 ```java
 Transport transport = new NettyTransport();
@@ -36,15 +36,15 @@ Members members = Members.builder()
 
 Each member in the `Members` list must be assigned a unique `id` that remains consistent across all clients and replicas in the cluster, and the local replica must be listed in the `Members` list. In other words, if host `123.456.789.1` is member `1` on one replica, it must be listed as member `1` on all replicas.
 
-Finally, the `CopycatReplica` is responsible for persisting [resource](#resources) state changes. To do so, the underlying [Raft server](#raftserver) writes state changes to a persistent [Log][Log]. Users must provide a [Storage][Storage] object which specifies how the underlying `Log` should be created and managed.
+Finally, the `CopycatReplica` is responsible for persisting [resource][resources] state changes. To do so, the underlying [Raft server][raft-server] writes state changes to a persistent [Log][Log]. Users must provide a [Storage][Storage] object which specifies how the underlying `Log` should be created and managed.
 
-To create a [Storage](#storage) object, use the storage [Builder](#builders) or for simpler configurations simply pass the log directory into the `Storage` constructor:
+To create a [Storage](#storage) object, use the storage [Builder][builders] or for simpler configurations simply pass the log directory into the `Storage` constructor:
 
 ```java
 Storage storage = new Storage("logs");
 ```
 
-Finally, with the [Transport][Transport], [Storage][Storage], and `Members` configured, create the [CopycatReplica][CopycatReplica] with the replica [Builder](#builders) and `open()` the replica:
+Finally, with the [Transport][Transport], [Storage][Storage], and `Members` configured, create the [CopycatReplica][CopycatReplica] with the replica [Builder][builders] and `open()` the replica:
 
 ```java
 Copycat copycat = CopycatReplica.builder()
@@ -59,15 +59,15 @@ copycat.open().thenRun(() -> {
 });
 ```
 
-Once created, the replica can be used as any `Copycat` instance to create and operate on [resources](#resources).
+Once created, the replica can be used as any `Copycat` instance to create and operate on [resources].
 
-Internally, the `CopycatReplica` wraps a [RaftClient][RaftClient] and [RaftServer][RaftServer] to communicate with other members of the cluster. For more information on the specific implementation of `CopycatReplica` see the [RaftClient](#raftclient) and [RaftServer](#raftserver) documentation.
+Internally, the `CopycatReplica` wraps a [RaftClient][RaftClient] and [RaftServer][RaftServer] to communicate with other members of the cluster. For more information on the specific implementation of `CopycatReplica` see the [RaftClient][raft-client] and [RaftServer][raft-server] documentation.
 
 ## CopycatClient
 
-The [CopycatClient][CopycatClient] is a [Copycat][Copycat] implementation that manages and operates on [resources](#resources) by communicating with a remote cluster of [replicas](#copycatreplica). Users should think of clients as stateless members of the Copycat cluster.
+The [CopycatClient][CopycatClient] is a [Copycat][Copycat] implementation that manages and operates on [resources] by communicating with a remote cluster of [replicas](#copycatreplica). Users should think of clients as stateless members of the Copycat cluster.
 
-To create a `CopycatClient`, use the client [Builder](#builders) and provide a [Transport][Transport] and a list of `Members` to which to connect:
+To create a `CopycatClient`, use the client [Builder][builders] and provide a [Transport][Transport] and a list of `Members` to which to connect:
 
 ```java
 Copycat copycat = CopycatClient.builder()
@@ -90,6 +90,6 @@ copycat.open().thenRun(() -> {
 });
 ```
 
-The `CopycatClient` wraps a [RaftClient][RaftClient] to communicate with servers internally. For more information on the client implementation see the [Raft client documentation](#raftclient).
+The `CopycatClient` wraps a [RaftClient][RaftClient] to communicate with servers internally. For more information on the client implementation see the [Raft client documentation][raft-client].
 
 {% include common-links.html %}

@@ -24,7 +24,7 @@ The `copycat-client` submodule provides a [RaftClient][RaftClient] interface for
 
 The [RaftClient][RaftClient] provides an interface for submitting [commands](#commands) and [queries](#queries) to a cluster of [Raft servers](#raftserver).
 
-To create a client, you must supply the client [Builder](#builders) with a set of `Members` to which to connect.
+To create a client, you must supply the client [Builder][builders] with a set of `Members` to which to connect.
 
 ```java
 Members members = Members.builder()
@@ -34,7 +34,7 @@ Members members = Members.builder()
   .build();
 ```
 
-The provided `Members` do not have to be representative of the full Copycat cluster, but they do have to provide at least one correct server to which the client can connect. In other words, the client must be able to communicate with at least one `RaftServer` that is the leader or can communicate with the leader, and a majority of the cluster must be able to communicate with one another in order for the client to register a new [Session](#session).
+The provided `Members` do not have to be representative of the full Copycat cluster, but they do have to provide at least one correct server to which the client can connect. In other words, the client must be able to communicate with at least one `RaftServer` that is the leader or can communicate with the leader, and a majority of the cluster must be able to communicate with one another in order for the client to register a new [Session](#client-sessions).
 
 ```java
 RaftClient client = RaftClient.builder()
@@ -83,11 +83,11 @@ The `RaftServer` class is provided in the `copycat-server` module:
 
 Each `RaftServer` consists of three essential components:
 
-* [Transport](#transports) - Used to communicate with clients and other Raft servers
-* [Storage](#storage) - Used to persist [commands](#commands) to memory or disk
+* [Transport][transports] - Used to communicate with clients and other Raft servers
+* [Storage][io-storage] - Used to persist [commands](#commands) to memory or disk
 * [StateMachine](#state-machines) - Represents state resulting from [commands](#commands) logged and replicated via Raft
 
-To create a Raft server, use the server [Builder](#builders):
+To create a Raft server, use the server [Builder][builders]:
 
 ```java
 RaftServer server = RaftServer.builder()
@@ -123,7 +123,7 @@ Once a node has fully joined the Raft cluster, in the event of a failure the quo
 
 ## Commands
 
-Commands are operations that modify the state machine state. When a command operation is submitted to the Copycat cluster, the command is logged to disk or memory (depending on the [Storage](#storage) configuration) and replicated via the Raft consensus protocol. Once the command has been stored on a majority cluster members, it will be applied to the server-side [StateMachine](#state-machines) and the output will be returned to the client.
+Commands are operations that modify the state machine state. When a command operation is submitted to the Copycat cluster, the command is logged to disk or memory (depending on the [Storage][io-storage] configuration) and replicated via the Raft consensus protocol. Once the command has been stored on a majority cluster members, it will be applied to the server-side [StateMachine](#state-machines) and the output will be returned to the client.
 
 Commands are defined by implementing the `Command` interface:
 
@@ -206,11 +206,11 @@ public class MyStateMachine extends StateMachine {
 }
 ```
 
-Internally, state machines are backed by a series of entries in an underlying [log](#log). In the event of a crash and recovery, state machine commands in the log will be replayed to the state machine. This is why it's so critical that state machines be deterministic.
+Internally, state machines are backed by a series of entries in an underlying [log][io-log]. In the event of a crash and recovery, state machine commands in the log will be replayed to the state machine. This is why it's so critical that state machines be deterministic.
 
 #### Registering operations
 
-The `StateMachineExecutor` is a special [Context](#contexts) implemntation that is responsible for applying [commands](#commands) and [queries](#queries) to the state machine. Operations are handled by registering callbacks on the provided `StateMachineExecutor` in the `configure` method:
+The `StateMachineExecutor` is a special [Context][contexts] implemntation that is responsible for applying [commands](#commands) and [queries](#queries) to the state machine. Operations are handled by registering callbacks on the provided `StateMachineExecutor` in the `configure` method:
 
 ```java
 @Override
@@ -258,7 +258,7 @@ for (Session session : context().sessions()) {
 
 ### Commit cleaning
 
-As commands are submitted to the cluster and applied to the Raft state machine, the underlying [log](#log) grows. Without some mechanism to reduce the size of the log, the log would grow without bound and ultimately servers would run out of disk space. Raft suggests a few different approaches of handling log compaction. Copycat uses the [log cleaning](#log-cleaning) approach.
+As commands are submitted to the cluster and applied to the Raft state machine, the underlying [log][io-log] grows. Without some mechanism to reduce the size of the log, the log would grow without bound and ultimately servers would run out of disk space. Raft suggests a few different approaches of handling log compaction. Copycat uses the [log cleaning][io-log-cleaning] approach.
 
 `Commit` objects are backed by entries in Copycat's replicated log. When a `Commit` is no longer needed by the `StateMachine`, the state machine should clean the commit from Copycat's log by calling the `clean()` method:
 

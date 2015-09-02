@@ -7,7 +7,7 @@ title: Distributed Resources
 {:.no-margin-top}
 ## What are resources?
 
-The true power of Copycat comes from [Resource][Resource] implementations. Resources are named distributed objects that are replicated and persisted in the Copycat cluster. Each name can be associated with a single resource, and each resource is backed by a replicated state machine managed by Copycat's underlying [implementation of the Raft consensus protocol](#raft-consensus-algorithm).
+The true power of Copycat comes from [Resource][Resource] implementations. Resources are named distributed objects that are replicated and persisted in the Copycat cluster. Each name can be associated with a single resource, and each resource is backed by a replicated state machine managed by Copycat's underlying [implementation of the Raft consensus protocol][raft-framework].
 
 Resources are created by simply passing a `Resource` class to one of Copycat's `create` methods:
 
@@ -15,7 +15,7 @@ Resources are created by simply passing a `Resource` class to one of Copycat's `
 DistributedMap<String, String> map = copycat.create("/test-map", DistributedMap.class);
 ```
 
-Copycat uses the provided `Class` to create an associated [StateMachine](#state-machines) on each replica. This allows users to create and integrate [custom resources](#custom-resources).
+Copycat uses the provided `Class` to create an associated [StateMachine][state-machines] on each replica. This allows users to create and integrate [custom resources](#custom-resources).
 
 Copycat provides a number of resource implementations for common distributed systems problems. Currently, the provided resources are divided into three subsets that are represented as Maven submodules:
 
@@ -25,7 +25,7 @@ Copycat provides a number of resource implementations for common distributed sys
 
 ### Persistence model
 
-Copycat clients and replicas communicate with each other through [sessions](#sessions). Each session represents a persistent connection between a single client and a complete Copycat cluster. Sessions allow Copycat to associate resource state changes with clients, and this information can often be used to manage state changes in terms of sessions as well.
+Copycat clients and replicas communicate with each other through [sessions]. Each session represents a persistent connection between a single client and a complete Copycat cluster. Sessions allow Copycat to associate resource state changes with clients, and this information can often be used to manage state changes in terms of sessions as well.
 
 Some Copycat resources expose a configurable `PersistenceMode` for resource state change operations. The persistence mode specifies whether a state change is associated directly with the client's `Session`. Copycat exposes two persistence modes:
 
@@ -41,7 +41,7 @@ When performing operations on resources, Copycat separates the types of operatio
 * *commands* - operations that alter the state of a resource
 * *queries* - operations that query the state of a resource
 
-The [Raft consensus algorithm](#raft-consensus-algorithm) on which Copycat is built guarantees linearizability for *commands* in all cases. When a command is submitted to the cluster, the command will always be forwarded to the cluster leader and replicated to a majority of servers before being applied to the resource's state machine and completed.
+The [Raft consensus algorithm][raft-framework] on which Copycat is built guarantees linearizability for *commands* in all cases. When a command is submitted to the cluster, the command will always be forwarded to the cluster leader and replicated to a majority of servers before being applied to the resource's state machine and completed.
 
 Alternatively, Copycat allows for optional trade-offs in the case of *queries*. These optimizations come at the expense of consistency. When a query is submitted to the cluster, users can often specify the minimum consistency level of the request by providing a `ConsistencyLevel` constant. The four minimum consistency levels available are:
 
@@ -53,7 +53,7 @@ Overloaded methods with `ConsistencyLevel` parameters are provided throughout Co
 
 ## Distributed collections
 
-The `copycat-collections` module provides a set of asynchronous, distributed collection-like [resources](#resources). The resources provided by the collections module do not implement JDK collection interfaces because Copycat's APIs are asynchronous, but their methods are equivalent to their blocking counterparts and so collection resources can be easily wrapped in blocking collection interfaces.
+The `copycat-collections` module provides a set of asynchronous, distributed collection-like [resources]. The resources provided by the collections module do not implement JDK collection interfaces because Copycat's APIs are asynchronous, but their methods are equivalent to their blocking counterparts and so collection resources can be easily wrapped in blocking collection interfaces.
 
 If your project does not depend on `copycat-all`, you must add the `copycat-collections` dependency in order to access the collection classes:
 
@@ -113,7 +113,7 @@ Note that TTL timers are deterministically controlled by the cluster leader and 
 
 #### Ephemeral values
 
-In addition to supporting time-based state changes, `DistributedSet` also supports session-based changes via a configurable [PersistenceMode](#persistence-mode). When a value is added to the set with `PersistenceMode.EPHEMERAL`, the value will disappear once the session that created the value is expired or closed.
+In addition to supporting time-based state changes, `DistributedSet` also supports session-based changes via a configurable [PersistenceMode](#persistence-model). When a value is added to the set with `PersistenceMode.EPHEMERAL`, the value will disappear once the session that created the value is expired or closed.
 
 ```java
 // Add a value with EPHEMERAL persistence
@@ -166,7 +166,7 @@ Note that TTL timers are deterministically controlled by the cluster leader and 
 
 #### Ephemeral keys
 
-In addition to supporting time-based state changes, `DistributedMap` also supports session-based changes via a configurable [PersistenceMode](#persistence-mode). When a key is added to the map with `PersistenceMode.EPHEMERAL`, the key will disappear once the session that created the key is expired or closed.
+In addition to supporting time-based state changes, `DistributedMap` also supports session-based changes via a configurable [PersistenceMode](#persistence-model). When a key is added to the map with `PersistenceMode.EPHEMERAL`, the key will disappear once the session that created the key is expired or closed.
 
 ```java
 // Add a key with EPHEMERAL persistence
@@ -233,7 +233,7 @@ Note that TTL timers are deterministically controlled by the cluster leader and 
 
 #### Ephemeral value
 
-In addition to supporting time-based state changes, `DistributedAtomicValue` also supports session-based changes via a configurable [PersistenceMode](#persistence-mode). When the value is set with `PersistenceMode.EPHEMERAL`, the value will disappear once the session that created the value is expired or closed.
+In addition to supporting time-based state changes, `DistributedAtomicValue` also supports session-based changes via a configurable [PersistenceMode](#persistence-model). When the value is set with `PersistenceMode.EPHEMERAL`, the value will disappear once the session that created the value is expired or closed.
 
 ```java
 // Set the value with EPHEMERAL persistence
@@ -368,7 +368,7 @@ topic.onMessage(message -> {
 });
 ```
 
-When a message is sent to a topic, the message will be logged and replicated like any state change via Copycat's underlying [Raft](#raft-consensus-algorithm) implementation. Once the message is stored on a majority of servers, the message will be delivered to any client [sessions](#sessions) alive at the time the message was sent.
+When a message is sent to a topic, the message will be logged and replicated like any state change via Copycat's underlying [Raft][raft-framework] implementation. Once the message is stored on a majority of servers, the message will be delivered to any client [sessions] alive at the time the message was sent.
 
 ## Custom resources
 
@@ -468,6 +468,6 @@ public class Value<T> extends Resource {
 }
 ```
 
-*Important: See [Raft state machine documentation](#state-machines) for details on cleaning commits from the log*
+*Important: See [Raft state machine documentation][state-machines] for details on cleaning commits from the log*
 
 {% include common-links.html %}

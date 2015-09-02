@@ -109,7 +109,7 @@ If `copycat-all` is just not your style, to add Copycat's high-level API as a de
 </dependency>
 ```
 
-Additionally, in order to facilitate communication between [clients][client] and [replicas][replica] you must add a [Transport][transports] dependency. Typically, the [NettyTransport][NettyTransport] will suffice for most use cases:
+Additionally, in order to facilitate communication between [clients][client] and [replicas][replica] you must add a [Transport][io-transports] dependency. Typically, the [NettyTransport][NettyTransport] will suffice for most use cases:
 
 ```
 <dependency>

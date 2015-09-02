@@ -45,7 +45,7 @@ If the server through which a client is communicating fails (the client detects 
 
 Raft servers are responsible for participating in elections and replicating state machine [commands](#internal-commands) and [queries](#internal-queries) through the Raft log.
 
-Each Raft server maintains a single [Transport][transports] *server* and *client* which is connected to each other member of the Raft cluster at any given time. Each server uses a single-thread event loop internally to handle requests. This reduces complexity and ensures that order is strictly enforced on handled requests.
+Each Raft server maintains a single [Transport][io-transports] *server* and *client* which is connected to each other member of the Raft cluster at any given time. Each server uses a single-thread event loop internally to handle requests. This reduces complexity and ensures that order is strictly enforced on handled requests.
 
 <h2 id="internal-state-machines">State machines</h2>
 

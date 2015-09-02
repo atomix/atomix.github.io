@@ -339,9 +339,9 @@ public class ListSerializer implements TypeSerializer<List> {
 
 ## Storage
 
-The [Storage][Storage] API provides an interface to a low-level ordered and index self-cleaning log designed for use in the [Raft consensus algorithm](#raft-consensus-algorithm). Each server in a Copycat cluster writes state changes to disk via the [Log][Log]. Logs are built on top of Copycat's [Buffer](#buffers) abstraction, so the backing store can easily be switched between memory and disk.
+The [Storage][Storage] API provides an interface to a low-level ordered and index self-cleaning log designed for use in the [Raft consensus algorithm][raft-framework]. Each server in a Copycat cluster writes state changes to disk via the [Log][Log]. Logs are built on top of Copycat's [Buffer](#buffers) abstraction, so the backing store can easily be switched between memory and disk.
 
-When constructing a `RaftServer` or `CopycatReplica`, users must provide the server with a `Storage` instance which controls the underlying `Log`. `Storage` objects are built via the storage [Builder](#builders):
+When constructing a `RaftServer` or `CopycatReplica`, users must provide the server with a `Storage` instance which controls the underlying `Log`. `Storage` objects are built via the storage [Builder][builders]:
 
 ```java
 Storage storage = Storage.builder()
@@ -409,7 +409,7 @@ This graphic depicts the cleaning process. As entries are appended to the log, s
 
 The [Transport][Transport] API provides an interface that generalizes the concept of asynchronous client-server messaging. `Transport` objects control the communication between all clients and servers throughout a Copycat cluster. Therefore, it is essential that all nodes in a cluster use the same transport.
 
-The [NettyTransport][NettyTransport] is a TCP-based transport built on [Netty](http://netty.io/) 4.
+The [NettyTransport][NettyTransport] is a TCP-based transport built on [Netty] 4.
 
 ```java
 Transport transport = new NettyTransport();
