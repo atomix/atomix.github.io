@@ -2,6 +2,8 @@
 layout: content
 menu: user-manual
 title: I/O & Serialization
+pitch: Custom serialization, built for speed
+first-section: io-serialization
 ---
 
 Copycat provides a custom I/O and serialization framework that it uses for all disk and network I/O. The I/O framework is designed to provide an abstract API for reading and writing bytes on disk, in memory, and over a network in a way that is easily interchangeable and reduces garbage collection and unnecessary memory copies.
@@ -415,7 +417,7 @@ The [NettyTransport][NettyTransport] is a TCP-based transport built on [Netty] 4
 Transport transport = new NettyTransport();
 ```
 
-{:.bs-callout .bs-callout-info}
+{:.callout .callout-info}
 For test cases, Copycat provides the [LocalTransport][LocalTransport] which mimics the behavior of a network based transport via threads and executors.
 
 {% include common-links.html %}

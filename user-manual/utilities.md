@@ -2,6 +2,8 @@
 layout: content
 menu: user-manual
 title: Utilities
+pitch: Tools for empowering your applications
+first-section: utilities
 ---
 
 The following documentation explains the usage of various utility APIs provided by the `copycat-common` module.

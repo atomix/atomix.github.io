@@ -11,7 +11,7 @@
    * [Working with replicas](#copycatreplica)
    * [Working with clients](#copycatclient)
 * [Distributed resources](distributed-resources)
-   * [What are resources?](#resources)
+   * [What are resources?](#what-are-resources)
       * [Persistence modes](#persistence-model)
       * [Consistency levels](#consistency-levels)
    * [Distributed collections](#distributed-collections)

@@ -1,6 +1,5 @@
 ---
 layout: content
-menu: none
 title: User Manual
 ---
 

@@ -2,10 +2,9 @@
 layout: content
 menu: user-manual
 title: Distributed Resources
+pitch: Tasteful abstractions for distributed systems
+first-section: what-are-resources
 ---
-
-{:.no-margin-top}
-## What are resources?
 
 The true power of Copycat comes from [Resource][Resource] implementations. Resources are named distributed objects that are replicated and persisted in the Copycat cluster. Each name can be associated with a single resource, and each resource is backed by a replicated state machine managed by Copycat's underlying [implementation of the Raft consensus protocol][raft-framework].
 

@@ -17,7 +17,3 @@ $sideBar.affix({
     }
   }
 })
-
-$(window).resize(function() {
-  $sidebar.affix("checkPosition");
-});

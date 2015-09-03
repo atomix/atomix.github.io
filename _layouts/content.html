@@ -21,15 +21,19 @@
 
 <div class="doc-container container">
 	<div class="row">
-{% if page.menu == "none" %}
-    <div class="col-md-12 docs">
-{% else %}
+{% if page.menu %}
     <div class="col-md-9 docs">
+{% else %}
+    <div class="col-md-12 docs">
+{% endif %}
+
+{% if page.pitch %}
+<h2 class="pitch" id="{{ page.first-section }}">&#62; {{ page.pitch }}</h2>
 {% endif %}
 
 {% if page.menu == "user-manual" %}
       <div class="hidden-md hidden-lg" id="toc">
-        <h2>Table of Contents</h2>
+        <h3>Table of Contents</h3>
 {% capture toc %}{% include user-manual-menu.md %}{% endcapture %}
 {{ toc | markdownify }}
       </div>
@@ -37,7 +41,7 @@
 {{ content }}
       </div>
 
-{% if page.menu != "none" %}
+{% if page.menu %}
       <div class="col-md-3 hidden-xs hidden-sm" id="sidebar-col" >
         <div class="nav affix-top" id="sidebar">
 {% if page.menu == "getting-started" %}
@@ -73,6 +77,8 @@
     var parentRef = $(this).attr('href');
     var newRef = '{{ site.baseurl }}/{{ page.menu }}/' + parentRef
     $(this).attr('href', newRef);
+    $(this).attr('data-target', '#' + parentRef);
+    
     $(this).parent().find("ul > li a").each(function () {
       var childHref = $(this).attr('href');
       $(this).attr('href', newRef + childHref);

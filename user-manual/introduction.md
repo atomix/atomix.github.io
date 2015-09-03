@@ -2,6 +2,8 @@
 layout: content
 menu: user-manual
 title: Introduction
+pitch: A framework for building distributed systems
+first-section: introduction
 ---
 
 Copycat is a framework for consistent distributed coordination. At the core of Copycat is a generic implementation of the [Raft consensus algorithm][Raft]. On top of Raft, Copycat provides a high level API for creating and managing arbitrary user-defined replicated state machines such as maps, sets, locks, or user-defined resources. Resources can be created and modified by any replica or client in the cluster.
@@ -14,7 +16,7 @@ Once a leader has been elected, clients connect to a random server in the cluste
 
 Because the Copycat cluster is dependent on a majority of the cluster being reachable to commit writes, the cluster can tolerate a minority of the nodes failing. For this reason, it is recommended that each Copycat cluster have at least 3 or 5 replicas, and the number of replicas should always be odd in order to achieve the greatest level of fault-tolerance. The number of replicas should be calculated as `2f + 1` where `f` is the number of failures to tolerate.
 
-**So what's the difference between Copycat and those other projects?**
+> So what's the difference between Copycat and those other projects?
 
 [ZooKeeper](https://zookeeper.apache.org/) - Copycat and ZooKeeper are both backed by a similar consensus-based persistence/replication layer. But Copycat is a framework that can be embedded instead of depending on an external cluster. Additionally, ZooKeeper's low-level primitives require complex recipes or other tools like [Apache Curator](http://curator.apache.org/), whereas Copycat provides [high-level interfaces]({{ site.baseurl }}/user-manual/distributed-resources#resources) for common data structures and coordination tools like [locks]({{ site.baseurl }}/user-manual/distributed-resources#distributedlock), [maps]({{ site.baseurl }}/user-manual/distributed-resources#distributedmap), and [leader elections]({{ site.baseurl }}/user-manual/distributed-resources#distributedleaderelection), or the option to create [custom replicated state machines]({{ site.baseurl }}/user-manual/distributed-resources#custom-resources).
 

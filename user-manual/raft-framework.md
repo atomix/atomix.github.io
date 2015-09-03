@@ -2,6 +2,8 @@
 layout: content
 menu: user-manual
 title: Raft Consensus Algorithm
+pitch: Sophisticated Raft Consensus implementation
+first-section: raft-framework
 ---
 
 Copycat is built on a standalone, feature-complete implementation of the [Raft consensus algorithm][Raft]. The Raft implementation consists of three Maven submodules:
