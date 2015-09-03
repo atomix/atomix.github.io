@@ -31,15 +31,20 @@
 <h2 class="pitch" id="{{ page.first-section }}">&#62; {{ page.pitch }}</h2>
 {% endif %}
 
-{% if page.menu == "user-manual" %}
+{% if page.menu %}
       <div class="hidden-md hidden-lg" id="toc">
         <h3>Table of Contents</h3>
-{% capture toc %}{% include user-manual-menu.md %}{% endcapture %}
+  {% if page.menu == "user-manual" %}
+    {% capture toc %}{% include user-manual-menu.md %}{% endcapture %}
+  {% elsif page.menu == "getting-started" %}
+    {% capture toc %}{% include getting-started-menu.md %}{% endcapture %}
+  {% endif %}
 {{ toc | markdownify }}
       </div>
 {% endif %}
+
 {{ content }}
-      </div>
+    </div><!-- End col -->
 
 {% if page.menu %}
       <div class="col-md-3 hidden-xs hidden-sm" id="sidebar-col" >
