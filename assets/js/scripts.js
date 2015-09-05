@@ -3,6 +3,7 @@ $(document).ready(function() {
   $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);
     $(this).parent().css("word-wrap", "normal");
+    $(this).css("white-space", "pre");
   });
 });
 
