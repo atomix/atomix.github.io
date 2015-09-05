@@ -1,3 +1,11 @@
+// hljs
+$(document).ready(function() {
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+    $(this).parent().css("word-wrap", "normal");
+  });
+});
+
 /** scroll spy */
 $('body').scrollspy({ target: '#sidebar-col' })
 
