@@ -2,7 +2,7 @@
 layout: content
 menu: user-manual
 title: Distributed Resources
-pitch: Tasteful abstractions for distributed systems
+pitch: Common abstractions for distributed coordination
 first-section: what-are-resources
 ---
 

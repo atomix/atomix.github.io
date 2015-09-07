@@ -2,7 +2,7 @@
 layout: content
 menu: user-manual
 title: Introduction
-pitch: A framework for building distributed systems
+pitch: An asynchronous framework for building distributed systems
 first-section: introduction
 ---
 
@@ -41,6 +41,9 @@ Unlike [ZooKeeper], Copycat natively supports linearizable reads as well. Much l
 *See the [Raft implementation details]({{ site.baseurl }}/user-manual/raft-internals/) for more information on consistency in Copycat*
 
 ## Fault-tolerance
+
+{:.callout .callout-info}
+In order to ensure consistency, Copycat's consensus protocol requires that a majority of the cluster be available to service reads and writes.
 
 Because Copycat falls on the CP side of the CAP theorem, it favors consistency over availability, particularly under failure. In order to ensure consistency, Copycat's [consensus protocol][raft-framework] requires that a majority of the cluster be alive and operating normally to service reads and writes.
 

@@ -2,7 +2,7 @@
 layout: content
 menu: user-manual
 title: Utilities
-pitch: Tools for empowering your applications
+pitch: Tools for empowering asynchronous applications
 first-section: utilities
 ---
 

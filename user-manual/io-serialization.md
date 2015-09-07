@@ -2,7 +2,7 @@
 layout: content
 menu: user-manual
 title: I/O & Serialization
-pitch: Custom serialization, built for speed
+pitch: Custom binary serialization, built for the JVM
 first-section: io-serialization
 ---
 
