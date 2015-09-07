@@ -65,9 +65,10 @@
 {% include scripts.html %}
 
 <script type="text/javascript">
+  var currentPath = window.location.pathname
+
   // Adjust user manual TOC when for small screens
   $("#toc > ul > li > a").each(function() {
-    var currentPath = window.location.pathname
     var parentRef = $(this).attr('href');
     if (currentPath.indexOf(parentRef) > -1) {
       $(this).parent().css('display', 'block');
@@ -77,6 +78,12 @@
   // Adjust sidebar links
   $("#sidebar > ul > li > a").each(function() {
     var parentRef = $(this).attr('href');
+
+    // Activate current sidebar item
+    if (currentPath.indexOf(parentRef) > -1) {
+      $(this).parent().attr('class', 'current');
+    }
+
     var newRef = '{{ site.baseurl }}/{{ page.menu }}/' + parentRef
     $(this).attr('href', newRef);
     $(this).attr('data-target', '#' + parentRef);
