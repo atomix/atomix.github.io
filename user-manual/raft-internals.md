@@ -2,7 +2,7 @@
 layout: content
 menu: user-manual
 title: Raft Implementation Details
-pitch: Tasteful abstractions for distributed systems
+pitch: Raft architecture and implementation
 first-section: raft-internals
 ---
 

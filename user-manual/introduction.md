@@ -2,7 +2,7 @@
 layout: content
 menu: user-manual
 title: Introduction
-pitch: A framework for building distributed systems
+pitch: An asynchronous framework for building distributed systems
 first-section: introduction
 ---
 
