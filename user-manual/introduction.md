@@ -42,6 +42,8 @@ Unlike [ZooKeeper], Copycat natively supports linearizable reads as well. Much l
 
 ## Fault-tolerance
 
+{:.bs-callout .bs-callout-info} In order to ensure consistency, Copycat's consensus protocol requires that a majority of the cluster be available to service reads and writes.
+
 Because Copycat falls on the CP side of the CAP theorem, it favors consistency over availability, particularly under failure. In order to ensure consistency, Copycat's [consensus protocol][raft-framework] requires that a majority of the cluster be alive and operating normally to service reads and writes.
 
 * A cluster of `1` replica can tolerate `0` failures
