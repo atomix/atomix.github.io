@@ -67,31 +67,38 @@
 <script type="text/javascript">
   var currentPath = window.location.pathname
 
+  function isGettingStarted(href) {
+    return href == "getting-started";
+  }
+
+  function adjustHref(href) {
+    return '{{ site.baseurl }}/' + (isGettingStarted(href) ? href : '{{ page.menu }}/' + href);
+  }
+
   // Adjust user manual TOC when for small screens
   $("#toc > ul > li > a").each(function() {
-    var parentRef = $(this).attr('href');
-    if (currentPath.indexOf(parentRef) > -1) {
+    var href = $(this).attr('href');
+    if (currentPath.indexOf(href) > -1) 
       $(this).parent().css('display', 'block');
-    }
+    $(this).attr('href', adjustHref(href));
   });
 
   // Adjust sidebar links
   $("#sidebar > ul > li > a").each(function() {
     var parentRef = $(this).attr('href');
-    var gettingStarted = parentRef == "getting-started";
 
     // Activate current sidebar item
     if (currentPath.indexOf(parentRef) > -1) {
       $(this).parent().attr('class', 'current');
     }
-
-    var newRef = '{{ site.baseurl }}/' + (gettingStarted ? parentRef : '{{ page.menu }}/' + parentRef);
+    
+    newRef = adjustHref(parentRef);
     $(this).attr('href', newRef);
     $(this).attr('data-target', '#' + parentRef);
     
     $(this).parent().find("ul > li a").each(function () {
       var childHref = $(this).attr('href');
-      if (!gettingStarted)
+      if (!isGettingStarted(parentRef))
         $(this).attr('href', newRef + childHref);
       $(this).attr('data-target', childHref);
     });
