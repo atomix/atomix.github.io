@@ -403,7 +403,7 @@ For a segment that has not yet been cleaned, cleaning will take place only once 
 
 Log cleaning works by simply creating a new segment at the start of the segment being cleaned and iterating over the entries in the segment, rewriting live entries from the old segment to the new segment, and discarding entries that have been `clean`ed:
 
-![Combining segments](http://s12.postimg.org/jhdthtpct/Combined_Segment_Compaction_New_Page_1.png)
+{% include lightbox.html href="http://s12.postimg.org/jhdthtpct/Combined_Segment_Compaction_New_Page_1.png" desc="Combined segment compaction" %}
 
 This graphic depicts the cleaning process. As entries are appended to the log, some older entries are marked for cleaning (the grey boxes). During the log cleaning process, a background thread iterates through the segment being cleaned (the bold boxes) and discards entries that have been `clean`ed (the bold white boxes). In the event that two neighboring segments have been compacted small enough to form a single segment, they will be combined into one segment (the last row). This ensures that the number of open files remains more or less constant as entries are cleaned from the log.
 

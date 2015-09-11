@@ -7,8 +7,14 @@ $(document).ready(function() {
   });
 });
 
-/** scroll spy */
+// scrollspy
 $('body').scrollspy({ target: '#sidebar-col' })
+
+// lightbox
+$(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+    event.preventDefault();
+    $(this).ekkoLightbox();
+});
 
 // make sidebar sticky when it hits the top of the viewport
 var $sideBar = $("#sidebar");
