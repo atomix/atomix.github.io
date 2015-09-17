@@ -6,50 +6,69 @@ pitch: Sophisticated Raft Consensus implementation
 first-section: raft-framework
 ---
 
-Copycat is built on a standalone, feature-complete implementation of the [Raft consensus algorithm][Raft]. The Raft implementation consists of three Maven submodules:
+Copycat is built on a standalone, feature-complete implementation of the [Raft consensus algorithm][Raft] called
+[Catalog][Catalog].
 
-### copycat-protocol
+The Raft implementation consists of two core modules. To use the [Raft server](#raftserver) library, add the `catalog-server` jar
+to your classpath:
 
-The `copycat-protocol` submodule provides base interfaces and classes that are shared between both the [client](#copycat-client) and [server](#copycat-server) modules. The most notable components of the protocol submodule are [commands][Command] and [queries][Query] with which the client communicates state machine operations, and [sessions][Session] through which clients and servers communicate.
+```
+<dependency>
+  <groupId>net.kuujo.catalog</groupId>
+  <artifactId>catalog-server</artifactId>
+  <version>1.0.0-alpha1</version>
+</dependency>
+```
 
-### copycat-server
+To use the [Raft client](#raftclient) library, add the `catalog-client` jar to your classpath:
 
-The `copycat-server` submodule is a standalone [Raft][Raft] server implementation. The server provides a feature-complete implementation of the [Raft consensus algorithm][Raft], including dynamic cluster membership changes and log compaction.
-
-The primary interface to the `copycat-server` module is [RaftServer][RaftServer].
-
-### copycat-client
-
-The `copycat-client` submodule provides a [RaftClient][RaftClient] interface for submitting [commands][Command] and [queries][Query] to a cluster of [RaftServer][RaftServer]s. The client implementation includes full support for linearizable commands via [sessions][Session].
+```
+<dependency>
+  <groupId>net.kuujo.catalog</groupId>
+  <artifactId>catalog-client</artifactId>
+  <version>1.0.0-alpha1</version>
+</dependency>
+```
 
 ## RaftClient
 
 The [RaftClient][RaftClient] provides an interface for submitting [commands](#commands) and [queries](#queries) to a cluster of [Raft servers](#raftserver).
 
-To create a client, you must supply the client [Builder][builders] with a set of `Members` to which to connect.
+To create a client, you must supply the client [Builder][builders] with a set of `Address`es to which to connect.
 
 ```java
-Members members = Members.builder()
-  .addMember(new Member(1, "123.456.789.1" 5555))
-  .addMember(new Member(2, "123.456.789.2" 5555))
-  .addMember(new Member(3, "123.456.789.3" 5555))
-  .build();
+List<Address> members = Arrays.asList(
+  new Address("123.456.789.0", 5555),
+  new Address("123.456.789.1", 5555),
+  new Address("123.456.789.2", 5555)
+);
 ```
 
-The provided `Members` do not have to be representative of the full Copycat cluster, but they do have to provide at least one correct server to which the client can connect. In other words, the client must be able to communicate with at least one `RaftServer` that is the leader or can communicate with the leader, and a majority of the cluster must be able to communicate with one another in order for the client to register a new [Session](#client-sessions).
+The provided `Address`es do not have to be representative of the full Copycat cluster, but they do have to provide at least one correct server to which the client can connect. In other words, the client must be able to communicate with at least one `RaftServer` that is the leader or can communicate with the leader, and a majority of the cluster must be able to communicate with one another in order for the client to register a new [Session](#client-sessions).
 
 ```java
-RaftClient client = RaftClient.builder()
+RaftClient client = RaftClient.builder(members)
   .withTransport(new NettyTransport())
-  .withMembers(members)
   .build();
 ```
 
 Once a `RaftClient` has been created, connect to the cluster by calling `open()` on the client:
 
+{% include sync-tabs.html target1="#async-open" desc1="Async" target2="#sync-open" desc2="Sync" %}
+{::options parse_block_html="true" /}
+<div class="tab-content">
+<div class="tab-pane active" id="async-open">
 ```java
 client.open().thenRun(() -> System.out.println("Successfully connected to the cluster!"));
 ```
+</div>
+
+<div class="tab-pane" id="sync-open">
+```java
+client.open().join();
+```
+</div>
+</div>
 
 ### Client lifecycle
 
@@ -61,10 +80,10 @@ Once the client's session has been registered, the `Session` object can be acces
 
 The client will remain connected to the server through which the session was registered for as long as possible. If the server fails, the client can reconnect to another random server and maintain its open session.
 
-The `Session` object can be used to receive events `publish`ed by the server's `StateMachine`. To register a session event listener, use the `onReceive` method:
+The `Session` object can be used to receive events `publish`ed by the server's `StateMachine`. To register a session event listener, use the `onEvent` method:
 
 ```java
-client.session().onReceive(message -> System.out.println("Received " + message));
+client.session().onEvent(message -> System.out.println("Received " + message));
 ```
 
 When events are sent from a server state machine to a client via the `Session` object, only the server to which the client is connected will send the event. Copycat servers guarantee that state machine events will be received by the client session in the order in which they're sent even if the client switches servers.
@@ -73,13 +92,13 @@ When events are sent from a server state machine to a client via the `Session` o
 
 The [RaftServer][RaftServer] class is a feature complete implementation of the [Raft consensus algorithm][Raft]. `RaftServer` underlies all distributed resources supports by Copycat's high-level APIs.
 
-The `RaftServer` class is provided in the `copycat-server` module:
+The `RaftServer` class is provided in the `catalog-server` module:
 
 ```
 <dependency>
-  <groupId>net.kuujo.copycat</groupId>
-  <artifactId>copycat-server</artifactId>
-  <version>{{ site.version }}</version>
+  <groupId>net.kuujo.catalog</groupId>
+  <artifactId>catalog-server</artifactId>
+  <version>1.0.0-alpha1</version>
 </dependency>
 ```
 
@@ -92,22 +111,37 @@ Each `RaftServer` consists of three essential components:
 To create a Raft server, use the server [Builder][builders]:
 
 ```java
-RaftServer server = RaftServer.builder()
-  .withMemberId(1)
-  .withMembers(members)
+RaftServer server = RaftServer.builder(address, members)
   .withTransport(new NettyTransport())
-  .withStorage(Storage.builder()
-    .withStorageLevel(StorageLevel.MEMORY)
-    .build())
+  .withStorage(new Storage("logs"))
   .withStateMachine(new MyStateMachine())
   .build();
 ```
 
+The only two required arguments are those required by the `RaftServer.builder` static factory method. The `address` passed
+into the builder factory is the `Address` of the server within the provided list of `Address`es.
+
+Users can optionally configure the [Catalyst][Catalyst] transport to use and configure the Raft storage (log) module.
+To manage state in the Raft cluster, users must provide a `StateMachine` implementation to the server. The state machine should
+*always* be consistent and deterministic across all servers in the cluster.
+
 Once the server has been created, call `open()` to start the server:
 
+{% include sync-tabs.html target1="#async-server-open" desc1="Async" target2="#sync-server-open" desc2="Sync" %}
+{::options parse_block_html="true" /}
+<div class="tab-content">
+<div class="tab-pane active" id="async-server-open">
 ```java
 server.open().thenRun(() -> System.out.println("Server started successfully!"));
 ```
+</div>
+
+<div class="tab-pane" id="sync-server-open">
+```java
+server.open().join();
+```
+</div>
+</div>
 
 The returned `CompletableFuture` will be completed once the server has connected to other members of the cluster and, critically, discovered the cluster leader. See the [server lifecycle](#server-lifecycle) for more information on how the server joins the cluster.
 
@@ -212,13 +246,21 @@ Internally, state machines are backed by a series of entries in an underlying [l
 
 #### Registering operations
 
-The `StateMachineExecutor` is a special [Context][contexts] implemntation that is responsible for applying [commands](#commands) and [queries](#queries) to the state machine. Operations are handled by registering callbacks on the provided `StateMachineExecutor` in the `configure` method:
+The `StateMachineExecutor` is a special [Context][contexts] that is responsible for applying [commands](#commands) and [queries](#queries) to the state machine. As operations are committed on each server in the cluster, the `StateMachineExecutor` will execute appropriate state machine callbacks according to the registered operations. Operations are handled by registering callbacks on the provided `StateMachineExecutor` in the `configure` method:
 
 ```java
 @Override
 protected void configure(StateMachineExecutor executor) {
   executor.register(SetCommand.class, this::set);
   executor.register(GetQuery.class, this::get);
+}
+```
+
+Operation callbacks must accept a `Commit<T extends Operation<?>>` object for the registered operation type:
+
+```java
+private Object get(Commit<GetQuery> commit) {
+  return map.get(commit.operation().key());
 }
 ```
 

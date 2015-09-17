@@ -6,7 +6,7 @@ pitch: Raft architecture and implementation
 first-section: raft-internals
 ---
 
-Copycat is built on a feature-complete implementation of the [Raft consensus algorithm][Raft] which has been developed over a period of more than two years. The implementation goes well beyond the [original Raft paper](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf) and includes a majority of the full implementation described in Diego Ongaro's [Raft dissertation](https://ramcloud.stanford.edu/~ongaro/thesis.pdf) in addition to several extensions to the algorithm, including:
+Copycat is built on an advanced implementation of the [Raft consensus algorithm][Raft] called [Catalog][Catalog], which has been developed over a period of more than two years. The implementation goes well beyond the [original Raft paper](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf) and includes a majority of the full implementation described in Diego Ongaro's [Raft dissertation](https://ramcloud.stanford.edu/~ongaro/thesis.pdf) in addition to several extensions to the algorithm, including:
 
 * Asynchronous [Raft server](#servers)
 * Asynchronous [Raft client](#clients)
@@ -75,11 +75,15 @@ Copycat's Raft implementation separates the concept of *writes* from *reads* in 
 
 When the leader receives a command, it writes the command to the log along with a client provided *sequence number*, the *session ID* of the session which submitted the command, and an approximate *timestamp*. Notably, the *timestamp* is used to provide a deterministic approximation of time on which state machines can base time-based command handling like TTLs or other timeouts.
 
+### Preserving program order
+
 There are certain scenarios where sequential consistency can be broken by clients submitting commands via disparate followers. If a client submits a command to server `A` which forwards it to server `B` (the leader), and then switches servers and submits a command to server `C` which also forwards it to server `B`, it is conceivable that the command submitted to server `C` could reach the leader prior to the command submitted via server `A`. If those commands are committed to the Raft log in the order in which they're received by the leader, that will violate sequential consistency since state changes will no longer reflect the client's program order.
  
 Because of the pattern with which clients communicate with servers, this may be an unlikely occurrence. Clients only switch servers in the event of a server failure. Nevertheless, failures are when it is most critical that a systems maintain their guarantees, so servers ensure that commands are applied in the order in which they were sent by the client regardless of the order in which they were received by the leader.
 
 When a client submits a command to the cluster, it tags the command with a monotonically increasing *sequence* number. The sequence number is used for two purposes. First, it is used to sequence commands as they're applied to the user state machine. When a command is committed and applied to the state machine, if the command's sequence number is greater than one plus the previously applied sequence number, the command is queued and applied in sequence order.
+
+### Ensuring linearizable semantics
 
 Sequence numbers are also used to provide linearizability for commands submitted to the cluster by clients by storing command output by sequence number and deduplicate commands as they're applied to the state machine. If a client submits a command to a server that fails, the client doesn't necessarily know whether or not the command succeeded. Indeed, the command could have been replicated to a majority of the cluster prior to the server failure. In that case, the command would ultimately be committed and applied to the state machine, but the client would never receive the command output. Session-based linearizability ensures that clients can still read output for commands resubmitted to the cluster, but that requires that leaders allow commands with old *sequence* numbers to be logged and replicated.
 
@@ -108,6 +112,8 @@ If the query is `SERIALIZABLE`, the receiving server performs a consistency chec
 ![Inconsistent queries](http://s24.postimg.org/5ln88h2vp/IMG_0011.png)
 
 *This illustration depicts the route through which serializable (potentially stale) queries travel in Copycat's Raft cluster. Serializable queries are evaluated directly on the server to which the client is connected.*
+
+### Ensuring state progresses monotonically
 
 When queries are submitted to the cluster, the client provides a *version* number which specifies the highest index for which it has seen a response. Awaiting that index when servicing queries on followers ensures that state does not go back in time if a client switches servers. Once the server's state machine has caught up to the client's *version* number, the server applies the query to its state machine and response with the state machine output.
 
