@@ -21,7 +21,7 @@ Copycat is built on an advanced implementation of the [Raft consensus algorithm]
 
 In some cases, Copycat's Raft implementation diverges from recommendations. For instance, Raft dictates that all reads and writes be executed through the leader node, but Copycat's Raft implementation supports per-request consistency levels that allow clients to sacrifice linearizability and read from followers. Similarly, Raft literature recommends snapshots as the simplest approach to log compaction, but Copycat prefers log cleaning to promote more consistent performance throughout the lifetime of a cluster. In other cases, Copycat's Raft implementation extends those described in the literature. For example, Copycat's Raft implementation extends the concept of sessions to allow server state machines to publish events to clients.
 
-It's important to note that wherever Copycat diverges from standards and recommendations with relation to the Raft consensus algorithm, it does so using well-understood alternative methods that are either described in the Raft literature or frequently discussed on Raft discussion forums. Copycat does not attempt to alter the fundamental correctness of the algorithm but rather seeks to extend it to promote usability in real-world use cases.
+It's important to note that wherever Copycat diverges from standards and recommendations with relation to the Raft consensus algorithm, it does so using well-understood alternative methods that are either described in the Raft literature or frequently discussed within the Raft community. Copycat does not attempt to alter the fundamental correctness of the algorithm but rather seeks to extend it to promote usability in real-world use cases.
 
 The following documentation details Copycat's implementation of the Raft consensus algorithm and in particular the areas in which the implementation diverges from the recommendations in Raft literature and the reasoning behind various decisions.
 
@@ -29,7 +29,7 @@ The following documentation details Copycat's implementation of the Raft consens
 
 Copycat's Raft client is responsible for connecting to a Raft cluster and submitting [commands](#internal-commands) and [queries](#internal-queries).
 
-The pattern with which clients communicate with servers diverges slightly from that which is described in the Raft literature. Copycat's Raft implementation uses client communication patterns that are closely modeled on those of [ZooKeeper]. The reasoning behind this design decision is to allow optional fast [serializable](https://en.wikipedia.org/wiki/Serializability) reads from followers at the expense of a potential extra network hop for [linearizable](https://en.wikipedia.org/wiki/Linearizability) reads and writes.
+The pattern with which clients communicate with servers diverges slightly from that which is described in the Raft literature. Copycat's Raft implementation uses client communication patterns that are closely modeled on those of [ZooKeeper]. The reasoning behind this design decision is to allow optional fast [sequential](https://en.wikipedia.org/wiki/Sequential_consistency) reads from followers at the expense of a potential extra network hop for [linearizable](https://en.wikipedia.org/wiki/Linearizability) reads and writes.
 
 Clients are designed to connect to and communicate with a single server at a time. There is no correlation between the client and the Raft cluster's leader. In fact, clients never even learn about the leader. Copycat ensures that writes from a client will always be applied in program order and a client will never see history go back in time, even when clients have to switch servers due to network or other failures.
 
@@ -97,7 +97,7 @@ Finally, [queries](#internal-queries) are optionally allowed to read stale state
 
 When a query is submitted to the Raft cluster, as with all other requests the query request is sent to the server to which the client is connected. The server that receives the query request will handle the query based on the query's configured *consistency level*. If the server that receives the query request is not the leader, it will evaluate the request to determine whether it needs to be proxied to the leader:
 
-If the query is `LINEARIZABLE` or `LINEARIZABLE_LEASE`, the server will forward the query to the leader.
+If the query is `LINEARIZABLE` or `BOUNDED_LINEARIZABLE`, the server will forward the query to the leader.
 
 ![Consistent queries](http://s24.postimg.org/y8q8ia385/IMG_0010.png)
 
@@ -105,9 +105,9 @@ If the query is `LINEARIZABLE` or `LINEARIZABLE_LEASE`, the server will forward 
 
 `LINEARIZABLE` queries are handled by the leader by contacting a majority of the cluster before servicing the query. When the leader receives a linearizable read, if the leader is in the process of sending *AppendEntries* RPCs to followers then the query is queued for the next heartbeat. On the next heartbeat iteration, once the leader has successfully contacted a majority of the cluster, queued queries are applied to the user-provided state machine and the leader responds to their respective requests with the state machine output. Batching queries during heartbeats reduces the overhead of synchronously verifying the leadership during reads.
 
-`LINEARIZABLE_LEASE` queries are handled by the leader under the assumption that once the leader has verified its leadership with a majority of the cluster, it can assume that it will remain the leader for at least an election timeout. When a lease-based linearizable query is received by the leader, it will check to determine the last time it verified its leadership with a majority of the cluster. If more than an election timeout has elapsed since it contacted a majority of the cluster, the leader will immediately attempt to verify its leadership before applying the query to the user-provided state machine. Otherwise, if the leadership was verified within an election timeout, the leader will immediately apply the query to the user-provided state machine and respond with the state machine output.
+`BOUNDED_LINEARIZABLE` queries are handled by the leader under the assumption that once the leader has verified its leadership with a majority of the cluster, it can assume that it will remain the leader for at least an election timeout. When a lease-based linearizable query is received by the leader, it will check to determine the last time it verified its leadership with a majority of the cluster. If more than an election timeout has elapsed since it contacted a majority of the cluster, the leader will immediately attempt to verify its leadership before applying the query to the user-provided state machine. Otherwise, if the leadership was verified within an election timeout, the leader will immediately apply the query to the user-provided state machine and respond with the state machine output.
 
-If the query is `SERIALIZABLE`, the receiving server performs a consistency check to ensure that its log is not too far out-of-sync with the leader to reliably service a query. If the receiving server's log is in-sync, it will wait until the log is caught up until the last index seen by the requesting client before servicing the query.
+If the query is `CAUSAL` or `SEQUENTIAL`, the receiving server performs a consistency check to ensure that its log is not too far out-of-sync with the leader to reliably service a query and that it meets the criteria for the query request. If the receiving server's log is in-sync, it will wait until the log is caught up until the last index seen by the requesting client before servicing the query.
 
 ![Inconsistent queries](http://s24.postimg.org/5ln88h2vp/IMG_0011.png)
 
@@ -200,14 +200,14 @@ Copycat opted to sacrifice some complexity to state machines in favor of more ef
 
 This compaction model means that Copycat's Raft protocol must be capable of accounting for entries missing from the log. When entries are replicated to a follower, each entry is replicated with its index so that the follower can write entries to its own log in the proper sequence. Entries that are not present in a server's log or in an *AppendEntries* RPC are simply skipped in the log. In order to maintain consistency, it is critical that state machines implement log cleaning correctly.
 
-The most complex case for state machines to handle is tombstone commands. It's fairly simple to determine when a stateful command has been superseded by a more recent command. For instance, consider this history:
+The most complex case for state machines to handle via log cleaning is tombstone commands. It's fairly simple to determine when a stateful command has been superseded by a more recent one. For instance, consider the following history:
 
 ```
 put 1
 put 3
 ```
 
-In the scenario above, once the second `put` command has been applied to the state machine, it's safe to remove the first `put` from the log. However, for commands that result in the absence of state (tombstones), cleaning the log is not as simple:
+In the scenario above, once the second `put` command has been applied to the state machine, it's safe to remove the first `put` from the log. However, for commands that result in the absence of state - otherwise known as *tombstones* (how morbid) - cleaning the log is not as simple:
 
 ```
 put 1
@@ -219,27 +219,11 @@ In the scenario above, the first two `put` commands must be cleaned from the log
 
 Furthermore, it is essential that the `delete` command be replicated on *all* servers in the cluster prior to being cleaned from any log. If, for instance, a server is partitioned when the `delete` is committed, and the `delete` is cleaned from the log prior to the partition healing, that server will never receive the tombstone and thus not clean all prior `put` commands.
 
-Some systems like [Kafka] handle tombstones by aging them out of the log after a large interval of time, meaning tombstones must be handled within a bounded timeframe. Copycat opts to ensure that tombstones have been persisted on all servers prior to cleaning them from the log.
+Some systems like [Kafka] handle tombstones by aging them out of the log after a large interval of time, meaning tombstones must be handled within a bounded time frame. Copycat opts to ensure that tombstones have been persisted on all servers prior to cleaning them from the log.
 
 In order to handle log cleaning for tombstones, Copycat extends the Raft protocol to keep track of the highest index in the log that has been replicated on *all* servers in the cluster. During normal *AppendEntries* RPCs, the leader sends a *global index* which indicates the highest index represented on all servers in the cluster based on the leader's `matchIndex` for each server. This global index represents the highest index for which tombstones can be safely removed from the log.
 
-Given the global index, state machines must use the index to determine when it's safe to remove a tombstone from the log. But Copycat doesn't actually even expose the global index to the state machine. Instead, Copycat's state machines are designed to clean tombstones only when there are no prior commits that contribute to the state being deleted by the tombstone. It does so by periodically replaying globally committed commands to the state machine, allowing it to remove commits that have no prior state.
-
-Consider the tombstone history again:
-
-```
-put 1
-put 3
-delete 3
-```
-
-The first time that the final `delete` command is applied to the state machine, it will have marked the first two `put` commands for deletion from the log. At some point in the future after segment to which the associated entries belong are cleaned, the history in the log will contain only a single command:
-
-```
-delete 3
-```
-
-At that point, if commands are replayed to the state machine, the state machine will see that the `delete` does not actually result in the absence of state since the state never existed to begin with. Each server in the cluster will periodically replay early entries that have been persisted on all servers to a clone of the state machine to allow it to clean tombstones that relate to invalid state. This is a clever way to clean tombstones from the log by essentially *never* cleaning tombstones that delete state, and instead only cleaning tombstones that are essentially irrelevant.
+But the global index only solves part of the problem of determining when it's safe to remove a tombstone from the log. As mentioned, Copycat also needs to somehow understand the relationship between entries and ensure that tombstones are cleaned only after prior related entries have been removed. In order to do this, Copycat's log cleaner uses an efficient algorithm to track hierarchies of entries. Copycat assigns random IDs to all log entries and, when an entry is marked for cleaning from the log, tracks hierarchies of related entries in memory by XORing each entry ID onto a single 64-bit number. As entries are physically removed from disk, entry IDs are again XORed with the 64-bit number. Once that number returns to `0`, the log cleaner knows that it's safe to remove a tombstone from the log.
 
 *See chapter 5 of Diego Ongaro's [Raft dissertation][raft-dissertation] for more on log compaction*
 

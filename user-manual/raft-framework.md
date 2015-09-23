@@ -16,7 +16,7 @@ to your classpath:
 <dependency>
   <groupId>net.kuujo.catalog</groupId>
   <artifactId>catalog-server</artifactId>
-  <version>1.0.0-alpha1</version>
+  <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -26,7 +26,7 @@ To use the [Raft client](#raftclient) library, add the `catalog-client` jar to y
 <dependency>
   <groupId>net.kuujo.catalog</groupId>
   <artifactId>catalog-client</artifactId>
-  <version>1.0.0-alpha1</version>
+  <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -91,16 +91,6 @@ When events are sent from a server state machine to a client via the `Session` o
 ## RaftServer
 
 The [RaftServer][RaftServer] class is a feature complete implementation of the [Raft consensus algorithm][Raft]. `RaftServer` underlies all distributed resources supports by Copycat's high-level APIs.
-
-The `RaftServer` class is provided in the `catalog-server` module:
-
-```
-<dependency>
-  <groupId>net.kuujo.catalog</groupId>
-  <artifactId>catalog-server</artifactId>
-  <version>1.0.0-alpha1</version>
-</dependency>
-```
 
 Each `RaftServer` consists of three essential components:
 
@@ -182,6 +172,29 @@ public class Set<T> implements Command<T> {
 
 The [Command][Command] interface extends [Operation][Operation] which is `Serializable` and can be sent over the wire with no additional configuration. However, for the best performance users should implement [CopycatSerializable][CopycatSerializable] or register a [TypeSerializer][TypeSerializer] for the type. This will reduce the size of the serialized object and allow Copycat's [Serializer](#serializer) to optimize class loading internally during deserialization.
 
+### Command consistency
+
+By default, [commands](#commands) submitted to the Copycat cluster are guaranteed to be linearizable. Linearizable commands are sequenced to the Raft log in the order in which they were executed on the client (program order) and are guaranteed to occur some time between invocation and response. However, sequencing commands may be unnecessary overhead for clients that don't submit concurrent writes, so Copycat allows [Command][Command] implementations to specify a `ConsistencyLevel` to control how commands are handled by the cluster.
+
+To configure the consistency level for a `Command`, simply override the default `consistency()` getter:
+
+```java
+public class Put<K, V> implements Command {
+
+  @Override
+  public ConsistencyLevel consistency() {
+    return Consistency.CAUSAL;
+  }
+
+}
+```
+
+The consistency level returned by the overridden `consistency()` method amounts to a *minimum consistency requirement*. In many cases, a `CAUSAL` command can actually result in `LINEARIZABLE` write depending on whether the client submits concurrent commands.
+
+Copycat provides two consistency levels for commands:
+* `Command.ConsistencyLevel.LINEARIZABLE` - Provides guaranteed linearizability by ensuring commands are written to the Raft log in the order in which they occurred on the client.
+* `Command.ConsistencyLevel.CAUSAL` - Provides causal consistency which guarantees ordering of non-overlapping commands, but may reorder concurrent commands from a single client.
+
 ## Queries
 
 In contrast to commands which perform state change operations, queries are read-only operations which do not modify the server-side state machine's state. Because read operations do not modify the state machine state, Copycat can optimize queries according to read from certain nodes according to the configuration and [may not require contacting a majority of the cluster in order to maintain consistency](#query-consistency). This means queries can significantly reduce disk and network I/O depending on the query configuration, so it is strongly recommended that all read-only operations be implemented as queries.
@@ -206,18 +219,19 @@ public class Get<T> implements Query {
 
   @Override
   public ConsistencyLevel consistency() {
-    return Consistency.SERIALIZABLE;
+    return Consistency.SEQUENTIAL;
   }
 
 }
 ```
 
-The consistency level returned by the overridden `consistency()` method amounts to a *minimum consistency requirement*. In many cases, a `SERIALIZABLE` query can actually result in `LINEARIZABLE` read depending the server to which a client submits queries, but clients can only rely on the configured consistency level.
+The consistency level returned by the overridden `consistency()` method amounts to a *minimum consistency requirement*. In many cases, a `SEQUENTIAL` query can actually result in `LINEARIZABLE` read depending the server to which a client submits queries, but clients can only rely on the configured consistency level.
 
-Copycat provides four consistency levels:
-* `ConsistencyLevel.LINEARIZABLE` - Provides guaranteed linearizability by forcing all reads to go through the leader and verifying leadership with a majority of the Raft cluster prior to the completion of all operations
-* `ConsistencyLevel.LINEARIZABLE_LEASE` - Provides best-effort optimized linearizability by forcing all reads to go through the leader but allowing most queries to be executed without contacting a majority of the cluster so long as less than the election timeout has passed since the last time the leader communicated with a majority
-* `ConsistencyLevel.SERIALIZABLE` - Provides serializable consistency by allowing clients to read from followers and ensuring that clients see state progress monotonically
+Copycat provides four consistency levels for queries:
+* `Query.ConsistencyLevel.LINEARIZABLE` - Provides guaranteed linearizability by forcing all reads to go through the leader and verifying leadership with a majority of the Raft cluster prior to the completion of all operations
+* `Query.ConsistencyLevel.BOUNDED_LINEARIZABLE` - Provides best-effort optimized linearizability by forcing all reads to go through the leader but allowing most queries to be executed without contacting a majority of the cluster so long as less than the election timeout has passed since the last time the leader communicated with a majority
+* `Query.ConsistencyLevel.SEQUENTIAL` - Provides sequential consistency by allowing clients to read from followers and ensuring that clients see state progress monotonically
+* `Query.ConsistencyLevel.CAUSAL` - Provides causal consistency which ensures that clients will always see state progress monotonically for non-overlapping queries
 
 ## State machines
 
@@ -285,7 +299,7 @@ Sessions are representative of a single client's connection to the cluster. For 
 
 ```java
 protected Object put(Commit<PutCommand> commit) {
-  commit.session().publish("putteded");
+  commit.session().publish("put", commit.operation().key());
   return map.put(commit.operation().key(), commit.operation().value());
 }
 ```
@@ -296,7 +310,7 @@ To get the context, call the protected `context()` getter from inside the state 
 
 ```java
 for (Session session : context().sessions()) {
-  session.publish("Hello world!");
+  session.publish("message", "Hello world!");
 }
 ```
 
@@ -328,7 +342,7 @@ Once the underlying `Log` has grown large enough, and once enough commits have b
 In addition to registering operation callbacks, the `StateMachineExecutor` also facilitates deterministic scheduling based on the Raft replicated log.
 
 ```java
-executor.schedule(() -> System.out.println("Every second"), Duration.ofSeconds(1), Duration.ofSeconds(1));
+executor.schedule(Duration.ofSeconds(1), () -> System.out.println("One deterministic second later"));
 ```
 
 Because of the complexities of coordinating distributed systems, time does not advance at the same rate on all servers in the cluster. What is essential, though, is that time-based callbacks be executed at the same point in the Raft log on all nodes. In order to accomplish this, the leader writes an approximate `Instant` to the replicated log for each command. When a command is applied to the state machine, the command's timestamp is used to invoke any outstanding scheduled callbacks. This means the granularity of scheduled callbacks is limited by the minimum time between commands submitted to the cluster, including session register and keep-alive requests. Thus, users should not rely on `StateMachineExecutor` scheduling for accuracy.
