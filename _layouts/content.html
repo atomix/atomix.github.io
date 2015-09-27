@@ -28,10 +28,11 @@
 <h2 class="pitch" id="{{ page.first-section }}">&#62; {{ page.pitch }}</h2>
 {% endif %}
 
+{% capture pagemenu %}{{ page.project }}/{{ page.menu }}-menu.md{% endcapture %}
 {% if page.menu %}
       <div class="hidden-md hidden-lg" id="toc">
         <h3>Table of Contents</h3>
-  {% capture toc %}{% include catalyst/{{ page.menu }}-menu.md %}{% endcapture %}
+  {% capture toc %}{% include {{ pagemenu }} %}{% endcapture %}
   {{ toc | markdownify }}
       </div>
 {% endif %}
@@ -42,7 +43,7 @@
 {% if page.menu %}
       <div class="col-md-3 hidden-xs hidden-sm" id="sidebar-col" >
         <div class="nav affix-top" id="sidebar">
-  {% capture sidemenu %}{% include catalyst/{{ page.menu }}-menu.md %}{% endcapture %}
+  {% capture sidemenu %}{% include {{ pagemenu }} %}{% endcapture %}
   {{ sidemenu | markdownify }}
         </div>
       </div>
@@ -63,7 +64,7 @@
   }
 
   function adjustHref(href) {
-    return '/' + (isGettingStarted(href) ? href : '{{ page.menu }}/' + href);
+    return '/{{ page.project }}/' + (isGettingStarted(href) ? href : '{{ page.menu }}/' + href);
   }
 
   // Adjust user manual TOC when for small screens
