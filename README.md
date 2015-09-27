@@ -7,7 +7,7 @@ gem install jekyll
 ## Run locally
 
 ```
-jekyll serve -w --baseurl ''
+jekyll serve -w
 ```
 
 Then browse to `http://localhost:4000`
