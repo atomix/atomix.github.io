@@ -1,5 +1,6 @@
 ---
 layout: content
+project: copycat
 menu: user-manual
 title: Introduction
 pitch: An asynchronous framework for building distributed systems

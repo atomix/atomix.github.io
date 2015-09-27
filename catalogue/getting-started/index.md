@@ -1,5 +1,6 @@
 ---
 layout: content
+project: catalogue
 menu: getting-started
 title: Getting Started
 pitch: Copycat in two minutes

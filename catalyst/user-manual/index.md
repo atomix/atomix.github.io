@@ -1,5 +1,6 @@
 ---
 layout: content
+project: catalyst
 title: User Manual
 ---
 
@@ -9,6 +10,6 @@ Documentation is still under active development. The following documentation is 
 [Javadoc]: http://kuujo.github.io/copycat/api/latest/
 
 <div id="user-manual-index">
-{% capture usermanual %}{% include user-manual-menu.md %}{% endcapture %}
+{% capture usermanual %}{% include catalyst/user-manual-menu.md %}{% endcapture %}
 {{ usermanual | markdownify }}
 </div>

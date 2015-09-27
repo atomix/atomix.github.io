@@ -1,5 +1,6 @@
 ---
 layout: content
+project: copycat
 menu: user-manual
 title: Distributed Resources
 pitch: Common abstractions for distributed coordination

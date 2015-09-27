@@ -1,5 +1,6 @@
 ---
 layout: content
+project: catalyst
 menu: user-manual
 title: I/O & Serialization
 pitch: Custom binary serialization, built for the JVM

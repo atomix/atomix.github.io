@@ -1,7 +1,6 @@
-{% assign site.manual-url = site.baseurl | concat "/user-manua" %}
-
 <!DOCTYPE html>
 <html lang="en">
+{% include {{ page.project }}/vars.inc %}
 {% include head.html %}
 	<body>
 
@@ -11,7 +10,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        <h1>{{ page.title }} </h1>
+        <h1>{{ page.title }}</h1>
       </div>
     </div>
   </div>
@@ -32,12 +31,8 @@
 {% if page.menu %}
       <div class="hidden-md hidden-lg" id="toc">
         <h3>Table of Contents</h3>
-  {% if page.menu == "user-manual" %}
-    {% capture toc %}{% include user-manual-menu.md %}{% endcapture %}
-  {% elsif page.menu == "getting-started" %}
-    {% capture toc %}{% include getting-started-menu.md %}{% endcapture %}
-  {% endif %}
-{{ toc | markdownify }}
+  {% capture toc %}{% include catalyst/{{ page.menu }}-menu.md %}{% endcapture %}
+  {{ toc | markdownify }}
       </div>
 {% endif %}
 
@@ -47,12 +42,8 @@
 {% if page.menu %}
       <div class="col-md-3 hidden-xs hidden-sm" id="sidebar-col" >
         <div class="nav affix-top" id="sidebar">
-{% if page.menu == "getting-started" %}
-{% capture sidemenu %}{% include getting-started-menu.md %}{% endcapture %}
-{% elsif page.menu == "user-manual" %}
-{% capture sidemenu %}{% include user-manual-menu.md %}{% endcapture %}
-{% endif %}
-{{ sidemenu | markdownify }}
+  {% capture sidemenu %}{% include catalyst/{{ page.menu }}-menu.md %}{% endcapture %}
+  {{ sidemenu | markdownify }}
         </div>
       </div>
 {% endif %}

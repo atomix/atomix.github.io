@@ -1,5 +1,6 @@
 ---
 layout: content
+project: copycat
 menu: user-manual
 title: Copycat API
 pitch: Simple API for building powerful distributed systems

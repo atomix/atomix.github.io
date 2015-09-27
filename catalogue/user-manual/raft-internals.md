@@ -1,5 +1,6 @@
 ---
 layout: content
+project: catalogue
 menu: user-manual
 title: Raft Implementation Details
 pitch: Raft architecture and implementation
