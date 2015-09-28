@@ -3,7 +3,7 @@ layout: content
 project: catalyst
 menu: getting-started
 title: Getting Started
-pitch: Copycat in two minutes
+pitch: Catalyst in two minutes
 first-section: getting-started
 ---
 
@@ -148,4 +148,4 @@ DistributedLeaderElection election = copycat.create("test-election", Distributed
 </div>
 </div>
 
-[CompletableFuture]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
+{% include common-links.html %}

@@ -1,6 +1,6 @@
 ---
 layout: content
-project: catalogue
+project: copycat
 menu: user-manual
 title: Raft Consensus Algorithm
 pitch: Sophisticated Raft Consensus implementation

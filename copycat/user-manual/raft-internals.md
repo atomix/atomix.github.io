@@ -1,6 +1,6 @@
 ---
 layout: content
-project: catalogue
+project: copycat
 menu: user-manual
 title: Raft Implementation Details
 pitch: Raft architecture and implementation

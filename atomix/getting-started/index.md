@@ -1,23 +1,23 @@
 ---
 layout: content
-project: catalogue
+project: atomix
 menu: getting-started
 title: Getting Started
-pitch: Copycat in two minutes
+pitch: Atomix in two minutes
 first-section: getting-started
 ---
 
-The high-level [Copycat API](/user-manual/copycat-api#the-copycat-api) is a single interface that aids in managing stateful resources (e.g. maps, sets, locks, leader elections) in a distributed system. The `Copycat` API is heavily influenced by [Hazelcast's](http://hazelcast.org/) API.
+The high-level [Atomix API](/user-manual/atomix-api#the-atomix-api) is a single interface that aids in managing stateful resources (e.g. maps, sets, locks, leader elections) in a distributed system. The `Atomix` API is heavily influenced by [Hazelcast's][Hazelcast] API.
 
-The one critical method in Copycat's high-level API is the `create` method. The `create` method gets or creates a user-defined distributed resource.
+The one critical method in Atomix's high-level API is the `create` method. The `create` method gets or creates a user-defined distributed resource.
 
 ```java
-copycat.create("test-lock", DistributedLock.class).thenAccept(lock -> {
+atomix.create("test-lock", DistributedLock.class).thenAccept(lock -> {
   // Do stuff...
 });
 ```
 
-Copycat's API is fully asynchronous and relies heavily on Java 8's [CompletableFuture][CompletableFuture].
+Atomix's API is fully asynchronous and relies heavily on Java 8's [CompletableFuture].
 
 {% include sync-top-tabs.html %}
 
@@ -27,7 +27,7 @@ Copycat's API is fully asynchronous and relies heavily on Java 8's [CompletableF
 <div class="tab-content">
 <div class="tab-pane active sync">
 ```java
-DistributedMap<String, String> map = copycat.create("test-map", DistributedMap.class).get();
+DistributedMap<String, String> map = atomix.create("test-map", DistributedMap.class).get();
 
 map.put("key", "value").join();
 
@@ -42,7 +42,7 @@ if (value.equals("value")) {
 {::options parse_block_html="true" /}
 <div class="tab-pane async">
 ```java
-DistributedMap<String, String> map = copycat.create("test-map", DistributedMap.class).thenAccept(map -> {
+DistributedMap<String, String> map = atomix.create("test-map", DistributedMap.class).thenAccept(map -> {
   map.put("key", "value").thenRun(() -> {
     map.get("key").thenAccept(value -> {
       if (value.equals("value")) {
@@ -62,7 +62,7 @@ DistributedMap<String, String> map = copycat.create("test-map", DistributedMap.c
 <div class="tab-content">
 <div class="tab-pane active sync">
 ```java
-DistributedSet<String> set = copycat.create("test-set", DistributedSet.class).get();
+DistributedSet<String> set = atomix.create("test-set", DistributedSet.class).get();
 
 set.add("value").join();
 
@@ -75,7 +75,7 @@ if (set.contains("value").get()) {
 {::options parse_block_html="true" /}
 <div class="tab-pane async">
 ```java
-DistributedSet<String> set = copycat.create("test-set", DistributedSet.class).thenAccept(set -> {
+DistributedSet<String> set = atomix.create("test-set", DistributedSet.class).thenAccept(set -> {
   set.add("value").thenRun(() -> {
     set.contains("value").thenAccept(result -> {
       if (result) {
@@ -95,7 +95,7 @@ DistributedSet<String> set = copycat.create("test-set", DistributedSet.class).th
 <div class="tab-content">
 <div class="tab-pane active sync">
 ```java
-DistributedLock lock = copycat.create("test-lock", DistributedLock.class).get();
+DistributedLock lock = atomix.create("test-lock", DistributedLock.class).get();
 
 // Lock the lock
 lock.lock().join();
@@ -108,7 +108,7 @@ lock.unlock().join();
 {::options parse_block_html="true" /}
 <div class="tab-pane async">
 ```java
-DistributedLock lock = copycat.create("test-lock", DistributedLock.class).thenAccept(lock -> {
+DistributedLock lock = atomix.create("test-lock", DistributedLock.class).thenAccept(lock -> {
   lock.lock().thenRun(() -> {
     // Do stuff...
     lock.unlock().thenRun(() -> {
@@ -126,7 +126,7 @@ DistributedLock lock = copycat.create("test-lock", DistributedLock.class).thenAc
 <div class="tab-content">
 <div class="tab-pane active sync">
 ```java
-DistributedLeaderElection election = copycat.create("test-election", DistributedLeaderElection.class).get();
+DistributedLeaderElection election = atomix.create("test-election", DistributedLeaderElection.class).get();
 
 election.onElection(epoch -> {
   System.out.println("Elected leader!");
@@ -137,7 +137,7 @@ election.onElection(epoch -> {
 {::options parse_block_html="true" /}
 <div class="tab-pane async">
 ```java
-DistributedLeaderElection election = copycat.create("test-election", DistributedLeaderElection.class).thenAccept(election -> {
+DistributedLeaderElection election = atomix.create("test-election", DistributedLeaderElection.class).thenAccept(election -> {
   election.onElection(epoch -> {
     System.out.println("Elected leader!");
   }).thenRun(() -> {
@@ -148,4 +148,4 @@ DistributedLeaderElection election = copycat.create("test-election", Distributed
 </div>
 </div>
 
-[CompletableFuture]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
+{% include common-links.html %}

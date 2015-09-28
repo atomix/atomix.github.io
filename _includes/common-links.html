@@ -1,17 +1,17 @@
+<!-- Atomix doc sections -->
+[client]: /atomix/user-manual/atomix-api#atomixclient
+[replica]: /atomix/user-manual/atomix-api#atomixreplica
+[resources]: /atomix/user-manual/distributed-resources
+
 <!-- Copycat doc sections -->
-[client]: /copycat/user-manual/copycat-api#copycatclient
-[replica]: /copycat/user-manual/copycat-api#copycatreplica
-[resources]: /copycat/user-manual/distributed-resources
+[raft-framework]: /copycat/user-manual/raft-framework
+[state-machines]: /copycat/user-manual/raft-framework#state-machines
+[raft-server]: /copycat/user-manual/raft-framework#raftserver
+[raft-client]: /copycat/user-manual/raft-framework#raftclient
+[commands]: /copycat/user-manual/raft-framework#commands
+[sessions]: /copycat/user-manual/raft-framework#sessions
 
-<!-- Catalogue doc sections -->
-[raft-framework]: /catalogue/user-manual/raft-framework
-[state-machines]: /catalogue/user-manual/raft-framework#state-machines
-[raft-server]: /catalogue/user-manual/raft-framework#raftserver
-[raft-client]: /catalogue/user-manual/raft-framework#raftclient
-[commands]: /catalogue/user-manual/raft-framework#commands
-[sessions]: /catalogue/user-manual/raft-framework#sessions
-
-<!-- Catalyst doc shortcuts -->
+<!-- Catalyst doc sections -->
 [io-serialization]: /catalyst/user-manual/io-serialization
 [io-transports]: /catalyst/user-manual/io-serialization#transports
 [io-storage]: /catalyst/user-manual/io-serialization#storage
@@ -26,9 +26,9 @@
 [CAP]: https://en.wikipedia.org/wiki/CAP_theorem
 
 <!-- Repositories -->
-[Copycat]: http://github.com/atomix/copycat
-[Catalog]: http://github.com/atomix/catalog
-[Catalyst]: http://github.com/atomix/catalyst
+[AtomixRepo]: http://github.com/atomix/atomix
+[CopycatRepo]: http://github.com/atomix/copycat
+[CatalystRepo]: http://github.com/atomix/catalyst
 
 <!-- Tech -->
 [Hazelcast]: http://hazelcast.org/
@@ -38,49 +38,48 @@
 [Cassandra]: http://cassandra.apache.org/
 
 <!-- 3rd party Javadoc -->
-[NettyTransport]: http://atomix.io/copycat/api/latest/io/atomix/copycat/io/transport/NettyTransport.html
 [CompletableFuture]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
 [Executor]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html
 [CompletableFuture]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
 [ByteBuffer]: https://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html
 
+<!-- Atomix Javadoc -->
+[AtomixJavadoc]: http://atomix.io/atomix/api/latest/
+[collections]: http://atomix.io/atomix/api/latest/io/atomix/collections.html
+[atomic]: http://atomix.io/atomix/api/latest/io/atomix/atomic.html
+[coordination]: http://atomix.io/atomix/api/latest/io/atomix/coordination.html
+[atomix]: http://atomix.io/atomix/api/latest/io/atomix.html
+[Atomix]: http://atomix.io/atomix/api/latest/io/atomix/Atomix.html
+[AtomixReplica]: http://atomix.io/atomix/api/latest/io/atomix/CopycatReplica.html
+[AtinuxClient]: http://atomix.io/atomix/api/latest/io/atomix/CopycatClient.html
+[Resource]: http://atomix.io/atomix/api/latest/io/atomix/Resource.html
+[DistributedAtomicValue]: http://atomix.io/atomix/api/latest/io/atomix/atomic/DistributedAtomicValue.html
+[DistributedSet]: http://atomix.io/atomix/api/latest/io/atomix/collections/DistributedSet.html
+[DistributedMap]: http://atomix.io/atomix/api/latest/io/atomix/collections/DistributedMap.html
+[DistributedLock]: http://atomix.io/atomix/api/latest/io/atomix/coordination/DistributedLock.html
+[DistributedLeaderElection]: http://atomix.io/atomix/api/latest/io/atomix/coordination/DistributedLeaderElection.html
+[DistributedTopic]: http://atomix.io/atomix/api/latest/io/atomix/coordination/DistributedTopic.html
+
 <!-- Copycat Javadoc -->
 [CopycatJavadoc]: http://atomix.io/copycat/api/latest/
-[collections]: http://atomix.io/copycat/api/latest/io/atomix/copycat/collections.html
-[atomic]: http://atomix.io/copycat/api/latest/io/atomix/copycat/atomic.html
-[coordination]: http://atomix.io/copycat/api/latest/io/atomix/copycat/coordination.html
-[copycat]: http://atomix.io/copycat/api/latest/io/atomix/copycat.html
-[Copycat]: http://atomix.io/copycat/api/latest/io/atomix/copycat/Copycat.html
-[CopycatReplica]: http://atomix.io/copycat/api/latest/io/atomix/copycat/CopycatReplica.html
-[CopycatClient]: http://atomix.io/copycat/api/latest/io/atomix/copycat/CopycatClient.html
-[Resource]: http://atomix.io/copycat/api/latest/io/atomix/copycat/Resource.html
-[DistributedAtomicValue]: http://atomix.io/copycat/api/latest/io/atomix/copycat/atomic/DistributedAtomicValue.html
-[DistributedSet]: http://atomix.io/copycat/api/latest/io/atomix/copycat/collections/DistributedSet.html
-[DistributedMap]: http://atomix.io/copycat/api/latest/io/atomix/copycat/collections/DistributedMap.html
-[DistributedLock]: http://atomix.io/copycat/api/latest/io/atomix/copycat/coordination/DistributedLock.html
-[DistributedLeaderElection]: http://atomix.io/copycat/api/latest/io/atomix/copycat/coordination/DistributedLeaderElection.html
-[DistributedTopic]: http://atomix.io/copycat/api/latest/io/atomix/copycat/coordination/DistributedTopic.html
-
-<!-- Catalogue Javadoc -->
-[CatalogueJavadoc]: http://atomix.io/catalogue/api/latest/
-[protocol]: http://atomix.io/catalogue/api/latest/io/atomix/catalogue/client.html
-[Storage]: http://atomix.io/catalogue/api/latest/io/atomix/catalogue/server/storage/Storage.html
-[Log]: http://atomix.io/catalogue/api/latest/io/atomix/catalogue/server/storage/Log.html
-[RaftServer]: http://atomix.io/catalogue/api/latest/io/atomix/catalogue/server/RaftServer.html
-[RaftClient]: http://atomix.io/catalogue/api/latest/io/atomix/catalogue/client/RaftClient.html
-[Session]: http://atomix.io/catalogue/api/latest/io/atomix/catalogue/client/session/Session.html
-[Operation]: http://atomix.io/catalogue/api/latest/io/atomix/catalogue/client/Operation.html
-[Command]: http://atomix.io/catalogue/api/latest/io/atomix/catalogue/client/Command.html
-[Query]: http://atomix.io/catalogue/api/latest/io/atomix/catalogue/client/Query.html
-[Commit]: http://atomix.io/catalogue/api/latest/io/atomix/catalogue/client/Commit.html
-[ConsistencyLevel]: http://atomix.io/copycat/api/latest/io/atomix/catalogue/raft/client/ConsistencyLevel.html
+[protocol]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client.html
+[Storage]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.html
+[Log]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Log.html
+[RaftServer]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/RaftServer.html
+[RaftClient]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client/RaftClient.html
+[Session]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client/session/Session.html
+[Operation]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Operation.html
+[Command]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html
+[Query]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html
+[Commit]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Commit.html
+[ConsistencyLevel]: http://atomix.io/atomix/api/latest/io/atomix/copycat/raft/client/ConsistencyLevel.html
+[storage]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage.html
 
 <!-- Catalyst Javadoc -->
 [CatalystJavadoc]: http://atomix.io/catalyst/api/latest/
 [io]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer.html
 [serializer]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer.html
 [transport]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport.html
-[storage]: http://atomix.io/catalogue/api/latest/io/atomix/catalogue/server/storage.html
 [utilities]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util.html
 [Transport]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html
 [LocalTransport]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/LocalTransport.html
