@@ -4,7 +4,7 @@ project: copycat
 menu: user-manual
 title: Raft Implementation Details
 pitch: Raft architecture and implementation
-first-section: raft-internals
+first-section: internals
 ---
 
 Copycat is built on an advanced implementation of the [Raft consensus algorithm][Raft] called [Catalog][Catalog], which has been developed over a period of more than two years. The implementation goes well beyond the [original Raft paper](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf) and includes a majority of the full implementation described in Diego Ongaro's [Raft dissertation](https://ramcloud.stanford.edu/~ongaro/thesis.pdf) in addition to several extensions to the algorithm, including:

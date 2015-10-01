@@ -7,6 +7,69 @@ pitch: Copycat in two minutes
 first-section: getting-started
 ---
 
+## Installation
+
+Copycat consists of two core modules. To use the [Raft server](#copycatserver) library, add the `copycat-server` jar
+to your classpath:
+
+```
+<dependency>
+  <groupId>io.atomix.copycat</groupId>
+  <artifactId>copycat-server</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+</dependency>
+```
+
+To use the [Raft client](#copycatclient) library, add the `copycat-client` jar to your classpath:
+
+```
+<dependency>
+  <groupId>io.atomix.copycat</groupId>
+  <artifactId>copycat-client</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+</dependency>
+```
+
+## CopycatClient
+
+The [CopycatClient][CopycatClient] provides an interface for submitting [commands](#commands) and [queries](#queries) to a cluster of [Raft servers](#copycatserver).
+
+To create a client, you must supply the client [Builder][builders] with a set of `Address`es to which to connect.
+
+```java
+List<Address> members = Arrays.asList(
+  new Address("123.456.789.0", 5555),
+  new Address("123.456.789.1", 5555),
+  new Address("123.456.789.2", 5555)
+);
+```
+
+The provided `Address`es do not have to be representative of the full Copycat cluster, but they do have to provide at least one correct server to which the client can connect. In other words, the client must be able to communicate with at least one `CopycatServer` that is the leader or can communicate with the leader, and a majority of the cluster must be able to communicate with one another in order for the client to register a new [Session](#client-sessions).
+
+```java
+CopycatClient client = CopycatClient.builder(members)
+  .withTransport(new NettyTransport())
+  .build();
+```
+
+Once a `CopycatClient` has been created, connect to the cluster by calling `open()` on the client:
+
+{% include sync-tabs.html target1="#async-open" desc1="Async" target2="#sync-open" desc2="Sync" %}
+{::options parse_block_html="true" /}
+<div class="tab-content">
+<div class="tab-pane active" id="async-open">
+```java
+client.open().thenRun(() -> System.out.println("Successfully connected to the cluster!"));
+```
+</div>
+
+<div class="tab-pane" id="sync-open">
+```java
+client.open().join();
+```
+</div>
+</div>
+
 ### Creating a state machine
 
 To create a state machine, extend the base `StateMachine` class:
@@ -159,7 +222,7 @@ public class MapStateMachine extends StateMachine {
 }
 ```
 
-### Starting a Raft server
+### Starting a Copycat server
 
 ```java
 Address address = new Address("123.456.789.0", 5000);
@@ -170,7 +233,7 @@ Collection<Address> members = Arrays.asList(
   new Address("123.456.789.0", 5000)
 );
 
-RaftServer server = RaftServer.builder(address, members)
+CopycatServer server = CopycatServer.builder(address, members)
   .withTransport(new NettyTransport())
   .withStateMachine(new MapStateMachine())
   .withStorage(new Storage("/path/to/logs", StorageLevel.DISK))
@@ -179,7 +242,7 @@ RaftServer server = RaftServer.builder(address, members)
 server.open().join();
 ```
 
-### Submitting operations via the Raft client
+### Submitting operations via the client
 
 {::options parse_block_html="true" /}
 <div class="tab-content">

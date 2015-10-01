@@ -2,20 +2,12 @@
 layout: content
 project: atomix
 menu: user-manual
-title: Introduction
+title: Overview
 pitch: An asynchronous framework for building distributed systems
-first-section: introduction
+first-section: overview
 ---
 
 Atomix is a framework for consistent distributed coordination. At the core of Atomix is a generic implementation of the [Raft consensus algorithm][Raft]. On top of Raft, Atomix provides a high level API for creating and managing arbitrary user-defined replicated state machines such as maps, sets, locks, or user-defined resources. Resources can be created and modified by any replica or client in the cluster.
-
-Atomix clusters consist of at least one (but usually 3 or 5) [replica] and any number of [clients][client]. *Replicas* are stateful nodes that actively participate in the Raft consensus protocol, and *clients* are stateless nodes that modify system state remotely. When a cluster is started, the replicas in the cluster coordinate with one another to elect a leader.
-
-![Atomix cluster](http://s24.postimg.org/3jrc7yuad/IMG_0007.png)
-
-Once a leader has been elected, clients connect to a random server in the cluster, create resources (e.g. maps, sets, locks, etc) and submit commands (writes) and queries (reads). All commands are proxied to the cluster leader. When the leader receives a command, it persists the write to [disk](/user-manual/io-serialization#storage) and replicates it to the rest of the cluster. Once a command has been received and persisted on a majority of replicas, the state change is committed and guaranteed not to be lost.
-
-Because the Atomix cluster is dependent on a majority of the cluster being reachable to commit writes, the cluster can tolerate a minority of the nodes failing. For this reason, it is recommended that each Atomix cluster have at least 3 or 5 replicas, and the number of replicas should always be odd in order to achieve the greatest level of fault-tolerance. The number of replicas should be calculated as `2f + 1` where `f` is the number of failures to tolerate.
 
 > So what's the difference between Atomix and those other projects?
 
@@ -98,7 +90,7 @@ Atomix provides an all-encompassing dependency - `atomix-all` - which provides a
 
 ```
 <dependency>
-  <groupId>net.kuujo.atomix</groupId>
+  <groupId>io.atomix</groupId>
   <artifactId>atomix-all</artifactId>
   <version>{{ site.version }}</version>
 </dependency>
@@ -108,7 +100,7 @@ If `atomix-all` is just not your style, to add Atomix's high-level API as a depe
 
 ```
 <dependency>
-  <groupId>net.kuujo.atomix</groupId>
+  <groupId>io.atomix</groupId>
   <artifactId>atomix</artifactId>
   <version>{{ site.version }}</version>
 </dependency>
@@ -118,7 +110,7 @@ Additionally, in order to facilitate communication between [clients][client] and
 
 ```
 <dependency>
-  <groupId>net.kuujo.atomix</groupId>
+  <groupId>io.atomix</groupId>
   <artifactId>atomix-netty</artifactId>
   <version>{{ site.version }}</version>
 </dependency>
@@ -128,7 +120,7 @@ Finally, to add specific [resources][resources] as dependencies, add one of the 
 
 ```
 <dependency>
-  <groupId>net.kuujo.atomix</groupId>
+  <groupId>io.atomix</groupId>
   <artifactId>atomix-collections</artifactId>
   <version>{{ site.version }}</version>
 </dependency>

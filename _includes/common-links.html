@@ -1,22 +1,23 @@
 <!-- Atomix doc sections -->
 [client]: /atomix/user-manual/atomix-api#atomixclient
 [replica]: /atomix/user-manual/atomix-api#atomixreplica
-[resources]: /atomix/user-manual/distributed-resources
+[cluster]: /atomix/user-manual/cluster
+[resources]: /atomix/user-manual/resources
+[collections]: /atomix/user-manual/collections
+[atomics]: /atomix/user-manual/atomics
+[coordination]: /atomix/user-manual/coordination
 
 <!-- Copycat doc sections -->
-[raft-framework]: /copycat/user-manual/raft-framework
-[state-machines]: /copycat/user-manual/raft-framework#state-machines
-[raft-server]: /copycat/user-manual/raft-framework#raftserver
-[raft-client]: /copycat/user-manual/raft-framework#raftclient
-[commands]: /copycat/user-manual/raft-framework#commands
-[sessions]: /copycat/user-manual/raft-framework#sessions
+[raft-framework]: /copycat/user-manual/
+[state-machines]: /copycat/user-manual/state-machine
+[copycat-server]: /copycat/user-manual/server
+[copycat-client]: /copycat/user-manual/client
+[commands]: /copycat/user-manual/state-machine#commands
+[sessions]: /copycat/user-manual/state-machine#sessions
 
 <!-- Catalyst doc sections -->
-[io-serialization]: /catalyst/user-manual/io-serialization
-[io-transports]: /catalyst/user-manual/io-serialization#transports
-[io-storage]: /catalyst/user-manual/io-serialization#storage
-[io-log]: /catalyst/user-manual/io-serialization#log
-[io-log-cleaning]: /catalyst/user-manual/io-serialization#log-cleaning
+[io-serialization]: /catalyst/user-manual/serialization
+[io-transports]: /catalyst/user-manual/messaging
 [builders]: /catalyst/user-manual/utilities#builders
 [contexts]: /catalyst/utilities#contexts
 
@@ -37,6 +38,11 @@
 [ZooKeeper]: https://zookeeper.apache.org/
 [Cassandra]: http://cassandra.apache.org/
 
+<!-- Consistency Models -->
+[Linearizability]: https://en.wikipedia.org/wiki/Linearizability
+[SequentialConsistency]: https://en.wikipedia.org/wiki/Sequential_consistency
+[CausalConsistency]: https://en.wikipedia.org/wiki/Causal_consistency
+
 <!-- 3rd party Javadoc -->
 [CompletableFuture]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
 [Executor]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html
@@ -50,14 +56,21 @@
 [coordination]: http://atomix.io/atomix/api/latest/io/atomix/coordination.html
 [atomix]: http://atomix.io/atomix/api/latest/io/atomix.html
 [Atomix]: http://atomix.io/atomix/api/latest/io/atomix/Atomix.html
-[AtomixReplica]: http://atomix.io/atomix/api/latest/io/atomix/CopycatReplica.html
-[AtinuxClient]: http://atomix.io/atomix/api/latest/io/atomix/CopycatClient.html
+[AtomixServer]: http://atomix.io/atomix/api/latest/io/atomix/Atomix.html
+[AtomixReplica]: http://atomix.io/atomix/api/latest/io/atomix/AtomixReplica.html
+[AtomixClient]: http://atomix.io/atomix/api/latest/io/atomix/AtomixClient.html
 [Resource]: http://atomix.io/atomix/api/latest/io/atomix/Resource.html
 [DistributedAtomicValue]: http://atomix.io/atomix/api/latest/io/atomix/atomic/DistributedAtomicValue.html
+[DistributedAtomicLong]: http://atomix.io/atomix/api/latest/io/atomix/atomic/DistributedAtomicLong.html
 [DistributedSet]: http://atomix.io/atomix/api/latest/io/atomix/collections/DistributedSet.html
+[DistributedQueue]: http://atomix.io/atomix/api/latest/io/atomix/collections/DistributedQueue.html
 [DistributedMap]: http://atomix.io/atomix/api/latest/io/atomix/collections/DistributedMap.html
+[DistributedMultiMap]: http://atomix.io/atomix/api/latest/io/atomix/collections/DistributedMultiMap.html
 [DistributedLock]: http://atomix.io/atomix/api/latest/io/atomix/coordination/DistributedLock.html
 [DistributedLeaderElection]: http://atomix.io/atomix/api/latest/io/atomix/coordination/DistributedLeaderElection.html
+[DistributedMembershipGroup]: http://atomix.io/atomix/api/latest/io/atomix/coordination/DistributedMembershipGroup.html
+[GroupMember]: http://atomix.io/atomix/api/latest/io/atomix/coordination/GroupMember.html
+[DistributedMessageBus]: http://atomix.io/atomix/api/latest/io/atomix/coordination/DistributedMessageBus.html
 [DistributedTopic]: http://atomix.io/atomix/api/latest/io/atomix/coordination/DistributedTopic.html
 
 <!-- Copycat Javadoc -->
@@ -65,14 +78,15 @@
 [protocol]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client.html
 [Storage]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.html
 [Log]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Log.html
-[RaftServer]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/RaftServer.html
-[RaftClient]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client/RaftClient.html
+[CopycatServer]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/CopycatServer.html
+[CopycatClient]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html
 [Session]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client/session/Session.html
 [Operation]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Operation.html
 [Command]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html
 [Query]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html
 [Commit]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Commit.html
-[ConsistencyLevel]: http://atomix.io/atomix/api/latest/io/atomix/copycat/raft/client/ConsistencyLevel.html
+[CommandConsistencyLevel]: http://atomix.io/atomix/api/latest/io/atomix/copycat/client/Command.ConsistencyLevel.html
+[QueryConsistencyLevel]: http://atomix.io/atomix/api/latest/io/atomix/copycat/client/Query.ConsistencyLevel.html
 [storage]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage.html
 
 <!-- Catalyst Javadoc -->
@@ -81,6 +95,7 @@
 [serializer]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer.html
 [transport]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport.html
 [utilities]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util.html
+[Address]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html
 [Transport]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html
 [LocalTransport]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/LocalTransport.html
 [NettyTransport]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/NettyTransport.html
