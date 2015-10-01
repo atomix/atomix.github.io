@@ -21,15 +21,15 @@ Atomix is a framework for consistent distributed coordination. At the core of At
 
 High-throughput, high-availability distributed databases like [Hazelcast] or [Cassandra] and other Dynamo-based systems fall under the *A* and *P* in the CAP theorem. That is, these systems generally sacrifice consistency in favor of availability during network partitions. In AP systems, a network partition can result in temporary or even permanent loss of writes. These systems are generally designed to store and query large amounts of data quickly.
 
-Alternatively, systems like [ZooKeeper] and Atomix, which fall under the *C* and *P* in the CAP theorem, are generally designed to store small amounts of mission critical state. CP systems provide strong consistency guarantees like [linearizability](https://en.wikipedia.org/wiki/Linearizability) and [sequential consistency](https://en.wikipedia.org/wiki/Sequential_consistency) even in the face of failures, but that level of consistency comes at a cost: availability. CP systems like ZooKeeper and Atomix are consensus-based and require a quorum to operate, so they can only tolerate the loss of a minority of servers.
+Alternatively, systems like [ZooKeeper] and Atomix, which fall under the *C* and *P* in the CAP theorem, are generally designed to store small amounts of mission critical state. CP systems provide strong consistency guarantees like [linearizability][Linearizability] and [sequential consistency][SequentialConsistency] even in the face of failures, but that level of consistency comes at a cost: availability. CP systems like ZooKeeper and Atomix are consensus-based and require a quorum to operate, so they can only tolerate the loss of a minority of servers.
 
 ## Consistency model
 
-In terms of the CAP theorem, Atomix falls squarely in the CP range. That means Atomix provides configurable strong consistency levels - [linearizability](https://en.wikipedia.org/wiki/Linearizability) for writes and reads, and optional weaker [serializability](https://en.wikipedia.org/wiki/Serializability) for reads - for all operations. Linearizability says that all operations must take place some time between their invocation and completion. This means that once a write is committed to a Atomix cluster, all clients are guaranteed to see the resulting state.
+In terms of the CAP theorem, Atomix falls squarely in the CP range. That means Atomix provides configurable strong consistency levels - [linearizability][Linearizability] for both reads, writes, and other events, and optional weaker [sequential consistency][SequentialConsistency] or [causal consistency][CausalConsistency] for reads - for all operations. Linearizability says that all operations must take place some time between their invocation and completion. This means that once a write is committed to a Atomix cluster, all clients are guaranteed to see the resulting state.
 
 Consistency is guaranteed by [Atomix's implementation of the Raft consensus algorithm][raft-framework]. Raft uses a [distributed leader election](https://en.wikipedia.org/wiki/Leader_election) algorithm to elect a leader. The leader election algorithm guarantees that the server that is elected leader will have all the writes to the cluster that have previously been successful. All writes go through the cluster leader and are *synchronously replicated to a majority of servers* before completion. Additionally, writes are sequenced in the order in which they're submitted by the client (sequential consistency).
 
-Unlike [ZooKeeper], Atomix natively supports linearizable reads as well. Much like writes, linearizable reads must go through the cluster leader (which always has the most recent cluster state) and may require contact with a majority of the cluster. For higher throughput, Atomix also allows reads from followers. Reads from followers guarantee *serializable consistency*, meaning all clients will see state changes in the same order but different clients may see different views of the state at any given time. Notably, *a client's view of the cluster will never go back in time* even when switching between servers. Additionally, Atomix places a bound on followers servicing reads: in order to service a read, a follower's log must be less than a heartbeat behind the leader's log.
+Unlike [ZooKeeper], Atomix natively supports linearizable reads as well. Much like writes, linearizable reads must go through the cluster leader (which always has the most recent cluster state) and may require contact with a majority of the cluster. For higher throughput, Atomix also allows reads from followers. Reads from followers guarantee *sequential consistency* or *causal consistency*, depending on the configuration, meaning all clients will see state changes in the same order but different clients may see different views of the state at any given time. Notably, *a client's view of the cluster will never go back in time* even when switching between servers. Additionally, Atomix places a bound on followers servicing reads: in order to service a read, a follower's log must be less than a heartbeat behind the leader's log.
 
 *See the [Raft implementation details](/user-manual/raft-internals/) for more information on consistency in Atomix*
 
@@ -52,85 +52,12 @@ In the event of a failure of the leader, the remaining servers in the cluster wi
 
 In the event of a partition, if the leader is on the quorum side of the partition, it will continue to operate normally. Alternatively, if the leader is on the non-quorum side of the partition, the leader will detect the partition (based on the fact that it can no longer contact a majority of the cluster) and step down, and the servers on the majority side of the partition will elect a new leader. Once the partition is resolved, nodes on the non-quorum side of the partition will join the quorum side and receive updates to their log from the remaining leader.
 
-## Project structure
-
-Atomix is designed as a series of libraries that combine to form a framework for managing fault-tolerant state in a distributed system. The project currently consists of 14 modules, each of which implements a portion of the framework's functionality. The components of the project are composed hierarchically, so lower level components can be used independently of most other modules.
-
-A rough outline of Atomix's project hierarchy is as follows (from high-level to low-level):
-
-* [Resources][Resource]
-   * [Distributed collections][collections] (artifact ID: `atomix-collections`)
-   * [Distributed atomic variables][atomic] (artifact ID: `atomix-atomic`)
-   * [Distributed coordination tools][coordination] (artifact ID: `atomix-coordination`)
-* [Atomix API][atomix] (artifact ID: `atomix`)
-   * [Atomix Client][AtomixClient]
-   * [Atomix Replica][AtomixReplica]
-   * [Resource API][Resource]
-* [Raft Consensus Algorithm][raft]
-   * [Raft Protocol][protocol] (artifact ID: `atomix-protocol`)
-   * [Raft Client][RaftClient] (artifact ID: `atomix-client`)
-   * [Raft Server][RaftServer] (artifact ID: `atomix-server`)
-* [I/O & Serialization][io]
-   * [Buffer][io] (artifact ID: `atomix-io`)
-   * [Serializer][serializer] (artifact ID: `atomix-io`)
-   * [Transport][transport] (artifact ID: `atomix-transport`)
-      * [Local transport][LocalTransport] (artifact ID: `atomix-local`)
-      * [Netty transport][NettyTransport] (artifact ID: `atomix-netty`)
-   * [Storage][storage] (artifact ID: `atomix-storage`)
-* [Utilities][utilities] (artifact ID: `atomix-common`)
-   * [Builder][Builder]
-   * [Listener][Listener]
-   * [Context][Context]
-
-## Dependencies
-
-Atomix is designed to ensure that different components of the project ([resources], [Raft][raft-framework], [I/O][io-serialization], etc) can work independently of one another and with minimal dependencies. To that end, *the core library has zero dependencies*. The only components where dependencies are required is in custom `Transport` implementations, such as the [NettyTransport][NettyTransport].
-
-Atomix provides an all-encompassing dependency - `atomix-all` - which provides all base modules, transport, and [resource][resources] dependencies.
-
-```
-<dependency>
-  <groupId>io.atomix</groupId>
-  <artifactId>atomix-all</artifactId>
-  <version>{{ site.version }}</version>
-</dependency>
-```
-
-If `atomix-all` is just not your style, to add Atomix's high-level API as a dependency to your Maven project add the `atomix` dependency:
-
-```
-<dependency>
-  <groupId>io.atomix</groupId>
-  <artifactId>atomix</artifactId>
-  <version>{{ site.version }}</version>
-</dependency>
-```
-
-Additionally, in order to facilitate communication between [clients][client] and [replicas][replica] you must add a [Transport][io-transports] dependency. Typically, the [NettyTransport][NettyTransport] will suffice for most use cases:
-
-```
-<dependency>
-  <groupId>io.atomix</groupId>
-  <artifactId>atomix-netty</artifactId>
-  <version>{{ site.version }}</version>
-</dependency>
-```
-
-Finally, to add specific [resources][resources] as dependencies, add one of the resource modules:
-
-```
-<dependency>
-  <groupId>io.atomix</groupId>
-  <artifactId>atomix-collections</artifactId>
-  <version>{{ site.version }}</version>
-</dependency>
-```
-
 ## Thread model
 
 Atomix is designed to be used in an asynchronous manner that provides easily understood guarantees for users. All usage of asynchronous APIs such as `CompletableFuture` are carefully orchestrated to ensure that various callbacks are executed in a deterministic manner. To that end, Atomix provides the following single guarantee:
 
 * Callbacks for any given object are guaranteed to always be executed on the same thread
+* `CompletableFuture`s are guaranteed to be completed in the same order in which they were created
 
 ### Asynchronous API usage
 
