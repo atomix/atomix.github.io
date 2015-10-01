@@ -1,5 +1,4 @@
 * [Getting Started](getting-started)
-  * [Distributed Map](#distributedmap)
-  * [Distributed Set](#distributedset)
-  * [Distributed Lock](#distributedlock)
-  * [Distributed Leader Election](#distributedleaderelection)
+  * [Buffers](#buffers)
+  * [Serialization](#serialization)
+  * [Messaging](#messaging)
