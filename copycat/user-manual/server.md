@@ -13,8 +13,8 @@ The [CopycatServer][CopycatServer] class is a feature complete implementation of
 
 Each `CopycatServer` consists of three essential components:
 
-* [Transport][transports] - Used to communicate with clients and other Raft servers
-* [Storage][io-storage] - Used to persist [commands](#commands) to memory or disk
+* [Transport][transport] - Used to communicate with clients and other Raft servers
+* [Storage][Storage] - Used to persist [commands](#commands) to memory or disk
 * [StateMachine](#state-machines) - Represents state resulting from [commands](#commands) logged and replicated via Raft
 
 To create a Raft server, use the server [Builder][builders]:
@@ -30,7 +30,7 @@ CopycatServer server = CopycatServer.builder(address, members)
 The only two required arguments are those required by the `CopycatServer.builder` static factory method. The `address` passed
 into the builder factory is the `Address` of the server within the provided list of `Address`es.
 
-Users can optionally configure the [Catalyst][Catalyst] transport to use and configure the Raft storage (log) module.
+Users can optionally configure the [Catalyst][catalyst] transport to use and configure the Raft storage (log) module.
 To manage state in the Raft cluster, users must provide a `StateMachine` implementation to the server. The state machine should
 *always* be consistent and deterministic across all servers in the cluster.
 
@@ -56,14 +56,14 @@ The returned `CompletableFuture` will be completed once the server has connected
 
 ### Server lifecycle
 
-Copycat's Raft implementation supports dynamic membership changes designed to allow servers to arbitrarily join and leave the cluster. When a `CopycatServer` is configured, the `Members` list provided in the server configuration specifies some number of servers to join to form a cluster. When the server is started, the server begins a series of steps to either join an existing Raft cluster or start a new cluster:
+Copycat's Raft implementation supports dynamic membership changes designed to allow servers to arbitrarily join and leave the cluster. When a `CopycatServer` is configured, the `Address` list provided in the server configuration specifies some number of servers to join to form a cluster. When the server is started, the server begins a series of steps to either join an existing Raft cluster or start a new cluster:
 
-* When the server starts, transition to a *join* state and attempt to join the cluster by sending a *join* request to each known `Member` of the cluster
-* If, after an election timeout, the server has failed to receive a response to a *join* requests from any `Member` of the cluster, assume that the cluster doesn't exist and transition into the *follower* state
+* When the server starts, transition to a *join* state and attempt to join the cluster by sending a *join* request to each known member of the cluster
+* If, after an election timeout, the server has failed to receive a response to a *join* requests from any member of the cluster, assume that the cluster doesn't exist and transition into the *follower* state
 * Once a leader has been elected or otherwise discovered, complete the startup
 
 When a member *joins* the cluster, a *join* request will ultimately be received by the cluster's leader. The leader will log and replicate the joining member's configuration. Once the joined member's configuration has been persisted on a majority of the cluster, the joining member will be notified of the membership change and transition to the *passive* state. While in the *passive* state, the joining member cannot participate in votes but does receive *append* requests from the cluster leader. Once the leader has determined that the joining member's log has caught up to its own (the joining node's log has the last committed entry at any given point in time), the member is promoted to a full member via another replicated configuration change.
 
-Once a node has fully joined the Raft cluster, in the event of a failure the quorum size will not change. To leave the cluster, the `close()` method must be called on a `CopycatServer` instance. When `close()` is called, the member will submit a *leave* request to the leader. Once the leaving member's configuration has been removed from the cluster and the new configuration replicated and committed, the server will complete the close.
+Once a node has fully joined the Raft cluster, in the event of a failure the quorum size will not change. To leave the cluster, the `close()` method must be called on a [CopycatServer] instance. When `close()` is called, the member will submit a *leave* request to the leader. Once the leaving member's configuration has been removed from the cluster and the new configuration replicated and committed, the server will complete the close.
 
 {% include common-links.html %}

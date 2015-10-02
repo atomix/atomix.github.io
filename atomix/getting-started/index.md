@@ -87,6 +87,10 @@ future.join();
 
 The cluster of servers is responsible for managing state in the distributed system, but not operating on it. To operate on state, users must construct an [AtomixClient]. Clients are constructed using a builder pattern that may now seem familiar:
 
+{% include sync-tabs.html target1="#async-client" desc1="Async" target2="#sync-client" desc2="Sync" %}
+{::options parse_block_html="true" /}
+<div class="tab-content">
+<div class="tab-pane active" id="async-client">
 ```java
 List<Address> members = Arrays.asList(
   new Address("123.456.789.0", 5000),
@@ -99,7 +103,31 @@ AtomixClient client = AtomixClient.builder(members)
   .build();
 
 client.open().get();
+
+client.open().thenRun(() -> {
+  System.out.println("Client started!");
+});
 ```
+</div>
+
+<div class="tab-pane" id="sync-client">
+```java
+List<Address> members = Arrays.asList(
+  new Address("123.456.789.0", 5000),
+  new Address("123.456.789.1", 5000),
+  new Address("123.456.789.2", 5000)
+);
+
+AtomixClient client = AtomixClient.builder(members)
+  .withTransport(new NettyTransport())
+  .build();
+
+client.open().get();
+
+System.out.println("Client started!");
+```
+</div>
+</div>
 
 ### Embedding servers and clients
 
@@ -107,6 +135,31 @@ Atomix is designed to be used as an embedded framework is the user so chooses. I
 
 [AtomixReplica]s are constructed in exactly the same manner as servers:
 
+{% include sync-tabs.html target1="#async-replica" desc1="Async" target2="#sync-replica" desc2="Sync" %}
+{::options parse_block_html="true" /}
+<div class="tab-content">
+<div class="tab-pane active" id="async-replica">
+```java
+Address address = new Address("123.456.789.0", 5000);
+
+List<Address> members = Arrays.asList(
+  new Address("123.456.789.0", 5000),
+  new Address("123.456.789.1", 5000),
+  new Address("123.456.789.2", 5000)
+);
+
+AtomixReplica replica = AtomixReplica.builder(address, members)
+  .withTransport(new NettyTransport())
+  .withStorage(new Storage(StorageLevel.DISK))
+  .build();
+
+replica.open().thenRun(() -> {
+  System.out.println("Replica started!");
+});
+```
+</div>
+
+<div class="tab-pane" id="sync-replica">
 ```java
 Address address = new Address("123.456.789.0", 5000);
 
@@ -122,7 +175,11 @@ AtomixReplica replica = AtomixReplica.builder(address, members)
   .build();
 
 replica.open().get();
+
+System.out.println("Replica started!");
 ```
+</div>
+</div>
 
 ### Creating distributed resources
 
@@ -130,18 +187,44 @@ Clients and replicas operate on fault-tolerant, distributed [resources] like map
 
 To create a resource, use the `create` method:
 
+{% include sync-tabs.html target1="#async-create" desc1="Async" target2="#sync-create" desc2="Sync" %}
+{::options parse_block_html="true" /}
+<div class="tab-content">
+<div class="tab-pane active" id="async-create">
 ```java
-client.<DistributedLock>create("lock", DistributedLock::new).thenAccept(lock -> {
-  // Do stuff with the lock
+client.create("lock", DistributedLock::new).thenAccept(lock -> {
+  lock.lock().thenRun(() -> System.out.println("Acquired a lock!"));
 });
 ```
+</div>
+
+<div class="tab-pane" id="sync-create">
+```java
+DistributedLock lock = client.create("lock", DistributedLock::new).get();
+```
+</div>
+</div>
 
 Each resource in the cluster must be assigned a unique `String` name. If multiple clients `create` or `get` the same resource type with the same name, they both reference the same state in the server-side replicated state machine.
 
 Users can also access a singleton instance of any resource using the `get` method:
 
+{% include sync-tabs.html target1="#async-get" desc1="Async" target2="#sync-get" desc2="Sync" %}
+{::options parse_block_html="true" /}
+<div class="tab-content">
+<div class="tab-pane active" id="async-get">
 ```java
-client.<DistributedLock>get("lock", DistributedLock::new).thenAccept(...);
+client.get("lock", DistributedLock::new).thenAccept(lock -> {
+  lock.lock().thenRun(() -> System.out.println("Acquired a lock!"));
+});
 ```
+</div>
+
+<div class="tab-pane" id="sync-get">
+```java
+DistributedLock lock = client.get("lock", DistributedLock::new).get();
+```
+</div>
+</div>
 
 {% include common-links.html %}

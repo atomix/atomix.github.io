@@ -57,11 +57,23 @@ When the client is opened, it will connect to a random server and attempt to reg
 
 Commands and queries can be submitted to the server-side replicated `StateMachine` using the `submit` method:
 
+{% include sync-tabs.html target1="#async-submit" desc1="Async" target2="#sync-submit" desc2="Sync" %}
+{::options parse_block_html="true" /}
+<div class="tab-content">
+<div class="tab-pane active" id="async-submit">
 ```java
 client.submit(new PutCommand("foo", "Hello world")).thenAccept(result -> {
   System.out.println("State machine output: " + result);
 });
 ```
+</div>
+
+<div class="tab-pane" id="sync-submit">
+```java
+Object result = client.submit(new PutCommand("foo", "Hello world!")).get();
+```
+</div>
+</div>
 
 ### Client sessions
 
