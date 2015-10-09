@@ -276,7 +276,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#create-java.lang.String-java.util.function.Supplier-">create(String, Supplier&lt;T&gt;)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
 <dd>
-<div class="block">Creates a resource at the given key.</div>
+<div class="block">Creates a new instance for the given resource.</div>
 </dd>
 </dl>
 <a name="I:D">
@@ -306,13 +306,13 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination"><span class="typeNameLink">DistributedLeaderElection</span></a> - Class in <a href="io/atomix/coordination/package-summary.html">io.atomix.coordination</a></dt>
 <dd>
-<div class="block">Asynchronous leader election resource.</div>
+<div class="block">Provides a mechanism for coordinating cluster-wide resources with a strong leader.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedLeaderElection.html#DistributedLeaderElection--">DistributedLeaderElection()</a></span> - Constructor for class io.atomix.coordination.<a href="io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination">DistributedLeaderElection</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination"><span class="typeNameLink">DistributedLock</span></a> - Class in <a href="io/atomix/coordination/package-summary.html">io.atomix.coordination</a></dt>
 <dd>
-<div class="block">Asynchronous lock.</div>
+<div class="block">Provides a mechanism for synchronizing access to cluster-wide shared resources.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedLock.html#DistributedLock--">DistributedLock()</a></span> - Constructor for class io.atomix.coordination.<a href="io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a></dt>
 <dd>&nbsp;</dd>
@@ -392,11 +392,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#get-java.lang.String-java.lang.Class-">get(String, Class&lt;? super T&gt;)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
 <dd>
-<div class="block">Gets the resource at the given path.</div>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#get-java.lang.String-java.util.function.Supplier-">get(String, Supplier&lt;T&gt;)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
 <dd>
-<div class="block">Gets the resource at the given path.</div>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#get-java.lang.Object-">get(Object)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
@@ -519,7 +519,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedLeaderElection.html#isLeader-long-">isLeader(long)</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination">DistributedLeaderElection</a></dt>
 <dd>
-<div class="block">Verifies that the client is the current leader.</div>
+<div class="block">Verifies that this instance is the current leader.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#isOpen--">isOpen()</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
 <dd>
@@ -601,7 +601,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedLeaderElection.html#onElection-java.util.function.Consumer-">onElection(Consumer&lt;Long&gt;)</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination">DistributedLeaderElection</a></dt>
 <dd>
-<div class="block">Registers a listener to be called when this client is elected.</div>
+<div class="block">Registers a listener to be called when this instance is elected.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedMembershipGroup.html#onJoin-java.util.function.Consumer-">onJoin(Consumer&lt;GroupMember&gt;)</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a></dt>
 <dd>
@@ -827,15 +827,11 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedLock.html#tryLock--">tryLock()</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a></dt>
 <dd>
-<div class="block">Acquires the lock if it's free.</div>
+<div class="block">Attempts to acquire the lock if available.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedLock.html#tryLock-long-">tryLock(long)</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedLock.html#tryLock-java.time.Duration-">tryLock(Duration)</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a></dt>
 <dd>
-<div class="block">Acquires the lock if it's free within the given timeout.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedLock.html#tryLock-long-java.util.concurrent.TimeUnit-">tryLock(long, TimeUnit)</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a></dt>
-<dd>
-<div class="block">Acquires the lock if it's free within the given timeout.</div>
+<div class="block">Attempts to acquire the lock if available within the given timeout.</div>
 </dd>
 </dl>
 <a name="I:U">

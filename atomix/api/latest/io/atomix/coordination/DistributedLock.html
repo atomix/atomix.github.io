@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -116,7 +116,28 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">DistributedLock</span>
 extends <a href="../../../io/atomix/Resource.html" title="class in io.atomix">Resource</a>&lt;<a href="../../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a>&gt;</pre>
-<div class="block">Asynchronous lock.</div>
+<div class="block">Provides a mechanism for synchronizing access to cluster-wide shared resources.
+ <p>
+ The distributed lock resource provides a mechanism for nodes to synchronize access to cluster-wide shared resources.
+ This interface is an asynchronous version of Java's <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/locks/Lock.html?is-external=true" title="class or interface in java.util.concurrent.locks"><code>Lock</code></a>.
+ <pre>
+   <code>
+   atomix.create("lock", DistributedLock::new).thenAccept(lock -&gt; {
+     lock.lock().thenRun(() -&gt; {
+       ...
+       lock.unlock();
+     });
+   });
+   </code>
+ </pre>
+ Locks are implemented as a simple replicated queue that tracks which client currently holds a lock. When a lock
+ is <a href="../../../io/atomix/coordination/DistributedLock.html#lock--"><code>locked</code></a>, if the lock is available then the requesting resource instance will immediately receive
+ the lock, otherwise the lock request will be queued. When a lock is <a href="../../../io/atomix/coordination/DistributedLock.html#unlock--"><code>unlocked</code></a>, the next lock requester
+ will be granted the lock.
+ <p>
+ Distributed locks require no polling from the client. Locks are granted via session events published by the Atomix
+ cluster to the lock instance. In the event that a lock's client becomes disconnected from the cluster, its session
+ will expire after the configured cluster session timeout and the lock will be automatically released.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -165,23 +186,16 @@ extends <a href="../../../io/atomix/Resource.html" title="class in io.atomix">Re
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedLock.html#tryLock--">tryLock</a></span>()</code>
-<div class="block">Acquires the lock if it's free.</div>
+<div class="block">Attempts to acquire the lock if available.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedLock.html#tryLock-long-">tryLock</a></span>(long&nbsp;time)</code>
-<div class="block">Acquires the lock if it's free within the given timeout.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedLock.html#tryLock-java.time.Duration-">tryLock</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;timeout)</code>
+<div class="block">Attempts to acquire the lock if available within the given timeout.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedLock.html#tryLock-long-java.util.concurrent.TimeUnit-">tryLock</a></span>(long&nbsp;time,
-       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;unit)</code>
-<div class="block">Acquires the lock if it's free within the given timeout.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedLock.html#unlock--">unlock</a></span>()</code>
 <div class="block">Releases the lock.</div>
@@ -240,7 +254,27 @@ extends <a href="../../../io/atomix/Resource.html" title="class in io.atomix">Re
 <li class="blockList">
 <h4>lock</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;lock()</pre>
-<div class="block">Acquires the lock.</div>
+<div class="block">Acquires the lock.
+ <p>
+ When the lock is acquired, this lock instance will publish a lock request to the cluster and await
+ an event granting the lock to this instance. The returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will not be completed
+ until the lock has been acquired.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   lock.lock().join();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the lock is acquired in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   lock.lock().thenRun(() -&gt; System.out.println("Lock acquired!"));
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the lock has been acquired.</dd>
@@ -254,42 +288,94 @@ extends <a href="../../../io/atomix/Resource.html" title="class in io.atomix">Re
 <li class="blockList">
 <h4>tryLock</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;tryLock()</pre>
-<div class="block">Acquires the lock if it's free.</div>
+<div class="block">Attempts to acquire the lock if available.
+ <p>
+ When the lock is acquired, this lock instance will publish an immediate lock request to the cluster. If the
+ lock is available, the lock will be granted and the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed
+ successfully. If the lock is not immediately available, the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed
+ <code>false</code>.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   if (lock.tryLock().get()) {
+     System.out.println("Lock acquired!");
+   } else {
+     System.out.println("Lock failed!");
+   }
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the lock is acquired in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   lock.tryLock().thenAccept(locked -&gt; {
+     if (locked) {
+       System.out.println("Lock acquired!");
+     } else {
+       System.out.println("Lock failed!");
+     }
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with a boolean indicating whether the lock was acquired.</dd>
 </dl>
 </li>
 </ul>
-<a name="tryLock-long-">
+<a name="tryLock-java.time.Duration-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>tryLock</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;tryLock(long&nbsp;time)</pre>
-<div class="block">Acquires the lock if it's free within the given timeout.</div>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;tryLock(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;timeout)</pre>
+<div class="block">Attempts to acquire the lock if available within the given timeout.
+ <p>
+ When the lock is acquired, this lock instance will publish an immediate lock request to the cluster. If the
+ lock is available, the lock will be granted and the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed
+ successfully. If the lock is not immediately available, the lock request will be queued until the lock comes
+ available. If the lock <code>timeout</code> expires, the lock request will be cancelled and the returned
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed <code>false</code>.
+ <p>
+ <b>Timeouts and wall-clock time</b>
+ The provided <code>timeout</code> may not ultimately be representative of the actual timeout in the cluster. Because
+ of clock skew and determinism requirements, the actual timeout may be arbitrarily greater, but not less, than
+ the provided <code>timeout</code>. However, time will always progress monotonically. That is, time will never go
+ in reverse. A timeout of <code>10</code> seconds will always be greater than a timeout of <code>9</code> seconds, but the
+ times simply may not match actual wall-clock time.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   if (lock.tryLock(Duration.ofSeconds(10)).get()) {
+     System.out.println("Lock acquired!");
+   } else {
+     System.out.println("Lock failed!");
+   }
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the lock is acquired in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   lock.tryLock(Duration.ofSeconds(10)).thenAccept(locked -&gt; {
+     if (locked) {
+       System.out.println("Lock acquired!");
+     } else {
+       System.out.println("Lock failed!");
+     }
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>time</code> - The time within which to acquire the lock in milliseconds.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A completable future to be completed with a boolean indicating whether the lock was acquired.</dd>
-</dl>
-</li>
-</ul>
-<a name="tryLock-long-java.util.concurrent.TimeUnit-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>tryLock</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;tryLock(long&nbsp;time,
-                                          <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;unit)</pre>
-<div class="block">Acquires the lock if it's free within the given timeout.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>time</code> - The time within which to acquire the lock.</dd>
-<dd><code>unit</code> - The time unit.</dd>
+<dd><code>timeout</code> - The duration within which to acquire the lock.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with a boolean indicating whether the lock was acquired.</dd>
 </dl>
@@ -302,7 +388,28 @@ extends <a href="../../../io/atomix/Resource.html" title="class in io.atomix">Re
 <li class="blockList">
 <h4>unlock</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;unlock()</pre>
-<div class="block">Releases the lock.</div>
+<div class="block">Releases the lock.
+ <p>
+ When the lock is released, the lock instance will publish an unlock request to the cluster. Once the lock has
+ been released, if any other instances of this resource are waiting for a lock on this or another node, the lock
+ will be acquired by the waiting instance before this unlock operation is completed. Once the lock has been released
+ and granted to any waiters, the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   lock.unlock().join();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the lock is acquired in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   lock.unlock().thenRun(() -&gt; System.out.println("Lock released!"));
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the lock has been released.</dd>

@@ -116,7 +116,35 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">DistributedLeaderElection</span>
 extends <a href="../../../io/atomix/Resource.html" title="class in io.atomix">Resource</a>&lt;<a href="../../../io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination">DistributedLeaderElection</a>&gt;</pre>
-<div class="block">Asynchronous leader election resource.</div>
+<div class="block">Provides a mechanism for coordinating cluster-wide resources with a strong leader.
+ <p>
+ Leader election allows a set of distributed processes to coordinate access to and control over resources by
+ electing a single process to do work. This leader election implementation uses a consensus-based state machine
+ to automatically rotate leaders as necessary.
+ <p>
+ To create a leader election, use the <code>DistributedLeaderElection</code> resource class when constructing a resource
+ instance:
+ <pre>
+   <code>
+   DistributedLeaderElection election = atomix.create("election", DistributedLeaderElection::new);
+   </code>
+ </pre>
+ Leaders are elected by simply registering an election callback on a leader election resource instance:
+ <pre>
+   <code>
+   election.onElection(epoch -&gt; {
+     // do stuff...
+   });
+   </code>
+ </pre>
+ The first election instance that registers an election callback will automatically be elected the leader.
+ If the elected leader becomes disconnected from the cluster or crashes, a new leader will automatically be
+ elected by selecting the next available listener. Thus, the oldest instance is always guaranteed to be
+ the leader.
+ <p>
+ When a leader is elected, the election callback will be supplied with a monotonically increasing election
+ number known commonly as an <em>epoch</em>. The epoch is guaranteed to be unique across the entire cluster
+ and over the full lifetime of a resource for any given election.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -159,13 +187,13 @@ extends <a href="../../../io/atomix/Resource.html" title="class in io.atomix">Re
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedLeaderElection.html#isLeader-long-">isLeader</a></span>(long&nbsp;epoch)</code>
-<div class="block">Verifies that the client is the current leader.</div>
+<div class="block">Verifies that this instance is the current leader.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedLeaderElection.html#onElection-java.util.function.Consumer-">onElection</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;listener)</code>
-<div class="block">Registers a listener to be called when this client is elected.</div>
+<div class="block">Registers a listener to be called when this instance is elected.</div>
 </td>
 </tr>
 </table>
@@ -221,7 +249,32 @@ extends <a href="../../../io/atomix/Resource.html" title="class in io.atomix">Re
 <li class="blockList">
 <h4>onElection</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&gt;&nbsp;onElection(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;listener)</pre>
-<div class="block">Registers a listener to be called when this client is elected.</div>
+<div class="block">Registers a listener to be called when this instance is elected.
+ <p>
+ If no leader currently exists for this resource, this instance will be elected leader and the provided
+ <code>listener</code> will be completed <em>before</em> the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>. If a leader
+ already exists for the resource, this resource's listener will be queued until all prior listeners
+ have failed or otherwise been lost.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the listener has been registered
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   election.onElection(epoch -&gt; {
+     ...
+   }).join();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the lock is acquired in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   election.onElection(epoch -&gt; {
+     ...
+   }).thenRun(() -&gt; System.out.println("Waiting for election..."));
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>listener</code> - The listener to register.</dd>
@@ -237,13 +290,13 @@ extends <a href="../../../io/atomix/Resource.html" title="class in io.atomix">Re
 <li class="blockList">
 <h4>isLeader</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;isLeader(long&nbsp;epoch)</pre>
-<div class="block">Verifies that the client is the current leader.</div>
+<div class="block">Verifies that this instance is the current leader.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>epoch</code> - The epoch for which to check if this client is the leader.</dd>
+<dd><code>epoch</code> - The epoch for which to check if this instance is the leader.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with a boolean value indicating whether the
-         client is the current leader.</dd>
+         instance is the current leader.</dd>
 </dl>
 </li>
 </ul>
