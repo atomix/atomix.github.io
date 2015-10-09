@@ -324,7 +324,7 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><span class="typeNameLink">DistributedMembershipGroup</span></a> - Class in <a href="io/atomix/coordination/package-summary.html">io.atomix.coordination</a></dt>
 <dd>
-<div class="block">Distributed member group.</div>
+<div class="block">Provides a mechanism for managing group membership in a distributed system.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedMembershipGroup.html#DistributedMembershipGroup--">DistributedMembershipGroup()</a></span> - Constructor for class io.atomix.coordination.<a href="io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a></dt>
 <dd>&nbsp;</dd>
@@ -448,7 +448,7 @@
 </dd>
 <dt><a href="io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination"><span class="typeNameLink">GroupMember</span></a> - Interface in <a href="io/atomix/coordination/package-summary.html">io.atomix.coordination</a></dt>
 <dd>
-<div class="block">Group member.</div>
+<div class="block">Provides an interface to interacting with members of a <a href="io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><code>DistributedMembershipGroup</code></a>.</div>
 </dd>
 </dl>
 <a name="I:H">
@@ -535,7 +535,7 @@
 <dl>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedMembershipGroup.html#join--">join()</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a></dt>
 <dd>
-<div class="block">Joins the member to the membership group.</div>
+<div class="block">Joins the instance to the membership group.</div>
 </dd>
 </dl>
 <a name="I:L">
@@ -545,7 +545,7 @@
 <dl>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedMembershipGroup.html#leave--">leave()</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a></dt>
 <dd>
-<div class="block">Leaves the member from the membership group.</div>
+<div class="block">Leaves the membership group.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedLock.html#lock--">lock()</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a></dt>
 <dd>
@@ -563,11 +563,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedMembershipGroup.html#member-long-">member(long)</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a></dt>
 <dd>
-<div class="block">Returns a member by ID.</div>
+<div class="block">Returns a group member by ID.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedMembershipGroup.html#members--">members()</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a></dt>
 <dd>
-<div class="block">Returns the collection of members in the group.</div>
+<div class="block">Returns the collection of all members in the group.</div>
 </dd>
 <dt><a href="io/atomix/coordination/Message.html" title="class in io.atomix.coordination"><span class="typeNameLink">Message</span></a> - Class in <a href="io/atomix/coordination/package-summary.html">io.atomix.coordination</a></dt>
 <dd>
@@ -605,11 +605,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedMembershipGroup.html#onJoin-java.util.function.Consumer-">onJoin(Consumer&lt;GroupMember&gt;)</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a></dt>
 <dd>
-<div class="block">Adds a join listener.</div>
+<div class="block">Adds a listener for members joining the group.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedMembershipGroup.html#onLeave-java.util.function.Consumer-">onLeave(Consumer&lt;GroupMember&gt;)</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a></dt>
 <dd>
-<div class="block">Adds a leave listener.</div>
+<div class="block">Adds a listener for members leaving the group.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedTopic.html#onMessage-java.util.function.Consumer-">onMessage(Consumer&lt;T&gt;)</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a></dt>
 <dd>

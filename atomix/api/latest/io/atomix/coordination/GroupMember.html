@@ -102,7 +102,13 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">GroupMember</span></pre>
-<div class="block">Group member.</div>
+<div class="block">Provides an interface to interacting with members of a <a href="../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><code>DistributedMembershipGroup</code></a>.
+ <p>
+ A <code>GroupMember</code> represents a reference to a single instance of a resource which has
+ <a href="../../../io/atomix/coordination/DistributedMembershipGroup.html#join--"><code>joined</code></a> a membership group. Each member is guaranteed to
+ have a unique <a href="../../../io/atomix/coordination/GroupMember.html#id--"><code>id()</code></a> throughout the lifetime of the distributed resource. Group members
+ can <a href="../../../io/atomix/coordination/GroupMember.html#schedule-java.time.Duration-java.lang.Runnable-"><code>schedule</code></a> or <a href="../../../io/atomix/coordination/GroupMember.html#execute-java.lang.Runnable-"><code>execute</code></a> callbacks
+ remotely on member nodes.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
