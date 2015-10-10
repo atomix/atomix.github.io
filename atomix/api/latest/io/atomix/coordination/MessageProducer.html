@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6};
+var methods = {"i0":6,"i1":6,"i2":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -102,7 +102,12 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">MessageProducer&lt;T&gt;</span></pre>
-<div class="block">Message producer.</div>
+<div class="block">Message bus topic producer.
+ <p>
+ Message producers are responsible for producing messages to a <a href="../../../io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination"><code>DistributedMessageBus</code></a>
+ topic. Producers are created via <a href="../../../io/atomix/coordination/DistributedMessageBus.html#producer-java.lang.String-"><code>DistributedMessageBus.producer(String)</code></a>. Messages produced
+ by the producer are sent in round-robin order to listening <a href="../../../io/atomix/coordination/MessageConsumer.html" title="interface in io.atomix.coordination"><code>MessageConsumer</code></a>s. If more than
+ one consumer is listening on the topic, only one consumer will receive any given message.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -134,7 +139,13 @@ var activeTableTab = "activeTableTab";
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>&lt;U&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;U&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/MessageProducer.html#send-T-">send</a></span>(<a href="../../../io/atomix/coordination/MessageProducer.html" title="type parameter in MessageProducer">T</a>&nbsp;message)</code>
-<div class="block">Sends a message.</div>
+<div class="block">Sends a message to a consumer for the topic.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/MessageProducer.html#topic--">topic</a></span>()</code>
+<div class="block">Returns the topic for which the producer produces messages.</div>
 </td>
 </tr>
 </table>
@@ -152,6 +163,20 @@ var activeTableTab = "activeTableTab";
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="topic--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>topic</h4>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic()</pre>
+<div class="block">Returns the topic for which the producer produces messages.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The topic for which the producer produces messages.</dd>
+</dl>
+</li>
+</ul>
 <a name="send-java.lang.Object-">
 <!--   -->
 </a><a name="send-T-">
@@ -161,7 +186,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>send</h4>
 <pre>&lt;U&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;U&gt;&nbsp;send(<a href="../../../io/atomix/coordination/MessageProducer.html" title="type parameter in MessageProducer">T</a>&nbsp;message)</pre>
-<div class="block">Sends a message.</div>
+<div class="block">Sends a message to a consumer for the topic.
+ <p>
+ If no consumers are listening to the <a href="../../../io/atomix/coordination/MessageProducer.html#topic--"><code>topic()</code></a>, the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>
+ will be immediately completed. If multiple consumers are listening to the topic, the message will
+ be sent to only one consumer. Consumers are rotated in round-robin order.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>U</code> - The message response type.</dd>

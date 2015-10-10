@@ -334,7 +334,7 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination"><span class="typeNameLink">DistributedMessageBus</span></a> - Class in <a href="io/atomix/coordination/package-summary.html">io.atomix.coordination</a></dt>
 <dd>
-<div class="block">Distributed message bus.</div>
+<div class="block">Provides a light-weight asynchronous messaging layer over Atomix's <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedMessageBus.html#DistributedMessageBus--">DistributedMessageBus()</a></span> - Constructor for class io.atomix.coordination.<a href="io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a></dt>
 <dd>&nbsp;</dd>
@@ -511,6 +511,10 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixServer.html#isClosed--">isClosed()</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixServer.html" title="class in io.atomix">AtomixServer</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedMessageBus.html#isClosed--">isClosed()</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a></dt>
+<dd>
+<div class="block">Returns a boolean value indicating whether the message bus is closed.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#isEmpty--">isEmpty()</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
 <div class="block">Checks whether the map is empty.</div>
@@ -537,6 +541,10 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixServer.html#isOpen--">isOpen()</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixServer.html" title="class in io.atomix">AtomixServer</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedMessageBus.html#isOpen--">isOpen()</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a></dt>
+<dd>
+<div class="block">Returns a boolean value indicating whether the message bus is open.</div>
+</dd>
 </dl>
 <a name="I:J">
 <!--   -->
@@ -599,11 +607,11 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/coordination/MessageConsumer.html" title="interface in io.atomix.coordination"><span class="typeNameLink">MessageConsumer</span></a>&lt;<a href="io/atomix/coordination/MessageConsumer.html" title="type parameter in MessageConsumer">T</a>&gt; - Interface in <a href="io/atomix/coordination/package-summary.html">io.atomix.coordination</a></dt>
 <dd>
-<div class="block">Message consumer.</div>
+<div class="block">Message bus topic consumer.</div>
 </dd>
 <dt><a href="io/atomix/coordination/MessageProducer.html" title="interface in io.atomix.coordination"><span class="typeNameLink">MessageProducer</span></a>&lt;<a href="io/atomix/coordination/MessageProducer.html" title="type parameter in MessageProducer">T</a>&gt; - Interface in <a href="io/atomix/coordination/package-summary.html">io.atomix.coordination</a></dt>
 <dd>
-<div class="block">Message producer.</div>
+<div class="block">Message bus topic producer.</div>
 </dd>
 </dl>
 <a name="I:O">
@@ -781,7 +789,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/MessageProducer.html#send-T-">send(T)</a></span> - Method in interface io.atomix.coordination.<a href="io/atomix/coordination/MessageProducer.html" title="interface in io.atomix.coordination">MessageProducer</a></dt>
 <dd>
-<div class="block">Sends a message.</div>
+<div class="block">Sends a message to a consumer for the topic.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicValue.html#set-T-">set(T)</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic">DistributedAtomicValue</a></dt>
 <dd>
@@ -836,6 +844,14 @@
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/Message.html#topic--">topic()</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/Message.html" title="class in io.atomix.coordination">Message</a></dt>
 <dd>
 <div class="block">Returns the message topic.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/coordination/MessageConsumer.html#topic--">topic()</a></span> - Method in interface io.atomix.coordination.<a href="io/atomix/coordination/MessageConsumer.html" title="interface in io.atomix.coordination">MessageConsumer</a></dt>
+<dd>
+<div class="block">Returns the topic for which the consumer consumes messages.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/coordination/MessageProducer.html#topic--">topic()</a></span> - Method in interface io.atomix.coordination.<a href="io/atomix/coordination/MessageProducer.html" title="interface in io.atomix.coordination">MessageProducer</a></dt>
+<dd>
+<div class="block">Returns the topic for which the producer produces messages.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#toString--">toString()</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
 <dd>&nbsp;</dd>

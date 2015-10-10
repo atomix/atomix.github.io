@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -116,7 +116,40 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">DistributedMessageBus</span>
 extends <a href="../../../io/atomix/DistributedResource.html" title="class in io.atomix">DistributedResource</a>&lt;<a href="../../../io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a>&gt;</pre>
-<div class="block">Distributed message bus.</div>
+<div class="block">Provides a light-weight asynchronous messaging layer over Atomix's <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a>.
+ <p>
+ The distributed message bus resource provides a simple interface for asynchronous messaging in an Atomix cluster.
+ Message buses handle management of location information and connections and use Atomix's underlying
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a> to communicate across the cluster.
+ <p>
+ To create a message bus resource, use the <code>DistribtuedMessageBus</code> class or constructor:
+ <pre>
+   <code>
+   atomix.get("bus", DistributedMessageBus.class).thenAccept(bus -&gt; {
+     ...
+   });
+   </code>
+ </pre>
+ Once a message bus instance has been created, it's not immediately opened. The message bus instance must be explicitly
+ opened by calling <a href="../../../io/atomix/coordination/DistributedMessageBus.html#open-io.atomix.catalyst.transport.Address-"><code>open(Address)</code></a>, providing an <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> to which to bind the message bus server. Because
+ each message bus instance runs on a separate server, it's recommended that nodes use a singleton instance of this
+ resource by using <a href="../../../io/atomix/Atomix.html#get-java.lang.String-java.lang.Class-"><code>Atomix.get(String, Class)</code></a> rather than <a href="../../../io/atomix/Atomix.html#create-java.lang.String-java.lang.Class-"><code>Atomix.create(String, Class)</code></a>
+ to get a reference to the resource.
+ <p>
+ Messages are produced and consumed by <a href="../../../io/atomix/coordination/MessageProducer.html" title="interface in io.atomix.coordination"><code>producers</code></a> and <a href="../../../io/atomix/coordination/MessageConsumer.html" title="interface in io.atomix.coordination"><code>consumers</code></a> respectively.
+ Each producer and consumer is associated with a string message bus topic.
+ <pre>
+   <code>
+   bus.consumer("test", message -&gt; {
+     return "world!";
+   });
+
+   bus.producer("test").send("Hello");
+   </code>
+ </pre>
+ The distributed message bus does <em>not</em> provide reliability guarantees. Messaging is implemented directly on
+ top of the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a> layer with no additional coordination aside from managing
+ a distributed list of topics and their consumers.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -176,12 +209,24 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMessageBus.html#isClosed--">isClosed</a></span>()</code>
+<div class="block">Returns a boolean value indicating whether the message bus is closed.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMessageBus.html#isOpen--">isOpen</a></span>()</code>
+<div class="block">Returns a boolean value indicating whether the message bus is open.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMessageBus.html#open-io.atomix.catalyst.transport.Address-">open</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address)</code>
 <div class="block">Opens the message bus.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/MessageProducer.html" title="interface in io.atomix.coordination">MessageProducer</a>&lt;T&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMessageBus.html#producer-java.lang.String-">producer</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic)</code>
 <div class="block">Creates a message producer.</div>
@@ -240,12 +285,28 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <li class="blockList">
 <h4>open</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a>&gt;&nbsp;open(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address)</pre>
-<div class="block">Opens the message bus.</div>
+<div class="block">Opens the message bus.
+ <p>
+ When the message bus is opened, this instance will bind to the provided <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>address</code> - The address on which to listen.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the message bus is started.</dd>
+</dl>
+</li>
+</ul>
+<a name="isOpen--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isOpen</h4>
+<pre>public&nbsp;boolean&nbsp;isOpen()</pre>
+<div class="block">Returns a boolean value indicating whether the message bus is open.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Indicates whether the message bus is open.</dd>
 </dl>
 </li>
 </ul>
@@ -256,7 +317,13 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <li class="blockList">
 <h4>producer</h4>
 <pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/MessageProducer.html" title="interface in io.atomix.coordination">MessageProducer</a>&lt;T&gt;&gt;&nbsp;producer(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic)</pre>
-<div class="block">Creates a message producer.</div>
+<div class="block">Creates a message producer.
+ <p>
+ The <code>topic</code> is a cluster-wide identifier. Messages will be distributed to <a href="../../../io/atomix/coordination/MessageConsumer.html" title="interface in io.atomix.coordination"><code>MessageConsumer</code></a>s
+ registered for the given <code>topic</code> in round-robin order.
+ <p>
+ The producer will be created asynchronously. Once the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> is
+ completed, the producer will be prepared to send messages.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The message type.</dd>
@@ -274,7 +341,11 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <li class="blockList">
 <h4>consumer</h4>
 <pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/MessageConsumer.html" title="interface in io.atomix.coordination">MessageConsumer</a>&lt;T&gt;&gt;&nbsp;consumer(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic)</pre>
-<div class="block">Creates a message consumer.</div>
+<div class="block">Creates a message consumer.
+ <p>
+ The consumer will be created asynchronously. Once the consumer has been registered and all other
+ instances of the message bus across the cluster have been notified of the consumer, the returned
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The message type.</dd>
@@ -293,7 +364,11 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <h4>consumer</h4>
 <pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/MessageConsumer.html" title="interface in io.atomix.coordination">MessageConsumer</a>&lt;T&gt;&gt;&nbsp;consumer(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic,
                                                           <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;T,?&gt;&nbsp;consumer)</pre>
-<div class="block">Creates a message consumer.</div>
+<div class="block">Creates a message consumer.
+ <p>
+ The consumer will be created asynchronously. Once the consumer has been registered and all other
+ instances of the message bus across the cluster have been notified of the consumer, the returned
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The message type.</dd>
@@ -308,7 +383,7 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <a name="close--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>close</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;close()</pre>
@@ -316,6 +391,22 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the message bus is closed.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - if the message bus is not open</dd>
+</dl>
+</li>
+</ul>
+<a name="isClosed--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>isClosed</h4>
+<pre>public&nbsp;boolean&nbsp;isClosed()</pre>
+<div class="block">Returns a boolean value indicating whether the message bus is closed.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Indicates whether the message bus is closed.</dd>
 </dl>
 </li>
 </ul>

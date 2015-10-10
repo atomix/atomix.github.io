@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6};
+var methods = {"i0":6,"i1":6,"i2":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -102,7 +102,12 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">MessageConsumer&lt;T&gt;</span></pre>
-<div class="block">Message consumer.</div>
+<div class="block">Message bus topic consumer.
+ <p>
+ Message consumers listen for messages from <a href="../../../io/atomix/coordination/MessageProducer.html" title="interface in io.atomix.coordination"><code>MessageProducer</code></a>s for a <a href="../../../io/atomix/coordination/MessageConsumer.html#topic--"><code>topic()</code></a>.
+ Multiple consumers may listen to the same topic from the same or different nodes within the cluster.
+ Producers route messages to consumers in round-robin order, so if multiple consumers are registered
+ for the same topic, messages will be evenly split among them.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -137,6 +142,12 @@ var activeTableTab = "activeTableTab";
 <div class="block">Sets a message consumer callback.</div>
 </td>
 </tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/MessageConsumer.html#topic--">topic</a></span>()</code>
+<div class="block">Returns the topic for which the consumer consumes messages.</div>
+</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -152,6 +163,20 @@ var activeTableTab = "activeTableTab";
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="topic--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>topic</h4>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic()</pre>
+<div class="block">Returns the topic for which the consumer consumes messages.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The topic for which the consumer consumes messages.</dd>
+</dl>
+</li>
+</ul>
 <a name="onMessage-java.util.function.Function-">
 <!--   -->
 </a>
@@ -159,12 +184,19 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>onMessage</h4>
 <pre><a href="../../../io/atomix/coordination/MessageConsumer.html" title="interface in io.atomix.coordination">MessageConsumer</a>&lt;<a href="../../../io/atomix/coordination/MessageConsumer.html" title="type parameter in MessageConsumer">T</a>&gt;&nbsp;onMessage(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../io/atomix/coordination/MessageConsumer.html" title="type parameter in MessageConsumer">T</a>,?&gt;&nbsp;consumer)</pre>
-<div class="block">Sets a message consumer callback.</div>
+<div class="block">Sets a message consumer callback.
+ <p>
+ The provided <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function"><code>Function</code></a> will be called when a message is received from a <a href="../../../io/atomix/coordination/MessageProducer.html" title="interface in io.atomix.coordination"><code>MessageProducer</code></a>.
+ Function return values are sent back to the producer as response values. The function can return a synchronous
+ value or a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>. Consumer return values are handled transparently. If a consumer returns
+ a future, the message bus will wait for the future to be completed before sending a response.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>consumer</code> - The consumer callback.</dd>
+<dd><code>consumer</code> - The callback to call when a message is received by the consumer.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The message consumer.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>consumer</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
