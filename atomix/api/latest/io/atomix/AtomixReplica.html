@@ -120,10 +120,47 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public final class <span class="typeNameLabel">AtomixReplica</span>
 extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></pre>
-<div class="block">Server-side <a href="../../io/atomix/Atomix.html" title="class in io.atomix"><code>Atomix</code></a> implementation.
+<div class="block">Provides an interface for creating and operating on <a href="../../io/atomix/DistributedResource.html" title="class in io.atomix"><code>DistributedResource</code></a>s as a stateful node.
  <p>
- This is a <a href="../../io/atomix/Atomix.html" title="class in io.atomix"><code>Atomix</code></a> implementation that manages state for resources and executes all
- <a href="../../io/atomix/DistributedResource.html" title="class in io.atomix"><code>DistributedResource</code></a> operations locally via a <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/CopycatServer.html?is-external=true" title="class or interface in io.atomix.copycat.server"><code>CopycatServer</code></a>.</div>
+ Replicas serve as a hybrid <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> and <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>AtomixServer</code></a> to allow a server to be embedded
+ in an application. From the perspective of state, replicas behave like <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>AtomixServer</code></a>s in that they
+ maintain a replicated state machine for <a href="../../io/atomix/DistributedResource.html" title="class in io.atomix"><code>DistributedResource</code></a>s and fully participate in the underlying
+ consensus algorithm. From the perspective of resources, replicas behave like <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a>s in that
+ they may themselves create and modify distributed resources.
+ <p>
+ To create a replica, use the <a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-"><code>builder(Address, Address...)</code></a> builder factory. Each replica must
+ be initially configured with a server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> and a list of addresses for other members of the
+ core cluster. Note that the list of member addresses does not have to include the local server nor does
+ it have to include all the servers in the cluster. As long as the replica can reach one live member of
+ the cluster, it can join.
+ <pre>
+   <code>
+   List&lt;Address&gt; members = Arrays.asList(new Address("123.456.789.0", 5000), new Address("123.456.789.1", 5000));
+   Atomix atomix = AtomixReplica.builder(address, members)
+     .withTransport(new NettyTransport())
+     .withStorage(new Storage(StorageLevel.MEMORY))
+     .build();
+   </code>
+ </pre>
+ Replicas must be configured with a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a> and <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage"><code>Storage</code></a>. By default, if no transport is
+ configured, the <code>NettyTransport</code> will be used and will thus be expected to be available on the classpath.
+ Similarly, if no storage module is configured, replicated commit logs will be written to
+ <code>System.getProperty("user.dir")</code> with a default log name.
+ <p>
+ Atomix clusters are not restricted solely to <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>AtomixServer</code></a>s or <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>s. Clusters may be
+ composed from a mixture of each type of server.
+ <p>
+ <b>Replica lifecycle</b>
+ <p>
+ When the replica is <a href="../../io/atomix/AtomixReplica.html#open--"><code>started</code></a>, the replica will attempt to contact members in the configured
+ startup <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> list. If any of the members are already in an active state, the replica will request
+ to join the cluster. During the process of joining the cluster, the replica will notify the current cluster
+ leader of its existence. If the leader already knows about the joining replica, the replica will immediately
+ join and become a full voting member. If the joining replica is not yet known to the rest of the cluster,
+ it will join the cluster in a <em>passive</em> state in which it receives replicated state from other
+ servers in the cluster but does not participate in elections or other quorum-based aspects of the
+ underlying consensus algorithm. Once the joining replica is caught up with the rest of the cluster, the
+ leader will promote it to a full voting member.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

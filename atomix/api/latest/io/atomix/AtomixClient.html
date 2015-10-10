@@ -120,13 +120,49 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public final class <span class="typeNameLabel">AtomixClient</span>
 extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></pre>
-<div class="block">Client-side <a href="../../io/atomix/Atomix.html" title="class in io.atomix"><code>Atomix</code></a> implementation.
+<div class="block">Provides an interface for creating and operating on <a href="../../io/atomix/DistributedResource.html" title="class in io.atomix"><code>DistributedResource</code></a>s remotely.
  <p>
- This is a <a href="../../io/atomix/Atomix.html" title="class in io.atomix"><code>Atomix</code></a> implementation that executes all <a href="../../io/atomix/DistributedResource.html" title="class in io.atomix"><code>DistributedResource</code></a> operations
- remotely via a <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html?is-external=true" title="class or interface in io.atomix.copycat.client"><code>CopycatClient</code></a>.
+ This <a href="../../io/atomix/Atomix.html" title="class in io.atomix"><code>Atomix</code></a> implementation facilitates working with <a href="../../io/atomix/DistributedResource.html" title="class in io.atomix"><code>DistributedResource</code></a>s remotely as
+ a client of the Atomix cluster. To create a client, construct a client builder via <a href="../../io/atomix/AtomixClient.html#builder-io.atomix.catalyst.transport.Address...-"><code>builder(Address...)</code></a>.
+ The builder requires a list of <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a>es to which to connect.
+ <pre>
+   <code>
+   List&lt;Address&gt; servers = Arrays.asList(
+     new Address("123.456.789.0", 5000),
+     new Address("123.456.789.1", 5000)
+   );
+   Atomix atomix = AtomixClient.builder(servers)
+     .withTransport(new NettyTransport())
+     .build();
+   </code>
+ </pre>
+ The <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> list does not have to include all servers in the cluster, but must include at least one live
+ server in order for the client to connect. Once the client connects to the cluster and opens a session, the client
+ will receive an updated list of servers to which to connect.
+ <p>
+ Clients communicate with the cluster via a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a>. By default, the <code>NettyTransport</code> is used if
+ no transport is explicitly configured. Thus, if no transport is configured then the Netty transport is expected
+ to be available on the classpath.
  <p>
  <b>Client lifecycle</b>
- <p></div>
+ <p>
+ When a client is <a href="../../io/atomix/Atomix.html#open--"><code>started</code></a>, the client will attempt to contact random servers in the provided
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> list to open a new session. Opening a client session requires only that the client be able to
+ communicate with at least one server which can communicate with the leader. Once a session has been opened,
+ the client will periodically send keep-alive requests to the cluster to maintain its session. In the event
+ that the client crashes or otherwise becomes disconnected from the cluster, the client's session will expire
+ after a configured session timeout and the client will have to open a new session to reconnect.
+ <p>
+ Clients may connect to and communicate with any server in the cluster. Typically, once a client connects to a
+ server, the client will attempt to remain connected to that server until some exceptional case occurs. Exceptional
+ cases may include a failure of the server, a network partition, or the server falling too far out of sync with
+ the rest of the cluster. When a failure in the cluster occurs and the client becomes disconnected from the cluster,
+ it will transparently reconnect to random servers until it finds a reachable server.
+ <p>
+ During certain cluster events such as leadership changes, the client may not be able to communicate with the
+ cluster for some arbitrary (but typically short) period of time. During that time, Atomix guarantees that the
+ client's session will not expire even if its timeout elapses. Once a new leader is elected, the client's session
+ timeout is reset.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

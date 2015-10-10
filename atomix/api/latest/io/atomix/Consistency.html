@@ -120,7 +120,26 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public enum <span class="typeNameLabel">Consistency</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;<a href="../../io/atomix/Consistency.html" title="enum in io.atomix">Consistency</a>&gt;</pre>
-<div class="block">Resource consistency constraints.</div>
+<div class="block">Resource consistency constraints.
+ <p>
+ This enum provides identifiers for configurable <a href="../../io/atomix/DistributedResource.html" title="class in io.atomix"><code>DistributedResource</code></a> consistency levels. Each operation
+ on a resource is submitted to the cluster with a configurable consistency level. The consistency level specifies
+ how the cluster should handle the operation and places constraints on the level of consistency required to complete
+ the operation.
+ <p>
+ The consistency level of a resource can be configured via <a href="../../io/atomix/DistributedResource.html#with-io.atomix.Consistency-"><code>DistributedResource.with(Consistency)</code></a>.
+ <pre>
+   <code>
+   Object value = map.with(Consistency.ATOMIC).get("key").get();
+   </code>
+ </pre>
+ In some cases, such as with leader elections, strong consistency is critical to the correctness of a resource.
+ In those cases, consistency levels may be explicitly overridden by specific <a href="../../io/atomix/DistributedResource.html" title="class in io.atomix"><code>DistributedResource</code></a> implementations.
+ In that sense, consistency level configurations serve as a default. Consult specific resource documentation for
+ consistency implementation details.
+ <p>
+ Because of the semantics of the underlying Raft implementation, consistency levels differ in their meaning with
+ respect to read and write operations. Consult the specific consistency documentation for the implications of each.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -144,22 +163,24 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../io/atomix/Consistency.html#ATOMIC">ATOMIC</a></span></code>
-<div class="block">Atomic consistency level.</div>
+<div class="block">Guarantees atomicity for all read and write operations and events.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../io/atomix/Consistency.html#NONE">NONE</a></span></code>
-<div class="block">None consistency level.</div>
+<div class="block">Provides no guarantees regarding write atomicity or order.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../io/atomix/Consistency.html#PROCESS">PROCESS</a></span></code>
-<div class="block">Process consistency level.</div>
+<div class="block">Guarantees atomicity for write operations and ensures clients see state progress monotonically for
+ non-concurrent operations.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../io/atomix/Consistency.html#SEQUENTIAL">SEQUENTIAL</a></span></code>
-<div class="block">Sequential consistency level.</div>
+<div class="block">Guarantees atomicity for write operations and ensures clients will see state progress monotonically
+ for all operations.</div>
 </td>
 </tr>
 </table>
@@ -180,7 +201,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>abstract <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.ConsistencyLevel.html?is-external=true" title="class or interface in io.atomix.copycat.client">Query.ConsistencyLevel</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Consistency.html#readConsistency--">readConsistency</a></span>()</code>
-<div class="block">Returns the read consistency level.</div>
+<div class="block">Returns the Copycat read consistency level.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -199,7 +220,7 @@ the order they are declared.</div>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>abstract <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.ConsistencyLevel.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command.ConsistencyLevel</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Consistency.html#writeConsistency--">writeConsistency</a></span>()</code>
-<div class="block">Returns the write consistency level.</div>
+<div class="block">Returns the Copycat write consistency level.</div>
 </td>
 </tr>
 </table>
@@ -238,7 +259,17 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>NONE</h4>
 <pre>public static final&nbsp;<a href="../../io/atomix/Consistency.html" title="enum in io.atomix">Consistency</a> NONE</pre>
-<div class="block">None consistency level.</div>
+<div class="block">Provides no guarantees regarding write atomicity or order.
+ <p>
+ This consistency level places no additional burden of coordination on write operations submitted to the
+ cluster. This means an operation on any resource that modifies that resource's state may be applied to
+ the resource's replicated state machine more than once and it arbitrary order.
+ <p>
+ Read-only operations submitted with this consistency level are only guaranteed to be completed within
+ a bounded time of the leader, but order for concurrent queries is not enforced.
+ <p>
+ Resource events triggered by operations submitted with this consistency level are similarly not guaranteed
+ to be received by the client exactly once or in any particular order.</div>
 </li>
 </ul>
 <a name="PROCESS">
@@ -248,7 +279,24 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>PROCESS</h4>
 <pre>public static final&nbsp;<a href="../../io/atomix/Consistency.html" title="enum in io.atomix">Consistency</a> PROCESS</pre>
-<div class="block">Process consistency level.</div>
+<div class="block">Guarantees atomicity for write operations and ensures clients see state progress monotonically for
+ non-concurrent operations.
+ <p>
+ Write operations submitted with this consistency level are guaranteed to be linearizable, meaning they
+ will completed some time between their invocation and response. Additionally, non-concurrent and concurrent
+ writes from a single client are guaranteed to be applied to the resource state in the order specified by
+ the client (program order) and responses for concurrent operations from a single client are guaranteed to
+ be received in the order specified by the client.
+ <p>
+ Non-overlapping read operations from a single client are guaranteed to see state progress monotonically.
+ That is, once the client receives the result of a read operation, any later read operation submitted by
+ the same client is guaranteed to see the same or more recent state than that read operation.
+ <p>
+ Events triggered by operations submitted with this consistency level are guaranteed to be received by
+ clients sequentially, but events are not guaranteed to be completed before the triggering operation.
+ For instance, if a client submits an unlock operation under this consistency level, and the unlock operation
+ notifies other clients that a lock has been released, the submitting client may receive the unlock response
+ before those other clients have been notified.</div>
 </li>
 </ul>
 <a name="SEQUENTIAL">
@@ -258,7 +306,26 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>SEQUENTIAL</h4>
 <pre>public static final&nbsp;<a href="../../io/atomix/Consistency.html" title="enum in io.atomix">Consistency</a> SEQUENTIAL</pre>
-<div class="block">Sequential consistency level.</div>
+<div class="block">Guarantees atomicity for write operations and ensures clients will see state progress monotonically
+ for all operations.
+ <p>
+ Write operations submitted with this consistency level are guaranteed to be linearizable, meaning they
+ will completed some time between their invocation and response. Additionally, non-concurrent and concurrent
+ writes from a single client are guaranteed to be applied to the resource state in the order specified by
+ the client (program order) and responses for concurrent operations from a single client are guaranteed to
+ be received in the order specified by the client.
+ <p>
+ All read operations - including concurrent read operations - from a single client submitted with this
+ consistency level are guaranteed to see state progress monotonically. That is, if the client submits two
+ read operations, the first second operation is guaranteed to be completed after the first operation, and
+ the second operation is guaranteed to see the same or newer state as the first operation, regardless of
+ whether the two were submitted concurrently.
+ <p>
+ Events triggered by operations submitted with this consistency level are guaranteed to be received by
+ clients sequentially, but events are not guaranteed to be completed before the triggering operation.
+ For instance, if a client submits an unlock operation under this consistency level, and the unlock operation
+ notifies other clients that a lock has been released, the submitting client may receive the unlock response
+ before those other clients have been notified.</div>
 </li>
 </ul>
 <a name="ATOMIC">
@@ -268,7 +335,23 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>ATOMIC</h4>
 <pre>public static final&nbsp;<a href="../../io/atomix/Consistency.html" title="enum in io.atomix">Consistency</a> ATOMIC</pre>
-<div class="block">Atomic consistency level.</div>
+<div class="block">Guarantees atomicity for all read and write operations and events.
+ <p>
+ Write operations submitted with this consistency level are guaranteed to be linearizable, meaning they
+ will completed some time between their invocation and response. Additionally, non-concurrent and concurrent
+ writes from a single client are guaranteed to be applied to the resource state in the order specified by
+ the client (program order) and responses for concurrent operations from a single client are guaranteed to
+ be received in the order specified by the client.
+ <p>
+ All read operations submitted with this consistency level are also guaranteed to be linearizable. If the
+ client submits a read operation, it is guaranteed to see the result of any prior write operation from any
+ other node in the cluster.
+ <p>
+ Events triggered by operations submitted with this consistency level are guaranteed to be received by
+ clients in the order in which they occurred in the state machine and prior to the completion of the
+ triggering operation. For instance, if a client submits an unlock operation under this consistency leave,
+ and the unlock operation notifies other clients that a lock has been released, those other clients are
+ guaranteed to receive the unlock event notification prior to the client receiving the unlock response.</div>
 </li>
 </ul>
 </li>
@@ -328,10 +411,10 @@ not permitted.)</div>
 <li class="blockList">
 <h4>writeConsistency</h4>
 <pre>public abstract&nbsp;<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.ConsistencyLevel.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command.ConsistencyLevel</a>&nbsp;writeConsistency()</pre>
-<div class="block">Returns the write consistency level.</div>
+<div class="block">Returns the Copycat write consistency level.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The write consistency level.</dd>
+<dd>The Copycat write consistency level.</dd>
 </dl>
 </li>
 </ul>
@@ -342,10 +425,10 @@ not permitted.)</div>
 <li class="blockList">
 <h4>readConsistency</h4>
 <pre>public abstract&nbsp;<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.ConsistencyLevel.html?is-external=true" title="class or interface in io.atomix.copycat.client">Query.ConsistencyLevel</a>&nbsp;readConsistency()</pre>
-<div class="block">Returns the read consistency level.</div>
+<div class="block">Returns the Copycat read consistency level.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The read consistency level.</dd>
+<dd>The Copycat read consistency level.</dd>
 </dl>
 </li>
 </ul>
