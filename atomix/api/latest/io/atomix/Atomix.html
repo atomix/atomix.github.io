@@ -124,7 +124,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  <p>
  Resources are user provided stateful objects backed by a distributed state machine. This class facilitates the
  creation and management of <a href="../../io/atomix/DistributedResource.html" title="class in io.atomix"><code>DistributedResource</code></a> objects via a filesystem like interface. There is a
- one-to-one relationship between paths and resources, so each path can be associated with one and only one resource.
+ one-to-one relationship between keys and resources, so each key can be associated with one and only one resource.
  <p>
  To create a resource, pass the resource <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang"><code>Class</code></a> to the <a href="../../io/atomix/Atomix.html#create-java.lang.String-java.lang.Class-"><code>create(String, Class)</code></a> method.
  When a resource is created, the <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server"><code>StateMachine</code></a> associated with the resource will be created on each Raft server
@@ -211,14 +211,14 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/DistributedResource.html" title="class in io.atomix">DistributedResource</a>&lt;?&gt;&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#get-java.lang.String-java.lang.Class-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;path,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#get-java.lang.String-java.lang.Class-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
    <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</code>
 <div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/DistributedResource.html" title="class in io.atomix">DistributedResource</a>&lt;?&gt;&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#get-java.lang.String-java.util.function.Supplier-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;path,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#get-java.lang.String-java.util.function.Supplier-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
    <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function">Supplier</a>&lt;T&gt;&nbsp;factory)</code>
 <div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
 </td>
@@ -339,7 +339,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <ul class="blockList">
 <li class="blockList">
 <h4>get</h4>
-<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/DistributedResource.html" title="class in io.atomix">DistributedResource</a>&lt;?&gt;&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;path,
+<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/DistributedResource.html" title="class in io.atomix">DistributedResource</a>&lt;?&gt;&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
                                                                    <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</pre>
 <div class="block">Gets or creates the given resource and acquires a singleton reference to it.
  <p>
@@ -372,12 +372,12 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The resource type.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>path</code> - The path at which to get the resource.</dd>
+<dd><code>key</code> - The key at which to get the resource.</dd>
 <dd><code>type</code> - The expected resource type.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the resource has been loaded.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>path</code> or <code>type</code> are null</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>key</code> or <code>type</code> are null</dd>
 </dl>
 </li>
 </ul>
@@ -387,7 +387,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <ul class="blockList">
 <li class="blockList">
 <h4>get</h4>
-<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/DistributedResource.html" title="class in io.atomix">DistributedResource</a>&lt;?&gt;&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;path,
+<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/DistributedResource.html" title="class in io.atomix">DistributedResource</a>&lt;?&gt;&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
                                                                    <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function">Supplier</a>&lt;T&gt;&nbsp;factory)</pre>
 <div class="block">Gets or creates the given resource and acquires a singleton reference to it.
  <p>
@@ -420,12 +420,12 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The resource type.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>path</code> - The path at which to get the resource.</dd>
+<dd><code>key</code> - The key at which to get the resource.</dd>
 <dd><code>factory</code> - The resource factory.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the resource has been loaded.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>path</code> or <code>factory</code> are null</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>key</code> or <code>factory</code> are null</dd>
 </dl>
 </li>
 </ul>

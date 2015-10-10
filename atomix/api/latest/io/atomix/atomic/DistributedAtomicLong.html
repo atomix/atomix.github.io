@@ -222,14 +222,14 @@ extends <a href="../../../io/atomix/atomic/DistributedAtomicValue.html" title="c
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;io.atomix.<a href="../../../io/atomix/DistributedResource.html" title="class in io.atomix">DistributedResource</a></h3>
-<code><a href="../../../io/atomix/DistributedResource.html#delete--">delete</a>, <a href="../../../io/atomix/DistributedResource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/DistributedResource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/DistributedResource.html#id--">id</a></code></li>
+<code><a href="../../../io/atomix/DistributedResource.html#delete--">delete</a>, <a href="../../../io/atomix/DistributedResource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/DistributedResource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/DistributedResource.html#id--">id</a>, <a href="../../../io/atomix/DistributedResource.html#key--">key</a>, <a href="../../../io/atomix/DistributedResource.html#toString--">toString</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -270,14 +270,29 @@ extends <a href="../../../io/atomix/atomic/DistributedAtomicValue.html" title="c
 <h4>with</h4>
 <pre>public&nbsp;<a href="../../../io/atomix/atomic/DistributedAtomicLong.html" title="class in io.atomix.atomic">DistributedAtomicLong</a>&nbsp;with(<a href="../../../io/atomix/Consistency.html" title="enum in io.atomix">Consistency</a>&nbsp;consistency)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/DistributedResource.html#with-io.atomix.Consistency-">DistributedResource</a></code></span></div>
-<div class="block">Sets the resource consistency level.</div>
+<div class="block">Sets the resource consistency level.
+ <p>
+ The configured consistency level specifies how operations on the resource should be handled by the
+ cluster. Consistency levels dictate the order in which reads, writes, and events should be handled
+ by the Atomix cluster and the consistency requirements for completing different types of operations.
+ <p>
+ Note that consistency configurations apply only to a single instance of a distributed resource. Two
+ instances of the same resource on the same or different nodes can have differen consistency requirements,
+ and the cluster will obey those differences.
+ <p>
+ By default, all resource operations are submitted to the cluster with the <a href="../../../io/atomix/Consistency.html#ATOMIC"><code>Consistency.ATOMIC</code></a>
+ consistency level. Atomic consistency means that the distributed resource will behave as a single
+ object for all instances. Users can decrease the default consistency level, but note that in some
+ cases resource implementations may override the configured <a href="../../../io/atomix/Consistency.html" title="enum in io.atomix"><code>Consistency</code></a> for safety. For instance,
+ a leader election may enforce atomic consistency at all times to ensure no two leaders can be
+ elected at the same time.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../io/atomix/DistributedResource.html#with-io.atomix.Consistency-">with</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/DistributedResource.html" title="class in io.atomix">DistributedResource</a>&lt;<a href="../../../io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic">DistributedAtomicValue</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>consistency</code> - The resource consistency level.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The resource.</dd>
+<dd>The resource instance.</dd>
 </dl>
 </li>
 </ul>
