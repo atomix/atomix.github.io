@@ -116,7 +116,45 @@ var activeTableTab = "activeTableTab";
 <pre>public final class <span class="typeNameLabel">AtomixServer</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../io/atomix/AtomixServer.html" title="class in io.atomix">AtomixServer</a>&gt;</pre>
-<div class="block">Standalone Atomix server.</div>
+<div class="block">Standalone Atomix server.
+ <p>
+ The <code>AtomixServer</code> provides a standalone node that can server as a member of a cluster to
+ service operations on <a href="../../io/atomix/DistributedResource.html" title="class in io.atomix"><code>DistributedResource</code></a>s from an <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a>. Servers do not expose
+ an interface for managing resources directly. Users can only access server resources through an
+ <a href="../../io/atomix/Atomix.html" title="class in io.atomix"><code>Atomix</code></a> implementation.
+ <p>
+ To create a server, use the <a href="../../io/atomix/AtomixServer.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-"><code>builder(Address, Address...)</code></a> builder factory. Each server must
+ be initially configured with a server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> and a list of addresses for other members of the
+ core cluster. Note that the list of member addresses does not have to include the local server nor does
+ it have to include all the servers in the cluster. As long as the server can reach one live member of
+ the cluster, it can join.
+ <pre>
+   <code>
+   List&lt;Address&gt; members = Arrays.asList(new Address("123.456.789.0", 5000), new Address("123.456.789.1", 5000));
+   AtomixServer server = AtomixServer.builder(address, members)
+     .withTransport(new NettyTransport())
+     .withStorage(new Storage(StorageLevel.MEMORY))
+     .build();
+   </code>
+ </pre>
+ Servers must be configured with a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a> and <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage"><code>Storage</code></a>. By default, if no transport is
+ configured, the <code>NettyTransport</code> will be used and will thus be expected to be available on the classpath.
+ Similarly, if no storage module is configured, replicated commit logs will be written to
+ <code>System.getProperty("user.dir")</code> with a default log name.
+ <p>
+ <b>Server lifecycle</b>
+ <p>
+ When the server is <a href="../../io/atomix/AtomixServer.html#open--"><code>started</code></a>, the server will attempt to contact members in the configured
+ startup <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> list. If any of the members are already in an active state, the server will request
+ to join the cluster. During the process of joining the cluster, the server will notify the current cluster
+ leader of its existence. If the leader already knows about the joining server, the server will immediately
+ join and become a full voting member. If the joining server is not yet known to the rest of the cluster,
+ it will join the cluster in a <em>passive</em> state in which it receives replicated state from other
+ servers in the cluster but does not participate in elections or other quorum-based aspects of the
+ underlying consensus algorithm. Once the joining server is caught up with the rest of the cluster, the
+ leader will promote it to a full voting member.
+
+ <code>AtomixServer</code>s and <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>s can safely be members of the same cluster.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
