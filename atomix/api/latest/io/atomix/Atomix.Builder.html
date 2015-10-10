@@ -128,7 +128,7 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public abstract static class <span class="typeNameLabel">Atomix.Builder</span>
 extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</pre>
-<div class="block">Atomix builder.</div>
+<div class="block">Builds an <a href="../../io/atomix/Atomix.html" title="class in io.atomix"><code>Atomix</code></a> object.</div>
 </li>
 </ul>
 </div>
@@ -195,12 +195,18 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <li class="blockList">
 <h4>withTransport</h4>
 <pre>public&nbsp;<a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a>&nbsp;withTransport(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</pre>
-<div class="block">Sets the Atomix transport.</div>
+<div class="block">Sets the Atomix transport.
+ <p>
+ The configured transport should be the same transport as all other nodes in the cluster.
+ If no transport is explicitly provided, the instance will default to the <code>NettyTransport</code>
+ if available on the classpath.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>transport</code> - The Atomix transport.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The Atomix builder.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>transport</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -211,7 +217,9 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <li class="blockList">
 <h4>withSerializer</h4>
 <pre>public&nbsp;<a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a>&nbsp;withSerializer(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
-<div class="block">Sets the Atomix serializer.</div>
+<div class="block">Sets the Atomix serializer.
+ <p>
+ The serializer will be used to serialize and deserialize operations that are sent over the wire.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>serializer</code> - The Atomix serializer.</dd>

@@ -124,7 +124,27 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public static class <span class="typeNameLabel">AtomixServer.Builder</span>
 extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../io/atomix/AtomixServer.html" title="class in io.atomix">AtomixServer</a>&gt;</pre>
-<div class="block">Atomix server builder.</div>
+<div class="block">Builds an <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>AtomixServer</code></a>.
+ <p>
+ The server builder configures an <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>AtomixServer</code></a> to listen for connections from clients and other
+ servers, connect to other servers in a cluster, and manage a replicated log. To create a server builder,
+ use the <a href="../../io/atomix/AtomixServer.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-"><code>AtomixServer.builder(Address, Address...)</code></a> method:
+ <pre>
+   <code>
+   AtomixServer server = AtomixServer.builder(address, servers)
+     .withTransport(new NettyTransport())
+     .withStorage(Storage.builder()
+       .withDirectory("logs")
+       .withStorageLevel(StorageLevel.MAPPED)
+       .build())
+     .build();
+   </code>
+ </pre>
+ The two most essential components of the builder are the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a> and <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage"><code>Storage</code></a>. The
+ transport provides the mechanism for the server to communicate with clients and other servers in the
+ cluster. All servers, clients, and replicas must implement the same <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a> type. The <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage"><code>Storage</code></a>
+ module configures how the server manages the replicated log. Logs can be written to disk or held in
+ memory or memory-mapped files.</div>
 </li>
 </ul>
 </div>
@@ -145,42 +165,44 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixServer.html" title="class in io.atomix">AtomixServer</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixServer.Builder.html#build--">build</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixServer.Builder.html#build--">build</a></span>()</code>
+<div class="block">Builds the server.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixServer.Builder.html#withElectionTimeout-java.time.Duration-">withElectionTimeout</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;electionTimeout)</code>
-<div class="block">Sets the Raft election timeout, returning the Raft configuration for method chaining.</div>
+<div class="block">Sets the server election timeout, returning the server builder for method chaining.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixServer.Builder.html#withHeartbeatInterval-java.time.Duration-">withHeartbeatInterval</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;heartbeatInterval)</code>
-<div class="block">Sets the Raft heartbeat interval, returning the Raft configuration for method chaining.</div>
+<div class="block">Sets the server heartbeat interval, returning the server builder for method chaining.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixServer.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-">withSerializer</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
-<div class="block">Sets the Raft serializer.</div>
+<div class="block">Sets the serializer, returning the server builder for method chaining.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixServer.Builder.html#withSessionTimeout-java.time.Duration-">withSessionTimeout</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;sessionTimeout)</code>
-<div class="block">Sets the Raft session timeout, returning the Raft configuration for method chaining.</div>
+<div class="block">Sets the server session timeout, returning the server builder for method chaining.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixServer.Builder.html#withStorage-io.atomix.copycat.server.storage.Storage-">withStorage</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage)</code>
-<div class="block">Sets the server storage module.</div>
+<div class="block">Sets the server storage module, returning the server builder for method chaining.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixServer.Builder.html#withTransport-io.atomix.catalyst.transport.Transport-">withTransport</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</code>
-<div class="block">Sets the server transport.</div>
+<div class="block">Sets the server transport, returning the server builder for method chaining.</div>
 </td>
 </tr>
 </table>
@@ -219,14 +241,18 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <li class="blockList">
 <h4>withTransport</h4>
 <pre>public&nbsp;<a href="../../io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a>&nbsp;withTransport(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</pre>
-<div class="block">Sets the server transport.</div>
+<div class="block">Sets the server transport, returning the server builder for method chaining.
+ <p>
+ The configured transport should be the same transport as all other nodes in the cluster.
+ If no transport is explicitly provided, the instance will default to the <code>NettyTransport</code>
+ if available on the classpath.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>transport</code> - The client server.</dd>
+<dd><code>transport</code> - The server transport.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The client builder.</dd>
+<dd>The server builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>command</code> is null</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>transport</code> is null</dd>
 </dl>
 </li>
 </ul>
@@ -237,14 +263,16 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <li class="blockList">
 <h4>withSerializer</h4>
 <pre>public&nbsp;<a href="../../io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a>&nbsp;withSerializer(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
-<div class="block">Sets the Raft serializer.</div>
+<div class="block">Sets the serializer, returning the server builder for method chaining.
+ <p>
+ The serializer will be used to serialize and deserialize operations that are sent over the wire.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>serializer</code> - The Raft serializer.</dd>
+<dd><code>serializer</code> - The serializer.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The Raft builder.</dd>
+<dd>The server builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>command</code> is null</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>serializer</code> is null</dd>
 </dl>
 </li>
 </ul>
@@ -255,14 +283,36 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <li class="blockList">
 <h4>withStorage</h4>
 <pre>public&nbsp;<a href="../../io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a>&nbsp;withStorage(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage)</pre>
-<div class="block">Sets the server storage module.</div>
+<div class="block">Sets the server storage module, returning the server builder for method chaining.
+ <p>
+ The storage module is the interface the server will use to store the persistent replicated log.
+ For simple configurations, users can simply construct a <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage"><code>Storage</code></a> object:
+ <pre>
+   <code>
+   AtomixServer server = AtomixServer.builder(address, members)
+     .withStorage(new Storage("logs"))
+     .build();
+   </code>
+ </pre>
+ For more complex storage configurations, use the <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.Builder.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage"><code>Storage.Builder</code></a>:
+ <pre>
+   <code>
+   AtomixServer server = AtomixServer.builder(address, members)
+     .withStorage(Storage.builder()
+       .withDirectory("logs")
+       .withStorageLevel(StorageLevel.MAPPED)
+       .withCompactionThreads(2)
+       .build())
+     .build();
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>storage</code> - The server storage module.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The Atomix server builder.</dd>
+<dd>The server builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>command</code> is null</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>storage</code> is null</dd>
 </dl>
 </li>
 </ul>
@@ -273,15 +323,18 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <li class="blockList">
 <h4>withElectionTimeout</h4>
 <pre>public&nbsp;<a href="../../io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a>&nbsp;withElectionTimeout(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;electionTimeout)</pre>
-<div class="block">Sets the Raft election timeout, returning the Raft configuration for method chaining.</div>
+<div class="block">Sets the server election timeout, returning the server builder for method chaining.
+ <p>
+ The election timeout is the duration since last contact with the cluster leader after which
+ the server should start a new election. The election timeout should always be significantly
+ larger than <a href="../../io/atomix/AtomixServer.Builder.html#withHeartbeatInterval-java.time.Duration-"><code>withHeartbeatInterval(Duration)</code></a> in order to prevent unnecessary elections.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>electionTimeout</code> - The Raft election timeout in milliseconds.</dd>
+<dd><code>electionTimeout</code> - The server election timeout in milliseconds.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The Raft configuration.</dd>
+<dd>The server builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If the election timeout is not positive</dd>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>command</code> is null</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>electionTimeout</code> is null</dd>
 </dl>
 </li>
 </ul>
@@ -292,15 +345,18 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <li class="blockList">
 <h4>withHeartbeatInterval</h4>
 <pre>public&nbsp;<a href="../../io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a>&nbsp;withHeartbeatInterval(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;heartbeatInterval)</pre>
-<div class="block">Sets the Raft heartbeat interval, returning the Raft configuration for method chaining.</div>
+<div class="block">Sets the server heartbeat interval, returning the server builder for method chaining.
+ <p>
+ The heartbeat interval is the interval at which the server, if elected leader, should contact
+ other servers within the cluster to maintain its leadership. The heartbeat interval should
+ always be some fraction of <a href="../../io/atomix/AtomixServer.Builder.html#withElectionTimeout-java.time.Duration-"><code>withElectionTimeout(Duration)</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>heartbeatInterval</code> - The Raft heartbeat interval in milliseconds.</dd>
+<dd><code>heartbeatInterval</code> - The server heartbeat interval in milliseconds.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The Raft configuration.</dd>
+<dd>The server builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If the heartbeat interval is not positive</dd>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>command</code> is null</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>heartbeatInterval</code> is null</dd>
 </dl>
 </li>
 </ul>
@@ -311,15 +367,19 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <li class="blockList">
 <h4>withSessionTimeout</h4>
 <pre>public&nbsp;<a href="../../io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a>&nbsp;withSessionTimeout(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;sessionTimeout)</pre>
-<div class="block">Sets the Raft session timeout, returning the Raft configuration for method chaining.</div>
+<div class="block">Sets the server session timeout, returning the server builder for method chaining.
+ <p>
+ The session timeout is assigned by the server to a client which opens a new session. The session timeout
+ dictates the interval at which the client must send keep-alive requests to the cluster to maintain its
+ session. If a client fails to communicate with the cluster for larger than the configured session
+ timeout, its session may be expired.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>sessionTimeout</code> - The Raft session timeout in milliseconds.</dd>
+<dd><code>sessionTimeout</code> - The server session timeout in milliseconds.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The Raft configuration.</dd>
+<dd>The server builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If the session timeout is not positive</dd>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>command</code> is null</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>sessionTimeout</code> is null</dd>
 </dl>
 </li>
 </ul>
@@ -330,9 +390,21 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <li class="blockList">
 <h4>build</h4>
 <pre>public&nbsp;<a href="../../io/atomix/AtomixServer.html" title="class in io.atomix">AtomixServer</a>&nbsp;build()</pre>
+<div class="block">Builds the server.
+ <p>
+ If no <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a> was configured for the server, the builder will attempt to create a
+ <code>NettyTransport</code> instance. If <code>io.atomix.catalyst.transport.NettyTransport</code> is not available
+ on the classpath, a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ConfigurationException.html?is-external=true" title="class or interface in io.atomix.catalyst.util"><code>ConfigurationException</code></a> will be thrown.
+ <p>
+ Once the server is built, it is not yet connected to the cluster. To connect the server to the cluster,
+ call the asynchronous <a href="../../io/atomix/AtomixServer.html#open--"><code>AtomixServer.open()</code></a> method.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true#build--" title="class or interface in io.atomix.catalyst.util">build</a></code>&nbsp;in class&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../io/atomix/AtomixServer.html" title="class in io.atomix">AtomixServer</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The built server.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ConfigurationException.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ConfigurationException</a></code> - if the server is misconfigured</dd>
 </dl>
 </li>
 </ul>

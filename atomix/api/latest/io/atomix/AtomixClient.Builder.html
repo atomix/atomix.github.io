@@ -129,7 +129,17 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public static class <span class="typeNameLabel">AtomixClient.Builder</span>
 extends <a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a></pre>
-<div class="block">Client builder.</div>
+<div class="block">Builds an <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a>.
+ <p>
+ The client builder configures an <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> to connect to a cluster of <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>AtomixServer</code></a>s
+ or <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>. To create a client builder, use the <a href="../../io/atomix/AtomixClient.html#builder-io.atomix.catalyst.transport.Address...-"><code>AtomixClient.builder(Address...)</code></a> method.
+ <pre>
+   <code>
+   Atomix client = AtomixClient.builder(servers)
+     .withTransport(new NettyTransport())
+     .build();
+   </code>
+ </pre></div>
 </li>
 </ul>
 </div>
@@ -202,7 +212,11 @@ extends <a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix"
 <h4>withTransport</h4>
 <pre>public&nbsp;<a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a>&nbsp;withTransport(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../io/atomix/Atomix.Builder.html#withTransport-io.atomix.catalyst.transport.Transport-">Atomix.Builder</a></code></span></div>
-<div class="block">Sets the Atomix transport.</div>
+<div class="block">Sets the Atomix transport.
+ <p>
+ The configured transport should be the same transport as all other nodes in the cluster.
+ If no transport is explicitly provided, the instance will default to the <code>NettyTransport</code>
+ if available on the classpath.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../io/atomix/Atomix.Builder.html#withTransport-io.atomix.catalyst.transport.Transport-">withTransport</a></code>&nbsp;in class&nbsp;<code><a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a></code></dd>

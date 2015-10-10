@@ -96,7 +96,7 @@
 </dd>
 <dt><a href="io/atomix/Atomix.Builder.html" title="class in io.atomix"><span class="typeNameLink">Atomix.Builder</span></a> - Class in <a href="io/atomix/package-summary.html">io.atomix</a></dt>
 <dd>
-<div class="block">Atomix builder.</div>
+<div class="block">Builds an <a href="io/atomix/Atomix.html" title="class in io.atomix"><code>Atomix</code></a> object.</div>
 </dd>
 <dt><a href="io/atomix/AtomixClient.html" title="class in io.atomix"><span class="typeNameLink">AtomixClient</span></a> - Class in <a href="io/atomix/package-summary.html">io.atomix</a></dt>
 <dd>
@@ -106,7 +106,7 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/AtomixClient.Builder.html" title="class in io.atomix"><span class="typeNameLink">AtomixClient.Builder</span></a> - Class in <a href="io/atomix/package-summary.html">io.atomix</a></dt>
 <dd>
-<div class="block">Client builder.</div>
+<div class="block">Builds an <a href="io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a>.</div>
 </dd>
 <dt><a href="io/atomix/AtomixException.html" title="class in io.atomix"><span class="typeNameLink">AtomixException</span></a> - Exception in <a href="io/atomix/package-summary.html">io.atomix</a></dt>
 <dd>
@@ -128,7 +128,7 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/AtomixReplica.Builder.html" title="class in io.atomix"><span class="typeNameLink">AtomixReplica.Builder</span></a> - Class in <a href="io/atomix/package-summary.html">io.atomix</a></dt>
 <dd>
-<div class="block">Atomix builder.</div>
+<div class="block">Builds an <a href="io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.</div>
 </dd>
 <dt><a href="io/atomix/AtomixServer.html" title="class in io.atomix"><span class="typeNameLink">AtomixServer</span></a> - Class in <a href="io/atomix/package-summary.html">io.atomix</a></dt>
 <dd>
@@ -138,7 +138,7 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/AtomixServer.Builder.html" title="class in io.atomix"><span class="typeNameLink">AtomixServer.Builder</span></a> - Class in <a href="io/atomix/package-summary.html">io.atomix</a></dt>
 <dd>
-<div class="block">Atomix server builder.</div>
+<div class="block">Builds an <a href="io/atomix/AtomixServer.html" title="class in io.atomix"><code>AtomixServer</code></a>.</div>
 </dd>
 </dl>
 <a name="I:B">
@@ -153,9 +153,13 @@
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixClient.Builder.html#build--">build()</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixReplica.Builder.html#build--">build()</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Builds the replica.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixServer.Builder.html#build--">build()</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Builds the server.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixClient.html#builder-io.atomix.catalyst.transport.Address...-">builder(Address...)</a></span> - Static method in class io.atomix.<a href="io/atomix/AtomixClient.html" title="class in io.atomix">AtomixClient</a></dt>
 <dd>
 <div class="block">Returns a new Atomix client builder.</div>
@@ -900,19 +904,19 @@ the order they are declared.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixReplica.Builder.html#withElectionTimeout-java.time.Duration-">withElectionTimeout(Duration)</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></dt>
 <dd>
-<div class="block">Sets the Raft election timeout, returning the Raft configuration for method chaining.</div>
+<div class="block">Sets the replica election timeout, returning the replica builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixServer.Builder.html#withElectionTimeout-java.time.Duration-">withElectionTimeout(Duration)</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a></dt>
 <dd>
-<div class="block">Sets the Raft election timeout, returning the Raft configuration for method chaining.</div>
+<div class="block">Sets the server election timeout, returning the server builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixReplica.Builder.html#withHeartbeatInterval-java.time.Duration-">withHeartbeatInterval(Duration)</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></dt>
 <dd>
-<div class="block">Sets the Raft heartbeat interval, returning the Raft configuration for method chaining.</div>
+<div class="block">Sets the replica heartbeat interval, returning the replica builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixServer.Builder.html#withHeartbeatInterval-java.time.Duration-">withHeartbeatInterval(Duration)</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a></dt>
 <dd>
-<div class="block">Sets the Raft heartbeat interval, returning the Raft configuration for method chaining.</div>
+<div class="block">Sets the server heartbeat interval, returning the server builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/Atomix.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-">withSerializer(Serializer)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a></dt>
 <dd>
@@ -920,27 +924,27 @@ the order they are declared.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixReplica.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-">withSerializer(Serializer)</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></dt>
 <dd>
-<div class="block">Sets the Raft serializer.</div>
+<div class="block">Sets the serializer, returning the replica builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixServer.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-">withSerializer(Serializer)</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a></dt>
 <dd>
-<div class="block">Sets the Raft serializer.</div>
+<div class="block">Sets the serializer, returning the server builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixReplica.Builder.html#withSessionTimeout-java.time.Duration-">withSessionTimeout(Duration)</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></dt>
 <dd>
-<div class="block">Sets the Raft session timeout, returning the Raft configuration for method chaining.</div>
+<div class="block">Sets the replica session timeout, returning the replica builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixServer.Builder.html#withSessionTimeout-java.time.Duration-">withSessionTimeout(Duration)</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a></dt>
 <dd>
-<div class="block">Sets the Raft session timeout, returning the Raft configuration for method chaining.</div>
+<div class="block">Sets the server session timeout, returning the server builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixReplica.Builder.html#withStorage-io.atomix.copycat.server.storage.Storage-">withStorage(Storage)</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></dt>
 <dd>
-<div class="block">Sets the server storage module.</div>
+<div class="block">Sets the replica storage module, returning the replica builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixServer.Builder.html#withStorage-io.atomix.copycat.server.storage.Storage-">withStorage(Storage)</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a></dt>
 <dd>
-<div class="block">Sets the server storage module.</div>
+<div class="block">Sets the server storage module, returning the server builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/Atomix.Builder.html#withTransport-io.atomix.catalyst.transport.Transport-">withTransport(Transport)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a></dt>
 <dd>
@@ -950,11 +954,11 @@ the order they are declared.</div>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixReplica.Builder.html#withTransport-io.atomix.catalyst.transport.Transport-">withTransport(Transport)</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></dt>
 <dd>
-<div class="block">Sets the server transport.</div>
+<div class="block">Sets the replica transport, returning the replica builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/AtomixServer.Builder.html#withTransport-io.atomix.catalyst.transport.Transport-">withTransport(Transport)</a></span> - Method in class io.atomix.<a href="io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a></dt>
 <dd>
-<div class="block">Sets the server transport.</div>
+<div class="block">Sets the server transport, returning the server builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/Consistency.html#writeConsistency--">writeConsistency()</a></span> - Method in enum io.atomix.<a href="io/atomix/Consistency.html" title="enum in io.atomix">Consistency</a></dt>
 <dd>
