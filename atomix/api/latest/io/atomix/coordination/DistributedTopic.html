@@ -116,7 +116,31 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">DistributedTopic&lt;T&gt;</span>
 extends <a href="../../../io/atomix/DistributedResource.html" title="class in io.atomix">DistributedResource</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>&lt;T&gt;&gt;</pre>
-<div class="block">Async topic.</div>
+<div class="block">Facilitates persistent publish-subscribe messaging in the cluster.
+ <p>
+ The distributed topic resource provides persistent publish-subscribe messaging between instances
+ of the resource. Pub-sub messaging is implemented as commands that are logged and replicated via the
+ Raft consensus algorithm. When a message is <a href="../../../io/atomix/coordination/DistributedTopic.html#publish-T-"><code>published</code></a> to a distributed topic
+ the message will be persisted until it has been received by all instances <a href="../../../io/atomix/coordination/DistributedTopic.html#subscribe-java.util.function.Consumer-"><code>listening</code></a>
+ to the topic.
+ <p>
+ To create a topic resource, use the <code>DistributedTopic</code> class or constructor:
+ <pre>
+   <code>
+   atomix.create("topic", DistributedTopic.class).thenAccept(topic -&gt; {
+     ...
+   });
+   </code>
+ </pre>
+ The topic resource exposes two simple methods: <a href="../../../io/atomix/coordination/DistributedTopic.html#publish-T-"><code>publish(Object)</code></a> and <a href="../../../io/atomix/coordination/DistributedTopic.html#subscribe-java.util.function.Consumer-"><code>subscribe(Consumer)</code></a>.
+ Resources may publish but not subscribe to the topic or subscribe but not publish to the topic. Messages are
+ only routed to the resource instance if a subscribe listener has been registered.
+ <pre>
+   <code>
+   topic.subscribe(message -&gt; System.out.println("Received: " + message));
+   topic.publish("Hello world!");
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -157,15 +181,15 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedTopic.html#onMessage-java.util.function.Consumer-">onMessage</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;listener)</code>
-<div class="block">Sets a message listener on the topic.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedTopic.html#publish-T-">publish</a></span>(<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&nbsp;message)</code>
 <div class="block">Publishes a message to the topic.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedTopic.html#subscribe-java.util.function.Consumer-">subscribe</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;listener)</code>
+<div class="block">Subscribes to messages from the topic.</div>
 </td>
 </tr>
 </table>
@@ -223,7 +247,28 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <li class="blockList">
 <h4>publish</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;publish(<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&nbsp;message)</pre>
-<div class="block">Publishes a message to the topic.</div>
+<div class="block">Publishes a message to the topic.
+ <p>
+ The message will be published according to the <a href="../../../io/atomix/DistributedResource.html#with-io.atomix.Consistency-"><code>configured consistency level</code></a>.
+ Events published with <a href="../../../io/atomix/Consistency.html#ATOMIC"><code>Consistency.ATOMIC</code></a> consistency are guaranteed to be received by all
+ subscribers prior to the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> returned by this method being completed. For all other
+ consistency levels, messages will be received by subscribers asynchronously.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the message has been persisted
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   topic.publish("Hello world!").join();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the lock is acquired in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   topic.publish("Hello world!").thenRun(() -&gt; System.out.println("Published to topic: " + topic.key()));
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>message</code> - The message to publish.</dd>
@@ -232,14 +277,39 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 </dl>
 </li>
 </ul>
-<a name="onMessage-java.util.function.Consumer-">
+<a name="subscribe-java.util.function.Consumer-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>onMessage</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&gt;&nbsp;onMessage(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;listener)</pre>
-<div class="block">Sets a message listener on the topic.</div>
+<h4>subscribe</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&gt;&nbsp;subscribe(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;listener)</pre>
+<div class="block">Subscribes to messages from the topic.
+ <p>
+ Once the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> is completed, the subscriber is guaranteed to receive all
+ messages from any client thereafter. Messages are guaranteed to be received in the order specified by
+ the instance from which they were sent. The provided <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function"><code>Consumer</code></a> will always be executed on the
+ same thread.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the listener has been registered
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   topic.subscribe(message -&gt; {
+     ...
+   }).join();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the lock is acquired in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   topic.subscribe(message -&gt; {
+     ...
+   }).thenRun(() -&gt; System.out.println("Subscribed to " + topic.key()));
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>listener</code> - The message listener.</dd>

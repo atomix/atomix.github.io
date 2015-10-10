@@ -287,7 +287,23 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a>&gt;&nbsp;open(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address)</pre>
 <div class="block">Opens the message bus.
  <p>
- When the message bus is opened, this instance will bind to the provided <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a>.</div>
+ When the message bus is opened, this instance will bind to the provided <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a>.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the server is opened
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   bus.open(new Address("123.456.789.0", 5000)).join();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the lock is acquired in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   bus.open(new Address("123.456.789.0", 5000)).thenRun(() -&gt; System.out.println("Message bus open!"));
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>address</code> - The address on which to listen.</dd>
