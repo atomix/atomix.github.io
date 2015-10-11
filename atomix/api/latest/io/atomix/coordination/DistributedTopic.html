@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -181,15 +181,27 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code><a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedTopic.html#async--">async</a></span>()</code>
+<div class="block">Sets the topic to asynchronous mode.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedTopic.html#publish-T-">publish</a></span>(<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&nbsp;message)</code>
 <div class="block">Publishes a message to the topic.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedTopic.html#subscribe-java.util.function.Consumer-">subscribe</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;listener)</code>
 <div class="block">Subscribes to messages from the topic.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedTopic.html#sync--">sync</a></span>()</code>
+<div class="block">Sets the topic to synchronous mode.</div>
 </td>
 </tr>
 </table>
@@ -238,6 +250,45 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="sync--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>sync</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;sync()</pre>
+<div class="block">Sets the topic to synchronous mode.
+ <p>
+ Setting the topic to synchronous mode effectively configures the topic's <a href="../../../io/atomix/Consistency.html" title="enum in io.atomix"><code>Consistency</code></a> to
+ <a href="../../../io/atomix/Consistency.html#ATOMIC"><code>Consistency.ATOMIC</code></a>. Atomic consistency means that messages <a href="../../../io/atomix/coordination/DistributedTopic.html#publish-T-"><code>published</code></a> to the
+ topic will be received by all <a href="../../../io/atomix/coordination/DistributedTopic.html#subscribe-java.util.function.Consumer-"><code>subscribers</code></a> some time between the invocation of
+ the publish operation and its completion.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The distributed topic.</dd>
+</dl>
+</li>
+</ul>
+<a name="async--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>async</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;async()</pre>
+<div class="block">Sets the topic to asynchronous mode.
+ <p>
+ Setting the topic to asynchronous mode effectively configures the topic's <a href="../../../io/atomix/Consistency.html" title="enum in io.atomix"><code>Consistency</code></a> to
+ <a href="../../../io/atomix/Consistency.html#SEQUENTIAL"><code>Consistency.SEQUENTIAL</code></a>. Sequential consistency means that once a message is <a href="../../../io/atomix/coordination/DistributedTopic.html#publish-T-"><code>published</code></a>
+ to the topic, the message will be persisted in the cluster but may be delivered to <a href="../../../io/atomix/coordination/DistributedTopic.html#subscribe-java.util.function.Consumer-"><code>subscribers</code></a>
+ after some arbitrary delay. Messages are guaranteed to be delivered to subscribers in the order in which they were sent
+ (sequential consistency) but different subscribers may receive different messages at different points in time.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The distributed topic.</dd>
+</dl>
+</li>
+</ul>
 <a name="publish-java.lang.Object-">
 <!--   -->
 </a><a name="publish-T-">
