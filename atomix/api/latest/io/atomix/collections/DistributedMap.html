@@ -121,7 +121,25 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">DistributedMap&lt;K,V&gt;</span>
 extends <a href="../../../io/atomix/DistributedResource.html" title="class in io.atomix">DistributedResource</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a>&lt;K,V&gt;&gt;</pre>
-<div class="block">Distributed map.</div>
+<div class="block">Distributed map.
+ <p>
+ The distributed map resource provides an interface and behavior similar to <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util"><code>Map</code></a>.
+ <p>
+ To create a distributed map, use the <a href="../../../io/atomix/Atomix.html#create-java.lang.String-java.lang.Class-"><code>Atomix.create(String, Class)</code></a> or
+ <a href="../../../io/atomix/Atomix.html#get-java.lang.String-java.lang.Class-"><code>Atomix.get(String, Class)</code></a> method. Map instances are stateless and so there
+ is no effective difference between instances.
+ <pre>
+   <code>
+   DistributedMap&lt;String, String&gt; map = atomix.&lt;DistributedMap&lt;String, String&gt;&gt;create("map", DistributedMap.class).get();
+   </code>
+ </pre>
+ The map requires non-<code>null</code> keys but supports <code>null</code> values. All keys and values
+ must be serializable by a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a>. Serializable types
+ include implementations of <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io"><code>Serializable</code></a> or <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>.
+ <p>
+ In addition to supporting normal <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util"><code>Map</code></a> methods, this implementation supports values
+ with TTLs. When a key is set with a TTL, the value will expire and be automatically evicted from the map
+ some time after the TTL.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -170,7 +188,7 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedMap.html#containsKey-java.lang.Object-">containsKey</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key)</code>
-<div class="block">Checks whether the map contains a key.</div>
+<div class="block">Returns <code>true</code> if the given key is present in the map.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -183,20 +201,20 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedMap.html#getOrDefault-java.lang.Object-V-">getOrDefault</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key,
             <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;defaultValue)</code>
-<div class="block">Gets the value of a key or the given default value if the key does not exist.</div>
+<div class="block">Gets the value of <code>key</code> or returns the given default value if <code>key</code> does not exist.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedMap.html#isEmpty--">isEmpty</a></span>()</code>
-<div class="block">Checks whether the map is empty.</div>
+<div class="block">Returns <code>true</code> if the map is empty.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedMap.html#put-K-V-">put</a></span>(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key,
    <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;value)</code>
-<div class="block">Puts a value in the map.</div>
+<div class="block">Puts a value in the map for the given <code>key</code>.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
@@ -204,14 +222,14 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedMap.html#put-K-V-java.time.Duration-">put</a></span>(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key,
    <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;value,
    <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</code>
-<div class="block">Puts a value in the map.</div>
+<div class="block">Puts a value in the map with a time-to-live for the given <code>key</code>.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedMap.html#putIfAbsent-K-V-">putIfAbsent</a></span>(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key,
            <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;value)</code>
-<div class="block">Puts a value in the map if the given key does not exist.</div>
+<div class="block">Puts a value in the map if the given <code>key</code> does not exist.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
@@ -219,27 +237,27 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedMap.html#putIfAbsent-K-V-java.time.Duration-">putIfAbsent</a></span>(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key,
            <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;value,
            <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</code>
-<div class="block">Puts a value in the map if the given key does not exist.</div>
+<div class="block">Puts a value with a time-to-live in the map if the given <code>key</code> does not exist.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedMap.html#remove-K-">remove</a></span>(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key)</code>
-<div class="block">Removes a value from the map.</div>
+<div class="block">Removes a the value for the given <code>key</code> from the map.</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedMap.html#remove-K-V-">remove</a></span>(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key,
       <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;value)</code>
-<div class="block">Removes a key and value from the map.</div>
+<div class="block">Removes the given <code>key</code> from the map if its value matches the given <code>value</code>.</div>
 </td>
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedMap.html#replace-K-V-">replace</a></span>(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key,
        <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;value)</code>
-<div class="block">Replaces a value in the map.</div>
+<div class="block">Replaces a value in the map if the <code>key</code> exists.</div>
 </td>
 </tr>
 <tr id="i12" class="altColor">
@@ -247,7 +265,7 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedMap.html#replace-K-V-java.time.Duration-">replace</a></span>(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key,
        <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;value,
        <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</code>
-<div class="block">Replaces a value in the map.</div>
+<div class="block">Replaces a value in the map if the <code>key</code> exist.</div>
 </td>
 </tr>
 <tr id="i13" class="rowColor">
@@ -264,13 +282,13 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
        <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;oldValue,
        <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;newValue,
        <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</code>
-<div class="block">Replaces a value in the map.</div>
+<div class="block">Replaces a value in the map with a time-to-live.</div>
 </td>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedMap.html#size--">size</a></span>()</code>
-<div class="block">Gets the count of the map.</div>
+<div class="block">Gets the number of key-value pairs in the map.</div>
 </td>
 </tr>
 </table>
@@ -326,7 +344,40 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <li class="blockList">
 <h4>isEmpty</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;isEmpty()</pre>
-<div class="block">Checks whether the map is empty.</div>
+<div class="block">Returns <code>true</code> if the map is empty.
+ <p>
+ Note that depending on the configured <a href="../../../io/atomix/Consistency.html" title="enum in io.atomix"><code>Consistency</code></a> of the map instance, empty checks
+ may return stale results. To perform a fully consistent empty check, configure the map with
+ <a href="../../../io/atomix/Consistency.html#ATOMIC"><code>Consistency.ATOMIC</code></a> consistency (the default).
+ <pre>
+   <code>
+   map.with(Consistency.ATOMIC).isEmpty().thenAccept(isEmpty -&gt; {
+     ...
+   });
+   </code>
+ </pre>
+ For better performance with potentially stale results, use a lower consistency level. See the
+ <a href="../../../io/atomix/Consistency.html" title="enum in io.atomix"><code>Consistency</code></a> documentation for specific consistency guarantees.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   if (map.isEmpty().get()) {
+     ...
+   }
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the operation is complete in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   map.isEmpty().thenAccept(isEmpty -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with a boolean value indicating whether the map is empty.</dd>
@@ -340,7 +391,38 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <li class="blockList">
 <h4>size</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;size()</pre>
-<div class="block">Gets the count of the map.</div>
+<div class="block">Gets the number of key-value pairs in the map.
+ <p>
+ Note that depending on the configured <a href="../../../io/atomix/Consistency.html" title="enum in io.atomix"><code>Consistency</code></a> of the map instance, size checks
+ may return stale results. To perform a fully consistent size check, configure the map with
+ <a href="../../../io/atomix/Consistency.html#ATOMIC"><code>Consistency.ATOMIC</code></a> consistency (the default).
+ <pre>
+   <code>
+   map.with(Consistency.ATOMIC).size().thenAccept(size -&gt; {
+     ...
+   });
+   </code>
+ </pre>
+ For better performance with potentially stale results, use a lower consistency level. See the
+ <a href="../../../io/atomix/Consistency.html" title="enum in io.atomix"><code>Consistency</code></a> documentation for specific consistency guarantees.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   int size = map.size().get();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the operation is complete in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   map.size().thenAccept(size -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the number of entries in the map.</dd>
@@ -354,12 +436,47 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <li class="blockList">
 <h4>containsKey</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;containsKey(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key)</pre>
-<div class="block">Checks whether the map contains a key.</div>
+<div class="block">Returns <code>true</code> if the given key is present in the map.
+ <p>
+ Note that depending on the configured <a href="../../../io/atomix/Consistency.html" title="enum in io.atomix"><code>Consistency</code></a> of the map instance, checks
+ may return stale results. To perform a fully consistent check, configure the map with
+ <a href="../../../io/atomix/Consistency.html#ATOMIC"><code>Consistency.ATOMIC</code></a> consistency (the default).
+ <pre>
+   <code>
+   map.with(Consistency.ATOMIC).containsKey("foo").thenAccept(contains -&gt; {
+     ...
+   });
+   </code>
+ </pre>
+ For better performance with potentially stale results, use a lower consistency level. See the
+ <a href="../../../io/atomix/Consistency.html" title="enum in io.atomix"><code>Consistency</code></a> documentation for specific consistency guarantees.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   if (map.containsKey("foo").get()) {
+     ...
+   }
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the operation is complete in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   map.containsKey("foo").thenAccept(contains -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The key to check.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>A completable future to be completed with the result once complete.</dd>
+<dd>A completable future to be completed with a boolean indicating whether <code>key</code> is present in the map.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>key</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -370,12 +487,101 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <li class="blockList">
 <h4>get</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key)</pre>
-<div class="block">Gets a value from the map.</div>
+<div class="block">Gets a value from the map.
+ <p>
+ Note that depending on the configured <a href="../../../io/atomix/Consistency.html" title="enum in io.atomix"><code>Consistency</code></a> of the map instance, queries
+ may return stale results. To perform a fully consistent query, configure the map with
+ <a href="../../../io/atomix/Consistency.html#ATOMIC"><code>Consistency.ATOMIC</code></a> consistency (the default).
+ <pre>
+   <code>
+   map.with(Consistency.ATOMIC).get("key").thenAccept(value -&gt; {
+     ...
+   });
+   </code>
+ </pre>
+ For better performance with potentially stale results, use a lower consistency level. See the
+ <a href="../../../io/atomix/Consistency.html" title="enum in io.atomix"><code>Consistency</code></a> documentation for specific consistency guarantees.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   String value = map.get("key").get();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the operation is complete in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   map.get("key").thenAccept(value -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The key to get.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the result once complete.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>key</code> is <code>null</code></dd>
+</dl>
+</li>
+</ul>
+<a name="getOrDefault-java.lang.Object-java.lang.Object-">
+<!--   -->
+</a><a name="getOrDefault-java.lang.Object-V-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getOrDefault</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;&nbsp;getOrDefault(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key,
+                                         <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;defaultValue)</pre>
+<div class="block">Gets the value of <code>key</code> or returns the given default value if <code>key</code> does not exist.
+ <p>
+ If no value for the given <code>key</code> is present in the map, the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will
+ be completed <code>null</code>. If a value is present, the returned future will be completed with that value.
+ <p>
+ Note that depending on the configured <a href="../../../io/atomix/Consistency.html" title="enum in io.atomix"><code>Consistency</code></a> of the map instance, queries
+ may return stale results. To perform a fully consistent query, configure the map with
+ <a href="../../../io/atomix/Consistency.html#ATOMIC"><code>Consistency.ATOMIC</code></a> consistency (the default).
+ <pre>
+   <code>
+   map.with(Consistency.ATOMIC).getOrDefault("key", "Hello world!").thenAccept(value -&gt; {
+     ...
+   });
+   </code>
+ </pre>
+ For better performance with potentially stale results, use a lower consistency level. See the
+ <a href="../../../io/atomix/Consistency.html" title="enum in io.atomix"><code>Consistency</code></a> documentation for specific consistency guarantees.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   String valueOrDefault = map.getOrDefault("key", "Hello world!").get();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the operation is complete in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   map.getOrDefault("key", "Hello world!").thenAccept(valueOrDefault -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>key</code> - The key to get.</dd>
+<dd><code>defaultValue</code> - The default value to return if the key does not exist.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed with the result once complete.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>key</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -389,13 +595,36 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <h4>put</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;&nbsp;put(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key,
                                 <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;value)</pre>
-<div class="block">Puts a value in the map.</div>
+<div class="block">Puts a value in the map for the given <code>key</code>.
+ <p>
+ Any previous value associated with the given <code>key</code> will be overridden. Additionally, if the previous value
+ was set with a TTL, the TTL will be cancelled and this value will be set with no TTL.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> or <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   String oldValue = map.put("key", "Hello world!").get();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the operation is complete in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   map.put("key", "Hello world!").thenAccept(oldValue -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The key to set.</dd>
 <dd><code>value</code> - The value to set.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the result once complete.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>key</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -410,7 +639,32 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;&nbsp;put(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key,
                                 <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;value,
                                 <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</pre>
-<div class="block">Puts a value in the map.</div>
+<div class="block">Puts a value in the map with a time-to-live for the given <code>key</code>.
+ <p>
+ Any previous value associated with the given <code>key</code> will be overridden. Additionally, if the previous value
+ was set with a TTL, the TTL will be cancelled and this value's TTL will be set.
+ <p>
+ The <code>value</code> will remain in the map until the provided <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time"><code>Duration</code></a> of time has elapsed or it is overridden
+ by a more recent put operation. Note that the provided <code>ttl</code> should only be considered an estimate of time.
+ Values may be evicted at some arbitrary point after the provided duration has elapsed, but never before.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> or <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   String oldValue = map.put("key", "Hello world!", Duration.ofSeconds(10)).get();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the operation is complete in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   map.put("key", "Hello world!", Duration.ofSeconds(10)).thenAccept(oldValue -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The key to set.</dd>
@@ -418,44 +672,8 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <dd><code>ttl</code> - The duration after which to expire the key.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the result once complete.</dd>
-</dl>
-</li>
-</ul>
-<a name="remove-java.lang.Object-">
-<!--   -->
-</a><a name="remove-K-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>remove</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;&nbsp;remove(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key)</pre>
-<div class="block">Removes a value from the map.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>key</code> - The key to remove.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A completable future to be completed with the result once complete.</dd>
-</dl>
-</li>
-</ul>
-<a name="getOrDefault-java.lang.Object-java.lang.Object-">
-<!--   -->
-</a><a name="getOrDefault-java.lang.Object-V-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getOrDefault</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;&nbsp;getOrDefault(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;key,
-                                         <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;defaultValue)</pre>
-<div class="block">Gets the value of a key or the given default value if the key does not exist.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>key</code> - The key to get.</dd>
-<dd><code>defaultValue</code> - The default value to return if the key does not exist.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A completable future to be completed with the result once complete.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>key</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -469,13 +687,35 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <h4>putIfAbsent</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;&nbsp;putIfAbsent(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key,
                                         <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;value)</pre>
-<div class="block">Puts a value in the map if the given key does not exist.</div>
+<div class="block">Puts a value in the map if the given <code>key</code> does not exist.
+ <p>
+ If the given <code>key</code> is not already present in the map, the key will be set to the given <code>value</code>.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> or <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   String oldValue = map.put("key", "Hello world!").get();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the operation is complete in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   map.put("key", "Hello world!").thenAccept(oldValue -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The key to set.</dd>
 <dd><code>value</code> - The value to set if the given key does not exist.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the result once complete.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>key</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -490,7 +730,31 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;&nbsp;putIfAbsent(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key,
                                         <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;value,
                                         <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</pre>
-<div class="block">Puts a value in the map if the given key does not exist.</div>
+<div class="block">Puts a value with a time-to-live in the map if the given <code>key</code> does not exist.
+ <p>
+ If the given <code>key</code> is not already present in the map, the key will be set to the given <code>value</code>.
+ <p>
+ The <code>value</code> will remain in the map until the provided <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time"><code>Duration</code></a> of time has elapsed or it is overridden
+ by a more recent put operation. Note that the provided <code>ttl</code> should only be considered an estimate of time.
+ Values may be evicted at some arbitrary point after the provided duration has elapsed, but never before.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> or <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   String oldValue = map.put("key", "Hello world!", Duration.ofSeconds(10)).get();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the operation is complete in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   map.put("key", "Hello world!", Duration.ofSeconds(10)).thenAccept(oldValue -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The key to set.</dd>
@@ -498,6 +762,51 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <dd><code>ttl</code> - The time to live duration.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the result once complete.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>key</code> is <code>null</code></dd>
+</dl>
+</li>
+</ul>
+<a name="remove-java.lang.Object-">
+<!--   -->
+</a><a name="remove-K-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>remove</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;&nbsp;remove(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key)</pre>
+<div class="block">Removes a the value for the given <code>key</code> from the map.
+ <p>
+ If no value for the given <code>key</code> is present in the map, the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will
+ be completed <code>null</code>. If a value is present, that value will be removed from the distributed map and the
+ returned future will be completed with that value. If the previous value was set with a TTL, the TTL will
+ be cancelled.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> or <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   String oldValue = map.remove("key").get();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the operation is complete in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   map.remove("key").thenAccept(oldValue -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>key</code> - The key to remove.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed with the result once complete.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>key</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -511,13 +820,40 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <h4>remove</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;remove(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key,
                                          <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;value)</pre>
-<div class="block">Removes a key and value from the map.</div>
+<div class="block">Removes the given <code>key</code> from the map if its value matches the given <code>value</code>.
+ <p>
+ If no value for the given <code>key</code> is present in the map or if the value doesn't match the provided <code>value</code>,
+ the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed <code>false</code>. If a value is present and matches <code>value</code>,
+ that value will be removed from the distributed map and the returned future will be completed <code>true</code>. If the
+ previous value was set with a TTL, the TTL will be cancelled.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> or <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   if (map.remove("key", "Hello world!").get()) {
+     ...
+   }
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the operation is complete in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   map.remove("key", "Hello world!").thenAccept(removed -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The key to remove.</dd>
 <dd><code>value</code> - The value to remove.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the result once complete.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>key</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -531,13 +867,35 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <h4>replace</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;&nbsp;replace(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key,
                                     <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;value)</pre>
-<div class="block">Replaces a value in the map.</div>
+<div class="block">Replaces a value in the map if the <code>key</code> exists.
+ <p>
+ If the given <code>key</code> is not already present in the map, no change will be made and <code>null</code> will be returned.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> or <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   String oldValue = map.replace("key", "Hello world!").get();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the operation is complete in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   map.replace("key", "Hello world!").thenAccept(oldValue -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The key to replace.</dd>
 <dd><code>value</code> - The value with which to replace the key if it exists.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the result once complete.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>key</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -552,7 +910,32 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;&nbsp;replace(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key,
                                     <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;value,
                                     <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</pre>
-<div class="block">Replaces a value in the map.</div>
+<div class="block">Replaces a value in the map if the <code>key</code> exist.
+ <p>
+ If the given <code>key</code> is not already present in the map, no change will be made and <code>null</code> will be returned.
+ <p>
+ If the value is successfully replaced, the <code>value</code> will remain in the map until the provided <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time"><code>Duration</code></a>
+ of time has elapsed or it is overridden by a more recent put operation. Note that the provided <code>ttl</code> should
+ only be considered an estimate of time. Values may be evicted at some arbitrary point after the provided duration
+ has elapsed, but never before.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> or <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   String oldValue = map.replace("key", "Hello world!", Duration.ofSeconds(10)).get();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the operation is complete in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   map.replace("key", "Hello world!", Duration.ofSeconds(10)).thenAccept(oldValue -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The key to replace.</dd>
@@ -560,6 +943,8 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <dd><code>ttl</code> - The duration after which to expire the key/value.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the result once complete.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>key</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -574,7 +959,30 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;replace(<a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>&nbsp;key,
                                           <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;oldValue,
                                           <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;newValue)</pre>
-<div class="block">Replaces a value in the map.</div>
+<div class="block">Replaces a value in the map.
+ <p>
+ If the given <code>key</code> is not already present in the map, no change will be made and <code>null</code> will be returned.
+ If the key is present and its value matches <code>oldValue</code>, it will be updated with <code>newValue</code>.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> or <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   if (map.replace("key", "Hello world!", "Hello world again!").get()) {
+     ...
+   }
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the operation is complete in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   map.replace("key", "Hello world!", "Hello world again!").thenAccept(replaced -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The key to replace.</dd>
@@ -582,6 +990,8 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <dd><code>newValue</code> - The value to replace.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the result once complete.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>key</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -597,7 +1007,35 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
                                           <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;oldValue,
                                           <a href="../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&nbsp;newValue,
                                           <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</pre>
-<div class="block">Replaces a value in the map.</div>
+<div class="block">Replaces a value in the map with a time-to-live.
+ <p>
+ If the given <code>key</code> is not already present in the map, no change will be made and <code>null</code> will be returned.
+ If the key is present and its value matches <code>oldValue</code>, it will be updated with <code>newValue</code>.
+ <p>
+ If the value is successfully replaced, the <code>value</code> will remain in the map until the provided <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time"><code>Duration</code></a>
+ of time has elapsed or it is overridden by a more recent put operation. Note that the provided <code>ttl</code> should
+ only be considered an estimate of time. Values may be evicted at some arbitrary point after the provided duration
+ has elapsed, but never before.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> or <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   if (map.replace("key", "Hello world!", "Hello world again!", Duration.ofSeconds(10)).get()) {
+     ...
+   }
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the operation is complete in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   map.replace("key", "Hello world!", "Hello world again!", Duration.ofSeconds(10)).thenAccept(oldValue -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>key</code> - The key to replace.</dd>
@@ -606,6 +1044,8 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <dd><code>ttl</code> - The duration after which to expire the key/value.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the result once complete.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>key</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -616,7 +1056,25 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <li class="blockList">
 <h4>clear</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;clear()</pre>
-<div class="block">Removes all entries from the map.</div>
+<div class="block">Removes all entries from the map.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   map.clear().join();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the operation is complete in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   map.clear().thenRun(() -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the operation is complete.</dd>

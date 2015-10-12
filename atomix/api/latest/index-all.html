@@ -264,7 +264,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#containsKey-java.lang.Object-">containsKey(Object)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
-<div class="block">Checks whether the map contains a key.</div>
+<div class="block">Returns <code>true</code> if the given key is present in the map.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMultiMap.html#containsKey-K-">containsKey(K)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a></dt>
 <dd>
@@ -462,7 +462,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#getOrDefault-java.lang.Object-V-">getOrDefault(Object, V)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
-<div class="block">Gets the value of a key or the given default value if the key does not exist.</div>
+<div class="block">Gets the value of <code>key</code> or returns the given default value if <code>key</code> does not exist.</div>
 </dd>
 <dt><a href="io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination"><span class="typeNameLink">GroupMember</span></a> - Interface in <a href="io/atomix/coordination/package-summary.html">io.atomix.coordination</a></dt>
 <dd>
@@ -525,7 +525,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#isEmpty--">isEmpty()</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
-<div class="block">Checks whether the map is empty.</div>
+<div class="block">Returns <code>true</code> if the map is empty.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMultiMap.html#isEmpty--">isEmpty()</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a></dt>
 <dd>
@@ -687,11 +687,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#put-K-V-">put(K, V)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
-<div class="block">Puts a value in the map.</div>
+<div class="block">Puts a value in the map for the given <code>key</code>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#put-K-V-java.time.Duration-">put(K, V, Duration)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
-<div class="block">Puts a value in the map.</div>
+<div class="block">Puts a value in the map with a time-to-live for the given <code>key</code>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMultiMap.html#put-K-V-">put(K, V)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a></dt>
 <dd>
@@ -703,11 +703,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#putIfAbsent-K-V-">putIfAbsent(K, V)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
-<div class="block">Puts a value in the map if the given key does not exist.</div>
+<div class="block">Puts a value in the map if the given <code>key</code> does not exist.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#putIfAbsent-K-V-java.time.Duration-">putIfAbsent(K, V, Duration)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
-<div class="block">Puts a value in the map if the given key does not exist.</div>
+<div class="block">Puts a value with a time-to-live in the map if the given <code>key</code> does not exist.</div>
 </dd>
 </dl>
 <a name="I:R">
@@ -723,11 +723,11 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#remove-K-">remove(K)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
-<div class="block">Removes a value from the map.</div>
+<div class="block">Removes a the value for the given <code>key</code> from the map.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#remove-K-V-">remove(K, V)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
-<div class="block">Removes a key and value from the map.</div>
+<div class="block">Removes the given <code>key</code> from the map if its value matches the given <code>value</code>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMultiMap.html#remove-java.lang.Object-">remove(Object)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a></dt>
 <dd>
@@ -751,11 +751,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#replace-K-V-">replace(K, V)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
-<div class="block">Replaces a value in the map.</div>
+<div class="block">Replaces a value in the map if the <code>key</code> exists.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#replace-K-V-java.time.Duration-">replace(K, V, Duration)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
-<div class="block">Replaces a value in the map.</div>
+<div class="block">Replaces a value in the map if the <code>key</code> exist.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#replace-K-V-V-">replace(K, V, V)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
@@ -763,7 +763,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#replace-K-V-V-java.time.Duration-">replace(K, V, V, Duration)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
-<div class="block">Replaces a value in the map.</div>
+<div class="block">Replaces a value in the map with a time-to-live.</div>
 </dd>
 <dt><a href="io/atomix/ResourceException.html" title="class in io.atomix"><span class="typeNameLink">ResourceException</span></a> - Exception in <a href="io/atomix/package-summary.html">io.atomix</a></dt>
 <dd>
@@ -821,7 +821,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#size--">size()</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
-<div class="block">Gets the count of the map.</div>
+<div class="block">Gets the number of key-value pairs in the map.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMultiMap.html#size--">size()</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a></dt>
 <dd>
