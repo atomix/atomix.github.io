@@ -116,7 +116,18 @@ var activeTableTab = "activeTableTab";
 <pre>public class <span class="typeNameLabel">MinorCompactionManager</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionManager.html" title="interface in io.atomix.copycat.server.storage.compaction">CompactionManager</a></pre>
-<div class="block">Minor compaction manager.</div>
+<div class="block">Builds tasks for the <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html#MINOR"><code>Compaction.MINOR</code></a> compaction process.
+ <p>
+ Minor compaction is the more frequent and lightweight process. Periodically, according to the configured
+ <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html#minorCompactionInterval--"><code>Storage.minorCompactionInterval()</code></a>, a background thread will evaluate the log for minor compaction. The
+ minor compaction process iterates through segments and selects compactable segments based on the ratio of entries
+ that have been <a href="../../../../../../io/atomix/copycat/server/storage/Log.html#clean-long-"><code>cleaned</code></a>. Minor compaction is generational. The
+ <a href="../../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionManager</code></a> is more likely to select recently written
+ segments than older segments. Once a set of segments have been compacted, for each segment a
+ <a href="../../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionTask</code></a> rewrites the segment without cleaned entries.
+ This rewriting results in a segment with missing entries, and Copycat's Raft implementation accounts for that.
+ For instance, a segment with entries <code>{1, 2, 3}</code> can become <code>{1, 3}</code> after being cleaned, and any attempt
+ to <a href="../../../../../../io/atomix/copycat/server/storage/Log.html#get-long-"><code>read</code></a> entry <code>2</code> will result in a <code>null</code> entry.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>

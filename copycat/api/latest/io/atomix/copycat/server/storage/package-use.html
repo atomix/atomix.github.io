@@ -89,12 +89,18 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.copycat.server.state">io.atomix.copycat.server.state</a></td>
+<td class="colLast">
+<div class="block">Internal Raft server state.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server.storage">io.atomix.copycat.server.storage</a></td>
 <td class="colLast">
 <div class="block">Provides a standalone segmented log for Copycat's <a href="https://raftconsensus.github.io/">Raft</a> implementation.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server.storage.compaction">io.atomix.copycat.server.storage.compaction</a></td>
 <td class="colLast">
 <div class="block">Classes that support efficient Raft log compaction.</div>
@@ -120,6 +126,28 @@
 </tbody>
 </table>
 </li>
+<li class="blockList"><a name="io.atomix.copycat.server.state">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a> used by <a href="../../../../../io/atomix/copycat/server/state/package-summary.html">io.atomix.copycat.server.state</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../../io/atomix/copycat/server/storage/class-use/Log.html#io.atomix.copycat.server.state">Log</a>
+<div class="block">Stores Raft log entries in a segmented log in memory or on disk.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../../io/atomix/copycat/server/storage/class-use/Storage.html#io.atomix.copycat.server.state">Storage</a>
+<div class="block">Immutable log configuration/factory.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
 <li class="blockList"><a name="io.atomix.copycat.server.storage">
 <!--   -->
 </a>
@@ -131,12 +159,12 @@
 <tbody>
 <tr class="altColor">
 <td class="colOne"><a href="../../../../../io/atomix/copycat/server/storage/class-use/Log.html#io.atomix.copycat.server.storage">Log</a>
-<div class="block">Raft log.</div>
+<div class="block">Stores Raft log entries in a segmented log in memory or on disk.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><a href="../../../../../io/atomix/copycat/server/storage/class-use/Segment.html#io.atomix.copycat.server.storage">Segment</a>
-<div class="block">Log segment.</div>
+<div class="block">Stores a set of sequential entries in a single file or memory <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a>.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -183,7 +211,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colOne"><a href="../../../../../io/atomix/copycat/server/storage/class-use/Segment.html#io.atomix.copycat.server.storage.compaction">Segment</a>
-<div class="block">Log segment.</div>
+<div class="block">Stores a set of sequential entries in a single file or memory <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">

@@ -116,7 +116,100 @@ var activeTableTab = "activeTableTab";
 <pre>public class <span class="typeNameLabel">Log</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></pre>
-<div class="block">Raft log.</div>
+<div class="block">Stores Raft log entries in a segmented log in memory or on disk.
+ <p>
+ The log is the primary vehicle for storing state changes and managing replication in Raft. The log is used
+ to verify consistency between members and manage cluster configurations, client sessions, state machine
+ operations, and other tasks.
+ <p>
+ State changes are written to the log as <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>Entry</code></a> objects. Each entry is associated with an <code>index</code>
+ and <code>term</code>. The <code>index</code> is a 1-based entry index from the start of the log. The <code>term</code> is
+ used for various consistency checks in the Raft algorithm. Raft guarantees that a <a href="../../../../../io/atomix/copycat/server/storage/Log.html#commit-long-"><code>committed</code></a>
+ entry at any index <code>i</code> that has term <code>t</code> will also be present in the logs on all other servers in
+ the cluster at the same index <code>i</code> with term <code>t</code>. However, note that log compaction may break this
+ contract. Considering log compaction, it's more accurate to say that iff committed entry <code>i</code> is present
+ in another server's log, that entry has term <code>t</code> and the same value.
+ <p>
+ Entries are written to the log via the <a href="../../../../../io/atomix/copycat/server/storage/Log.html#append-io.atomix.copycat.server.storage.entry.Entry-"><code>append(Entry)</code></a> method. When an entry is appended, it's written
+ to the next sequential index in the log after <a href="../../../../../io/atomix/copycat/server/storage/Log.html#lastIndex--"><code>lastIndex()</code></a>. Entries can be created from a typed entry
+ pool with the <a href="../../../../../io/atomix/copycat/server/storage/Log.html#create-java.lang.Class-"><code>create(Class)</code></a> method.
+ <pre>
+   <code>
+   long index;
+   try (CommandEntry entry = log.create(CommandEntry.class)) {
+     entry.setTerm(2)
+       .setSequence(5)
+       .setCommand(new PutCommand());
+     index = log.append(entry);
+   }
+   </code>
+ </pre>
+ <p>
+ <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>entries</code></a> are appended to <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s in the log. Segments are individual file or memory
+ based groups of sequential entries. Each segment has a fixed capacity in terms of either number of entries or
+ size in bytes. Once the capacity of a segment has been reached, the log rolls over to a new segment for the
+ next entry that's appended.
+ <p>
+ Internally, each segment maintains an in-memory index of entries. The index stores the offset and position of
+ each entry within the segment's internal <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a>. For entries that are appended
+ to the log sequentially, the index has an O(1) lookup time. For instances where entries in a segment have been
+ skipped (due to log compaction), the lookup time is O(log n) due to binary search. However, due to the nature of
+ the Raft consensus algorithm, readers should typically benefit from O(1) lookups.
+ <p>
+ In order to prevent exhausting disk space, the log manages a set of background threads that periodically rewrite
+ and combine segments to free disk space. This is known as log compaction. As entries are committed to the log and
+ applied to the Raft state machine as <a href="../../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a> objects, state machines <a href="../../../../../io/atomix/copycat/server/storage/Log.html#clean-long-"><code>clean(long)</code></a>
+ entries that no longer apply to the state machine state. Internally, each log <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a> maintains a compact
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/util/BitArray.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer.util"><code>BitArray</code></a> to track cleaned entries. When an entry is cleaned, the entry's
+ offset is set in the bit array for the associated segment. The bit array represents the state of entries waiting to
+ be compacted from the log.
+ <p>
+ As entries are written to the log, segments reach their capacity and the log rolls over into new segments. Once
+ a segment is full and all of its entries have been <a href="../../../../../io/atomix/copycat/server/storage/Log.html#commit-long-"><code>committed</code></a>, indicating they cannot be
+ removed, the segment becomes eligible for compaction. Log compaction processes come in two forms:
+ <a href="../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html#MINOR"><code>Compaction.MINOR</code></a> and
+ <a href="../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html#MAJOR"><code>Compaction.MAJOR</code></a>, which can be configured in the <a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a>
+ configuration. Minor and major compaction serve to remove normal entries and tombstones from the log respectively.
+ <p>
+ Minor compaction is the more frequent and lightweight process. Periodically, according to the configured
+ <a href="../../../../../io/atomix/copycat/server/storage/Storage.html#minorCompactionInterval--"><code>Storage.minorCompactionInterval()</code></a>, a background thread will evaluate the log for minor compaction. The
+ minor compaction process iterates through segments and selects compactable segments based on the ratio of entries
+ that have been <a href="../../../../../io/atomix/copycat/server/storage/Log.html#clean-long-"><code>cleaned</code></a>. Minor compaction is generational. The
+ <a href="../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionManager</code></a> is more likely to select recently written
+ segments than older segments. Once a set of segments have been compacted, for each segment a
+ <a href="../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionTask</code></a> rewrites the segment without cleaned entries.
+ This rewriting results in a segment with missing entries, and Copycat's Raft implementation accounts for that.
+ For instance, a segment with entries <code>{1, 2, 3}</code> can become <code>{1, 3}</code> after being cleaned, and any attempt
+ to <a href="../../../../../io/atomix/copycat/server/storage/Log.html#get-long-"><code>read</code></a> entry <code>2</code> will result in a <code>null</code> entry.
+ <p>
+ However, note that minor compaction only applies to non-tombstone entries.
+ Tombstones are entries that represent the absence of state, and that requires a more careful and costly compaction
+ process to ensure consistency in the event of a failure. Consider a state machine with the following two commands
+ in the log:
+ <ul>
+   <li><code>put 1</code></li>
+   <li><code>remove 1</code></li>
+ </ul>
+ If the first command is written to segment <code>1</code>, and the second command is written to segment <code>2</code>, compacting
+ segment <code>2</code> without removing the first command from segment <code>1</code> would result in an inconsistent state
+ machine state in the event of a failure and replay. Effectively, the log compaction process would have undone the
+ <code>remove</code> command.
+ <p>
+ Copycat handles tombstones by allowing tombstone entries to be flagged with the <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html#isTombstone--"><code>Entry.isTombstone()</code></a> boolean.
+ The minor compaction process plainly ignores tombstone entries and leaves them up to the major compaction process
+ to handle. Major compaction works similarly to minor compaction in that the configured <a href="../../../../../io/atomix/copycat/server/storage/Storage.html#majorCompactionInterval--"><code>Storage.majorCompactionInterval()</code></a>
+ dictates the interval at which the major compaction process runs. During major compaction, the
+ <a href="../../../../../io/atomix/copycat/server/storage/compaction/MajorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MajorCompactionManager</code></a> iterates through <em>all</em>
+ <a href="../../../../../io/atomix/copycat/server/storage/Log.html#commit-long-"><code>committed</code></a> segments and rewrites them sequentially with all cleaned entries removed, including
+ tombstones. This ensures that earlier segments are compacted before later segments, and so stateful entries that
+ were <a href="../../../../../io/atomix/copycat/server/storage/Log.html#clean-long-"><code>cleaned</code></a> prior to related tombstones are guaranteed to be removed first.
+ <p>
+ As entries are removed from the log during minor and major compaction, log segment files begin to shrink. Copycat
+ does not want to have a thousand file pointers open, so some mechanism is required to combine segments as disk
+ space is freed. To that end, as the major compaction process iterates through the set of committed segments and
+ rewrites live entries, it combines multiple segments up to the configured segment capacity. When a segment becomes
+ full during major compaction, the compaction process rolls over to a new segment and continues compaction. This results
+ in a significantly smaller number of files.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
