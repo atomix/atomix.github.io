@@ -75,8 +75,13 @@
 <ul class="horizontal">
 <li><a href="io/atomix/package-tree.html">io.atomix</a>, </li>
 <li><a href="io/atomix/atomic/package-tree.html">io.atomix.atomic</a>, </li>
+<li><a href="io/atomix/atomic/state/package-tree.html">io.atomix.atomic.state</a>, </li>
 <li><a href="io/atomix/collections/package-tree.html">io.atomix.collections</a>, </li>
-<li><a href="io/atomix/coordination/package-tree.html">io.atomix.coordination</a></li>
+<li><a href="io/atomix/collections/state/package-tree.html">io.atomix.collections.state</a>, </li>
+<li><a href="io/atomix/coordination/package-tree.html">io.atomix.coordination</a>, </li>
+<li><a href="io/atomix/coordination/state/package-tree.html">io.atomix.coordination.state</a>, </li>
+<li><a href="io/atomix/manager/package-tree.html">io.atomix.manager</a>, </li>
+<li><a href="io/atomix/resource/package-tree.html">io.atomix.resource</a></li>
 </ul>
 </div>
 <div class="contentContainer">
@@ -84,6 +89,21 @@
 <ul>
 <li type="circle">java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang"><span class="typeNameLink">Object</span></a>
 <ul>
+<li type="circle">io.atomix.atomic.state.<a href="io/atomix/atomic/state/AtomicValueCommands.html" title="class in io.atomix.atomic.state"><span class="typeNameLink">AtomicValueCommands</span></a></li>
+<li type="circle">io.atomix.atomic.state.<a href="io/atomix/atomic/state/AtomicValueCommands.Listen.html" title="class in io.atomix.atomic.state"><span class="typeNameLink">AtomicValueCommands.Listen</span></a> (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command</a>&lt;T&gt;)</li>
+<li type="circle">io.atomix.atomic.state.<a href="io/atomix/atomic/state/AtomicValueCommands.Unlisten.html" title="class in io.atomix.atomic.state"><span class="typeNameLink">AtomicValueCommands.Unlisten</span></a> (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command</a>&lt;T&gt;)</li>
+<li type="circle">io.atomix.atomic.state.<a href="io/atomix/atomic/state/AtomicValueCommands.ValueCommand.html" title="class in io.atomix.atomic.state"><span class="typeNameLink">AtomicValueCommands.ValueCommand</span></a>&lt;V&gt; (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command</a>&lt;T&gt;)
+<ul>
+<li type="circle">io.atomix.atomic.state.<a href="io/atomix/atomic/state/AtomicValueCommands.CompareAndSet.html" title="class in io.atomix.atomic.state"><span class="typeNameLink">AtomicValueCommands.CompareAndSet</span></a></li>
+<li type="circle">io.atomix.atomic.state.<a href="io/atomix/atomic/state/AtomicValueCommands.GetAndSet.html" title="class in io.atomix.atomic.state"><span class="typeNameLink">AtomicValueCommands.GetAndSet</span></a>&lt;T&gt;</li>
+<li type="circle">io.atomix.atomic.state.<a href="io/atomix/atomic/state/AtomicValueCommands.Set.html" title="class in io.atomix.atomic.state"><span class="typeNameLink">AtomicValueCommands.Set</span></a></li>
+</ul>
+</li>
+<li type="circle">io.atomix.atomic.state.<a href="io/atomix/atomic/state/AtomicValueCommands.ValueQuery.html" title="class in io.atomix.atomic.state"><span class="typeNameLink">AtomicValueCommands.ValueQuery</span></a>&lt;V&gt; (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html?is-external=true" title="class or interface in io.atomix.copycat.client">Query</a>&lt;T&gt;)
+<ul>
+<li type="circle">io.atomix.atomic.state.<a href="io/atomix/atomic/state/AtomicValueCommands.Get.html" title="class in io.atomix.atomic.state"><span class="typeNameLink">AtomicValueCommands.Get</span></a>&lt;T&gt;</li>
+</ul>
+</li>
 <li type="circle">io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix"><span class="typeNameLink">Atomix</span></a> (implements io.atomix.catalyst.util.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;T&gt;)
 <ul>
 <li type="circle">io.atomix.<a href="io/atomix/AtomixClient.html" title="class in io.atomix"><span class="typeNameLink">AtomixClient</span></a></li>
@@ -102,6 +122,7 @@
 <li type="circle">io.atomix.<a href="io/atomix/AtomixServer.Builder.html" title="class in io.atomix"><span class="typeNameLink">AtomixServer.Builder</span></a></li>
 </ul>
 </li>
+<li type="circle">io.atomix.manager.<a href="io/atomix/manager/DeleteResource.html" title="class in io.atomix.manager"><span class="typeNameLink">DeleteResource</span></a> (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command</a>&lt;T&gt;)</li>
 <li type="circle">io.atomix.<a href="io/atomix/DistributedResource.html" title="class in io.atomix"><span class="typeNameLink">DistributedResource</span></a>&lt;T&gt;
 <ul>
 <li type="circle">io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic"><span class="typeNameLink">DistributedAtomicValue</span></a>&lt;T&gt;
@@ -120,7 +141,185 @@
 <li type="circle">io.atomix.coordination.<a href="io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination"><span class="typeNameLink">DistributedTopic</span></a>&lt;T&gt;</li>
 </ul>
 </li>
+<li type="circle">io.atomix.manager.<a href="io/atomix/manager/KeyOperation.html" title="class in io.atomix.manager"><span class="typeNameLink">KeyOperation</span></a>&lt;T&gt; (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Operation.html?is-external=true" title="class or interface in io.atomix.copycat.client">Operation</a>&lt;T&gt;)
+<ul>
+<li type="circle">io.atomix.manager.<a href="io/atomix/manager/CreateResource.html" title="class in io.atomix.manager"><span class="typeNameLink">CreateResource</span></a> (implements io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command</a>&lt;T&gt;)</li>
+<li type="circle">io.atomix.manager.<a href="io/atomix/manager/GetResource.html" title="class in io.atomix.manager"><span class="typeNameLink">GetResource</span></a> (implements io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html?is-external=true" title="class or interface in io.atomix.copycat.client">Query</a>&lt;T&gt;)</li>
+<li type="circle">io.atomix.manager.<a href="io/atomix/manager/ResourceExists.html" title="class in io.atomix.manager"><span class="typeNameLink">ResourceExists</span></a> (implements io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html?is-external=true" title="class or interface in io.atomix.copycat.client">Query</a>&lt;T&gt;)</li>
+</ul>
+</li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/LeaderElectionCommands.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">LeaderElectionCommands</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/LeaderElectionCommands.ElectionCommand.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">LeaderElectionCommands.ElectionCommand</span></a>&lt;V&gt; (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command</a>&lt;T&gt;)
+<ul>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/LeaderElectionCommands.Listen.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">LeaderElectionCommands.Listen</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/LeaderElectionCommands.Unlisten.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">LeaderElectionCommands.Unlisten</span></a></li>
+</ul>
+</li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/LeaderElectionCommands.ElectionQuery.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">LeaderElectionCommands.ElectionQuery</span></a>&lt;V&gt; (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html?is-external=true" title="class or interface in io.atomix.copycat.client">Query</a>&lt;T&gt;)
+<ul>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/LeaderElectionCommands.IsLeader.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">LeaderElectionCommands.IsLeader</span></a></li>
+</ul>
+</li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/LockCommands.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">LockCommands</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/LockCommands.LockCommand.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">LockCommands.LockCommand</span></a>&lt;V&gt; (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command</a>&lt;T&gt;)
+<ul>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/LockCommands.Lock.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">LockCommands.Lock</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/LockCommands.Unlock.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">LockCommands.Unlock</span></a></li>
+</ul>
+</li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.MapCommand.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.MapCommand</span></a>&lt;V&gt; (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command</a>&lt;T&gt;)
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.Clear.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.Clear</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.KeyCommand.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.KeyCommand</span></a>&lt;V&gt;
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.KeyValueCommand.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.KeyValueCommand</span></a>&lt;V&gt;
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.RemoveIfPresent.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.RemoveIfPresent</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.TtlCommand.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.TtlCommand</span></a>&lt;V&gt;
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.Put.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.Put</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.PutIfAbsent.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.PutIfAbsent</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.Replace.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.Replace</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.ReplaceIfPresent.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.ReplaceIfPresent</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.Remove.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.Remove</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.MapQuery.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.MapQuery</span></a>&lt;V&gt; (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html?is-external=true" title="class or interface in io.atomix.copycat.client">Query</a>&lt;T&gt;)
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.IsEmpty.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.IsEmpty</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.KeyQuery.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.KeyQuery</span></a>&lt;V&gt;
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.ContainsKey.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.ContainsKey</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.Get.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.Get</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.GetOrDefault.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.GetOrDefault</span></a></li>
+</ul>
+</li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapCommands.Size.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapCommands.Size</span></a></li>
+</ul>
+</li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/MembershipGroupCommands.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">MembershipGroupCommands</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/MembershipGroupCommands.GroupCommand.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">MembershipGroupCommands.GroupCommand</span></a>&lt;V&gt; (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command</a>&lt;T&gt;)
+<ul>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/MembershipGroupCommands.Execute.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">MembershipGroupCommands.Execute</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/MembershipGroupCommands.Join.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">MembershipGroupCommands.Join</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/MembershipGroupCommands.Leave.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">MembershipGroupCommands.Leave</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/MembershipGroupCommands.Schedule.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">MembershipGroupCommands.Schedule</span></a></li>
+</ul>
+</li>
 <li type="circle">io.atomix.coordination.<a href="io/atomix/coordination/Message.html" title="class in io.atomix.coordination"><span class="typeNameLink">Message</span></a> (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>)</li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/MessageBusCommands.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">MessageBusCommands</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/MessageBusCommands.ConsumerInfo.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">MessageBusCommands.ConsumerInfo</span></a> (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>)</li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/MessageBusCommands.MessageBusCommand.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">MessageBusCommands.MessageBusCommand</span></a>&lt;V&gt; (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command</a>&lt;T&gt;)
+<ul>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/MessageBusCommands.Join.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">MessageBusCommands.Join</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/MessageBusCommands.Leave.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">MessageBusCommands.Leave</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/MessageBusCommands.Register.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">MessageBusCommands.Register</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/MessageBusCommands.Unregister.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">MessageBusCommands.Unregister</span></a></li>
+</ul>
+</li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.MapCommand.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.MapCommand</span></a>&lt;V&gt; (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command</a>&lt;T&gt;)
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.Clear.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.Clear</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.KeyCommand.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.KeyCommand</span></a>&lt;V&gt;
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.EntryCommand.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.EntryCommand</span></a>&lt;V&gt;
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.Remove.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.Remove</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.TtlCommand.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.TtlCommand</span></a>&lt;V&gt;
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.Put.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.Put</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.MapQuery.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.MapQuery</span></a>&lt;V&gt; (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html?is-external=true" title="class or interface in io.atomix.copycat.client">Query</a>&lt;T&gt;)
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.IsEmpty.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.IsEmpty</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.KeyQuery.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.KeyQuery</span></a>&lt;V&gt;
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.ContainsKey.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.ContainsKey</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.EntryQuery.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.EntryQuery</span></a>&lt;V&gt;
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.ContainsEntry.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.ContainsEntry</span></a></li>
+</ul>
+</li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.Get.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.Get</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.Size.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.Size</span></a></li>
+</ul>
+</li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.ValueQuery.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.ValueQuery</span></a>&lt;V&gt;
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapCommands.ContainsValue.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapCommands.ContainsValue</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/QueueCommands.html" title="class in io.atomix.collections.state"><span class="typeNameLink">QueueCommands</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/QueueCommands.Clear.html" title="class in io.atomix.collections.state"><span class="typeNameLink">QueueCommands.Clear</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/QueueCommands.Element.html" title="class in io.atomix.collections.state"><span class="typeNameLink">QueueCommands.Element</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/QueueCommands.IsEmpty.html" title="class in io.atomix.collections.state"><span class="typeNameLink">QueueCommands.IsEmpty</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/QueueCommands.Peek.html" title="class in io.atomix.collections.state"><span class="typeNameLink">QueueCommands.Peek</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/QueueCommands.Poll.html" title="class in io.atomix.collections.state"><span class="typeNameLink">QueueCommands.Poll</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/QueueCommands.Size.html" title="class in io.atomix.collections.state"><span class="typeNameLink">QueueCommands.Size</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/QueueCommands.ValueCommand.html" title="class in io.atomix.collections.state"><span class="typeNameLink">QueueCommands.ValueCommand</span></a>&lt;V&gt;
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/QueueCommands.Add.html" title="class in io.atomix.collections.state"><span class="typeNameLink">QueueCommands.Add</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/QueueCommands.Offer.html" title="class in io.atomix.collections.state"><span class="typeNameLink">QueueCommands.Offer</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/QueueCommands.Remove.html" title="class in io.atomix.collections.state"><span class="typeNameLink">QueueCommands.Remove</span></a></li>
+</ul>
+</li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/QueueCommands.ValueQuery.html" title="class in io.atomix.collections.state"><span class="typeNameLink">QueueCommands.ValueQuery</span></a>&lt;V&gt;
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/QueueCommands.Contains.html" title="class in io.atomix.collections.state"><span class="typeNameLink">QueueCommands.Contains</span></a></li>
+</ul>
+</li>
+<li type="circle">io.atomix.resource.<a href="io/atomix/resource/ResourceContext.html" title="class in io.atomix.resource"><span class="typeNameLink">ResourceContext</span></a></li>
+<li type="circle">io.atomix.resource.<a href="io/atomix/resource/ResourceEvent.html" title="class in io.atomix.resource"><span class="typeNameLink">ResourceEvent</span></a>&lt;T&gt; (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>)</li>
+<li type="circle">io.atomix.resource.<a href="io/atomix/resource/ResourceOperation.html" title="class in io.atomix.resource"><span class="typeNameLink">ResourceOperation</span></a>&lt;T,U&gt; (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Operation.html?is-external=true" title="class or interface in io.atomix.copycat.client">Operation</a>&lt;T&gt;)
+<ul>
+<li type="circle">io.atomix.resource.<a href="io/atomix/resource/ResourceCommand.html" title="class in io.atomix.resource"><span class="typeNameLink">ResourceCommand</span></a>&lt;T,U&gt; (implements io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command</a>&lt;T&gt;)</li>
+<li type="circle">io.atomix.resource.<a href="io/atomix/resource/ResourceQuery.html" title="class in io.atomix.resource"><span class="typeNameLink">ResourceQuery</span></a>&lt;T,U&gt; (implements io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html?is-external=true" title="class or interface in io.atomix.copycat.client">Query</a>&lt;T&gt;)</li>
+</ul>
+</li>
+<li type="circle">io.atomix.resource.<a href="io/atomix/resource/ResourceSession.html" title="class in io.atomix.resource"><span class="typeNameLink">ResourceSession</span></a> (implements io.atomix.copycat.client.session.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/session/Session.html?is-external=true" title="class or interface in io.atomix.copycat.client.session">Session</a>)</li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/SetCommands.html" title="class in io.atomix.collections.state"><span class="typeNameLink">SetCommands</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/SetCommands.Clear.html" title="class in io.atomix.collections.state"><span class="typeNameLink">SetCommands.Clear</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/SetCommands.Contains.html" title="class in io.atomix.collections.state"><span class="typeNameLink">SetCommands.Contains</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/SetCommands.IsEmpty.html" title="class in io.atomix.collections.state"><span class="typeNameLink">SetCommands.IsEmpty</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/SetCommands.Remove.html" title="class in io.atomix.collections.state"><span class="typeNameLink">SetCommands.Remove</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/SetCommands.Size.html" title="class in io.atomix.collections.state"><span class="typeNameLink">SetCommands.Size</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/SetCommands.TtlCommand.html" title="class in io.atomix.collections.state"><span class="typeNameLink">SetCommands.TtlCommand</span></a>&lt;V&gt;
+<ul>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/SetCommands.Add.html" title="class in io.atomix.collections.state"><span class="typeNameLink">SetCommands.Add</span></a></li>
+</ul>
+</li>
+<li type="circle">io.atomix.copycat.server.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server"><span class="typeNameLink">StateMachine</span></a> (implements java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a>)
+<ul>
+<li type="circle">io.atomix.atomic.state.<a href="io/atomix/atomic/state/AtomicValueState.html" title="class in io.atomix.atomic.state"><span class="typeNameLink">AtomicValueState</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/LeaderElectionState.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">LeaderElectionState</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/LockState.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">LockState</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MapState.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MapState</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/MembershipGroupState.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">MembershipGroupState</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/MessageBusState.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">MessageBusState</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/MultiMapState.html" title="class in io.atomix.collections.state"><span class="typeNameLink">MultiMapState</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/QueueState.html" title="class in io.atomix.collections.state"><span class="typeNameLink">QueueState</span></a></li>
+<li type="circle">io.atomix.manager.<a href="io/atomix/manager/ResourceManager.html" title="class in io.atomix.manager"><span class="typeNameLink">ResourceManager</span></a></li>
+<li type="circle">io.atomix.collections.state.<a href="io/atomix/collections/state/SetState.html" title="class in io.atomix.collections.state"><span class="typeNameLink">SetState</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/TopicState.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">TopicState</span></a></li>
+</ul>
+</li>
 <li type="circle">java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang"><span class="typeNameLink">Throwable</span></a> (implements java.io.<a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>)
 <ul>
 <li type="circle">java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Exception.html?is-external=true" title="class or interface in java.lang"><span class="typeNameLink">Exception</span></a>
@@ -130,12 +329,21 @@
 <li type="circle">io.atomix.<a href="io/atomix/AtomixException.html" title="class in io.atomix"><span class="typeNameLink">AtomixException</span></a>
 <ul>
 <li type="circle">io.atomix.<a href="io/atomix/ResourceException.html" title="class in io.atomix"><span class="typeNameLink">ResourceException</span></a></li>
+<li type="circle">io.atomix.manager.<a href="io/atomix/manager/ResourceManagerException.html" title="class in io.atomix.manager"><span class="typeNameLink">ResourceManagerException</span></a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+</li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/TopicCommands.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">TopicCommands</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/TopicCommands.TopicCommand.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">TopicCommands.TopicCommand</span></a>&lt;V&gt; (implements io.atomix.catalyst.serializer.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, io.atomix.copycat.client.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command</a>&lt;T&gt;)
+<ul>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/TopicCommands.Listen.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">TopicCommands.Listen</span></a></li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/TopicCommands.Publish.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">TopicCommands.Publish</span></a>&lt;T&gt;</li>
+<li type="circle">io.atomix.coordination.state.<a href="io/atomix/coordination/state/TopicCommands.Unlisten.html" title="class in io.atomix.coordination.state"><span class="typeNameLink">TopicCommands.Unlisten</span></a></li>
 </ul>
 </li>
 </ul>
