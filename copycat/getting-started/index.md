@@ -3,13 +3,13 @@ layout: content
 project: copycat
 menu: getting-started
 title: Getting Started
-pitch: Copycat in two minutes
+pitch: Copycat in five minutes
 first-section: getting-started
 ---
 
 ## Installation
 
-Copycat consists of two core modules. To use the [Raft server](#copycatserver) library, add the `copycat-server` jar
+Copycat consists of two core modules. To use the Raft server library, add the `copycat-server` jar
 to your classpath:
 
 ```
@@ -20,7 +20,7 @@ to your classpath:
 </dependency>
 ```
 
-To use the [Raft client](#copycatclient) library, add the `copycat-client` jar to your classpath:
+To use the Raft client library, add the `copycat-client` jar to your classpath:
 
 ```
 <dependency>
@@ -32,9 +32,9 @@ To use the [Raft client](#copycatclient) library, add the `copycat-client` jar t
 
 ## CopycatClient
 
-The [CopycatClient][CopycatClient] provides an interface for submitting [commands](#commands) and [queries](#queries) to a cluster of [Raft servers](#copycatserver).
+The [CopycatClient] provides an interface for submitting commands and queries to a cluster of Raft servers.
 
-To create a client, you must supply the client [Builder][builders] with a set of `Address`es to which to connect.
+To create a client, you must supply the client [Builder][builders] with a set of `Address`es to connect to.
 
 ```java
 List<Address> members = Arrays.asList(
@@ -44,7 +44,7 @@ List<Address> members = Arrays.asList(
 );
 ```
 
-The provided `Address`es do not have to be representative of the full Copycat cluster, but they do have to provide at least one correct server to which the client can connect. In other words, the client must be able to communicate with at least one `CopycatServer` that is the leader or can communicate with the leader, and a majority of the cluster must be able to communicate with one another in order for the client to register a new [Session](#client-sessions).
+The provided `Address`es do not have to be representative of the full Copycat cluster, but they do have to provide at least one correct server to which the client can connect. In other words, the client must be able to communicate with at least one `CopycatServer` that is the leader or that can communicate with the leader. A majority of the cluster must be able to communicate with each other in order for the client to register a new [Session].
 
 ```java
 CopycatClient client = CopycatClient.builder(members)
@@ -76,18 +76,16 @@ To create a state machine, extend the base `StateMachine` class:
 
 ```java
 public class MapStateMachine extends StateMachine {
-
   @Override
   protected void configure(StateMachineExecutor executor) {
   
   }
-
 }
 ```
 
 ### Defining state machine operations
 
-State machine commands alter state machine state:
+Commands alter state machine state:
 
 ```java
 public class PutCommand implements Command<Object> {
@@ -116,11 +114,10 @@ public class PutCommand implements Command<Object> {
   public boolean groupEquals(Command command) {
     return command instanceof PutCommand && ((PutCommand) command).key.equals(key);
   }
-
 }
 ```
 
-State machine queries must only read the state machine state:
+Queries must only read the state machine state:
 
 ```java
 public class GetQuery implements Query<Object> {
@@ -133,7 +130,6 @@ public class GetQuery implements Query<Object> {
   public Object key() {
     return key;
   }
-  
 }
 ```
 
@@ -149,7 +145,7 @@ public class RemoveCommand implements Command<Object> {
 
   @Override
   public PersistenceLevel persistence() {
-    return PersistenceLevel.EPHEMERAL;
+    return PersistenceLevel.PERSISTENT;
   }
 
   public Object key() {
@@ -165,13 +161,12 @@ public class RemoveCommand implements Command<Object> {
   public boolean groupEquals(Command command) {
     return command instanceof PutCommand && ((PutCommand) command).key.equals(key);
   }
-  
 }
 ```
 
 ### Implementing state machine operations
 
-State machine operations are registered within a state machine using the `StateMachineExecutor`:
+State machine operations are registered via the `StateMachineExecutor` in the `configure` method:
 
 ```java
 public class MapStateMachine extends StateMachine {
@@ -218,7 +213,6 @@ public class MapStateMachine extends StateMachine {
       commit.clean();
     }
   }
-
 }
 ```
 
@@ -290,3 +284,5 @@ client.open().thenRun(() -> {
 ```
 </div>
 </div>
+
+{% include common-links.html %}
