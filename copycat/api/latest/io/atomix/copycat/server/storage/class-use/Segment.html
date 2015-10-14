@@ -88,12 +88,6 @@
 <div class="block">Provides a standalone segmented log for Copycat's <a href="https://raftconsensus.github.io/">Raft</a> implementation.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.copycat.server.storage.compaction">io.atomix.copycat.server.storage.compaction</a></td>
-<td class="colLast">
-<div class="block">Classes that support efficient Raft log compaction.</div>
-</td>
-</tr>
 </tbody>
 </table>
 </li>
@@ -112,66 +106,60 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Segment.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/Segment.html#compact-long-">compact</a></span>(long&nbsp;firstIndex)</code>
-<div class="block">Compacts the head of the segment up to the given index.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></code></td>
 <td class="colLast"><span class="typeNameLabel">SegmentManager.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html#createSegment-io.atomix.copycat.server.storage.SegmentDescriptor-">createSegment</a></span>(<a href="../../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a>&nbsp;descriptor)</code>
 <div class="block">Creates a new segment.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></code></td>
 <td class="colLast"><span class="typeNameLabel">SegmentManager.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html#currentSegment--">currentSegment</a></span>()</code>
 <div class="block">Returns the current segment.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></code></td>
 <td class="colLast"><span class="typeNameLabel">SegmentManager.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html#firstSegment--">firstSegment</a></span>()</code>
 <div class="block">Returns the first segment in the log.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Segment.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/Segment.html#flush--">flush</a></span>()</code>
 <div class="block">Flushes the segment buffers to disk.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></code></td>
 <td class="colLast"><span class="typeNameLabel">SegmentManager.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html#lastSegment--">lastSegment</a></span>()</code>
 <div class="block">Returns the last segment in the log.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></code></td>
 <td class="colLast"><span class="typeNameLabel">SegmentManager.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html#loadSegment-long-long-">loadSegment</a></span>(long&nbsp;segmentId,
            long&nbsp;segmentVersion)</code>
 <div class="block">Loads a segment.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></code></td>
 <td class="colLast"><span class="typeNameLabel">SegmentManager.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html#nextSegment--">nextSegment</a></span>()</code>
 <div class="block">Creates and returns the next segment.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></code></td>
 <td class="colLast"><span class="typeNameLabel">SegmentManager.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html#segment-long-">segment</a></span>(long&nbsp;index)</code>
 <div class="block">Returns the segment for the given index.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Segment.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/Segment.html#skip-long-">skip</a></span>(long&nbsp;entries)</code>
 <div class="block">Skips a number of entries in the segment.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Segment.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/Segment.html#truncate-long-">truncate</a></span>(long&nbsp;index)</code>
 <div class="block">Truncates entries after the given index.</div>
@@ -203,43 +191,32 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">SegmentManager.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html#insertSegment-io.atomix.copycat.server.storage.Segment-">insertSegment</a></span>(<a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a>&nbsp;segment)</code>
-<div class="block">Inserts a segment.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">SegmentManager.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html#moveSegment-long-io.atomix.copycat.server.storage.Segment-">moveSegment</a></span>(long&nbsp;index,
-           <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a>&nbsp;segment)</code>
-<div class="block">Moved a segment.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">SegmentManager.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html#removeSegment-io.atomix.copycat.server.storage.Segment-">removeSegment</a></span>(<a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a>&nbsp;segment)</code>
 <div class="block">Removes a segment.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">SegmentManager.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html#replaceSegments-java.util.Collection-io.atomix.copycat.server.storage.Segment-">replaceSegments</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a>&gt;&nbsp;segments,
+               <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a>&nbsp;segment)</code>
+<div class="block">Inserts a segment.</div>
+</td>
+</tr>
 </tbody>
 </table>
-</li>
-<li class="blockList"><a name="io.atomix.copycat.server.storage.compaction">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a> in <a href="../../../../../../io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
-<caption><span>Constructor parameters in <a href="../../../../../../io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a> with type arguments of type <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></span><span class="tabEnd">&nbsp;</span></caption>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Method parameters in <a href="../../../../../../io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a> with type arguments of type <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
-<th class="colOne" scope="col">Constructor and Description</th>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/MajorCompactionTask.html#MajorCompactionTask-io.atomix.copycat.server.storage.SegmentManager-java.util.List-">MajorCompactionTask</a></span>(<a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a>&nbsp;manager,
-                   <a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a>&gt;&nbsp;segments)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html#MinorCompactionTask-io.atomix.copycat.server.storage.SegmentManager-java.util.List-">MinorCompactionTask</a></span>(<a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a>&nbsp;manager,
-                   <a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a>&gt;&nbsp;segments)</code>&nbsp;</td>
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">SegmentManager.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html#replaceSegments-java.util.Collection-io.atomix.copycat.server.storage.Segment-">replaceSegments</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a>&gt;&nbsp;segments,
+               <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a>&nbsp;segment)</code>
+<div class="block">Inserts a segment.</div>
+</td>
 </tr>
 </tbody>
 </table>

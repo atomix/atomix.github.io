@@ -496,6 +496,10 @@
 <dd>
 <div class="block">Cleans the commit from the underlying log.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html#clean-long-">clean(long)</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction">OffsetCleaner</a></dt>
+<dd>
+<div class="block">Cleans an offset from the segment.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Log.html#clean-long-">clean(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></dt>
 <dd>
 <div class="block">Cleans the entry at the given index.</div>
@@ -507,6 +511,10 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#cleanCount--">cleanCount()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>
 <div class="block">Returns the number of entries in the segment that have been cleaned.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#cleaner--">cleaner()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
+<dd>
+<div class="block">Returns the segment offset cleaner.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/request/RegisterRequest.html#client--">client()</a></span> - Method in class io.atomix.copycat.client.request.<a href="io/atomix/copycat/client/request/RegisterRequest.html" title="class in io.atomix.copycat.client.request">RegisterRequest</a></dt>
 <dd>
@@ -545,6 +553,8 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/StateMachineExecutor.html#close--">close()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/Compactor.html#close--">close()</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html#close--">close()</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction">OffsetCleaner</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/Entry.html#close--">close()</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a></dt>
 <dd>&nbsp;</dd>
@@ -629,10 +639,6 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/Compactor.html#compact-io.atomix.copycat.server.storage.compaction.Compaction-">compact(Compaction)</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></dt>
 <dd>
 <div class="block">Compacts the log using the given compaction strategy.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#compact-long-">compact(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
-<dd>
-<div class="block">Compacts the head of the segment up to the given index.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/compaction/Compaction.html" title="enum in io.atomix.copycat.server.storage.compaction"><span class="typeNameLink">Compaction</span></a> - Enum in <a href="io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a></dt>
 <dd>
@@ -747,6 +753,10 @@
 <dt><a href="io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server"><span class="typeNameLink">CopycatServer.State</span></a> - Enum in <a href="io/atomix/copycat/server/package-summary.html">io.atomix.copycat.server</a></dt>
 <dd>
 <div class="block">Raft server state types.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html#count--">count()</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction">OffsetCleaner</a></dt>
+<dd>
+<div class="block">Returns the number of offsets cleaned from the segment.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#count--">count()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>
@@ -1252,10 +1262,6 @@
 <dd>
 <div class="block">Initializes the state machine.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentManager.html#insertSegment-io.atomix.copycat.server.storage.Segment-">insertSegment(Segment)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a></dt>
-<dd>
-<div class="block">Inserts a segment.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/state/ServerClock.html#instant--">instant()</a></span> - Method in class io.atomix.copycat.server.state.<a href="io/atomix/copycat/server/state/ServerClock.html" title="class in io.atomix.copycat.server.state">ServerClock</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/copycat/client/error/InternalException.html" title="class in io.atomix.copycat.client.error"><span class="typeNameLink">InternalException</span></a> - Exception in <a href="io/atomix/copycat/client/error/package-summary.html">io.atomix.copycat.client.error</a></dt>
@@ -1322,6 +1328,10 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/util/package-summary.html">io.atomix.copycat.server.util</a> - package io.atomix.copycat.server.util</dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html#isClean-long-">isClean(long)</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction">OffsetCleaner</a></dt>
+<dd>
+<div class="block">Returns a boolean value indicating whether an offset has been cleaned from the segment.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#isClean-long-">isClean(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>
 <div class="block">Returns a boolean value indicating whether the given index was cleaned from the segment.</div>
@@ -1578,8 +1588,6 @@
 <dd>
 <div class="block">Major compaction task.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/MajorCompactionTask.html#MajorCompactionTask-io.atomix.copycat.server.storage.SegmentManager-java.util.List-">MajorCompactionTask(SegmentManager, List&lt;Segment&gt;)</a></span> - Constructor for class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/MajorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction">MajorCompactionTask</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.html#maxEntries--">maxEntries()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a></dt>
 <dd>
 <div class="block">Returns the maximum number of entries allowed in the segment.</div>
@@ -1587,14 +1595,6 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.html#maxEntriesPerSegment--">maxEntriesPerSegment()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></dt>
 <dd>
 <div class="block">Returns the maximum number of entries per segment.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.html#maxEntrySize--">maxEntrySize()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a></dt>
-<dd>
-<div class="block">Returns the maximum entry count for the segment.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.html#maxEntrySize--">maxEntrySize()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></dt>
-<dd>
-<div class="block">Returns the maximum storage entry size.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.html#maxSegmentSize--">maxSegmentSize()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a></dt>
 <dd>
@@ -1638,12 +1638,6 @@
 <dd>
 <div class="block">Minor compaction task.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html#MinorCompactionTask-io.atomix.copycat.server.storage.SegmentManager-java.util.List-">MinorCompactionTask(SegmentManager, List&lt;Segment&gt;)</a></span> - Constructor for class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction">MinorCompactionTask</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentManager.html#moveSegment-long-io.atomix.copycat.server.storage.Segment-">moveSegment(long, Segment)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a></dt>
-<dd>
-<div class="block">Moved a segment.</div>
-</dd>
 </dl>
 <a name="I:N">
 <!--   -->
@@ -1686,6 +1680,16 @@
 </a>
 <h2 class="title">O</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#offset-long-">offset(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
+<dd>
+<div class="block">Returns the offset of the given index within the segment.</div>
+</dd>
+<dt><a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction"><span class="typeNameLink">OffsetCleaner</span></a> - Class in <a href="io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a></dt>
+<dd>
+<div class="block">Segment offset cleaner.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html#OffsetCleaner--">OffsetCleaner()</a></span> - Constructor for class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction">OffsetCleaner</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSession.html#onClose-java.util.function.Consumer-">onClose(Consumer&lt;Session&gt;)</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/Session.html#onClose-java.util.function.Consumer-">onClose(Consumer&lt;Session&gt;)</a></span> - Method in interface io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a></dt>
@@ -2065,6 +2069,10 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentManager.html#removeSegment-io.atomix.copycat.server.storage.Segment-">removeSegment(Segment)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a></dt>
 <dd>
 <div class="block">Removes a segment.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentManager.html#replaceSegments-java.util.Collection-io.atomix.copycat.server.storage.Segment-">replaceSegments(Collection&lt;Segment&gt;, Segment)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a></dt>
+<dd>
+<div class="block">Inserts a segment.</div>
 </dd>
 <dt><a href="io/atomix/copycat/client/request/Request.html" title="interface in io.atomix.copycat.client.request"><span class="typeNameLink">Request</span></a>&lt;<a href="io/atomix/copycat/client/request/Request.html" title="type parameter in Request">T</a> extends <a href="io/atomix/copycat/client/request/Request.html" title="interface in io.atomix.copycat.client.request">Request</a>&lt;<a href="io/atomix/copycat/client/request/Request.html" title="type parameter in Request">T</a>&gt;&gt; - Interface in <a href="io/atomix/copycat/client/request/package-summary.html">io.atomix.copycat.client.request</a></dt>
 <dd>
@@ -2929,14 +2937,6 @@ the order they are declared.</div>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withMaxEntriesPerSegment-int-">withMaxEntriesPerSegment(int)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
 <dd>
 <div class="block">Sets the maximum number of allows entries per segment.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.Builder.html#withMaxEntrySize-int-">withMaxEntrySize(int)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.Builder.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor.Builder</a></dt>
-<dd>
-<div class="block">Sets the maximum entry count for the segment.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withMaxEntrySize-int-">withMaxEntrySize(int)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
-<dd>
-<div class="block">Sets the maximum entry count, returning the builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.Builder.html#withMaxSegmentSize-long-">withMaxSegmentSize(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.Builder.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor.Builder</a></dt>
 <dd>

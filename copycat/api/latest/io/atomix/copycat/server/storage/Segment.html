@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -172,20 +172,20 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>int</code></td>
+<td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#cleanCount--">cleanCount</a></span>()</code>
 <div class="block">Returns the number of entries in the segment that have been cleaned.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#close--">close</a></span>()</code>&nbsp;</td>
+<td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction">OffsetCleaner</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#cleaner--">cleaner</a></span>()</code>
+<div class="block">Returns the segment offset cleaner.</div>
+</td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#compact-long-">compact</a></span>(long&nbsp;firstIndex)</code>
-<div class="block">Compacts the head of the segment up to the given index.</div>
-</td>
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#close--">close</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
@@ -266,7 +266,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </td>
 </tr>
 <tr id="i18" class="altColor">
-<td class="colFirst"><code>int</code></td>
+<td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#length--">length</a></span>()</code>
 <div class="block">Returns the current range of the segment.</div>
 </td>
@@ -279,21 +279,27 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </tr>
 <tr id="i20" class="altColor">
 <td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#offset-long-">offset</a></span>(long&nbsp;index)</code>
+<div class="block">Returns the offset of the given index within the segment.</div>
+</td>
+</tr>
+<tr id="i21" class="rowColor">
+<td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#size--">size</a></span>()</code>
 <div class="block">Returns the total count of the segment in bytes.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#skip-long-">skip</a></span>(long&nbsp;entries)</code>
 <div class="block">Skips a number of entries in the segment.</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#truncate-long-">truncate</a></span>(long&nbsp;index)</code>
 <div class="block">Truncates entries after the given index.</div>
@@ -411,7 +417,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <ul class="blockList">
 <li class="blockList">
 <h4>length</h4>
-<pre>public&nbsp;int&nbsp;length()</pre>
+<pre>public&nbsp;long&nbsp;length()</pre>
 <div class="block">Returns the current range of the segment.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -479,19 +485,19 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </dl>
 </li>
 </ul>
-<a name="compact-long-">
+<a name="offset-long-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>compact</h4>
-<pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a>&nbsp;compact(long&nbsp;firstIndex)</pre>
-<div class="block">Compacts the head of the segment up to the given index.</div>
+<h4>offset</h4>
+<pre>public&nbsp;long&nbsp;offset(long&nbsp;index)</pre>
+<div class="block">Returns the offset of the given index within the segment.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>firstIndex</code> - The first index in the segment.</dd>
+<dd><code>index</code> - The index to check.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The segment.</dd>
+<dd>The offset of the given index.</dd>
 </dl>
 </li>
 </ul>
@@ -547,6 +553,20 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </dl>
 </li>
 </ul>
+<a name="cleaner--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>cleaner</h4>
+<pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction">OffsetCleaner</a>&nbsp;cleaner()</pre>
+<div class="block">Returns the segment offset cleaner.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The segment offset cleaner.</dd>
+</dl>
+</li>
+</ul>
 <a name="clean-long-">
 <!--   -->
 </a>
@@ -589,7 +609,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <ul class="blockList">
 <li class="blockList">
 <h4>cleanCount</h4>
-<pre>public&nbsp;int&nbsp;cleanCount()</pre>
+<pre>public&nbsp;long&nbsp;cleanCount()</pre>
 <div class="block">Returns the number of entries in the segment that have been cleaned.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
