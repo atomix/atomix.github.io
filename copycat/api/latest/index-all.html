@@ -553,7 +553,9 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/StateMachineExecutor.html#close--">close()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/Compactor.html#close--">close()</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Closes the log compactor.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html#close--">close()</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction">OffsetCleaner</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/Entry.html#close--">close()</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a></dt>
@@ -634,23 +636,23 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/Compactor.html#compact--">compact()</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></dt>
 <dd>
-<div class="block">Compacts the log using the minor compaction strategy.</div>
+<div class="block">Compacts the log using the default <a href="io/atomix/copycat/server/storage/compaction/Compaction.html#MINOR"><code>Compaction.MINOR</code></a> compaction strategy.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/Compactor.html#compact-io.atomix.copycat.server.storage.compaction.Compaction-">compact(Compaction)</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></dt>
 <dd>
-<div class="block">Compacts the log using the given compaction strategy.</div>
+<div class="block">Compacts the log using the given <a href="io/atomix/copycat/server/storage/compaction/CompactionManager.html" title="interface in io.atomix.copycat.server.storage.compaction"><code>CompactionManager</code></a>.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/compaction/Compaction.html" title="enum in io.atomix.copycat.server.storage.compaction"><span class="typeNameLink">Compaction</span></a> - Enum in <a href="io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a></dt>
 <dd>
-<div class="block">Log compaction.</div>
+<div class="block">Log compaction type identifier.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/compaction/CompactionManager.html" title="interface in io.atomix.copycat.server.storage.compaction"><span class="typeNameLink">CompactionManager</span></a> - Interface in <a href="io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a></dt>
 <dd>
-<div class="block">Compaction manager.</div>
+<div class="block">Manages a single compaction process.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/compaction/CompactionTask.html" title="interface in io.atomix.copycat.server.storage.compaction"><span class="typeNameLink">CompactionTask</span></a> - Interface in <a href="io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a></dt>
 <dd>
-<div class="block">Log compaction task.</div>
+<div class="block">Performs compaction on a set of log <a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.html#compactionThreads--">compactionThreads()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></dt>
 <dd>
@@ -662,7 +664,8 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction"><span class="typeNameLink">Compactor</span></a> - Class in <a href="io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a></dt>
 <dd>
-<div class="block">Log compactor.</div>
+<div class="block">Manages compaction of log <a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s in a pool of background
+ threads.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/Compactor.html#Compactor-io.atomix.copycat.server.storage.Storage-io.atomix.copycat.server.storage.SegmentManager-java.util.concurrent.ScheduledExecutorService-">Compactor(Storage, SegmentManager, ScheduledExecutorService)</a></span> - Constructor for class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></dt>
 <dd>&nbsp;</dd>
@@ -1586,7 +1589,7 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/copycat/server/storage/compaction/MajorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><span class="typeNameLink">MajorCompactionTask</span></a> - Class in <a href="io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a></dt>
 <dd>
-<div class="block">Major compaction task.</div>
+<div class="block">Removes tombstones from the log and combines <a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s to reclaim disk space.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.html#maxEntries--">maxEntries()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a></dt>
 <dd>
@@ -1636,7 +1639,8 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><span class="typeNameLink">MinorCompactionTask</span></a> - Class in <a href="io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a></dt>
 <dd>
-<div class="block">Minor compaction task.</div>
+<div class="block">Removes <a href="io/atomix/copycat/server/storage/Log.html#clean-long-"><code>cleaned</code></a> entries from an individual
+ log <a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a> to reclaim disk space.</div>
 </dd>
 </dl>
 <a name="I:N">
