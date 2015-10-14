@@ -116,7 +116,20 @@ var activeTableTab = "activeTableTab";
 <pre>public final class <span class="typeNameLabel">Compactor</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></pre>
-<div class="block">Log compactor.</div>
+<div class="block">Manages compaction of log <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s in a pool of background
+ threads.
+ <p>
+ The compactor is responsible for managing log compaction processes. Log <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html" title="enum in io.atomix.copycat.server.storage.compaction"><code>Compaction</code></a> processes
+ are run in a pool of background threads of the configured number of <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html#compactionThreads--"><code>Storage.compactionThreads()</code></a>.
+ <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html#MINOR"><code>Compaction.MINOR</code></a> and <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html#MAJOR"><code>Compaction.MAJOR</code></a> executions are scheduled according to the configured
+ <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html#minorCompactionInterval--"><code>Storage.minorCompactionInterval()</code></a> and <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html#majorCompactionInterval--"><code>Storage.majorCompactionInterval()</code></a> respectively.
+ Compaction can also be run synchronously via <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#compact--"><code>compact()</code></a> or <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#compact-io.atomix.copycat.server.storage.compaction.Compaction-"><code>compact(Compaction)</code></a>.
+ <p>
+ When a <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html" title="enum in io.atomix.copycat.server.storage.compaction"><code>Compaction</code></a> is executed either synchronously or asynchronously, the compaction's associated
+ <a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionManager.html" title="interface in io.atomix.copycat.server.storage.compaction"><code>CompactionManager</code></a> is called to build a list of <a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionTask.html" title="interface in io.atomix.copycat.server.storage.compaction"><code>CompactionTask</code></a>s to run. Compaction tasks
+ are run in parallel in the compaction thread pool. However, the compactor will not allow multiple compaction
+ executions to run in parallel. If a compaction is attempted while another compaction is already running,
+ it will be ignored.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -160,18 +173,20 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#close--">close</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#close--">close</a></span>()</code>
+<div class="block">Closes the log compactor.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#compact--">compact</a></span>()</code>
-<div class="block">Compacts the log using the minor compaction strategy.</div>
+<div class="block">Compacts the log using the default <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html#MINOR"><code>Compaction.MINOR</code></a> compaction strategy.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#compact-io.atomix.copycat.server.storage.compaction.Compaction-">compact</a></span>(<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction</a>&nbsp;compaction)</code>
-<div class="block">Compacts the log using the given compaction strategy.</div>
+<div class="block">Compacts the log using the given <a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionManager.html" title="interface in io.atomix.copycat.server.storage.compaction"><code>CompactionManager</code></a>.</div>
 </td>
 </tr>
 </table>
@@ -222,7 +237,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>compact</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;compact()</pre>
-<div class="block">Compacts the log using the minor compaction strategy.</div>
+<div class="block">Compacts the log using the default <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html#MINOR"><code>Compaction.MINOR</code></a> compaction strategy.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the log has been compacted.</dd>
@@ -236,7 +251,11 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>compact</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;compact(<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction</a>&nbsp;compaction)</pre>
-<div class="block">Compacts the log using the given compaction strategy.</div>
+<div class="block">Compacts the log using the given <a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionManager.html" title="interface in io.atomix.copycat.server.storage.compaction"><code>CompactionManager</code></a>.
+ <p>
+ The provided <a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionManager.html" title="interface in io.atomix.copycat.server.storage.compaction"><code>CompactionManager</code></a> will be queried for a list of <a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionTask.html" title="interface in io.atomix.copycat.server.storage.compaction"><code>CompactionTask</code></a>s to run.
+ Tasks will be run in parallel in a pool of background threads, and the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>
+ will be completed once those tasks have completed.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>compaction</code> - The compaction strategy.</dd>
@@ -252,6 +271,10 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>close</h4>
 <pre>public&nbsp;void&nbsp;close()</pre>
+<div class="block">Closes the log compactor.
+ <p>
+ When the compactor is closed, existing compaction tasks will be allowed to complete, future scheduled
+ compactions will be cancelled, and the underlying <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html?is-external=true" title="class or interface in java.util.concurrent"><code>ScheduledExecutorService</code></a> will be shut down.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true#close--" title="class or interface in java.lang">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></code></dd>

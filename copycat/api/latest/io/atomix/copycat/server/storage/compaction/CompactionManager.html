@@ -106,7 +106,10 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">CompactionManager</span></pre>
-<div class="block">Compaction manager.</div>
+<div class="block">Manages a single compaction process.
+ <p>
+ Compaction managers are responsible for providing a set of <a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionTask.html" title="interface in io.atomix.copycat.server.storage.compaction"><code>CompactionTask</code></a>s to be executed
+ during log compaction. Each <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html" title="enum in io.atomix.copycat.server.storage.compaction"><code>Compaction</code></a> type is associated with a compaction manager.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -130,7 +133,7 @@ var activeTableTab = "activeTableTab";
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionTask.html" title="interface in io.atomix.copycat.server.storage.compaction">CompactionTask</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionTask.html" title="interface in io.atomix.copycat.server.storage.compaction">CompactionTask</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionManager.html#buildTasks-io.atomix.copycat.server.storage.Storage-io.atomix.copycat.server.storage.SegmentManager-">buildTasks</a></span>(<a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage,
           <a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a>&nbsp;segments)</code>
 <div class="block">Builds compaction tasks for the given segments.</div>
@@ -157,9 +160,13 @@ var activeTableTab = "activeTableTab";
 <ul class="blockListLast">
 <li class="blockList">
 <h4>buildTasks</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionTask.html" title="interface in io.atomix.copycat.server.storage.compaction">CompactionTask</a>&gt;&nbsp;buildTasks(<a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage,
-                                <a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a>&nbsp;segments)</pre>
-<div class="block">Builds compaction tasks for the given segments.</div>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionTask.html" title="interface in io.atomix.copycat.server.storage.compaction">CompactionTask</a>&gt;&nbsp;buildTasks(<a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage,
+                                      <a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a>&nbsp;segments)</pre>
+<div class="block">Builds compaction tasks for the given segments.
+ <p>
+ The collection of compaction tasks will be run in parallel in a pool of
+ <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html#compactionThreads--"><code>Storage.compactionThreads()</code></a> background threads. Implementations should ensure that
+ individual tasks can be run in parallel by operating on different segments in the log.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>storage</code> - The storage configuration.</dd>

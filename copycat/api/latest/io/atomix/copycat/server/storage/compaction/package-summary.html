@@ -89,13 +89,13 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionManager.html" title="interface in io.atomix.copycat.server.storage.compaction">CompactionManager</a></td>
 <td class="colLast">
-<div class="block">Compaction manager.</div>
+<div class="block">Manages a single compaction process.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionTask.html" title="interface in io.atomix.copycat.server.storage.compaction">CompactionTask</a></td>
 <td class="colLast">
-<div class="block">Log compaction task.</div>
+<div class="block">Performs compaction on a set of log <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s.</div>
 </td>
 </tr>
 </tbody>
@@ -112,7 +112,8 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></td>
 <td class="colLast">
-<div class="block">Log compactor.</div>
+<div class="block">Manages compaction of log <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s in a pool of background
+ threads.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -124,7 +125,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/MajorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction">MajorCompactionTask</a></td>
 <td class="colLast">
-<div class="block">Major compaction task.</div>
+<div class="block">Removes tombstones from the log and combines <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s to reclaim disk space.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -136,7 +137,8 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction">MinorCompactionTask</a></td>
 <td class="colLast">
-<div class="block">Minor compaction task.</div>
+<div class="block">Removes <a href="../../../../../../io/atomix/copycat/server/storage/Log.html#clean-long-"><code>cleaned</code></a> entries from an individual
+ log <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a> to reclaim disk space.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -159,7 +161,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction</a></td>
 <td class="colLast">
-<div class="block">Log compaction.</div>
+<div class="block">Log compaction type identifier.</div>
 </td>
 </tr>
 </tbody>

@@ -118,16 +118,31 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 implements <a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionManager.html" title="interface in io.atomix.copycat.server.storage.compaction">CompactionManager</a></pre>
 <div class="block">Builds tasks for the <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html#MINOR"><code>Compaction.MINOR</code></a> compaction process.
  <p>
- Minor compaction is the more frequent and lightweight process. Periodically, according to the configured
- <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html#minorCompactionInterval--"><code>Storage.minorCompactionInterval()</code></a>, a background thread will evaluate the log for minor compaction. The
- minor compaction process iterates through segments and selects compactable segments based on the ratio of entries
- that have been <a href="../../../../../../io/atomix/copycat/server/storage/Log.html#clean-long-"><code>cleaned</code></a>. Minor compaction is generational. The
- <a href="../../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionManager</code></a> is more likely to select recently written
- segments than older segments. Once a set of segments have been compacted, for each segment a
- <a href="../../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionTask</code></a> rewrites the segment without cleaned entries.
- This rewriting results in a segment with missing entries, and Copycat's Raft implementation accounts for that.
- For instance, a segment with entries <code>{1, 2, 3}</code> can become <code>{1, 3}</code> after being cleaned, and any attempt
- to <a href="../../../../../../io/atomix/copycat/server/storage/Log.html#get-long-"><code>read</code></a> entry <code>2</code> will result in a <code>null</code> entry.</div>
+ Minor compaction works by rewriting individual segments to remove entries where <a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html#isTombstone--"><code>Entry.isTombstone()</code></a>
+ is <code>false</code>. The minor compaction manager is responsible for building a list of <a href="../../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionTask</code></a>s
+ to compact segments. In the case of minor compaction, each task is responsible for compacting a single segment.
+ However, in order to ensure segments are not compacted without cause, this compaction manager attempts to
+ prioritize segments for which compaction will result in greater disk space savings.
+ <p>
+ Segments are selected for minor compaction based on several factors:
+ <ul>
+   <li>The number of <a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>entries</code></a> in the segment that have been <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html#clean-long-"><code>cleaned</code></a></li>
+   <li>The number of times the segment has been compacted already</li>
+ </ul>
+ <p>
+ Given the number of entries that have been cleaned from the segment, a percentage of entries reclaimed by
+ compacting the segment is calculated. Then, the percentage of entries that have been cleaned is multiplied
+ by the number of times the segment has been compacted. If the result of this calculation is greater than
+ the configured <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html#compactionThreshold--"><code>Storage.compactionThreshold()</code></a> then the segment is selected for compaction.
+ <p>
+ The final formula is as follows:
+ <pre>
+   <code>
+   if ((segment.cleanCount() / (double) segment.count()) * segment.descriptor().version() &gt; storage.compactionThreshold()) {
+     // Compact the segment
+   }
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -222,7 +237,11 @@ implements <a href="../../../../../../io/atomix/copycat/server/storage/compactio
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionTask.html" title="interface in io.atomix.copycat.server.storage.compaction">CompactionTask</a>&gt;&nbsp;buildTasks(<a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage,
                                        <a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a>&nbsp;segments)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionManager.html#buildTasks-io.atomix.copycat.server.storage.Storage-io.atomix.copycat.server.storage.SegmentManager-">CompactionManager</a></code></span></div>
-<div class="block">Builds compaction tasks for the given segments.</div>
+<div class="block">Builds compaction tasks for the given segments.
+ <p>
+ The collection of compaction tasks will be run in parallel in a pool of
+ <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html#compactionThreads--"><code>Storage.compactionThreads()</code></a> background threads. Implementations should ensure that
+ individual tasks can be run in parallel by operating on different segments in the log.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionManager.html#buildTasks-io.atomix.copycat.server.storage.Storage-io.atomix.copycat.server.storage.SegmentManager-">buildTasks</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionManager.html" title="interface in io.atomix.copycat.server.storage.compaction">CompactionManager</a></code></dd>

@@ -105,7 +105,11 @@
 <br>
 <pre>public interface <span class="typeNameLabel">CompactionTask</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a></pre>
-<div class="block">Log compaction task.</div>
+<div class="block">Performs compaction on a set of log <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s.
+ <p>
+ Compaction tasks are responsible for compacting one or more segments in a
+ <a href="../../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>. Tasks are provided by a related <a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionManager.html" title="interface in io.atomix.copycat.server.storage.compaction"><code>CompactionManager</code></a>
+ and are run in parallel in a pool of <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html#compactionThreads--"><code>Storage.compactionThreads()</code></a> background threads.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>

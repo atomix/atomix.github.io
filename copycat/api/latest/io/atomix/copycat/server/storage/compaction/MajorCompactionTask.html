@@ -116,7 +116,64 @@ var activeTableTab = "activeTableTab";
 <pre>public final class <span class="typeNameLabel">MajorCompactionTask</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionTask.html" title="interface in io.atomix.copycat.server.storage.compaction">CompactionTask</a></pre>
-<div class="block">Major compaction task.</div>
+<div class="block">Removes tombstones from the log and combines <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s to reclaim disk space.
+ <p>
+ Major compaction is a more heavyweight compaction task which is responsible both for removing <em>tombstone</em>
+ <a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>entries</code></a> from the log and combining groups of neighboring log <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s together.
+ <p>
+ <b>Combining segments</b>
+ <p>
+ As entries are written to the log and the log rolls over to new segments, entries are compacted out of individual
+ segments by <a href="../../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionTask</code></a>s. However, the minor compaction process only rewrites individual segments
+ and doesn't combine them. This will result in an ever growing number of open file pointers. During major compaction,
+ the major compaction task rewrites groups of segments provided by the <a href="../../../../../../io/atomix/copycat/server/storage/compaction/MajorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MajorCompactionManager</code></a>. For each group
+ of segments, a single compact segment will be created with the same <code>version</code> and starting <code>index</code> as
+ the first segment in the group. All entries from all segments in the group that haven't been
+ <a href="../../../../../../io/atomix/copycat/server/storage/Log.html#clean-long-"><code>cleaned</code></a> will then be written to the new compact segment.
+ Once the rewrite is complete, the compact segment will be locked and the set of old segments deleted.
+ <p>
+ <b>Removing tombstones</b>
+ <p>
+ Tombstones are <a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>entries</code></a> in the log which amount to state changes that <em>remove</em> state. That is,
+ tombstones are an indicator that some set of prior entries no longer contribute to the state of the system. Thus,
+ it is critical that tombstones remain in the log as long as any prior related entries do. If a tombstone is removed
+ from the log before its prior related entries, rebuilding state from the log will result in inconsistencies.
+ <p>
+ A significant objective of the major compaction task is to remove tombstones from the log in a manor that ensures
+ failures before, during, or after the compaction task will not result in inconsistencies when state is rebuilt from
+ the log. In order to ensure tombstones are removed only <em>after</em> any prior related entries, the major compaction
+ task simply compacts segments in sequential order from the <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html#firstIndex--"><code>Segment.firstIndex()</code></a> of the first segment to the
+ <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html#lastIndex--"><code>Segment.lastIndex()</code></a> of the last segment. This ensures that if a failure occurs during the compaction process,
+ only entries earlier in the log will have been removed, and potential tombstones which erase the state of those entries
+ will remain.
+ <p>
+ Nevertheless, there are some significant potential race conditions that must be considered in the implementation of
+ major compaction. The major compaction task assumes that state machines will always clean <em>related</em> entries
+ in monotonically increasing order. That is, if a state machines receives a <a href="../../../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a>
+ <code>remove 1</code> that deletes the state of a prior <code>Commit</code> <code>set 1</code>, the state machine will call
+ <a href="../../../../../../io/atomix/copycat/server/Commit.html#clean--"><code>Commit.clean()</code></a> on the <code>set 1</code> commit before cleaning the <code>remove 1</code> commit. But even if applications
+ clean entries from the log in monotonic order, and the major compaction task compacts segments in sequential order,
+ inconsistencies can still arise. Consider the following history:
+ <ul>
+   <li><code>set 1</code> is at index <code>1</code> in segment <code>1</code></li>
+   <li><code>remove 1</code> is at index <code>12345</code> in segment <code>8</code></li>
+   <li>The major compaction task rewrites segment <code>1</code></li>
+   <li>The application cleans <code>set 1</code> at index <code>1</code> in the <em>rewritten</em> version of segment <code>1</code></li>
+   <li>The application cleans <code>remove 1</code> at index <code>12345</code> in segment <code>8</code>, which the compaction task
+   has yet to compact</li>
+   <li>The compaction task compacts segments <code>2</code> through <code>8</code>, removing tombstone entry <code>12345</code> during
+   the process</li>
+ </ul>
+ <p>
+ In the scenario above, the resulting log contains <code>set 1</code> but not <code>remove 1</code>. If we replayed those entries
+ as <a href="../../../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a>s to the log, it would result in an inconsistent state. Worse yet, not only is this server's state
+ incorrect, but it will be inconsistent with other servers which are likely to have correctly removed both entry
+ <code>1</code> and entry <code>12345</code> during major compaction.
+ <p>
+ In order to prevent such a scenario from occurring, the major compaction task takes an immutable snapshot of the
+ <a href="../../../../../../io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction"><code>OffsetCleaner</code></a> (which maintains the offsets of cleaned entries for each segment) underlying all the segments
+ to be compacted prior to rewriting any entries. This ensures that any entries cleaned after the start of rewriting
+ segments will not be considered for compaction during the execution of this task.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>

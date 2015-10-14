@@ -120,7 +120,16 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public enum <span class="typeNameLabel">Compaction</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction</a>&gt;</pre>
-<div class="block">Log compaction.</div>
+<div class="block">Log compaction type identifier.
+ <p>
+ Log compaction comes in two forms: <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html#MINOR"><code>MINOR</code></a> and <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html#MAJOR"><code>MAJOR</code></a>. This enum provides identifiers
+ to indicate the log compaction type when <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#compact-io.atomix.copycat.server.storage.compaction.Compaction-"><code>compacting</code></a> the log.
+ Passing an explicit <code>Compaction</code> type will run the appropriate compaction process asynchronously.
+ <pre>
+   <code>
+   log.compactor().compact(Compaction.MAJOR);
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -216,7 +225,11 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>MINOR</h4>
 <pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction</a> MINOR</pre>
-<div class="block">Represents a minor compaction.</div>
+<div class="block">Represents a minor compaction.
+ <p>
+ Minor compaction is the more efficient of the compaction processes which removes
+ <a href="../../../../../../io/atomix/copycat/server/storage/Log.html#clean-long-"><code>cleaned</code></a> non-tombstone entries from individual
+ <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s. See the <a href="../../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionTask</code></a> for more information.</div>
 </li>
 </ul>
 <a name="MAJOR">
@@ -226,7 +239,12 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>MAJOR</h4>
 <pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction</a> MAJOR</pre>
-<div class="block">Represents a major compaction.</div>
+<div class="block">Represents a major compaction.
+ <p>
+ Major compaction is the more heavyweight process of removing all
+ <a href="../../../../../../io/atomix/copycat/server/storage/Log.html#clean-long-"><code>cleaned</code></a> entries that have been
+ <a href="../../../../../../io/atomix/copycat/server/storage/Log.html#commit-long-"><code>committed</code></a> to the log and combining segment
+ files wherever possible. See the <a href="../../../../../../io/atomix/copycat/server/storage/compaction/MajorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MajorCompactionTask</code></a> for more information.</div>
 </li>
 </ul>
 </li>
