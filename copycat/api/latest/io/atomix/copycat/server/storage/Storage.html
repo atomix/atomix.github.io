@@ -111,7 +111,7 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">Storage</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
-<div class="block">Immutable log configuration/factory.
+<div class="block">Immutable log configuration and <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> factory.
  <p>
  This class provides a factory for <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> objects. <code>Storage</code> objects are immutable and
  can be created only via the <a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage"><code>Storage.Builder</code></a>. To create a new
@@ -155,7 +155,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></span></code>
-<div class="block">Storage builder.</div>
+<div class="block">Builds a <a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> configuration.</div>
 </td>
 </tr>
 </table>
@@ -277,7 +277,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#maxSegmentSize--">maxSegmentSize</a></span>()</code>
-<div class="block">Returns the maximum storage segment size.</div>
+<div class="block">Returns the maximum log segment size.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
@@ -289,7 +289,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#open-java.lang.String-">open</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
-<div class="block">Opens the underlying log.</div>
+<div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
@@ -510,7 +510,12 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>serializer</h4>
 <pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer()</pre>
-<div class="block">Returns the storage serializer.</div>
+<div class="block">Returns the storage serializer.
+ <p>
+ The serializer is be used to serialize and deserialize entries written to the log. Entries written
+ to the log must be recognized by the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> either by implementing <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io"><code>Serializable</code></a>
+ or <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a> or by registering a custom
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/TypeSerializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>TypeSerializer</code></a> with the serializer.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The storage serializer.</dd>
@@ -524,7 +529,11 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>directory</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a>&nbsp;directory()</pre>
-<div class="block">Returns the storage directory.</div>
+<div class="block">Returns the storage directory.
+ <p>
+ The storage directory is the directory to which all <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>s write <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a> files. Segment files
+ for multiple logs may be stored in the storage directory, and files for each log instance will be identified
+ by the <code>name</code> provided when the log is <a href="../../../../../io/atomix/copycat/server/storage/Storage.html#open-java.lang.String-"><code>opened</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The storage directory.</dd>
@@ -538,7 +547,9 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>level</h4>
 <pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a>&nbsp;level()</pre>
-<div class="block">Returns the storage level.</div>
+<div class="block">Returns the storage level.
+ <p>
+ The storage level dictates how entries within individual log <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s should be stored.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The storage level.</dd>
@@ -552,7 +563,10 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>maxSegmentSize</h4>
 <pre>public&nbsp;int&nbsp;maxSegmentSize()</pre>
-<div class="block">Returns the maximum storage segment size.</div>
+<div class="block">Returns the maximum log segment size.
+ <p>
+ The maximum segment size dictates the maximum size any <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a> in a <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> may consume
+ in bytes.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The maximum segment size in bytes.</dd>
@@ -566,7 +580,10 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>maxEntriesPerSegment</h4>
 <pre>public&nbsp;int&nbsp;maxEntriesPerSegment()</pre>
-<div class="block">Returns the maximum number of entries per segment.</div>
+<div class="block">Returns the maximum number of entries per segment.
+ <p>
+ The maximum entries per segment dictates the maximum number of <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>entries</code></a>
+ that are allowed to be stored in any <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a> in a <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The maximum number of entries per segment.</dd>
@@ -580,7 +597,10 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>compactionThreads</h4>
 <pre>public&nbsp;int&nbsp;compactionThreads()</pre>
-<div class="block">Returns the number of log compaction threads.</div>
+<div class="block">Returns the number of log compaction threads.
+ <p>
+ The compaction thread count dictates the parallelism with which the log
+ <a href="../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction"><code>Compactor</code></a> can rewrite segments in the log.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The number of log compaction threads.</dd>
@@ -594,7 +614,11 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>minorCompactionInterval</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;minorCompactionInterval()</pre>
-<div class="block">Returns the minor compaction interval.</div>
+<div class="block">Returns the minor compaction interval.
+ <p>
+ The minor compaction interval dictates the interval at which the
+ <a href="../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionManager</code></a> should evaluate <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s
+ in the log for minor compaction.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The minor compaction interval.</dd>
@@ -608,7 +632,11 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>majorCompactionInterval</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;majorCompactionInterval()</pre>
-<div class="block">Returns the major compaction interval.</div>
+<div class="block">Returns the major compaction interval.
+ <p>
+ The major compaction interval dictates the interval at which the
+ <a href="../../../../../io/atomix/copycat/server/storage/compaction/MajorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MajorCompactionManager</code></a> should evaluate <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s
+ in the log for major compaction.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The major compaction interval.</dd>
@@ -622,7 +650,10 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>compactionThreshold</h4>
 <pre>public&nbsp;double&nbsp;compactionThreshold()</pre>
-<div class="block">Returns the compaction threshold.</div>
+<div class="block">Returns the compaction threshold.
+ <p>
+ The compaction threshold is used during <a href="../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html#MINOR"><code>minor compaction</code></a>
+ to determine the set of segments to compact.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The compaction threshold.</dd>
@@ -636,7 +667,11 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>open</h4>
 <pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a>&nbsp;open(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
-<div class="block">Opens the underlying log.</div>
+<div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.
+ <p>
+ When a log is opened, the log will attempt to load <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s from the storage <a href="../../../../../io/atomix/copycat/server/storage/Storage.html#directory--"><code>directory()</code></a>
+ according to the provided log <code>name</code>. If segments for the given log name are present on disk, segments
+ will be loaded and indexes will be rebuilt from disk. If no segments are found, an empty log will be created.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The opened log.</dd>

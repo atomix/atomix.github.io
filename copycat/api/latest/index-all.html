@@ -223,7 +223,9 @@
 <div class="block">Builds the segment descriptor.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#build--">build()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Builds the <a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> object.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#builder-io.atomix.catalyst.transport.Address...-">builder(Address...)</a></span> - Static method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
 <dd>
 <div class="block">Returns a new Raft client builder.</div>
@@ -1605,7 +1607,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.html#maxSegmentSize--">maxSegmentSize()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></dt>
 <dd>
-<div class="block">Returns the maximum storage segment size.</div>
+<div class="block">Returns the maximum log segment size.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/request/JoinRequest.html#member--">member()</a></span> - Method in class io.atomix.copycat.server.request.<a href="io/atomix/copycat/server/request/JoinRequest.html" title="class in io.atomix.copycat.server.request">JoinRequest</a></dt>
 <dd>
@@ -1748,7 +1750,7 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.html#open-java.lang.String-">open(String)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></dt>
 <dd>
-<div class="block">Opens the underlying log.</div>
+<div class="block">Opens a new <a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.</div>
 </dd>
 <dt><a href="io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client"><span class="typeNameLink">Operation</span></a>&lt;<a href="io/atomix/copycat/client/Operation.html" title="type parameter in Operation">T</a>&gt; - Interface in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
 <dd>
@@ -2356,7 +2358,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Storage</span></a> - Class in <a href="io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a></dt>
 <dd>
-<div class="block">Immutable log configuration/factory.</div>
+<div class="block">Immutable log configuration and <a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> factory.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.html#Storage--">Storage()</a></span> - Constructor for class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></dt>
 <dd>&nbsp;</dd>
@@ -2384,7 +2386,7 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Storage.Builder</span></a> - Class in <a href="io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a></dt>
 <dd>
-<div class="block">Storage builder.</div>
+<div class="block">Builds a <a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> configuration.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/StorageException.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">StorageException</span></a> - Exception in <a href="io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a></dt>
 <dd>
@@ -2836,11 +2838,12 @@ the order they are declared.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withCompactionThreads-int-">withCompactionThreads(int)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
 <dd>
-<div class="block">Sets the number of log compaction threads.</div>
+<div class="block">Sets the number of log compaction threads, returning the builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withCompactionThreshold-double-">withCompactionThreshold(double)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
 <dd>
-<div class="block">Sets the percentage of entries in the segment that must be cleaned before a segment can be compacted.</div>
+<div class="block">Sets the percentage of entries in the segment that must be cleaned before a segment can be compacted,
+ returning the builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withDirectory-java.lang.String-">withDirectory(String)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
 <dd>
@@ -2932,7 +2935,7 @@ the order they are declared.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withMajorCompactionInterval-java.time.Duration-">withMajorCompactionInterval(Duration)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
 <dd>
-<div class="block">Sets the major compaction interval.</div>
+<div class="block">Sets the major compaction interval, returning the builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.Builder.html#withMaxEntries-int-">withMaxEntries(int)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.Builder.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor.Builder</a></dt>
 <dd>
@@ -2940,7 +2943,7 @@ the order they are declared.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withMaxEntriesPerSegment-int-">withMaxEntriesPerSegment(int)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
 <dd>
-<div class="block">Sets the maximum number of allows entries per segment.</div>
+<div class="block">Sets the maximum number of allows entries per segment, returning the builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.Builder.html#withMaxSegmentSize-long-">withMaxSegmentSize(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.Builder.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor.Builder</a></dt>
 <dd>
@@ -2948,7 +2951,7 @@ the order they are declared.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withMaxSegmentSize-int-">withMaxSegmentSize(int)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
 <dd>
-<div class="block">Sets the maximum segment count, returning the builder for method chaining.</div>
+<div class="block">Sets the maximum segment size in bytes, returning the builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/request/JoinRequest.Builder.html#withMember-io.atomix.catalyst.transport.Address-">withMember(Address)</a></span> - Method in class io.atomix.copycat.server.request.<a href="io/atomix/copycat/server/request/JoinRequest.Builder.html" title="class in io.atomix.copycat.server.request">JoinRequest.Builder</a></dt>
 <dd>
@@ -2968,7 +2971,7 @@ the order they are declared.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withMinorCompactionInterval-java.time.Duration-">withMinorCompactionInterval(Duration)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
 <dd>
-<div class="block">Sets the minor compaction interval.</div>
+<div class="block">Sets the minor compaction interval, returning the builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/response/JoinResponse.Builder.html#withPassiveMembers-java.util.Collection-">withPassiveMembers(Collection&lt;Address&gt;)</a></span> - Method in class io.atomix.copycat.server.response.<a href="io/atomix/copycat/server/response/JoinResponse.Builder.html" title="class in io.atomix.copycat.server.response">JoinResponse.Builder</a></dt>
 <dd>
@@ -3000,7 +3003,7 @@ the order they are declared.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-">withSerializer(Serializer)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
 <dd>
-<div class="block">Sets the log entry serializer.</div>
+<div class="block">Sets the log entry <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a>, returning the builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/request/SessionRequest.Builder.html#withSession-long-">withSession(long)</a></span> - Method in class io.atomix.copycat.client.request.<a href="io/atomix/copycat/client/request/SessionRequest.Builder.html" title="class in io.atomix.copycat.client.request">SessionRequest.Builder</a></dt>
 <dd>
@@ -3028,7 +3031,7 @@ the order they are declared.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withStorageLevel-io.atomix.copycat.server.storage.StorageLevel-">withStorageLevel(StorageLevel)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
 <dd>
-<div class="block">Sets the log storage level.</div>
+<div class="block">Sets the log storage level, returning the builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/response/AppendResponse.Builder.html#withSucceeded-boolean-">withSucceeded(boolean)</a></span> - Method in class io.atomix.copycat.server.response.<a href="io/atomix/copycat/server/response/AppendResponse.Builder.html" title="class in io.atomix.copycat.server.response">AppendResponse.Builder</a></dt>
 <dd>
