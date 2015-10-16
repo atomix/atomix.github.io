@@ -88,6 +88,12 @@
 <div class="block">Provides a standalone segmented log for Copycat's <a href="https://raftconsensus.github.io/">Raft</a> implementation.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.copycat.server.storage.compaction">io.atomix.copycat.server.storage.compaction</a></td>
+<td class="colLast">
+<div class="block">Classes that support efficient Raft log compaction.</div>
+</td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -216,6 +222,28 @@
 <td class="colLast"><span class="typeNameLabel">SegmentManager.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html#replaceSegments-java.util.Collection-io.atomix.copycat.server.storage.Segment-">replaceSegments</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a>&gt;&nbsp;segments,
                <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a>&nbsp;segment)</code>
 <div class="block">Inserts a segment.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.copycat.server.storage.compaction">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a> in <a href="../../../../../../io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../../io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a> that return types with arguments of type <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">MajorCompactionManager.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/MajorCompactionManager.html#getCleanableGroups-io.atomix.copycat.server.storage.Storage-io.atomix.copycat.server.storage.SegmentManager-">getCleanableGroups</a></span>(<a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage,
+                  <a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a>&nbsp;manager)</code>
+<div class="block">Returns a list of segments lists to clean, where segments are grouped according to how they will be merged during 
+ cleaning.</div>
 </td>
 </tr>
 </tbody>
