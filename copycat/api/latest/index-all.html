@@ -498,10 +498,6 @@
 <dd>
 <div class="block">Cleans the commit from the underlying log.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html#clean-long-">clean(long)</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction">OffsetCleaner</a></dt>
-<dd>
-<div class="block">Cleans an offset from the segment.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Log.html#clean-long-">clean(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></dt>
 <dd>
 <div class="block">Cleans the entry at the given index.</div>
@@ -514,9 +510,9 @@
 <dd>
 <div class="block">Returns the number of entries in the segment that have been cleaned.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#cleaner--">cleaner()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#cleanPredicate--">cleanPredicate()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>
-<div class="block">Returns the segment offset cleaner.</div>
+<div class="block">Returns a predicate for cleaned offsets in the segment.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/request/RegisterRequest.html#client--">client()</a></span> - Method in class io.atomix.copycat.client.request.<a href="io/atomix/copycat/client/request/RegisterRequest.html" title="class in io.atomix.copycat.client.request">RegisterRequest</a></dt>
 <dd>
@@ -533,6 +529,8 @@
 <div class="block">Returns the state machine clock.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#close--">close()</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RaftClient.html#close--">close()</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client">RaftClient</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSession.html#close--">close()</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></dt>
 <dd>&nbsp;</dd>
@@ -558,8 +556,6 @@
 <dd>
 <div class="block">Closes the log compactor.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html#close--">close()</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction">OffsetCleaner</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/Entry.html#close--">close()</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Log.html#close--">close()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></dt>
@@ -728,12 +724,20 @@
 <div class="block">Returns a boolean value indicating whether the entry at the given index is active.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#context--">context()</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RaftClient.html#context--">context()</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client">RaftClient</a></dt>
 <dd>
 <div class="block">Returns the client execution context.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSession.html#context--">context()</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></dt>
 <dd>
 <div class="block">Returns the session context.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.html#context--">context()</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/RaftServer.html#context--">context()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></dt>
+<dd>
+<div class="block">Returns the server execution context.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/StateMachineExecutor.html#context--">context()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a></dt>
 <dd>
@@ -745,7 +749,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client"><span class="typeNameLink">CopycatClient.Builder</span></a> - Class in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
 <dd>
-<div class="block">Builds a new Raft client.</div>
+<div class="block">Builds a new Copycat client.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><span class="typeNameLink">CopycatServer</span></a> - Class in <a href="io/atomix/copycat/server/package-summary.html">io.atomix.copycat.server</a></dt>
 <dd>
@@ -754,14 +758,6 @@
 <dt><a href="io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server"><span class="typeNameLink">CopycatServer.Builder</span></a> - Class in <a href="io/atomix/copycat/server/package-summary.html">io.atomix.copycat.server</a></dt>
 <dd>
 <div class="block">Raft server builder.</div>
-</dd>
-<dt><a href="io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server"><span class="typeNameLink">CopycatServer.State</span></a> - Enum in <a href="io/atomix/copycat/server/package-summary.html">io.atomix.copycat.server</a></dt>
-<dd>
-<div class="block">Raft server state types.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html#count--">count()</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction">OffsetCleaner</a></dt>
-<dd>
-<div class="block">Returns the number of offsets cleaned from the segment.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#count--">count()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>
@@ -1072,6 +1068,10 @@
 <dd>
 <div class="block">Returns the state log.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/state/ServerState.html#getMembers--">getMembers()</a></span> - Method in class io.atomix.copycat.server.state.<a href="io/atomix/copycat/server/state/ServerState.html" title="class in io.atomix.copycat.server.state">ServerState</a></dt>
+<dd>
+<div class="block">Returns a collection of current members.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/CommandEntry.html#getOperation--">getOperation()</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/CommandEntry.html" title="class in io.atomix.copycat.server.storage.entry">CommandEntry</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/OperationEntry.html#getOperation--">getOperation()</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/OperationEntry.html" title="class in io.atomix.copycat.server.storage.entry">OperationEntry</a></dt>
@@ -1338,15 +1338,13 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/util/package-summary.html">io.atomix.copycat.server.util</a> - package io.atomix.copycat.server.util</dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html#isClean-long-">isClean(long)</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction">OffsetCleaner</a></dt>
-<dd>
-<div class="block">Returns a boolean value indicating whether an offset has been cleaned from the segment.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#isClean-long-">isClean(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>
 <div class="block">Returns a boolean value indicating whether the given index was cleaned from the segment.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#isClosed--">isClosed()</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RaftClient.html#isClosed--">isClosed()</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client">RaftClient</a></dt>
 <dd>
 <div class="block">Returns a boolean value indicating whether the client is closed.</div>
 </dd>
@@ -1387,6 +1385,8 @@
 <div class="block">Returns a boolean value indicating whether the segment is full.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#isOpen--">isOpen()</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RaftClient.html#isOpen--">isOpen()</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client">RaftClient</a></dt>
 <dd>
 <div class="block">Returns a boolean value indicating whether the client is open.</div>
 </dd>
@@ -1398,6 +1398,10 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.html#isOpen--">isOpen()</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/RaftServer.html#isOpen--">isOpen()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></dt>
+<dd>
+<div class="block">Returns a boolean value indicating whether the server is running.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/state/ServerContext.html#isOpen--">isOpen()</a></span> - Method in class io.atomix.copycat.server.state.<a href="io/atomix/copycat/server/state/ServerContext.html" title="class in io.atomix.copycat.server.state">ServerContext</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Log.html#isOpen--">isOpen()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></dt>
@@ -1495,6 +1499,8 @@
 <div class="block">Returns the last segment in the log.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.html#leader--">leader()</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/RaftServer.html#leader--">leader()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></dt>
 <dd>
 <div class="block">Returns the current Raft leader.</div>
 </dd>
@@ -1630,6 +1636,12 @@
 <dd>
 <div class="block">Returns the cluster members.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.html#members--">members()</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/RaftServer.html#members--">members()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></dt>
+<dd>
+<div class="block">Returns a collection of current cluster members.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/Event.html#message--">message()</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/Event.html" title="class in io.atomix.copycat.client">Event</a></dt>
 <dd>
 <div class="block">Returns the event message.</div>
@@ -1695,12 +1707,6 @@
 <dd>
 <div class="block">Returns the offset of the given index within the segment.</div>
 </dd>
-<dt><a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction"><span class="typeNameLink">OffsetCleaner</span></a> - Class in <a href="io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a></dt>
-<dd>
-<div class="block">Segment offset cleaner.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html#OffsetCleaner--">OffsetCleaner()</a></span> - Constructor for class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction">OffsetCleaner</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSession.html#onClose-java.util.function.Consumer-">onClose(Consumer&lt;Session&gt;)</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/Session.html#onClose-java.util.function.Consumer-">onClose(Consumer&lt;Session&gt;)</a></span> - Method in interface io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a></dt>
@@ -1733,21 +1739,25 @@
 <dd>
 <div class="block">Sets an open listener on the session.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.html#onStateChange-java.util.function.Consumer-">onStateChange(Consumer&lt;CopycatServer.State&gt;)</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.html#onStateChange-java.util.function.Consumer-">onStateChange(Consumer&lt;RaftServer.State&gt;)</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a></dt>
 <dd>
 <div class="block">Registers a state change listener.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/state/ServerState.html#onStateChange-java.util.function.Consumer-">onStateChange(Consumer&lt;CopycatServer.State&gt;)</a></span> - Method in class io.atomix.copycat.server.state.<a href="io/atomix/copycat/server/state/ServerState.html" title="class in io.atomix.copycat.server.state">ServerState</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/state/ServerState.html#onStateChange-java.util.function.Consumer-">onStateChange(Consumer&lt;RaftServer.State&gt;)</a></span> - Method in class io.atomix.copycat.server.state.<a href="io/atomix/copycat/server/state/ServerState.html" title="class in io.atomix.copycat.server.state">ServerState</a></dt>
 <dd>
 <div class="block">Registers a state change listener.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#open--">open()</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RaftClient.html#open--">open()</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client">RaftClient</a></dt>
 <dd>
 <div class="block">Connects the client to the Raft cluster.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSession.html#open--">open()</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.html#open--">open()</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/RaftServer.html#open--">open()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></dt>
 <dd>
 <div class="block">Starts the Raft server asynchronously.</div>
 </dd>
@@ -1925,6 +1935,10 @@
 </a>
 <h2 class="title">R</h2>
 <dl>
+<dt><a href="io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client"><span class="typeNameLink">RaftClient</span></a> - Interface in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
+<dd>
+<div class="block">Raft client.</div>
+</dd>
 <dt><a href="io/atomix/copycat/client/error/RaftError.html" title="interface in io.atomix.copycat.client.error"><span class="typeNameLink">RaftError</span></a> - Interface in <a href="io/atomix/copycat/client/error/package-summary.html">io.atomix.copycat.client.error</a></dt>
 <dd>
 <div class="block">Base type for Raft server errors.</div>
@@ -1943,6 +1957,14 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/error/RaftException.html#RaftException-io.atomix.copycat.client.error.RaftError.Type-java.lang.Throwable-">RaftException(RaftError.Type, Throwable)</a></span> - Constructor for exception io.atomix.copycat.client.error.<a href="io/atomix/copycat/client/error/RaftException.html" title="class in io.atomix.copycat.client.error">RaftException</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server"><span class="typeNameLink">RaftServer</span></a> - Interface in <a href="io/atomix/copycat/server/package-summary.html">io.atomix.copycat.server</a></dt>
+<dd>
+<div class="block">Provides an interface for managing the lifecycle and state of a Raft server.</div>
+</dd>
+<dt><a href="io/atomix/copycat/server/RaftServer.State.html" title="enum in io.atomix.copycat.server"><span class="typeNameLink">RaftServer.State</span></a> - Enum in <a href="io/atomix/copycat/server/package-summary.html">io.atomix.copycat.server</a></dt>
+<dd>
+<div class="block">Raft server state types.</div>
+</dd>
 <dt><a href="io/atomix/copycat/client/error/ReadException.html" title="class in io.atomix.copycat.client.error"><span class="typeNameLink">ReadException</span></a> - Exception in <a href="io/atomix/copycat/client/error/package-summary.html">io.atomix.copycat.client.error</a></dt>
 <dd>
 <div class="block">Read exception.</div>
@@ -2034,10 +2056,6 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/StateMachine.html#register-io.atomix.copycat.client.session.Session-">register(Session)</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server">StateMachine</a></dt>
 <dd>
 <div class="block">Called when a new session is registered.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/StateMachineExecutor.html#register-java.util.function.Function-">register(Function&lt;Commit&lt;? extends Operation&lt;?&gt;&gt;, ?&gt;)</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a></dt>
-<dd>
-<div class="block">Registers a global operation callback.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/StateMachineExecutor.html#register-java.lang.Class-java.util.function.Consumer-">register(Class&lt;T&gt;, Consumer&lt;Commit&lt;T&gt;&gt;)</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a></dt>
 <dd>
@@ -2156,6 +2174,8 @@
 <div class="block">Returns the request sequence number.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#serializer--">serializer()</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RaftClient.html#serializer--">serializer()</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client">RaftClient</a></dt>
 <dd>
 <div class="block">Returns the client serializer.</div>
 </dd>
@@ -2188,6 +2208,8 @@
 <div class="block">Raft server state.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#session--">session()</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RaftClient.html#session--">session()</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client">RaftClient</a></dt>
 <dd>
 <div class="block">Returns the client session.</div>
 </dd>
@@ -2340,6 +2362,8 @@
 <div class="block">Skips a number of entries in the segment.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.html#state--">state()</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/RaftServer.html#state--">state()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></dt>
 <dd>
 <div class="block">Returns the Raft server state.</div>
 </dd>
@@ -2409,15 +2433,19 @@
 <dd>
 <div class="block">Log storage level.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.client.Operation-">submit(Operation&lt;T&gt;)</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.client.Command-">submit(Command&lt;T&gt;)</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.client.Query-">submit(Query&lt;T&gt;)</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RaftClient.html#submit-io.atomix.copycat.client.Operation-">submit(Operation&lt;T&gt;)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client">RaftClient</a></dt>
 <dd>
 <div class="block">Submits an operation to the Raft cluster.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.client.Command-">submit(Command&lt;T&gt;)</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RaftClient.html#submit-io.atomix.copycat.client.Command-">submit(Command&lt;T&gt;)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client">RaftClient</a></dt>
 <dd>
 <div class="block">Submits a command to the Raft cluster.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.client.Query-">submit(Query&lt;T&gt;)</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RaftClient.html#submit-io.atomix.copycat.client.Query-">submit(Query&lt;T&gt;)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client">RaftClient</a></dt>
 <dd>
 <div class="block">Submits a query to the Raft cluster.</div>
 </dd>
@@ -2444,6 +2472,8 @@
 <h2 class="title">T</h2>
 <dl>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.html#term--">term()</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/RaftServer.html#term--">term()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></dt>
 <dd>
 <div class="block">Returns the current Raft term.</div>
 </dd>
@@ -2470,10 +2500,6 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/response/VoteResponse.html#term--">term()</a></span> - Method in class io.atomix.copycat.server.response.<a href="io/atomix/copycat/server/response/VoteResponse.html" title="class in io.atomix.copycat.server.response">VoteResponse</a></dt>
 <dd>
 <div class="block">Returns the responding node's current term.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.html#threadContext--">threadContext()</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a></dt>
-<dd>
-<div class="block">Returns the server execution context.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/Commit.html#time--">time()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a></dt>
 <dd>
@@ -2595,9 +2621,15 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.html#toString--">toString()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/state/ServerState.html#transition-io.atomix.copycat.server.CopycatServer.State-">transition(CopycatServer.State)</a></span> - Method in class io.atomix.copycat.server.state.<a href="io/atomix/copycat/server/state/ServerState.html" title="class in io.atomix.copycat.server.state">ServerState</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/state/ServerState.html#transition-io.atomix.copycat.server.RaftServer.State-">transition(RaftServer.State)</a></span> - Method in class io.atomix.copycat.server.state.<a href="io/atomix/copycat/server/state/ServerState.html" title="class in io.atomix.copycat.server.state">ServerState</a></dt>
 <dd>
 <div class="block">Transition handler.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#transport--">transport()</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RaftClient.html#transport--">transport()</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client">RaftClient</a></dt>
+<dd>
+<div class="block">Returns the client transport.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Log.html#truncate-long-">truncate(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></dt>
 <dd>
@@ -2695,7 +2727,7 @@
 <dd>
 <div class="block">Returns the enum constant of this type with the specified name.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.State.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/RaftServer.State.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum io.atomix.copycat.server.<a href="io/atomix/copycat/server/RaftServer.State.html" title="enum in io.atomix.copycat.server">RaftServer.State</a></dt>
 <dd>
 <div class="block">Returns the enum constant of this type with the specified name.</div>
 </dd>
@@ -2732,7 +2764,7 @@ the order they are declared.</div>
 <div class="block">Returns an array containing the constants of this enum type, in
 the order they are declared.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.State.html#values--">values()</a></span> - Static method in enum io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/RaftServer.State.html#values--">values()</a></span> - Static method in enum io.atomix.copycat.server.<a href="io/atomix/copycat/server/RaftServer.State.html" title="enum in io.atomix.copycat.server">RaftServer.State</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum type, in
 the order they are declared.</div>

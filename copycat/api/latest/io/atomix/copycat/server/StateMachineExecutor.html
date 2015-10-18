@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":18,"i1":6,"i2":6,"i3":6,"i4":6};
+var methods = {"i0":18,"i1":6,"i2":6,"i3":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -208,12 +208,6 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/co
 <div class="block">Registers an operation callback.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html#register-java.util.function.Function-">register</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;? extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client">Operation</a>&lt;?&gt;&gt;,?&gt;&nbsp;callback)</code>
-<div class="block">Registers a global operation callback.</div>
-</td>
-</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.catalyst.util.concurrent.ThreadContext">
@@ -246,29 +240,11 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/co
 <div class="block">Returns the state machine context.
  <p>
  The context is reflective of the current position and state of the Raft state machine. In particular,
- it exposes the current approximate <code>time</code> and all open
+ it exposes the current approximate <a href="../../../../io/atomix/copycat/server/StateMachineContext.html#clock--"><code>time</code></a> and all open
  <a href="../../../../io/atomix/copycat/server/session/Sessions.html" title="interface in io.atomix.copycat.server.session"><code>Sessions</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The state machine context.</dd>
-</dl>
-</li>
-</ul>
-<a name="register-java.util.function.Function-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>register</h4>
-<pre><a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a>&nbsp;register(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;? extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client">Operation</a>&lt;?&gt;&gt;,?&gt;&nbsp;callback)</pre>
-<div class="block">Registers a global operation callback.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>callback</code> - The operation callback.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The state machine executor.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>callback</code> is null</dd>
 </dl>
 </li>
 </ul>

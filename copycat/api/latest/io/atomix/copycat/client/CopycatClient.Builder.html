@@ -120,7 +120,7 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public static class <span class="typeNameLabel">CopycatClient.Builder</span>
 extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a>&gt;</pre>
-<div class="block">Builds a new Raft client.
+<div class="block">Builds a new Copycat client.
  <p>
  New client builders should be constructed using the static <a href="../../../../io/atomix/copycat/client/CopycatClient.html#builder-io.atomix.catalyst.transport.Address...-"><code>CopycatClient.builder(Address...)</code></a> factory method.
  <pre>
@@ -238,7 +238,8 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true#build--" title="class or interface in io.atomix.catalyst.util">build</a></code>&nbsp;in class&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a>&gt;</code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ConfigurationException.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ConfigurationException</a></code> - if transport is not configured</dd>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ConfigurationException.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ConfigurationException</a></code> - if transport is not configured and <code>io.atomix.catalyst.transport.NettyTransport</code>
+ is not found on the classpath</dd>
 </dl>
 </li>
 </ul>

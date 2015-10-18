@@ -178,9 +178,9 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction">OffsetCleaner</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#cleaner--">cleaner</a></span>()</code>
-<div class="block">Returns the segment offset cleaner.</div>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html?is-external=true" title="class or interface in java.util.function">Predicate</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#cleanPredicate--">cleanPredicate</a></span>()</code>
+<div class="block">Returns a predicate for cleaned offsets in the segment.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
@@ -553,20 +553,6 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </dl>
 </li>
 </ul>
-<a name="cleaner--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>cleaner</h4>
-<pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction">OffsetCleaner</a>&nbsp;cleaner()</pre>
-<div class="block">Returns the segment offset cleaner.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The segment offset cleaner.</dd>
-</dl>
-</li>
-</ul>
 <a name="clean-long-">
 <!--   -->
 </a>
@@ -616,6 +602,20 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <dd>The number of entries in the segment that have been cleaned.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - if the segment is not open</dd>
+</dl>
+</li>
+</ul>
+<a name="cleanPredicate--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>cleanPredicate</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html?is-external=true" title="class or interface in java.util.function">Predicate</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;cleanPredicate()</pre>
+<div class="block">Returns a predicate for cleaned offsets in the segment.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A predicate for cleaned offsets in the segment.</dd>
 </dl>
 </li>
 </ul>

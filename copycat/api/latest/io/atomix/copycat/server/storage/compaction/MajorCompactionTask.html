@@ -171,9 +171,9 @@ implements <a href="../../../../../../io/atomix/copycat/server/storage/compactio
  <code>1</code> and entry <code>12345</code> during major compaction.
  <p>
  In order to prevent such a scenario from occurring, the major compaction task takes an immutable snapshot of the
- <a href="../../../../../../io/atomix/copycat/server/storage/compaction/OffsetCleaner.html" title="class in io.atomix.copycat.server.storage.compaction"><code>OffsetCleaner</code></a> (which maintains the offsets of cleaned entries for each segment) underlying all the segments
- to be compacted prior to rewriting any entries. This ensures that any entries cleaned after the start of rewriting
- segments will not be considered for compaction during the execution of this task.</div>
+ cleaned offsets underlying all the segments to be compacted prior to rewriting any entries. This ensures that any
+ entries cleaned after the start of rewriting segments will not be considered for compaction during the execution
+ of this task.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
