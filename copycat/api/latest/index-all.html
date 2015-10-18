@@ -520,7 +520,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session"><span class="typeNameLink">ClientSession</span></a> - Class in <a href="io/atomix/copycat/client/session/package-summary.html">io.atomix.copycat.client.session</a></dt>
 <dd>
-<div class="block">Client session.</div>
+<div class="block">Handles submission of client <a href="io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSession.html#ClientSession-java.util.UUID-io.atomix.catalyst.transport.Transport-java.util.Collection-io.atomix.catalyst.serializer.Serializer-">ClientSession(UUID, Transport, Collection&lt;Address&gt;, Serializer)</a></span> - Constructor for class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></dt>
 <dd>&nbsp;</dd>
@@ -570,7 +570,7 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><span class="typeNameLink">Command</span></a>&lt;<a href="io/atomix/copycat/client/Command.html" title="type parameter in Command">T</a>&gt; - Interface in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
 <dd>
-<div class="block">Raft state commands modify system state.</div>
+<div class="block">Base interface for operations that modify system state.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/request/CommandRequest.html#command--">command()</a></span> - Method in class io.atomix.copycat.client.request.<a href="io/atomix/copycat/client/request/CommandRequest.html" title="class in io.atomix.copycat.client.request">CommandRequest</a></dt>
 <dd>
@@ -745,7 +745,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client"><span class="typeNameLink">CopycatClient</span></a> - Class in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
 <dd>
-<div class="block">Provides an interface for submitting <a href="io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> queries to the Raft cluster.</div>
+<div class="block">Provides a feature complex <a href="io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client"><code>RaftClient</code></a>.</div>
 </dd>
 <dt><a href="io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client"><span class="typeNameLink">CopycatClient.Builder</span></a> - Class in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
 <dd>
@@ -919,13 +919,13 @@
 <dd>
 <div class="block">Returns the response error if the response status is <code>Status.ERROR</code></div>
 </dd>
-<dt><a href="io/atomix/copycat/client/Event.html" title="class in io.atomix.copycat.client"><span class="typeNameLink">Event</span></a>&lt;<a href="io/atomix/copycat/client/Event.html" title="type parameter in Event">T</a>&gt; - Class in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
+<dt><a href="io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session"><span class="typeNameLink">Event</span></a>&lt;<a href="io/atomix/copycat/client/session/Event.html" title="type parameter in Event">T</a>&gt; - Class in <a href="io/atomix/copycat/client/session/package-summary.html">io.atomix.copycat.client.session</a></dt>
 <dd>
-<div class="block">Client event.</div>
+<div class="block">Transports a named event from a server to a client <a href="io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/Event.html#Event--">Event()</a></span> - Constructor for class io.atomix.copycat.client.<a href="io/atomix/copycat/client/Event.html" title="class in io.atomix.copycat.client">Event</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/Event.html#Event--">Event()</a></span> - Constructor for class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session">Event</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/Event.html#Event-java.lang.String-java.lang.Object-">Event(String, Object)</a></span> - Constructor for class io.atomix.copycat.client.<a href="io/atomix/copycat/client/Event.html" title="class in io.atomix.copycat.client">Event</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/Event.html#Event-java.lang.String-java.lang.Object-">Event(String, Object)</a></span> - Constructor for class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session">Event</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/request/PublishRequest.html#events--">events()</a></span> - Method in class io.atomix.copycat.client.request.<a href="io/atomix/copycat/client/request/PublishRequest.html" title="class in io.atomix.copycat.client.request">PublishRequest</a></dt>
 <dd>
@@ -1642,7 +1642,7 @@
 <dd>
 <div class="block">Returns a collection of current cluster members.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/Event.html#message--">message()</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/Event.html" title="class in io.atomix.copycat.client">Event</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/Event.html#message--">message()</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session">Event</a></dt>
 <dd>
 <div class="block">Returns the event message.</div>
 </dd>
@@ -1667,7 +1667,7 @@
 </a>
 <h2 class="title">N</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/Event.html#name--">name()</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/Event.html" title="class in io.atomix.copycat.client">Event</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/Event.html#name--">name()</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session">Event</a></dt>
 <dd>
 <div class="block">Returns the event name.</div>
 </dd>
@@ -1885,7 +1885,7 @@
 <dl>
 <dt><a href="io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><span class="typeNameLink">Query</span></a>&lt;<a href="io/atomix/copycat/client/Query.html" title="type parameter in Query">T</a>&gt; - Interface in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
 <dd>
-<div class="block">Raft state queries read system state.</div>
+<div class="block">Base interface for operations that read system state.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/request/QueryRequest.html#query--">query()</a></span> - Method in class io.atomix.copycat.client.request.<a href="io/atomix/copycat/client/request/QueryRequest.html" title="class in io.atomix.copycat.client.request">QueryRequest</a></dt>
 <dd>
@@ -1937,7 +1937,7 @@
 <dl>
 <dt><a href="io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client"><span class="typeNameLink">RaftClient</span></a> - Interface in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
 <dd>
-<div class="block">Raft client.</div>
+<div class="block">Provides an interface for submitting <a href="io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> queries to the Raft cluster.</div>
 </dd>
 <dt><a href="io/atomix/copycat/client/error/RaftError.html" title="interface in io.atomix.copycat.client.error"><span class="typeNameLink">RaftError</span></a> - Interface in <a href="io/atomix/copycat/client/error/package-summary.html">io.atomix.copycat.client.error</a></dt>
 <dd>
@@ -1975,8 +1975,6 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/error/ReadException.html#ReadException-java.lang.Throwable-">ReadException(Throwable)</a></span> - Constructor for exception io.atomix.copycat.client.error.<a href="io/atomix/copycat/client/error/ReadException.html" title="class in io.atomix.copycat.client.error">ReadException</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/Event.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject(BufferInput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/Event.html" title="class in io.atomix.copycat.client">Event</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/request/AbstractRequest.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject(BufferInput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.client.request.<a href="io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">AbstractRequest</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/request/CommandRequest.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject(BufferInput, Serializer)</a></span> - Method in class io.atomix.copycat.client.request.<a href="io/atomix/copycat/client/request/CommandRequest.html" title="class in io.atomix.copycat.client.request">CommandRequest</a></dt>
@@ -2006,6 +2004,8 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/response/RegisterResponse.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject(BufferInput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.client.response.<a href="io/atomix/copycat/client/response/RegisterResponse.html" title="class in io.atomix.copycat.client.response">RegisterResponse</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/response/UnregisterResponse.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject(BufferInput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.client.response.<a href="io/atomix/copycat/client/response/UnregisterResponse.html" title="class in io.atomix.copycat.client.response">UnregisterResponse</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/Event.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject(BufferInput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session">Event</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/request/AcceptRequest.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject(BufferInput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.server.request.<a href="io/atomix/copycat/server/request/AcceptRequest.html" title="class in io.atomix.copycat.server.request">AcceptRequest</a></dt>
 <dd>&nbsp;</dd>
@@ -2259,7 +2259,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/session/Sessions.html" title="interface in io.atomix.copycat.server.session"><span class="typeNameLink">Sessions</span></a> - Interface in <a href="io/atomix/copycat/server/session/package-summary.html">io.atomix.copycat.server.session</a></dt>
 <dd>
-<div class="block">Server sessions.</div>
+<div class="block">Provides a set of active server sessions.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/StateMachineContext.html#sessions--">sessions()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/StateMachineContext.html" title="interface in io.atomix.copycat.server">StateMachineContext</a></dt>
 <dd>
@@ -2513,8 +2513,6 @@
 <dd>
 <div class="block">Timestamped entry.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/Event.html#toString--">toString()</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/Event.html" title="class in io.atomix.copycat.client">Event</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/request/CommandRequest.html#toString--">toString()</a></span> - Method in class io.atomix.copycat.client.request.<a href="io/atomix/copycat/client/request/CommandRequest.html" title="class in io.atomix.copycat.client.request">CommandRequest</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/request/ConnectRequest.html#toString--">toString()</a></span> - Method in class io.atomix.copycat.client.request.<a href="io/atomix/copycat/client/request/ConnectRequest.html" title="class in io.atomix.copycat.client.request">ConnectRequest</a></dt>
@@ -2544,6 +2542,8 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/response/UnregisterResponse.html#toString--">toString()</a></span> - Method in class io.atomix.copycat.client.response.<a href="io/atomix/copycat/client/response/UnregisterResponse.html" title="class in io.atomix.copycat.client.response">UnregisterResponse</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSession.html#toString--">toString()</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/Event.html#toString--">toString()</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session">Event</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/request/AcceptRequest.html#toString--">toString()</a></span> - Method in class io.atomix.copycat.server.request.<a href="io/atomix/copycat/server/request/AcceptRequest.html" title="class in io.atomix.copycat.server.request">AcceptRequest</a></dt>
 <dd>&nbsp;</dd>
@@ -2906,7 +2906,7 @@ the order they are declared.</div>
 <dd>
 <div class="block">Sets the response error.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/request/PublishRequest.Builder.html#withEvents-io.atomix.copycat.client.Event...-">withEvents(Event&lt;?&gt;...)</a></span> - Method in class io.atomix.copycat.client.request.<a href="io/atomix/copycat/client/request/PublishRequest.Builder.html" title="class in io.atomix.copycat.client.request">PublishRequest.Builder</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/request/PublishRequest.Builder.html#withEvents-io.atomix.copycat.client.session.Event...-">withEvents(Event&lt;?&gt;...)</a></span> - Method in class io.atomix.copycat.client.request.<a href="io/atomix/copycat/client/request/PublishRequest.Builder.html" title="class in io.atomix.copycat.client.request">PublishRequest.Builder</a></dt>
 <dd>
 <div class="block">Sets the request events.</div>
 </dd>
@@ -3146,8 +3146,6 @@ the order they are declared.</div>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/error/WriteException.html#WriteException-java.lang.Throwable-">WriteException(Throwable)</a></span> - Constructor for exception io.atomix.copycat.client.error.<a href="io/atomix/copycat/client/error/WriteException.html" title="class in io.atomix.copycat.client.error">WriteException</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/Event.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject(BufferOutput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/Event.html" title="class in io.atomix.copycat.client">Event</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/request/AbstractRequest.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject(BufferOutput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.client.request.<a href="io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">AbstractRequest</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/request/CommandRequest.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject(BufferOutput, Serializer)</a></span> - Method in class io.atomix.copycat.client.request.<a href="io/atomix/copycat/client/request/CommandRequest.html" title="class in io.atomix.copycat.client.request">CommandRequest</a></dt>
@@ -3177,6 +3175,8 @@ the order they are declared.</div>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/response/RegisterResponse.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject(BufferOutput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.client.response.<a href="io/atomix/copycat/client/response/RegisterResponse.html" title="class in io.atomix.copycat.client.response">RegisterResponse</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/response/UnregisterResponse.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject(BufferOutput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.client.response.<a href="io/atomix/copycat/client/response/UnregisterResponse.html" title="class in io.atomix.copycat.client.response">UnregisterResponse</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/Event.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject(BufferOutput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session">Event</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/request/AcceptRequest.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject(BufferOutput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.server.request.<a href="io/atomix/copycat/server/request/AcceptRequest.html" title="class in io.atomix.copycat.server.request">AcceptRequest</a></dt>
 <dd>&nbsp;</dd>
