@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li>Prev&nbsp;Class</li>
-<li><a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?io/atomix/copycat/client/session/ClientSession.html" target="_top">Frames</a></li>
@@ -116,7 +116,23 @@ var activeTableTab = "activeTableTab";
 <pre>public class <span class="typeNameLabel">ClientSession</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>&gt;</pre>
-<div class="block">Client session.</div>
+<div class="block">Handles submission of client <a href="../../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="../../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a>.
+ <p>
+ The client session handles all aspects of managing a single session for a client. When the session is opened,
+ it attempts to find a server in the provided servers list and <a href="../../../../../io/atomix/copycat/client/request/RegisterRequest.html" title="class in io.atomix.copycat.client.request"><code>register</code></a> a new session. Once
+ the session has been registered, it begins sending periodic <a href="../../../../../io/atomix/copycat/client/request/KeepAliveRequest.html" title="class in io.atomix.copycat.client.request"><code>keep-alive requests</code></a> and begins
+ submitting <a href="../../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="../../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a> to the cluster.
+ <p>
+ Sessions can communicate with any server in the cluster, but they'll attempt to find the best server.
+ In the event that the session becomes disconnected from the cluster or otherwise can't successfully commit a
+ keep-alive request, the session will attempt to find a better server with which to communicate. If the session
+ fails to communicate with the cluster for more than its session timeout, it will assume it expired and the session
+ will be closed.
+ <p>
+ The session is responsible for coordinating with the cluster to ensure consistency constraints are met. Each command
+ and query submitted to the cluster and each of their responses contains contextual information that helps servers
+ ensure operations are applied in the proper order and at the proper time. In the event that the session expires
+ or is closed, consistency guarantees are lost for operations submitted on the session.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -698,7 +714,7 @@ implements <a href="../../../../../io/atomix/copycat/client/session/Session.html
 <div class="subNav">
 <ul class="navList">
 <li>Prev&nbsp;Class</li>
-<li><a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?io/atomix/copycat/client/session/ClientSession.html" target="_top">Frames</a></li>

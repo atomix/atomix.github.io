@@ -107,15 +107,53 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public interface <span class="typeNameLabel">Command&lt;T&gt;</span>
 extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client">Operation</a>&lt;T&gt;</pre>
-<div class="block">Raft state commands modify system state.
+<div class="block">Base interface for operations that modify system state.
  <p>
- Commands are submitted by clients to a Raft server and used to modify Raft cluster-wide state. The Raft
- consensus protocol dictates that commands must be forwarded to the cluster leader and replicated to a majority of
- followers before being applied to the cluster state. Thus, in contrast to <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>cueries</code></a>,
- commands are not dictated by different consistency levels.</div>
+ Commands are submitted by clients to a Raft server and used to modify Raft cluster-wide state. When a command
+ is submitted to the cluster, if the command is received by a follower, the Raft protocol dictates that it must be
+ forwarded to the cluster leader. Once the leader receives a command, it logs and replicates the command to a majority
+ of the cluster before applying it to its state machine and responding with the result.
+ <p>
+ <b>Consistency levels</b>
+ <p>
+ Commands are allow both to modify system state and to trigger <a href="../../../../io/atomix/copycat/client/session/Session.html#publish-java.lang.String-java.lang.Object-"><code>events</code></a>
+ published to client <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>sessions</code></a>. Whereas <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> consistency
+ levels dictate when and how queries can be executed on follower nodes, command
+ <a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><code>consistency levels</code></a> largely relate to how events triggered
+ by commands are handled. When a command is applied to a server state machine, the consistency level of the command
+ being executed dictates the requirements for handling the event. For instance, in a fictitious lock state machine,
+ one command might be the <code>UnlockCommand</code>. The unlock command would set the state machine state to <code>unlocked</code>
+ and perhaps send a message to any lock waiters notifying them that the lock is available. In this case,
+ <a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html#LINEARIZABLE"><code>linearizable</code></a> consistency can be used to ensure
+ that lock holders are notified before the <code>unlock</code> operation completes.
+ <p>
+ <b>Persistence levels</b>
+ <p>
+ <em>Determinism is the number one rule of state machines!</em>
+ <p>
+ When commands are submitted to the Raft cluster, they're written to a commit log on disk or in memory (based on the
+ storage configuration) and replicated to a majority of the cluster. As disk usage grows over time, servers compact
+ their logs to remove commands that no longer contribute to the state machine's state. In order to ensure state machines
+ remain deterministic, commands must provide <a href="../../../../io/atomix/copycat/client/Command.PersistenceLevel.html" title="enum in io.atomix.copycat.client"><code>persistence levels</code></a>
+ to aid servers in deciding when it's safe to remove a command from the log. The persistence level allows state machines
+ to safely handle the complexities of removing state from state machines while ensuring state machines remain
+ deterministic, particularly in the event of a failure and replay of the commit log. See the
+ <a href="../../../../io/atomix/copycat/client/Command.PersistenceLevel.html" title="enum in io.atomix.copycat.client"><code>Command.PersistenceLevel</code></a> documentation for more info.
+ <p>
+ <b>Serialization</b>
+ <p>
+ Commands must be serializable both by the client and by all servers in the cluster. By default, all operations use
+ Java serialization. However, default serialization in slow because it requires the full class name and does not allocate
+ memory efficiently. For this reason, it's recommended that commands implement <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>
+ or register a custom <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/TypeSerializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>TypeSerializer</code></a> for better performance. Serializable types
+ can be registered in a <code>META-INF/services/io.atomix.catalyst.serializer.CatalystSerializable</code> service loader file
+ or on the associated client/server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> instance.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><code>Command.ConsistencyLevel</code></a>, 
+<a href="../../../../io/atomix/copycat/client/Command.PersistenceLevel.html" title="enum in io.atomix.copycat.client"><code>Command.PersistenceLevel</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -207,6 +245,8 @@ extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="int
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The command consistency level.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><code>Command.ConsistencyLevel</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -223,6 +263,8 @@ extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="int
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The command persistence level.</dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../io/atomix/copycat/client/Command.PersistenceLevel.html" title="enum in io.atomix.copycat.client"><code>Command.PersistenceLevel</code></a></dd>
 </dl>
 </li>
 </ul>

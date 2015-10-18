@@ -43,7 +43,7 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../io/atomix/copycat/client/Event.html" title="class in io.atomix.copycat.client"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -107,7 +107,11 @@
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a></pre>
 <div class="block">Base type for Raft state operations.
  <p>
- This is a base interface for operations on the Raft cluster state.</div>
+ This is a base interface for operations on the Raft cluster state. Operations are submitted to Raft clusters
+ by clients via a <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a>. All operations are sent over the network
+ and thus must be serializable by the client and by all servers in the cluster. By default, Java serialization
+ is used. However, it is recommended that operations implement <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>
+ or register a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/TypeSerializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>TypeSerializer</code></a> for better performance.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -141,7 +145,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.h
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../io/atomix/copycat/client/Event.html" title="class in io.atomix.copycat.client"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

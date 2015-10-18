@@ -256,7 +256,12 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/co
 <h4>register</h4>
 <pre>&lt;T extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client">Operation</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&gt;&nbsp;<a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a>&nbsp;register(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
                                                           <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;T&gt;&gt;&nbsp;callback)</pre>
-<div class="block">Registers a void operation callback.</div>
+<div class="block">Registers a void operation callback.
+ <p>
+ The registered callback will be called when operations of <code>type</code> are applied to the state machine.
+ Because no return value is provided for <code>void</code> callbacks, the output of the operation will be <code>null</code>.
+ <p>
+ The callback is guaranteed to always be executed in the same thread.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The operation type.</dd>
@@ -278,7 +283,13 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/co
 <h4>register</h4>
 <pre>&lt;T extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client">Operation</a>&lt;U&gt;,U&gt;&nbsp;<a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a>&nbsp;register(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
                                                          <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;T&gt;,U&gt;&nbsp;callback)</pre>
-<div class="block">Registers an operation callback.</div>
+<div class="block">Registers an operation callback.
+ <p>
+ The registered callback will be called when operations of <code>type</code> are applied to the state machine.
+ The return value of the provided callback must be synchronous (not a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Future.html?is-external=true" title="class or interface in java.util.concurrent"><code>Future</code></a> or
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>) and will be sent back to the client as the operation output.
+ <p>
+ The callback is guaranteed to always be executed in the same thread.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The operation type.</dd>

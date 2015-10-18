@@ -116,9 +116,9 @@ var activeTableTab = "activeTableTab";
 <pre>public class <span class="typeNameLabel">CopycatClient</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../../../io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client">RaftClient</a></pre>
-<div class="block">Provides an interface for submitting <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> queries to the Raft cluster.
+<div class="block">Provides a feature complex <a href="../../../../io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client"><code>RaftClient</code></a>.
  <p>
- Raft clients can be constructed using the <a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client"><code>CopycatClient.Builder</code></a>. To create a new client builder, use the
+ Copycat clients can be constructed using the <a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client"><code>CopycatClient.Builder</code></a>. To create a new client builder, use the
  static <a href="../../../../io/atomix/copycat/client/CopycatClient.html#builder-io.atomix.catalyst.transport.Address...-"><code>builder(Address...)</code></a> method, passing one or more server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a>:
  <pre>
    <code>
@@ -128,7 +128,7 @@ implements <a href="../../../../io/atomix/copycat/client/RaftClient.html" title=
  By default, the client will attempt to use the <code>NettyTransport</code> to communicate with the cluster. See the <a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client"><code>CopycatClient.Builder</code></a>
  documentation for client configuration options.
  <p>
- Raft clients interact with one or more nodes in a Raft cluster through a session. When the client is <a href="../../../../io/atomix/copycat/client/CopycatClient.html#open--"><code>opened</code></a>,
+ Copycat clients interact with one or more nodes in a cluster through a session. When the client is <a href="../../../../io/atomix/copycat/client/CopycatClient.html#open--"><code>opened</code></a>,
  the client will attempt to one of the known member <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> provided to the builder. As long as the client can
  communicate with at least one correct member of the cluster, it can open a session. Once the client is able to register a
  <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a>, it will receive an updated list of members for the entire cluster and thereafter be allowed to communicate

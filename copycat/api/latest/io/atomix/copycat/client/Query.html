@@ -107,19 +107,34 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public interface <span class="typeNameLabel">Query&lt;T&gt;</span>
 extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client">Operation</a>&lt;T&gt;</pre>
-<div class="block">Raft state queries read system state.
+<div class="block">Base interface for operations that read system state.
  <p>
  Queries are submitted by clients to a Raft server to read Raft cluster-wide state. In contrast to
- <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a>, queries allow for more flexible
- <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><code>consistency levels</code></a> that trade consistency for performance.
+ <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a>, queries allow for more flexible <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><code>consistency levels</code></a> that trade
+ consistency for performance.
+ <p>
+ <b>Consistency levels</b>
  <p>
  All queries must specify a <a href="../../../../io/atomix/copycat/client/Query.html#consistency--"><code>consistency()</code></a> with which to execute the query. The provided consistency level
- dictates how queries are submitted to the Raft cluster. Higher consistency levels like
- <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html#LINEARIZABLE"><code>Query.ConsistencyLevel.LINEARIZABLE</code></a> and <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html#BOUNDED_LINEARIZABLE"><code>Query.ConsistencyLevel.BOUNDED_LINEARIZABLE</code></a>
- are forwarded to the cluster leader, while lower levels are allowed to read from followers for higher throughput.
+ dictates how queries are submitted to the Raft cluster. When a query is submitted to the cluster, the query is
+ sent in a message to the server to which the client is currently connected. The server handles the query requests
+ based on the configured <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><code>Query.ConsistencyLevel</code></a>. For lower consistency levels
+ like <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html#CAUSAL"><code>Query.ConsistencyLevel.CAUSAL</code></a> or <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html#SEQUENTIAL"><code>Query.ConsistencyLevel.SEQUENTIAL</code></a>, followers are allowed to execute
+ queries with certain constraints for faster reads. For higher consistency levels like <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html#LINEARIZABLE"><code>Query.ConsistencyLevel.LINEARIZABLE</code></a>
+ and <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html#BOUNDED_LINEARIZABLE"><code>Query.ConsistencyLevel.BOUNDED_LINEARIZABLE</code></a>, queries are forwarded to the cluster leader. See the
+ <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><code>Query.ConsistencyLevel</code></a> documentation for more info.
  <p>
  By default, all queries should use the strongest consistency level, <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html#LINEARIZABLE"><code>Query.ConsistencyLevel.LINEARIZABLE</code></a>.
- It is essential that users understand the trade-offs in the various consistency levels before using them.</div>
+ It is essential that users understand the trade-offs in the various consistency levels before using them.
+ <p>
+ <b>Serialization</b>
+ <p>
+ Commands must be serializable both by the client and by all servers in the cluster. By default, all operations use
+ Java serialization. However, default serialization in slow because it requires the full class name and does not allocate
+ memory efficiently. For this reason, it's recommended that commands implement <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>
+ or register a custom <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/TypeSerializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>TypeSerializer</code></a> for better performance. Serializable types
+ can be registered in a <code>META-INF/services/io.atomix.catalyst.serializer.CatalystSerializable</code> service loader file
+ or on the associated client/server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> instance.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
