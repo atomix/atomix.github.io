@@ -120,10 +120,19 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public enum <span class="typeNameLabel">StorageLevel</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;<a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a>&gt;</pre>
-<div class="block">Log storage level.</div>
+<div class="block"><a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> storage level configuration values which control how logs are stored on disk or in memory.
+ <p>
+ Storage levels represent the method used to store the individual <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>segments</code></a> that make up a
+ <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>. When configuring a <a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> module, the storage can be configured to write
+ <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>entries</code></a> to disk, memory, or memory-mapped files using the
+ values provided by this enum. The <code>StorageLevel</code> configuration dictates the type of
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a> to which to write entries. See the specific storage levels for more
+ information.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -221,7 +230,12 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>MEMORY</h4>
 <pre>public static final&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a> MEMORY</pre>
-<div class="block">Stores logs in memory only.</div>
+<div class="block">Stores logs in memory only.
+ <p>
+ In-memory logs will be written to <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>segments</code></a> backed by <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/HeapBuffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>HeapBuffer</code></a>.
+ Each <code>MEMORY</code> segment may only store up to <code>2^32-1</code> bytes. <em>Entries written to in-memory logs are
+ not recoverable after a crash.</em> If your use case requires strong persistence, use <a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html#DISK"><code>DISK</code></a> or <a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html#MAPPED"><code>MAPPED</code></a>
+ storage.</div>
 </li>
 </ul>
 <a name="MAPPED">
@@ -231,7 +245,12 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>MAPPED</h4>
 <pre>public static final&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a> MAPPED</pre>
-<div class="block">Stores logs in memory mapped files.</div>
+<div class="block">Stores logs in memory mapped files.
+ <p>
+ Memory mapped logs will be written to <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>segments</code></a> backed by <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/MappedBuffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>MappedBuffer</code></a>.
+ Entries written to memory mapped files may be recovered after a crash, but the <code>MAPPED</code> storage level does not
+ guarantee that <em>all</em> entries written to the log will be persisted. Additionally, the use of persistent storage
+ levels reduces the amount of overhead required to catch the log up at startup.</div>
 </li>
 </ul>
 <a name="DISK">
@@ -241,7 +260,12 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>DISK</h4>
 <pre>public static final&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a> DISK</pre>
-<div class="block">Stores logs on disk.</div>
+<div class="block">Stores logs on disk.
+ <p>
+ On-disk logs will be written to <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>segments</code></a> backed by <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/FileBuffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>FileBuffer</code></a>, which
+ in turn is backed by <a href="http://docs.oracle.com/javase/8/docs/api/java/io/RandomAccessFile.html?is-external=true" title="class or interface in java.io"><code>RandomAccessFile</code></a>. Entries written to <code>DISK</code> storage can be recovered in the
+ event of a failure or other restart. Additionally, the use of persistent storage levels reduces the amount of overhead
+ required to catch the log up at startup.</div>
 </li>
 </ul>
 </li>

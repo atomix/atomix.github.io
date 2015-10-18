@@ -208,7 +208,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#descriptor--">descriptor</a></span>()</code>
-<div class="block">Returns the segment descriptor.</div>
+<div class="block">Returns the <a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage"><code>SegmentDescriptor</code></a> for the segment.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
@@ -286,7 +286,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <tr id="i21" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#size--">size</a></span>()</code>
-<div class="block">Returns the total count of the segment in bytes.</div>
+<div class="block">Returns the total size of the segment in bytes.</div>
 </td>
 </tr>
 <tr id="i22" class="altColor">
@@ -334,10 +334,13 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>descriptor</h4>
 <pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a>&nbsp;descriptor()</pre>
-<div class="block">Returns the segment descriptor.</div>
+<div class="block">Returns the <a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage"><code>SegmentDescriptor</code></a> for the segment.
+ <p>
+ The segment descriptor is stored in <a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html#BYTES"><code>SegmentDescriptor.BYTES</code></a> bytes at the head of the segment. The descriptor
+ defines essential information about the segment, including its position in the complete <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> and its <code>version</code>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The segment descriptor.</dd>
+<dd>The segment descriptor stored at the head of the segment.</dd>
 </dl>
 </li>
 </ul>
@@ -362,7 +365,10 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>isEmpty</h4>
 <pre>public&nbsp;boolean&nbsp;isEmpty()</pre>
-<div class="block">Returns a boolean value indicating whether the segment is empty.</div>
+<div class="block">Returns a boolean value indicating whether the segment is empty.
+ <p>
+ The segment is considered empty if no entries have been written to the segment and no indexes in the
+ segment have been <a href="../../../../../io/atomix/copycat/server/storage/Segment.html#skip-long-"><code>skipped</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Indicates whether the segment is empty.</dd>
@@ -376,7 +382,9 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>isCompacted</h4>
 <pre>public&nbsp;boolean&nbsp;isCompacted()</pre>
-<div class="block">Returns a boolean value indicating whether the segment has been compacted.</div>
+<div class="block">Returns a boolean value indicating whether the segment has been compacted.
+ <p>
+ The segment is considered compacted if its <a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html#version--"><code>SegmentDescriptor.version()</code></a> is greater than <code>1</code>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Indicates whether the segment has been compacted.</dd>
@@ -390,7 +398,13 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>isFull</h4>
 <pre>public&nbsp;boolean&nbsp;isFull()</pre>
-<div class="block">Returns a boolean value indicating whether the segment is full.</div>
+<div class="block">Returns a boolean value indicating whether the segment is full.
+ <p>
+ The segment is considered full if one of the following conditions is met:
+ <ul>
+   <li><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#size--"><code>size()</code></a> is greater than or equal to <a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html#maxSegmentSize--"><code>SegmentDescriptor.maxSegmentSize()</code></a></li>
+   <li><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#count--"><code>count()</code></a> is greater than or equal to <a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html#maxEntries--"><code>SegmentDescriptor.maxEntries()</code></a></li>
+ </ul></div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Indicates whether the segment is full.</dd>
@@ -404,10 +418,10 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>size</h4>
 <pre>public&nbsp;long&nbsp;size()</pre>
-<div class="block">Returns the total count of the segment in bytes.</div>
+<div class="block">Returns the total size of the segment in bytes.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The count of the segment in bytes.</dd>
+<dd>The size of the segment in bytes.</dd>
 </dl>
 </li>
 </ul>
@@ -418,7 +432,9 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>length</h4>
 <pre>public&nbsp;long&nbsp;length()</pre>
-<div class="block">Returns the current range of the segment.</div>
+<div class="block">Returns the current range of the segment.
+ <p>
+ The length includes entries that may have been <a href="../../../../../io/atomix/copycat/server/storage/Segment.html#skip-long-"><code>skipped</code></a> at the end of the segment.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The current range of the segment.</dd>
@@ -432,7 +448,10 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>count</h4>
 <pre>public&nbsp;int&nbsp;count()</pre>
-<div class="block">Returns the count of all entries in the segment.</div>
+<div class="block">Returns the count of all entries in the segment.
+ <p>
+ The count includes only entries that are physically present in the segment. Entries that have been compacted
+ out of the segment are not counted towards the count, nor are <a href="../../../../../io/atomix/copycat/server/storage/Segment.html#skip-long-"><code>skipped</code></a> entries.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The count of all entries in the segment.</dd>
@@ -446,7 +465,9 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>firstIndex</h4>
 <pre>public&nbsp;long&nbsp;firstIndex()</pre>
-<div class="block">Returns the index of the first entry in the segment.</div>
+<div class="block">Returns the index of the first entry in the segment.
+ <p>
+ If the segment is empty, <code>0</code> will be returned regardless of the segment's base index.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The index of the first entry in the segment or <code>0</code> if the segment is empty.</dd>
@@ -492,7 +513,11 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>offset</h4>
 <pre>public&nbsp;long&nbsp;offset(long&nbsp;index)</pre>
-<div class="block">Returns the offset of the given index within the segment.</div>
+<div class="block">Returns the offset of the given index within the segment.
+ <p>
+ The offset reflects the zero-based offset of the given <code>index</code> in the segment when missing/compacted
+ entries are taken into account. For instance, if a segment contains entries at indexes <code>{1, 3}</code>, the
+ <code>offset</code> of index <code>1</code> will be <code>0</code> and index <code>3</code> will be <code>1</code>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - The index to check.</dd>

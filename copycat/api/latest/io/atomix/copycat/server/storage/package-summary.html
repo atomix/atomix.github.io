@@ -101,7 +101,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a></td>
 <td class="colLast">
-<div class="block">Segment descriptor.</div>
+<div class="block">Stores information about a <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a> of the log.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -111,24 +111,18 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../../io/atomix/copycat/server/storage/SegmentFile.html" title="class in io.atomix.copycat.server.storage">SegmentFile</a></td>
+<td class="colFirst"><a href="../../../../../io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a></td>
 <td class="colLast">
-<div class="block">Segment file utility.</div>
+<div class="block">Manages creation and deletion of <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s of the <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../../../io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a></td>
-<td class="colLast">
-<div class="block">Log segment manager.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></td>
 <td class="colLast">
 <div class="block">Immutable log configuration and <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> factory.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></td>
 <td class="colLast">
 <div class="block">Builds a <a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> configuration.</div>
@@ -148,7 +142,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a></td>
 <td class="colLast">
-<div class="block">Log storage level.</div>
+<div class="block"><a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> storage level configuration values which control how logs are stored on disk or in memory.</div>
 </td>
 </tr>
 </tbody>
@@ -184,13 +178,10 @@
 <h2 title="Package io.atomix.copycat.server.storage Description">Package io.atomix.copycat.server.storage Description</h2>
 <div class="block">Provides a standalone segmented log for Copycat's <a href="https://raftconsensus.github.io/">Raft</a> implementation.
  <p>
- The log is designed as a standalone journal built on Copycat's <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a> abstraction.
- The buffer abstraction allows Copycat's <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> to write to memory or disk based on the
- buffer type.
- <p>
- While the log is not dependent on the Raft algorithm, it does implement many features in support of the Raft implementation.
- Specifically, the log is not an append-only log. Rather, it supports appending to, truncating, and compacting the
- log.</div>
+ Logs are the vehicle through which Copycat servers persist and replicate state changes. The Copycat log is designed as
+ a standalone journal built on Copycat's <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a> abstraction. Entries are written to the
+ log in many separate buffers known as segments. The buffer abstraction allows Copycat's
+ <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> to write to memory or disk based on the buffer type.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

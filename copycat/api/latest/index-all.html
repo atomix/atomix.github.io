@@ -811,7 +811,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#descriptor--">descriptor()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>
-<div class="block">Returns the segment descriptor.</div>
+<div class="block">Returns the <a href="io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage"><code>SegmentDescriptor</code></a> for the segment.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/DescriptorException.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">DescriptorException</span></a> - Exception in <a href="io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a></dt>
 <dd>
@@ -952,10 +952,6 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/util/Quorum.html#fail--">fail()</a></span> - Method in class io.atomix.copycat.server.util.<a href="io/atomix/copycat/server/util/Quorum.html" title="class in io.atomix.copycat.server.util">Quorum</a></dt>
 <dd>
 <div class="block">Indicates that a call in the quorum failed.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentFile.html#file--">file()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentFile.html" title="class in io.atomix.copycat.server.storage">SegmentFile</a></dt>
-<dd>
-<div class="block">Returns the segment file.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Log.html#firstIndex--">firstIndex()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></dt>
 <dd>
@@ -1242,10 +1238,6 @@
 <dd>
 <div class="block">Returns the segment identifier.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentFile.html#id--">id()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentFile.html" title="class in io.atomix.copycat.server.storage">SegmentFile</a></dt>
-<dd>
-<div class="block">Returns the segment identifier.</div>
-</dd>
 <dt><a href="io/atomix/copycat/client/error/IllegalMemberStateException.html" title="class in io.atomix.copycat.client.error"><span class="typeNameLink">IllegalMemberStateException</span></a> - Exception in <a href="io/atomix/copycat/client/error/package-summary.html">io.atomix.copycat.client.error</a></dt>
 <dd>
 <div class="block">Illegal member state exception.</div>
@@ -1263,10 +1255,6 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.html#index--">index()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a></dt>
 <dd>
 <div class="block">Returns the segment index.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentFile.html#index--">index()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentFile.html" title="class in io.atomix.copycat.server.storage">SegmentFile</a></dt>
-<dd>
-<div class="block">Returns the segment index file.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/StateMachine.html#init-io.atomix.copycat.server.StateMachineExecutor-">init(StateMachineExecutor)</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server">StateMachine</a></dt>
 <dd>
@@ -1286,7 +1274,8 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a> - package io.atomix.copycat.client</dt>
 <dd>
-<div class="block">Asynchronous Raft client API.</div>
+<div class="block">Provides classes for communicating with a Raft cluster and submitting
+ <a href="io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a>.</div>
 </dd>
 <dt><a href="io/atomix/copycat/client/error/package-summary.html">io.atomix.copycat.client.error</a> - package io.atomix.copycat.client.error</dt>
 <dd>
@@ -1294,11 +1283,11 @@
 </dd>
 <dt><a href="io/atomix/copycat/client/request/package-summary.html">io.atomix.copycat.client.request</a> - package io.atomix.copycat.client.request</dt>
 <dd>
-<div class="block">Raft client request classes.</div>
+<div class="block"><a href="io/atomix/copycat/client/request/Request.html" title="interface in io.atomix.copycat.client.request"><code>Request</code></a> implementations for all client communication.</div>
 </dd>
 <dt><a href="io/atomix/copycat/client/response/package-summary.html">io.atomix.copycat.client.response</a> - package io.atomix.copycat.client.response</dt>
 <dd>
-<div class="block">Raft client response classes.</div>
+<div class="block"><a href="io/atomix/copycat/client/response/Response.html" title="interface in io.atomix.copycat.client.response"><code>Response</code></a> implementations for all client communication.</div>
 </dd>
 <dt><a href="io/atomix/copycat/client/session/package-summary.html">io.atomix.copycat.client.session</a> - package io.atomix.copycat.client.session</dt>
 <dd>
@@ -1306,7 +1295,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/package-summary.html">io.atomix.copycat.server</a> - package io.atomix.copycat.server</dt>
 <dd>
-<div class="block">Raft server API.</div>
+<div class="block">Provides a standalone, feature-complete implementation of the <a href="https://raft.github.io/">Raft consensus algorithm</a>.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/request/package-summary.html">io.atomix.copycat.server.request</a> - package io.atomix.copycat.server.request</dt>
 <dd>
@@ -1318,11 +1307,12 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/session/package-summary.html">io.atomix.copycat.server.session</a> - package io.atomix.copycat.server.session</dt>
 <dd>
-<div class="block">Classes and interfaces for managing client sessions on the Raft server.</div>
+<div class="block">Interfaces for managing client <a href="io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>sessions</code></a> on a Raft
+ <a href="io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server"><code>server</code></a>.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/state/package-summary.html">io.atomix.copycat.server.state</a> - package io.atomix.copycat.server.state</dt>
 <dd>
-<div class="block">Internal Raft server state.</div>
+<div class="block">Internal classes that manage <a href="io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server"><code>RaftServer</code></a> state.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a> - package io.atomix.copycat.server.storage</dt>
 <dd>
@@ -1330,7 +1320,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a> - package io.atomix.copycat.server.storage.compaction</dt>
 <dd>
-<div class="block">Classes that support efficient Raft log compaction.</div>
+<div class="block">Classes and interfaces that support efficient Raft <a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>log</code></a> compaction.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a> - package io.atomix.copycat.server.storage.entry</dt>
 <dd>
@@ -2147,7 +2137,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">SegmentDescriptor</span></a> - Class in <a href="io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a></dt>
 <dd>
-<div class="block">Segment descriptor.</div>
+<div class="block">Stores information about a <a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a> of the log.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.html#SegmentDescriptor-io.atomix.catalyst.buffer.Buffer-">SegmentDescriptor(Buffer)</a></span> - Constructor for class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a></dt>
 <dd>&nbsp;</dd>
@@ -2155,13 +2145,9 @@
 <dd>
 <div class="block">Segment descriptor builder.</div>
 </dd>
-<dt><a href="io/atomix/copycat/server/storage/SegmentFile.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">SegmentFile</span></a> - Class in <a href="io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a></dt>
-<dd>
-<div class="block">Segment file utility.</div>
-</dd>
 <dt><a href="io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">SegmentManager</span></a> - Class in <a href="io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a></dt>
 <dd>
-<div class="block">Log segment manager.</div>
+<div class="block">Manages creation and deletion of <a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s of the <a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentManager.html#SegmentManager-java.lang.String-io.atomix.copycat.server.storage.Storage-">SegmentManager(String, Storage)</a></span> - Constructor for class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a></dt>
 <dd>&nbsp;</dd>
@@ -2347,11 +2333,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Log.html#size--">size()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></dt>
 <dd>
-<div class="block">Returns the count of the log on disk in bytes.</div>
+<div class="block">Returns the total size of all <a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>segments</code></a> of the log on disk in bytes.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#size--">size()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>
-<div class="block">Returns the total count of the segment in bytes.</div>
+<div class="block">Returns the total size of the segment in bytes.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Log.html#skip-long-">skip(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></dt>
 <dd>
@@ -2431,7 +2417,7 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage"><span class="typeNameLink">StorageLevel</span></a> - Enum in <a href="io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a></dt>
 <dd>
-<div class="block">Log storage level.</div>
+<div class="block"><a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> storage level configuration values which control how logs are stored on disk or in memory.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.client.Command-">submit(Command&lt;T&gt;)</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
 <dd>&nbsp;</dd>
@@ -2800,10 +2786,6 @@ the order they are declared.</div>
 <div class="block">Returns the current state machine version.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.html#version--">version()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a></dt>
-<dd>
-<div class="block">Returns the segment version.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentFile.html#version--">version()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentFile.html" title="class in io.atomix.copycat.server.storage">SegmentFile</a></dt>
 <dd>
 <div class="block">Returns the segment version.</div>
 </dd>
