@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10};
+var methods = {"i0":10,"i1":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -74,7 +74,7 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.classes.inherited.from.class.io.atomix.resource.ResourceStateMachine">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -103,7 +103,12 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server">io.atomix.copycat.server.StateMachine</a></li>
 <li>
 <ul class="inheritance">
+<li><a href="../../../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource">io.atomix.resource.ResourceStateMachine</a></li>
+<li>
+<ul class="inheritance">
 <li>io.atomix.atomic.state.AtomicValueState</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -119,7 +124,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">AtomicValueState</span>
-extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server">StateMachine</a></pre>
+extends <a href="../../../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource">ResourceStateMachine</a></pre>
 <div class="block">Atomic reference state machine.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -131,6 +136,21 @@ extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/St
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a name="nested.classes.inherited.from.class.io.atomix.resource.ResourceStateMachine">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from class&nbsp;io.atomix.resource.<a href="../../../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource">ResourceStateMachine</a></h3>
+<code><a href="../../../../io/atomix/resource/ResourceStateMachine.DeleteCommand.html" title="class in io.atomix.resource">ResourceStateMachine.DeleteCommand</a></code></li>
+</ul>
+</li>
+</ul>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.summary">
@@ -164,13 +184,26 @@ extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/St
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/atomic/state/AtomicValueState.html#configure-io.atomix.copycat.server.StateMachineExecutor-">configure</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachineExecutor.html?is-external=true" title="class or interface in io.atomix.copycat.server">StateMachineExecutor</a>&nbsp;executor)</code>&nbsp;</td>
 </tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/atomic/state/AtomicValueState.html#delete--">delete</a></span>()</code>
+<div class="block">Deletes state machine state.</div>
+</td>
+</tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.resource.ResourceStateMachine">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;io.atomix.resource.<a href="../../../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource">ResourceStateMachine</a></h3>
+<code><a href="../../../../io/atomix/resource/ResourceStateMachine.html#init-io.atomix.copycat.server.StateMachineExecutor-">init</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.copycat.server.StateMachine">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;io.atomix.copycat.server.<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server">StateMachine</a></h3>
-<code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true#close--" title="class or interface in io.atomix.copycat.server">close</a>, <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true#close-io.atomix.copycat.client.session.Session-" title="class or interface in io.atomix.copycat.server">close</a>, <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true#expire-io.atomix.copycat.client.session.Session-" title="class or interface in io.atomix.copycat.server">expire</a>, <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true#init-io.atomix.copycat.server.StateMachineExecutor-" title="class or interface in io.atomix.copycat.server">init</a>, <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true#register-io.atomix.copycat.client.session.Session-" title="class or interface in io.atomix.copycat.server">register</a></code></li>
+<code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true#close--" title="class or interface in io.atomix.copycat.server">close</a>, <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true#close-io.atomix.copycat.client.session.Session-" title="class or interface in io.atomix.copycat.server">close</a>, <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true#expire-io.atomix.copycat.client.session.Session-" title="class or interface in io.atomix.copycat.server">expire</a>, <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true#register-io.atomix.copycat.client.session.Session-" title="class or interface in io.atomix.copycat.server">register</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -213,13 +246,28 @@ extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/St
 <a name="configure-io.atomix.copycat.server.StateMachineExecutor-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>configure</h4>
 <pre>public&nbsp;void&nbsp;configure(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachineExecutor.html?is-external=true" title="class or interface in io.atomix.copycat.server">StateMachineExecutor</a>&nbsp;executor)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true#configure-io.atomix.copycat.server.StateMachineExecutor-" title="class or interface in io.atomix.copycat.server">configure</a></code>&nbsp;in class&nbsp;<code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server">StateMachine</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="delete--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>delete</h4>
+<pre>public&nbsp;void&nbsp;delete()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../io/atomix/resource/ResourceStateMachine.html#delete--">ResourceStateMachine</a></code></span></div>
+<div class="block">Deletes state machine state.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/resource/ResourceStateMachine.html#delete--">delete</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource">ResourceStateMachine</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -276,7 +324,7 @@ extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/St
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.classes.inherited.from.class.io.atomix.resource.ResourceStateMachine">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>

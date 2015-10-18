@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -100,7 +100,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../io/atomix/DistributedResource.html" title="class in io.atomix">io.atomix.DistributedResource</a>&lt;<a href="../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a>&gt;</li>
+<li><a href="../../../io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">io.atomix.resource.AbstractResource</a></li>
 <li>
 <ul class="inheritance">
 <li>io.atomix.coordination.DistributedMembershipGroup</li>
@@ -112,10 +112,14 @@ var activeTableTab = "activeTableTab";
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dd>
+</dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">DistributedMembershipGroup</span>
-extends <a href="../../../io/atomix/DistributedResource.html" title="class in io.atomix">DistributedResource</a>&lt;<a href="../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a>&gt;</pre>
+extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></pre>
 <div class="block">Provides a mechanism for managing group membership and remote scheduling and execution.
  <p>
  The distributed membership group resource facilitates managing group membership within the Atomix cluster.
@@ -192,7 +196,7 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMembershipGroup.html#DistributedMembershipGroup--">DistributedMembershipGroup</a></span>()</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMembershipGroup.html#DistributedMembershipGroup-io.atomix.copycat.client.RaftClient-">DistributedMembershipGroup</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/RaftClient.html?is-external=true" title="class or interface in io.atomix.copycat.client">RaftClient</a>&nbsp;client)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -251,13 +255,19 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <div class="block">Adds a listener for members leaving the group.</div>
 </td>
 </tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code><a href="../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMembershipGroup.html#with-io.atomix.resource.Consistency-">with</a></span>(<a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource">Consistency</a>&nbsp;consistency)</code>
+<div class="block">Sets the resource consistency level.</div>
+</td>
+</tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.io.atomix.DistributedResource">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.resource.AbstractResource">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;io.atomix.<a href="../../../io/atomix/DistributedResource.html" title="class in io.atomix">DistributedResource</a></h3>
-<code><a href="../../../io/atomix/DistributedResource.html#context--">context</a>, <a href="../../../io/atomix/DistributedResource.html#delete--">delete</a>, <a href="../../../io/atomix/DistributedResource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/DistributedResource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/DistributedResource.html#id--">id</a>, <a href="../../../io/atomix/DistributedResource.html#key--">key</a>, <a href="../../../io/atomix/DistributedResource.html#toString--">toString</a>, <a href="../../../io/atomix/DistributedResource.html#with-io.atomix.Consistency-">with</a></code></li>
+<h3>Methods inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></h3>
+<code><a href="../../../io/atomix/resource/AbstractResource.html#context--">context</a>, <a href="../../../io/atomix/resource/AbstractResource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/AbstractResource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/AbstractResource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/AbstractResource.html#toString--">toString</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -280,13 +290,13 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="DistributedMembershipGroup--">
+<a name="DistributedMembershipGroup-io.atomix.copycat.client.RaftClient-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>DistributedMembershipGroup</h4>
-<pre>public&nbsp;DistributedMembershipGroup()</pre>
+<pre>public&nbsp;DistributedMembershipGroup(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/RaftClient.html?is-external=true" title="class or interface in io.atomix.copycat.client">RaftClient</a>&nbsp;client)</pre>
 </li>
 </ul>
 </li>
@@ -297,6 +307,42 @@ extends <a href="../../../io/atomix/DistributedResource.html" title="class in io
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="with-io.atomix.resource.Consistency-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>with</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a>&nbsp;with(<a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource">Consistency</a>&nbsp;consistency)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">Resource</a></code></span></div>
+<div class="block">Sets the resource consistency level.
+ <p>
+ The configured consistency level specifies how operations on the resource should be handled by the
+ cluster. Consistency levels dictate the order in which reads, writes, and events should be handled
+ by the Atomix cluster and the consistency requirements for completing different types of operations.
+ <p>
+ Note that consistency configurations apply only to a single instance of a distributed resource. Two
+ instances of the same resource on the same or different nodes can have differen consistency requirements,
+ and the cluster will obey those differences.
+ <p>
+ By default, all resource operations are submitted to the cluster with the <a href="../../../io/atomix/resource/Consistency.html#ATOMIC"><code>Consistency.ATOMIC</code></a>
+ consistency level. Atomic consistency means that the distributed resource will behave as a single
+ object for all instances. Users can decrease the default consistency level, but note that in some
+ cases resource implementations may override the configured <a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource"><code>Consistency</code></a> for safety. For instance,
+ a leader election may enforce atomic consistency at all times to ensure no two leaders can be
+ elected at the same time.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">with</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/resource/AbstractResource.html#with-io.atomix.resource.Consistency-">with</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>consistency</code> - The resource consistency level.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The resource instance.</dd>
+</dl>
+</li>
+</ul>
 <a name="member--">
 <!--   -->
 </a>
