@@ -123,7 +123,12 @@
 <!--   -->
 </a>
 <h2 title="Package io.atomix.copycat.client.session Description">Package io.atomix.copycat.client.session Description</h2>
-<div class="block">Classes and interfaces for managing client sessions.</div>
+<div class="block">Classes and interfaces for managing client sessions.
+ <p>
+ Sessions represent the context in which clients communicate with a Raft cluster. Sessions allow clusters
+ to process requests according to client state. For instance, sessions are responsible for ensuring operations
+ are executed in the order specified by the client (sequential consistency) and operations are only applied
+ to the replicated state machine once (linearizability).</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
