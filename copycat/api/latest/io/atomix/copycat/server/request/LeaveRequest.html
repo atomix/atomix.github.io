@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
-var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var methods = {"i0":9,"i1":9};
+var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -100,10 +100,15 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">io.atomix.copycat.client.request.AbstractRequest</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html" title="class in io.atomix.copycat.server.request">LeaveRequest</a>&gt;</li>
+<li><a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">io.atomix.copycat.client.request.AbstractRequest</a>&lt;T&gt;</li>
+<li>
+<ul class="inheritance">
+<li><a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html" title="class in io.atomix.copycat.server.request">io.atomix.copycat.server.request.ConfigurationRequest</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html" title="class in io.atomix.copycat.server.request">LeaveRequest</a>&gt;</li>
 <li>
 <ul class="inheritance">
 <li>io.atomix.copycat.server.request.LeaveRequest</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -119,7 +124,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">LeaveRequest</span>
-extends <a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">AbstractRequest</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html" title="class in io.atomix.copycat.server.request">LeaveRequest</a>&gt;</pre>
+extends <a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html" title="class in io.atomix.copycat.server.request">ConfigurationRequest</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html" title="class in io.atomix.copycat.server.request">LeaveRequest</a>&gt;</pre>
 <div class="block">Protocol leave request.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -176,7 +181,7 @@ extends <a href="../../../../../io/atomix/copycat/client/request/AbstractRequest
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Static Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Static Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
@@ -193,35 +198,14 @@ extends <a href="../../../../../io/atomix/copycat/client/request/AbstractRequest
 <div class="block">Returns an leave request builder for an existing request.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html#equals-java.lang.Object-">equals</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;object)</code>&nbsp;</td>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html#hashCode--">hashCode</a></span>()</code>&nbsp;</td>
-</tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html#member--">member</a></span>()</code>
-<div class="block">Returns the leaving member.</div>
-</td>
-</tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/BufferInput.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer">BufferInput</a>&lt;?&gt;&nbsp;buffer,
-          <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html#toString--">toString</a></span>()</code>&nbsp;</td>
-</tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/BufferOutput.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;&nbsp;buffer,
-           <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.copycat.server.request.ConfigurationRequest">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;io.atomix.copycat.server.request.<a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html" title="class in io.atomix.copycat.server.request">ConfigurationRequest</a></h3>
+<code><a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html#equals-java.lang.Object-">equals</a>, <a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html#hashCode--">hashCode</a>, <a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html#member--">member</a>, <a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject</a>, <a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html#toString--">toString</a>, <a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
@@ -277,7 +261,7 @@ extends <a href="../../../../../io/atomix/copycat/client/request/AbstractRequest
 <a name="builder-io.atomix.copycat.server.request.LeaveRequest-">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>builder</h4>
 <pre>public static&nbsp;<a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.Builder.html" title="class in io.atomix.copycat.server.request">LeaveRequest.Builder</a>&nbsp;builder(<a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html" title="class in io.atomix.copycat.server.request">LeaveRequest</a>&nbsp;request)</pre>
@@ -287,91 +271,6 @@ extends <a href="../../../../../io/atomix/copycat/client/request/AbstractRequest
 <dd><code>request</code> - The request to build.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The leave request builder.</dd>
-</dl>
-</li>
-</ul>
-<a name="member--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>member</h4>
-<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;member()</pre>
-<div class="block">Returns the leaving member.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The leaving member.</dd>
-</dl>
-</li>
-</ul>
-<a name="writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>writeObject</h4>
-<pre>public&nbsp;void&nbsp;writeObject(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/BufferOutput.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;&nbsp;buffer,
-                        <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-" title="class or interface in io.atomix.catalyst.serializer">writeObject</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a></code></dd>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">AbstractRequest</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html" title="class in io.atomix.copycat.server.request">LeaveRequest</a>&gt;</code></dd>
-</dl>
-</li>
-</ul>
-<a name="readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>readObject</h4>
-<pre>public&nbsp;void&nbsp;readObject(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/BufferInput.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer">BufferInput</a>&lt;?&gt;&nbsp;buffer,
-                       <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-" title="class or interface in io.atomix.catalyst.serializer">readObject</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a></code></dd>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">AbstractRequest</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html" title="class in io.atomix.copycat.server.request">LeaveRequest</a>&gt;</code></dd>
-</dl>
-</li>
-</ul>
-<a name="hashCode--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>hashCode</h4>
-<pre>public&nbsp;int&nbsp;hashCode()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
-</dl>
-</li>
-</ul>
-<a name="equals-java.lang.Object-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>equals</h4>
-<pre>public&nbsp;boolean&nbsp;equals(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;object)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
-</dl>
-</li>
-</ul>
-<a name="toString--">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>toString</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
 </dl>
 </li>
 </ul>
