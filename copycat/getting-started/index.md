@@ -16,7 +16,7 @@ to your classpath:
 <dependency>
   <groupId>io.atomix.copycat</groupId>
   <artifactId>copycat-server</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0-beta2</version>
 </dependency>
 ```
 
@@ -26,7 +26,17 @@ To use the Raft client library, add the `copycat-client` jar to your classpath:
 <dependency>
   <groupId>io.atomix.copycat</groupId>
   <artifactId>copycat-client</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0-beta2</version>
+</dependency>
+```
+
+In addition to client and server libraries, typically you must include a `transport` via which clients and servers can communicate with each other:
+
+```
+<dependency>
+  <groupId>io.atomix.catalyst</groupId>
+  </artifactId>catalyst-netty</artifactId>
+  <version>1.0.0-rc4</version>
 </dependency>
 ```
 
@@ -104,16 +114,6 @@ public class PutCommand implements Command<Object> {
   public Object value() {
     return value;
   }
-
-  @Override
-  public int groupCode() {
-    return key.hashCode();
-  }
-  
-  @Override
-  public boolean groupEquals(Command command) {
-    return command instanceof PutCommand && ((PutCommand) command).key.equals(key);
-  }
 }
 ```
 
@@ -150,16 +150,6 @@ public class RemoveCommand implements Command<Object> {
 
   public Object key() {
     return key;
-  }
-
-  @Override
-  public int groupCode() {
-    return key.hashCode();
-  }
-  
-  @Override
-  public boolean groupEquals(Command command) {
-    return command instanceof PutCommand && ((PutCommand) command).key.equals(key);
   }
 }
 ```
@@ -269,9 +259,8 @@ Collection<Address> members = Arrays.asList(
   new Address("123.456.789.0", 5000)
 );
 
-CopycatClient client = CopycatClient.builder()
+CopycatClient client = CopycatClient.builder(members)
   .withTransport(new NettyTransport())
-  .withMembers(members)
   .build();
 
 client.open().thenRun(() -> {

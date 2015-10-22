@@ -91,7 +91,7 @@ public class Put<K, V> implements Command {
 
   @Override
   public ConsistencyLevel consistency() {
-    return Consistency.CAUSAL;
+    return Consistency.SEQUENTIAL;
   }
 
 }
@@ -100,8 +100,8 @@ public class Put<K, V> implements Command {
 The consistency level returned by the overridden `consistency()` method amounts to a *minimum consistency requirement*. In many cases, a `CAUSAL` command can actually result in `LINEARIZABLE` write depending on whether the client submits concurrent commands.
 
 Copycat provides two consistency levels for commands:
-* `Command.ConsistencyLevel.LINEARIZABLE` - Provides guaranteed linearizability by ensuring commands are written to the Raft log in the order in which they occurred on the client.
-* `Command.ConsistencyLevel.CAUSAL` - Provides causal consistency which guarantees ordering of non-overlapping commands, but may reorder concurrent commands from a single client.
+* `Command.ConsistencyLevel.LINEARIZABLE` - Provides guaranteed linearizability by ensuring commands are written to the Raft log in the order in which they occurred on the client and events are received by clients between request and response.
+* `Command.ConsistencyLevel.SEQUENTIAL` - Provides guaranteed linearizability for commands and sequential consistency for related events. Events may be received by clients at some arbitrary point in the future.
 * `Command.ConsistencyLevel.NONE` - Provides no additional consistency guarantees, potentially allowing a single command to be applied to the state machine multiple times.
 
 ## Queries

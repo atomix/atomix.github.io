@@ -84,7 +84,7 @@ The client will remain connected to the server through which the session was reg
 The `Session` object can be used to receive events `publish`ed by the server's `StateMachine`. To register a session event listener, use the `onEvent` method:
 
 ```java
-client.session().onEvent(message -> System.out.println("Received " + message));
+client.session().onEvent("event", message -> System.out.println("Received " + message));
 ```
 
 When events are sent from a server state machine to a client via the `Session` object, only the server to which the client is connected will send the event. Copycat servers guarantee that state machine events will be received by the client session in the order in which they're sent even if the client switches servers.
