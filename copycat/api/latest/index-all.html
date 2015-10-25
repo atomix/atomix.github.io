@@ -516,7 +516,7 @@
 <dd>
 <div class="block">Handles submission of client <a href="io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSession.html#ClientSession-java.util.UUID-io.atomix.catalyst.transport.Transport-java.util.Collection-io.atomix.catalyst.serializer.Serializer-">ClientSession(UUID, Transport, Collection&lt;Address&gt;, Serializer)</a></span> - Constructor for class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSession.html#ClientSession-java.util.UUID-io.atomix.catalyst.transport.Transport-java.util.Collection-io.atomix.catalyst.serializer.Serializer-io.atomix.copycat.client.ConnectionStrategy-">ClientSession(UUID, Transport, Collection&lt;Address&gt;, Serializer, ConnectionStrategy)</a></span> - Constructor for class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/StateMachineContext.html#clock--">clock()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/StateMachineContext.html" title="interface in io.atomix.copycat.server">StateMachineContext</a></dt>
 <dd>
@@ -699,6 +699,14 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/ConnectEntry.html#ConnectEntry-io.atomix.catalyst.util.ReferenceManager-">ConnectEntry(ReferenceManager&lt;Entry&lt;?&gt;&gt;)</a></span> - Constructor for class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/ConnectEntry.html" title="class in io.atomix.copycat.server.storage.entry">ConnectEntry</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">ConnectionStrategies</span></a> - Enum in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
+<dd>
+<div class="block">Strategies for managing how clients connect to and communicate with the cluster.</div>
+</dd>
+<dt><a href="io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client"><span class="typeNameLink">ConnectionStrategy</span></a> - Interface in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
+<dd>
+<div class="block">Strategy for managing client connections.</div>
+</dd>
 <dt><a href="io/atomix/copycat/client/request/ConnectRequest.html" title="class in io.atomix.copycat.client.request"><span class="typeNameLink">ConnectRequest</span></a> - Class in <a href="io/atomix/copycat/client/request/package-summary.html">io.atomix.copycat.client.request</a></dt>
 <dd>
 <div class="block">Protocol connect client request.</div>
@@ -1015,6 +1023,10 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/KeepAliveEntry.html#getCommandSequence--">getCommandSequence()</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/KeepAliveEntry.html" title="class in io.atomix.copycat.server.storage.entry">KeepAliveEntry</a></dt>
 <dd>
 <div class="block">Returns the command sequence number.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/ConnectionStrategy.html#getConnections-io.atomix.catalyst.transport.Address-java.util.List-">getConnections(Address, List&lt;Address&gt;)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client">ConnectionStrategy</a></dt>
+<dd>
+<div class="block">Returns a list of servers to which the client can connect.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/KeepAliveEntry.html#getEventVersion--">getEventVersion()</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/KeepAliveEntry.html" title="class in io.atomix.copycat.server.storage.entry">KeepAliveEntry</a></dt>
 <dd>
@@ -1401,6 +1413,14 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentManager.html#lastSegment--">lastSegment()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a></dt>
 <dd>
 <div class="block">Returns the last segment in the log.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/response/KeepAliveResponse.html#leader--">leader()</a></span> - Method in class io.atomix.copycat.client.response.<a href="io/atomix/copycat/client/response/KeepAliveResponse.html" title="class in io.atomix.copycat.client.response">KeepAliveResponse</a></dt>
+<dd>
+<div class="block">Returns the cluster leader.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/response/RegisterResponse.html#leader--">leader()</a></span> - Method in class io.atomix.copycat.client.response.<a href="io/atomix/copycat/client/response/RegisterResponse.html" title="class in io.atomix.copycat.client.response">RegisterResponse</a></dt>
+<dd>
+<div class="block">Returns the cluster leader.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.html#leader--">leader()</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a></dt>
 <dd>&nbsp;</dd>
@@ -1931,6 +1951,18 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/TimestampedEntry.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject(BufferInput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/TimestampedEntry.html" title="class in io.atomix.copycat.server.storage.entry">TimestampedEntry</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RecoveryStrategy.html#recover-io.atomix.copycat.client.RaftClient-">recover(RaftClient)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/RecoveryStrategy.html" title="interface in io.atomix.copycat.client">RecoveryStrategy</a></dt>
+<dd>
+<div class="block">Recovers the session.</div>
+</dd>
+<dt><a href="io/atomix/copycat/client/RecoveryStrategies.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">RecoveryStrategies</span></a> - Enum in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
+<dd>
+<div class="block">Strategies for recovering lost client sessions.</div>
+</dd>
+<dt><a href="io/atomix/copycat/client/RecoveryStrategy.html" title="interface in io.atomix.copycat.client"><span class="typeNameLink">RecoveryStrategy</span></a> - Interface in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
+<dd>
+<div class="block">Strategy for recovering client sessions on failures.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/Entry.html#references--">references()</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/StateMachine.html#register-io.atomix.copycat.client.session.Session-">register(Session)</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server">StateMachine</a></dt>
@@ -2545,11 +2577,19 @@
 <dd>
 <div class="block">Returns the enum constant of this type with the specified name.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/ConnectionStrategies.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum io.atomix.copycat.client.<a href="io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this type with the specified name.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/error/RaftError.Type.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum io.atomix.copycat.client.error.<a href="io/atomix/copycat/client/error/RaftError.Type.html" title="enum in io.atomix.copycat.client.error">RaftError.Type</a></dt>
 <dd>
 <div class="block">Returns the enum constant of this type with the specified name.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/Query.ConsistencyLevel.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum io.atomix.copycat.client.<a href="io/atomix/copycat/client/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat.client">Query.ConsistencyLevel</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this type with the specified name.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RecoveryStrategies.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum io.atomix.copycat.client.<a href="io/atomix/copycat/client/RecoveryStrategies.html" title="enum in io.atomix.copycat.client">RecoveryStrategies</a></dt>
 <dd>
 <div class="block">Returns the enum constant of this type with the specified name.</div>
 </dd>
@@ -2579,12 +2619,22 @@ the order they are declared.</div>
 <div class="block">Returns an array containing the constants of this enum type, in
 the order they are declared.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/ConnectionStrategies.html#values--">values()</a></span> - Static method in enum io.atomix.copycat.client.<a href="io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum type, in
+the order they are declared.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/error/RaftError.Type.html#values--">values()</a></span> - Static method in enum io.atomix.copycat.client.error.<a href="io/atomix/copycat/client/error/RaftError.Type.html" title="enum in io.atomix.copycat.client.error">RaftError.Type</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum type, in
 the order they are declared.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/Query.ConsistencyLevel.html#values--">values()</a></span> - Static method in enum io.atomix.copycat.client.<a href="io/atomix/copycat/client/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat.client">Query.ConsistencyLevel</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum type, in
+the order they are declared.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RecoveryStrategies.html#values--">values()</a></span> - Static method in enum io.atomix.copycat.client.<a href="io/atomix/copycat/client/RecoveryStrategies.html" title="enum in io.atomix.copycat.client">RecoveryStrategies</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum type, in
 the order they are declared.</div>
@@ -2708,6 +2758,10 @@ the order they are declared.</div>
 <div class="block">Sets the percentage of entries in the segment that must be cleaned before a segment can be compacted,
  returning the builder for method chaining.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.Builder.html#withConnectionStrategy-io.atomix.copycat.client.ConnectionStrategy-">withConnectionStrategy(ConnectionStrategy)</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client">CopycatClient.Builder</a></dt>
+<dd>
+<div class="block">Sets the client connection strategy.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withDirectory-java.lang.String-">withDirectory(String)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
 <dd>
 <div class="block">Sets the log directory, returning the builder for method chaining.</div>
@@ -2759,6 +2813,14 @@ the order they are declared.</div>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.Builder.html#withIndex-long-">withIndex(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.Builder.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor.Builder</a></dt>
 <dd>
 <div class="block">Sets the segment index.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/response/KeepAliveResponse.Builder.html#withLeader-io.atomix.catalyst.transport.Address-">withLeader(Address)</a></span> - Method in class io.atomix.copycat.client.response.<a href="io/atomix/copycat/client/response/KeepAliveResponse.Builder.html" title="class in io.atomix.copycat.client.response">KeepAliveResponse.Builder</a></dt>
+<dd>
+<div class="block">Sets the response leader.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/response/RegisterResponse.Builder.html#withLeader-io.atomix.catalyst.transport.Address-">withLeader(Address)</a></span> - Method in class io.atomix.copycat.client.response.<a href="io/atomix/copycat/client/response/RegisterResponse.Builder.html" title="class in io.atomix.copycat.client.response">RegisterResponse.Builder</a></dt>
+<dd>
+<div class="block">Sets the response leader.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/request/AppendRequest.Builder.html#withLeader-int-">withLeader(int)</a></span> - Method in class io.atomix.copycat.server.request.<a href="io/atomix/copycat/server/request/AppendRequest.Builder.html" title="class in io.atomix.copycat.server.request">AppendRequest.Builder</a></dt>
 <dd>
@@ -2839,6 +2901,10 @@ the order they are declared.</div>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/request/QueryRequest.Builder.html#withQuery-io.atomix.copycat.client.Query-">withQuery(Query)</a></span> - Method in class io.atomix.copycat.client.request.<a href="io/atomix/copycat/client/request/QueryRequest.Builder.html" title="class in io.atomix.copycat.client.request">QueryRequest.Builder</a></dt>
 <dd>
 <div class="block">Sets the request query.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.Builder.html#withRecoveryStrategy-io.atomix.copycat.client.RecoveryStrategy-">withRecoveryStrategy(RecoveryStrategy)</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client">CopycatClient.Builder</a></dt>
+<dd>
+<div class="block">Sets the client recovery strategy.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/response/OperationResponse.Builder.html#withResult-java.lang.Object-">withResult(Object)</a></span> - Method in class io.atomix.copycat.client.response.<a href="io/atomix/copycat/client/response/OperationResponse.Builder.html" title="class in io.atomix.copycat.client.response">OperationResponse.Builder</a></dt>
 <dd>
