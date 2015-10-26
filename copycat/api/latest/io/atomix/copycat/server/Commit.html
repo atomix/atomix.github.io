@@ -210,15 +210,17 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <div class="block">Returns the commit index.
  <p>
  This is the index at which the committed <a href="../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client"><code>Operation</code></a> was written in the Raft log.
- Copycat guarantees that this index will be the same for all instances of the given operation on all nodes in the
- cluster.
+ Copycat guarantees that this index will be unique for <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a> commits and will be the same for all
+ instances of the given operation on all servers in the cluster.
  <p>
- Note that for <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> operations, the returned <code>index</code> may actually represent
- the last committed index in the Raft log since queries are not actually written to disk. This, however, does not
- break the single index guarantee since queries will only be applied to the leader's <a href="../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server"><code>StateMachine</code></a>.</div>
+ For <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> operations, the returned <code>index</code> may actually be representative of the last committed
+ index in the Raft log since queries are not actually written to disk. Thus, query commits cannot be assumed
+ to have unique indexes.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The commit index.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - If the commit is <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a> or was <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>cleaned</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -237,6 +239,8 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The session that created the commit.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - If the commit is <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a> or was <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>cleaned</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -251,13 +255,16 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
  <p>
  The time is representative of the time at which the leader wrote the operation to its log. Because instants
  are replicated through the Raft consensus algorithm, they are guaranteed to be consistent across all servers
- and therefore can be used to perform time-dependent operations such as expiring keys or timeouts.
+ and therefore can be used to perform time-dependent operations such as expiring keys or timeouts. Additionally,
+ commit times are guaranteed to progress monotonically, never going back in time.
  <p>
  Users should <em>never</em> use <code>System</code> time to control behavior in a state machine and should instead rely
- upon <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a> times for time-based controls.</div>
+ upon <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a> times or use the <a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server"><code>StateMachineExecutor</code></a> for time-based controls.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The commit time.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - If the commit is <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a> or was <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>cleaned</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -274,6 +281,8 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The commit type.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - If the commit is <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a> or was <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>cleaned</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -288,6 +297,8 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The operation submitted by the user.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - If the commit is <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a> or was <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>cleaned</code></a></dd>
 </dl>
 </li>
 </ul>

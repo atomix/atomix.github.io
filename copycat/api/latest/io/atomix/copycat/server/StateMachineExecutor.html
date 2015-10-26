@@ -110,39 +110,19 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/co
 <div class="block">Facilitates registration and execution of state machine commands and provides deterministic scheduling.
  <p>
  The state machine executor is responsible for managing input to and output from a <a href="../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server"><code>StateMachine</code></a>.
- When a state machine is started within a <a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><code>CopycatServer</code></a>, the state machine is
- <a href="../../../../io/atomix/copycat/server/StateMachine.html#configure-io.atomix.copycat.server.StateMachineExecutor-"><code>configured</code></a> with a state machine executor. The state machine
- must register <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a> and <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a>
- (operations) callbacks via the executor.
- <pre>
- <code>
- public class MapStateMachine extends StateMachine {
-   private final Map&lt;Object, Commit&lt;Put&gt;&gt; map = new HashMap&lt;&gt;();
-
-   protected void configure(StateMachineExecutor executor) {
-     executor.register(PutCommand.class, this::put);
-   }
-
-   private Object put(Commit&lt;Put&gt; commit) {
-     return map.put(commit.operation().key(), commit);
-   }
- }
- </code>
- </pre>
  As operations are committed to the Raft log, the executor is responsible for applying them to the state machine.
  <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> are guaranteed to be applied to the state machine in the order in which
  they appear in the Raft log and always in the same thread, so state machines don't have to be thread safe.
- <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a> are not generally written to the Raft log and will instead be applied
- according to their <code>Query.ConsistencyLevel</code>.
+ <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a> are not generally written to the Raft log and will instead be applied according to their
+ <code>Query.ConsistencyLevel</code>.
  <p>
- State machines can use the executor to provide deterministic scheduling during command operations.
+ State machines can use the executor to provide deterministic scheduling during the execution of command callbacks.
  <pre>
    <code>
    private Object putWithTtl(Commit&lt;PutWithTtl&gt; commit) {
      map.put(commit.operation().key(), commit);
      executor().schedule(Duration.ofMillis(commit.operation().ttl()), () -&gt; {
-       map.remove(commit.operation().key());
-       commit.clean();
+       map.remove(commit.operation().key()).clean();
      });
    }
    </code>
@@ -154,11 +134,11 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/co
  Prior to the execution of a command, any expired scheduled callbacks will be executed based on the command's
  logged timestamp.
  <p>
- It's important to note that callbacks can only be scheduled during <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a>
- operations or by recursive scheduling. If a state machine attempts to schedule a callback via the executor
- during the execution of a <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a>, a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang"><code>IllegalStateException</code></a> will be
- thrown. This is because queries are usually only applied on a single state machine within the cluster, and
- so scheduling callbacks in reaction to query execution would not be deterministic.</div>
+ It's important to note that callbacks can only be scheduled during <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a> operations or by recursive
+ scheduling. If a state machine attempts to schedule a callback via the executor during the execution of a
+ <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a>, a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang"><code>IllegalStateException</code></a> will be thrown. This is because queries are usually only applied
+ on a single state machine within the cluster, and so scheduling callbacks in reaction to query execution would
+ not be deterministic.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>

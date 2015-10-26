@@ -120,28 +120,44 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  <p>
  Users should extend this class to create a state machine for use within a <a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><code>CopycatServer</code></a>.
  <p>
- State machines are responsible for handling <a href="../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client"><code>operations</code></a> submitted to the Raft
- cluster and filtering <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>committed</code></a> operations out of the Raft log. The most
- important rule of state machines is that <em>state machines must be deterministic</em> in order to maintain Copycat's
- consistency guarantees. That is, state machines must not change their behavior based on external influences and have
- no side effects. Users should <em>never</em> use <code>System</code> time to control behavior within a state machine.
+ State machines are responsible for handling <a href="../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client"><code>operations</code></a> submitted to the Raft cluster and
+ filtering <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>committed</code></a> operations out of the Raft log. The most important rule of state machines is
+ that <em>state machines must be deterministic</em> in order to maintain Copycat's consistency guarantees. That is,
+ state machines must not change their behavior based on external influences and have no side effects. Users should
+ <em>never</em> use <code>System</code> time to control behavior within a state machine.
  <p>
- When <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a> (i.e. <em>operations</em>) are submitted
- to the Raft cluster, the <a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><code>CopycatServer</code></a> will log and replicate them as necessary
- and, once complete, apply them to the configured state machine.
+ When <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a> (i.e. <em>operations</em>) are submitted to the Raft cluster,
+ the <a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><code>CopycatServer</code></a> will log and replicate them as necessary and, once complete, apply them to the configured
+ state machine.
  <p>
- Override the <a href="../../../../io/atomix/copycat/server/StateMachine.html#configure-io.atomix.copycat.server.StateMachineExecutor-"><code>configure(StateMachineExecutor)</code></a> method to register state machine operations.
+ <b>State machine operations</b>
+ <p>
+ State machine operations are implemented as methods on the state machine. Operations can be automatically detected
+ by the state machine during setup or can be explicitly registered by overriding the <a href="../../../../io/atomix/copycat/server/StateMachine.html#configure-io.atomix.copycat.server.StateMachineExecutor-"><code>configure(StateMachineExecutor)</code></a>
+ method. Each operation method must take a single <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a> argument for a specific operation type.
  <pre>
    <code>
    public class MapStateMachine extends StateMachine {
-     private final Map&lt;Object, Commit&lt;Put&gt;&gt; map = new HashMap&lt;&gt;();
 
-     protected void configure(StateMachineExecutor executor) {
-       executor.register(PutCommand.class, this::put);
+     public Object put(Commit&lt;Put&gt; commit) {
+       Commit&lt;Put&gt; previous = map.put(commit.operation().key(), commit);
+       if (previous != null) {
+         try {
+           return previous.operation().value();
+         } finally {
+           previous.clean();
+         }
+       }
+       return null;
      }
 
-     private Object put(Commit&lt;Put&gt; commit) {
-       return map.put(commit.operation().key(), commit);
+     public Object get(Commit&lt;Get&gt; commit) {
+       try {
+         Commit&lt;Put&gt; current = map.get(commit.operation().key());
+         return current != null ? current.operation().value() : null;
+       } finally {
+         commit.close();
+       }
      }
    }
    </code>
@@ -159,10 +175,23 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  same output (return value). The return value of each operation callback is the response value that will be sent back
  to the client.
  <p>
+ <b>Deterministic scheduling</b>
+ <p>
  The <a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server"><code>StateMachineExecutor</code></a> is responsible for executing state machine operations sequentially and provides an
  interface similar to that of <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html?is-external=true" title="class or interface in java.util.concurrent"><code>ScheduledExecutorService</code></a> to allow state machines to schedule
  time-based callbacks. Because of the determinism requirement, scheduled callbacks are guaranteed to be executed
- deterministically as well. See the <a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server"><code>StateMachineExecutor</code></a> documentation for more information.
+ deterministically as well. The executor can be accessed via the <a href="../../../../io/atomix/copycat/server/StateMachine.html#executor--"><code>executor()</code></a> accessor method.
+ See the <a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server"><code>StateMachineExecutor</code></a> documentation for more information.
+ <pre>
+   <code>
+   public void putWithTtl(Commit&lt;PutWithTtl&gt; commit) {
+     map.put(commit.operation().key(), commit);
+     executor.schedule(Duration.ofMillis(commit.operation().ttl()), () -&gt; {
+       map.remove(commit.operation().key()).clean();
+     });
+   }
+   </code>
+ </pre>
  <p>
  During command or scheduled callbacks, <a href="../../../../io/atomix/copycat/server/session/Sessions.html" title="interface in io.atomix.copycat.server.session"><code>Sessions</code></a> can be used to send state machine events back to the client.
  For instance, a lock state machine might use a client's <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a> to send a lock event to the client.
@@ -180,6 +209,9 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
    }
    </code>
  </pre>
+ Attempts to <a href="../../../../io/atomix/copycat/client/session/Session.html#publish-java.lang.String-java.lang.Object-"><code>publish</code></a> events during the execution will result in an
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang"><code>IllegalStateException</code></a>.
+ <p>
  As with other operations, state machines should ensure that the publishing of session events is deterministic.
  Messages published via a <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a> will be managed according to the <code>Command.ConsistencyLevel</code>
  of the command being executed at the time the event was <a href="../../../../io/atomix/copycat/client/session/Session.html#publish-java.lang.String-java.lang.Object-"><code>published</code></a>. Each command may
@@ -193,11 +225,26 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  consistency and fault tolerance. In the event that a server fails after publishing a session event, the client will transparently
  reconnect to another server and retrieve lost event messages.
  <p>
+ <b>Cleaning commits</b>
+ <p>
+ As operations are logged, replicated, committed, and applied to the state machine, the underlying
+ <a href="../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> grows. Without freeing unnecessary commits from the log it would eventually
+ consume all available disk or memory. Copycat uses a log cleaning algorithm to remove <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a>s that no longer
+ contribute to the state machine's state from the log. To aid in this process, it's the responsibility of state machine
+ implementations to indicate when each commit is no longer needed by calling <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>Commit.clean()</code></a>.
+ <p>
  State machines should hold on to the <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a> object passed to operation callbacks for as long as the commit
  contributes to the state machine's state. Once a commit is no longer needed, <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> commits should be
  <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a> and <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a> commits should be <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>cleaned</code></a>. Cleaning notifies
- the log compaction algorithm that it's safe to remove the commit from the internal commit log. Note that if commits
- are not properly cleaned from the log and is instead garbage collected, a warning will be logged.</div>
+ the log compaction algorithm that it's safe to remove the commit from the internal commit log. Copycat will guarantee
+ that <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a>s are persisted in the underlying <a href="../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> as long as is
+ necessary (even after a commit is cleaned) to ensure all operations are applied to a majority of servers and to
+ guarantee delivery of <a href="../../../../io/atomix/copycat/client/session/Session.html#publish-java.lang.String-java.lang.Object-"><code>session events</code></a> published as a result of specific
+ operations. State machines only need to specify when it's safe to remove each commit from the log.
+ <p>
+ Note that if commits are not properly cleaned from the log and are instead garbage collected, a warning will be logged.
+ Failure to <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>Commit.clean()</code></a> a <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a> commit from the log should be considered a critical bug since
+ instances of the command can eventually fill up disk.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

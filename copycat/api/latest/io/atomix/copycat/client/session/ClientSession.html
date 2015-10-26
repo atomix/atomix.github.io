@@ -251,7 +251,7 @@ implements <a href="../../../../../io/atomix/copycat/client/session/Session.html
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#publish-java.lang.String-">publish</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;event)</code>
-<div class="block">Publishes an empty event to the session.</div>
+<div class="block">Publishes a <code>null</code> named event to the session.</div>
 </td>
 </tr>
 <tr id="i14" class="altColor">
@@ -453,13 +453,14 @@ implements <a href="../../../../../io/atomix/copycat/client/session/Session.html
 <h4>publish</h4>
 <pre>public&nbsp;<a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>&nbsp;publish(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;event)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/copycat/client/session/Session.html#publish-java.lang.String-">Session</a></code></span></div>
-<div class="block">Publishes an empty event to the session.
+<div class="block">Publishes a <code>null</code> named event to the session.
  <p>
  When an event is published via the <a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a>, it is sent to the other side of the session's
- connection. If the event is sent from the client-side of the session, the event will be handled on
- the client side as well. Sessions guarantee serializable consistency. If an event is sent from a Raft
- server to a client that is disconnected or otherwise can't receive the event, the event will be resent
- once the client connects to another server as long as its session has not <a href="../../../../../io/atomix/copycat/client/session/Session.html#isExpired--"><code>expired</code></a>.
+ connection. Events can only be sent from a server-side replicated state machine to a client. Attempts
+ to send events from the client-side of the session will result in the event being handled by the client,
+ Sessions guarantee serializable consistency. If an event is sent from a Raft server to a client that is
+ disconnected or otherwise can't receive the event, the event will be resent once the client connects to
+ another server as long as its session has not <a href="../../../../../io/atomix/copycat/client/session/Session.html#isExpired--"><code>expired</code></a>.
  <p>
  Event messages must be serializable. For fast serialization, message types should implement
  <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a> or register a custom
@@ -491,10 +492,11 @@ implements <a href="../../../../../io/atomix/copycat/client/session/Session.html
 <div class="block">Publishes an event to the session.
  <p>
  When an event is published via the <a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a>, it is sent to the other side of the session's
- connection. If the event is sent from the client-side of the session, the event will be handled on
- the client side as well. Sessions guarantee serializable consistency. If an event is sent from a Raft
- server to a client that is disconnected or otherwise can't receive the event, the event will be resent
- once the client connects to another server as long as its session has not <a href="../../../../../io/atomix/copycat/client/session/Session.html#isExpired--"><code>expired</code></a>.
+ connection. Events can only be sent from a server-side replicated state machine to a client. Attempts
+ to send events from the client-side of the session will result in the event being handled by the client,
+ Sessions guarantee serializable consistency. If an event is sent from a Raft server to a client that is
+ disconnected or otherwise can't receive the event, the event will be resent once the client connects to
+ another server as long as its session has not <a href="../../../../../io/atomix/copycat/client/session/Session.html#isExpired--"><code>expired</code></a>.
  <p>
  Event messages must be serializable. For fast serialization, message types should implement
  <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a> or register a custom
