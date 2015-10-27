@@ -20,6 +20,7 @@ Atomix can be found in standard Maven repositories. To add Atomix core - which i
 ```
 
 Groups of Atomix core distributed resources - i.e. [collections], [atomic variables][atomics], and [coordination tools][coordination] - are each packaged in separate artifacts based on the type of resource. The available resource artifacts are as follows:
+
 * `atomix-collections` provides distributed collections like maps, multimaps, sets, and queues
 * `atomix-atomic` provides distributed atomic variables
 * `atomix-coordination` provides distributed coordination tools like locks, leader elections, group membership, and messaging
