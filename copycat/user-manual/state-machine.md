@@ -100,6 +100,7 @@ public class Put<K, V> implements Command {
 The consistency level returned by the overridden `consistency()` method amounts to a *minimum consistency requirement*. In many cases, a `CAUSAL` command can actually result in `LINEARIZABLE` write depending on whether the client submits concurrent commands.
 
 Copycat provides two consistency levels for commands:
+
 * `Command.ConsistencyLevel.LINEARIZABLE` - Provides guaranteed linearizability by ensuring commands are written to the Raft log in the order in which they occurred on the client and events are received by clients between request and response.
 * `Command.ConsistencyLevel.SEQUENTIAL` - Provides guaranteed linearizability for commands and sequential consistency for related events. Events may be received by clients at some arbitrary point in the future.
 * `Command.ConsistencyLevel.NONE` - Provides no additional consistency guarantees, potentially allowing a single command to be applied to the state machine multiple times.
@@ -137,6 +138,7 @@ public class Get<T> implements Query {
 The consistency level returned by the overridden `consistency()` method amounts to a *minimum consistency requirement*. In many cases, a `SEQUENTIAL` query can actually result in `LINEARIZABLE` read depending the server to which a client submits queries, but clients can only rely on the configured consistency level.
 
 Copycat provides four consistency levels for queries:
+
 * `Query.ConsistencyLevel.LINEARIZABLE` - Provides guaranteed linearizability by forcing all reads to go through the leader and verifying leadership with a majority of the Raft cluster prior to the completion of all operations
 * `Query.ConsistencyLevel.BOUNDED_LINEARIZABLE` - Provides best-effort optimized linearizability by forcing all reads to go through the leader but allowing most queries to be executed without contacting a majority of the cluster so long as less than the election timeout has passed since the last time the leader communicated with a majority
 * `Query.ConsistencyLevel.SEQUENTIAL` - Provides sequential consistency by allowing clients to read from followers and ensuring that clients see state progress monotonically
@@ -180,7 +182,7 @@ for (Session session : context().sessions()) {
 
 ### Commit cleaning
 
-As commands are submitted to the cluster and applied to the Raft state machine, the underlying [log][io-log] grows. Without some mechanism to reduce the size of the log, the log would grow without bound and ultimately servers would run out of disk space. Raft suggests a few different approaches of handling log compaction. Copycat uses the [log cleaning][io-log-cleaning] approach.
+As commands are submitted to the cluster and applied to the Raft state machine, the underlying log grows. Without some mechanism to reduce the size of the log, the log would grow without bound and ultimately servers would run out of disk space. Raft suggests a few different approaches of handling log compaction. Copycat uses the log cleaning approach.
 
 `Commit` objects are backed by entries in Copycat's replicated log. When a `Commit` is no longer needed by the `StateMachine`, the state machine should clean the commit from Copycat's log by calling the `clean()` method:
 
@@ -206,7 +208,7 @@ Once the underlying `Log` has grown large enough, and once enough commits have b
 In addition to registering operation callbacks, the `StateMachineExecutor` also facilitates deterministic scheduling based on the Raft replicated log.
 
 ```java
-executor.schedule(Duration.ofSeconds(1), () -> System.out.println("One deterministic second later"));
+executor().schedule(Duration.ofSeconds(1), () -> System.out.println("One deterministic second later"));
 ```
 
 Because of the complexities of coordinating distributed systems, time does not advance at the same rate on all servers in the cluster. What is essential, though, is that time-based callbacks be executed at the same point in the Raft log on all nodes. In order to accomplish this, the leader writes an approximate `Instant` to the replicated log for each command. When a command is applied to the state machine, the command's timestamp is used to invoke any outstanding scheduled callbacks. This means the granularity of scheduled callbacks is limited by the minimum time between commands submitted to the cluster, including session register and keep-alive requests. Thus, users should not rely on `StateMachineExecutor` scheduling for accuracy.

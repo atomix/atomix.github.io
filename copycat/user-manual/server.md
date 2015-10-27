@@ -9,13 +9,13 @@ first-section: server
 
 ## CopycatServer
 
-The [CopycatServer][CopycatServer] class is a feature complete implementation of the [Raft consensus algorithm][Raft]. `CopycatServer` underlies all distributed resources supports by Copycat's high-level APIs.
+The [CopycatServer][CopycatServer] class is a feature complete implementation of the [Raft consensus algorithm][Raft]. `CopycatServer` underlies all distributed resources supported by Copycat's high-level APIs.
 
 Each `CopycatServer` consists of three essential components:
 
 * [Transport][transport] - Used to communicate with clients and other Raft servers
-* [Storage][Storage] - Used to persist [commands](#commands) to memory or disk
-* [StateMachine](#state-machines) - Represents state resulting from [commands](#commands) logged and replicated via Raft
+* [Storage][storage-jd] - Used to persist [commands] to memory or disk
+* [StateMachine][state-machines] - Represents state resulting from [commands] logged and replicated via Raft
 
 To create a Raft server, use the server [Builder][builders]:
 

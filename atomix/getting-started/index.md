@@ -59,7 +59,7 @@ With the membership list, create an `AtomixServer.Builder` to build the server:
 AtomixServer.Builder builder = AtomixServer.builder(address, members);
 ```
 
-Each server can optionally be configured with a [Storage] module and [Transport]. The `Storage` object can be configured with differen `StorageLevel`s, such as `StorageLevel.MEMORY` or `StorageLevel.DISK`, indicating how the server should store state changes. The [NettyTransport] provides a fast, reliable communication layer for the cluster.
+Each server can optionally be configured with a [Storage][storage-jd] module and [Transport]. The `Storage` object can be configured with differen `StorageLevel`s, such as `StorageLevel.MEMORY` or `StorageLevel.DISK`, indicating how the server should store state changes. The [NettyTransport] provides a fast, reliable communication layer for the cluster.
 
 ```java
 builder.withStorage(new Storage(StorageLevel.MEMORY)).withTransport(new NettyTransport());

@@ -41,7 +41,7 @@ List<Address> members = Arrays.asList(
 
 The members in the `Address` list must be representative of at least one reachable member of the cluster. If the server can reach a member that can communicate with the leader, it can join the cluster.
 
-Finally, the `AtomixServer` is responsible for persisting resource state changes. To do so, the underlying [Copycat server][copycat-server] writes state changes to a persistent commit log. Users must provide a [Storage][Storage] object which specifies how the underlying `Log` should be created and managed.
+Finally, the `AtomixServer` is responsible for persisting resource state changes. To do so, the underlying [Copycat server][copycat-server] writes state changes to a persistent commit log. Users must provide a [Storage][storage-jd] object which specifies how the underlying `Log` should be created and managed.
 
 To create a `Storage` object, use the storage [Builder][builders] or for simpler configurations simply pass the log directory into the `Storage` constructor:
 
@@ -49,7 +49,7 @@ To create a `Storage` object, use the storage [Builder][builders] or for simpler
 Storage storage = new Storage("logs");
 ```
 
-The [Storage] object can optionally be configured with a custom `StorageLevel` which dictates how logs should be stored. The storage module supports the following storage levels:
+The [Storage][storage-jd] object can optionally be configured with a custom `StorageLevel` which dictates how logs should be stored. The storage module supports the following storage levels:
 * `StorageLevel.MEMORY` - Stores log entries in an off-heap memory buffer
 * `StorageLevel.MAPPED` - Stores log entries in a memory mapped file buffer
 * `StorageLevel.DISK` - Stores log entries in a `RandomAccessFile` backed buffer
@@ -132,7 +132,7 @@ List<Address> members = Arrays.asList(
 
 The members in the `Address` list must be representative of at least one reachable member of the cluster. If the replica can reach a member that can communicate with the leader, it can join the cluster.
 
-Finally, the `AtomixReplica` is responsible for persisting resource state changes. To do so, the underlying Raft server writes state changes to a consistent replicated commit log. Users must provide a [Storage][Storage] object which specifies how the underlying `Log` should be created and managed.
+Finally, the `AtomixReplica` is responsible for persisting resource state changes. To do so, the underlying Raft server writes state changes to a consistent replicated commit log. Users must provide a [Storage][storage-jd] object which specifies how the underlying `Log` should be created and managed.
 
 To create a `Storage` object, use the storage [Builder][builders] or for simpler configurations simply pass the log directory into the `Storage` constructor:
 
@@ -140,7 +140,7 @@ To create a `Storage` object, use the storage [Builder][builders] or for simpler
 Storage storage = new Storage("logs");
 ```
 
-The [Storage] object can optionally be configured with a custom `StorageLevel` which dictates how logs should be stored. The storage module supports the following storage levels:
+The [Storage][storage-jd] object can optionally be configured with a custom `StorageLevel` which dictates how logs should be stored. The storage module supports the following storage levels:
 * `StorageLevel.MEMORY` - Stores log entries in an off-heap memory buffer
 * `StorageLevel.MAPPED` - Stores log entries in a memory mapped file buffer
 * `StorageLevel.DISK` - Stores log entries in a `RandomAccessFile` backed buffer
