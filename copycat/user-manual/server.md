@@ -27,12 +27,9 @@ CopycatServer server = CopycatServer.builder(address, members)
   .build();
 ```
 
-The only two required arguments are those required by the `CopycatServer.builder` static factory method. The `address` passed
-into the builder factory is the `Address` of the server within the provided list of `Address`es.
+The only two required arguments are those required by the `CopycatServer.builder` static factory method. The `address` passed into the builder factory is the `Address` of the server within the provided list of `Address`es.
 
-Users can optionally configure the [Catalyst][catalyst] transport to use and configure the Raft storage (log) module.
-To manage state in the Raft cluster, users must provide a `StateMachine` implementation to the server. The state machine should
-*always* be consistent and deterministic across all servers in the cluster.
+Users can optionally configure the [Catalyst][catalyst] transport to use and configure the Raft storage (log) module. To manage state in the Raft cluster, users must provide a `StateMachine` implementation to the server. The state machine should *always* be consistent and deterministic across all servers in the cluster.
 
 Once the server has been created, call `open()` to start the server:
 
