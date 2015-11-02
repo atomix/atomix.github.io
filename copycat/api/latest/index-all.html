@@ -1007,7 +1007,7 @@
 <dd>
 <div class="block">Returns the connection address.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/MajorCompactionManager.html#getCleanableGroups-io.atomix.copycat.server.storage.Storage-io.atomix.copycat.server.storage.SegmentManager-">getCleanableGroups(Storage, SegmentManager)</a></span> - Static method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/MajorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction">MajorCompactionManager</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/MajorCompactionManager.html#getCleanableGroups-io.atomix.copycat.server.storage.Storage-io.atomix.copycat.server.storage.SegmentManager-">getCleanableGroups(Storage, SegmentManager)</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/MajorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction">MajorCompactionManager</a></dt>
 <dd>
 <div class="block">Returns a list of segments lists to clean, where segments are grouped according to how they will be merged during 
  cleaning.</div>
@@ -1079,6 +1079,10 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/QueryEntry.html#getVersion--">getVersion()</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/QueryEntry.html" title="class in io.atomix.copycat.server.storage.entry">QueryEntry</a></dt>
 <dd>
 <div class="block">Returns the query version.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/request/AppendRequest.html#globalIndex--">globalIndex()</a></span> - Method in class io.atomix.copycat.server.request.<a href="io/atomix/copycat/server/request/AppendRequest.html" title="class in io.atomix.copycat.server.request">AppendRequest</a></dt>
+<dd>
+<div class="block">Returns the leader's global index.</div>
 </dd>
 </dl>
 <a name="I:H">
@@ -1297,6 +1301,10 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/Session.html#isExpired--">isExpired()</a></span> - Method in interface io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a></dt>
 <dd>
 <div class="block">Returns a boolean value indicating whether the session is expired.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/UnregisterEntry.html#isExpired--">isExpired()</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/UnregisterEntry.html" title="class in io.atomix.copycat.server.storage.entry">UnregisterEntry</a></dt>
+<dd>
+<div class="block">Returns whether the session was expired by a leader.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#isFull--">isFull()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>
@@ -1522,11 +1530,17 @@
 <dd>
 <div class="block">Builds tasks for the <a href="io/atomix/copycat/server/storage/compaction/Compaction.html#MAJOR"><code>Compaction.MAJOR</code></a> compaction process.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/MajorCompactionManager.html#MajorCompactionManager--">MajorCompactionManager()</a></span> - Constructor for class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/MajorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction">MajorCompactionManager</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="io/atomix/copycat/server/storage/compaction/MajorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><span class="typeNameLink">MajorCompactionTask</span></a> - Class in <a href="io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a></dt>
 <dd>
 <div class="block">Removes tombstones from the log and combines <a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s to reclaim disk space.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/Compactor.html#majorIndex-long-">majorIndex(long)</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></dt>
+<dd>
+<div class="block">Sets the maximum compaction index for major compaction.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/Compactor.html#majorIndex--">majorIndex()</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></dt>
+<dd>
+<div class="block">Returns the maximum compaction index for major compaction.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.html#maxEntries--">maxEntries()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a></dt>
 <dd>
@@ -1574,12 +1588,18 @@
 <dd>
 <div class="block">Builds tasks for the <a href="io/atomix/copycat/server/storage/compaction/Compaction.html#MINOR"><code>Compaction.MINOR</code></a> compaction process.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/MinorCompactionManager.html#MinorCompactionManager--">MinorCompactionManager()</a></span> - Constructor for class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/MinorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction">MinorCompactionManager</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><span class="typeNameLink">MinorCompactionTask</span></a> - Class in <a href="io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a></dt>
 <dd>
 <div class="block">Removes <a href="io/atomix/copycat/server/storage/Log.html#clean-long-"><code>cleaned</code></a> entries from an individual
  log <a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a> to reclaim disk space.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/Compactor.html#minorIndex-long-">minorIndex(long)</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></dt>
+<dd>
+<div class="block">Sets the maximum compaction index for minor compaction.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/Compactor.html#minorIndex--">minorIndex()</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></dt>
+<dd>
+<div class="block">Returns the maximum compaction index for minor compaction.</div>
 </dd>
 </dl>
 <a name="I:N">
@@ -1951,6 +1971,8 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/TimestampedEntry.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject(BufferInput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/TimestampedEntry.html" title="class in io.atomix.copycat.server.storage.entry">TimestampedEntry</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/UnregisterEntry.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject(BufferInput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/UnregisterEntry.html" title="class in io.atomix.copycat.server.storage.entry">UnregisterEntry</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RecoveryStrategy.html#recover-io.atomix.copycat.client.RaftClient-">recover(RaftClient)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/RecoveryStrategy.html" title="interface in io.atomix.copycat.client">RecoveryStrategy</a></dt>
 <dd>
 <div class="block">Recovers the session.</div>
@@ -2180,6 +2202,10 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/KeepAliveEntry.html#setEventVersion-long-">setEventVersion(long)</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/KeepAliveEntry.html" title="class in io.atomix.copycat.server.storage.entry">KeepAliveEntry</a></dt>
 <dd>
 <div class="block">Sets the event version number.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/UnregisterEntry.html#setExpired-boolean-">setExpired(boolean)</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/UnregisterEntry.html" title="class in io.atomix.copycat.server.storage.entry">UnregisterEntry</a></dt>
+<dd>
+<div class="block">Sets whether the session was expired by a leader.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/Entry.html#setIndex-long-">setIndex(long)</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a></dt>
 <dd>
@@ -2802,6 +2828,10 @@ the order they are declared.</div>
 <dd>
 <div class="block">Sets the event version number.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/request/AppendRequest.Builder.html#withGlobalIndex-long-">withGlobalIndex(long)</a></span> - Method in class io.atomix.copycat.server.request.<a href="io/atomix/copycat/server/request/AppendRequest.Builder.html" title="class in io.atomix.copycat.server.request">AppendRequest.Builder</a></dt>
+<dd>
+<div class="block">Sets the request global index.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.Builder.html#withHeartbeatInterval-java.time.Duration-">withHeartbeatInterval(Duration)</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></dt>
 <dd>
 <div class="block">Sets the Raft heartbeat interval, returning the Raft configuration for method chaining.</div>
@@ -3099,6 +3129,8 @@ the order they are declared.</div>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/SessionEntry.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject(BufferOutput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/SessionEntry.html" title="class in io.atomix.copycat.server.storage.entry">SessionEntry</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/TimestampedEntry.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject(BufferOutput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/TimestampedEntry.html" title="class in io.atomix.copycat.server.storage.entry">TimestampedEntry</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/UnregisterEntry.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject(BufferOutput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/UnregisterEntry.html" title="class in io.atomix.copycat.server.storage.entry">UnregisterEntry</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:D">D</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:F">F</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:H">H</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:J">J</a>&nbsp;<a href="#I:K">K</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:N">N</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:Q">Q</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<a href="#I:U">U</a>&nbsp;<a href="#I:V">V</a>&nbsp;<a href="#I:W">W</a>&nbsp;</div>

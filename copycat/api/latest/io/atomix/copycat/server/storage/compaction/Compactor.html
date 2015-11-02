@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -189,6 +189,30 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <div class="block">Compacts the log using the given <a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionManager.html" title="interface in io.atomix.copycat.server.storage.compaction"><code>CompactionManager</code></a>.</div>
 </td>
 </tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#majorIndex--">majorIndex</a></span>()</code>
+<div class="block">Returns the maximum compaction index for major compaction.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#majorIndex-long-">majorIndex</a></span>(long&nbsp;index)</code>
+<div class="block">Sets the maximum compaction index for major compaction.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#minorIndex--">minorIndex</a></span>()</code>
+<div class="block">Returns the maximum compaction index for minor compaction.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#minorIndex-long-">minorIndex</a></span>(long&nbsp;index)</code>
+<div class="block">Sets the maximum compaction index for minor compaction.</div>
+</td>
+</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -230,6 +254,66 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="minorIndex-long-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>minorIndex</h4>
+<pre>public&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a>&nbsp;minorIndex(long&nbsp;index)</pre>
+<div class="block">Sets the maximum compaction index for minor compaction.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>index</code> - The maximum compaction index for minor compaction.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The log compactor.</dd>
+</dl>
+</li>
+</ul>
+<a name="minorIndex--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>minorIndex</h4>
+<pre>public&nbsp;long&nbsp;minorIndex()</pre>
+<div class="block">Returns the maximum compaction index for minor compaction.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The maximum compaction index for minor compaction.</dd>
+</dl>
+</li>
+</ul>
+<a name="majorIndex-long-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>majorIndex</h4>
+<pre>public&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a>&nbsp;majorIndex(long&nbsp;index)</pre>
+<div class="block">Sets the maximum compaction index for major compaction.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>index</code> - The maximum compaction index for major compaction.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The log compactor.</dd>
+</dl>
+</li>
+</ul>
+<a name="majorIndex--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>majorIndex</h4>
+<pre>public&nbsp;long&nbsp;majorIndex()</pre>
+<div class="block">Returns the maximum compaction index for major compaction.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The maximum compaction index for major compaction.</dd>
+</dl>
+</li>
+</ul>
 <a name="compact--">
 <!--   -->
 </a>

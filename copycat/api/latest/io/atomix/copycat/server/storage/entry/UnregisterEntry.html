@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -175,13 +175,35 @@ extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/Sessio
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/entry/UnregisterEntry.html#isExpired--">isExpired</a></span>()</code>
+<div class="block">Returns whether the session was expired by a leader.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/entry/UnregisterEntry.html#isTombstone--">isTombstone</a></span>()</code>
 <div class="block">Returns a boolean value indicating whether the command is a tombstone.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/entry/UnregisterEntry.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/BufferInput.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer">BufferInput</a>&lt;?&gt;&nbsp;buffer,
+          <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/entry/UnregisterEntry.html" title="class in io.atomix.copycat.server.storage.entry">UnregisterEntry</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/entry/UnregisterEntry.html#setExpired-boolean-">setExpired</a></span>(boolean&nbsp;expired)</code>
+<div class="block">Sets whether the session was expired by a leader.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/entry/UnregisterEntry.html#toString--">toString</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/entry/UnregisterEntry.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/BufferOutput.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;&nbsp;buffer,
+           <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -189,7 +211,7 @@ extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/Sessio
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;io.atomix.copycat.server.storage.entry.<a href="../../../../../../io/atomix/copycat/server/storage/entry/SessionEntry.html" title="class in io.atomix.copycat.server.storage.entry">SessionEntry</a></h3>
-<code><a href="../../../../../../io/atomix/copycat/server/storage/entry/SessionEntry.html#getSession--">getSession</a>, <a href="../../../../../../io/atomix/copycat/server/storage/entry/SessionEntry.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject</a>, <a href="../../../../../../io/atomix/copycat/server/storage/entry/SessionEntry.html#setSession-long-">setSession</a>, <a href="../../../../../../io/atomix/copycat/server/storage/entry/SessionEntry.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject</a></code></li>
+<code><a href="../../../../../../io/atomix/copycat/server/storage/entry/SessionEntry.html#getSession--">getSession</a>, <a href="../../../../../../io/atomix/copycat/server/storage/entry/SessionEntry.html#setSession-long-">setSession</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.copycat.server.storage.entry.TimestampedEntry">
@@ -266,6 +288,68 @@ extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/Sessio
 <dd><code><a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html#isTombstone--">isTombstone</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/UnregisterEntry.html" title="class in io.atomix.copycat.server.storage.entry">UnregisterEntry</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Indicates whether the command is a tombstone.</dd>
+</dl>
+</li>
+</ul>
+<a name="setExpired-boolean-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setExpired</h4>
+<pre>public&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/entry/UnregisterEntry.html" title="class in io.atomix.copycat.server.storage.entry">UnregisterEntry</a>&nbsp;setExpired(boolean&nbsp;expired)</pre>
+<div class="block">Sets whether the session was expired by a leader.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>expired</code> - Whether the session was expired by a leader.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The unregister entry.</dd>
+</dl>
+</li>
+</ul>
+<a name="isExpired--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isExpired</h4>
+<pre>public&nbsp;boolean&nbsp;isExpired()</pre>
+<div class="block">Returns whether the session was expired by a leader.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Whether the session was expired by a leader.</dd>
+</dl>
+</li>
+</ul>
+<a name="writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>writeObject</h4>
+<pre>public&nbsp;void&nbsp;writeObject(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/BufferOutput.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;&nbsp;buffer,
+                        <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-" title="class or interface in io.atomix.catalyst.serializer">writeObject</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a></code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../../../io/atomix/copycat/server/storage/entry/SessionEntry.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../io/atomix/copycat/server/storage/entry/SessionEntry.html" title="class in io.atomix.copycat.server.storage.entry">SessionEntry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/UnregisterEntry.html" title="class in io.atomix.copycat.server.storage.entry">UnregisterEntry</a>&gt;</code></dd>
+</dl>
+</li>
+</ul>
+<a name="readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>readObject</h4>
+<pre>public&nbsp;void&nbsp;readObject(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/BufferInput.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer">BufferInput</a>&lt;?&gt;&nbsp;buffer,
+                       <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-" title="class or interface in io.atomix.catalyst.serializer">readObject</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a></code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../../../io/atomix/copycat/server/storage/entry/SessionEntry.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../io/atomix/copycat/server/storage/entry/SessionEntry.html" title="class in io.atomix.copycat.server.storage.entry">SessionEntry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/UnregisterEntry.html" title="class in io.atomix.copycat.server.storage.entry">UnregisterEntry</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>
