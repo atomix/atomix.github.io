@@ -100,7 +100,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">io.atomix.resource.AbstractResource</a></li>
+<li><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">io.atomix.resource.Resource</a></li>
 <li>
 <ul class="inheritance">
 <li><a href="../../../io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic">io.atomix.atomic.DistributedAtomicValue</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;</li>
@@ -117,10 +117,6 @@ var activeTableTab = "activeTableTab";
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
-<dl>
-<dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dd>
-</dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">DistributedAtomicLong</span>
@@ -222,11 +218,11 @@ extends <a href="../../../io/atomix/atomic/DistributedAtomicValue.html" title="c
 <code><a href="../../../io/atomix/atomic/DistributedAtomicValue.html#compareAndSet-T-T-">compareAndSet</a>, <a href="../../../io/atomix/atomic/DistributedAtomicValue.html#compareAndSet-T-T-java.time.Duration-">compareAndSet</a>, <a href="../../../io/atomix/atomic/DistributedAtomicValue.html#getAndSet-T-">getAndSet</a>, <a href="../../../io/atomix/atomic/DistributedAtomicValue.html#getAndSet-T-java.time.Duration-">getAndSet</a>, <a href="../../../io/atomix/atomic/DistributedAtomicValue.html#onChange-java.util.function.Consumer-">onChange</a>, <a href="../../../io/atomix/atomic/DistributedAtomicValue.html#set-T-">set</a>, <a href="../../../io/atomix/atomic/DistributedAtomicValue.html#set-T-java.time.Duration-">set</a></code></li>
 </ul>
 <ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.io.atomix.resource.AbstractResource">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.resource.Resource">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></h3>
-<code><a href="../../../io/atomix/resource/AbstractResource.html#context--">context</a>, <a href="../../../io/atomix/resource/AbstractResource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/AbstractResource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/AbstractResource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/AbstractResource.html#toString--">toString</a></code></li>
+<h3>Methods inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></h3>
+<code><a href="../../../io/atomix/resource/Resource.html#context--">context</a>, <a href="../../../io/atomix/resource/Resource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/Resource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/Resource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/Resource.html#toString--">toString</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -273,7 +269,7 @@ extends <a href="../../../io/atomix/atomic/DistributedAtomicValue.html" title="c
 <li class="blockList">
 <h4>with</h4>
 <pre>public&nbsp;<a href="../../../io/atomix/atomic/DistributedAtomicLong.html" title="class in io.atomix.atomic">DistributedAtomicLong</a>&nbsp;with(<a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource">Consistency</a>&nbsp;consistency)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">Resource</a></code></span></div>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">Resource</a></code></span></div>
 <div class="block">Sets the resource consistency level.
  <p>
  The configured consistency level specifies how operations on the resource should be handled by the
@@ -291,8 +287,6 @@ extends <a href="../../../io/atomix/atomic/DistributedAtomicValue.html" title="c
  a leader election may enforce atomic consistency at all times to ensure no two leaders can be
  elected at the same time.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">with</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="../../../io/atomix/atomic/DistributedAtomicValue.html#with-io.atomix.resource.Consistency-">with</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic">DistributedAtomicValue</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>

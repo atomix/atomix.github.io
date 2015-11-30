@@ -74,10 +74,6 @@
 </a>
 <h2 class="title">A</h2>
 <dl>
-<dt><a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource"><span class="typeNameLink">AbstractResource</span></a> - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
-<dd>
-<div class="block">Base class for fault-tolerant stateful distributed objects.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedQueue.html#add-T-">add(T)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedQueue.html" title="class in io.atomix.collections">DistributedQueue</a></dt>
 <dd>
 <div class="block">Adds a value to the set.</div>
@@ -100,7 +96,7 @@
 </dd>
 <dt><a href="io/atomix/Atomix.html" title="class in io.atomix"><span class="typeNameLink">Atomix</span></a> - Class in <a href="io/atomix/package-summary.html">io.atomix</a></dt>
 <dd>
-<div class="block">Base type for creating and managing distributed <a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource"><code>resources</code></a> in a Atomix cluster.</div>
+<div class="block">Base type for creating and managing distributed <a href="io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>resources</code></a> in a Atomix cluster.</div>
 </dd>
 <dt><a href="io/atomix/Atomix.Builder.html" title="class in io.atomix"><span class="typeNameLink">Atomix.Builder</span></a> - Class in <a href="io/atomix/package-summary.html">io.atomix</a></dt>
 <dd>
@@ -108,10 +104,8 @@
 </dd>
 <dt><a href="io/atomix/AtomixClient.html" title="class in io.atomix"><span class="typeNameLink">AtomixClient</span></a> - Class in <a href="io/atomix/package-summary.html">io.atomix</a></dt>
 <dd>
-<div class="block">Provides an interface for creating and operating on <code>DistributedResource</code>s remotely.</div>
+<div class="block">Provides an interface for creating and operating on <a href="io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>s remotely.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/AtomixClient.html#AtomixClient-io.atomix.copycat.client.CopycatClient-io.atomix.catalyst.transport.Transport-">AtomixClient(CopycatClient, Transport)</a></span> - Constructor for class io.atomix.<a href="io/atomix/AtomixClient.html" title="class in io.atomix">AtomixClient</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="io/atomix/AtomixClient.Builder.html" title="class in io.atomix"><span class="typeNameLink">AtomixClient.Builder</span></a> - Class in <a href="io/atomix/package-summary.html">io.atomix</a></dt>
 <dd>
 <div class="block">Builds an <a href="io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a>.</div>
@@ -130,10 +124,8 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/AtomixReplica.html" title="class in io.atomix"><span class="typeNameLink">AtomixReplica</span></a> - Class in <a href="io/atomix/package-summary.html">io.atomix</a></dt>
 <dd>
-<div class="block">Provides an interface for creating and operating on <code>DistributedResource</code>s as a stateful node.</div>
+<div class="block">Provides an interface for creating and operating on <a href="io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>s as a stateful node.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/AtomixReplica.html#AtomixReplica-io.atomix.copycat.client.CopycatClient-io.atomix.copycat.server.CopycatServer-io.atomix.catalyst.transport.Transport-">AtomixReplica(CopycatClient, CopycatServer, Transport)</a></span> - Constructor for class io.atomix.<a href="io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="io/atomix/AtomixReplica.Builder.html" title="class in io.atomix"><span class="typeNameLink">AtomixReplica.Builder</span></a> - Class in <a href="io/atomix/package-summary.html">io.atomix</a></dt>
 <dd>
 <div class="block">Builds an <a href="io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.</div>
@@ -238,6 +230,10 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceClient.html#close--">close()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceClient.html" title="class in io.atomix.resource">InstanceClient</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceFactory.html#close--">close()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceFactory.html" title="class in io.atomix.resource">InstanceFactory</a></dt>
+<dd>
+<div class="block">Closes the instance factory.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceCommit.html#close--">close()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceCommit.html" title="class in io.atomix.resource">ResourceCommit</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicValue.html#compareAndSet-T-T-">compareAndSet(T, T)</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic">DistributedAtomicValue</a></dt>
@@ -300,11 +296,13 @@
 <dd>
 <div class="block">Returns the Atomix thread context.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#context--">context()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceClient.html#context--">context()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceClient.html" title="class in io.atomix.resource">InstanceClient</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#context--">context()</a></span> - Method in interface io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceFactory.html#context--">context()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceFactory.html" title="class in io.atomix.resource">InstanceFactory</a></dt>
+<dd>
+<div class="block">Returns the client thread context.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#context--">context()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></dt>
 <dd>
 <div class="block">Returns the resource thread context.</div>
 </dd>
@@ -318,6 +316,14 @@
 <dd>
 <div class="block">Creates a new instance for the given resource.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceFactory.html#create-java.lang.String-java.lang.Class-">create(String, Class&lt;? super T&gt;)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceFactory.html" title="class in io.atomix.resource">InstanceFactory</a></dt>
+<dd>
+<div class="block">Creates a new instance for the given resource.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceFactory.html#create-java.lang.String-java.lang.Class-java.util.function.Function-">create(String, Class&lt;? super T&gt;, Function&lt;RaftClient, T&gt;)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceFactory.html" title="class in io.atomix.resource">InstanceFactory</a></dt>
+<dd>
+<div class="block">Creates a new instance for the given resource.</div>
+</dd>
 </dl>
 <a name="I:D">
 <!--   -->
@@ -328,9 +334,7 @@
 <dd>
 <div class="block">Decrements the value and returns the updated value.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#delete--">delete()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#delete--">delete()</a></span> - Method in interface io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#delete--">delete()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></dt>
 <dd>
 <div class="block">Deletes the resource state.</div>
 </dd>
@@ -416,9 +420,9 @@
 <dd>
 <div class="block">Removes a value from the queue.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceSession.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceSession.html" title="class in io.atomix.resource">InstanceSession</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/GroupMember.html#execute-java.lang.Runnable-">execute(Runnable)</a></span> - Method in interface io.atomix.coordination.<a href="io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a></dt>
 <dd>
@@ -427,6 +431,10 @@
 <dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceStateMachineExecutor.html#executor--">executor()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceStateMachineExecutor.html" title="class in io.atomix.resource">ResourceStateMachineExecutor</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#exists-java.lang.String-">exists(String)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
+<dd>
+<div class="block">Checks whether a resource exists with the given key.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceFactory.html#exists-java.lang.String-">exists(String)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceFactory.html" title="class in io.atomix.resource">InstanceFactory</a></dt>
 <dd>
 <div class="block">Checks whether a resource exists with the given key.</div>
 </dd>
@@ -457,6 +465,14 @@
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMultiMap.html#get-K-">get(K)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a></dt>
 <dd>
 <div class="block">Gets a value from the map.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceFactory.html#get-java.lang.String-java.lang.Class-">get(String, Class&lt;? super T&gt;)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceFactory.html" title="class in io.atomix.resource">InstanceFactory</a></dt>
+<dd>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceFactory.html#get-java.lang.String-java.lang.Class-java.util.function.Function-">get(String, Class&lt;? super T&gt;, Function&lt;RaftClient, T&gt;)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceFactory.html" title="class in io.atomix.resource">InstanceFactory</a></dt>
+<dd>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicLong.html#getAndAdd-long-">getAndAdd(long)</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicLong.html" title="class in io.atomix.atomic">DistributedAtomicLong</a></dt>
 <dd>
@@ -496,9 +512,9 @@
 </a>
 <h2 class="title">H</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#hashCode--">hashCode()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceSession.html#hashCode--">hashCode()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceSession.html" title="class in io.atomix.resource">InstanceSession</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#hashCode--">hashCode()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a name="I:I">
@@ -541,6 +557,12 @@
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceEvent.html#InstanceEvent--">InstanceEvent()</a></span> - Constructor for class io.atomix.resource.<a href="io/atomix/resource/InstanceEvent.html" title="class in io.atomix.resource">InstanceEvent</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceEvent.html#InstanceEvent-long-T-">InstanceEvent(long, T)</a></span> - Constructor for class io.atomix.resource.<a href="io/atomix/resource/InstanceEvent.html" title="class in io.atomix.resource">InstanceEvent</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="io/atomix/resource/InstanceFactory.html" title="class in io.atomix.resource"><span class="typeNameLink">InstanceFactory</span></a> - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
+<dd>
+<div class="block">Resource instance factory.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceFactory.html#InstanceFactory-io.atomix.copycat.client.CopycatClient.Builder-io.atomix.catalyst.transport.Transport-">InstanceFactory(CopycatClient.Builder, Transport)</a></span> - Constructor for class io.atomix.resource.<a href="io/atomix/resource/InstanceFactory.html" title="class in io.atomix.resource">InstanceFactory</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/resource/InstanceOperation.html" title="class in io.atomix.resource"><span class="typeNameLink">InstanceOperation</span></a>&lt;<a href="io/atomix/resource/InstanceOperation.html" title="type parameter in InstanceOperation">T</a> extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Operation.html?is-external=true" title="class or interface in io.atomix.copycat.client">Operation</a>&lt;<a href="io/atomix/resource/InstanceOperation.html" title="type parameter in InstanceOperation">U</a>&gt;,<a href="io/atomix/resource/InstanceOperation.html" title="type parameter in InstanceOperation">U</a>&gt; - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
 <dd>
@@ -598,6 +620,10 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceClient.html#isClosed--">isClosed()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceClient.html" title="class in io.atomix.resource">InstanceClient</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceFactory.html#isClosed--">isClosed()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceFactory.html" title="class in io.atomix.resource">InstanceFactory</a></dt>
+<dd>
+<div class="block">Returns a boolean value indicating whether the instance factory is closed.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceSession.html#isClosed--">isClosed()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceSession.html" title="class in io.atomix.resource">InstanceSession</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#isEmpty--">isEmpty()</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
@@ -634,6 +660,10 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceClient.html#isOpen--">isOpen()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceClient.html" title="class in io.atomix.resource">InstanceClient</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceFactory.html#isOpen--">isOpen()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceFactory.html" title="class in io.atomix.resource">InstanceFactory</a></dt>
+<dd>
+<div class="block">Returns a boolean value indicating whether the instance factory is open.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceSession.html#isOpen--">isOpen()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceSession.html" title="class in io.atomix.resource">InstanceSession</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -752,6 +782,10 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceClient.html#open--">open()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceClient.html" title="class in io.atomix.resource">InstanceClient</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceFactory.html#open--">open()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceFactory.html" title="class in io.atomix.resource">InstanceFactory</a></dt>
+<dd>
+<div class="block">Opens the instance factory.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceOperation.html#operation--">operation()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceOperation.html" title="class in io.atomix.resource">InstanceOperation</a></dt>
 <dd>
 <div class="block">Returns the resource operation.</div>
@@ -894,7 +928,7 @@
 <dd>
 <div class="block">Returns the resource ID.</div>
 </dd>
-<dt><a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><span class="typeNameLink">Resource</span></a> - Interface in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
+<dt><a href="io/atomix/resource/Resource.html" title="class in io.atomix.resource"><span class="typeNameLink">Resource</span></a> - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
 <dd>
 <div class="block">Fault-tolerant stateful distributed object.</div>
 </dd>
@@ -984,6 +1018,10 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceClient.html#session--">session()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceClient.html" title="class in io.atomix.resource">InstanceClient</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceFactory.html#session--">session()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceFactory.html" title="class in io.atomix.resource">InstanceFactory</a></dt>
+<dd>
+<div class="block">Returns the client session.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceCommit.html#session--">session()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceCommit.html" title="class in io.atomix.resource">ResourceCommit</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicValue.html#set-T-">set(T)</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic">DistributedAtomicValue</a></dt>
@@ -1048,8 +1086,6 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#toString--">toString()</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#toString--">toString()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceClient.html#toString--">toString()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceClient.html" title="class in io.atomix.resource">InstanceClient</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceCommand.html#toString--">toString()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceCommand.html" title="class in io.atomix.resource">InstanceCommand</a></dt>
@@ -1061,6 +1097,8 @@
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceQuery.html#toString--">toString()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceQuery.html" title="class in io.atomix.resource">InstanceQuery</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceSession.html#toString--">toString()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceSession.html" title="class in io.atomix.resource">InstanceSession</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#toString--">toString()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceCommand.html#toString--">toString()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceCommand.html" title="class in io.atomix.resource">ResourceCommand</a></dt>
 <dd>&nbsp;</dd>
@@ -1135,9 +1173,7 @@ the order they are declared.</div>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedTopic.html#with-io.atomix.resource.Consistency-">with(Consistency)</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#with-io.atomix.resource.Consistency-">with(Consistency)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">with(Consistency)</a></span> - Method in interface io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">with(Consistency)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></dt>
 <dd>
 <div class="block">Sets the resource consistency level.</div>
 </dd>
