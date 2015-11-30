@@ -554,6 +554,8 @@
 <dd>
 <div class="block">Closes the log.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/MetaStore.html#close--">close()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/MetaStore.html" title="class in io.atomix.copycat.server.storage">MetaStore</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#close--">close()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.html#close--">close()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a></dt>
@@ -812,6 +814,10 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Log.html#delete--">delete()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></dt>
 <dd>
 <div class="block">Deletes the log.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/MetaStore.html#delete--">delete()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/MetaStore.html" title="class in io.atomix.copycat.server.storage">MetaStore</a></dt>
+<dd>
+<div class="block">Deletes the metastore.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#delete--">delete()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>
@@ -1478,6 +1484,14 @@
 <dd>
 <div class="block">Loads a segment.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/MetaStore.html#loadTerm--">loadTerm()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/MetaStore.html" title="class in io.atomix.copycat.server.storage">MetaStore</a></dt>
+<dd>
+<div class="block">Loads the stored server term.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/MetaStore.html#loadVote--">loadVote()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/MetaStore.html" title="class in io.atomix.copycat.server.storage">MetaStore</a></dt>
+<dd>
+<div class="block">Loads the last vote for the server.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.html#lock--">lock()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a></dt>
 <dd>
 <div class="block">Locks the segment.</div>
@@ -1581,6 +1595,10 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/Event.html#message--">message()</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session">Event</a></dt>
 <dd>
 <div class="block">Returns the event message.</div>
+</dd>
+<dt><a href="io/atomix/copycat/server/storage/MetaStore.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">MetaStore</span></a> - Class in <a href="io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a></dt>
+<dd>
+<div class="block">Persists server state via the <a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> module.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.html#minorCompactionInterval--">minorCompactionInterval()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></dt>
 <dd>
@@ -1695,9 +1713,13 @@
 <dd>
 <div class="block">Starts the Raft server asynchronously.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.html#open-java.lang.String-">open(String)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.html#openLog-java.lang.String-">openLog(String)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></dt>
 <dd>
 <div class="block">Opens a new <a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.html#openMetaStore-java.lang.String-">openMetaStore(String)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></dt>
+<dd>
+<div class="block">Opens a new <a href="io/atomix/copycat/server/storage/MetaStore.html" title="class in io.atomix.copycat.server.storage"><code>MetaStore</code></a>.</div>
 </dd>
 <dt><a href="io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client"><span class="typeNameLink">Operation</span></a>&lt;<a href="io/atomix/copycat/client/Operation.html" title="type parameter in Operation">T</a>&gt; - Interface in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
 <dd>
@@ -2345,6 +2367,14 @@
 <dd>
 <div class="block"><a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> storage level configuration values which control how logs are stored on disk or in memory.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/MetaStore.html#storeTerm-long-">storeTerm(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/MetaStore.html" title="class in io.atomix.copycat.server.storage">MetaStore</a></dt>
+<dd>
+<div class="block">Stores the current server term.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/MetaStore.html#storeVote-int-">storeVote(int)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/MetaStore.html" title="class in io.atomix.copycat.server.storage">MetaStore</a></dt>
+<dd>
+<div class="block">Stores the last voted server.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.client.Command-">submit(Command&lt;T&gt;)</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.client.Query-">submit(Query&lt;T&gt;)</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></dt>
@@ -2512,6 +2542,8 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/UnregisterEntry.html#toString--">toString()</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/UnregisterEntry.html" title="class in io.atomix.copycat.server.storage.entry">UnregisterEntry</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Log.html#toString--">toString()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/MetaStore.html#toString--">toString()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/MetaStore.html" title="class in io.atomix.copycat.server.storage">MetaStore</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#toString--">toString()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>&nbsp;</dd>
