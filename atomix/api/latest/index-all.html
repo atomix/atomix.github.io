@@ -86,7 +86,7 @@
 <dd>
 <div class="block">Adds a value to the set with a TTL.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicLong.html#addAndGet-long-">addAndGet(long)</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicLong.html" title="class in io.atomix.atomic">DistributedAtomicLong</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedLong.html#addAndGet-long-">addAndGet(long)</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedLong.html" title="class in io.atomix.primitives">DistributedLong</a></dt>
 <dd>
 <div class="block">Adds a delta to the long and returns the updated value.</div>
 </dd>
@@ -236,11 +236,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceCommit.html#close--">close()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceCommit.html" title="class in io.atomix.resource">ResourceCommit</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicValue.html#compareAndSet-T-T-">compareAndSet(T, T)</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic">DistributedAtomicValue</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedValue.html#compareAndSet-T-T-">compareAndSet(T, T)</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedValue.html" title="class in io.atomix.primitives">DistributedValue</a></dt>
 <dd>
 <div class="block">Compares the current value and updated it if expected value == the current value.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicValue.html#compareAndSet-T-T-java.time.Duration-">compareAndSet(T, T, Duration)</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic">DistributedAtomicValue</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedValue.html#compareAndSet-T-T-java.time.Duration-">compareAndSet(T, T, Duration)</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedValue.html" title="class in io.atomix.primitives">DistributedValue</a></dt>
 <dd>
 <div class="block">Compares the current value and updated it if expected value == the current value.</div>
 </dd>
@@ -330,7 +330,7 @@
 </a>
 <h2 class="title">D</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicLong.html#decrementAndGet--">decrementAndGet()</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicLong.html" title="class in io.atomix.atomic">DistributedAtomicLong</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedLong.html#decrementAndGet--">decrementAndGet()</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedLong.html" title="class in io.atomix.primitives">DistributedLong</a></dt>
 <dd>
 <div class="block">Decrements the value and returns the updated value.</div>
 </dd>
@@ -344,18 +344,6 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceStateMachine.DeleteCommand.html#DeleteCommand--">DeleteCommand()</a></span> - Constructor for class io.atomix.resource.<a href="io/atomix/resource/ResourceStateMachine.DeleteCommand.html" title="class in io.atomix.resource">ResourceStateMachine.DeleteCommand</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="io/atomix/atomic/DistributedAtomicLong.html" title="class in io.atomix.atomic"><span class="typeNameLink">DistributedAtomicLong</span></a> - Class in <a href="io/atomix/atomic/package-summary.html">io.atomix.atomic</a></dt>
-<dd>
-<div class="block">Distributed atomic long.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicLong.html#DistributedAtomicLong-io.atomix.copycat.client.RaftClient-">DistributedAtomicLong(RaftClient)</a></span> - Constructor for class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicLong.html" title="class in io.atomix.atomic">DistributedAtomicLong</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic"><span class="typeNameLink">DistributedAtomicValue</span></a>&lt;<a href="io/atomix/atomic/DistributedAtomicValue.html" title="type parameter in DistributedAtomicValue">T</a>&gt; - Class in <a href="io/atomix/atomic/package-summary.html">io.atomix.atomic</a></dt>
-<dd>
-<div class="block">Distributed atomic value.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicValue.html#DistributedAtomicValue-io.atomix.copycat.client.RaftClient-">DistributedAtomicValue(RaftClient)</a></span> - Constructor for class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic">DistributedAtomicValue</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination"><span class="typeNameLink">DistributedLeaderElection</span></a> - Class in <a href="io/atomix/coordination/package-summary.html">io.atomix.coordination</a></dt>
 <dd>
 <div class="block">Provides a mechanism for coordinating cluster-wide resources with a strong leader.</div>
@@ -367,6 +355,12 @@
 <div class="block">Provides a mechanism for synchronizing access to cluster-wide shared resources.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedLock.html#DistributedLock-io.atomix.copycat.client.RaftClient-">DistributedLock(RaftClient)</a></span> - Constructor for class io.atomix.coordination.<a href="io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="io/atomix/primitives/DistributedLong.html" title="class in io.atomix.primitives"><span class="typeNameLink">DistributedLong</span></a> - Class in <a href="io/atomix/primitives/package-summary.html">io.atomix.primitives</a></dt>
+<dd>
+<div class="block">Distributed long.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedLong.html#DistributedLong-io.atomix.copycat.client.RaftClient-">DistributedLong(RaftClient)</a></span> - Constructor for class io.atomix.primitives.<a href="io/atomix/primitives/DistributedLong.html" title="class in io.atomix.primitives">DistributedLong</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections"><span class="typeNameLink">DistributedMap</span></a>&lt;<a href="io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>,<a href="io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt; - Class in <a href="io/atomix/collections/package-summary.html">io.atomix.collections</a></dt>
 <dd>
@@ -410,6 +404,12 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedTopic.html#DistributedTopic-io.atomix.copycat.client.RaftClient-">DistributedTopic(RaftClient)</a></span> - Constructor for class io.atomix.coordination.<a href="io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="io/atomix/primitives/DistributedValue.html" title="class in io.atomix.primitives"><span class="typeNameLink">DistributedValue</span></a>&lt;<a href="io/atomix/primitives/DistributedValue.html" title="type parameter in DistributedValue">T</a>&gt; - Class in <a href="io/atomix/primitives/package-summary.html">io.atomix.primitives</a></dt>
+<dd>
+<div class="block">Distributed value.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedValue.html#DistributedValue-io.atomix.copycat.client.RaftClient-">DistributedValue(RaftClient)</a></span> - Constructor for class io.atomix.primitives.<a href="io/atomix/primitives/DistributedValue.html" title="class in io.atomix.primitives">DistributedValue</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <a name="I:E">
 <!--   -->
@@ -444,12 +444,6 @@
 </a>
 <h2 class="title">G</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicLong.html#get--">get()</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicLong.html" title="class in io.atomix.atomic">DistributedAtomicLong</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicValue.html#get--">get()</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic">DistributedAtomicValue</a></dt>
-<dd>
-<div class="block">Gets the current value.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#get-java.lang.String-java.lang.Class-">get(String, Class&lt;? super T&gt;)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
 <dd>
 <div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
@@ -466,6 +460,12 @@
 <dd>
 <div class="block">Gets a value from the map.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedLong.html#get--">get()</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedLong.html" title="class in io.atomix.primitives">DistributedLong</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedValue.html#get--">get()</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedValue.html" title="class in io.atomix.primitives">DistributedValue</a></dt>
+<dd>
+<div class="block">Gets the current value.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceFactory.html#get-java.lang.String-java.lang.Class-">get(String, Class&lt;? super T&gt;)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceFactory.html" title="class in io.atomix.resource">InstanceFactory</a></dt>
 <dd>
 <div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
@@ -474,23 +474,23 @@
 <dd>
 <div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicLong.html#getAndAdd-long-">getAndAdd(long)</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicLong.html" title="class in io.atomix.atomic">DistributedAtomicLong</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedLong.html#getAndAdd-long-">getAndAdd(long)</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedLong.html" title="class in io.atomix.primitives">DistributedLong</a></dt>
 <dd>
 <div class="block">Adds a delta to the value and returns the previous value.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicLong.html#getAndDecrement--">getAndDecrement()</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicLong.html" title="class in io.atomix.atomic">DistributedAtomicLong</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedLong.html#getAndDecrement--">getAndDecrement()</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedLong.html" title="class in io.atomix.primitives">DistributedLong</a></dt>
 <dd>
 <div class="block">Decrements the value and returns the previous value.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicLong.html#getAndIncrement--">getAndIncrement()</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicLong.html" title="class in io.atomix.atomic">DistributedAtomicLong</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedLong.html#getAndIncrement--">getAndIncrement()</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedLong.html" title="class in io.atomix.primitives">DistributedLong</a></dt>
 <dd>
 <div class="block">Increments the value and returns the previous value.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicValue.html#getAndSet-T-">getAndSet(T)</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic">DistributedAtomicValue</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedValue.html#getAndSet-T-">getAndSet(T)</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedValue.html" title="class in io.atomix.primitives">DistributedValue</a></dt>
 <dd>
 <div class="block">Gets the current value and updates it.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicValue.html#getAndSet-T-java.time.Duration-">getAndSet(T, Duration)</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic">DistributedAtomicValue</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedValue.html#getAndSet-T-java.time.Duration-">getAndSet(T, Duration)</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedValue.html" title="class in io.atomix.primitives">DistributedValue</a></dt>
 <dd>
 <div class="block">Gets the current value and updates it.</div>
 </dd>
@@ -528,7 +528,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceSession.html#id--">id()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceSession.html" title="class in io.atomix.resource">InstanceSession</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicLong.html#incrementAndGet--">incrementAndGet()</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicLong.html" title="class in io.atomix.atomic">DistributedAtomicLong</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedLong.html#incrementAndGet--">incrementAndGet()</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedLong.html" title="class in io.atomix.primitives">DistributedLong</a></dt>
 <dd>
 <div class="block">Increments the value and returns the updated value.</div>
 </dd>
@@ -586,11 +586,6 @@
 <dd>
 <div class="block">Core Atomix APIs, including <a href="io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> and <a href="io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.</div>
 </dd>
-<dt><a href="io/atomix/atomic/package-summary.html">io.atomix.atomic</a> - package io.atomix.atomic</dt>
-<dd>
-<div class="block">Provides distributed atomic variables such as <a href="io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic"><code>DistributedAtomicValue</code></a>
- and <a href="io/atomix/atomic/DistributedAtomicLong.html" title="class in io.atomix.atomic"><code>DistributedAtomicLong</code></a>.</div>
-</dd>
 <dt><a href="io/atomix/collections/package-summary.html">io.atomix.collections</a> - package io.atomix.collections</dt>
 <dd>
 <div class="block">Provides distributed collections such as <a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections"><code>DistributedMap</code></a>
@@ -603,6 +598,11 @@
  <a href="io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination"><code>DistributedLeaderElection</code></a>, <a href="io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><code>DistributedMembershipGroup</code></a>,
  <a href="io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination"><code>DistributedMessageBus</code></a> for unreliable messaging, and
  <a href="io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination"><code>DistributedTopic</code></a> for publish-subscribe messaging.</div>
+</dd>
+<dt><a href="io/atomix/primitives/package-summary.html">io.atomix.primitives</a> - package io.atomix.primitives</dt>
+<dd>
+<div class="block">Provides distributed variables such as <a href="io/atomix/primitives/DistributedValue.html" title="class in io.atomix.primitives"><code>DistributedValue</code></a>
+ and <a href="io/atomix/primitives/DistributedLong.html" title="class in io.atomix.primitives"><code>DistributedLong</code></a>.</div>
 </dd>
 <dt><a href="io/atomix/resource/package-summary.html">io.atomix.resource</a> - package io.atomix.resource</dt>
 <dd>
@@ -762,7 +762,7 @@
 <dd>
 <div class="block">Adds a value to the queue.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicValue.html#onChange-java.util.function.Consumer-">onChange(Consumer&lt;T&gt;)</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic">DistributedAtomicValue</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedValue.html#onChange-java.util.function.Consumer-">onChange(Consumer&lt;T&gt;)</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedValue.html" title="class in io.atomix.primitives">DistributedValue</a></dt>
 <dd>
 <div class="block">Registers a change listener.</div>
 </dd>
@@ -1046,11 +1046,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceCommit.html#session--">session()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceCommit.html" title="class in io.atomix.resource">ResourceCommit</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicValue.html#set-T-">set(T)</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic">DistributedAtomicValue</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedValue.html#set-T-">set(T)</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedValue.html" title="class in io.atomix.primitives">DistributedValue</a></dt>
 <dd>
 <div class="block">Sets the current value.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicValue.html#set-T-java.time.Duration-">set(T, Duration)</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic">DistributedAtomicValue</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedValue.html#set-T-java.time.Duration-">set(T, Duration)</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedValue.html" title="class in io.atomix.primitives">DistributedValue</a></dt>
 <dd>
 <div class="block">Sets the value with a TTL.</div>
 </dd>
@@ -1173,10 +1173,6 @@ the order they are declared.</div>
 </a>
 <h2 class="title">W</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicLong.html#with-io.atomix.resource.Consistency-">with(Consistency)</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicLong.html" title="class in io.atomix.atomic">DistributedAtomicLong</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/atomic/DistributedAtomicValue.html#with-io.atomix.resource.Consistency-">with(Consistency)</a></span> - Method in class io.atomix.atomic.<a href="io/atomix/atomic/DistributedAtomicValue.html" title="class in io.atomix.atomic">DistributedAtomicValue</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#with-io.atomix.resource.Consistency-">with(Consistency)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMultiMap.html#with-io.atomix.resource.Consistency-">with(Consistency)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a></dt>
@@ -1194,6 +1190,10 @@ the order they are declared.</div>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedMessageBus.html#with-io.atomix.resource.Consistency-">with(Consistency)</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedTopic.html#with-io.atomix.resource.Consistency-">with(Consistency)</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedLong.html#with-io.atomix.resource.Consistency-">with(Consistency)</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedLong.html" title="class in io.atomix.primitives">DistributedLong</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/primitives/DistributedValue.html#with-io.atomix.resource.Consistency-">with(Consistency)</a></span> - Method in class io.atomix.primitives.<a href="io/atomix/primitives/DistributedValue.html" title="class in io.atomix.primitives">DistributedValue</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">with(Consistency)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></dt>
 <dd>
