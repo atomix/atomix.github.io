@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../io/atomix/copycat/client/Command.PersistenceLevel.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -121,12 +121,7 @@ var activeTableTab = "activeTableTab";
 <pre>public enum <span class="typeNameLabel">ConnectionStrategies</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;<a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a>&gt;
 implements <a href="../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client">ConnectionStrategy</a></pre>
-<div class="block">Strategies for managing how clients connect to and communicate with the cluster.
- <p>
- Connection strategies manage which servers a client attempts to contact and submit operations
- to. Clients can communicate with followers, leaders, or both. Connection strategies offer the
- option for clients to spread connections across the cluster for scalability or connect to the
- cluster's leader for performance.</div>
+<div class="block">Basic connection strategies.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -137,6 +132,21 @@ implements <a href="../../../../io/atomix/copycat/client/ConnectionStrategy.html
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a name="nested.classes.inherited.from.class.io.atomix.copycat.client.ConnectionStrategy">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from interface&nbsp;io.atomix.copycat.client.<a href="../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client">ConnectionStrategy</a></h3>
+<code><a href="../../../../io/atomix/copycat/client/ConnectionStrategy.Attempt.html" title="interface in io.atomix.copycat.client">ConnectionStrategy.Attempt</a></code></li>
+</ul>
+</li>
+</ul>
 <!-- =========== ENUM CONSTANT SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="enum.constant.summary">
@@ -149,18 +159,13 @@ implements <a href="../../../../io/atomix/copycat/client/ConnectionStrategy.html
 <th class="colOne" scope="col">Enum Constant and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html#ANY">ANY</a></span></code>
-<div class="block">The <code>ANY</code> connection strategy allows the client to connect to any server in the cluster.</div>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html#BACKOFF">BACKOFF</a></span></code>
+<div class="block">Attempts to connect to the cluster using exponential backoff up to a one minute retry interval.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html#FOLLOWERS">FOLLOWERS</a></span></code>
-<div class="block">The <code>FOLLOWERS</code> connection strategy forces the client to connect only to followers.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html#LEADER">LEADER</a></span></code>
-<div class="block">The <code>LEADER</code> connection strategy forces the client to attempt to connect to the cluster's leader.</div>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html#ONCE">ONCE</a></span></code>
+<div class="block">Attempts to connect to the cluster one time and fails.</div>
 </td>
 </tr>
 </table>
@@ -211,7 +216,7 @@ the order they are declared.</div>
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;io.atomix.copycat.client.<a href="../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client">ConnectionStrategy</a></h3>
-<code><a href="../../../../io/atomix/copycat/client/ConnectionStrategy.html#getConnections-io.atomix.catalyst.transport.Address-java.util.List-">getConnections</a></code></li>
+<code><a href="../../../../io/atomix/copycat/client/ConnectionStrategy.html#attemptFailed-io.atomix.copycat.client.ConnectionStrategy.Attempt-">attemptFailed</a></code></li>
 </ul>
 </li>
 </ul>
@@ -227,47 +232,24 @@ the order they are declared.</div>
 <!--   -->
 </a>
 <h3>Enum Constant Detail</h3>
-<a name="ANY">
+<a name="ONCE">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>ANY</h4>
-<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a> ANY</pre>
-<div class="block">The <code>ANY</code> connection strategy allows the client to connect to any server in the cluster. Clients
- will attempt to connect to a random server, and the client will persist its connection with the first server
- through which it is able to communicate. If the client becomes disconnected from a server, it will attempt
- to connect to the next random server again.</div>
+<h4>ONCE</h4>
+<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a> ONCE</pre>
+<div class="block">Attempts to connect to the cluster one time and fails.</div>
 </li>
 </ul>
-<a name="LEADER">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>LEADER</h4>
-<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a> LEADER</pre>
-<div class="block">The <code>LEADER</code> connection strategy forces the client to attempt to connect to the cluster's leader.
- Connecting to the leader means the client's operations are always handled by the first server to receive
- them. However, clients connected to the leader will not significantly benefit from <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a>
- with lower consistency levels, and more clients connected to the leader could mean more load on a single
- point in the cluster.
- <p>
- If the client is unable to find a leader in the cluster, the client will connect to a random server.</div>
-</li>
-</ul>
-<a name="FOLLOWERS">
+<a name="BACKOFF">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>FOLLOWERS</h4>
-<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a> FOLLOWERS</pre>
-<div class="block">The <code>FOLLOWERS</code> connection strategy forces the client to connect only to followers. Connecting to
- followers ensures that the leader is not overloaded with direct client requests. This strategy should be
- used when clients frequently submit <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a> with lower consistency levels that don't need to
- be forwarded to the cluster leader. For clients that frequently submit commands or queries with linearizable
- consistency, the <a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html#LEADER"><code>LEADER</code></a> ConnectionStrategy may be more performant.</div>
+<h4>BACKOFF</h4>
+<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a> BACKOFF</pre>
+<div class="block">Attempts to connect to the cluster using exponential backoff up to a one minute retry interval.</div>
 </li>
 </ul>
 </li>
@@ -348,7 +330,7 @@ not permitted.)</div>
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../io/atomix/copycat/client/Command.PersistenceLevel.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

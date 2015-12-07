@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -113,7 +113,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public final class <span class="typeNameLabel">Compactor</span>
+<pre>public class <span class="typeNameLabel">Compactor</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></pre>
 <div class="block">Manages compaction of log <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s in a pool of background
@@ -190,27 +190,45 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#isCompactable--">isCompactable</a></span>()</code>
+<div class="block">Returns a boolean value indicating whether the log is currently compactable.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#majorIndex--">majorIndex</a></span>()</code>
 <div class="block">Returns the maximum compaction index for major compaction.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#majorIndex-long-">majorIndex</a></span>(long&nbsp;index)</code>
 <div class="block">Sets the maximum compaction index for major compaction.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#minorIndex--">minorIndex</a></span>()</code>
 <div class="block">Returns the maximum compaction index for minor compaction.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#minorIndex-long-">minorIndex</a></span>(long&nbsp;index)</code>
 <div class="block">Sets the maximum compaction index for minor compaction.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#snapshotIndex--">snapshotIndex</a></span>()</code>
+<div class="block">Returns the maximum index up to which snapshotted commands can be removed during compaction.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#snapshotIndex-long-">snapshotIndex</a></span>(long&nbsp;index)</code>
+<div class="block">Sets the snapshot index to indicate commands entries that can be removed during compaction.</div>
 </td>
 </tr>
 </table>
@@ -311,6 +329,54 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The maximum compaction index for major compaction.</dd>
+</dl>
+</li>
+</ul>
+<a name="snapshotIndex-long-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>snapshotIndex</h4>
+<pre>public&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a>&nbsp;snapshotIndex(long&nbsp;index)</pre>
+<div class="block">Sets the snapshot index to indicate commands entries that can be removed during compaction.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>index</code> - The maximum index up to which snapshotted commands can be removed.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The log compactor.</dd>
+</dl>
+</li>
+</ul>
+<a name="snapshotIndex--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>snapshotIndex</h4>
+<pre>public&nbsp;long&nbsp;snapshotIndex()</pre>
+<div class="block">Returns the maximum index up to which snapshotted commands can be removed during compaction.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The maximum index up to which snapshotted commands can be removed during compaction.</dd>
+</dl>
+</li>
+</ul>
+<a name="isCompactable--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isCompactable</h4>
+<pre>public&nbsp;boolean&nbsp;isCompactable()</pre>
+<div class="block">Returns a boolean value indicating whether the log is currently compactable.
+ <p>
+ Compactability is determined by the compactor's <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html#minorIndex--"><code>minorIndex()</code></a>. Each time the minor compaction
+ index surpasses the boundaries of a log <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>, the log becomes
+ considered compactable. Once the log has been compacted thereafter, it will no longer be considered compactable.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Indicates whether the log is currently compactable.</dd>
 </dl>
 </li>
 </ul>

@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../io/atomix/copycat/server/response/ConfigurationResponse.html" title="class in io.atomix.copycat.server.response"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../io/atomix/copycat/server/response/JoinResponse.html" title="class in io.atomix.copycat.server.response"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../io/atomix/copycat/server/response/ConfigureResponse.html" title="class in io.atomix.copycat.server.response"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?io/atomix/copycat/server/response/ConfigurationResponse.Builder.html" target="_top">Frames</a></li>
@@ -166,17 +166,11 @@ extends <a href="../../../../../io/atomix/copycat/client/response/Response.Build
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/response/ConfigurationResponse.Builder.html" title="type parameter in ConfigurationResponse.Builder">T</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/response/ConfigurationResponse.Builder.html#withActiveMembers-java.util.Collection-">withActiveMembers</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;members)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/response/ConfigurationResponse.Builder.html#withMembers-java.util.Collection-">withMembers</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;io.atomix.copycat.server.state.Member&gt;&nbsp;members)</code>
 <div class="block">Sets the response members.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/response/ConfigurationResponse.Builder.html" title="type parameter in ConfigurationResponse.Builder">T</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/response/ConfigurationResponse.Builder.html#withPassiveMembers-java.util.Collection-">withPassiveMembers</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;members)</code>
-<div class="block">Sets the response members.</div>
-</td>
-</tr>
-<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/response/ConfigurationResponse.Builder.html" title="type parameter in ConfigurationResponse.Builder">T</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/response/ConfigurationResponse.Builder.html#withVersion-long-">withVersion</a></span>(long&nbsp;version)</code>
 <div class="block">Sets the response version.</div>
@@ -222,31 +216,13 @@ extends <a href="../../../../../io/atomix/copycat/client/response/Response.Build
 </dl>
 </li>
 </ul>
-<a name="withActiveMembers-java.util.Collection-">
+<a name="withMembers-java.util.Collection-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>withActiveMembers</h4>
-<pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/response/ConfigurationResponse.Builder.html" title="type parameter in ConfigurationResponse.Builder">T</a>&nbsp;withActiveMembers(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;members)</pre>
-<div class="block">Sets the response members.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>members</code> - The response members.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The response builder.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>members</code> is null</dd>
-</dl>
-</li>
-</ul>
-<a name="withPassiveMembers-java.util.Collection-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>withPassiveMembers</h4>
-<pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/response/ConfigurationResponse.Builder.html" title="type parameter in ConfigurationResponse.Builder">T</a>&nbsp;withPassiveMembers(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;members)</pre>
+<h4>withMembers</h4>
+<pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/response/ConfigurationResponse.Builder.html" title="type parameter in ConfigurationResponse.Builder">T</a>&nbsp;withMembers(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;io.atomix.copycat.server.state.Member&gt;&nbsp;members)</pre>
 <div class="block">Sets the response members.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -327,7 +303,7 @@ extends <a href="../../../../../io/atomix/copycat/client/response/Response.Build
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../io/atomix/copycat/server/response/ConfigurationResponse.html" title="class in io.atomix.copycat.server.response"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../io/atomix/copycat/server/response/JoinResponse.html" title="class in io.atomix.copycat.server.response"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../io/atomix/copycat/server/response/ConfigureResponse.html" title="class in io.atomix.copycat.server.response"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?io/atomix/copycat/server/response/ConfigurationResponse.Builder.html" target="_top">Frames</a></li>

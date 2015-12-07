@@ -118,8 +118,8 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 implements <a href="../../../../../../io/atomix/copycat/server/storage/compaction/CompactionManager.html" title="interface in io.atomix.copycat.server.storage.compaction">CompactionManager</a></pre>
 <div class="block">Builds tasks for the <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html#MINOR"><code>Compaction.MINOR</code></a> compaction process.
  <p>
- Minor compaction works by rewriting individual segments to remove entries where <a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html#isTombstone--"><code>Entry.isTombstone()</code></a>
- is <code>false</code>. The minor compaction manager is responsible for building a list of <a href="../../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionTask</code></a>s
+ Minor compaction works by rewriting individual segments to remove entries that don't have to be removed sequentially
+ from the log. The minor compaction manager is responsible for building a list of <a href="../../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionTask</code></a>s
  to compact segments. In the case of minor compaction, each task is responsible for compacting a single segment.
  However, in order to ensure segments are not compacted without cause, this compaction manager attempts to
  prioritize segments for which compaction will result in greater disk space savings.

@@ -131,53 +131,53 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Command.CompactionMode.html#io.atomix.copycat.client">Command.CompactionMode</a>
+<div class="block">Constants for specifying Raft command compaction modes.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Command.ConsistencyLevel.html#io.atomix.copycat.client">Command.ConsistencyLevel</a>
 <div class="block">Constants for specifying Raft <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a> consistency levels.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Command.PersistenceLevel.html#io.atomix.copycat.client">Command.PersistenceLevel</a>
-<div class="block">Constants for specifying Raft command persistence levels.</div>
-</td>
-</tr>
 <tr class="rowColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/ConnectionStrategies.html#io.atomix.copycat.client">ConnectionStrategies</a>
-<div class="block">Strategies for managing how clients connect to and communicate with the cluster.</div>
+<div class="block">Basic connection strategies.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/ConnectionStrategy.html#io.atomix.copycat.client">ConnectionStrategy</a>
-<div class="block">Strategy for managing client connections.</div>
+<div class="block">Connection strategies define how clients should handle initializing connections to the cluster.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/CopycatClient.html#io.atomix.copycat.client">CopycatClient</a>
-<div class="block">Provides a feature complex <a href="../../../../io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client"><code>RaftClient</code></a>.</div>
+<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/ConnectionStrategy.Attempt.html#io.atomix.copycat.client">ConnectionStrategy.Attempt</a>
+<div class="block">Represents a failed attempt at connecting to the server.</div>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/CopycatClient.html#io.atomix.copycat.client">CopycatClient</a>
+<div class="block">Provides an interface for submitting <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> queries to the Copycat cluster.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/CopycatClient.Builder.html#io.atomix.copycat.client">CopycatClient.Builder</a>
 <div class="block">Builds a new Copycat client.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Operation.html#io.atomix.copycat.client">Operation</a>
 <div class="block">Base type for Raft state operations.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Query.html#io.atomix.copycat.client">Query</a>
 <div class="block">Base interface for operations that read system state.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Query.ConsistencyLevel.html#io.atomix.copycat.client">Query.ConsistencyLevel</a>
 <div class="block">Constants for specifying Raft <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> consistency levels.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/RaftClient.html#io.atomix.copycat.client">RaftClient</a>
-<div class="block">Provides an interface for submitting <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> queries to the Raft cluster.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -188,6 +188,16 @@
 <tr class="altColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/RecoveryStrategy.html#io.atomix.copycat.client">RecoveryStrategy</a>
 <div class="block">Strategy for recovering client sessions on failures.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/SubmissionStrategies.html#io.atomix.copycat.client">SubmissionStrategies</a>
+<div class="block">Strategies for managing how clients connect to and communicate with the cluster.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/SubmissionStrategy.html#io.atomix.copycat.client">SubmissionStrategy</a>
+<div class="block">Strategy for submitting operations to the cluster.</div>
 </td>
 </tr>
 </tbody>
@@ -236,12 +246,17 @@
 </tr>
 <tr class="rowColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/ConnectionStrategy.html#io.atomix.copycat.client.session">ConnectionStrategy</a>
-<div class="block">Strategy for managing client connections.</div>
+<div class="block">Connection strategies define how clients should handle initializing connections to the cluster.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Query.html#io.atomix.copycat.client.session">Query</a>
 <div class="block">Base interface for operations that read system state.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/SubmissionStrategy.html#io.atomix.copycat.client.session">SubmissionStrategy</a>
+<div class="block">Strategy for submitting operations to the cluster.</div>
 </td>
 </tr>
 </tbody>

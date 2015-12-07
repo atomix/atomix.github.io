@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li>Prev&nbsp;Class</li>
-<li><a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/copycat/client/Command.html" target="_top">Frames</a></li>
@@ -134,11 +134,11 @@ extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="int
  When commands are submitted to the Raft cluster, they're written to a commit log on disk or in memory (based on the
  storage configuration) and replicated to a majority of the cluster. As disk usage grows over time, servers compact
  their logs to remove commands that no longer contribute to the state machine's state. In order to ensure state machines
- remain deterministic, commands must provide <a href="../../../../io/atomix/copycat/client/Command.PersistenceLevel.html" title="enum in io.atomix.copycat.client"><code>persistence levels</code></a>
+ remain deterministic, commands must provide <a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client"><code>persistence levels</code></a>
  to aid servers in deciding when it's safe to remove a command from the log. The persistence level allows state machines
  to safely handle the complexities of removing state from state machines while ensuring state machines remain
  deterministic, particularly in the event of a failure and replay of the commit log. See the
- <a href="../../../../io/atomix/copycat/client/Command.PersistenceLevel.html" title="enum in io.atomix.copycat.client"><code>Command.PersistenceLevel</code></a> documentation for more info.
+ <a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client"><code>Command.CompactionMode</code></a> documentation for more info.
  <p>
  <b>Serialization</b>
  <p>
@@ -153,7 +153,7 @@ extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="int
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><code>Command.ConsistencyLevel</code></a>, 
-<a href="../../../../io/atomix/copycat/client/Command.PersistenceLevel.html" title="enum in io.atomix.copycat.client"><code>Command.PersistenceLevel</code></a></dd>
+<a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client"><code>Command.CompactionMode</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -175,14 +175,14 @@ extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="int
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client">Command.ConsistencyLevel</a></span></code>
-<div class="block">Constants for specifying Raft <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a> consistency levels.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a></span></code>
+<div class="block">Constants for specifying Raft command compaction modes.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.PersistenceLevel.html" title="enum in io.atomix.copycat.client">Command.PersistenceLevel</a></span></code>
-<div class="block">Constants for specifying Raft command persistence levels.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client">Command.ConsistencyLevel</a></span></code>
+<div class="block">Constants for specifying Raft <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a> consistency levels.</div>
 </td>
 </tr>
 </table>
@@ -201,15 +201,15 @@ extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="int
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>default <a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client">Command.ConsistencyLevel</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.html#consistency--">consistency</a></span>()</code>
-<div class="block">Returns the command consistency level.</div>
+<td class="colFirst"><code>default <a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.html#compaction--">compaction</a></span>()</code>
+<div class="block">Returns the command compaction mode.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>default <a href="../../../../io/atomix/copycat/client/Command.PersistenceLevel.html" title="enum in io.atomix.copycat.client">Command.PersistenceLevel</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.html#persistence--">persistence</a></span>()</code>
-<div class="block">Returns the command persistence level.</div>
+<td class="colFirst"><code>default <a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client">Command.ConsistencyLevel</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.html#consistency--">consistency</a></span>()</code>
+<div class="block">Returns the command consistency level.</div>
 </td>
 </tr>
 </table>
@@ -250,21 +250,21 @@ extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="int
 </dl>
 </li>
 </ul>
-<a name="persistence--">
+<a name="compaction--">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>persistence</h4>
-<pre>default&nbsp;<a href="../../../../io/atomix/copycat/client/Command.PersistenceLevel.html" title="enum in io.atomix.copycat.client">Command.PersistenceLevel</a>&nbsp;persistence()</pre>
-<div class="block">Returns the command persistence level.
+<h4>compaction</h4>
+<pre>default&nbsp;<a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a>&nbsp;compaction()</pre>
+<div class="block">Returns the command compaction mode.
  <p>
- The persistence level will dictate how long the command is persisted in the Raft log before it can be cleaned.</div>
+ The compaction mode will dictate how long the command is persisted in the Raft log before it can be compacted.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The command persistence level.</dd>
+<dd>The command compaction mode.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../io/atomix/copycat/client/Command.PersistenceLevel.html" title="enum in io.atomix.copycat.client"><code>Command.PersistenceLevel</code></a></dd>
+<dd><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client"><code>Command.CompactionMode</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -297,7 +297,7 @@ extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="int
 <div class="subNav">
 <ul class="navList">
 <li>Prev&nbsp;Class</li>
-<li><a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/copycat/client/Command.html" target="_top">Frames</a></li>

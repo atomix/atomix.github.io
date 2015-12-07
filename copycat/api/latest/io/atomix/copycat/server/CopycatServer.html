@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -109,13 +109,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a>&gt;, <a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></dd>
+<dd><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">CopycatServer</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></pre>
+implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</pre>
 <div class="block">Provides a standalone implementation of the <a href="http://raft.github.io/">Raft consensus algorithm</a>.
  <p>
  To create a new server, use the server <a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server"><code>CopycatServer.Builder</code></a>. Servers require
@@ -216,14 +216,19 @@ implements <a href="../../../../io/atomix/copycat/server/RaftServer.html" title=
 <div class="block">Raft server builder.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a></span></code>
+<div class="block">Raft server state types.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.Type.html" title="enum in io.atomix.copycat.server">CopycatServer.Type</a></span></code>
+<div class="block">Copycat server type.</div>
+</td>
+</tr>
 </table>
-<ul class="blockList">
-<li class="blockList"><a name="nested.classes.inherited.from.class.io.atomix.copycat.server.RaftServer">
-<!--   -->
-</a>
-<h3>Nested classes/interfaces inherited from interface&nbsp;io.atomix.copycat.server.<a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></h3>
-<code><a href="../../../../io/atomix/copycat/server/RaftServer.State.html" title="enum in io.atomix.copycat.server">RaftServer.State</a></code></li>
-</ul>
 </li>
 </ul>
 <!-- ========== METHOD SUMMARY =========== -->
@@ -247,77 +252,99 @@ implements <a href="../../../../io/atomix/copycat/server/RaftServer.html" title=
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-">builder</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;clientAddress,
+       <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;serverAddress,
+       <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>...&nbsp;cluster)</code>
+<div class="block">Returns a new Raft server builder.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>static <a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address-java.util.Collection-">builder</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;clientAddress,
+       <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;serverAddress,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;cluster)</code>
+<div class="block">Returns a new Raft server builder.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#builder-io.atomix.catalyst.transport.Address-java.util.Collection-">builder</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address,
        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;cluster)</code>
 <div class="block">Returns a new Raft server builder.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#close--">close</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#close--">close</a></span>()</code>
+<div class="block">Returns a boolean value indicating whether the server is running.</div>
+</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">ThreadContext</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#context--">context</a></span>()</code>
 <div class="block">Returns the server execution context.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#delete--">delete</a></span>()</code>
 <div class="block">Deletes the Raft server and its logs.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#isClosed--">isClosed</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#isOpen--">isOpen</a></span>()</code>
-<div class="block">Returns a boolean value indicating whether the server is running.</div>
-</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#isOpen--">isOpen</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#leader--">leader</a></span>()</code>
 <div class="block">Returns the current Raft leader.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#members--">members</a></span>()</code>
 <div class="block">Returns a collection of current cluster members.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#onLeaderElection-java.util.function.Consumer-">onLeaderElection</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;listener)</code>
 <div class="block">Registers a leader election listener.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
-<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/copycat/server/RaftServer.State.html" title="enum in io.atomix.copycat.server">RaftServer.State</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#onStateChange-java.util.function.Consumer-">onStateChange</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/copycat/server/RaftServer.State.html" title="enum in io.atomix.copycat.server">RaftServer.State</a>&gt;&nbsp;listener)</code>
+<tr id="i12" class="altColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#onStateChange-java.util.function.Consumer-">onStateChange</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a>&gt;&nbsp;listener)</code>
 <div class="block">Registers a state change listener.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a>&gt;</code></td>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#open--">open</a></span>()</code>
 <div class="block">Starts the Raft server asynchronously.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/RaftServer.State.html" title="enum in io.atomix.copycat.server">RaftServer.State</a></code></td>
+<tr id="i14" class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#state--">state</a></span>()</code>
-<div class="block">Returns the Raft server state.</div>
+<div class="block">Returns the Copycat server state.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#term--">term</a></span>()</code>
 <div class="block">Returns the current Raft term.</div>
+</td>
+</tr>
+<tr id="i16" class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/CopycatServer.Type.html" title="enum in io.atomix.copycat.server">CopycatServer.Type</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#type--">type</a></span>()</code>
+<div class="block">Returns the current server type.</div>
 </td>
 </tr>
 </table>
@@ -362,7 +389,7 @@ implements <a href="../../../../io/atomix/copycat/server/RaftServer.html" title=
  file to your <code>META-INF/services</code> folder on the classpath.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>address</code> - The local server member ID. This must be the ID of a member listed in the provided members list.</dd>
+<dd><code>address</code> - The address through which clients and servers connect to this server.</dd>
 <dd><code>cluster</code> - The cluster members to which to connect.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The server builder.</dd>
@@ -389,7 +416,65 @@ implements <a href="../../../../io/atomix/copycat/server/RaftServer.html" title=
  file to your <code>META-INF/services</code> folder on the classpath.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>address</code> - The local server member ID. This must be the ID of a member listed in the provided members list.</dd>
+<dd><code>address</code> - The address through which clients and servers connect to this server.</dd>
+<dd><code>cluster</code> - The cluster members to which to connect.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The server builder.</dd>
+</dl>
+</li>
+</ul>
+<a name="builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>builder</h4>
+<pre>public static&nbsp;<a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a>&nbsp;builder(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;clientAddress,
+                                            <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;serverAddress,
+                                            <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>...&nbsp;cluster)</pre>
+<div class="block">Returns a new Raft server builder.
+ <p>
+ The provided <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> is the address to which to bind the server being constructed. The provided set of
+ members will be used to connect to the other members in the Raft cluster. The local server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> does
+ not have to be present in the address list.
+ <p>
+ The returned server builder will use the <code>NettyTransport</code> by default. Additionally, serializable types will
+ be registered using the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/ServiceLoaderTypeResolver.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>ServiceLoaderTypeResolver</code></a>. To register serializable types for the server, simply
+ add a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> or <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>
+ file to your <code>META-INF/services</code> folder on the classpath.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>clientAddress</code> - The address through which clients connect to the server.</dd>
+<dd><code>serverAddress</code> - The local server member address.</dd>
+<dd><code>cluster</code> - The cluster members to which to connect.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The server builder.</dd>
+</dl>
+</li>
+</ul>
+<a name="builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address-java.util.Collection-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>builder</h4>
+<pre>public static&nbsp;<a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a>&nbsp;builder(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;clientAddress,
+                                            <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;serverAddress,
+                                            <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;cluster)</pre>
+<div class="block">Returns a new Raft server builder.
+ <p>
+ The provided <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> is the address to which to bind the server being constructed. The provided set of
+ members will be used to connect to the other members in the Raft cluster. The local server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> does
+ not have to be present in the address list.
+ <p>
+ The returned server builder will use the <code>NettyTransport</code> by default. Additionally, serializable types will
+ be registered using the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/ServiceLoaderTypeResolver.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>ServiceLoaderTypeResolver</code></a>. To register serializable types for the server, simply
+ add a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> or <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>
+ file to your <code>META-INF/services</code> folder on the classpath.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>clientAddress</code> - The address through which clients connect to the server.</dd>
+<dd><code>serverAddress</code> - The local server member address.</dd>
 <dd><code>cluster</code> - The cluster members to which to connect.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The server builder.</dd>
@@ -403,15 +488,12 @@ implements <a href="../../../../io/atomix/copycat/server/RaftServer.html" title=
 <li class="blockList">
 <h4>term</h4>
 <pre>public&nbsp;long&nbsp;term()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/server/RaftServer.html#term--">RaftServer</a></code></span></div>
 <div class="block">Returns the current Raft term.
  <p>
  The term is a monotonically increasing number that essentially acts as a logical time for the cluster. For any
- given term, Raft guarantees that only one <a href="../../../../io/atomix/copycat/server/RaftServer.html#leader--"><code>RaftServer.leader()</code></a> can be elected, but note that a leader may also
+ given term, Raft guarantees that only one <a href="../../../../io/atomix/copycat/server/CopycatServer.html#leader--"><code>leader()</code></a> can be elected, but note that a leader may also
  not yet exist for the term.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../io/atomix/copycat/server/RaftServer.html#term--">term</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The current Raft term.</dd>
 </dl>
@@ -424,13 +506,10 @@ implements <a href="../../../../io/atomix/copycat/server/RaftServer.html" title=
 <li class="blockList">
 <h4>leader</h4>
 <pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;leader()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/server/RaftServer.html#leader--">RaftServer</a></code></span></div>
 <div class="block">Returns the current Raft leader.
  <p>
  If no leader has been elected, the leader address will be <code>null</code>.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../io/atomix/copycat/server/RaftServer.html#leader--">leader</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The current Raft leader or <code>null</code> if this server does not know of any leader.</dd>
 </dl>
@@ -467,17 +546,28 @@ implements <a href="../../../../io/atomix/copycat/server/RaftServer.html" title=
 <li class="blockList">
 <h4>members</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;members()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/server/RaftServer.html#members--">RaftServer</a></code></span></div>
 <div class="block">Returns a collection of current cluster members.
  <p>
  The current members list includes members in all states, including non-voting states. Additionally, because
  the membership set can change over time, the set of members on one server may not exactly reflect the
  set of members on another server at any given point in time.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../io/atomix/copycat/server/RaftServer.html#members--">members</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A collection of current Raft cluster members.</dd>
+</dl>
+</li>
+</ul>
+<a name="type--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>type</h4>
+<pre>public&nbsp;<a href="../../../../io/atomix/copycat/server/CopycatServer.Type.html" title="enum in io.atomix.copycat.server">CopycatServer.Type</a>&nbsp;type()</pre>
+<div class="block">Returns the current server type.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The current server type.</dd>
 </dl>
 </li>
 </ul>
@@ -487,18 +577,15 @@ implements <a href="../../../../io/atomix/copycat/server/RaftServer.html" title=
 <ul class="blockList">
 <li class="blockList">
 <h4>state</h4>
-<pre>public&nbsp;<a href="../../../../io/atomix/copycat/server/RaftServer.State.html" title="enum in io.atomix.copycat.server">RaftServer.State</a>&nbsp;state()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/server/RaftServer.html#state--">RaftServer</a></code></span></div>
-<div class="block">Returns the Raft server state.
+<pre>public&nbsp;<a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a>&nbsp;state()</pre>
+<div class="block">Returns the Copycat server state.
  <p>
- The initial state of a Raft server is <a href="../../../../io/atomix/copycat/server/RaftServer.State.html#INACTIVE"><code>RaftServer.State.INACTIVE</code></a>. Once the server is <a href="../../../../io/atomix/copycat/server/RaftServer.html#open--"><code>started</code></a> and
- until it is explicitly shutdown, the server will be in one of the active states - <a href="../../../../io/atomix/copycat/server/RaftServer.State.html#PASSIVE"><code>RaftServer.State.PASSIVE</code></a>,
- <a href="../../../../io/atomix/copycat/server/RaftServer.State.html#FOLLOWER"><code>RaftServer.State.FOLLOWER</code></a>, <a href="../../../../io/atomix/copycat/server/RaftServer.State.html#CANDIDATE"><code>RaftServer.State.CANDIDATE</code></a>, or <a href="../../../../io/atomix/copycat/server/RaftServer.State.html#LEADER"><code>RaftServer.State.LEADER</code></a>.</div>
+ The initial state of a Raft server is <a href="../../../../io/atomix/copycat/server/CopycatServer.State.html#INACTIVE"><code>CopycatServer.State.INACTIVE</code></a>. Once the server is <a href="../../../../io/atomix/copycat/server/CopycatServer.html#open--"><code>started</code></a> and
+ until it is explicitly shutdown, the server will be in one of the active states - <a href="../../../../io/atomix/copycat/server/CopycatServer.State.html#PASSIVE"><code>CopycatServer.State.PASSIVE</code></a>,
+ <a href="../../../../io/atomix/copycat/server/CopycatServer.State.html#FOLLOWER"><code>CopycatServer.State.FOLLOWER</code></a>, <a href="../../../../io/atomix/copycat/server/CopycatServer.State.html#CANDIDATE"><code>CopycatServer.State.CANDIDATE</code></a>, or <a href="../../../../io/atomix/copycat/server/CopycatServer.State.html#LEADER"><code>CopycatServer.State.LEADER</code></a>.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../io/atomix/copycat/server/RaftServer.html#state--">state</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The Raft server state.</dd>
+<dd>The Copycat server state.</dd>
 </dl>
 </li>
 </ul>
@@ -508,12 +595,12 @@ implements <a href="../../../../io/atomix/copycat/server/RaftServer.html" title=
 <ul class="blockList">
 <li class="blockList">
 <h4>onStateChange</h4>
-<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/copycat/server/RaftServer.State.html" title="enum in io.atomix.copycat.server">RaftServer.State</a>&gt;&nbsp;onStateChange(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/copycat/server/RaftServer.State.html" title="enum in io.atomix.copycat.server">RaftServer.State</a>&gt;&nbsp;listener)</pre>
+<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a>&gt;&nbsp;onStateChange(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a>&gt;&nbsp;listener)</pre>
 <div class="block">Registers a state change listener.
  <p>
- Throughout the lifetime of the cluster, the server will periodically transition between various <code>states</code>.
+ Throughout the lifetime of the cluster, the server will periodically transition between various <a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server"><code>states</code></a>.
  Users can listen for and react to state change events. To determine when this server is elected leader, simply
- listen for the <code>CopycatServer.State#LEADER</code> state.
+ listen for the <a href="../../../../io/atomix/copycat/server/CopycatServer.State.html#LEADER"><code>CopycatServer.State.LEADER</code></a> state.
  <pre>
    <code>
    server.onStateChange(state -&gt; {
@@ -541,7 +628,6 @@ implements <a href="../../../../io/atomix/copycat/server/RaftServer.html" title=
 <li class="blockList">
 <h4>context</h4>
 <pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">ThreadContext</a>&nbsp;context()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/server/RaftServer.html#context--">RaftServer</a></code></span></div>
 <div class="block">Returns the server execution context.
  <p>
  The thread context is the event loop that this server uses to communicate other Raft servers.
@@ -558,8 +644,6 @@ implements <a href="../../../../io/atomix/copycat/server/RaftServer.html" title=
    </code>
  </pre></div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../io/atomix/copycat/server/RaftServer.html#context--">context</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The server thread context.</dd>
 </dl>
@@ -571,20 +655,17 @@ implements <a href="../../../../io/atomix/copycat/server/RaftServer.html" title=
 <ul class="blockList">
 <li class="blockList">
 <h4>open</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a>&gt;&nbsp;open()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/server/RaftServer.html#open--">RaftServer</a></code></span></div>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;&nbsp;open()</pre>
 <div class="block">Starts the Raft server asynchronously.
  <p>
  When the server is started, the server will attempt to search for an existing cluster by contacting all of
  the members in the provided members list. If no existing cluster is found, the server will immediately transition
- to the <a href="../../../../io/atomix/copycat/server/RaftServer.State.html#FOLLOWER"><code>RaftServer.State.FOLLOWER</code></a> state and continue normal Raft protocol operations. If a cluster is found, the server
+ to the <a href="../../../../io/atomix/copycat/server/CopycatServer.State.html#FOLLOWER"><code>CopycatServer.State.FOLLOWER</code></a> state and continue normal Raft protocol operations. If a cluster is found, the server
  will attempt to join the cluster. Once the server has joined or started a cluster and a leader has been found,
  the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#open--" title="class or interface in io.atomix.catalyst.util">open</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a>&gt;</code></dd>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../io/atomix/copycat/server/RaftServer.html#open--">open</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></code></dd>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#open--" title="class or interface in io.atomix.catalyst.util">open</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the server has joined the cluster and a leader has been found.</dd>
 </dl>
@@ -597,18 +678,9 @@ implements <a href="../../../../io/atomix/copycat/server/RaftServer.html" title=
 <li class="blockList">
 <h4>isOpen</h4>
 <pre>public&nbsp;boolean&nbsp;isOpen()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/server/RaftServer.html#isOpen--">RaftServer</a></code></span></div>
-<div class="block">Returns a boolean value indicating whether the server is running.
- <p>
- Once <a href="../../../../io/atomix/copycat/server/RaftServer.html#open--"><code>RaftServer.open()</code></a> is called and the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> is completed (meaning this server found
- a cluster leader), this method will return <code>true</code> until <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.util"><code>closed</code></a>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#isOpen--" title="class or interface in io.atomix.catalyst.util">isOpen</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a>&gt;</code></dd>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../io/atomix/copycat/server/RaftServer.html#isOpen--">isOpen</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a></code></dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Indicates whether the server is running.</dd>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#isOpen--" title="class or interface in io.atomix.catalyst.util">isOpen</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>
@@ -619,9 +691,15 @@ implements <a href="../../../../io/atomix/copycat/server/RaftServer.html" title=
 <li class="blockList">
 <h4>close</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;close()</pre>
+<div class="block">Returns a boolean value indicating whether the server is running.
+ <p>
+ Once <a href="../../../../io/atomix/copycat/server/CopycatServer.html#open--"><code>open()</code></a> is called and the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> is completed (meaning this server found
+ a cluster leader), this method will return <code>true</code> until <a href="../../../../io/atomix/copycat/server/CopycatServer.html#close--"><code>closed</code></a>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.util">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a>&gt;</code></dd>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.util">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Indicates whether the server is running.</dd>
 </dl>
 </li>
 </ul>
@@ -634,7 +712,7 @@ implements <a href="../../../../io/atomix/copycat/server/RaftServer.html" title=
 <pre>public&nbsp;boolean&nbsp;isClosed()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#isClosed--" title="class or interface in io.atomix.catalyst.util">isClosed</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../io/atomix/copycat/server/RaftServer.html" title="interface in io.atomix.copycat.server">RaftServer</a>&gt;</code></dd>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#isClosed--" title="class or interface in io.atomix.catalyst.util">isClosed</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>

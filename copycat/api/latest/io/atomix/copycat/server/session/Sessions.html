@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6};
+var methods = {"i0":6,"i1":6,"i2":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev&nbsp;Class</li>
+<li><a href="../../../../../io/atomix/copycat/server/session/SessionListener.html" title="interface in io.atomix.copycat.server.session"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li>Next&nbsp;Class</li>
 </ul>
 <ul class="navList">
@@ -137,6 +137,18 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.htm
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/session/Sessions.html" title="interface in io.atomix.copycat.server.session">Sessions</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/session/Sessions.html#addListener-io.atomix.copycat.server.session.SessionListener-">addListener</a></span>(<a href="../../../../../io/atomix/copycat/server/session/SessionListener.html" title="interface in io.atomix.copycat.server.session">SessionListener</a>&nbsp;listener)</code>
+<div class="block">Adds a listener to the sessions.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/session/Sessions.html" title="interface in io.atomix.copycat.server.session">Sessions</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/session/Sessions.html#removeListener-io.atomix.copycat.server.session.SessionListener-">removeListener</a></span>(<a href="../../../../../io/atomix/copycat/server/session/SessionListener.html" title="interface in io.atomix.copycat.server.session">SessionListener</a>&nbsp;listener)</code>
+<div class="block">Removes a listener from the sessions.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/session/Sessions.html#session-long-">session</a></span>(long&nbsp;sessionId)</code>
 <div class="block">Returns a session by session ID.</div>
@@ -167,7 +179,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.htm
 <a name="session-long-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>session</h4>
 <pre><a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>&nbsp;session(long&nbsp;sessionId)</pre>
@@ -177,6 +189,40 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.htm
 <dd><code>sessionId</code> - The session ID.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The session or <code>null</code> if no session with the given <code>sessionId</code> exists.</dd>
+</dl>
+</li>
+</ul>
+<a name="addListener-io.atomix.copycat.server.session.SessionListener-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addListener</h4>
+<pre><a href="../../../../../io/atomix/copycat/server/session/Sessions.html" title="interface in io.atomix.copycat.server.session">Sessions</a>&nbsp;addListener(<a href="../../../../../io/atomix/copycat/server/session/SessionListener.html" title="interface in io.atomix.copycat.server.session">SessionListener</a>&nbsp;listener)</pre>
+<div class="block">Adds a listener to the sessions.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>listener</code> - The listener to add.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The sessions.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the session <code>listener</code> is <code>null</code></dd>
+</dl>
+</li>
+</ul>
+<a name="removeListener-io.atomix.copycat.server.session.SessionListener-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>removeListener</h4>
+<pre><a href="../../../../../io/atomix/copycat/server/session/Sessions.html" title="interface in io.atomix.copycat.server.session">Sessions</a>&nbsp;removeListener(<a href="../../../../../io/atomix/copycat/server/session/SessionListener.html" title="interface in io.atomix.copycat.server.session">SessionListener</a>&nbsp;listener)</pre>
+<div class="block">Removes a listener from the sessions.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>listener</code> - The listener to remove.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The sessions.</dd>
 </dl>
 </li>
 </ul>
@@ -208,7 +254,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.htm
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev&nbsp;Class</li>
+<li><a href="../../../../../io/atomix/copycat/server/session/SessionListener.html" title="interface in io.atomix.copycat.server.session"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li>Next&nbsp;Class</li>
 </ul>
 <ul class="navList">

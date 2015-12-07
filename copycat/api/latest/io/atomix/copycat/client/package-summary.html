@@ -96,7 +96,19 @@
 <tr class="rowColor">
 <td class="colFirst"><a href="../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client">ConnectionStrategy</a></td>
 <td class="colLast">
-<div class="block">Strategy for managing client connections.</div>
+<div class="block">Connection strategies define how clients should handle initializing connections to the cluster.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../../io/atomix/copycat/client/ConnectionStrategy.Attempt.html" title="interface in io.atomix.copycat.client">ConnectionStrategy.Attempt</a></td>
+<td class="colLast">
+<div class="block">Represents a failed attempt at connecting to the server.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></td>
+<td class="colLast">
+<div class="block">Provides an interface for submitting <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> queries to the Copycat cluster.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -112,15 +124,15 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client">RaftClient</a></td>
-<td class="colLast">
-<div class="block">Provides an interface for submitting <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> queries to the Raft cluster.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><a href="../../../../io/atomix/copycat/client/RecoveryStrategy.html" title="interface in io.atomix.copycat.client">RecoveryStrategy</a></td>
 <td class="colLast">
 <div class="block">Strategy for recovering client sessions on failures.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../../io/atomix/copycat/client/SubmissionStrategy.html" title="interface in io.atomix.copycat.client">SubmissionStrategy</a></td>
+<td class="colLast">
+<div class="block">Strategy for submitting operations to the cluster.</div>
 </td>
 </tr>
 </tbody>
@@ -135,15 +147,15 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="class in io.atomix.copycat.client">CopycatClient</a></td>
-<td class="colLast">
-<div class="block">Provides a feature complex <a href="../../../../io/atomix/copycat/client/RaftClient.html" title="interface in io.atomix.copycat.client"><code>RaftClient</code></a>.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client">CopycatClient.Builder</a></td>
 <td class="colLast">
 <div class="block">Builds a new Copycat client.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../../io/atomix/copycat/client/DefaultCopycatClient.html" title="class in io.atomix.copycat.client">DefaultCopycatClient</a></td>
+<td class="colLast">
+<div class="block">Provides a feature complex <a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client"><code>CopycatClient</code></a>.</div>
 </td>
 </tr>
 </tbody>
@@ -158,21 +170,21 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a></td>
+<td class="colLast">
+<div class="block">Constants for specifying Raft command compaction modes.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client">Command.ConsistencyLevel</a></td>
 <td class="colLast">
 <div class="block">Constants for specifying Raft <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a> consistency levels.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../io/atomix/copycat/client/Command.PersistenceLevel.html" title="enum in io.atomix.copycat.client">Command.PersistenceLevel</a></td>
-<td class="colLast">
-<div class="block">Constants for specifying Raft command persistence levels.</div>
-</td>
-</tr>
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a></td>
 <td class="colLast">
-<div class="block">Strategies for managing how clients connect to and communicate with the cluster.</div>
+<div class="block">Basic connection strategies.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -185,6 +197,12 @@
 <td class="colFirst"><a href="../../../../io/atomix/copycat/client/RecoveryStrategies.html" title="enum in io.atomix.copycat.client">RecoveryStrategies</a></td>
 <td class="colLast">
 <div class="block">Strategies for recovering lost client sessions.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../../io/atomix/copycat/client/SubmissionStrategies.html" title="enum in io.atomix.copycat.client">SubmissionStrategies</a></td>
+<td class="colLast">
+<div class="block">Strategies for managing how clients connect to and communicate with the cluster.</div>
 </td>
 </tr>
 </tbody>

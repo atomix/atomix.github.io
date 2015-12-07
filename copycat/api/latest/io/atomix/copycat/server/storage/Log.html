@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../io/atomix/copycat/server/storage/DescriptorException.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../io/atomix/copycat/server/storage/MetaStore.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?io/atomix/copycat/server/storage/Log.html" target="_top">Frames</a></li>
@@ -194,16 +194,6 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  command is removed from the log before <code>put 1</code>, a restart and replay of the log will result in the application of
  <code>put 1</code> to the state machine, but not <code>remove 1</code>, thus resulting in an inconsistent state machine state.
  <p>
- Copycat handles tombstones by allowing tombstone entries to be flagged with the <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html#isTombstone--"><code>Entry.isTombstone()</code></a> boolean.
- The minor compaction process plainly ignores tombstone entries and leaves them up to the major compaction process to
- handle. Major compaction works similarly to minor compaction in that the configured
- <a href="../../../../../io/atomix/copycat/server/storage/Storage.html#majorCompactionInterval--"><code>Storage.majorCompactionInterval()</code></a> dictates the interval at which the major compaction process runs. During
- major compaction, the <a href="../../../../../io/atomix/copycat/server/storage/compaction/MajorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MajorCompactionManager</code></a> iterates through
- <em>all</em> <a href="../../../../../io/atomix/copycat/server/storage/Log.html#commit-long-"><code>committed</code></a> segments and rewrites them sequentially with all cleaned entries
- removed, including tombstones. This ensures that earlier segments are compacted before later segments, and so
- stateful entries that were <a href="../../../../../io/atomix/copycat/server/storage/Log.html#clean-long-"><code>cleaned</code></a> prior to related tombstones are guaranteed to be removed
- first.
- <p>
  As entries are removed from the log during minor and major compaction, log segment files begin to shrink. Copycat
  does not want to have a thousand file pointers open, so some mechanism is required to combine segments as disk space
  is freed. To that end, as the major compaction process iterates through the set of committed segments and rewrites
@@ -329,28 +319,34 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </td>
 </tr>
 <tr id="i16" class="altColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#nextIndex--">nextIndex</a></span>()</code>
+<div class="block">Returns the next index in the log.</div>
+</td>
+</tr>
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#serializer--">serializer</a></span>()</code>
 <div class="block">Returns the log entry serializer.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#size--">size</a></span>()</code>
 <div class="block">Returns the total size of all <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>segments</code></a> of the log on disk in bytes.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#skip-long-">skip</a></span>(long&nbsp;entries)</code>
 <div class="block">Skips the given number of entries.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#truncate-long-">truncate</a></span>(long&nbsp;index)</code>
 <div class="block">Truncates the log up to the given index.</div>
@@ -505,6 +501,20 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <dd>The index of the last entry in the log or <code>0</code> if the log is empty.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - If the log is not open.</dd>
+</dl>
+</li>
+</ul>
+<a name="nextIndex--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>nextIndex</h4>
+<pre>public&nbsp;long&nbsp;nextIndex()</pre>
+<div class="block">Returns the next index in the log.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The next index in the log.</dd>
 </dl>
 </li>
 </ul>
@@ -778,7 +788,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../io/atomix/copycat/server/storage/DescriptorException.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../io/atomix/copycat/server/storage/MetaStore.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?io/atomix/copycat/server/storage/Log.html" target="_top">Frames</a></li>
