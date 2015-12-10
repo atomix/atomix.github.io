@@ -130,7 +130,21 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">QueryRequest</span>
 extends <a href="../../../../../io/atomix/copycat/client/request/OperationRequest.html" title="class in io.atomix.copycat.client.request">OperationRequest</a>&lt;<a href="../../../../../io/atomix/copycat/client/request/QueryRequest.html" title="class in io.atomix.copycat.client.request">QueryRequest</a>&gt;</pre>
-<div class="block">Protocol query request.</div>
+<div class="block">Client query request.
+ <p>
+ Query requests are submitted by clients to the Copycat cluster to commit <a href="../../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a>s to
+ the replicated state machine. Each query request must be associated with a registered
+ <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.html#session--"><code>SessionRequest.session()</code></a> and have a unique <a href="../../../../../io/atomix/copycat/client/request/OperationRequest.html#sequence--"><code>OperationRequest.sequence()</code></a> number within that session. Queries will
+ be applied in the cluster in the order defined by the provided sequence number. Thus, sequence numbers
+ should never be skipped. In the event of a failure of a query request, the request should be resent
+ with the same sequence number. Queries are guaranteed to be applied in sequence order.
+ <p>
+ Query requests should always be submitted to the server to which the client is connected. The provided
+ query's <a href="../../../../../io/atomix/copycat/client/Query.html#consistency--"><code>consistency level</code></a> will be used to determine how the query should be
+ handled. If the query is received by a follower, it may be evaluated on that node if the consistency level
+ if <a href="../../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html#CAUSAL"><code>Query.ConsistencyLevel.CAUSAL</code></a> or <a href="../../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html#SEQUENTIAL"><code>Query.ConsistencyLevel.SEQUENTIAL</code></a>,
+ otherwise it will be forwarded to the cluster leader. Queries are always guaranteed to see state progress
+ monotonically within a single <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.html#session--"><code>SessionRequest.session()</code></a> even when switching servers.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -212,31 +226,31 @@ extends <a href="../../../../../io/atomix/copycat/client/request/OperationReques
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/QueryRequest.html#hashCode--">hashCode</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/QueryRequest.html#index--">index</a></span>()</code>
+<div class="block">Returns the query index.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client">Operation</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/QueryRequest.html#operation--">operation</a></span>()</code>
 <div class="block">Returns the request operation.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client">Query</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/QueryRequest.html#query--">query</a></span>()</code>
 <div class="block">Returns the query.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/QueryRequest.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/BufferInput.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer">BufferInput</a>&lt;?&gt;&nbsp;buffer,
           <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/QueryRequest.html#toString--">toString</a></span>()</code>&nbsp;</td>
-</tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>long</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/QueryRequest.html#version--">version</a></span>()</code>
-<div class="block">Returns the query version.</div>
-</td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
@@ -328,17 +342,17 @@ extends <a href="../../../../../io/atomix/copycat/client/request/OperationReques
 </dl>
 </li>
 </ul>
-<a name="version--">
+<a name="index--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>version</h4>
-<pre>public&nbsp;long&nbsp;version()</pre>
-<div class="block">Returns the query version.</div>
+<h4>index</h4>
+<pre>public&nbsp;long&nbsp;index()</pre>
+<div class="block">Returns the query index.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The query version.</dd>
+<dd>The query index.</dd>
 </dl>
 </li>
 </ul>

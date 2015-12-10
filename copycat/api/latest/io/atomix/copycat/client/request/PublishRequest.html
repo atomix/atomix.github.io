@@ -125,7 +125,14 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">PublishRequest</span>
 extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.html" title="class in io.atomix.copycat.client.request">SessionRequest</a>&lt;<a href="../../../../../io/atomix/copycat/client/request/PublishRequest.html" title="class in io.atomix.copycat.client.request">PublishRequest</a>&gt;</pre>
-<div class="block">Protocol publish request.</div>
+<div class="block">Event publish request.
+ <p>
+ Publish requests are used by servers to publish event messages to clients. Event messages are
+ sequenced based on the point in the Raft log at which they were published to the client. The
+ <code>#eventVersion()</code> indicates the index at which the event was sent, and the <code>#previousVersion()</code>
+ indicates the index of the prior event messages sent to the client. Clients must ensure that event
+ messages are received in sequence by tracking the last index for which they received an event message
+ and validating <code>#previousVersion()</code> against that index.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -203,15 +210,15 @@ extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.html#equals-java.lang.Object-">equals</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;object)</code>&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session">Event</a>&lt;?&gt;&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.html#events--">events</a></span>()</code>
-<div class="block">Returns the request events.</div>
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.html#eventIndex--">eventIndex</a></span>()</code>
+<div class="block">Returns the event index.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>long</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.html#eventVersion--">eventVersion</a></span>()</code>
-<div class="block">Returns the event version number.</div>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session">Event</a>&lt;?&gt;&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.html#events--">events</a></span>()</code>
+<div class="block">Returns the request events.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
@@ -220,8 +227,8 @@ extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>long</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.html#previousVersion--">previousVersion</a></span>()</code>
-<div class="block">Returns the previous event version number.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.html#previousIndex--">previousIndex</a></span>()</code>
+<div class="block">Returns the previous event index.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
@@ -316,31 +323,31 @@ extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.
 </dl>
 </li>
 </ul>
-<a name="eventVersion--">
+<a name="eventIndex--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>eventVersion</h4>
-<pre>public&nbsp;long&nbsp;eventVersion()</pre>
-<div class="block">Returns the event version number.</div>
+<h4>eventIndex</h4>
+<pre>public&nbsp;long&nbsp;eventIndex()</pre>
+<div class="block">Returns the event index.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The event version number.</dd>
+<dd>The event index.</dd>
 </dl>
 </li>
 </ul>
-<a name="previousVersion--">
+<a name="previousIndex--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>previousVersion</h4>
-<pre>public&nbsp;long&nbsp;previousVersion()</pre>
-<div class="block">Returns the previous event version number.</div>
+<h4>previousIndex</h4>
+<pre>public&nbsp;long&nbsp;previousIndex()</pre>
+<div class="block">Returns the previous event index.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The previous event version number.</dd>
+<dd>The previous event index.</dd>
 </dl>
 </li>
 </ul>

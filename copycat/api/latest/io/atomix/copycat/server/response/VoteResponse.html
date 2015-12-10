@@ -120,7 +120,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">VoteResponse</span>
 extends <a href="../../../../../io/atomix/copycat/client/response/AbstractResponse.html" title="class in io.atomix.copycat.client.response">AbstractResponse</a>&lt;<a href="../../../../../io/atomix/copycat/server/response/VoteResponse.html" title="class in io.atomix.copycat.server.response">VoteResponse</a>&gt;</pre>
-<div class="block">Protocol vote response.</div>
+<div class="block">Server vote response.
+ <p>
+ Vote responses are sent by active servers in response to vote requests by candidate to indicate
+ whether the responding server voted for the requesting candidate. This is indicated by the
+ <a href="../../../../../io/atomix/copycat/server/response/VoteResponse.html#voted--"><code>voted()</code></a> field of the response.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

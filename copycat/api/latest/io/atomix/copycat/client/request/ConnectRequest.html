@@ -125,7 +125,12 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">ConnectRequest</span>
 extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.html" title="class in io.atomix.copycat.client.request">SessionRequest</a>&lt;<a href="../../../../../io/atomix/copycat/client/request/ConnectRequest.html" title="class in io.atomix.copycat.client.request">ConnectRequest</a>&gt;</pre>
-<div class="block">Protocol connect client request.</div>
+<div class="block">Connect client request.
+ <p>
+ Connect requests are sent by clients to specific servers when first establishing a connection.
+ Connections must be associated with a specific client <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.html#session--"><code>SessionRequest.session()</code></a> and must be established
+ each time the client switches servers. A client may only be connected to a single server at any
+ given time.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

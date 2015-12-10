@@ -125,7 +125,13 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">AcceptResponse</span>
 extends <a href="../../../../../io/atomix/copycat/client/response/SessionResponse.html" title="class in io.atomix.copycat.client.response">SessionResponse</a>&lt;<a href="../../../../../io/atomix/copycat/server/response/AcceptResponse.html" title="class in io.atomix.copycat.server.response">AcceptResponse</a>&gt;</pre>
-<div class="block">Protocol accept client response.</div>
+<div class="block">Server accept client response.
+ <p>
+ Accept client responses are sent to between servers once a new
+ <a href="../../../../../io/atomix/copycat/server/storage/entry/ConnectEntry.html" title="class in io.atomix.copycat.server.storage.entry"><code>ConnectEntry</code></a> has been committed to the Raft log, denoting
+ the relationship between a client and server. If the acceptance of the connection was successful, the
+ response status will be <a href="../../../../../io/atomix/copycat/client/response/Response.Status.html#OK"><code>Response.Status.OK</code></a>, otherwise an error
+ will be provided.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

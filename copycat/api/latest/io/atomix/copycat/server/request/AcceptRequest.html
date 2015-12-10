@@ -125,7 +125,13 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">AcceptRequest</span>
 extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.html" title="class in io.atomix.copycat.client.request">SessionRequest</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/AcceptRequest.html" title="class in io.atomix.copycat.server.request">AcceptRequest</a>&gt;</pre>
-<div class="block">Protocol accept client request.</div>
+<div class="block">Accept client request.
+ <p>
+ Accept requests are sent by followers to the leader to log and replicate the connection of
+ a specific client to a specific server. The <a href="../../../../../io/atomix/copycat/server/request/AcceptRequest.html#address--"><code>address()</code></a> in the accept request indicates
+ the server to which the client is connected. Accept requests will ultimately result in a
+ <a href="../../../../../io/atomix/copycat/server/storage/entry/ConnectEntry.html" title="class in io.atomix.copycat.server.storage.entry"><code>ConnectEntry</code></a> being logged and replicated such
+ that all server state machines receive updates on the relationships between clients and servers.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

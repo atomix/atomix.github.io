@@ -130,7 +130,15 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">QueryResponse</span>
 extends <a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html" title="class in io.atomix.copycat.client.response">OperationResponse</a>&lt;<a href="../../../../../io/atomix/copycat/client/response/QueryResponse.html" title="class in io.atomix.copycat.client.response">QueryResponse</a>&gt;</pre>
-<div class="block">Protocol query response.</div>
+<div class="block">Client query response.
+ <p>
+ Query responses are sent by servers to clients upon the completion of a
+ <a href="../../../../../io/atomix/copycat/client/request/QueryRequest.html" title="class in io.atomix.copycat.client.request"><code>QueryRequest</code></a>. Query responses are sent with the
+ <code>#version()</code> (or index) of the state machine at the point at which the query was evaluated.
+ This can be used by the client to ensure it sees state progress monotonically. Note, however, that
+ query responses may not be sent or received in sequential order. If a query response is proxied through
+ another server, responses may be received out of order. Clients should resequence concurrent responses
+ to ensure they're handled in FIFO order.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -216,7 +224,7 @@ extends <a href="../../../../../io/atomix/copycat/client/response/OperationRespo
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;io.atomix.copycat.client.response.<a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html" title="class in io.atomix.copycat.client.response">OperationResponse</a></h3>
-<code><a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#equals-java.lang.Object-">equals</a>, <a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#hashCode--">hashCode</a>, <a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject</a>, <a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#result--">result</a>, <a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#toString--">toString</a>, <a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#version--">version</a>, <a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject</a></code></li>
+<code><a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#equals-java.lang.Object-">equals</a>, <a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#hashCode--">hashCode</a>, <a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#index--">index</a>, <a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject</a>, <a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#result--">result</a>, <a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#toString--">toString</a>, <a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.copycat.client.response.AbstractResponse">

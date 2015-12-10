@@ -155,26 +155,26 @@ extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.Builder.html" title="class in io.atomix.copycat.client.request">PublishRequest.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.Builder.html#withEvents-io.atomix.copycat.client.session.Event...-">withEvents</a></span>(<a href="../../../../../io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session">Event</a>&lt;?&gt;...&nbsp;events)</code>
-<div class="block">Sets the request events.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.Builder.html#withEventIndex-long-">withEventIndex</a></span>(long&nbsp;index)</code>
+<div class="block">Sets the event index.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.Builder.html" title="class in io.atomix.copycat.client.request">PublishRequest.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.Builder.html#withEvents-java.util.List-">withEvents</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session">Event</a>&lt;?&gt;&gt;&nbsp;events)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.Builder.html#withEvents-io.atomix.copycat.client.session.Event...-">withEvents</a></span>(<a href="../../../../../io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session">Event</a>&lt;?&gt;...&nbsp;events)</code>
 <div class="block">Sets the request events.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.Builder.html" title="class in io.atomix.copycat.client.request">PublishRequest.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.Builder.html#withEventVersion-long-">withEventVersion</a></span>(long&nbsp;version)</code>
-<div class="block">Sets the event version number.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.Builder.html#withEvents-java.util.List-">withEvents</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session">Event</a>&lt;?&gt;&gt;&nbsp;events)</code>
+<div class="block">Sets the request events.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.Builder.html" title="class in io.atomix.copycat.client.request">PublishRequest.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.Builder.html#withPreviousVersion-long-">withPreviousVersion</a></span>(long&nbsp;version)</code>
-<div class="block">Sets the previous event version number.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/request/PublishRequest.Builder.html#withPreviousIndex-long-">withPreviousIndex</a></span>(long&nbsp;index)</code>
+<div class="block">Sets the previous event index.</div>
 </td>
 </tr>
 </table>
@@ -206,39 +206,39 @@ extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="withEventVersion-long-">
+<a name="withEventIndex-long-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>withEventVersion</h4>
-<pre>public&nbsp;<a href="../../../../../io/atomix/copycat/client/request/PublishRequest.Builder.html" title="class in io.atomix.copycat.client.request">PublishRequest.Builder</a>&nbsp;withEventVersion(long&nbsp;version)</pre>
-<div class="block">Sets the event version number.</div>
+<h4>withEventIndex</h4>
+<pre>public&nbsp;<a href="../../../../../io/atomix/copycat/client/request/PublishRequest.Builder.html" title="class in io.atomix.copycat.client.request">PublishRequest.Builder</a>&nbsp;withEventIndex(long&nbsp;index)</pre>
+<div class="block">Sets the event index.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>version</code> - The event version number.</dd>
+<dd><code>index</code> - The event index.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The request builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>version</code> is less than 1</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>index</code> is less than 1</dd>
 </dl>
 </li>
 </ul>
-<a name="withPreviousVersion-long-">
+<a name="withPreviousIndex-long-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>withPreviousVersion</h4>
-<pre>public&nbsp;<a href="../../../../../io/atomix/copycat/client/request/PublishRequest.Builder.html" title="class in io.atomix.copycat.client.request">PublishRequest.Builder</a>&nbsp;withPreviousVersion(long&nbsp;version)</pre>
-<div class="block">Sets the previous event version number.</div>
+<h4>withPreviousIndex</h4>
+<pre>public&nbsp;<a href="../../../../../io/atomix/copycat/client/request/PublishRequest.Builder.html" title="class in io.atomix.copycat.client.request">PublishRequest.Builder</a>&nbsp;withPreviousIndex(long&nbsp;index)</pre>
+<div class="block">Sets the previous event index.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>version</code> - The previous event version number.</dd>
+<dd><code>index</code> - The previous event index.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The request builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>version</code> is less than 1</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>index</code> is less than 1</dd>
 </dl>
 </li>
 </ul>

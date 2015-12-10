@@ -120,7 +120,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">PollRequest</span>
 extends <a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">AbstractRequest</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/PollRequest.html" title="class in io.atomix.copycat.server.request">PollRequest</a>&gt;</pre>
-<div class="block">Protocol poll request.</div>
+<div class="block">Server poll request.
+ <p>
+ Poll requests aid in the implementation of the so-called "pre-vote" protocol. They are sent by followers
+ to all other servers prior to transitioning to the candidate state. This helps ensure that servers that
+ can't win elections do not disrupt existing leaders when e.g. rejoining the cluster after a partition.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

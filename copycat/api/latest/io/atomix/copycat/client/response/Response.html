@@ -111,7 +111,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public interface <span class="typeNameLabel">Response&lt;T extends Response&lt;T&gt;&gt;</span>
 extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a></pre>
-<div class="block">Protocol response.</div>
+<div class="block">Base interface for responses.
+ <p>
+ Each response has a non-null <a href="../../../../../io/atomix/copycat/client/response/Response.Status.html" title="enum in io.atomix.copycat.client.response"><code>Response.Status</code></a> of either <a href="../../../../../io/atomix/copycat/client/response/Response.Status.html#OK"><code>Response.Status.OK</code></a> or
+ <a href="../../../../../io/atomix/copycat/client/response/Response.Status.html#ERROR"><code>Response.Status.ERROR</code></a>. Responses where <a href="../../../../../io/atomix/copycat/client/response/Response.html#status--"><code>status()</code></a> is <a href="../../../../../io/atomix/copycat/client/response/Response.Status.html#ERROR"><code>Response.Status.ERROR</code></a>
+ may provide an optional <a href="../../../../../io/atomix/copycat/client/response/Response.html#error--"><code>error()</code></a> code.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

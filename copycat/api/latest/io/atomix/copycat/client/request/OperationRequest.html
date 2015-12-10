@@ -129,7 +129,13 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public abstract class <span class="typeNameLabel">OperationRequest&lt;T extends OperationRequest&lt;T&gt;&gt;</span>
 extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.html" title="class in io.atomix.copycat.client.request">SessionRequest</a>&lt;T&gt;</pre>
-<div class="block">Operation request.</div>
+<div class="block">Client operation request.
+ <p>
+ Operation requests are sent by clients to servers to execute operations on the replicated state
+ machine. Each operation request must be sequenced with a <a href="../../../../../io/atomix/copycat/client/request/OperationRequest.html#sequence--"><code>sequence()</code></a> number. All operations
+ will be applied to replicated state machines in the sequence in which they were sent by the client.
+ Sequence numbers must always be sequential, and in the event that an operation request fails, it must
+ be resent by the client.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>

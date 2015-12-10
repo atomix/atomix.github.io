@@ -129,7 +129,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public abstract class <span class="typeNameLabel">OperationResponse&lt;T extends OperationResponse&lt;T&gt;&gt;</span>
 extends <a href="../../../../../io/atomix/copycat/client/response/SessionResponse.html" title="class in io.atomix.copycat.client.response">SessionResponse</a>&lt;T&gt;</pre>
-<div class="block">Operation response.</div>
+<div class="block">Base client operation response.
+ <p>
+ All operation responses are sent with a <a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#result--"><code>result()</code></a> and the <code>#version()</code> (or index) of the state
+ machine at the point at which the operation was evaluated. The version allows clients to ensure state progresses
+ monotonically when switching servers by providing the state machine version in future operation requests.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -206,25 +210,25 @@ extends <a href="../../../../../io/atomix/copycat/client/response/SessionRespons
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#hashCode--">hashCode</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#index--">index</a></span>()</code>
+<div class="block">Returns the query index.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/BufferInput.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer">BufferInput</a>&lt;?&gt;&nbsp;buffer,
           <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#result--">result</a></span>()</code>
 <div class="block">Returns the operation result.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#toString--">toString</a></span>()</code>&nbsp;</td>
-</tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>long</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/response/OperationResponse.html#version--">version</a></span>()</code>
-<div class="block">Returns the query version.</div>
-</td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -277,17 +281,17 @@ extends <a href="../../../../../io/atomix/copycat/client/response/SessionRespons
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="version--">
+<a name="index--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>version</h4>
-<pre>public&nbsp;long&nbsp;version()</pre>
-<div class="block">Returns the query version.</div>
+<h4>index</h4>
+<pre>public&nbsp;long&nbsp;index()</pre>
+<div class="block">Returns the query index.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The query version.</dd>
+<dd>The query index.</dd>
 </dl>
 </li>
 </ul>

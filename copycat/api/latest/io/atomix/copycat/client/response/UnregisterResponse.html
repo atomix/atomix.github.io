@@ -125,7 +125,12 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">UnregisterResponse</span>
 extends <a href="../../../../../io/atomix/copycat/client/response/SessionResponse.html" title="class in io.atomix.copycat.client.response">SessionResponse</a>&lt;<a href="../../../../../io/atomix/copycat/client/response/UnregisterResponse.html" title="class in io.atomix.copycat.client.response">UnregisterResponse</a>&gt;</pre>
-<div class="block">Protocol unregister response.</div>
+<div class="block">Session unregister response.
+ <p>
+ Session unregister responses are sent in response to a <a href="../../../../../io/atomix/copycat/client/request/UnregisterRequest.html" title="class in io.atomix.copycat.client.request"><code>UnregisterRequest</code></a>.
+ If the response is successful, that indicates the session was successfully unregistered. For unsuccessful
+ unregister requests, sessions can still be expired by simply haulting <a href="../../../../../io/atomix/copycat/client/request/KeepAliveRequest.html" title="class in io.atomix.copycat.client.request"><code>KeepAliveRequest</code></a>s
+ to the cluster.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

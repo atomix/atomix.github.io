@@ -125,7 +125,12 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">KeepAliveResponse</span>
 extends <a href="../../../../../io/atomix/copycat/client/response/SessionResponse.html" title="class in io.atomix.copycat.client.response">SessionResponse</a>&lt;<a href="../../../../../io/atomix/copycat/client/response/KeepAliveResponse.html" title="class in io.atomix.copycat.client.response">KeepAliveResponse</a>&gt;</pre>
-<div class="block">Protocol keep alive response.</div>
+<div class="block">Session keep alive response.
+ <p>
+ Session keep alive responses are sent upon the completion of a <a href="../../../../../io/atomix/copycat/client/request/KeepAliveRequest.html" title="class in io.atomix.copycat.client.request"><code>KeepAliveRequest</code></a>
+ from a client. Keep alive responses, when successful, provide the current cluster configuration and leader
+ to the client to ensure clients can evolve with the structure of the cluster and make intelligent decisions
+ about connecting to the cluster.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

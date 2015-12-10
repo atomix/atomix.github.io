@@ -124,7 +124,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">ConfigurationRequest&lt;T extends ConfigurationRequest&lt;T&gt;&gt;</span>
 extends <a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">AbstractRequest</a>&lt;T&gt;</pre>
-<div class="block">Protocol configuration request.</div>
+<div class="block">Configuration change request.
+ <p>
+ Configuration change requests are the basis for members joining and leaving the cluster.
+ When a member wants to join or leave the cluster, it must submit a configuration change
+ request to the leader where the change will be logged and replicated.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

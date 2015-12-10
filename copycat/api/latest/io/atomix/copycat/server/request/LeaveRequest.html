@@ -125,7 +125,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">LeaveRequest</span>
 extends <a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html" title="class in io.atomix.copycat.server.request">ConfigurationRequest</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html" title="class in io.atomix.copycat.server.request">LeaveRequest</a>&gt;</pre>
-<div class="block">Protocol leave request.</div>
+<div class="block">Server leave configuration request.
+ <p>
+ The leave request is the mechanism by which servers remove themselves from a cluster. When a server
+ wants to leave a cluster, it must submit a leave request to the leader. The leader will attempt to commit
+ the configuration change and, if successful, respond to the join request with the updated configuration.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

@@ -120,7 +120,13 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">RegisterRequest</span>
 extends <a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">AbstractRequest</a>&lt;<a href="../../../../../io/atomix/copycat/client/request/RegisterRequest.html" title="class in io.atomix.copycat.client.request">RegisterRequest</a>&gt;</pre>
-<div class="block">Protocol register client request.</div>
+<div class="block">Register session request.
+ <p>
+ Clients submit register requests to a Copycat cluster to create a new session. Register requests
+ can be submitted to any server in the cluster and will be proxied to the leader. The session will
+ be associated with the provided <a href="../../../../../io/atomix/copycat/client/request/RegisterRequest.html#client--"><code>client()</code></a> ID such that servers can associate client connections
+ with the session. Once the registration is complete, the client must send <a href="../../../../../io/atomix/copycat/client/request/KeepAliveRequest.html" title="class in io.atomix.copycat.client.request"><code>KeepAliveRequest</code></a>s to
+ maintain its session with the cluster.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

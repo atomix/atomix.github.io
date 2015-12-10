@@ -125,7 +125,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">UnregisterRequest</span>
 extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.html" title="class in io.atomix.copycat.client.request">SessionRequest</a>&lt;<a href="../../../../../io/atomix/copycat/client/request/UnregisterRequest.html" title="class in io.atomix.copycat.client.request">UnregisterRequest</a>&gt;</pre>
-<div class="block">Protocol unregister request.</div>
+<div class="block">Session unregister request.
+ <p>
+ The unregister request is sent by a client with an open session to the cluster to explicitly
+ unregister its session. Note that if a client does not send an unregister request, its session will
+ eventually expire. The unregister request simply provides a more orderly method for closing client sessions.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

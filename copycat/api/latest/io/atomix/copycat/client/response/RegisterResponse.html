@@ -120,7 +120,13 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">RegisterResponse</span>
 extends <a href="../../../../../io/atomix/copycat/client/response/AbstractResponse.html" title="class in io.atomix.copycat.client.response">AbstractResponse</a>&lt;<a href="../../../../../io/atomix/copycat/client/response/RegisterResponse.html" title="class in io.atomix.copycat.client.response">RegisterResponse</a>&gt;</pre>
-<div class="block">Protocol register client response.</div>
+<div class="block">Session register response.
+ <p>
+ Session register responses are sent in response to <a href="../../../../../io/atomix/copycat/client/request/RegisterRequest.html" title="class in io.atomix.copycat.client.request"><code>RegisterRequest</code></a>s
+ sent by a client. Upon the successful registration of a session, the register response will contain the
+ registered <a href="../../../../../io/atomix/copycat/client/response/RegisterResponse.html#session--"><code>session()</code></a> identifier, the session <a href="../../../../../io/atomix/copycat/client/response/RegisterResponse.html#timeout--"><code>timeout()</code></a>, and the current cluster
+ <a href="../../../../../io/atomix/copycat/client/response/RegisterResponse.html#leader--"><code>leader()</code></a> and <a href="../../../../../io/atomix/copycat/client/response/RegisterResponse.html#members--"><code>members()</code></a> to allow the client to make intelligent decisions about
+ connecting to and communicating with the cluster.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

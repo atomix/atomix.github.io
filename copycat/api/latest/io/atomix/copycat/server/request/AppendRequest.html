@@ -120,7 +120,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">AppendRequest</span>
 extends <a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">AbstractRequest</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/AppendRequest.html" title="class in io.atomix.copycat.server.request">AppendRequest</a>&gt;</pre>
-<div class="block">Protocol append request.</div>
+<div class="block">Append entries request.
+ <p>
+ Append entries requests are at the core of the replication protocol. Leaders send append requests
+ to followers to replicate and commit log entries, and followers sent append requests to passive members
+ to replicate committed log entries.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

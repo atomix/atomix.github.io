@@ -120,7 +120,13 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">AppendResponse</span>
 extends <a href="../../../../../io/atomix/copycat/client/response/AbstractResponse.html" title="class in io.atomix.copycat.client.response">AbstractResponse</a>&lt;<a href="../../../../../io/atomix/copycat/server/response/AppendResponse.html" title="class in io.atomix.copycat.server.response">AppendResponse</a>&gt;</pre>
-<div class="block">Protocol append response.</div>
+<div class="block">Server append entries response.
+ <p>
+ Append entries responses are sent by followers to leaders to indicate whether the handling of
+ an <a href="../../../../../io/atomix/copycat/server/request/AppendRequest.html" title="class in io.atomix.copycat.server.request"><code>AppendRequest</code></a> was successful. Failed append entries
+ requests do not result in <a href="../../../../../io/atomix/copycat/client/response/Response.Status.html#ERROR"><code>Response.Status.ERROR</code></a> responses.
+ Instead, followers provide a successful response which indicates whether the append <a href="../../../../../io/atomix/copycat/server/response/AppendResponse.html#succeeded--"><code>succeeded()</code></a>
+ and provides information regarding the follower's updated log to aid in resolving indexes on the leader.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
