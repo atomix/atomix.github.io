@@ -16,7 +16,7 @@ to your classpath:
 <dependency>
   <groupId>io.atomix.copycat</groupId>
   <artifactId>copycat-server</artifactId>
-  <version>1.0.0-beta2</version>
+  <version>{{ site.copycat-version }}</version>
 </dependency>
 ```
 
@@ -26,7 +26,7 @@ To use the Raft client library, add the `copycat-client` jar to your classpath:
 <dependency>
   <groupId>io.atomix.copycat</groupId>
   <artifactId>copycat-client</artifactId>
-  <version>1.0.0-beta2</version>
+  <version>{{ site.copycat-version }}</version>
 </dependency>
 ```
 
@@ -36,7 +36,7 @@ In addition to client and server libraries, typically you must include a `transp
 <dependency>
   <groupId>io.atomix.catalyst</groupId>
   </artifactId>catalyst-netty</artifactId>
-  <version>1.0.0-rc4</version>
+  <version>{{ site.catalyst-version }}</version>
 </dependency>
 ```
 

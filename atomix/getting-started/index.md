@@ -15,7 +15,7 @@ Atomix can be found in standard Maven repositories. To add Atomix core - which i
 <dependency>
   <groupId>io.atomix</groupId>
   <artifactId>atomix</artifactId>
-  <version>{{ site.version  }}</version>
+  <version>{{ site.atomix-version }}</version>
 </dependency>
 ```
 
@@ -31,7 +31,7 @@ To add Atomix core and all resources, use the `atomix-all` artifact:
 <dependency>
   <groupId>io.atomix</groupId>
   <artifactId>atomix-all</artifactId>
-  <version>{{ site.version  }}</version>
+  <version>{{ site.atomix-version }}</version>
 </dependency>
 ```
 
