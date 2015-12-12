@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":6,"i6":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -93,14 +93,14 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">io.atomix.resource</div>
-<h2 title="Class Resource" class="title">Class Resource</h2>
+<h2 title="Class Resource" class="title">Class Resource&lt;T extends Resource&lt;T&gt;&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li>io.atomix.resource.Resource</li>
+<li>io.atomix.resource.Resource&lt;T&gt;</li>
 </ul>
 </li>
 </ul>
@@ -109,15 +109,15 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination">DistributedLeaderElection</a>, <a href="../../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a>, <a href="../../../io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a>, <a href="../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a>, <a href="../../../io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a>, <a href="../../../io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a>, <a href="../../../io/atomix/collections/DistributedQueue.html" title="class in io.atomix.collections">DistributedQueue</a>, <a href="../../../io/atomix/collections/DistributedSet.html" title="class in io.atomix.collections">DistributedSet</a>, <a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>, <a href="../../../io/atomix/primitives/DistributedValue.html" title="class in io.atomix.primitives">DistributedValue</a></dd>
+<dd><a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">AbstractDistributedValue</a>, <a href="../../../io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination">DistributedLeaderElection</a>, <a href="../../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a>, <a href="../../../io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a>, <a href="../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a>, <a href="../../../io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a>, <a href="../../../io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a>, <a href="../../../io/atomix/collections/DistributedQueue.html" title="class in io.atomix.collections">DistributedQueue</a>, <a href="../../../io/atomix/collections/DistributedSet.html" title="class in io.atomix.collections">DistributedSet</a>, <a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a></dd>
 </dl>
 <hr>
 <br>
-<pre>public abstract class <span class="typeNameLabel">Resource</span>
+<pre>public abstract class <span class="typeNameLabel">Resource&lt;T extends Resource&lt;T&gt;&gt;</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">Fault-tolerant stateful distributed object.
  <p>
- Resources are stateful distributed objects that run across a set of <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/RaftServer.html?is-external=true" title="class or interface in io.atomix.copycat.server"><code>RaftServer</code></a>s
+ Resources are stateful distributed objects that run across a set of <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/CopycatServer.html?is-external=true" title="class or interface in io.atomix.copycat.server"><code>CopycatServer</code></a>s
  in a cluster.
  <p>
  Resources can be created either as standalone <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server"><code>StateMachine</code></a>s in
@@ -144,7 +144,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
@@ -174,7 +174,13 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></code></td>
+<td class="colFirst"><code>abstract <a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#type--">type</a></span>()</code>
+<div class="block">Returns the resource type.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">with</a></span>(<a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource">Consistency</a>&nbsp;consistency)</code>
 <div class="block">Sets the resource consistency level.</div>
 </td>
@@ -201,6 +207,20 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="type--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>type</h4>
+<pre>public abstract&nbsp;<a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a>&gt;&nbsp;type()</pre>
+<div class="block">Returns the resource type.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The resource type.</dd>
+</dl>
+</li>
+</ul>
 <a name="context--">
 <!--   -->
 </a>
@@ -221,7 +241,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>with</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&nbsp;with(<a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource">Consistency</a>&nbsp;consistency)</pre>
+<pre>public&nbsp;<a href="../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a>&nbsp;with(<a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource">Consistency</a>&nbsp;consistency)</pre>
 <div class="block">Sets the resource consistency level.
  <p>
  The configured consistency level specifies how operations on the resource should be handled by the
