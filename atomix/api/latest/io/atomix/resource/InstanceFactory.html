@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -139,7 +139,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/InstanceFactory.html#InstanceFactory-io.atomix.copycat.client.CopycatClient.Builder-io.atomix.catalyst.transport.Transport-">InstanceFactory</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.Builder.html?is-external=true" title="class or interface in io.atomix.copycat.client">CopycatClient.Builder</a>&nbsp;clientBuilder,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/InstanceFactory.html#InstanceFactory-io.atomix.copycat.client.CopycatClient-io.atomix.catalyst.transport.Transport-">InstanceFactory</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html?is-external=true" title="class or interface in io.atomix.copycat.client">CopycatClient</a>&nbsp;client,
                <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</code>&nbsp;</td>
 </tr>
 </table>
@@ -240,6 +240,12 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 </td>
 </tr>
 <tr id="i13" class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/InstanceFactory.html#recover--">recover</a></span>()</code>
+<div class="block">Recovers resources created by the instance factory.</div>
+</td>
+</tr>
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/session/Session.html?is-external=true" title="class or interface in io.atomix.copycat.client.session">Session</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/InstanceFactory.html#session--">session</a></span>()</code>
 <div class="block">Returns the client session.</div>
@@ -267,13 +273,13 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="InstanceFactory-io.atomix.copycat.client.CopycatClient.Builder-io.atomix.catalyst.transport.Transport-">
+<a name="InstanceFactory-io.atomix.copycat.client.CopycatClient-io.atomix.catalyst.transport.Transport-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>InstanceFactory</h4>
-<pre>public&nbsp;InstanceFactory(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.Builder.html?is-external=true" title="class or interface in io.atomix.copycat.client">CopycatClient.Builder</a>&nbsp;clientBuilder,
+<pre>public&nbsp;InstanceFactory(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html?is-external=true" title="class or interface in io.atomix.copycat.client">CopycatClient</a>&nbsp;client,
                        <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</pre>
 </li>
 </ul>
@@ -552,6 +558,20 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#isOpen--" title="class or interface in io.atomix.catalyst.util">isOpen</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../io/atomix/resource/InstanceFactory.html" title="class in io.atomix.resource">InstanceFactory</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Indicates whether the instance factory is open.</dd>
+</dl>
+</li>
+</ul>
+<a name="recover--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>recover</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;recover()</pre>
+<div class="block">Recovers resources created by the instance factory.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the resources have been recovered.</dd>
 </dl>
 </li>
 </ul>
