@@ -142,18 +142,24 @@ implements <a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadCont
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/SingleThreadContext.html#SingleThreadContext-java.util.concurrent.ScheduledExecutorService-io.atomix.catalyst.serializer.Serializer-">SingleThreadContext</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html?is-external=true" title="class or interface in java.util.concurrent">ScheduledExecutorService</a>&nbsp;executor,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/SingleThreadContext.html#SingleThreadContext-io.atomix.catalyst.util.concurrent.CatalystThreadFactory-io.atomix.catalyst.serializer.Serializer-">SingleThreadContext</a></span>(<a href="../../../../../io/atomix/catalyst/util/concurrent/CatalystThreadFactory.html" title="class in io.atomix.catalyst.util.concurrent">CatalystThreadFactory</a>&nbsp;factory,
                    <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
 <div class="block">Creates a new single thread context.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/SingleThreadContext.html#SingleThreadContext-java.lang.String-io.atomix.catalyst.serializer.Serializer-">SingleThreadContext</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;nameFormat,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/SingleThreadContext.html#SingleThreadContext-java.util.concurrent.ScheduledExecutorService-io.atomix.catalyst.serializer.Serializer-">SingleThreadContext</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html?is-external=true" title="class or interface in java.util.concurrent">ScheduledExecutorService</a>&nbsp;executor,
                    <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
 <div class="block">Creates a new single thread context.</div>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/SingleThreadContext.html#SingleThreadContext-java.lang.String-io.atomix.catalyst.serializer.Serializer-">SingleThreadContext</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;nameFormat,
+                   <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
+<div class="block">Creates a new single thread context.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/SingleThreadContext.html#SingleThreadContext-java.lang.Thread-java.util.concurrent.ScheduledExecutorService-io.atomix.catalyst.serializer.Serializer-">SingleThreadContext</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html?is-external=true" title="class or interface in java.lang">Thread</a>&nbsp;thread,
                    <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html?is-external=true" title="class or interface in java.util.concurrent">ScheduledExecutorService</a>&nbsp;executor,
                    <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
@@ -256,6 +262,22 @@ implements <a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadCont
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>nameFormat</code> - The context nameFormat which will be formatted with a thread number.</dd>
+<dd><code>serializer</code> - The context serializer.</dd>
+</dl>
+</li>
+</ul>
+<a name="SingleThreadContext-io.atomix.catalyst.util.concurrent.CatalystThreadFactory-io.atomix.catalyst.serializer.Serializer-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>SingleThreadContext</h4>
+<pre>public&nbsp;SingleThreadContext(<a href="../../../../../io/atomix/catalyst/util/concurrent/CatalystThreadFactory.html" title="class in io.atomix.catalyst.util.concurrent">CatalystThreadFactory</a>&nbsp;factory,
+                           <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
+<div class="block">Creates a new single thread context.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>factory</code> - The thread factory.</dd>
 <dd><code>serializer</code> - The context serializer.</dd>
 </dl>
 </li>
