@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10};
+var methods = {"i0":10,"i1":10,"i2":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -106,12 +106,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="../../../../../io/atomix/copycat/client/request/Request.Builder.html" title="class in io.atomix.copycat.client.request">io.atomix.copycat.client.request.Request.Builder</a>&lt;T,U&gt;</li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../../io/atomix/copycat/client/request/SessionRequest.Builder.html" title="class in io.atomix.copycat.client.request">io.atomix.copycat.client.request.SessionRequest.Builder</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/AcceptRequest.Builder.html" title="class in io.atomix.copycat.server.request">AcceptRequest.Builder</a>,<a href="../../../../../io/atomix/copycat/server/request/AcceptRequest.html" title="class in io.atomix.copycat.server.request">AcceptRequest</a>&gt;</li>
-<li>
-<ul class="inheritance">
 <li>io.atomix.copycat.server.request.AcceptRequest.Builder</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -129,7 +124,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public static class <span class="typeNameLabel">AcceptRequest.Builder</span>
-extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.Builder.html" title="class in io.atomix.copycat.client.request">SessionRequest.Builder</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/AcceptRequest.Builder.html" title="class in io.atomix.copycat.server.request">AcceptRequest.Builder</a>,<a href="../../../../../io/atomix/copycat/server/request/AcceptRequest.html" title="class in io.atomix.copycat.server.request">AcceptRequest</a>&gt;</pre>
+extends <a href="../../../../../io/atomix/copycat/client/request/Request.Builder.html" title="class in io.atomix.copycat.client.request">Request.Builder</a>&lt;T,U&gt;</pre>
 <div class="block">Register client request builder.</div>
 </li>
 </ul>
@@ -159,14 +154,13 @@ extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.
 <div class="block">Sets the request address.</div>
 </td>
 </tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/request/AcceptRequest.Builder.html" title="class in io.atomix.copycat.server.request">AcceptRequest.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/request/AcceptRequest.Builder.html#withClient-java.util.UUID-">withClient</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;client)</code>
+<div class="block">Sets the request client.</div>
+</td>
+</tr>
 </table>
-<ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.io.atomix.copycat.client.request.SessionRequest.Builder">
-<!--   -->
-</a>
-<h3>Methods inherited from class&nbsp;io.atomix.copycat.client.request.<a href="../../../../../io/atomix/copycat/client/request/SessionRequest.Builder.html" title="class in io.atomix.copycat.client.request">SessionRequest.Builder</a></h3>
-<code><a href="../../../../../io/atomix/copycat/client/request/SessionRequest.Builder.html#withSession-long-">withSession</a></code></li>
-</ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
@@ -188,6 +182,22 @@ extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="withClient-java.util.UUID-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withClient</h4>
+<pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/request/AcceptRequest.Builder.html" title="class in io.atomix.copycat.server.request">AcceptRequest.Builder</a>&nbsp;withClient(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;client)</pre>
+<div class="block">Sets the request client.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>client</code> - The request client.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The request builder.</dd>
+</dl>
+</li>
+</ul>
 <a name="withAddress-io.atomix.catalyst.transport.Address-">
 <!--   -->
 </a>
@@ -211,10 +221,6 @@ extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.
 <li class="blockList">
 <h4>build</h4>
 <pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/request/AcceptRequest.html" title="class in io.atomix.copycat.server.request">AcceptRequest</a>&nbsp;build()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../io/atomix/copycat/client/request/SessionRequest.Builder.html#build--">build</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../io/atomix/copycat/client/request/SessionRequest.Builder.html" title="class in io.atomix.copycat.client.request">SessionRequest.Builder</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/AcceptRequest.Builder.html" title="class in io.atomix.copycat.server.request">AcceptRequest.Builder</a>,<a href="../../../../../io/atomix/copycat/server/request/AcceptRequest.html" title="class in io.atomix.copycat.server.request">AcceptRequest</a>&gt;</code></dd>
-</dl>
 </li>
 </ul>
 </li>
@@ -286,6 +292,6 @@ extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2015. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2016. All rights reserved.</small></p>
 </body>
 </html>

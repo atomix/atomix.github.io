@@ -151,7 +151,7 @@ implements <a href="../../../../../../io/atomix/copycat/server/storage/compactio
  major compaction. The major compaction task assumes that state machines will always clean <em>related</em> entries
  in monotonically increasing order. That is, if a state machines receives a <a href="../../../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a>
  <code>remove 1</code> that deletes the state of a prior <code>Commit</code> <code>set 1</code>, the state machine will call
- <a href="../../../../../../io/atomix/copycat/server/Commit.html#clean--"><code>Commit.clean()</code></a> on the <code>set 1</code> commit before cleaning the <code>remove 1</code> commit. But even if applications
+ <a href="../../../../../../io/atomix/copycat/server/Commit.html#close--"><code>Commit.close()</code></a> on the <code>set 1</code> commit before cleaning the <code>remove 1</code> commit. But even if applications
  clean entries from the log in monotonic order, and the major compaction task compacts segments in sequential order,
  inconsistencies can still arise. Consider the following history:
  <ul>
@@ -321,6 +321,6 @@ implements <a href="../../../../../../io/atomix/copycat/server/storage/compactio
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2015. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2016. All rights reserved.</small></p>
 </body>
 </html>

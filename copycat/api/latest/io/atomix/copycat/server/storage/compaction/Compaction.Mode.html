@@ -147,45 +147,39 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 <th class="colOne" scope="col">Enum Constant and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#FULL_CLEAN">FULL_CLEAN</a></span></code>
-<div class="block">The <code>FULL_CLEAN</code> compaction mode retains the command in the log until it has been stored on all servers
- in the cluster and the state machine explicitly cleans the commit from the log.</div>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#DEFAULT">DEFAULT</a></span></code>
+<div class="block">The <code>DEFAULT</code> compaction mode is a special compaction mode which indicates that the configured
+ default compaction mode should be applied to the command.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#FULL_COMMIT">FULL_COMMIT</a></span></code>
-<div class="block">The <code>FULL_COMMIT</code> compaction mode retains the command in the log until it has been stored on
- all servers in the cluster.</div>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#FULL">FULL</a></span></code>
+<div class="block">The <code>FULL</code> compaction mode retains the command in the log until it has been stored and applied
+ on all servers in the cluster.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#FULL_SEQUENTIAL_CLEAN">FULL_SEQUENTIAL_CLEAN</a></span></code>
-<div class="block">The <code>FULL_SEQUENTIAL_CLEAN</code> compaction mode retains the command in the log until it has been stored on
- all servers in the cluster and the state machine on each server explicitly cleans the command from the log.</div>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#QUORUM">QUORUM</a></span></code>
+<div class="block">The <code>QUORUM</code> compaction mode retains the command in the log until it has been stored and applied
+ on a majority of servers in the cluster.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#FULL_SEQUENTIAL_COMMIT">FULL_SEQUENTIAL_COMMIT</a></span></code>
-<div class="block">The <code>FULL_SEQUENTIAL_COMMIT</code> compaction mode retains the command in the log until it has been stored on
- all servers in the cluster.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#QUORUM_CLEAN">QUORUM_CLEAN</a></span></code>
-<div class="block">The <code>QUORUM_CLEAN</code> compaction mode retains the command in the log until it has been stored on
- a majority of servers in the cluster and the state machine explicitly cleans the commit from the log.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#QUORUM_COMMIT">QUORUM_COMMIT</a></span></code>
-<div class="block">The <code>QUORUM_COMMIT</code> compaction mode retains the command in the log until it has been stored on
- a majority of servers in the cluster.</div>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#SEQUENTIAL">SEQUENTIAL</a></span></code>
+<div class="block">The <code>SEQUENTIAL</code> compaction mode retains the command in the log until it has been stored and
+ applied on all servers in the cluster.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#SNAPSHOT">SNAPSHOT</a></span></code>
 <div class="block">The <code>SNAPSHOT</code> compaction mode indicates commands for which resulting state is stored in state machine
  snapshots.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#UNKNOWN">UNKNOWN</a></span></code>
+<div class="block">The <code>UNKNOWN</code> compaction mode is a special compaction mode which retains entries beyond the
+ snapshot index, requires that entries be stored on all servers, and removes entries from the log sequentially.</div>
 </td>
 </tr>
 </table>
@@ -245,6 +239,28 @@ the order they are declared.</div>
 <!--   -->
 </a>
 <h3>Enum Constant Detail</h3>
+<a name="DEFAULT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DEFAULT</h4>
+<pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction.Mode</a> DEFAULT</pre>
+<div class="block">The <code>DEFAULT</code> compaction mode is a special compaction mode which indicates that the configured
+ default compaction mode should be applied to the command.</div>
+</li>
+</ul>
+<a name="UNKNOWN">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>UNKNOWN</h4>
+<pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction.Mode</a> UNKNOWN</pre>
+<div class="block">The <code>UNKNOWN</code> compaction mode is a special compaction mode which retains entries beyond the
+ snapshot index, requires that entries be stored on all servers, and removes entries from the log sequentially.</div>
+</li>
+</ul>
 <a name="SNAPSHOT">
 <!--   -->
 </a>
@@ -259,74 +275,41 @@ the order they are declared.</div>
  related events have been received by all clients even if a snapshot of the state machine has since been stored.</div>
 </li>
 </ul>
-<a name="QUORUM_COMMIT">
+<a name="QUORUM">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>QUORUM_COMMIT</h4>
-<pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction.Mode</a> QUORUM_COMMIT</pre>
-<div class="block">The <code>QUORUM_COMMIT</code> compaction mode retains the command in the log until it has been stored on
- a majority of servers in the cluster. Once stored on a majority of servers, it will be applied to the
- state machines to trigger related session events. Once session events have been received by clients,
- the command will be removed from the log.</div>
+<h4>QUORUM</h4>
+<pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction.Mode</a> QUORUM</pre>
+<div class="block">The <code>QUORUM</code> compaction mode retains the command in the log until it has been stored and applied
+ on a majority of servers in the cluster. Once the commit has been applied to the state machine and
+ closed, it may be removed during minor or major compaction.</div>
 </li>
 </ul>
-<a name="QUORUM_CLEAN">
+<a name="FULL">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>QUORUM_CLEAN</h4>
-<pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction.Mode</a> QUORUM_CLEAN</pre>
-<div class="block">The <code>QUORUM_CLEAN</code> compaction mode retains the command in the log until it has been stored on
- a majority of servers in the cluster and the state machine explicitly cleans the commit from the log.</div>
+<h4>FULL</h4>
+<pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction.Mode</a> FULL</pre>
+<div class="block">The <code>FULL</code> compaction mode retains the command in the log until it has been stored and applied
+ on all servers in the cluster. Once the commit has been applied to a state machine and closed it may
+ be removed from the log during minor or major compaction.</div>
 </li>
 </ul>
-<a name="FULL_COMMIT">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>FULL_COMMIT</h4>
-<pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction.Mode</a> FULL_COMMIT</pre>
-<div class="block">The <code>FULL_COMMIT</code> compaction mode retains the command in the log until it has been stored on
- all servers in the cluster. Once stored on all servers, it will be applied to the leader's state machine
- and then cleaned from all logs.</div>
-</li>
-</ul>
-<a name="FULL_CLEAN">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>FULL_CLEAN</h4>
-<pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction.Mode</a> FULL_CLEAN</pre>
-<div class="block">The <code>FULL_CLEAN</code> compaction mode retains the command in the log until it has been stored on all servers
- in the cluster and the state machine explicitly cleans the commit from the log.</div>
-</li>
-</ul>
-<a name="FULL_SEQUENTIAL_COMMIT">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>FULL_SEQUENTIAL_COMMIT</h4>
-<pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction.Mode</a> FULL_SEQUENTIAL_COMMIT</pre>
-<div class="block">The <code>FULL_SEQUENTIAL_COMMIT</code> compaction mode retains the command in the log until it has been stored on
- all servers in the cluster. Once stored on all servers, it will be applied to the leader's state machine and
- cleaned from the log in a manner that ensures all prior cleaned entries are removed first.</div>
-</li>
-</ul>
-<a name="FULL_SEQUENTIAL_CLEAN">
+<a name="SEQUENTIAL">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>FULL_SEQUENTIAL_CLEAN</h4>
-<pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction.Mode</a> FULL_SEQUENTIAL_CLEAN</pre>
-<div class="block">The <code>FULL_SEQUENTIAL_CLEAN</code> compaction mode retains the command in the log until it has been stored on
- all servers in the cluster and the state machine on each server explicitly cleans the command from the log.</div>
+<h4>SEQUENTIAL</h4>
+<pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction.Mode</a> SEQUENTIAL</pre>
+<div class="block">The <code>SEQUENTIAL</code> compaction mode retains the command in the log until it has been stored and
+ applied on all servers in the cluster. Once the commit has been appleid to a state machine and closed,
+ it may be removed from the log <em>only during major compaction</em> to ensure that all prior completed
+ commits are removed first.</div>
 </li>
 </ul>
 </li>
@@ -448,6 +431,6 @@ not permitted.)</div>
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2015. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2016. All rights reserved.</small></p>
 </body>
 </html>

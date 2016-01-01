@@ -159,11 +159,16 @@ implements <a href="../../../../io/atomix/copycat/client/ConnectionStrategy.html
 <th class="colOne" scope="col">Enum Constant and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html#BACKOFF">BACKOFF</a></span></code>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html#EXPONENTIAL_BACKOFF">EXPONENTIAL_BACKOFF</a></span></code>
 <div class="block">Attempts to connect to the cluster using exponential backoff up to a one minute retry interval.</div>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html#FIBONACCI_BACKOFF">FIBONACCI_BACKOFF</a></span></code>
+<div class="block">Attempts to connect to the cluster using fibonacci sequence backoff.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html#ONCE">ONCE</a></span></code>
 <div class="block">Attempts to connect to the cluster one time and fails.</div>
 </td>
@@ -242,14 +247,24 @@ the order they are declared.</div>
 <div class="block">Attempts to connect to the cluster one time and fails.</div>
 </li>
 </ul>
-<a name="BACKOFF">
+<a name="EXPONENTIAL_BACKOFF">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>EXPONENTIAL_BACKOFF</h4>
+<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a> EXPONENTIAL_BACKOFF</pre>
+<div class="block">Attempts to connect to the cluster using exponential backoff up to a one minute retry interval.</div>
+</li>
+</ul>
+<a name="FIBONACCI_BACKOFF">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>BACKOFF</h4>
-<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a> BACKOFF</pre>
-<div class="block">Attempts to connect to the cluster using exponential backoff up to a one minute retry interval.</div>
+<h4>FIBONACCI_BACKOFF</h4>
+<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a> FIBONACCI_BACKOFF</pre>
+<div class="block">Attempts to connect to the cluster using fibonacci sequence backoff.</div>
 </li>
 </ul>
 </li>
@@ -371,6 +386,6 @@ not permitted.)</div>
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2015. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2016. All rights reserved.</small></p>
 </body>
 </html>

@@ -129,10 +129,10 @@ extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.
  <p>
  Publish requests are used by servers to publish event messages to clients. Event messages are
  sequenced based on the point in the Raft log at which they were published to the client. The
- <code>#eventVersion()</code> indicates the index at which the event was sent, and the <code>#previousVersion()</code>
+ <a href="../../../../../io/atomix/copycat/client/request/PublishRequest.html#eventIndex--"><code>eventIndex()</code></a> indicates the index at which the event was sent, and the <a href="../../../../../io/atomix/copycat/client/request/PublishRequest.html#previousIndex--"><code>previousIndex()</code></a>
  indicates the index of the prior event messages sent to the client. Clients must ensure that event
  messages are received in sequence by tracking the last index for which they received an event message
- and validating <code>#previousVersion()</code> against that index.</div>
+ and validating <a href="../../../../../io/atomix/copycat/client/request/PublishRequest.html#previousIndex--"><code>previousIndex()</code></a> against that index.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -505,6 +505,6 @@ extends <a href="../../../../../io/atomix/copycat/client/request/SessionRequest.
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2015. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2016. All rights reserved.</small></p>
 </body>
 </html>

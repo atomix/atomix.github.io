@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/atomix/copycat/client/RecoveryStrategies.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/copycat/client/SubmissionStrategies.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/copycat/client/RetryStrategies.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/copycat/client/RecoveryStrategy.html" target="_top">Frames</a></li>
@@ -108,9 +108,11 @@ var activeTableTab = "activeTableTab";
 <pre>public interface <span class="typeNameLabel">RecoveryStrategy</span></pre>
 <div class="block">Strategy for recovering client sessions on failures.
  <p>
- Client recovery strategies are responsible for recovering a crashed client. When clients fail to contact
- a server for more than their session timeout, the client's session must be closed as linearizability is
- lost. The recovery strategy has the opportunity to recover the crashed client gracefully.</div>
+ Client recovery strategies are responsible for recovering a crashed client. When a client is unable
+ to communicate with the cluster for some time period, the cluster may expire the client's session.
+ In the event that a client reconnects and discovers its session is expired, the client's configured
+ recovery strategy will be queried to determine how to handle the failure. Typically, recovery strategies
+ can either <a href="../../../../io/atomix/copycat/client/CopycatClient.html#recover--"><code>recover</code></a> or <a href="../../../../io/atomix/copycat/client/CopycatClient.html#close--"><code>close</code></a> the client.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -136,7 +138,7 @@ var activeTableTab = "activeTableTab";
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/RecoveryStrategy.html#recover-io.atomix.copycat.client.CopycatClient-">recover</a></span>(<a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a>&nbsp;client)</code>
-<div class="block">Recovers the session.</div>
+<div class="block">Recovers the client.</div>
 </td>
 </tr>
 </table>
@@ -161,10 +163,10 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>recover</h4>
 <pre>void&nbsp;recover(<a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a>&nbsp;client)</pre>
-<div class="block">Recovers the session.</div>
+<div class="block">Recovers the client.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>client</code> - The client to recover.</dd>
+<dd><code>client</code> - The recoverable client.</dd>
 </dl>
 </li>
 </ul>
@@ -197,7 +199,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/atomix/copycat/client/RecoveryStrategies.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/copycat/client/SubmissionStrategies.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/copycat/client/RetryStrategies.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/copycat/client/RecoveryStrategy.html" target="_top">Frames</a></li>
@@ -237,6 +239,6 @@ var activeTableTab = "activeTableTab";
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2015. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2016. All rights reserved.</small></p>
 </body>
 </html>

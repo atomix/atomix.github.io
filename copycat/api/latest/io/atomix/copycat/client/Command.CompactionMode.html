@@ -124,7 +124,31 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public static enum <span class="typeNameLabel">Command.CompactionMode</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;<a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a>&gt;</pre>
-<div class="block">Constants for specifying Raft command compaction modes.</div>
+<div class="block">Constants for specifying command compaction modes.
+ <p>
+ Compaction modes dictate how each command is removed from a Copycat server's internal logs. As commands
+ are submitted to the cluster, written to disk, and replicated, the replicated log can grow unbounded.
+ Command compaction modes allow servers to determine when it's safe to remove a command from the log.
+ Ultimately, it is the responsibility of the state machine and the command applied to it to indicate when
+ the command may be removed from the log. Typically, commands should not be removed from the log until
+ they either no longer contribute to the state machine's state or some other mechanism ensures that the
+ command's state will not be loss, such as is the case with snapshotting.
+ <p>
+ Commands to a Copycat state machine typically come in one of two flavors; commands are either compacted from
+ the log via snapshotting or log cleaning. Log cleaning is the process of removing commands from the log when
+ they no longer contribute to the state machine's state. Commands compacted via log cleaning are represented
+ by the <a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#QUORUM"><code>QUORUM</code></a>, <a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#FULL"><code>FULL</code></a>, and <a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#SEQUENTIAL"><code>SEQUENTIAL</code></a> compaction modes. These types of commands
+ are removed from the log in a manor consistent with the configured compaction mode.
+ <p>
+ Alternatively, the simpler mode of compaction is snapshotting. Snapshotted commands are indicated by the
+ <a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#SNAPSHOT"><code>SNAPSHOT</code></a> compaction mode. When a server takes a snapshot of a state machine, all commands applied
+ to the state machine up to the logical time at which the snapshot was taken may be removed from the log.
+ <p>
+ It's important to note that command compaction modes only take effect once a command applied to a state
+ machine has been released for compaction. State machines effectively manage commands applied to a state machine
+ like memory. It's always the responsibility of a state machine to indicate when a command can be safely
+ compacted according to its compaction mode by releasing the command back to the server's storage layer for
+ compaction. See the state machine documentation for more info.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -149,45 +173,39 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 <th class="colOne" scope="col">Enum Constant and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#FULL_CLEAN">FULL_CLEAN</a></span></code>
-<div class="block">The <code>FULL_CLEAN</code> compaction mode retains the command in the log until it has been stored on all servers
- in the cluster and the state machine explicitly cleans the commit from the log.</div>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#DEFAULT">DEFAULT</a></span></code>
+<div class="block">The <code>DEFAULT</code> compaction mode is a special compaction mode which is dictated by the type of
+ system to which the command is being submitted.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#FULL_COMMIT">FULL_COMMIT</a></span></code>
-<div class="block">The <code>FULL_COMMIT</code> compaction mode retains the command in the log until it has been stored on
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#FULL">FULL</a></span></code>
+<div class="block">The <code>FULL</code> compaction mode retains the command in the log until it has been stored and applied on
  all servers in the cluster.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#FULL_SEQUENTIAL_CLEAN">FULL_SEQUENTIAL_CLEAN</a></span></code>
-<div class="block">The <code>FULL_SEQUENTIAL_CLEAN</code> compaction mode retains the command in the log until it has been stored on
- all servers in the cluster and the state machine on each server explicitly cleans the command from the log.</div>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#QUORUM">QUORUM</a></span></code>
+<div class="block">The <code>QUORUM</code> compaction mode retains the command in the log until it has been stored on a majority
+ of servers in the cluster and has been applied to the state machine.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#FULL_SEQUENTIAL_COMMIT">FULL_SEQUENTIAL_COMMIT</a></span></code>
-<div class="block">The <code>FULL_SEQUENTIAL_COMMIT</code> compaction mode retains the command in the log until it has been stored on
- all servers in the cluster.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#QUORUM_CLEAN">QUORUM_CLEAN</a></span></code>
-<div class="block">The <code>QUORUM_CLEAN</code> compaction mode retains the command in the log until it has been stored on
- a majority of servers in the cluster and the state machine explicitly cleans the commit from the log.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#QUORUM_COMMIT">QUORUM_COMMIT</a></span></code>
-<div class="block">The <code>QUORUM_COMMIT</code> compaction mode retains the command in the log until it has been stored on
- a majority of servers in the cluster.</div>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#SEQUENTIAL">SEQUENTIAL</a></span></code>
+<div class="block">The sequential compaction mode retains the command in the log until it has been stored and applied on
+ all servers and until all prior commands have been compacted from the log.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#SNAPSHOT">SNAPSHOT</a></span></code>
 <div class="block">The <code>SNAPSHOT</code> compaction mode indicates commands for which resulting state is stored in state machine
  snapshots.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#UNKNOWN">UNKNOWN</a></span></code>
+<div class="block">The <code>UNKNOWN</code> compaction mode is a special compaction mode that behaves consistently for all
+ system types.</div>
 </td>
 </tr>
 </table>
@@ -247,6 +265,42 @@ the order they are declared.</div>
 <!--   -->
 </a>
 <h3>Enum Constant Detail</h3>
+<a name="DEFAULT">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DEFAULT</h4>
+<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a> DEFAULT</pre>
+<div class="block">The <code>DEFAULT</code> compaction mode is a special compaction mode which is dictated by the type of
+ system to which the command is being submitted. If the system's state machine supports snapshotting,
+ the command will be compacted via snapshots.
+ <p>
+ The compaction mode for <code>DEFAULT</code> commands is determined by whether the state machine is snapshottable.
+ Commands applied to snapshottable state machines will be cleaned from the log once a snapshot is taken after
+ the command is applied to the state machine.</div>
+</li>
+</ul>
+<a name="UNKNOWN">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>UNKNOWN</h4>
+<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a> UNKNOWN</pre>
+<div class="block">The <code>UNKNOWN</code> compaction mode is a special compaction mode that behaves consistently for all
+ system types.
+ <p>
+ This compaction mode ensures that commands will only be removed from the log when safe to do so in all potential
+ cases. In practice, this means <code>UNKNOWN</code> commands will only be removed from the log once they have been
+ applied to the state machine and a snapshot of the state machine has been taken at some point after the command
+ was applied. Additionally, <code>UNKNOWN</code> commands will only be removed from the log during <em>major</em>
+ compaction to ensure that any prior related commands will have been removed as well. For this reason, this
+ compaction mode can be extremely inefficient as servers are able to compact their logs less frequently and
+ infrequent compactions require more disk I/O. <em>It is strongly recommended that commands provide specific
+ compaction modes</em> to improve compaction performance.</div>
+</li>
+</ul>
 <a name="SNAPSHOT">
 <!--   -->
 </a>
@@ -256,79 +310,72 @@ the order they are declared.</div>
 <pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a> SNAPSHOT</pre>
 <div class="block">The <code>SNAPSHOT</code> compaction mode indicates commands for which resulting state is stored in state machine
  snapshots. Snapshot commands will be stored in the Raft log only until a snapshot of the state machine state has
- been written to disk, at which time they'll be removed from the log. Note that snapshot commands can still safely
- trigger state machine events. Commands that result in the publishing of events will be persisted in the log until
- related events have been received by all clients even if a snapshot of the state machine has since been stored.</div>
+ been written to disk, at which time they'll be removed from the log.
+ <p>
+ While commands with the <code>SNAPSHOT</code> compaction mode may be removed once a snapshot of the state machine state
+ has been taken, it's still safe for <code>SNAPSHOT</code> commands to trigger state machine events. In the event that
+ a command triggers an event to a client, servers will ensure that the command is maintained in the log until
+ all associated events have been received by clients. That is, commands will never be replaced by a snapshot prior to
+ events being received by clients. In the event of a failure and replay of the log, the state machine will always
+ see commands for which events have not been acknowledged.</div>
 </li>
 </ul>
-<a name="QUORUM_COMMIT">
+<a name="QUORUM">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>QUORUM_COMMIT</h4>
-<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a> QUORUM_COMMIT</pre>
-<div class="block">The <code>QUORUM_COMMIT</code> compaction mode retains the command in the log until it has been stored on
- a majority of servers in the cluster. Once stored on a majority of servers, it will be applied to the
- state machines to trigger related session events. Once session events have been received by clients,
- the command will be removed from the log.</div>
+<h4>QUORUM</h4>
+<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a> QUORUM</pre>
+<div class="block">The <code>QUORUM</code> compaction mode retains the command in the log until it has been stored on a majority
+ of servers in the cluster and has been applied to the state machine.
+ <p>
+ This compaction mode typically represents normal writes to a state machine. Once a <code>QUORUM</code> command
+ has been applied on a majority of state machines and have been released from memory, the command may be
+ safely removed from the log. It is the state machine's responsibility to indicate when it's safe for a
+ <code>QUORUM</code> command to be removed from the log by explicitly releasing the command once it no longer
+ contributes to the state machine's state. For instance, when one write overwrites the state that resulted
+ from a previous write, the previous write can be safely released and removed from the log during compaction.</div>
 </li>
 </ul>
-<a name="QUORUM_CLEAN">
+<a name="FULL">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>QUORUM_CLEAN</h4>
-<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a> QUORUM_CLEAN</pre>
-<div class="block">The <code>QUORUM_CLEAN</code> compaction mode retains the command in the log until it has been stored on
- a majority of servers in the cluster and the state machine explicitly cleans the commit from the log.</div>
+<h4>FULL</h4>
+<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a> FULL</pre>
+<div class="block">The <code>FULL</code> compaction mode retains the command in the log until it has been stored and applied on
+ all servers in the cluster.
+ <p>
+ This compaction mode can be useful for cases where it's essential that a command be seen by <em>all</em>
+ servers in the cluster. Even if a <code>FULL</code> command is applied to a state machine and is subsequently
+ released by that state machine, servers will still ensure the command is replicated and applied to all state
+ machines in the cluster prior to removing the command from the log. Once the command has been applied to
+ and released by all state machines, it may be removed from server logs during compaction.
+ <p>
+ In cases where a new server is joining the cluster, the concept of <em>full replication</em> only applies
+ to commands committed to the cluster <em>after</em> the new server joined. In other words, if a new server <code>s</code>
+ joins at logical time <code>t</code> then commands with the <code>FULL</code> compaction mode committed after time <code>t + 1</code>
+ will be required to be stored and applied on server <code>s</code> to meet the requirements for full replication.</div>
 </li>
 </ul>
-<a name="FULL_COMMIT">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>FULL_COMMIT</h4>
-<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a> FULL_COMMIT</pre>
-<div class="block">The <code>FULL_COMMIT</code> compaction mode retains the command in the log until it has been stored on
- all servers in the cluster. Once stored on all servers, it will be applied to the leader's state machine
- and then cleaned from all logs.</div>
-</li>
-</ul>
-<a name="FULL_CLEAN">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>FULL_CLEAN</h4>
-<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a> FULL_CLEAN</pre>
-<div class="block">The <code>FULL_CLEAN</code> compaction mode retains the command in the log until it has been stored on all servers
- in the cluster and the state machine explicitly cleans the commit from the log.</div>
-</li>
-</ul>
-<a name="FULL_SEQUENTIAL_COMMIT">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>FULL_SEQUENTIAL_COMMIT</h4>
-<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a> FULL_SEQUENTIAL_COMMIT</pre>
-<div class="block">The <code>FULL_SEQUENTIAL_COMMIT</code> compaction mode retains the command in the log until it has been stored on
- all servers in the cluster. Once stored on all servers, it will be applied to the leader's state machine and
- cleaned from the log in a manner that ensures all prior cleaned entries are removed first.</div>
-</li>
-</ul>
-<a name="FULL_SEQUENTIAL_CLEAN">
+<a name="SEQUENTIAL">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>FULL_SEQUENTIAL_CLEAN</h4>
-<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a> FULL_SEQUENTIAL_CLEAN</pre>
-<div class="block">The <code>FULL_SEQUENTIAL_CLEAN</code> compaction mode retains the command in the log until it has been stored on
- all servers in the cluster and the state machine on each server explicitly cleans the command from the log.</div>
+<h4>SEQUENTIAL</h4>
+<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a> SEQUENTIAL</pre>
+<div class="block">The sequential compaction mode retains the command in the log until it has been stored and applied on
+ all servers and until all prior commands have been compacted from the log.
+ <p>
+ The <code>SEQUENTIAL</code> compaction mode adds to the <em>full replication</em> requirement of the <code>FULL</code>
+ compaction mode to also require that commands be removed from the log <em>in sequential order</em>. Typically,
+ this compaction mode is used for so called <em>tombstone</em> commands. Sequential ordering is critical in
+ the handling of tombstones since they essentially represent the absense of state. A tombstone cannot be safely
+ removed from the log until all prior related entries have been removed. Compacting tombstones sequentially ensures
+ that any prior related commands will have been compacted from the log prior to the tombstone being removed.</div>
 </li>
 </ul>
 </li>
@@ -450,6 +497,6 @@ not permitted.)</div>
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2015. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2016. All rights reserved.</small></p>
 </body>
 </html>

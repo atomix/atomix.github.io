@@ -127,15 +127,15 @@ extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="int
  <a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html#LINEARIZABLE"><code>linearizable</code></a> consistency can be used to ensure
  that lock holders are notified before the <code>unlock</code> operation completes.
  <p>
- <b>Persistence levels</b>
+ <b>Compaction modes</b>
  <p>
  <em>Determinism is the number one rule of state machines!</em>
  <p>
  When commands are submitted to the Raft cluster, they're written to a commit log on disk or in memory (based on the
  storage configuration) and replicated to a majority of the cluster. As disk usage grows over time, servers compact
  their logs to remove commands that no longer contribute to the state machine's state. In order to ensure state machines
- remain deterministic, commands must provide <a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client"><code>persistence levels</code></a>
- to aid servers in deciding when it's safe to remove a command from the log. The persistence level allows state machines
+ remain deterministic, commands must provide <a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client"><code>compaction modes</code></a>
+ to aid servers in deciding when it's safe to remove a command from the log. The compaction mode allows state machines
  to safely handle the complexities of removing state from state machines while ensuring state machines remain
  deterministic, particularly in the event of a failure and replay of the commit log. See the
  <a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client"><code>Command.CompactionMode</code></a> documentation for more info.
@@ -176,7 +176,7 @@ extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="int
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a></span></code>
-<div class="block">Constants for specifying Raft command compaction modes.</div>
+<div class="block">Constants for specifying command compaction modes.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -259,7 +259,9 @@ extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="int
 <pre>default&nbsp;<a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a>&nbsp;compaction()</pre>
 <div class="block">Returns the command compaction mode.
  <p>
- The compaction mode will dictate how long the command is persisted in the Raft log before it can be compacted.</div>
+ The compaction mode will dictate the circumstances under which the command can be safely removed from the
+ Raft replicated log. Commands and the state machines to which they apply must coordinate the compaction process
+ via this mechanism.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The command compaction mode.</dd>
@@ -337,6 +339,6 @@ extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="int
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2015. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2016. All rights reserved.</small></p>
 </body>
 </html>

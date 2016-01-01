@@ -106,7 +106,18 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">ConnectionStrategy</span></pre>
-<div class="block">Connection strategies define how clients should handle initializing connections to the cluster.</div>
+<div class="block">Connection strategies define how clients should handle initializing connections to the cluster.
+ <p>
+ Connection strategies are used by the <a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client"><code>CopycatClient</code></a> at startup to indicate how to handle
+ failures when connecting to the cluster. When a client is first started, the client will attempt to
+ any server listed in the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>address</code></a> list provided to the
+ client at startup. If the client fails to register a new session with any server, the connection
+ strategy will dictate how to handle the failure.
+ <p>
+ Connection strategies are used in the same manner when attempting to recover a lost session. In
+ the event that a client's connection to the cluster is lost and the client must open a new session,
+ if recovering the client's session fails then the connection strategy will again dictate how to
+ handle the failure.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -254,6 +265,6 @@ var activeTableTab = "activeTableTab";
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2015. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2016. All rights reserved.</small></p>
 </body>
 </html>

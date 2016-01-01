@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -114,7 +114,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
  in the Raft replicated log, the <a href="../../../../io/atomix/copycat/server/Commit.html#time--"><code>time()</code></a> at which the commit was logged, and the <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a> that
  submitted the operation to the cluster.
  <p>
- When state machines are done using a commit object, users should always call either <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>clean()</code></a> or <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>close()</code></a>.
+ When state machines are done using a commit object, users should always call <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>close()</code></a>.
  Failing to call either method is a bug, and Copycat will log a warning message in such cases.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -145,41 +145,35 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#clean--">clean</a></span>()</code>
-<div class="block">Cleans the commit from the underlying log.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#close--">close</a></span>()</code>
 <div class="block">Closes the commit.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#index--">index</a></span>()</code>
 <div class="block">Returns the commit index.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#operation--">operation</a></span>()</code>
 <div class="block">Returns the operation submitted by the user.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#session--">session</a></span>()</code>
 <div class="block">Returns the session that submitted the operation.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/time/Instant.html?is-external=true" title="class or interface in java.time">Instant</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#time--">time</a></span>()</code>
 <div class="block">Returns the time at which the operation was committed.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#type--">type</a></span>()</code>
 <div class="block">Returns the commit type.</div>
@@ -220,7 +214,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The commit index.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - If the commit is <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a> or was <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>cleaned</code></a></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - If the commit is <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -240,7 +234,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The session that created the commit.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - If the commit is <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a> or was <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>cleaned</code></a></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - If the commit is <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -264,7 +258,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The commit time.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - If the commit is <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a> or was <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>cleaned</code></a></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - If the commit is <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -282,7 +276,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The commit type.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - If the commit is <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a> or was <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>cleaned</code></a></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - If the commit is <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -298,22 +292,8 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The operation submitted by the user.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - If the commit is <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a> or was <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>cleaned</code></a></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - If the commit is <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a></dd>
 </dl>
-</li>
-</ul>
-<a name="clean--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>clean</h4>
-<pre>void&nbsp;clean()</pre>
-<div class="block">Cleans the commit from the underlying log.
- <p>
- When the commit is cleaned, it will be removed from the log and may be removed permanently from disk at some
- arbitrary point in the future. Cleaning the commit effectively closes it, so once this method is called there
- is no need to call <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>close()</code></a>.</div>
 </li>
 </ul>
 <a name="close--">
@@ -325,6 +305,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <pre>void&nbsp;close()</pre>
 <div class="block">Closes the commit.
  <p>
+ Closing a commit will make it available for compaction from the replicated log.
  Once the commit is closed, it may be recycled and should no longer be accessed by the closer.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -401,6 +382,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2015. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2016. All rights reserved.</small></p>
 </body>
 </html>

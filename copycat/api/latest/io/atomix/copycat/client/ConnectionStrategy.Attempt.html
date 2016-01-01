@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -128,7 +128,7 @@ var activeTableTab = "activeTableTab";
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/ConnectionStrategy.Attempt.html#attempt--">attempt</a></span>()</code>
-<div class="block">Indicates the number of attempts.</div>
+<div class="block">Returns the attempt count.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -139,11 +139,17 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/ConnectionStrategy.Attempt.html#retry--">retry</a></span>()</code>
-<div class="block">Retries connecting to the cluster.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/ConnectionStrategy.Attempt.html#fail-java.lang.Throwable-">fail</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;error)</code>
+<div class="block">Fails the connection attempt with the given exception.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/ConnectionStrategy.Attempt.html#retry--">retry</a></span>()</code>
+<div class="block">Immediately retries connecting to the cluster.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/ConnectionStrategy.Attempt.html#retry-java.time.Duration-">retry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;after)</code>
 <div class="block">Retries connecting to the cluster after the given duration.</div>
@@ -171,10 +177,10 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>attempt</h4>
 <pre>int&nbsp;attempt()</pre>
-<div class="block">Indicates the number of attempts.</div>
+<div class="block">Returns the attempt count.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The number of attempts.</dd>
+<dd>The attempt count.</dd>
 </dl>
 </li>
 </ul>
@@ -188,6 +194,20 @@ var activeTableTab = "activeTableTab";
 <div class="block">Fails the connection attempt.</div>
 </li>
 </ul>
+<a name="fail-java.lang.Throwable-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>fail</h4>
+<pre>void&nbsp;fail(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;error)</pre>
+<div class="block">Fails the connection attempt with the given exception.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>error</code> - The exception with which to fail the attempt.</dd>
+</dl>
+</li>
+</ul>
 <a name="retry--">
 <!--   -->
 </a>
@@ -195,7 +215,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>retry</h4>
 <pre>void&nbsp;retry()</pre>
-<div class="block">Retries connecting to the cluster.</div>
+<div class="block">Immediately retries connecting to the cluster.</div>
 </li>
 </ul>
 <a name="retry-java.time.Duration-">
@@ -281,6 +301,6 @@ var activeTableTab = "activeTableTab";
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2015. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2016. All rights reserved.</small></p>
 </body>
 </html>

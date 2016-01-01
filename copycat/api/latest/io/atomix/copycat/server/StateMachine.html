@@ -180,7 +180,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  The <a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server"><code>StateMachineExecutor</code></a> is responsible for executing state machine operations sequentially and provides an
  interface similar to that of <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html?is-external=true" title="class or interface in java.util.concurrent"><code>ScheduledExecutorService</code></a> to allow state machines to schedule
  time-based callbacks. Because of the determinism requirement, scheduled callbacks are guaranteed to be executed
- deterministically as well. The executor can be accessed via the <a href="../../../../io/atomix/copycat/server/StateMachine.html#executor--"><code>executor()</code></a> accessor method.
+ deterministically as well. The executor can be accessed via the <a href="../../../../io/atomix/copycat/server/StateMachine.html#executor"><code>executor</code></a> field.
  See the <a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server"><code>StateMachineExecutor</code></a> documentation for more information.
  <pre>
    <code>
@@ -231,20 +231,20 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  <a href="../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> grows. Without freeing unnecessary commits from the log it would eventually
  consume all available disk or memory. Copycat uses a log cleaning algorithm to remove <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a>s that no longer
  contribute to the state machine's state from the log. To aid in this process, it's the responsibility of state machine
- implementations to indicate when each commit is no longer needed by calling <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>Commit.clean()</code></a>.
+ implementations to indicate when each commit is no longer needed by calling <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>Commit.close()</code></a>.
  <p>
  State machines should hold on to the <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a> object passed to operation callbacks for as long as the commit
- contributes to the state machine's state. Once a commit is no longer needed, <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> commits should be
- <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a> and <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a> commits should be <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>cleaned</code></a>. Cleaning notifies
- the log compaction algorithm that it's safe to remove the commit from the internal commit log. Copycat will guarantee
- that <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a>s are persisted in the underlying <a href="../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> as long as is
- necessary (even after a commit is cleaned) to ensure all operations are applied to a majority of servers and to
- guarantee delivery of <a href="../../../../io/atomix/copycat/client/session/Session.html#publish-java.lang.String-java.lang.Object-"><code>session events</code></a> published as a result of specific
- operations. State machines only need to specify when it's safe to remove each commit from the log.
+ contributes to the state machine's state. Once a commit is no longer needed, commits should be <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a>.
+ Closing a commit notifies the log compaction algorithm that it's safe to remove the commit from the internal
+ commit log. Copycat will guarantee that <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a>s are persisted in the underlying
+ <a href="../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> as long as is necessary (even after a commit is cleaned) to
+ ensure all operations are applied to a majority of servers and to guarantee delivery of
+ <a href="../../../../io/atomix/copycat/client/session/Session.html#publish-java.lang.String-java.lang.Object-"><code>session events</code></a> published as a result of specific operations.
+ State machines only need to specify when it's safe to remove each commit from the log.
  <p>
  Note that if commits are not properly cleaned from the log and are instead garbage collected, a warning will be logged.
- Failure to <a href="../../../../io/atomix/copycat/server/Commit.html#clean--"><code>Commit.clean()</code></a> a <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a> commit from the log should be considered a critical bug since
- instances of the command can eventually fill up disk.</div>
+ Failure to <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>close</code></a> a command commit should be considered a critical bug since instances of the
+ command can eventually fill up disk.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -405,6 +405,6 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2015. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2016. All rights reserved.</small></p>
 </body>
 </html>
