@@ -626,18 +626,6 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSession.html#ClientSession-java.util.UUID-io.atomix.catalyst.transport.Client-io.atomix.copycat.client.util.AddressSelector-io.atomix.catalyst.util.concurrent.ThreadContext-io.atomix.copycat.client.ConnectionStrategy-io.atomix.copycat.client.RetryStrategy-">ClientSession(UUID, Client, AddressSelector, ThreadContext, ConnectionStrategy, RetryStrategy)</a></span> - Constructor for class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="io/atomix/copycat/client/session/ClientSessionListener.html" title="class in io.atomix.copycat.client.session"><span class="typeNameLink">ClientSessionListener</span></a> - Class in <a href="io/atomix/copycat/client/session/package-summary.html">io.atomix.copycat.client.session</a></dt>
-<dd>
-<div class="block">Client session message listener.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSessionListener.html#ClientSessionListener-io.atomix.catalyst.transport.Connection-io.atomix.copycat.client.session.ClientSessionState-io.atomix.catalyst.util.concurrent.ThreadContext-">ClientSessionListener(Connection, ClientSessionState, ThreadContext)</a></span> - Constructor for class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSessionListener.html" title="class in io.atomix.copycat.client.session">ClientSessionListener</a></dt>
-<dd>&nbsp;</dd>
-<dt><a href="io/atomix/copycat/client/session/ClientSessionSubmitter.html" title="class in io.atomix.copycat.client.session"><span class="typeNameLink">ClientSessionSubmitter</span></a> - Class in <a href="io/atomix/copycat/client/session/package-summary.html">io.atomix.copycat.client.session</a></dt>
-<dd>
-<div class="block">Session operation submitter.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSessionSubmitter.html#ClientSessionSubmitter-io.atomix.catalyst.transport.Connection-io.atomix.copycat.client.session.ClientSessionState-io.atomix.catalyst.util.concurrent.ThreadContext-io.atomix.copycat.client.RetryStrategy-">ClientSessionSubmitter(Connection, ClientSessionState, ThreadContext, RetryStrategy)</a></span> - Constructor for class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSessionSubmitter.html" title="class in io.atomix.copycat.client.session">ClientSessionSubmitter</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/StateMachineContext.html#clock--">clock()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/StateMachineContext.html" title="interface in io.atomix.copycat.server">StateMachineContext</a></dt>
 <dd>
 <div class="block">Returns the state machine clock.</div>
@@ -651,14 +639,6 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSession.html#close--">close()</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></dt>
 <dd>
 <div class="block">Closes the session.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSessionListener.html#close--">close()</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSessionListener.html" title="class in io.atomix.copycat.client.session">ClientSessionListener</a></dt>
-<dd>
-<div class="block">Closes the session event listener.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSessionSubmitter.html#close--">close()</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSessionSubmitter.html" title="class in io.atomix.copycat.client.session">ClientSessionSubmitter</a></dt>
-<dd>
-<div class="block">Closes the submitter.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/util/ClientConnection.html#close--">close()</a></span> - Method in class io.atomix.copycat.client.util.<a href="io/atomix/copycat/client/util/ClientConnection.html" title="class in io.atomix.copycat.client.util">ClientConnection</a></dt>
 <dd>&nbsp;</dd>
@@ -991,7 +971,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/client/CopycatClient.State.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">CopycatClient.State</span></a> - Enum in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
 <dd>
-<div class="block">Client state.</div>
+<div class="block">Indicates the state of the client's communication with the Copycat cluster.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><span class="typeNameLink">CopycatServer</span></a> - Class in <a href="io/atomix/copycat/server/package-summary.html">io.atomix.copycat.server</a></dt>
 <dd>
@@ -2097,14 +2077,6 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSession.html#onEvent-java.lang.String-java.util.function.Consumer-">onEvent(String, Consumer&lt;T&gt;)</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSessionListener.html#onEvent-java.lang.String-java.lang.Runnable-">onEvent(String, Runnable)</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSessionListener.html" title="class in io.atomix.copycat.client.session">ClientSessionListener</a></dt>
-<dd>
-<div class="block">Registers a session event listener.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSessionListener.html#onEvent-java.lang.String-java.util.function.Consumer-">onEvent(String, Consumer)</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSessionListener.html" title="class in io.atomix.copycat.client.session">ClientSessionListener</a></dt>
-<dd>
-<div class="block">Registers a session event listener.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/Session.html#onEvent-java.lang.String-java.lang.Runnable-">onEvent(String, Runnable)</a></span> - Method in interface io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a></dt>
 <dd>
 <div class="block">Registers a void event listener.</div>
@@ -2247,14 +2219,6 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSession.html#publish-java.lang.String-java.lang.Object-">publish(String, Object)</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSessionListener.html#publish-java.lang.String-">publish(String)</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSessionListener.html" title="class in io.atomix.copycat.client.session">ClientSessionListener</a></dt>
-<dd>
-<div class="block">Publishes a session event.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSessionListener.html#publish-java.lang.String-java.lang.Object-">publish(String, Object)</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSessionListener.html" title="class in io.atomix.copycat.client.session">ClientSessionListener</a></dt>
-<dd>
-<div class="block">Publishes a session event.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/Session.html#publish-java.lang.String-">publish(String)</a></span> - Method in interface io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a></dt>
 <dd>
 <div class="block">Publishes a <code>null</code> named event to the session.</div>
@@ -2761,7 +2725,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/client/session/Session.State.html" title="enum in io.atomix.copycat.client.session"><span class="typeNameLink">Session.State</span></a> - Enum in <a href="io/atomix/copycat/client/session/package-summary.html">io.atomix.copycat.client.session</a></dt>
 <dd>
-<div class="block">Session state.</div>
+<div class="block">Represents the state of a session.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/entry/SessionEntry.html" title="class in io.atomix.copycat.server.storage.entry"><span class="typeNameLink">SessionEntry</span></a>&lt;<a href="io/atomix/copycat/server/storage/entry/SessionEntry.html" title="type parameter in SessionEntry">T</a> extends <a href="io/atomix/copycat/server/storage/entry/SessionEntry.html" title="class in io.atomix.copycat.server.storage.entry">SessionEntry</a>&lt;<a href="io/atomix/copycat/server/storage/entry/SessionEntry.html" title="type parameter in SessionEntry">T</a>&gt;&gt; - Class in <a href="io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></dt>
 <dd>
@@ -3062,14 +3026,6 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSession.html#submit-io.atomix.copycat.client.Query-">submit(Query&lt;T&gt;)</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></dt>
 <dd>
 <div class="block">Submits a query to the session.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSessionSubmitter.html#submit-io.atomix.copycat.client.Command-">submit(Command&lt;T&gt;)</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSessionSubmitter.html" title="class in io.atomix.copycat.client.session">ClientSessionSubmitter</a></dt>
-<dd>
-<div class="block">Submits a command to the cluster.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSessionSubmitter.html#submit-io.atomix.copycat.client.Query-">submit(Query&lt;T&gt;)</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSessionSubmitter.html" title="class in io.atomix.copycat.client.session">ClientSessionSubmitter</a></dt>
-<dd>
-<div class="block">Submits a query to the cluster.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/response/AppendResponse.html#succeeded--">succeeded()</a></span> - Method in class io.atomix.copycat.server.response.<a href="io/atomix/copycat/server/response/AppendResponse.html" title="class in io.atomix.copycat.server.response">AppendResponse</a></dt>
 <dd>

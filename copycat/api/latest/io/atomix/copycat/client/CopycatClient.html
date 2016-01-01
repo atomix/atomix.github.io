@@ -140,6 +140,8 @@ extends <a href="../../../../io/atomix/copycat/client/CopycatService.html" title
  All client methods are fully asynchronous and return <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>. To block until a method is complete, use
  the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> or <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> methods.
  <p>
+ <b>Sessions</b>
+ <p>
  Sessions work to provide linearizable semantics for client <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a>. When a command is submitted to the cluster,
  the command will be forwarded to the leader where it will be logged and replicated. Once the command is stored on a majority
  of servers, the leader will apply it to its state machine and respond according to the command's <a href="../../../../io/atomix/copycat/client/Command.html#consistency--"><code>Command.consistency()</code></a>.
@@ -149,7 +151,17 @@ extends <a href="../../../../io/atomix/copycat/client/CopycatService.html" title
  nodes. When a query is submitted to the cluster, the query's <a href="../../../../io/atomix/copycat/client/Query.html#consistency--"><code>Query.consistency()</code></a> will be used to determine how the
  query is handled. For queries with stronger consistency levels, they will be forwarded to the cluster's leader. For weaker
  consistency queries, they may be executed on follower nodes according to the consistency level constraints. See the
- <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><code>Query.ConsistencyLevel</code></a> documentation for more info.</div>
+ <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><code>Query.ConsistencyLevel</code></a> documentation for more info.
+ <p>
+ Throughout the lifetime of a client, the client may operate on the cluster via multiple sessions according to the configured
+ <a href="../../../../io/atomix/copycat/client/RecoveryStrategy.html" title="interface in io.atomix.copycat.client"><code>RecoveryStrategy</code></a>. In the event that the client's session expires, the client may reopen a new session and continue
+ to submit operations under the recovered session. The client will always attempt to ensure commands submitted are eventually
+ committed to the cluster even across sessions. If a command is submitted under one session but is not completed before the
+ session is lost and a new session is established, the client will resubmit pending commands from the prior session under
+ the new session. This, though, may break linearizability guarantees since linearizability is only guaranteed within the context
+ if a session. Users should watch the client for <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html" title="enum in io.atomix.copycat.client"><code>state</code></a> changes to
+ determine when linearizability guarantees may be broken. See the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html" title="enum in io.atomix.copycat.client"><code>CopycatClient.State</code></a>
+ documentation for more info.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -181,7 +193,7 @@ extends <a href="../../../../io/atomix/copycat/client/CopycatService.html" title
 <tr class="rowColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/CopycatClient.State.html" title="enum in io.atomix.copycat.client">CopycatClient.State</a></span></code>
-<div class="block">Client state.</div>
+<div class="block">Indicates the state of the client's communication with the Copycat cluster.</div>
 </td>
 </tr>
 </table>
@@ -341,7 +353,11 @@ extends <a href="../../../../io/atomix/copycat/client/CopycatService.html" title
 <li class="blockList">
 <h4>state</h4>
 <pre><a href="../../../../io/atomix/copycat/client/CopycatClient.State.html" title="enum in io.atomix.copycat.client">CopycatClient.State</a>&nbsp;state()</pre>
-<div class="block">Returns the current client state.</div>
+<div class="block">Returns the current client state.
+ <p>
+ The client's <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html" title="enum in io.atomix.copycat.client"><code>CopycatClient.State</code></a> is indicative of the client's ability to communicate with the cluster at any given
+ time. Users of the client should use the state to determine when guarantees may be lost. See the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html" title="enum in io.atomix.copycat.client"><code>CopycatClient.State</code></a>
+ documentation for information on the specific states.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The current client state.</dd>
@@ -467,8 +483,16 @@ extends <a href="../../../../io/atomix/copycat/client/CopycatService.html" title
 <pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a>&gt;&nbsp;open()</pre>
 <div class="block">Connects the client to the Copycat cluster.
  <p>
- When the client is opened, it will attempt to connect to and open a session with each unique configured server
- <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a>. Once the session is open, the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed.</div>
+ When the client is opened, it will attempt to connect to and register a session with each unique configured server
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a>. Once the session is open, the client will transition to the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#CONNECTED"><code>CopycatClient.State.CONNECTED</code></a> state and the
+ returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed.
+ <p>
+ The client will connect to servers in the cluster according to the pattern specified by theconfigured
+ <a href="../../../../io/atomix/copycat/client/ServerSelectionStrategy.html" title="interface in io.atomix.copycat.client"><code>ServerSelectionStrategy</code></a>.
+ <p>
+ In the event that the client is unable to register a session through any of the servers listed in the provided
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> list, the client will use the configured <a href="../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client"><code>ConnectionStrategy</code></a> to determine whether and when
+ to retry the registration attempt.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#open--" title="class or interface in io.atomix.catalyst.util">open</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a>&gt;</code></dd>
@@ -484,7 +508,13 @@ extends <a href="../../../../io/atomix/copycat/client/CopycatService.html" title
 <li class="blockList">
 <h4>recover</h4>
 <pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a>&gt;&nbsp;recover()</pre>
-<div class="block">Recovers the client session.</div>
+<div class="block">Recovers the client session.
+ <p>
+ Only a client in the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#SUSPENDED"><code>CopycatClient.State.SUSPENDED</code></a> state may be recovered. When a client is recovered, the
+ client will create and register a new <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a>. Once the session is recovered, the client will
+ transition back to the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#CONNECTED"><code>CopycatClient.State.CONNECTED</code></a> state and resubmit pending operations from the previous
+ session. Pending operations are guaranteed to be submitted to the new session in the same order in which
+ they were submitted to the prior session and prior to submitting any new operations.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the client's session is recovered.</dd>
@@ -498,7 +528,13 @@ extends <a href="../../../../io/atomix/copycat/client/CopycatService.html" title
 <li class="blockList">
 <h4>close</h4>
 <pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;close()</pre>
-<div class="block">Closes the client.</div>
+<div class="block">Closes the client.
+ <p>
+ Closing the client will cause the client to unregister its current <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a> if open. Once the
+ client's session is unregistered, the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed. If the client
+ is unable to unregister its session, the client will transition to the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#SUSPENDED"><code>CopycatClient.State.SUSPENDED</code></a> state and
+ continue to attempt to reconnect and unregister its session until it is able to unregister its session or
+ determine that it was already expired by the cluster.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.util">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a>&gt;</code></dd>
