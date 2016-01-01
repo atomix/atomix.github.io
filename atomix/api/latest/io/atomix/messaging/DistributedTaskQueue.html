@@ -116,7 +116,44 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">DistributedTaskQueue&lt;T&gt;</span>
 extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/messaging/DistributedTaskQueue.html" title="class in io.atomix.messaging">DistributedTaskQueue</a>&lt;T&gt;&gt;</pre>
-<div class="block">Distributed task queue.</div>
+<div class="block">Distributed task queue.
+ <p>
+ The distributed task queue provides a mechanism for processes to schedule and complete tasks
+ across a cluster. Tasks are submitted to the queue via the <a href="../../../io/atomix/messaging/DistributedTaskQueue.html#submit-T-"><code>submit(Object)</code></a> method,
+ and listeners process tasks on the queue by registering a <a href="../../../io/atomix/messaging/DistributedTaskQueue.html#consumer-java.util.function.Consumer-"><code>consumer(Consumer)</code></a>.
+ <p>
+ <pre>
+   <code>
+   queue.consumer(value -&gt; System.out.println(value));
+   queue.submit("Hello world!");
+   </code>
+ </pre>
+ Users of the task queue can either await completion of submitted tasks or complete submitted
+ tasks once written and replicated in the cluster. To await completion of submitted tasks,
+ use the <a href="../../../io/atomix/messaging/DistributedTaskQueue.html#sync--"><code>sync()</code></a> consistency level, and to allow tasks to be completed asynchronously,
+ use the <a href="../../../io/atomix/messaging/DistributedTaskQueue.html#async--"><code>async()</code></a> consistency level.
+ <p>
+ <pre>
+   <code>
+   queue.async().submit("Hello world!").thenRun(() -&gt; {
+     // Task was written and replicated
+   });
+
+   queue.sync().submit("Hello world!").thenRun(() -&gt; {
+     // Task was written, replicated, processed, and acknowledged by a consumer
+   });
+   </code>
+ </pre>
+ Tasks are guaranteed to be processed <em>at least once</em> by queue consumers. When a consumer
+ consumes and processes a task, once the registered <a href="../../../io/atomix/messaging/DistributedTaskQueue.html#consumer-java.util.function.Consumer-"><code>consumer</code></a> callback
+ is completed, the task will be acknowledged by the task queue instance and the next task will be
+ retrieved from the cluster. In the event that a consumer fails before completing the processing of
+ a task, the task will be reassigned to another active consumer.
+ <p>
+ The task queue does not guarantee ordering of processed tasks. In the absence of failures, tasks
+ will be consumed and processed in the order in which they were placed on the queue, but in the event
+ of a failure failed tasks may be requeued and processed out-of-order. This ensures that tasks can
+ continue processing during failure detection.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -291,7 +328,11 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <h4>type</h4>
 <pre>public&nbsp;<a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/messaging/DistributedTaskQueue.html" title="class in io.atomix.messaging">DistributedTaskQueue</a>&lt;<a href="../../../io/atomix/messaging/DistributedTaskQueue.html" title="type parameter in DistributedTaskQueue">T</a>&gt;&gt;&nbsp;type()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#type--">Resource</a></code></span></div>
-<div class="block">Returns the resource type.</div>
+<div class="block">Returns the resource type.
+ <p>
+ The resource type is a special descriptor of the resource that indicates the resource's unique
+ <a href="../../../io/atomix/resource/ResourceType.html#id--"><code>ID</code></a> and <a href="../../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource"><code>state machine</code></a> based on the annotated
+ <a href="../../../io/atomix/resource/ResourceTypeInfo.html" title="annotation in io.atomix.resource"><code>ResourceTypeInfo</code></a>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../io/atomix/resource/Resource.html#type--">type</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/messaging/DistributedTaskQueue.html" title="class in io.atomix.messaging">DistributedTaskQueue</a>&lt;<a href="../../../io/atomix/messaging/DistributedTaskQueue.html" title="type parameter in DistributedTaskQueue">T</a>&gt;&gt;</code></dd>

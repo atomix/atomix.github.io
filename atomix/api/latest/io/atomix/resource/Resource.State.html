@@ -124,7 +124,36 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public static enum <span class="typeNameLabel">Resource.State</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;<a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a>&gt;</pre>
-<div class="block">Resource state.</div>
+<div class="block">Indicates the state of the resource's communication with the cluster.
+ <p>
+ The resource state is indicative of the resource's ability to communicate with the cluster within the
+ context of the underlying <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/session/Session.html?is-external=true" title="class or interface in io.atomix.copycat.client.session"><code>Session</code></a>. In some cases, resource state changes may be indicative of a
+ loss of guarantees. Users of the resource should <a href="../../../io/atomix/resource/Resource.html#onStateChange-java.util.function.Consumer-"><code>watch</code></a> the state
+ of a resource to determine when guarantees are lost and react to changes in the resource's ability to communicate
+ with the cluster.
+ <p>
+ <pre>
+   <code>
+   resource.onStateChange(state -&gt; {
+     switch (state) {
+       case OPEN:
+         // The resource is healthy
+         break;
+       case SUSPENDED:
+         // The resource is unhealthy and operations may be unsafe
+         break;
+       case CLOSED:
+         // The resource has been closed and pending operations have failed
+         break;
+     }
+   });
+   </code>
+ </pre>
+ So long as the resource is in the <a href="../../../io/atomix/resource/Resource.State.html#CONNECTED"><code>CONNECTED</code></a> state, all guarantees with respect to reads and writes will
+ be maintained, and a loss of the <code>CONNECTED</code> state may indicate a loss of linearizability. See the specific
+ states for more info.
+ <p>
+ Reference resource documentation for implications of the various states on specific resources.</div>
 </li>
 </ul>
 </div>
@@ -144,17 +173,17 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.State.html#CLOSED">CLOSED</a></span></code>
-<div class="block">Indicates that the client is closed.</div>
+<div class="block">Indicates that the resource is closed.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.State.html#CONNECTED">CONNECTED</a></span></code>
-<div class="block">Indicates that the client is connected to the cluster and operating normally.</div>
+<div class="block">Indicates that the resource is connected and operating normally.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.State.html#SUSPENDED">SUSPENDED</a></span></code>
-<div class="block">Indicates that the client is suspended and unable to communicate with the cluster.</div>
+<div class="block">Indicates that the resource is suspended and its session may or may not be expired.</div>
 </td>
 </tr>
 </table>
@@ -221,7 +250,11 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>CONNECTED</h4>
 <pre>public static final&nbsp;<a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a> CONNECTED</pre>
-<div class="block">Indicates that the client is connected to the cluster and operating normally.</div>
+<div class="block">Indicates that the resource is connected and operating normally.
+ <p>
+ The <code>CONNECTED</code> state indicates that the resource is healthy and operating normally. Operations submitted
+ and completed while the resource is in this state are guaranteed to adhere to the respective <a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource"><code>consistency</code></a>
+ guarantees.</div>
 </li>
 </ul>
 <a name="SUSPENDED">
@@ -231,7 +264,20 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>SUSPENDED</h4>
 <pre>public static final&nbsp;<a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a> SUSPENDED</pre>
-<div class="block">Indicates that the client is suspended and unable to communicate with the cluster.</div>
+<div class="block">Indicates that the resource is suspended and its session may or may not be expired.
+ <p>
+ The <code>SUSPENDED</code> state is indicative of an inability to communicate with the cluster within the context of
+ the underlying client's <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/session/Session.html?is-external=true" title="class or interface in io.atomix.copycat.client.session"><code>Session</code></a>. Operations performed on resources in this state should be considered
+ unsafe. An operation performed on a <a href="../../../io/atomix/resource/Resource.State.html#CONNECTED"><code>CONNECTED</code></a> resource that transitions to the <code>SUSPENDED</code> state
+ prior to the operation's completion may be committed multiple times in the event that the underlying session
+ is ultimately <code>expired</code>, thus breaking linearizability. Additionally, state machines
+ may see the session expire while the resource is in this state.
+ <p>
+ A resource that is in the <code>SUSPENDED</code> state may transition back to <a href="../../../io/atomix/resource/Resource.State.html#CONNECTED"><code>CONNECTED</code></a> once its underlying
+ session is recovered. However, operations not yet completed prior to the resource's recovery may lose linearizability
+ guarantees. If an operation is submitted while a resource is in the <a href="../../../io/atomix/resource/Resource.State.html#CONNECTED"><code>CONNECTED</code></a> state and the resource loses
+ and recovers its session, the operation may be applied to the resource's state more than once. Operations completed
+ across sessions are guaranteed to be performed at-least-once only.</div>
 </li>
 </ul>
 <a name="CLOSED">
@@ -241,7 +287,10 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>CLOSED</h4>
 <pre>public static final&nbsp;<a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a> CLOSED</pre>
-<div class="block">Indicates that the client is closed.</div>
+<div class="block">Indicates that the resource is closed.
+ <p>
+ A resource may transition to this state as a result of an expired session or an explicit <a href="../../../io/atomix/resource/Resource.html#close--"><code>close</code></a>
+ by the user or a closure of the resource's underlying client.</div>
 </li>
 </ul>
 </li>
