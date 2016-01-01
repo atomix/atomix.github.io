@@ -165,7 +165,71 @@
 <!--   -->
 </a>
 <h2 title="Package io.atomix Description">Package io.atomix Description</h2>
-<div class="block">Core Atomix APIs, including <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> and <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.</div>
+<div class="block">Core Atomix APIs, including <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> and <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.
+ <p>
+ <h3>The Atomix cluster</h3>
+ This package provides the primary mechanisms for creating and managing Atomix clusters. An Atomix cluster
+ consists of one or more <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>servers</code></a> or <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replicas</code></a>
+ and any number of clients. To create a cluster, construct an <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>AtomixServer</code></a> or
+ <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.
+ <p>
+ <pre>
+   <code>
+   Address address = new Address("localhost", 5000);
+   List&lt;Address&gt; members = Arrays.asList(
+     new Address("localhost", 5000),
+     new Address("localhost", 5001),
+     new Address("localhost", 5002)
+   );
+
+   AtomixReplica replica = AtomixReplica.builder(address, members)
+     .withTransport(new NettyTransport())
+     .withStorage(new Storage("logs"))
+     .build();
+   replica.open();
+   </code>
+ </pre>
+ Atomix is built on the <a href="http://raft.github.io">Raft consensus algorithm</a> and so state changes
+ in the Atomix cluster are quorum-based. Atomix clusters typically consist of an odd number of servers or
+ replicas - e.g. <code>3</code> or <code>5</code> - to acheive the greatest level of fault tolerance.
+ <p>
+ <b>Servers vs Replicas</b>
+ <p>
+ The sole difference between <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>servers</code></a> and <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replicas</code></a>
+ is the ability to operate on <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>resources</code></a>. Servers should be used when constructing
+ a standalone system with which only <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>clients</code></a> can communicate, and replicas should be
+ used for embedding a server while simultaneously operating on that server's state.
+ <p>
+ <h3>Resources</h3>
+ <p>
+ Atomix <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>servers</code></a> and <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replicas</code></a> provide the ability
+ to manage and replicate state, and <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replicas</code></a> and <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>clients</code></a>
+ provide the interface to operate on that state. The <a href="../../io/atomix/Atomix.html" title="class in io.atomix"><code>Atomix</code></a> interface provides the
+ methods necessary to manage creating and operating on <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resources</code></a>.
+ A resource is a stateful, fault-tolerant, distributed object that's manged by a replicated state machine. To
+ create a resource, simply call <a href="../../io/atomix/Atomix.html#get-java.lang.String-io.atomix.resource.ResourceType-"><code>Atomix.get(java.lang.String, io.atomix.resource.ResourceType)</code></a> or
+ <a href="../../io/atomix/Atomix.html#create-java.lang.String-io.atomix.resource.ResourceType-"><code>Atomix.create(java.lang.String, io.atomix.resource.ResourceType)</code></a> on a
+ <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>client</code></a> or <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replica</code></a>.
+ <p>
+ <pre>
+   <code>
+   DistributedLeaderElection election = atomix.create("election", DistributedLeaderElection.TYPE).get();
+   </code>
+ </pre>
+ A <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>resource</code></a> is simply an interface to a replicated state machine. When a
+ resource is created, a state machine is created on each <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>server</code></a> or
+ <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replica</code></a> in the cluster, and operations on the resource are submitted to the
+ cluster where they're logged, replicated, and applied to the resource's specific <a href="../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource"><code>ResourceStateMachine</code></a>.
+ <p>
+ <b>Clients vs Replicas</b>
+ <p>
+ The sole difference between <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>clients</code></a> and <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replicas</code></a> is
+ the ability to store state and participate in replication. Clients operate on resource state purely remotely. When
+ a resource created by an <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> is modified, operations are submitted remotely
+ to the cluster. The same is true of replicas; when operations are performed on a resource created via an
+ <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>, state changes may be performed remotely, but the replica also participates
+ in the replication and commitment of the state changes. This allows servers to be effectively be embedded in code that
+ operates on resource state.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
