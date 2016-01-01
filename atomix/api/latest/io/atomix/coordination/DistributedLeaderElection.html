@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -126,7 +126,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
  instance:
  <pre>
    <code>
-   DistributedLeaderElection election = atomix.create("election", DistributedLeaderElection::new);
+   DistributedLeaderElection election = atomix.create("election", DistributedLeaderElection.TYPE);
    </code>
  </pre>
  Leaders are elected by simply registering an election callback on a leader election resource instance:
@@ -144,7 +144,35 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
  <p>
  When a leader is elected, the election callback will be supplied with a monotonically increasing election
  number known commonly as an <em>epoch</em>. The epoch is guaranteed to be unique across the entire cluster
- and over the full lifetime of a resource for any given election.</div>
+ and over the full lifetime of a resource for any given election.
+ <h3>Handling failures</h3>
+ Once an instance is elected leader, the cluster will track the leader's availability and elect a new leader
+ in the event that the leader becomes disconnected from the cluster. However, in order to ensure no two processes
+ believe themselves to be the leader simultaneously, the leader itself may need to take additional measures to
+ detect failures. If the resource's <a href="../../../io/atomix/resource/Resource.html#state--"><code>State</code></a> transitions to
+ <code>DistributedLeaderElection.State#SUSPENDED</code>, that indicates that the client cannot communicate with the
+ cluster. In that case, a new leader may be elected after some time. Users should assume that the
+ <a href="../../../io/atomix/resource/Resource.State.html#SUSPENDED"><code>Resource.State.SUSPENDED</code></a> state is indicative of a loss of leadership. To listen
+ for a leader state change, register a <a href="../../../io/atomix/resource/Resource.html#onStateChange-java.util.function.Consumer-"><code>state change listener</code></a>
+ once the leader is elected.
+ <p>
+ <pre>
+   <code>
+   DistributedLeaderElection election = atomix.create("election", DistributedLeaderElection.TYPE).get();
+   election.onElection(epoch -&gt; {
+     election.onStateChange(state -&gt; {
+       if (state == DistributedLeaderElection.State.SUSPENDED) {
+         election.resign(epoch);
+         System.out.println("lost leadership");
+       }
+     });
+   });
+   </code>
+ </pre>
+ In the event that the resource is able to maintain its session, the cluster may not elect a new leader until
+ the existing leader resigns. For this reason, clients should <a href="../../../io/atomix/coordination/DistributedLeaderElection.html#resign-long-"><code>resign(long)</code></a> their leadership explicitly
+ when a <code>SUSPENDED</code> state is detected. Alternatively, leaders
+ can poll the cluster to determine whether they're still the leader for the resource.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -231,6 +259,12 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedLeaderElection.html#resign-long-">resign</a></span>(long&nbsp;epoch)</code>
+<div class="block">Resigns leadership for the given epoch.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination">DistributedLeaderElection</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedLeaderElection.html#type--">type</a></span>()</code>
 <div class="block">Returns the resource type.</div>
@@ -364,7 +398,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <a name="isLeader-long-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>isLeader</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;isLeader(long&nbsp;epoch)</pre>
@@ -375,6 +409,33 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with a boolean value indicating whether the
          instance is the current leader.</dd>
+</dl>
+</li>
+</ul>
+<a name="resign-long-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>resign</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;resign(long&nbsp;epoch)</pre>
+<div class="block">Resigns leadership for the given epoch.
+ <p>
+ The epoch indicates the election for which to resign as leader and should be provided from
+ the argument passed to the election callback.
+ <p>
+ <pre>
+   <code>
+   election.onElection(epoch -&gt; {
+     election.resign(epoch);
+   });
+   </code>
+ </pre></div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>epoch</code> - The epoch for which to resign.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the instance has resigned from leadership for the given epoch.</dd>
 </dl>
 </li>
 </ul>
