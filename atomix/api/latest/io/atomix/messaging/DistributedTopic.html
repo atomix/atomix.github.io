@@ -49,11 +49,11 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/coordination/DistributedTaskQueue.html" title="class in io.atomix.coordination"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/messaging/DistributedTaskQueue.html" title="class in io.atomix.messaging"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/messaging/Message.html" title="class in io.atomix.messaging"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
-<li><a href="../../../index.html?io/atomix/coordination/DistributedTopic.html" target="_top">Frames</a></li>
+<li><a href="../../../index.html?io/atomix/messaging/DistributedTopic.html" target="_top">Frames</a></li>
 <li><a href="DistributedTopic.html" target="_top">No&nbsp;Frames</a></li>
 </ul>
 <ul class="navList" id="allclasses_navbar_top">
@@ -74,7 +74,7 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.classes.inherited.from.class.io.atomix.resource.Resource">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -92,7 +92,7 @@ var activeTableTab = "activeTableTab";
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">io.atomix.coordination</div>
+<div class="subTitle">io.atomix.messaging</div>
 <h2 title="Class DistributedTopic" class="title">Class DistributedTopic&lt;T&gt;</h2>
 </div>
 <div class="contentContainer">
@@ -100,10 +100,10 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">io.atomix.resource.Resource</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>&lt;T&gt;&gt;</li>
+<li><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">io.atomix.resource.Resource</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&lt;T&gt;&gt;</li>
 <li>
 <ul class="inheritance">
-<li>io.atomix.coordination.DistributedTopic&lt;T&gt;</li>
+<li>io.atomix.messaging.DistributedTopic&lt;T&gt;</li>
 </ul>
 </li>
 </ul>
@@ -115,13 +115,13 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">DistributedTopic&lt;T&gt;</span>
-extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>&lt;T&gt;&gt;</pre>
+extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&lt;T&gt;&gt;</pre>
 <div class="block">Facilitates persistent publish-subscribe messaging in the cluster.
  <p>
  The distributed topic resource provides persistent publish-subscribe messaging between instances
  of the resource. Pub-sub messaging is implemented as commands that are logged and replicated via the
- Raft consensus algorithm. When a message is <a href="../../../io/atomix/coordination/DistributedTopic.html#publish-T-"><code>published</code></a> to a distributed topic
- the message will be persisted until it has been received by all instances <a href="../../../io/atomix/coordination/DistributedTopic.html#subscribe-java.util.function.Consumer-"><code>listening</code></a>
+ Raft consensus algorithm. When a message is <a href="../../../io/atomix/messaging/DistributedTopic.html#publish-T-"><code>published</code></a> to a distributed topic
+ the message will be persisted until it has been received by all instances <a href="../../../io/atomix/messaging/DistributedTopic.html#subscribe-java.util.function.Consumer-"><code>listening</code></a>
  to the topic.
  <p>
  To create a topic resource, use the <code>DistributedTopic</code> class or constructor:
@@ -132,7 +132,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
    });
    </code>
  </pre>
- The topic resource exposes two simple methods: <a href="../../../io/atomix/coordination/DistributedTopic.html#publish-T-"><code>publish(Object)</code></a> and <a href="../../../io/atomix/coordination/DistributedTopic.html#subscribe-java.util.function.Consumer-"><code>subscribe(Consumer)</code></a>.
+ The topic resource exposes two simple methods: <a href="../../../io/atomix/messaging/DistributedTopic.html#publish-T-"><code>publish(Object)</code></a> and <a href="../../../io/atomix/messaging/DistributedTopic.html#subscribe-java.util.function.Consumer-"><code>subscribe(Consumer)</code></a>.
  Resources may publish but not subscribe to the topic or subscribe but not publish to the topic. Messages are
  only routed to the resource instance if a subscribe listener has been registered.
  <pre>
@@ -151,6 +151,21 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a name="nested.classes.inherited.from.class.io.atomix.resource.Resource">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></h3>
+<code><a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a></code></li>
+</ul>
+</li>
+</ul>
 <!-- =========== FIELD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="field.summary">
@@ -164,8 +179,8 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedTopic.html#TYPE">TYPE</a></span></code>&nbsp;</td>
+<td class="colFirst"><code>static <a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedTopic.html#TYPE">TYPE</a></span></code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -182,7 +197,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedTopic.html#DistributedTopic-io.atomix.copycat.client.CopycatClient-">DistributedTopic</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html?is-external=true" title="class or interface in io.atomix.copycat.client">CopycatClient</a>&nbsp;client)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedTopic.html#DistributedTopic-io.atomix.copycat.client.CopycatClient-">DistributedTopic</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html?is-external=true" title="class or interface in io.atomix.copycat.client">CopycatClient</a>&nbsp;client)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -200,32 +215,32 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedTopic.html#async--">async</a></span>()</code>
+<td class="colFirst"><code><a href="../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedTopic.html#async--">async</a></span>()</code>
 <div class="block">Sets the topic to asynchronous mode.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedTopic.html#publish-T-">publish</a></span>(<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&nbsp;message)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedTopic.html#publish-T-">publish</a></span>(<a href="../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&nbsp;message)</code>
 <div class="block">Publishes a message to the topic.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedTopic.html#subscribe-java.util.function.Consumer-">subscribe</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;listener)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedTopic.html#subscribe-java.util.function.Consumer-">subscribe</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;listener)</code>
 <div class="block">Subscribes to messages from the topic.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedTopic.html#sync--">sync</a></span>()</code>
+<td class="colFirst"><code><a href="../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedTopic.html#sync--">sync</a></span>()</code>
 <div class="block">Sets the topic to synchronous mode.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedTopic.html#type--">type</a></span>()</code>
+<td class="colFirst"><code><a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedTopic.html#type--">type</a></span>()</code>
 <div class="block">Returns the resource type.</div>
 </td>
 </tr>
@@ -235,7 +250,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></h3>
-<code><a href="../../../io/atomix/resource/Resource.html#consistency--">consistency</a>, <a href="../../../io/atomix/resource/Resource.html#context--">context</a>, <a href="../../../io/atomix/resource/Resource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/Resource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/Resource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/Resource.html#toString--">toString</a>, <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">with</a></code></li>
+<code><a href="../../../io/atomix/resource/Resource.html#close--">close</a>, <a href="../../../io/atomix/resource/Resource.html#consistency--">consistency</a>, <a href="../../../io/atomix/resource/Resource.html#context--">context</a>, <a href="../../../io/atomix/resource/Resource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/Resource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/Resource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/Resource.html#onStateChange-java.util.function.Consumer-">onStateChange</a>, <a href="../../../io/atomix/resource/Resource.html#state--">state</a>, <a href="../../../io/atomix/resource/Resource.html#toString--">toString</a>, <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">with</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -264,7 +279,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockListLast">
 <li class="blockList">
 <h4>TYPE</h4>
-<pre>public static final&nbsp;<a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>&gt; TYPE</pre>
+<pre>public static final&nbsp;<a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&gt; TYPE</pre>
 </li>
 </ul>
 </li>
@@ -298,12 +313,12 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockList">
 <li class="blockList">
 <h4>type</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&gt;&nbsp;type()</pre>
+<pre>public&nbsp;<a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&gt;&nbsp;type()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#type--">Resource</a></code></span></div>
 <div class="block">Returns the resource type.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../io/atomix/resource/Resource.html#type--">type</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&gt;</code></dd>
+<dd><code><a href="../../../io/atomix/resource/Resource.html#type--">type</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The resource type.</dd>
 </dl>
@@ -315,12 +330,12 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockList">
 <li class="blockList">
 <h4>sync</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;sync()</pre>
+<pre>public&nbsp;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;sync()</pre>
 <div class="block">Sets the topic to synchronous mode.
  <p>
  Setting the topic to synchronous mode effectively configures the topic's <a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource"><code>Consistency</code></a> to
- <a href="../../../io/atomix/resource/Consistency.html#ATOMIC"><code>Consistency.ATOMIC</code></a>. Atomic consistency means that messages <a href="../../../io/atomix/coordination/DistributedTopic.html#publish-T-"><code>published</code></a> to the
- topic will be received by all <a href="../../../io/atomix/coordination/DistributedTopic.html#subscribe-java.util.function.Consumer-"><code>subscribers</code></a> some time between the invocation of
+ <a href="../../../io/atomix/resource/Consistency.html#ATOMIC"><code>Consistency.ATOMIC</code></a>. Atomic consistency means that messages <a href="../../../io/atomix/messaging/DistributedTopic.html#publish-T-"><code>published</code></a> to the
+ topic will be received by all <a href="../../../io/atomix/messaging/DistributedTopic.html#subscribe-java.util.function.Consumer-"><code>subscribers</code></a> some time between the invocation of
  the publish operation and its completion.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -334,12 +349,12 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockList">
 <li class="blockList">
 <h4>async</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="class in io.atomix.coordination">DistributedTopic</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;async()</pre>
+<pre>public&nbsp;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;async()</pre>
 <div class="block">Sets the topic to asynchronous mode.
  <p>
  Setting the topic to asynchronous mode effectively configures the topic's <a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource"><code>Consistency</code></a> to
- <a href="../../../io/atomix/resource/Consistency.html#SEQUENTIAL"><code>Consistency.SEQUENTIAL</code></a>. Sequential consistency means that once a message is <a href="../../../io/atomix/coordination/DistributedTopic.html#publish-T-"><code>published</code></a>
- to the topic, the message will be persisted in the cluster but may be delivered to <a href="../../../io/atomix/coordination/DistributedTopic.html#subscribe-java.util.function.Consumer-"><code>subscribers</code></a>
+ <a href="../../../io/atomix/resource/Consistency.html#SEQUENTIAL"><code>Consistency.SEQUENTIAL</code></a>. Sequential consistency means that once a message is <a href="../../../io/atomix/messaging/DistributedTopic.html#publish-T-"><code>published</code></a>
+ to the topic, the message will be persisted in the cluster but may be delivered to <a href="../../../io/atomix/messaging/DistributedTopic.html#subscribe-java.util.function.Consumer-"><code>subscribers</code></a>
  after some arbitrary delay. Messages are guaranteed to be delivered to subscribers in the order in which they were sent
  (sequential consistency) but different subscribers may receive different messages at different points in time.</div>
 <dl>
@@ -356,7 +371,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockList">
 <li class="blockList">
 <h4>publish</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;publish(<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&nbsp;message)</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;publish(<a href="../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&nbsp;message)</pre>
 <div class="block">Publishes a message to the topic.
  <p>
  The message will be published according to the <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-"><code>configured consistency level</code></a>.
@@ -393,7 +408,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockListLast">
 <li class="blockList">
 <h4>subscribe</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&gt;&nbsp;subscribe(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;listener)</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&gt;&nbsp;subscribe(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;listener)</pre>
 <div class="block">Subscribes to messages from the topic.
  <p>
  Once the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> is completed, the subscriber is guaranteed to receive all
@@ -456,11 +471,11 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/coordination/DistributedTaskQueue.html" title="class in io.atomix.coordination"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/messaging/DistributedTaskQueue.html" title="class in io.atomix.messaging"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/messaging/Message.html" title="class in io.atomix.messaging"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
-<li><a href="../../../index.html?io/atomix/coordination/DistributedTopic.html" target="_top">Frames</a></li>
+<li><a href="../../../index.html?io/atomix/messaging/DistributedTopic.html" target="_top">Frames</a></li>
 <li><a href="DistributedTopic.html" target="_top">No&nbsp;Frames</a></li>
 </ul>
 <ul class="navList" id="allclasses_navbar_bottom">
@@ -481,7 +496,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.classes.inherited.from.class.io.atomix.resource.Resource">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -497,6 +512,6 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2015. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2016. All rights reserved.</small></p>
 </body>
 </html>

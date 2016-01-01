@@ -49,11 +49,11 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../io/atomix/coordination/DistributedTaskQueue.html" title="class in io.atomix.coordination"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li>Prev&nbsp;Class</li>
+<li><a href="../../../io/atomix/messaging/DistributedMessaging.html" title="class in io.atomix.messaging"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
-<li><a href="../../../index.html?io/atomix/coordination/DistributedMessageBus.html" target="_top">Frames</a></li>
+<li><a href="../../../index.html?io/atomix/messaging/DistributedMessageBus.html" target="_top">Frames</a></li>
 <li><a href="DistributedMessageBus.html" target="_top">No&nbsp;Frames</a></li>
 </ul>
 <ul class="navList" id="allclasses_navbar_top">
@@ -74,7 +74,7 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.classes.inherited.from.class.io.atomix.resource.Resource">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -92,7 +92,7 @@ var activeTableTab = "activeTableTab";
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">io.atomix.coordination</div>
+<div class="subTitle">io.atomix.messaging</div>
 <h2 title="Class DistributedMessageBus" class="title">Class DistributedMessageBus</h2>
 </div>
 <div class="contentContainer">
@@ -100,10 +100,10 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">io.atomix.resource.Resource</a>&lt;<a href="../../../io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a>&gt;</li>
+<li><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">io.atomix.resource.Resource</a>&lt;<a href="../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt;</li>
 <li>
 <ul class="inheritance">
-<li>io.atomix.coordination.DistributedMessageBus</li>
+<li>io.atomix.messaging.DistributedMessageBus</li>
 </ul>
 </li>
 </ul>
@@ -115,7 +115,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">DistributedMessageBus</span>
-extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a>&gt;</pre>
+extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt;</pre>
 <div class="block">Provides a light-weight asynchronous messaging layer over Atomix's <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a>.
  <p>
  The distributed message bus resource provides a simple interface for asynchronous messaging in an Atomix cluster.
@@ -131,11 +131,11 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
    </code>
  </pre>
  Once a message bus instance has been created, it's not immediately opened. The message bus instance must be explicitly
- opened by calling <a href="../../../io/atomix/coordination/DistributedMessageBus.html#open-io.atomix.catalyst.transport.Address-"><code>open(Address)</code></a>, providing an <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> to which to bind the message bus server. Because
+ opened by calling <a href="../../../io/atomix/messaging/DistributedMessageBus.html#open-io.atomix.catalyst.transport.Address-"><code>open(Address)</code></a>, providing an <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> to which to bind the message bus server. Because
  each message bus instance runs on a separate server, it's recommended that nodes use a singleton instance of this
  resource by using <code>get(...)</code> rather than <code>create(...)</code> to get a reference to the resource.
  <p>
- Messages are produced and consumed by <a href="../../../io/atomix/coordination/MessageProducer.html" title="interface in io.atomix.coordination"><code>producers</code></a> and <a href="../../../io/atomix/coordination/MessageConsumer.html" title="interface in io.atomix.coordination"><code>consumers</code></a> respectively.
+ Messages are produced and consumed by <a href="../../../io/atomix/messaging/MessageProducer.html" title="interface in io.atomix.messaging"><code>producers</code></a> and <a href="../../../io/atomix/messaging/MessageConsumer.html" title="interface in io.atomix.messaging"><code>consumers</code></a> respectively.
  Each producer and consumer is associated with a string message bus topic.
  <pre>
    <code>
@@ -159,6 +159,21 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a name="nested.classes.inherited.from.class.io.atomix.resource.Resource">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></h3>
+<code><a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a></code></li>
+</ul>
+</li>
+</ul>
 <!-- =========== FIELD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="field.summary">
@@ -172,8 +187,8 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMessageBus.html#TYPE">TYPE</a></span></code>&nbsp;</td>
+<td class="colFirst"><code>static <a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedMessageBus.html#TYPE">TYPE</a></span></code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -190,7 +205,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMessageBus.html#DistributedMessageBus-io.atomix.copycat.client.CopycatClient-">DistributedMessageBus</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html?is-external=true" title="class or interface in io.atomix.copycat.client">CopycatClient</a>&nbsp;client)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedMessageBus.html#DistributedMessageBus-io.atomix.copycat.client.CopycatClient-">DistributedMessageBus</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html?is-external=true" title="class or interface in io.atomix.copycat.client">CopycatClient</a>&nbsp;client)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -209,50 +224,50 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMessageBus.html#close--">close</a></span>()</code>
-<div class="block">Closes the message bus.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedMessageBus.html#close--">close</a></span>()</code>
+<div class="block">Closes the resource.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/MessageConsumer.html" title="interface in io.atomix.coordination">MessageConsumer</a>&lt;T&gt;&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMessageBus.html#consumer-java.lang.String-">consumer</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic)</code>
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/messaging/MessageConsumer.html" title="interface in io.atomix.messaging">MessageConsumer</a>&lt;T&gt;&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedMessageBus.html#consumer-java.lang.String-">consumer</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic)</code>
 <div class="block">Creates a message consumer.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/MessageConsumer.html" title="interface in io.atomix.coordination">MessageConsumer</a>&lt;T&gt;&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMessageBus.html#consumer-java.lang.String-java.util.function.Function-">consumer</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic,
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/messaging/MessageConsumer.html" title="interface in io.atomix.messaging">MessageConsumer</a>&lt;T&gt;&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedMessageBus.html#consumer-java.lang.String-java.util.function.Function-">consumer</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic,
         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;T,?&gt;&nbsp;consumer)</code>
 <div class="block">Creates a message consumer.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMessageBus.html#isClosed--">isClosed</a></span>()</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedMessageBus.html#isClosed--">isClosed</a></span>()</code>
 <div class="block">Returns a boolean value indicating whether the message bus is closed.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMessageBus.html#isOpen--">isOpen</a></span>()</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedMessageBus.html#isOpen--">isOpen</a></span>()</code>
 <div class="block">Returns a boolean value indicating whether the message bus is open.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMessageBus.html#open-io.atomix.catalyst.transport.Address-">open</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedMessageBus.html#open-io.atomix.catalyst.transport.Address-">open</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address)</code>
 <div class="block">Opens the message bus.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/MessageProducer.html" title="interface in io.atomix.coordination">MessageProducer</a>&lt;T&gt;&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMessageBus.html#producer-java.lang.String-">producer</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic)</code>
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/messaging/MessageProducer.html" title="interface in io.atomix.messaging">MessageProducer</a>&lt;T&gt;&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedMessageBus.html#producer-java.lang.String-">producer</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic)</code>
 <div class="block">Creates a message producer.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedMessageBus.html#type--">type</a></span>()</code>
+<td class="colFirst"><code><a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/messaging/DistributedMessageBus.html#type--">type</a></span>()</code>
 <div class="block">Returns the resource type.</div>
 </td>
 </tr>
@@ -262,7 +277,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></h3>
-<code><a href="../../../io/atomix/resource/Resource.html#consistency--">consistency</a>, <a href="../../../io/atomix/resource/Resource.html#context--">context</a>, <a href="../../../io/atomix/resource/Resource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/Resource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/Resource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/Resource.html#toString--">toString</a>, <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">with</a></code></li>
+<code><a href="../../../io/atomix/resource/Resource.html#consistency--">consistency</a>, <a href="../../../io/atomix/resource/Resource.html#context--">context</a>, <a href="../../../io/atomix/resource/Resource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/Resource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/Resource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/Resource.html#onStateChange-java.util.function.Consumer-">onStateChange</a>, <a href="../../../io/atomix/resource/Resource.html#state--">state</a>, <a href="../../../io/atomix/resource/Resource.html#toString--">toString</a>, <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">with</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -291,7 +306,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockListLast">
 <li class="blockList">
 <h4>TYPE</h4>
-<pre>public static final&nbsp;<a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a>&gt; TYPE</pre>
+<pre>public static final&nbsp;<a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt; TYPE</pre>
 </li>
 </ul>
 </li>
@@ -325,12 +340,12 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockList">
 <li class="blockList">
 <h4>type</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a>&gt;&nbsp;type()</pre>
+<pre>public&nbsp;<a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt;&nbsp;type()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#type--">Resource</a></code></span></div>
 <div class="block">Returns the resource type.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../io/atomix/resource/Resource.html#type--">type</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a>&gt;</code></dd>
+<dd><code><a href="../../../io/atomix/resource/Resource.html#type--">type</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The resource type.</dd>
 </dl>
@@ -342,7 +357,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockList">
 <li class="blockList">
 <h4>open</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/DistributedMessageBus.html" title="class in io.atomix.coordination">DistributedMessageBus</a>&gt;&nbsp;open(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address)</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt;&nbsp;open(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address)</pre>
 <div class="block">Opens the message bus.
  <p>
  When the message bus is opened, this instance will bind to the provided <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a>.
@@ -390,10 +405,10 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockList">
 <li class="blockList">
 <h4>producer</h4>
-<pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/MessageProducer.html" title="interface in io.atomix.coordination">MessageProducer</a>&lt;T&gt;&gt;&nbsp;producer(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic)</pre>
+<pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/messaging/MessageProducer.html" title="interface in io.atomix.messaging">MessageProducer</a>&lt;T&gt;&gt;&nbsp;producer(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic)</pre>
 <div class="block">Creates a message producer.
  <p>
- The <code>topic</code> is a cluster-wide identifier. Messages will be distributed to <a href="../../../io/atomix/coordination/MessageConsumer.html" title="interface in io.atomix.coordination"><code>MessageConsumer</code></a>s
+ The <code>topic</code> is a cluster-wide identifier. Messages will be distributed to <a href="../../../io/atomix/messaging/MessageConsumer.html" title="interface in io.atomix.messaging"><code>MessageConsumer</code></a>s
  registered for the given <code>topic</code> in round-robin order.
  <p>
  The producer will be created asynchronously. Once the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> is
@@ -414,7 +429,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockList">
 <li class="blockList">
 <h4>consumer</h4>
-<pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/MessageConsumer.html" title="interface in io.atomix.coordination">MessageConsumer</a>&lt;T&gt;&gt;&nbsp;consumer(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic)</pre>
+<pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/messaging/MessageConsumer.html" title="interface in io.atomix.messaging">MessageConsumer</a>&lt;T&gt;&gt;&nbsp;consumer(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic)</pre>
 <div class="block">Creates a message consumer.
  <p>
  The consumer will be created asynchronously. Once the consumer has been registered and all other
@@ -436,7 +451,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockList">
 <li class="blockList">
 <h4>consumer</h4>
-<pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/MessageConsumer.html" title="interface in io.atomix.coordination">MessageConsumer</a>&lt;T&gt;&gt;&nbsp;consumer(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic,
+<pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/messaging/MessageConsumer.html" title="interface in io.atomix.messaging">MessageConsumer</a>&lt;T&gt;&gt;&nbsp;consumer(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic,
                                                           <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;T,?&gt;&nbsp;consumer)</pre>
 <div class="block">Creates a message consumer.
  <p>
@@ -461,12 +476,13 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <li class="blockList">
 <h4>close</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;close()</pre>
-<div class="block">Closes the message bus.</div>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#close--">Resource</a></code></span></div>
+<div class="block">Closes the resource.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/resource/Resource.html#close--">close</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>A completable future to be completed once the message bus is closed.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - if the message bus is not open</dd>
+<dd>A completable future to be completed once the resource is closed.</dd>
 </dl>
 </li>
 </ul>
@@ -512,11 +528,11 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../io/atomix/coordination/DistributedTaskQueue.html" title="class in io.atomix.coordination"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li>Prev&nbsp;Class</li>
+<li><a href="../../../io/atomix/messaging/DistributedMessaging.html" title="class in io.atomix.messaging"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
-<li><a href="../../../index.html?io/atomix/coordination/DistributedMessageBus.html" target="_top">Frames</a></li>
+<li><a href="../../../index.html?io/atomix/messaging/DistributedMessageBus.html" target="_top">Frames</a></li>
 <li><a href="DistributedMessageBus.html" target="_top">No&nbsp;Frames</a></li>
 </ul>
 <ul class="navList" id="allclasses_navbar_bottom">
@@ -537,7 +553,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.classes.inherited.from.class.io.atomix.resource.Resource">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -553,6 +569,6 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <!--   -->
 </a></div>
 <!-- ======== END OF BOTTOM NAVBAR ======= -->
-<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2015. All rights reserved.</small></p>
+<p class="legalCopy"><small>Copyright &#169; 2013&#x2013;2016. All rights reserved.</small></p>
 </body>
 </html>
