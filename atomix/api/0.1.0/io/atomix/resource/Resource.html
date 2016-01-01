@@ -115,7 +115,7 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public abstract class <span class="typeNameLabel">Resource&lt;T extends Resource&lt;T&gt;&gt;</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
-<div class="block">Fault-tolerant stateful distributed object.
+<div class="block">Base class for fault-tolerant stateful distributed objects.
  <p>
  Resources are stateful distributed objects that run across a set of <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/CopycatServer.html?is-external=true" title="class or interface in io.atomix.copycat.server"><code>CopycatServer</code></a>s
  in a cluster.
@@ -124,6 +124,12 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
  a typical Copycat cluster or as <code>Atomix</code> resources. Operations on the resource are translated into
  <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html?is-external=true" title="class or interface in io.atomix.copycat.client"><code>Command</code></a>s and <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html?is-external=true" title="class or interface in io.atomix.copycat.client"><code>Query</code></a>s which are submitted to the cluster where they're logged and
  replicated.
+ <p>
+ Resource implementations must be annotated with the <a href="../../../io/atomix/resource/ResourceTypeInfo.html" title="annotation in io.atomix.resource"><code>ResourceTypeInfo</code></a> annotation to indicate the
+ <a href="../../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource"><code>ResourceStateMachine</code></a> to be used by the Atomix resource manager. Additionally, resources must be
+ registered via the <code>ServiceLoader</code> pattern in a file at <code>META-INF/services/io.atomix.resource.Resource</code>
+ on the class path. The resource registration allows the Atomix resource manager to locate and load the resource
+ state machine on each server in the cluster.
  <p>
  Resources have varying consistency guarantees depending on the configured resource <a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource"><code>Consistency</code></a>
  and the semantics of the specific resource implementation.</div>
@@ -152,7 +158,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a></span></code>
-<div class="block">Resource state.</div>
+<div class="block">Indicates the state of the resource's communication with the cluster.</div>
 </td>
 </tr>
 </table>
@@ -259,7 +265,11 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>type</h4>
 <pre>public abstract&nbsp;<a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a>&gt;&nbsp;type()</pre>
-<div class="block">Returns the resource type.</div>
+<div class="block">Returns the resource type.
+ <p>
+ The resource type is a special descriptor of the resource that indicates the resource's unique
+ <a href="../../../io/atomix/resource/ResourceType.html#id--"><code>ID</code></a> and <a href="../../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource"><code>state machine</code></a> based on the annotated
+ <a href="../../../io/atomix/resource/ResourceTypeInfo.html" title="annotation in io.atomix.resource"><code>ResourceTypeInfo</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The resource type.</dd>
@@ -273,7 +283,12 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>state</h4>
 <pre>public&nbsp;<a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a>&nbsp;state()</pre>
-<div class="block">Returns the current resource state.</div>
+<div class="block">Returns the current resource state.
+ <p>
+ The resource's <a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource"><code>Resource.State</code></a> is indicative of the resource's ability to communicate with the cluster at any given
+ time. Users of the resource should use the state to determine when guarantees may be lost. See the <a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource"><code>Resource.State</code></a>
+ documentation for information on the specific states, and see resource implementation documentation for the
+ implications of different states on resource consistency.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The current resource state.</dd>
@@ -367,7 +382,11 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>close</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;close()</pre>
-<div class="block">Closes the resource.</div>
+<div class="block">Closes the resource.
+ <p>
+ Once the resource is closed, the resource will be transitioned to the <a href="../../../io/atomix/resource/Resource.State.html#CLOSED"><code>Resource.State.CLOSED</code></a> state and
+ the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed. Thereafter, attempts to operate on the resource
+ will fail.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the resource is closed.</dd>
