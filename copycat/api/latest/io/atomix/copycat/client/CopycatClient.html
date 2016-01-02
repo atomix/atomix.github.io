@@ -510,11 +510,10 @@ extends <a href="../../../../io/atomix/copycat/client/CopycatService.html" title
 <pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a>&gt;&nbsp;recover()</pre>
 <div class="block">Recovers the client session.
  <p>
- Only a client in the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#SUSPENDED"><code>CopycatClient.State.SUSPENDED</code></a> state may be recovered. When a client is recovered, the
- client will create and register a new <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a>. Once the session is recovered, the client will
- transition back to the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#CONNECTED"><code>CopycatClient.State.CONNECTED</code></a> state and resubmit pending operations from the previous
- session. Pending operations are guaranteed to be submitted to the new session in the same order in which
- they were submitted to the prior session and prior to submitting any new operations.</div>
+ When a client is recovered, the client will create and register a new <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a>. Once the session is
+ recovered, the client will transition to the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#CONNECTED"><code>CopycatClient.State.CONNECTED</code></a> state and resubmit pending operations
+ from the previous session. Pending operations are guaranteed to be submitted to the new session in the same
+ order in which they were submitted to the prior session and prior to submitting any new operations.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the client's session is recovered.</dd>
