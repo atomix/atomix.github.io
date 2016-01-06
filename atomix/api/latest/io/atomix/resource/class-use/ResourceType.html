@@ -85,43 +85,13 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix">io.atomix</a></td>
 <td class="colLast">
-<div class="block">Core Atomix APIs, including <a href="../../../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> and <a href="../../../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.</div>
+<div class="block">Core Atomix APIs, including <code>ResourceClient</code> and <code>io.atomix.manager.ResourceReplica</code>.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.collections">io.atomix.collections</a></td>
-<td class="colLast">
-<div class="block">Provides distributed collections such as <a href="../../../../io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections"><code>DistributedMap</code></a>
- <a href="../../../../io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections"><code>DistributedMultiMap</code></a>, <a href="../../../../io/atomix/collections/DistributedQueue.html" title="class in io.atomix.collections"><code>DistributedQueue</code></a>, and
- <a href="../../../../io/atomix/collections/DistributedSet.html" title="class in io.atomix.collections"><code>DistributedSet</code></a>.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.coordination">io.atomix.coordination</a></td>
-<td class="colLast">
-<div class="block">Provides distributed coordination resources such as <a href="../../../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination"><code>DistributedLock</code></a> and
- <a href="../../../../io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination"><code>DistributedLeaderElection</code></a>, and <a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><code>DistributedMembershipGroup</code></a>.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.messaging">io.atomix.messaging</a></td>
-<td class="colLast">
-<div class="block">Provides distributed messaging resources such as <a href="../../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging"><code>DistributedMessageBus</code></a> for unreliable
- messaging, <a href="../../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging"><code>DistributedTopic</code></a> for publish-subscribe messaging, and
- <a href="../../../../io/atomix/messaging/DistributedTaskQueue.html" title="class in io.atomix.messaging"><code>DistributedTaskQueue</code></a> for asynchronous processing.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.resource">io.atomix.resource</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for creating and operating on Raft replicated state machines.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.variables">io.atomix.variables</a></td>
-<td class="colLast">
-<div class="block">Provides distributed variables such as <a href="../../../../io/atomix/variables/DistributedValue.html" title="class in io.atomix.variables"><code>DistributedValue</code></a>
- and <a href="../../../../io/atomix/variables/DistributedLong.html" title="class in io.atomix.variables"><code>DistributedLong</code></a>.</div>
 </td>
 </tr>
 </tbody>
@@ -134,6 +104,19 @@
 </a>
 <h3>Uses of <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a> in <a href="../../../../io/atomix/package-summary.html">io.atomix</a></h3>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../io/atomix/package-summary.html">io.atomix</a> that return <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
+<td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#type-java.lang.Class-">type</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;?,?&gt;&gt;&nbsp;type)</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
 <caption><span>Methods in <a href="../../../../io/atomix/package-summary.html">io.atomix</a> with parameters of type <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
@@ -142,232 +125,18 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#create-java.lang.String-io.atomix.resource.ResourceType-">create</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-      <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;T&gt;&nbsp;type)</code>
-<div class="block">Creates a new instance for the given resource.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#get-java.lang.String-io.atomix.resource.ResourceType-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-   <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;T&gt;&nbsp;type)</code>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#keys-io.atomix.resource.ResourceType-">keys</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;T&gt;&nbsp;type)</code>
-<div class="block">Returns the keys of existing resources belonging to a resource type.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.collections">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a> in <a href="../../../../io/atomix/collections/package-summary.html">io.atomix.collections</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing fields, and an explanation">
-<caption><span>Fields in <a href="../../../../io/atomix/collections/package-summary.html">io.atomix.collections</a> declared as <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Field and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedCollections.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/collections/DistributedCollections.html#MAP">MAP</a></span></code>
-<div class="block">Distributed map resource.</div>
-</td>
+   <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedCollections.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/collections/DistributedCollections.html#MULTI_MAP">MULTI_MAP</a></span></code>
-<div class="block">Distributed multimap resource.</div>
-</td>
+<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;T,U&gt;,U extends <a href="../../../../io/atomix/resource/Resource.Options.html" title="interface in io.atomix.resource">Resource.Options</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#get-java.lang.String-io.atomix.resource.ResourceType-U-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+   <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
+   U&nbsp;options)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/collections/DistributedQueue.html" title="class in io.atomix.collections">DistributedQueue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedCollections.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/collections/DistributedCollections.html#QUEUE">QUEUE</a></span></code>
-<div class="block">Distributed queue resource.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/collections/DistributedSet.html" title="class in io.atomix.collections">DistributedSet</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedCollections.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/collections/DistributedCollections.html#SET">SET</a></span></code>
-<div class="block">Distributed set resource.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/collections/DistributedQueue.html" title="class in io.atomix.collections">DistributedQueue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedQueue.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/collections/DistributedQueue.html#TYPE">TYPE</a></span></code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/collections/DistributedSet.html" title="class in io.atomix.collections">DistributedSet</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedSet.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/collections/DistributedSet.html#TYPE">TYPE</a></span></code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMultiMap.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/collections/DistributedMultiMap.html#TYPE">TYPE</a></span></code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMap.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/collections/DistributedMap.html#TYPE">TYPE</a></span></code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../io/atomix/collections/package-summary.html">io.atomix.collections</a> that return <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/collections/DistributedQueue.html" title="class in io.atomix.collections">DistributedQueue</a>&lt;<a href="../../../../io/atomix/collections/DistributedQueue.html" title="type parameter in DistributedQueue">T</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedQueue.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/collections/DistributedQueue.html#type--">type</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/collections/DistributedSet.html" title="class in io.atomix.collections">DistributedSet</a>&lt;<a href="../../../../io/atomix/collections/DistributedSet.html" title="type parameter in DistributedSet">T</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedSet.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/collections/DistributedSet.html#type--">type</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a>&lt;<a href="../../../../io/atomix/collections/DistributedMultiMap.html" title="type parameter in DistributedMultiMap">K</a>,<a href="../../../../io/atomix/collections/DistributedMultiMap.html" title="type parameter in DistributedMultiMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMultiMap.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/collections/DistributedMultiMap.html#type--">type</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a>&lt;<a href="../../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">K</a>,<a href="../../../../io/atomix/collections/DistributedMap.html" title="type parameter in DistributedMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMap.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/collections/DistributedMap.html#type--">type</a></span>()</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.coordination">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a> in <a href="../../../../io/atomix/coordination/package-summary.html">io.atomix.coordination</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing fields, and an explanation">
-<caption><span>Fields in <a href="../../../../io/atomix/coordination/package-summary.html">io.atomix.coordination</a> declared as <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Field and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination">DistributedLeaderElection</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedCoordination.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedCoordination.html#LEADER_ELECTION">LEADER_ELECTION</a></span></code>
-<div class="block">Distributed leader election resource.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedCoordination.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedCoordination.html#LOCK">LOCK</a></span></code>
-<div class="block">Distributed lock resource.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedCoordination.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedCoordination.html#MEMBERSHIP_GROUP">MEMBERSHIP_GROUP</a></span></code>
-<div class="block">Distributed membership group resource.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html#TYPE">TYPE</a></span></code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedLock.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedLock.html#TYPE">TYPE</a></span></code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination">DistributedLeaderElection</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedLeaderElection.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedLeaderElection.html#TYPE">TYPE</a></span></code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../io/atomix/coordination/package-summary.html">io.atomix.coordination</a> that return <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html#type--">type</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedLock.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedLock.html#type--">type</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination">DistributedLeaderElection</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedLeaderElection.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedLeaderElection.html#type--">type</a></span>()</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.messaging">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a> in <a href="../../../../io/atomix/messaging/package-summary.html">io.atomix.messaging</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing fields, and an explanation">
-<caption><span>Fields in <a href="../../../../io/atomix/messaging/package-summary.html">io.atomix.messaging</a> declared as <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Field and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMessaging.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/messaging/DistributedMessaging.html#MESSAGE_BUS">MESSAGE_BUS</a></span></code>
-<div class="block">Distributed message bus resource.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/messaging/DistributedTaskQueue.html" title="class in io.atomix.messaging">DistributedTaskQueue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMessaging.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/messaging/DistributedMessaging.html#TASK_QUEUE">TASK_QUEUE</a></span></code>
-<div class="block">Distributed task queue resource.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMessaging.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/messaging/DistributedMessaging.html#TOPIC">TOPIC</a></span></code>
-<div class="block">Distributed topic resource.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMessageBus.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/messaging/DistributedMessageBus.html#TYPE">TYPE</a></span></code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedTopic.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/messaging/DistributedTopic.html#TYPE">TYPE</a></span></code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/messaging/DistributedTaskQueue.html" title="class in io.atomix.messaging">DistributedTaskQueue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedTaskQueue.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/messaging/DistributedTaskQueue.html#TYPE">TYPE</a></span></code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../io/atomix/messaging/package-summary.html">io.atomix.messaging</a> that return <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMessageBus.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/messaging/DistributedMessageBus.html#type--">type</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&lt;<a href="../../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedTopic.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/messaging/DistributedTopic.html#type--">type</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/messaging/DistributedTaskQueue.html" title="class in io.atomix.messaging">DistributedTaskQueue</a>&lt;<a href="../../../../io/atomix/messaging/DistributedTaskQueue.html" title="type parameter in DistributedTaskQueue">T</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedTaskQueue.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/messaging/DistributedTaskQueue.html#type--">type</a></span>()</code>&nbsp;</td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#keys-io.atomix.resource.ResourceType-">keys</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -384,15 +153,15 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;?&gt;</code></td>
+<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
 <td class="colLast"><span class="typeNameLabel">ResourceRegistry.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/ResourceRegistry.html#lookup-int-">lookup</a></span>(int&nbsp;id)</code>
 <div class="block">Looks up a resource type by ID.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>abstract <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">Resource.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/Resource.html#type--">type</a></span>()</code>
-<div class="block">Returns the resource type.</div>
+<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
+<td class="colLast"><span class="typeNameLabel">Instance.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/Instance.html#type--">type</a></span>()</code>
+<div class="block">Returns the resource instance type.</div>
 </td>
 </tr>
 </tbody>
@@ -405,81 +174,24 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">InstanceFactory.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/InstanceFactory.html#create-java.lang.String-io.atomix.resource.ResourceType-">create</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-      <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;T&gt;&nbsp;type)</code>
-<div class="block">Creates a new instance for the given resource.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">InstanceFactory.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/InstanceFactory.html#get-java.lang.String-io.atomix.resource.ResourceType-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-   <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;T&gt;&nbsp;type)</code>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">InstanceFactory.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/InstanceFactory.html#keys-io.atomix.resource.ResourceType-">keys</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;T&gt;&nbsp;type)</code>
-<div class="block">Returns the keys of resources belonging to a resource type.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceRegistry.html" title="class in io.atomix.resource">ResourceRegistry</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ResourceRegistry.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/ResourceRegistry.html#register-io.atomix.resource.ResourceType-">register</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;?&gt;&nbsp;type)</code>
+<td class="colLast"><span class="typeNameLabel">ResourceRegistry.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/ResourceRegistry.html#register-io.atomix.resource.ResourceType-">register</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>
 <div class="block">Registers a resource type.</div>
 </td>
 </tr>
 </tbody>
 </table>
-</li>
-<li class="blockList"><a name="io.atomix.variables">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a> in <a href="../../../../io/atomix/variables/package-summary.html">io.atomix.variables</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing fields, and an explanation">
-<caption><span>Fields in <a href="../../../../io/atomix/variables/package-summary.html">io.atomix.variables</a> declared as <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></span><span class="tabEnd">&nbsp;</span></caption>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
+<caption><span>Constructors in <a href="../../../../io/atomix/resource/package-summary.html">io.atomix.resource</a> with parameters of type <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Field and Description</th>
+<th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/variables/DistributedLong.html" title="class in io.atomix.variables">DistributedLong</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedVariables.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/variables/DistributedVariables.html#LONG">LONG</a></span></code>
-<div class="block">Distributed atomic long type.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/variables/DistributedLong.html" title="class in io.atomix.variables">DistributedLong</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedLong.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/variables/DistributedLong.html#TYPE">TYPE</a></span></code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/variables/DistributedValue.html" title="class in io.atomix.variables">DistributedValue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedValue.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/variables/DistributedValue.html#TYPE">TYPE</a></span></code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/variables/DistributedValue.html" title="class in io.atomix.variables">DistributedValue</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedVariables.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/variables/DistributedVariables.html#VALUE">VALUE</a></span></code>
-<div class="block">Distributed atomic value type.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../io/atomix/variables/package-summary.html">io.atomix.variables</a> that return <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;<a href="../../../../io/atomix/variables/DistributedLong.html" title="class in io.atomix.variables">DistributedLong</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedLong.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/variables/DistributedLong.html#type--">type</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedValue.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/variables/DistributedValue.html#type--">type</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/Instance.html#Instance-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Instance.Method-java.util.function.Consumer-">Instance</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+        <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
+        <a href="../../../../io/atomix/resource/Instance.Method.html" title="enum in io.atomix.resource">Instance.Method</a>&nbsp;method,
+        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/resource/Instance.html" title="class in io.atomix.resource">Instance</a>&gt;&nbsp;closer)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

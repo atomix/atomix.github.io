@@ -85,7 +85,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix">io.atomix</a></td>
 <td class="colLast">
-<div class="block">Core Atomix APIs, including <a href="../../../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> and <a href="../../../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.</div>
+<div class="block">Core Atomix APIs, including <code>ResourceClient</code> and <code>io.atomix.manager.ResourceReplica</code>.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -100,7 +100,7 @@
 <td class="colFirst"><a href="#io.atomix.coordination">io.atomix.coordination</a></td>
 <td class="colLast">
 <div class="block">Provides distributed coordination resources such as <a href="../../../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination"><code>DistributedLock</code></a> and
- <a href="../../../../io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination"><code>DistributedLeaderElection</code></a>, and <a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><code>DistributedMembershipGroup</code></a>.</div>
+ <code>io.atomix.coordination.DistributedLeaderElection</code>, and <a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><code>DistributedMembershipGroup</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -142,43 +142,42 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#create-java.lang.String-java.lang.Class-">create</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-      <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</code>
-<div class="block">Creates a new instance for the given resource.</div>
-</td>
+<td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#get-java.lang.String-java.lang.Class-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#create-java.lang.String-io.atomix.resource.ResourceType-">create</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-      <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;T&gt;&nbsp;type)</code>
-<div class="block">Creates a new instance for the given resource.</div>
-</td>
+<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;T,U&gt;,U extends <a href="../../../../io/atomix/resource/Resource.Options.html" title="interface in io.atomix.resource">Resource.Options</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#get-java.lang.String-java.lang.Class-U-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type,
+   U&nbsp;options)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#get-java.lang.String-java.lang.Class-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</code>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#get-java.lang.String-io.atomix.resource.ResourceType-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-   <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;T&gt;&nbsp;type)</code>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
-</td>
+   <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;T,U&gt;,U extends <a href="../../../../io/atomix/resource/Resource.Options.html" title="interface in io.atomix.resource">Resource.Options</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#get-java.lang.String-io.atomix.resource.ResourceType-U-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+   <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
+   U&nbsp;options)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#keys-java.lang.Class-">keys</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</code>
-<div class="block">Returns the keys of existing resources belonging to a resource type.</div>
-</td>
+<td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#keys-java.lang.Class-">keys</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#keys-io.atomix.resource.ResourceType-">keys</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;T&gt;&nbsp;type)</code>
-<div class="block">Returns the keys of existing resources belonging to a resource type.</div>
-</td>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Method parameters in <a href="../../../../io/atomix/package-summary.html">io.atomix</a> with type arguments of type <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
+<td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#type-java.lang.Class-">type</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;?,?&gt;&gt;&nbsp;type)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -234,17 +233,11 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination">DistributedLeaderElection</a></span></code>
-<div class="block">Provides a mechanism for coordinating cluster-wide resources with a strong leader.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a></span></code>
 <div class="block">Provides a mechanism for synchronizing access to cluster-wide shared resources.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination">DistributedMembershipGroup</a></span></code>
 <div class="block">Provides a mechanism for managing group membership and remote scheduling and execution.</div>
@@ -298,64 +291,56 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;T&gt;&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;T,U&gt;,U extends <a href="../../../../io/atomix/resource/Resource.Options.html" title="interface in io.atomix.resource">Resource.Options</a>&gt;</span></code>
 <div class="block">Base class for fault-tolerant stateful distributed objects.</div>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><code>interface&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/ResourceFactory.html" title="interface in io.atomix.resource">ResourceFactory</a>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;T,U&gt;,U extends <a href="../../../../io/atomix/resource/Resource.Options.html" title="interface in io.atomix.resource">Resource.Options</a>&gt;</span></code>
+<div class="block">Resource factory.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing subclasses, and an explanation">
+<caption><span>Subclasses of <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a> in <a href="../../../../io/atomix/resource/package-summary.html">io.atomix.resource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;</span></code>
-<div class="block">Resource type.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/ConfigurableResource.html" title="class in io.atomix.resource">ConfigurableResource</a>&lt;T extends <a href="../../../../io/atomix/resource/ConfigurableResource.html" title="class in io.atomix.resource">ConfigurableResource</a>&lt;T,U,V&gt;,U extends <a href="../../../../io/atomix/resource/Resource.Options.html" title="interface in io.atomix.resource">Resource.Options</a>,V extends <a href="../../../../io/atomix/resource/Resource.Config.html" title="interface in io.atomix.resource">Resource.Config</a>&gt;</span></code>
+<div class="block">Base class for configurable resources.</div>
 </td>
 </tr>
 </tbody>
 </table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../io/atomix/resource/package-summary.html">io.atomix.resource</a> with type parameters of type <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Methods in <a href="../../../../io/atomix/resource/package-summary.html">io.atomix.resource</a> that return types with arguments of type <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">InstanceFactory.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/InstanceFactory.html#create-java.lang.String-java.lang.Class-">create</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-      <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</code>
-<div class="block">Creates a new instance for the given resource.</div>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceType.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/ResourceType.html#resource--">resource</a></span>()</code>
+<div class="block">Returns the resource class.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">InstanceFactory.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/InstanceFactory.html#create-java.lang.String-io.atomix.resource.ResourceType-">create</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-      <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;T&gt;&nbsp;type)</code>
-<div class="block">Creates a new instance for the given resource.</div>
-</td>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
+<caption><span>Constructor parameters in <a href="../../../../io/atomix/resource/package-summary.html">io.atomix.resource</a> with type arguments of type <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
 </tr>
+<tbody>
 <tr class="altColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">InstanceFactory.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/InstanceFactory.html#get-java.lang.String-java.lang.Class-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</code>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">InstanceFactory.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/InstanceFactory.html#get-java.lang.String-io.atomix.resource.ResourceType-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-   <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;T&gt;&nbsp;type)</code>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">InstanceFactory.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/InstanceFactory.html#keys-java.lang.Class-">keys</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</code>
-<div class="block">Returns the keys of resources belonging to a resource type.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">InstanceFactory.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/InstanceFactory.html#keys-io.atomix.resource.ResourceType-">keys</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&lt;T&gt;&nbsp;type)</code>
-<div class="block">Returns the keys of resources belonging to a resource type.</div>
-</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/ResourceType.html#ResourceType-java.lang.Class-">ResourceType</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;&nbsp;type)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -373,7 +358,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">AbstractDistributedValue</a>&lt;T extends <a href="../../../../io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">AbstractDistributedValue</a>&lt;T,U&gt;,U&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">AbstractDistributedValue</a>&lt;T extends <a href="../../../../io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">AbstractDistributedValue</a>&lt;T,U,V&gt;,U extends <a href="../../../../io/atomix/resource/Resource.Options.html" title="interface in io.atomix.resource">Resource.Options</a>,V&gt;</span></code>
 <div class="block">Abstract distributed value.</div>
 </td>
 </tr>

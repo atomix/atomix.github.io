@@ -119,9 +119,9 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <div class="block">Standalone Atomix server.
  <p>
  The <code>AtomixServer</code> provides a standalone node that can server as a member of a cluster to
- service operations on <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>s from an <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a>. Servers do not expose
+ service operations on <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>s from an <code>ResourceClient</code>. Servers do not expose
  an interface for managing resources directly. Users can only access server resources through an
- <a href="../../io/atomix/Atomix.html" title="class in io.atomix"><code>Atomix</code></a> implementation.
+ <code>ResourceClient</code> implementation.
  <p>
  To create a server, use the <a href="../../io/atomix/AtomixServer.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-"><code>builder(Address, Address...)</code></a> builder factory. Each server must
  be initially configured with a server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> and a list of addresses for other members of the
@@ -142,7 +142,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  Similarly, if no storage module is configured, replicated commit logs will be written to
  <code>System.getProperty("user.dir")</code> with a default log name.
  <p>
- Atomix clusters are not restricted solely to <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>AtomixServer</code></a>s or <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>s. Clusters may be
+ Atomix clusters are not restricted solely to <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>AtomixServer</code></a>s or <code>ResourceReplica</code>s. Clusters may be
  composed from a mixture of each type of server.
  <p>
  <b>Server lifecycle</b>
@@ -157,7 +157,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  underlying consensus algorithm. Once the joining server is caught up with the rest of the cluster, the
  leader will promote it to a full voting member.
 
- <code>AtomixServer</code>s and <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>s can safely be members of the same cluster.</div>
+ <code>AtomixServer</code>s and <code>ResourceReplica</code>s can safely be members of the same cluster.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -201,7 +201,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixServer.html#AtomixServer-io.atomix.copycat.server.CopycatServer-">AtomixServer</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/CopycatServer.html?is-external=true" title="class or interface in io.atomix.copycat.server">CopycatServer</a>&nbsp;server)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixServer.html#AtomixServer-io.atomix.manager.ResourceServer-">AtomixServer</a></span>(io.atomix.manager.ResourceServer&nbsp;server)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -286,13 +286,13 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="AtomixServer-io.atomix.copycat.server.CopycatServer-">
+<a name="AtomixServer-io.atomix.manager.ResourceServer-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>AtomixServer</h4>
-<pre>public&nbsp;AtomixServer(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/CopycatServer.html?is-external=true" title="class or interface in io.atomix.copycat.server">CopycatServer</a>&nbsp;server)</pre>
+<pre>public&nbsp;AtomixServer(io.atomix.manager.ResourceServer&nbsp;server)</pre>
 </li>
 </ul>
 </li>
