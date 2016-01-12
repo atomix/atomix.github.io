@@ -29,6 +29,7 @@
 <li><a href="io/atomix/copycat/client/util/ClientSequencer.html" title="class in io.atomix.copycat.client.util">ClientSequencer</a></li>
 <li><a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></li>
 <li><a href="io/atomix/copycat/client/session/ClosedSessionException.html" title="class in io.atomix.copycat.client.session">ClosedSessionException</a></li>
+<li><a href="io/atomix/copycat/server/cluster/Cluster.html" title="interface in io.atomix.copycat.server.cluster"><span class="interfaceName">Cluster</span></a></li>
 <li><a href="io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><span class="interfaceName">Command</span></a></li>
 <li><a href="io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client">Command.CompactionMode</a></li>
 <li><a href="io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client">Command.ConsistencyLevel</a></li>
@@ -68,7 +69,6 @@
 <li><a href="io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a></li>
 <li><a href="io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></li>
 <li><a href="io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a></li>
-<li><a href="io/atomix/copycat/server/CopycatServer.Type.html" title="enum in io.atomix.copycat.server">CopycatServer.Type</a></li>
 <li><a href="io/atomix/copycat/client/CopycatService.html" title="interface in io.atomix.copycat.client"><span class="interfaceName">CopycatService</span></a></li>
 <li><a href="io/atomix/copycat/client/DefaultCopycatClient.html" title="class in io.atomix.copycat.client">DefaultCopycatClient</a></li>
 <li><a href="io/atomix/copycat/server/storage/DescriptorException.html" title="class in io.atomix.copycat.server.storage">DescriptorException</a></li>
@@ -97,10 +97,14 @@
 <li><a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></li>
 <li><a href="io/atomix/copycat/server/storage/compaction/MajorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction">MajorCompactionManager</a></li>
 <li><a href="io/atomix/copycat/server/storage/compaction/MajorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction">MajorCompactionTask</a></li>
+<li><a href="io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster"><span class="interfaceName">Member</span></a></li>
+<li><a href="io/atomix/copycat/server/cluster/Member.Status.html" title="enum in io.atomix.copycat.server.cluster">Member.Status</a></li>
+<li><a href="io/atomix/copycat/server/cluster/Member.Type.html" title="enum in io.atomix.copycat.server.cluster">Member.Type</a></li>
 <li><a href="io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system">MetaStore</a></li>
 <li><a href="io/atomix/copycat/server/storage/compaction/MinorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction">MinorCompactionManager</a></li>
 <li><a href="io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction">MinorCompactionTask</a></li>
 <li><a href="io/atomix/copycat/client/error/NoLeaderException.html" title="class in io.atomix.copycat.client.error">NoLeaderException</a></li>
+<li><a href="io/atomix/copycat/client/NoOpCommand.html" title="class in io.atomix.copycat.client">NoOpCommand</a></li>
 <li><a href="io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client"><span class="interfaceName">Operation</span></a></li>
 <li><a href="io/atomix/copycat/server/storage/entry/OperationEntry.html" title="class in io.atomix.copycat.server.storage.entry">OperationEntry</a></li>
 <li><a href="io/atomix/copycat/client/error/OperationException.html" title="class in io.atomix.copycat.client.error">OperationException</a></li>
@@ -127,6 +131,10 @@
 <li><a href="io/atomix/copycat/client/error/RaftError.html" title="interface in io.atomix.copycat.client.error"><span class="interfaceName">RaftError</span></a></li>
 <li><a href="io/atomix/copycat/client/error/RaftError.Type.html" title="enum in io.atomix.copycat.client.error">RaftError.Type</a></li>
 <li><a href="io/atomix/copycat/client/error/RaftException.html" title="class in io.atomix.copycat.client.error">RaftException</a></li>
+<li><a href="io/atomix/copycat/server/request/ReconfigureRequest.html" title="class in io.atomix.copycat.server.request">ReconfigureRequest</a></li>
+<li><a href="io/atomix/copycat/server/request/ReconfigureRequest.Builder.html" title="class in io.atomix.copycat.server.request">ReconfigureRequest.Builder</a></li>
+<li><a href="io/atomix/copycat/server/response/ReconfigureResponse.html" title="class in io.atomix.copycat.server.response">ReconfigureResponse</a></li>
+<li><a href="io/atomix/copycat/server/response/ReconfigureResponse.Builder.html" title="class in io.atomix.copycat.server.response">ReconfigureResponse.Builder</a></li>
 <li><a href="io/atomix/copycat/client/RecoveryStrategies.html" title="enum in io.atomix.copycat.client">RecoveryStrategies</a></li>
 <li><a href="io/atomix/copycat/client/RecoveryStrategy.html" title="interface in io.atomix.copycat.client"><span class="interfaceName">RecoveryStrategy</span></a></li>
 <li><a href="io/atomix/copycat/server/storage/entry/RegisterEntry.html" title="class in io.atomix.copycat.server.storage.entry">RegisterEntry</a></li>
