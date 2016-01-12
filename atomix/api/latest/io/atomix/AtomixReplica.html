@@ -76,13 +76,13 @@ var activeTableTab = "activeTableTab";
 <li>Summary:&nbsp;</li>
 <li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
@@ -122,8 +122,8 @@ var activeTableTab = "activeTableTab";
 extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></pre>
 <div class="block">Provides an interface for creating and operating on <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>s as a stateful node.
  <p>
- Replicas serve as a hybrid <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> and <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>AtomixServer</code></a> to allow a server to be embedded
- in an application. From the perspective of state, replicas behave like <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>AtomixServer</code></a>s in that they
+ Replicas serve as a hybrid <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> and server to allow a server to be embedded
+ in an application. From the perspective of state, replicas behave like servers in that they
  maintain a replicated state machine for <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>s and fully participate in the underlying
  consensus algorithm. From the perspective of resources, replicas behave like <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a>s in that
  they may themselves create and modify distributed resources.
@@ -147,7 +147,7 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
  Similarly, if no storage module is configured, replicated commit logs will be written to
  <code>System.getProperty("user.dir")</code> with a default log name.
  <p>
- Atomix clusters are not restricted solely to <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>AtomixServer</code></a>s or <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>s. Clusters may be
+ Atomix clusters are not restricted solely to servers or <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>s. Clusters may be
  composed from a mixture of each type of server.
  <p>
  <b>Replica lifecycle</b>
@@ -188,24 +188,6 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></span></code>
 <div class="block">Builds an <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.</div>
 </td>
-</tr>
-</table>
-</li>
-</ul>
-<!-- ======== CONSTRUCTOR SUMMARY ======== -->
-<ul class="blockList">
-<li class="blockList"><a name="constructor.summary">
-<!--   -->
-</a>
-<h3>Constructor Summary</h3>
-<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
-<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Constructor and Description</th>
-</tr>
-<tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#AtomixReplica-io.atomix.manager.ResourceClient-io.atomix.manager.ResourceServer-">AtomixReplica</a></span>(io.atomix.manager.ResourceClient&nbsp;client,
-             io.atomix.manager.ResourceServer&nbsp;server)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -283,28 +265,6 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
-<!-- ========= CONSTRUCTOR DETAIL ======== -->
-<ul class="blockList">
-<li class="blockList"><a name="constructor.detail">
-<!--   -->
-</a>
-<h3>Constructor Detail</h3>
-<a name="AtomixReplica-io.atomix.manager.ResourceClient-io.atomix.manager.ResourceServer-">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>AtomixReplica</h4>
-<pre>public&nbsp;AtomixReplica(io.atomix.manager.ResourceClient&nbsp;client,
-                     io.atomix.manager.ResourceServer&nbsp;server)</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>client</code> or <code>server</code> are null</dd>
-</dl>
-</li>
-</ul>
-</li>
-</ul>
 <!-- ============ METHOD DETAIL ========== -->
 <ul class="blockList">
 <li class="blockList"><a name="method.detail">
@@ -480,13 +440,13 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
 <li>Summary:&nbsp;</li>
 <li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
