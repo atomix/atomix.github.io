@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/copycat/server/CopycatServer.Type.html" title="enum in io.atomix.copycat.server"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/copycat/server/Snapshottable.html" title="interface in io.atomix.copycat.server"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/copycat/server/CopycatServer.State.html" target="_top">Frames</a></li>
@@ -174,6 +174,11 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 <div class="block">Represents the state of a server in the process of catching up its log.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.State.html#RESERVE">RESERVE</a></span></code>
+<div class="block">Represents the state of a server that is a reserve member of the cluster.</div>
+</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -243,6 +248,18 @@ the order they are declared.</div>
  All servers start in this state and return to this state when <a href="../../../../io/atomix/copycat/server/CopycatServer.html#close--"><code>stopped</code></a>.</div>
 </li>
 </ul>
+<a name="RESERVE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RESERVE</h4>
+<pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a> RESERVE</pre>
+<div class="block">Represents the state of a server that is a reserve member of the cluster.
+ <p>
+ Reserve servers only receive notification of leader, term, and configuration changes.</div>
+</li>
+</ul>
 <a name="PASSIVE">
 <!--   -->
 </a>
@@ -293,7 +310,7 @@ the order they are declared.</div>
 <div class="block">Represents the state of a server which is actively coordinating and replicating logs with other servers.
  <p>
  Leaders are responsible for handling and replicating writes from clients. Note that more than one leader can
- exist at any given time, but Raft guarantees that no two leaders will exist for the same <a href="../../../../io/atomix/copycat/server/CopycatServer.html#term--"><code>CopycatServer.term()</code></a>.</div>
+ exist at any given time, but Raft guarantees that no two leaders will exist for the same <a href="../../../../io/atomix/copycat/server/cluster/Cluster.html#term--"><code>Cluster.term()</code></a>.</div>
 </li>
 </ul>
 </li>
@@ -375,7 +392,7 @@ not permitted.)</div>
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/copycat/server/CopycatServer.Type.html" title="enum in io.atomix.copycat.server"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/copycat/server/Snapshottable.html" title="interface in io.atomix.copycat.server"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/copycat/server/CopycatServer.State.html" target="_top">Frames</a></li>

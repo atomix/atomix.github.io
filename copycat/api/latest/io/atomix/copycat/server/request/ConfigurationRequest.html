@@ -93,17 +93,17 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">io.atomix.copycat.server.request</div>
-<h2 title="Class ConfigurationRequest" class="title">Class ConfigurationRequest&lt;T extends ConfigurationRequest&lt;T&gt;&gt;</h2>
+<h2 title="Class ConfigurationRequest" class="title">Class ConfigurationRequest</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">io.atomix.copycat.client.request.AbstractRequest</a>&lt;T&gt;</li>
+<li><a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">io.atomix.copycat.client.request.AbstractRequest</a></li>
 <li>
 <ul class="inheritance">
-<li>io.atomix.copycat.server.request.ConfigurationRequest&lt;T&gt;</li>
+<li>io.atomix.copycat.server.request.ConfigurationRequest</li>
 </ul>
 </li>
 </ul>
@@ -114,16 +114,16 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, <a href="../../../../../io/atomix/copycat/client/request/Request.html" title="interface in io.atomix.copycat.client.request">Request</a>&lt;T&gt;</dd>
+<dd><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a>, <a href="../../../../../io/atomix/copycat/client/request/Request.html" title="interface in io.atomix.copycat.client.request">Request</a></dd>
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../../../io/atomix/copycat/server/request/JoinRequest.html" title="class in io.atomix.copycat.server.request">JoinRequest</a>, <a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html" title="class in io.atomix.copycat.server.request">LeaveRequest</a></dd>
+<dd><a href="../../../../../io/atomix/copycat/server/request/JoinRequest.html" title="class in io.atomix.copycat.server.request">JoinRequest</a>, <a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html" title="class in io.atomix.copycat.server.request">LeaveRequest</a>, <a href="../../../../../io/atomix/copycat/server/request/ReconfigureRequest.html" title="class in io.atomix.copycat.server.request">ReconfigureRequest</a></dd>
 </dl>
 <hr>
 <br>
-<pre>public class <span class="typeNameLabel">ConfigurationRequest&lt;T extends ConfigurationRequest&lt;T&gt;&gt;</span>
-extends <a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">AbstractRequest</a>&lt;T&gt;</pre>
+<pre>public abstract class <span class="typeNameLabel">ConfigurationRequest</span>
+extends <a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">AbstractRequest</a></pre>
 <div class="block">Configuration change request.
  <p>
  Configuration change requests are the basis for members joining and leaving the cluster.
@@ -153,8 +153,8 @@ extends <a href="../../../../../io/atomix/copycat/client/request/AbstractRequest
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.Builder.html" title="class in io.atomix.copycat.server.request">ConfigurationRequest.Builder</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.Builder.html" title="type parameter in ConfigurationRequest.Builder">T</a> extends <a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.Builder.html" title="class in io.atomix.copycat.server.request">ConfigurationRequest.Builder</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.Builder.html" title="type parameter in ConfigurationRequest.Builder">T</a>,<a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.Builder.html" title="type parameter in ConfigurationRequest.Builder">U</a>&gt;,<a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.Builder.html" title="type parameter in ConfigurationRequest.Builder">U</a> extends <a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html" title="class in io.atomix.copycat.server.request">ConfigurationRequest</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.Builder.html" title="type parameter in ConfigurationRequest.Builder">U</a>&gt;&gt;</span></code>
-<div class="block">Join request builder.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.Builder.html" title="class in io.atomix.copycat.server.request">ConfigurationRequest.Builder</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.Builder.html" title="type parameter in ConfigurationRequest.Builder">T</a> extends <a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.Builder.html" title="class in io.atomix.copycat.server.request">ConfigurationRequest.Builder</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.Builder.html" title="type parameter in ConfigurationRequest.Builder">T</a>,<a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.Builder.html" title="type parameter in ConfigurationRequest.Builder">U</a>&gt;,<a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.Builder.html" title="type parameter in ConfigurationRequest.Builder">U</a> extends <a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html" title="class in io.atomix.copycat.server.request">ConfigurationRequest</a>&gt;</span></code>
+<div class="block">Configuration request builder.</div>
 </td>
 </tr>
 </table>
@@ -198,9 +198,9 @@ extends <a href="../../../../../io/atomix/copycat/client/request/AbstractRequest
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html#hashCode--">hashCode</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>io.atomix.copycat.server.state.Member</code></td>
+<td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html#member--">member</a></span>()</code>
-<div class="block">Returns the joining member.</div>
+<div class="block">Returns the member to configure.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -262,11 +262,11 @@ extends <a href="../../../../../io/atomix/copycat/client/request/AbstractRequest
 <ul class="blockList">
 <li class="blockList">
 <h4>member</h4>
-<pre>public&nbsp;io.atomix.copycat.server.state.Member&nbsp;member()</pre>
-<div class="block">Returns the joining member.</div>
+<pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a>&nbsp;member()</pre>
+<div class="block">Returns the member to configure.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The joining member.</dd>
+<dd>The member to configure.</dd>
 </dl>
 </li>
 </ul>
@@ -282,7 +282,7 @@ extends <a href="../../../../../io/atomix/copycat/client/request/AbstractRequest
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-" title="class or interface in io.atomix.catalyst.serializer">writeObject</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">AbstractRequest</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html" title="type parameter in ConfigurationRequest">T</a> extends <a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html" title="class in io.atomix.copycat.server.request">ConfigurationRequest</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html" title="type parameter in ConfigurationRequest">T</a>&gt;&gt;</code></dd>
+<dd><code><a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">AbstractRequest</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -298,7 +298,7 @@ extends <a href="../../../../../io/atomix/copycat/client/request/AbstractRequest
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-" title="class or interface in io.atomix.catalyst.serializer">readObject</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">AbstractRequest</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html" title="type parameter in ConfigurationRequest">T</a> extends <a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html" title="class in io.atomix.copycat.server.request">ConfigurationRequest</a>&lt;<a href="../../../../../io/atomix/copycat/server/request/ConfigurationRequest.html" title="type parameter in ConfigurationRequest">T</a>&gt;&gt;</code></dd>
+<dd><code><a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../io/atomix/copycat/client/request/AbstractRequest.html" title="class in io.atomix.copycat.client.request">AbstractRequest</a></code></dd>
 </dl>
 </li>
 </ul>
