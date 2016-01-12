@@ -126,7 +126,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
  This interface is an asynchronous version of Java's <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/locks/Lock.html?is-external=true" title="class or interface in java.util.concurrent.locks"><code>Lock</code></a>.
  <pre>
    <code>
-   atomix.create("lock", DistributedLock.TYPE).thenAccept(lock -&gt; {
+   atomix.getLock("my-lock").thenAccept(lock -&gt; {
      lock.lock().thenRun(() -&gt; {
        ...
        lock.unlock();
@@ -154,7 +154,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
  <p>
  <pre>
    <code>
-   DistributedLock lock = atomix.create("lock", DistributedLock.TYPE).get();
+   DistributedLock lock = atomix.getLock("my-lock").get();
 
    lock.lock().thenRun(() -&gt; {}
      lock.onStateChange(state -&gt; {
