@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -100,15 +100,10 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">io.atomix.catalyst.util.Builder</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</li>
-<li>
-<ul class="inheritance">
-<li><a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">io.atomix.Atomix.Builder</a></li>
+<li><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">io.atomix.catalyst.util.Builder</a>&lt;<a href="../../io/atomix/AtomixClient.html" title="class in io.atomix">AtomixClient</a>&gt;</li>
 <li>
 <ul class="inheritance">
 <li>io.atomix.AtomixClient.Builder</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -124,11 +119,11 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public static class <span class="typeNameLabel">AtomixClient.Builder</span>
-extends <a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a></pre>
+extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../io/atomix/AtomixClient.html" title="class in io.atomix">AtomixClient</a>&gt;</pre>
 <div class="block">Builds an <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a>.
  <p>
- The client builder configures an <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> to connect to a cluster of <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>AtomixServer</code></a>s
- or <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>. To create a client builder, use the <a href="../../io/atomix/AtomixClient.html#builder-io.atomix.catalyst.transport.Address...-"><code>AtomixClient.builder(Address...)</code></a> method.
+ The client builder configures an <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> to connect to a cluster of <code>ResourceServer</code>s
+ or <code>ResourceReplica</code>. To create a client builder, use the <a href="../../io/atomix/AtomixClient.html#builder-io.atomix.catalyst.transport.Address...-"><code>AtomixClient.builder(Address...)</code></a> method.
  <pre>
    <code>
    Atomix client = AtomixClient.builder(servers)
@@ -159,19 +154,24 @@ extends <a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix"
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixClient.Builder.html#build--">build</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a></code></td>
+<td class="colFirst"><code><a href="../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixClient.Builder.html#withResourceResolver-io.atomix.resource.ResourceTypeResolver-">withResourceResolver</a></span>(<a href="../../io/atomix/resource/ResourceTypeResolver.html" title="interface in io.atomix.resource">ResourceTypeResolver</a>&nbsp;resolver)</code>
+<div class="block">Sets the Atomix resource type resolver.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixClient.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-">withSerializer</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
+<div class="block">Sets the Atomix serializer.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixClient.Builder.html#withTransport-io.atomix.catalyst.transport.Transport-">withTransport</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</code>
 <div class="block">Sets the Atomix transport.</div>
 </td>
 </tr>
 </table>
-<ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.io.atomix.Atomix.Builder">
-<!--   -->
-</a>
-<h3>Methods inherited from class&nbsp;io.atomix.<a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a></h3>
-<code><a href="../../io/atomix/Atomix.Builder.html#withResourceResolver-io.atomix.resource.ResourceTypeResolver-">withResourceResolver</a>, <a href="../../io/atomix/Atomix.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-">withSerializer</a></code></li>
-</ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
@@ -199,18 +199,51 @@ extends <a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix"
 <ul class="blockList">
 <li class="blockList">
 <h4>withTransport</h4>
-<pre>public&nbsp;<a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a>&nbsp;withTransport(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../io/atomix/Atomix.Builder.html#withTransport-io.atomix.catalyst.transport.Transport-">Atomix.Builder</a></code></span></div>
+<pre>public&nbsp;<a href="../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a>&nbsp;withTransport(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</pre>
 <div class="block">Sets the Atomix transport.
  <p>
  The configured transport should be the same transport as all other nodes in the cluster.
  If no transport is explicitly provided, the instance will default to the <code>NettyTransport</code>
  if available on the classpath.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../io/atomix/Atomix.Builder.html#withTransport-io.atomix.catalyst.transport.Transport-">withTransport</a></code>&nbsp;in class&nbsp;<code><a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>transport</code> - The Atomix transport.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The Atomix builder.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>transport</code> is <code>null</code></dd>
+</dl>
+</li>
+</ul>
+<a name="withSerializer-io.atomix.catalyst.serializer.Serializer-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withSerializer</h4>
+<pre>public&nbsp;<a href="../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a>&nbsp;withSerializer(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
+<div class="block">Sets the Atomix serializer.
+ <p>
+ The serializer will be used to serialize and deserialize operations that are sent over the wire.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>serializer</code> - The Atomix serializer.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The Atomix builder.</dd>
+</dl>
+</li>
+</ul>
+<a name="withResourceResolver-io.atomix.resource.ResourceTypeResolver-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withResourceResolver</h4>
+<pre>public&nbsp;<a href="../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a>&nbsp;withResourceResolver(<a href="../../io/atomix/resource/ResourceTypeResolver.html" title="interface in io.atomix.resource">ResourceTypeResolver</a>&nbsp;resolver)</pre>
+<div class="block">Sets the Atomix resource type resolver.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>resolver</code> - The resource type resolver.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The Atomix builder.</dd>
 </dl>
@@ -225,7 +258,7 @@ extends <a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix"
 <pre>public&nbsp;<a href="../../io/atomix/AtomixClient.html" title="class in io.atomix">AtomixClient</a>&nbsp;build()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true#build--" title="class or interface in io.atomix.catalyst.util">build</a></code>&nbsp;in class&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true#build--" title="class or interface in io.atomix.catalyst.util">build</a></code>&nbsp;in class&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../io/atomix/AtomixClient.html" title="class in io.atomix">AtomixClient</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>

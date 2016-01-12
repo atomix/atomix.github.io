@@ -85,7 +85,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix">io.atomix</a></td>
 <td class="colLast">
-<div class="block">Core Atomix APIs, including <a href="../../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> and <a href="../../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.</div>
+<div class="block">Core Atomix APIs, including <code>ResourceClient</code> and <code>io.atomix.manager.ResourceReplica</code>.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -100,7 +100,7 @@
 <td class="colFirst"><a href="#io.atomix.coordination">io.atomix.coordination</a></td>
 <td class="colLast">
 <div class="block">Provides distributed coordination resources such as <a href="../../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination"><code>DistributedLock</code></a> and
- <a href="../../../io/atomix/coordination/DistributedLeaderElection.html" title="class in io.atomix.coordination"><code>DistributedLeaderElection</code></a>, and <a href="../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><code>DistributedMembershipGroup</code></a>.</div>
+ <code>io.atomix.coordination.DistributedLeaderElection</code>, and <a href="../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><code>DistributedMembershipGroup</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -142,11 +142,16 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Options.html#io.atomix">Resource.Options</a>
+<div class="block">Resource options.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceType.html#io.atomix">ResourceType</a>
 <div class="block">Resource type.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceTypeResolver.html#io.atomix">ResourceTypeResolver</a>
 <div class="block">The resource type resolver is responsible for locating resource types.</div>
 </td>
@@ -169,8 +174,8 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceType.html#io.atomix.collections">ResourceType</a>
-<div class="block">Resource type.</div>
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Options.html#io.atomix.collections">Resource.Options</a>
+<div class="block">Resource options.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -196,8 +201,8 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceType.html#io.atomix.coordination">ResourceType</a>
-<div class="block">Resource type.</div>
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Options.html#io.atomix.coordination">Resource.Options</a>
+<div class="block">Resource options.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -223,8 +228,8 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceType.html#io.atomix.messaging">ResourceType</a>
-<div class="block">Resource type.</div>
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Options.html#io.atomix.messaging">Resource.Options</a>
+<div class="block">Resource options.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -245,28 +250,58 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/Configurable.html#io.atomix.resource">Configurable</a>
+<div class="block">Interface for configurable resources.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/ConfigurableResource.html#io.atomix.resource">ConfigurableResource</a>
+<div class="block">Base class for configurable resources.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Consistency.html#io.atomix.resource">Consistency</a>
 <div class="block">Resource consistency constraints.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../io/atomix/resource/class-use/InstanceFactory.html#io.atomix.resource">InstanceFactory</a>
-<div class="block">Resource instance factory.</div>
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/Instance.html#io.atomix.resource">Instance</a>
+<div class="block">Resource instance.</div>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/Instance.Method.html#io.atomix.resource">Instance.Method</a>
+<div class="block">Instance open method.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/InstanceOperation.html#io.atomix.resource">InstanceOperation</a>
 <div class="block">Resource operation.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.html#io.atomix.resource">Resource</a>
 <div class="block">Base class for fault-tolerant stateful distributed objects.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Config.html#io.atomix.resource">Resource.Config</a>
+<div class="block">Resource configuration.</div>
+</td>
+</tr>
 <tr class="altColor">
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Options.html#io.atomix.resource">Resource.Options</a>
+<div class="block">Resource options.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.State.html#io.atomix.resource">Resource.State</a>
 <div class="block">Indicates the state of the resource's communication with the cluster.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceFactory.html#io.atomix.resource">ResourceFactory</a>
+<div class="block">Resource factory.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -312,8 +347,8 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceType.html#io.atomix.variables">ResourceType</a>
-<div class="block">Resource type.</div>
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Options.html#io.atomix.variables">Resource.Options</a>
+<div class="block">Resource options.</div>
 </td>
 </tr>
 <tr class="altColor">

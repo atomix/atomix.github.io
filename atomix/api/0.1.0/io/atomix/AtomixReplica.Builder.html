@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li>Next&nbsp;Class</li>
 </ul>
 <ul class="navList">
 <li><a href="../../index.html?io/atomix/AtomixReplica.Builder.html" target="_top">Frames</a></li>
@@ -100,15 +100,10 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">io.atomix.catalyst.util.Builder</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</li>
-<li>
-<ul class="inheritance">
-<li><a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">io.atomix.Atomix.Builder</a></li>
+<li><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">io.atomix.catalyst.util.Builder</a>&lt;<a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a>&gt;</li>
 <li>
 <ul class="inheritance">
 <li>io.atomix.AtomixReplica.Builder</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -124,7 +119,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public static class <span class="typeNameLabel">AtomixReplica.Builder</span>
-extends <a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a></pre>
+extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a>&gt;</pre>
 <div class="block">Builds an <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.
  <p>
  The replica builder configures an <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a> to listen for connections from clients and other
@@ -172,60 +167,71 @@ extends <a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix"
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withBackupCount-int-">withBackupCount</a></span>(int&nbsp;backupCount)</code>
+<div class="block">Sets the backup count.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withClientTransport-io.atomix.catalyst.transport.Transport-">withClientTransport</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</code>
 <div class="block">Sets the client transport, returning the server builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withElectionTimeout-java.time.Duration-">withElectionTimeout</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;electionTimeout)</code>
 <div class="block">Sets the replica election timeout, returning the replica builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withHeartbeatInterval-java.time.Duration-">withHeartbeatInterval</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;heartbeatInterval)</code>
 <div class="block">Sets the replica heartbeat interval, returning the replica builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withQuorumHint-int-">withQuorumHint</a></span>(int&nbsp;quorumHint)</code>
+<div class="block">Sets the quorum hint.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withResourceResolver-io.atomix.resource.ResourceTypeResolver-">withResourceResolver</a></span>(<a href="../../io/atomix/resource/ResourceTypeResolver.html" title="interface in io.atomix.resource">ResourceTypeResolver</a>&nbsp;resolver)</code>
+<div class="block">Sets the Atomix resource type resolver.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-">withSerializer</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
 <div class="block">Sets the serializer, returning the replica builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withServerTransport-io.atomix.catalyst.transport.Transport-">withServerTransport</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</code>
 <div class="block">Sets the server transport, returning the server builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withSessionTimeout-java.time.Duration-">withSessionTimeout</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;sessionTimeout)</code>
 <div class="block">Sets the replica session timeout, returning the replica builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withStorage-io.atomix.copycat.server.storage.Storage-">withStorage</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage)</code>
 <div class="block">Sets the replica storage module, returning the replica builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withTransport-io.atomix.catalyst.transport.Transport-">withTransport</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</code>
 <div class="block">Sets the replica transport, returning the replica builder for method chaining.</div>
 </td>
 </tr>
 </table>
-<ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.io.atomix.Atomix.Builder">
-<!--   -->
-</a>
-<h3>Methods inherited from class&nbsp;io.atomix.<a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a></h3>
-<code><a href="../../io/atomix/Atomix.Builder.html#withResourceResolver-io.atomix.resource.ResourceTypeResolver-">withResourceResolver</a></code></li>
-</ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
@@ -260,8 +266,6 @@ extends <a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix"
  If no transport is explicitly provided, the instance will default to the <code>NettyTransport</code>
  if available on the classpath.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../io/atomix/Atomix.Builder.html#withTransport-io.atomix.catalyst.transport.Transport-">withTransport</a></code>&nbsp;in class&nbsp;<code><a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>transport</code> - The replica transport.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -326,14 +330,60 @@ extends <a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix"
  <p>
  The serializer will be used to serialize and deserialize operations that are sent over the wire.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../io/atomix/Atomix.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-">withSerializer</a></code>&nbsp;in class&nbsp;<code><a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>serializer</code> - The serializer.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The replica builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>serializer</code> is null</dd>
+</dl>
+</li>
+</ul>
+<a name="withQuorumHint-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withQuorumHint</h4>
+<pre>public&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;withQuorumHint(int&nbsp;quorumHint)</pre>
+<div class="block">Sets the quorum hint.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>quorumHint</code> - The quorum hint.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The replica builder.</dd>
+</dl>
+</li>
+</ul>
+<a name="withBackupCount-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withBackupCount</h4>
+<pre>public&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;withBackupCount(int&nbsp;backupCount)</pre>
+<div class="block">Sets the backup count.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>backupCount</code> - The backup count.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The replica builder.</dd>
+</dl>
+</li>
+</ul>
+<a name="withResourceResolver-io.atomix.resource.ResourceTypeResolver-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withResourceResolver</h4>
+<pre>public&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;withResourceResolver(<a href="../../io/atomix/resource/ResourceTypeResolver.html" title="interface in io.atomix.resource">ResourceTypeResolver</a>&nbsp;resolver)</pre>
+<div class="block">Sets the Atomix resource type resolver.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>resolver</code> - The resource type resolver.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The Atomix builder.</dd>
 </dl>
 </li>
 </ul>
@@ -458,10 +508,10 @@ extends <a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix"
  on the classpath, a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ConfigurationException.html?is-external=true" title="class or interface in io.atomix.catalyst.util"><code>ConfigurationException</code></a> will be thrown.
  <p>
  Once the replica is built, it is not yet connected to the cluster. To connect the replica to the cluster,
- call the asynchronous <a href="../../io/atomix/Atomix.html#open--"><code>Atomix.open()</code></a> method.</div>
+ call the asynchronous <a href="../../io/atomix/AtomixReplica.html#open--"><code>AtomixReplica.open()</code></a> method.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true#build--" title="class or interface in io.atomix.catalyst.util">build</a></code>&nbsp;in class&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true#build--" title="class or interface in io.atomix.catalyst.util">build</a></code>&nbsp;in class&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The built replica.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -498,7 +548,7 @@ extends <a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix"
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li>Next&nbsp;Class</li>
 </ul>
 <ul class="navList">
 <li><a href="../../index.html?io/atomix/AtomixReplica.Builder.html" target="_top">Frames</a></li>

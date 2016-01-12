@@ -72,7 +72,7 @@
 <div class="header">
 <h1 title="Package" class="title">Package&nbsp;io.atomix</h1>
 <div class="docSummary">
-<div class="block">Core Atomix APIs, including <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> and <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.</div>
+<div class="block">Core Atomix APIs, including <code>ResourceClient</code> and <code>io.atomix.manager.ResourceReplica</code>.</div>
 </div>
 <p>See:&nbsp;<a href="#package.description">Description</a></p>
 </div>
@@ -93,45 +93,27 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../io/atomix/Atomix.Builder.html" title="class in io.atomix">Atomix.Builder</a></td>
-<td class="colLast">
-<div class="block">Builds an <a href="../../io/atomix/Atomix.html" title="class in io.atomix"><code>Atomix</code></a> object.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="../../io/atomix/AtomixClient.html" title="class in io.atomix">AtomixClient</a></td>
 <td class="colLast">
 <div class="block">Provides an interface for creating and operating on <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>s remotely.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></td>
 <td class="colLast">
 <div class="block">Builds an <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a></td>
 <td class="colLast">
 <div class="block">Provides an interface for creating and operating on <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>s as a stateful node.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></td>
 <td class="colLast">
 <div class="block">Builds an <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../io/atomix/AtomixServer.html" title="class in io.atomix">AtomixServer</a></td>
-<td class="colLast">
-<div class="block">Standalone Atomix server.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../io/atomix/AtomixServer.Builder.html" title="class in io.atomix">AtomixServer.Builder</a></td>
-<td class="colLast">
-<div class="block">Builds an <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>AtomixServer</code></a>.</div>
 </td>
 </tr>
 </tbody>
@@ -151,12 +133,6 @@
 <div class="block">Atomix exception.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../io/atomix/ResourceException.html" title="class in io.atomix">ResourceException</a></td>
-<td class="colLast">
-<div class="block">Atomix resource exception.</div>
-</td>
-</tr>
 </tbody>
 </table>
 </li>
@@ -165,13 +141,13 @@
 <!--   -->
 </a>
 <h2 title="Package io.atomix Description">Package io.atomix Description</h2>
-<div class="block">Core Atomix APIs, including <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> and <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.
+<div class="block">Core Atomix APIs, including <code>ResourceClient</code> and <code>io.atomix.manager.ResourceReplica</code>.
  <p>
  <h3>The Atomix cluster</h3>
  This package provides the primary mechanisms for creating and managing Atomix clusters. An Atomix cluster
- consists of one or more <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>servers</code></a> or <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replicas</code></a>
- and any number of clients. To create a cluster, construct an <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>AtomixServer</code></a> or
- <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.
+ consists of one or more <code>servers</code> or <code>replicas</code>
+ and any number of clients. To create a cluster, construct an <code>AtomixServer</code> or
+ <code>AtomixReplica</code>.
  <p>
  <pre>
    <code>
@@ -195,21 +171,21 @@
  <p>
  <b>Servers vs Replicas</b>
  <p>
- The sole difference between <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>servers</code></a> and <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replicas</code></a>
+ The sole difference between <code>servers</code> and <code>replicas</code>
  is the ability to operate on <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>resources</code></a>. Servers should be used when constructing
- a standalone system with which only <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>clients</code></a> can communicate, and replicas should be
+ a standalone system with which only <code>clients</code> can communicate, and replicas should be
  used for embedding a server while simultaneously operating on that server's state.
  <p>
  <h3>Resources</h3>
  <p>
- Atomix <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>servers</code></a> and <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replicas</code></a> provide the ability
- to manage and replicate state, and <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replicas</code></a> and <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>clients</code></a>
- provide the interface to operate on that state. The <a href="../../io/atomix/Atomix.html" title="class in io.atomix"><code>Atomix</code></a> interface provides the
+ Atomix <code>servers</code> and <code>replicas</code> provide the ability
+ to manage and replicate state, and <code>replicas</code> and <code>clients</code>
+ provide the interface to operate on that state. The <code>Atomix</code> interface provides the
  methods necessary to manage creating and operating on <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resources</code></a>.
  A resource is a stateful, fault-tolerant, distributed object that's manged by a replicated state machine. To
- create a resource, simply call <a href="../../io/atomix/Atomix.html#get-java.lang.String-io.atomix.resource.ResourceType-"><code>Atomix.get(java.lang.String, io.atomix.resource.ResourceType)</code></a> or
- <a href="../../io/atomix/Atomix.html#create-java.lang.String-io.atomix.resource.ResourceType-"><code>Atomix.create(java.lang.String, io.atomix.resource.ResourceType)</code></a> on a
- <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>client</code></a> or <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replica</code></a>.
+ create a resource, simply call <code>ResourceClient.get(java.lang.String, io.atomix.resource.ResourceType)</code> or
+ <code>io.atomix.manager.ResourceClient#create(java.lang.String, io.atomix.resource.ResourceType)</code> on a
+ <code>client</code> or <code>replica</code>.
  <p>
  <pre>
    <code>
@@ -217,17 +193,17 @@
    </code>
  </pre>
  A <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>resource</code></a> is simply an interface to a replicated state machine. When a
- resource is created, a state machine is created on each <a href="../../io/atomix/AtomixServer.html" title="class in io.atomix"><code>server</code></a> or
- <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replica</code></a> in the cluster, and operations on the resource are submitted to the
+ resource is created, a state machine is created on each <code>server</code> or
+ <code>replica</code> in the cluster, and operations on the resource are submitted to the
  cluster where they're logged, replicated, and applied to the resource's specific <a href="../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource"><code>ResourceStateMachine</code></a>.
  <p>
  <b>Clients vs Replicas</b>
  <p>
- The sole difference between <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>clients</code></a> and <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replicas</code></a> is
+ The sole difference between <code>clients</code> and <code>replicas</code> is
  the ability to store state and participate in replication. Clients operate on resource state purely remotely. When
- a resource created by an <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> is modified, operations are submitted remotely
+ a resource created by an <code>AtomixClient</code> is modified, operations are submitted remotely
  to the cluster. The same is true of replicas; when operations are performed on a resource created via an
- <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>, state changes may be performed remotely, but the replica also participates
+ <code>AtomixReplica</code>, state changes may be performed remotely, but the replica also participates
  in the replication and commitment of the state changes. This allows servers to be effectively be embedded in code that
  operates on resource state.</div>
 <dl>

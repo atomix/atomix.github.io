@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10};
+var methods = {"i0":10,"i1":10,"i2":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../io/atomix/resource/ResourceRegistry.html" title="class in io.atomix.resource"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../io/atomix/resource/ResourceStateMachine.DeleteCommand.html" title="class in io.atomix.resource"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/resource/ResourceStateMachine.ConfigureCommand.html" title="class in io.atomix.resource"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/resource/ResourceStateMachine.html" target="_top">Frames</a></li>
@@ -93,7 +93,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">io.atomix.resource</div>
-<h2 title="Class ResourceStateMachine" class="title">Class ResourceStateMachine</h2>
+<h2 title="Class ResourceStateMachine" class="title">Class ResourceStateMachine&lt;T extends <a href="../../../io/atomix/resource/Resource.Config.html" title="interface in io.atomix.resource">Resource.Config</a>&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
@@ -103,7 +103,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server">io.atomix.copycat.server.StateMachine</a></li>
 <li>
 <ul class="inheritance">
-<li>io.atomix.resource.ResourceStateMachine</li>
+<li>io.atomix.resource.ResourceStateMachine&lt;T&gt;</li>
 </ul>
 </li>
 </ul>
@@ -118,7 +118,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public abstract class <span class="typeNameLabel">ResourceStateMachine</span>
+<pre>public abstract class <span class="typeNameLabel">ResourceStateMachine&lt;T extends <a href="../../../io/atomix/resource/Resource.Config.html" title="interface in io.atomix.resource">Resource.Config</a>&gt;</span>
 extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server">StateMachine</a></pre>
 <div class="block">Base resource state machine.</div>
 <dl>
@@ -144,6 +144,12 @@ extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/St
 <th class="colLast" scope="col">Class and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.ConfigureCommand.html" title="class in io.atomix.resource">ResourceStateMachine.ConfigureCommand</a></span></code>
+<div class="block">Resource configure command.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.DeleteCommand.html" title="class in io.atomix.resource">ResourceStateMachine.DeleteCommand</a></span></code>
 <div class="block">Resource delete command.</div>
@@ -183,11 +189,17 @@ extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/St
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#configure-T-">configure</a></span>(<a href="../../../io/atomix/resource/ResourceStateMachine.html" title="type parameter in ResourceStateMachine">T</a>&nbsp;config)</code>
+<div class="block">Configures the resource.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#delete--">delete</a></span>()</code>
 <div class="block">Deletes state machine state.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#init-io.atomix.copycat.server.StateMachineExecutor-">init</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachineExecutor.html?is-external=true" title="class or interface in io.atomix.copycat.server">StateMachineExecutor</a>&nbsp;executor)</code>&nbsp;</td>
 </tr>
@@ -250,6 +262,22 @@ extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/St
 </dl>
 </li>
 </ul>
+<a name="configure-io.atomix.resource.Resource.Config-">
+<!--   -->
+</a><a name="configure-T-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>configure</h4>
+<pre>public&nbsp;void&nbsp;configure(<a href="../../../io/atomix/resource/ResourceStateMachine.html" title="type parameter in ResourceStateMachine">T</a>&nbsp;config)</pre>
+<div class="block">Configures the resource.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>config</code> - The resource configuration.</dd>
+</dl>
+</li>
+</ul>
 <a name="delete--">
 <!--   -->
 </a>
@@ -289,7 +317,7 @@ extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/St
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../io/atomix/resource/ResourceRegistry.html" title="class in io.atomix.resource"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../io/atomix/resource/ResourceStateMachine.DeleteCommand.html" title="class in io.atomix.resource"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/resource/ResourceStateMachine.ConfigureCommand.html" title="class in io.atomix.resource"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/resource/ResourceStateMachine.html" target="_top">Frames</a></li>
