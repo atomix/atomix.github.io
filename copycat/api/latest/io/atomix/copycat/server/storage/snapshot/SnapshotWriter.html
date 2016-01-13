@@ -120,7 +120,11 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buff
  <p>
  This class provides the primary interface for writing snapshot buffers to disk or memory.
  Snapshot bytes are written to an underlying <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a> which is backed by either memory
- or disk based on the configured <a href="../../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage"><code>StorageLevel</code></a>.</div>
+ or disk based on the configured <a href="../../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage"><code>StorageLevel</code></a>.
+ <p>
+ In addition to standard <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/BufferOutput.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>BufferOutput</code></a> methods, snapshot writers support writing
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io"><code>Serializable</code></a> and <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a> objects
+ to the snapshot via the <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotWriter.html#writeObject-java.lang.Object-"><code>writeObject(Object)</code></a> method.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
