@@ -180,11 +180,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/ConnectionStrategy.html#attemptFailed-io.atomix.copycat.client.ConnectionStrategy.Attempt-">attemptFailed(ConnectionStrategy.Attempt)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client">ConnectionStrategy</a></dt>
 <dd>
-<div class="block">Called when an attempt to connect to the cluster fails.</div>
+<div class="block">Handles the failure of an attempt to connect to the cluster.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RetryStrategy.html#attemptFailed-io.atomix.copycat.client.RetryStrategy.Attempt-java.lang.Throwable-">attemptFailed(RetryStrategy.Attempt, Throwable)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/RetryStrategy.html" title="interface in io.atomix.copycat.client">RetryStrategy</a></dt>
 <dd>
-<div class="block">Called when an operation attempt fails.</div>
+<div class="block">Handles the failure of an operation submission attempt.</div>
 </dd>
 </dl>
 <a name="I:B">
@@ -921,7 +921,7 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">ConnectionStrategies</span></a> - Enum in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
 <dd>
-<div class="block">Basic connection strategies.</div>
+<div class="block">Strategies for handling client connection failures.</div>
 </dd>
 <dt><a href="io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client"><span class="typeNameLink">ConnectionStrategy</span></a> - Interface in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
 <dd>
@@ -1004,10 +1004,6 @@
 <dt><a href="io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server"><span class="typeNameLink">CopycatServer.State</span></a> - Enum in <a href="io/atomix/copycat/server/package-summary.html">io.atomix.copycat.server</a></dt>
 <dd>
 <div class="block">Raft server state types.</div>
-</dd>
-<dt><a href="io/atomix/copycat/client/CopycatService.html" title="interface in io.atomix.copycat.client"><span class="typeNameLink">CopycatService</span></a> - Interface in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
-<dd>
-<div class="block">Base interface for communicating with a Copycat cluster.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#count--">count()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>
@@ -2117,7 +2113,7 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/copycat/client/NoOpCommand.html" title="class in io.atomix.copycat.client"><span class="typeNameLink">NoOpCommand</span></a> - Class in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
 <dd>
-<div class="block">A special placeholder command.</div>
+<div class="block">Special placeholder command representing a client operation that has no effect on the state machine.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/NoOpCommand.html#NoOpCommand--">NoOpCommand()</a></span> - Constructor for class io.atomix.copycat.client.<a href="io/atomix/copycat/client/NoOpCommand.html" title="class in io.atomix.copycat.client">NoOpCommand</a></dt>
 <dd>&nbsp;</dd>
@@ -2135,11 +2131,11 @@
 <dd>
 <div class="block">Returns the offset of the given index within the segment.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatService.html#onEvent-java.lang.String-java.lang.Runnable-">onEvent(String, Runnable)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatService.html" title="interface in io.atomix.copycat.client">CopycatService</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#onEvent-java.lang.String-java.lang.Runnable-">onEvent(String, Runnable)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></dt>
 <dd>
 <div class="block">Registers a void event listener.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatService.html#onEvent-java.lang.String-java.util.function.Consumer-">onEvent(String, Consumer&lt;T&gt;)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatService.html" title="interface in io.atomix.copycat.client">CopycatService</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#onEvent-java.lang.String-java.util.function.Consumer-">onEvent(String, Consumer&lt;T&gt;)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></dt>
 <dd>
 <div class="block">Registers an event listener.</div>
 </dd>
@@ -2235,7 +2231,7 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RetryStrategy.Attempt.html#operation--">operation()</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/RetryStrategy.Attempt.html" title="interface in io.atomix.copycat.client">RetryStrategy.Attempt</a></dt>
 <dd>
-<div class="block">Returns the attempted operation.</div>
+<div class="block">Returns the operation was attempted and failed.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/Commit.html#operation--">operation()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a></dt>
 <dd>
@@ -2707,7 +2703,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/client/RetryStrategies.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">RetryStrategies</span></a> - Enum in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
 <dd>
-<div class="block">Client operation retry strategies.</div>
+<div class="block">Strategies for resubmitting failed client operations to the cluster.</div>
 </dd>
 <dt><a href="io/atomix/copycat/client/RetryStrategy.html" title="interface in io.atomix.copycat.client"><span class="typeNameLink">RetryStrategy</span></a> - Interface in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
 <dd>
@@ -2715,7 +2711,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/client/RetryStrategy.Attempt.html" title="interface in io.atomix.copycat.client"><span class="typeNameLink">RetryStrategy.Attempt</span></a> - Interface in <a href="io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a></dt>
 <dd>
-<div class="block">Operation attempt.</div>
+<div class="block">Represents a single attempt to submit an operation to the Copycat cluster.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentManager.html#reverseSegments--">reverseSegments()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a></dt>
 <dd>
@@ -3103,15 +3099,15 @@
 <dd>
 <div class="block">Stores the last voted server.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatService.html#submit-io.atomix.copycat.client.Operation-">submit(Operation&lt;T&gt;)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatService.html" title="interface in io.atomix.copycat.client">CopycatService</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.client.Operation-">submit(Operation&lt;T&gt;)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></dt>
 <dd>
 <div class="block">Submits an operation to the Copycat cluster.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatService.html#submit-io.atomix.copycat.client.Command-">submit(Command&lt;T&gt;)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatService.html" title="interface in io.atomix.copycat.client">CopycatService</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.client.Command-">submit(Command&lt;T&gt;)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></dt>
 <dd>
 <div class="block">Submits a command to the Copycat cluster.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatService.html#submit-io.atomix.copycat.client.Query-">submit(Query&lt;T&gt;)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatService.html" title="interface in io.atomix.copycat.client">CopycatService</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.client.Query-">submit(Query&lt;T&gt;)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></dt>
 <dd>
 <div class="block">Submits a query to the Copycat cluster.</div>
 </dd>

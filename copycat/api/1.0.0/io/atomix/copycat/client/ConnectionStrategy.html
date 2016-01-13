@@ -164,7 +164,7 @@ var activeTableTab = "activeTableTab";
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/ConnectionStrategy.html#attemptFailed-io.atomix.copycat.client.ConnectionStrategy.Attempt-">attemptFailed</a></span>(<a href="../../../../io/atomix/copycat/client/ConnectionStrategy.Attempt.html" title="interface in io.atomix.copycat.client">ConnectionStrategy.Attempt</a>&nbsp;attempt)</code>
-<div class="block">Called when an attempt to connect to the cluster fails.</div>
+<div class="block">Handles the failure of an attempt to connect to the cluster.</div>
 </td>
 </tr>
 </table>
@@ -189,7 +189,17 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>attemptFailed</h4>
 <pre>void&nbsp;attemptFailed(<a href="../../../../io/atomix/copycat/client/ConnectionStrategy.Attempt.html" title="interface in io.atomix.copycat.client">ConnectionStrategy.Attempt</a>&nbsp;attempt)</pre>
-<div class="block">Called when an attempt to connect to the cluster fails.</div>
+<div class="block">Handles the failure of an attempt to connect to the cluster.
+ <p>
+ This method will be called for each failed attempt to connect to the cluster. Connection attempt
+ failures result when the client fails to connect to and establish a session with any known server
+ in the cluster. Thus, by the time this method is called the client will have attempted communication
+ with every server specified to the client.
+ <p>
+ Connection strategies can choose how to react to a failed attempt to connect to the cluster by
+ either <a href="../../../../io/atomix/copycat/client/ConnectionStrategy.Attempt.html#retry--"><code>retrying</code></a> or <a href="../../../../io/atomix/copycat/client/ConnectionStrategy.Attempt.html#fail--"><code>failing</code></a> the attempt. In the event
+ that a connection attempt is failed, the associated <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>
+ will be completed exceptionally.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>attempt</code> - The failed attempt.</dd>

@@ -116,7 +116,13 @@ var activeTableTab = "activeTableTab";
 <pre>public class <span class="typeNameLabel">NoOpCommand</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client">Command</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a></pre>
-<div class="block">A special placeholder command.</div>
+<div class="block">Special placeholder command representing a client operation that has no effect on the state machine.
+ <p>
+ No-op commands are submitted by clients to the cluster to complete missing command sequence numbers.
+ Copycat clusters require that clients submit commands in sequential order and use a client-provided
+ sequence number to ensure FIFO ordering of operations submitted to the cluster. In the event that a
+ command fails to be committed to the cluster, a client can resubmit a no-op command to ensure command
+ sequence numbers continue to progress.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>

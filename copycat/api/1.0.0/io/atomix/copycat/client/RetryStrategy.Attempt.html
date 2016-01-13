@@ -106,7 +106,10 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public static interface <span class="typeNameLabel">RetryStrategy.Attempt</span></pre>
-<div class="block">Operation attempt.</div>
+<div class="block">Represents a single attempt to submit an operation to the Copycat cluster.
+ <p>
+ For each operation submission attempt, an <code>Attempt</code> object will be provided to the
+ <a href="../../../../io/atomix/copycat/client/RetryStrategy.html" title="interface in io.atomix.copycat.client"><code>RetryStrategy</code></a> upon failure.</div>
 </li>
 </ul>
 </div>
@@ -146,7 +149,7 @@ var activeTableTab = "activeTableTab";
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client">Operation</a>&lt;?&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/RetryStrategy.Attempt.html#operation--">operation</a></span>()</code>
-<div class="block">Returns the attempted operation.</div>
+<div class="block">Returns the operation was attempted and failed.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
@@ -183,10 +186,15 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>attempt</h4>
 <pre>int&nbsp;attempt()</pre>
-<div class="block">Returns the attempt count.</div>
+<div class="block">Returns the attempt count.
+ <p>
+ The attempt count is representative of the number of submission attempts have been made
+ prior to the failure of this attempt. For the first <a href="../../../../io/atomix/copycat/client/RetryStrategy.Attempt.html" title="interface in io.atomix.copycat.client"><code>RetryStrategy.Attempt</code></a> for any given submitted
+ operation, the attempt count will be <code>1</code> and will increase for each <a href="../../../../io/atomix/copycat/client/RetryStrategy.Attempt.html#retry--"><code>retry</code></a>
+ of an attempt.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The attempt count.</dd>
+<dd>The submission attempt count.</dd>
 </dl>
 </li>
 </ul>
@@ -197,7 +205,10 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>operation</h4>
 <pre><a href="../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client">Operation</a>&lt;?&gt;&nbsp;operation()</pre>
-<div class="block">Returns the attempted operation.</div>
+<div class="block">Returns the operation was attempted and failed.
+ <p>
+ The attempt operation is the <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a> or <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> that was submitted by the user
+ to the <a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client"><code>client</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The attempted operation.</dd>
@@ -211,7 +222,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>fail</h4>
 <pre>void&nbsp;fail()</pre>
-<div class="block">Fails the operation.</div>
+<div class="block">Fails the operation.
+ <p>
+ When the operation is failed with no user-provided exception, the associated
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#completeExceptionally-java.lang.Throwable-" title="class or interface in java.util.concurrent"><code>completed exceptionally</code></a>
+ with either a <a href="../../../../io/atomix/copycat/client/error/CommandException.html" title="class in io.atomix.copycat.client.error"><code>CommandException</code></a> or <a href="../../../../io/atomix/copycat/client/error/QueryException.html" title="class in io.atomix.copycat.client.error"><code>QueryException</code></a>
+ based on the type of the attempted <a href="../../../../io/atomix/copycat/client/RetryStrategy.Attempt.html#operation--"><code>operation</code></a>.</div>
 </li>
 </ul>
 <a name="fail-java.lang.Throwable-">
@@ -221,7 +238,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>fail</h4>
 <pre>void&nbsp;fail(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;t)</pre>
-<div class="block">Fails the operation with a specific exception.</div>
+<div class="block">Fails the operation with a specific exception.
+ <p>
+ When the operation is failed, the associated <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will
+ be <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#completeExceptionally-java.lang.Throwable-" title="class or interface in java.util.concurrent"><code>completed exceptionally</code></a>
+ with the provided exception.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>t</code> - The exception with which to fail the operation.</dd>
@@ -235,7 +256,14 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>retry</h4>
 <pre>void&nbsp;retry()</pre>
-<div class="block">Immediately retries the operation.</div>
+<div class="block">Immediately retries the operation.
+ <p>
+ The operation will immediately be resubmitted to the cluster via the client's current
+ <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a>. If the client is in the
+ <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#SUSPENDED"><code>SUSPENDED</code></a> state, the operation may be enqueued to be resubmitted
+ once the client reestablishes communication with the cluster. In the event that the client transitions between
+ the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#SUSPENDED"><code>CopycatClient.State.SUSPENDED</code></a> and <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#CONNECTED"><code>CopycatClient.State.CONNECTED</code></a> states, the operation
+ may be resubmitted under a new session.</div>
 </li>
 </ul>
 <a name="retry-java.time.Duration-">
@@ -245,7 +273,17 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>retry</h4>
 <pre>void&nbsp;retry(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;after)</pre>
-<div class="block">Retries the operation after the given duration.</div>
+<div class="block">Retries the operation after the given duration.
+ <p>
+ The operation will be resubmitted to the cluster after the given duration has expired. Note that even
+ if operations are resubmitted after different durations, all operations will be completed in the order
+ in which they were submitted by the user. Reordering operations via attempt retries will not negatively
+ impact the order of results.
+ <p>
+ If the client is in the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#SUSPENDED"><code>SUSPENDED</code></a> state once the given <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time"><code>Duration</code></a>
+ expires, the operation may be enqueued to be resubmitted once the client reestablishes communication with
+ the cluster. In the event that the client transitions between the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#SUSPENDED"><code>CopycatClient.State.SUSPENDED</code></a>
+ and <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#CONNECTED"><code>CopycatClient.State.CONNECTED</code></a> states, the operation may be resubmitted under a new session.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>after</code> - The duration after which to retry the operation.</dd>

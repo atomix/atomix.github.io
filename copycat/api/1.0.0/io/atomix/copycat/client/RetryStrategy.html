@@ -136,7 +136,7 @@ var activeTableTab = "activeTableTab";
 <tr class="altColor">
 <td class="colFirst"><code>static interface&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/RetryStrategy.Attempt.html" title="interface in io.atomix.copycat.client">RetryStrategy.Attempt</a></span></code>
-<div class="block">Operation attempt.</div>
+<div class="block">Represents a single attempt to submit an operation to the Copycat cluster.</div>
 </td>
 </tr>
 </table>
@@ -158,7 +158,7 @@ var activeTableTab = "activeTableTab";
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/RetryStrategy.html#attemptFailed-io.atomix.copycat.client.RetryStrategy.Attempt-java.lang.Throwable-">attemptFailed</a></span>(<a href="../../../../io/atomix/copycat/client/RetryStrategy.Attempt.html" title="interface in io.atomix.copycat.client">RetryStrategy.Attempt</a>&nbsp;attempt,
              <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;cause)</code>
-<div class="block">Called when an operation attempt fails.</div>
+<div class="block">Handles the failure of an operation submission attempt.</div>
 </td>
 </tr>
 </table>
@@ -184,7 +184,12 @@ var activeTableTab = "activeTableTab";
 <h4>attemptFailed</h4>
 <pre>void&nbsp;attemptFailed(<a href="../../../../io/atomix/copycat/client/RetryStrategy.Attempt.html" title="interface in io.atomix.copycat.client">RetryStrategy.Attempt</a>&nbsp;attempt,
                    <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;cause)</pre>
-<div class="block">Called when an operation attempt fails.</div>
+<div class="block">Handles the failure of an operation submission attempt.
+ <p>
+ Retry strategies can choose how to react to the failure to submit an operation by either
+ <a href="../../../../io/atomix/copycat/client/RetryStrategy.Attempt.html#fail--"><code>failing</code></a> or <a href="../../../../io/atomix/copycat/client/RetryStrategy.Attempt.html#retry--"><code>retrying</code></a> the attempt. In the event that
+ an operation attempt is failed, the operation's associated <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>
+ will be completed exceptionally.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>attempt</code> - The operation attempt.</dd>
