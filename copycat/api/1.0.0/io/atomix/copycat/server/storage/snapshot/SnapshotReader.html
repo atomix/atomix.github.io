@@ -116,7 +116,15 @@ var activeTableTab = "activeTableTab";
 <pre>public class <span class="typeNameLabel">SnapshotReader</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/BufferInput.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer">BufferInput</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotReader.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotReader</a>&gt;</pre>
-<div class="block">Server snapshot reader.</div>
+<div class="block">Reads bytes from a state machine <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>Snapshot</code></a>.
+ <p>
+ This class provides the primary interface for reading snapshot buffers from disk or memory.
+ Snapshot bytes are read from an underlying <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a> which is backed by either memory
+ or disk based on the configured <a href="../../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage"><code>StorageLevel</code></a>.
+ <p>
+ In addition to standard <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/BufferInput.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>BufferInput</code></a> methods, snapshot readers support reading
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io"><code>Serializable</code></a> and <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a> objects
+ from the snapshot via the <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotReader.html#readObject--"><code>readObject()</code></a>} method.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>

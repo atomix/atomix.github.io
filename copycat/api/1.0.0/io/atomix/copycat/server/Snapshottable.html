@@ -102,7 +102,75 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">Snapshottable</span></pre>
-<div class="block">Snapshottable state machine interface.</div>
+<div class="block">Support for periodically persisting <a href="../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server"><code>StateMachine</code></a> snapshots to disk.
+ <p>
+ When implemented by a <a href="../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server"><code>StateMachine</code></a>, this interface provides support for state machines to periodically
+ persist <a href="../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>snapshots</code></a> to disk. As commands are replicated
+ and applied to the state machine, the underlying replicated log can grow unbounded. Copycat provides several
+ mechanisms for resolving the issues of growing logs. State machines can indicate when <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a>s no longer
+ contribute to their state by <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closing</code></a> unneeded commits, resulting in associated commands
+ being removed from the Raft log. However, for many use cases tracking the relevance of individual commits implies
+ significant overhead, and in some cases - such as with counters - it's entirely impractical. Snapshots provide an
+ alternative method for compacting logs by periodically writing the state machine state to disk and clearing the
+ underlying log.
+ <p>
+ To store a state machine's state, simply implement the <a href="../../../../io/atomix/copycat/server/Snapshottable.html#snapshot-io.atomix.copycat.server.storage.snapshot.SnapshotWriter-"><code>snapshot(SnapshotWriter)</code></a> method and write the
+ complete state machine state to the snapshot via the <a href="../../../../io/atomix/copycat/server/storage/snapshot/SnapshotWriter.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotWriter</code></a>. Copycat will periodically invoke
+ the method to take a new snapshot of the state machine's state when the underlying log rotates segments.
+ <p>
+ <pre>
+   <code>
+   public class MyStateMachine extends StateMachine implements Snapshottable {
+     private long counter;
+
+     public void snapshot(SnapshotWriter writer) {
+       writer.writeLong(counter);
+     }
+
+     public long increment(Commit&lt;Increment&gt; commit) {
+       counter++;
+       commit.close();
+     }
+   }
+   </code>
+ </pre>
+ <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a>s that contribute to a state machine's snapshot should be
+ marked with the <a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#SNAPSHOT"><code>SNAPSHOT</code></a> compaction mode.
+ Snapshot commands will be stored in the underlying log until a snapshot has been taken of the state machine
+ state, at which time all <code>SNAPSHOT</code> commands up to the point in logical time at which the snapshot
+ was written will be marked for removal from disk.
+ <p>
+ <pre>
+   <code>
+   public class Increment implements Command&lt;Long&gt; {
+     public CompactionMode compaction() {
+       return CompactionMode.SNAPSHOT;
+     }
+   }
+   </code>
+ </pre>
+ Snapshot writing is only one component of snapshotting. Snapshottable state machines must also be able to
+ recover from snapshots stored on disk after a failure. When a server recovers from an existing Raft log,
+ the log will be replayed to the state machine, and when a point in logical time (an <code>index</code>) at which
+ a snapshot was taken and persisted is reached, that snapshot will be applied to the state machine via the
+ <a href="../../../../io/atomix/copycat/server/Snapshottable.html#install-io.atomix.copycat.server.storage.snapshot.SnapshotReader-"><code>install(SnapshotReader)</code></a> method.
+ <p>
+ <pre>
+   <code>
+   public class MyStateMachine extends StateMachine implements Snapshottable {
+     private long counter;
+
+     public void install(SnapshotReader reader) {
+       counter = reader.readLong();
+     }
+   }
+   </code>
+ </pre>
+ Implementations of the <a href="../../../../io/atomix/copycat/server/Snapshottable.html#install-io.atomix.copycat.server.storage.snapshot.SnapshotReader-"><code>install(SnapshotReader)</code></a> method should always read precisely what implementations
+ of <a href="../../../../io/atomix/copycat/server/Snapshottable.html#snapshot-io.atomix.copycat.server.storage.snapshot.SnapshotWriter-"><code>snapshot(SnapshotWriter)</code></a> write. State machines can potentially use a mixture of <code>SNAPSHOT</code>
+ and other commands, and state machine implementations should take care not to overwrite non-snapshot command
+ state with snapshots. For simpler state machines, <em>users should use either snapshotting or log cleaning
+ but not both</em>.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -159,7 +227,16 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>snapshot</h4>
 <pre>void&nbsp;snapshot(<a href="../../../../io/atomix/copycat/server/storage/snapshot/SnapshotWriter.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotWriter</a>&nbsp;writer)</pre>
-<div class="block">Takes a snapshot of the state machine state.</div>
+<div class="block">Takes a snapshot of the state machine state.
+ <p>
+ This method will be called each time the underlying <a href="../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>
+ rotates segments. Once the snapshot has been written, the snapshot will be stored on disk and eventually
+ completed. Note that snapshots are normally not immediately completed upon completion of this method as
+ servers must wait for certain conditions to be met before persisting a snapshot. Therefore, state machines
+ should not assume that once a snapshot has been written that the state machine can or will recover from
+ that snapshot. Snapshot writers should also ensure that all snapshottable state machine state is written on
+ each snapshot. Typically, only the most recent snapshot is applied to a state machine upon recovery, so no
+ assumptions should be made about the persistence or retention of older snapshots.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>writer</code> - The snapshot writer.</dd>
@@ -173,7 +250,15 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>install</h4>
 <pre>void&nbsp;install(<a href="../../../../io/atomix/copycat/server/storage/snapshot/SnapshotReader.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotReader</a>&nbsp;reader)</pre>
-<div class="block">Installs a snapshot of the state machine state.</div>
+<div class="block">Installs a snapshot of the state machine state.
+ <p>
+ This method will be called while a server is replaying its log at startup. Typically, only the most
+ recent snapshot of the state machine state will be installed upon log replay. State machines should recover
+ all snapshottable state machine state from an installed snapshot. Note, however, that depending on the
+ <a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html" title="enum in io.atomix.copycat.client"><code>CompactionMode</code></a> of commands applied to a state machine,
+ snapshots may only represent a single component of state recovery. State machines that use a mixture of
+ snapshottable and cleanable state should not overwrite state resulting from other types of commands when a
+ snapshot is installed.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>reader</code> - The snapshot reader.</dd>

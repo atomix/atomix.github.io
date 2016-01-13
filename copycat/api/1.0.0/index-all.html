@@ -742,7 +742,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/entry/CommandEntry.html" title="class in io.atomix.copycat.server.storage.entry"><span class="typeNameLink">CommandEntry</span></a> - Class in <a href="io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></dt>
 <dd>
-<div class="block">Command entry.</div>
+<div class="block">Stores a state machine <a href="io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/CommandEntry.html#CommandEntry--">CommandEntry()</a></span> - Constructor for class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/CommandEntry.html" title="class in io.atomix.copycat.server.storage.entry">CommandEntry</a></dt>
 <dd>&nbsp;</dd>
@@ -855,17 +855,17 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/snapshot/Snapshot.html#complete--">complete()</a></span> - Method in class io.atomix.copycat.server.storage.snapshot.<a href="io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot">Snapshot</a></dt>
 <dd>
-<div class="block">Completes the snapshot.</div>
+<div class="block">Completes writing the snapshot to persist it and make it available for reads.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/system/Configuration.html" title="class in io.atomix.copycat.server.storage.system"><span class="typeNameLink">Configuration</span></a> - Class in <a href="io/atomix/copycat/server/storage/system/package-summary.html">io.atomix.copycat.server.storage.system</a></dt>
 <dd>
-<div class="block">Stored server configuration.</div>
+<div class="block">Represents a persisted server configuration.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/system/Configuration.html#Configuration-long-java.util.Collection-">Configuration(long, Collection&lt;Member&gt;)</a></span> - Constructor for class io.atomix.copycat.server.storage.system.<a href="io/atomix/copycat/server/storage/system/Configuration.html" title="class in io.atomix.copycat.server.storage.system">Configuration</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/copycat/server/storage/entry/ConfigurationEntry.html" title="class in io.atomix.copycat.server.storage.entry"><span class="typeNameLink">ConfigurationEntry</span></a> - Class in <a href="io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></dt>
 <dd>
-<div class="block">Configuration entry.</div>
+<div class="block">Stores a cluster configuration.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/ConfigurationEntry.html#ConfigurationEntry--">ConfigurationEntry()</a></span> - Constructor for class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/ConfigurationEntry.html" title="class in io.atomix.copycat.server.storage.entry">ConfigurationEntry</a></dt>
 <dd>&nbsp;</dd>
@@ -913,7 +913,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/entry/ConnectEntry.html" title="class in io.atomix.copycat.server.storage.entry"><span class="typeNameLink">ConnectEntry</span></a> - Class in <a href="io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></dt>
 <dd>
-<div class="block">Unregister entry.</div>
+<div class="block">Stores a connection between a client and server.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/ConnectEntry.html#ConnectEntry--">ConnectEntry()</a></span> - Constructor for class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/ConnectEntry.html" title="class in io.atomix.copycat.server.storage.entry">ConnectEntry</a></dt>
 <dd>&nbsp;</dd>
@@ -1121,7 +1121,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><span class="typeNameLink">Entry</span></a>&lt;<a href="io/atomix/copycat/server/storage/entry/Entry.html" title="type parameter in Entry">T</a> extends <a href="io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&lt;<a href="io/atomix/copycat/server/storage/entry/Entry.html" title="type parameter in Entry">T</a>&gt;&gt; - Class in <a href="io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></dt>
 <dd>
-<div class="block">Log entry.</div>
+<div class="block">Stores a state change in a <a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/DefaultCopycatClient.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/DefaultCopycatClient.html" title="class in io.atomix.copycat.client">DefaultCopycatClient</a></dt>
 <dd>&nbsp;</dd>
@@ -1568,7 +1568,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/entry/InitializeEntry.html" title="class in io.atomix.copycat.server.storage.entry"><span class="typeNameLink">InitializeEntry</span></a> - Class in <a href="io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></dt>
 <dd>
-<div class="block">Initialize entry.</div>
+<div class="block">Indicates a leader change has occurred.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/InitializeEntry.html#InitializeEntry--">InitializeEntry()</a></span> - Constructor for class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/InitializeEntry.html" title="class in io.atomix.copycat.server.storage.entry">InitializeEntry</a></dt>
 <dd>&nbsp;</dd>
@@ -1758,7 +1758,7 @@
 <dl>
 <dt><a href="io/atomix/copycat/server/storage/entry/KeepAliveEntry.html" title="class in io.atomix.copycat.server.storage.entry"><span class="typeNameLink">KeepAliveEntry</span></a> - Class in <a href="io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></dt>
 <dd>
-<div class="block">Keep alive entry.</div>
+<div class="block">Stores a client keep-alive request.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/KeepAliveEntry.html#KeepAliveEntry--">KeepAliveEntry()</a></span> - Constructor for class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/KeepAliveEntry.html" title="class in io.atomix.copycat.server.storage.entry">KeepAliveEntry</a></dt>
 <dd>&nbsp;</dd>
@@ -2042,7 +2042,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/system/Configuration.html#members--">members()</a></span> - Method in class io.atomix.copycat.server.storage.system.<a href="io/atomix/copycat/server/storage/system/Configuration.html" title="class in io.atomix.copycat.server.storage.system">Configuration</a></dt>
 <dd>
-<div class="block">Returns the collection of active members.</div>
+<div class="block">Returns the cluster membership for this configuration.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/Event.html#message--">message()</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session">Event</a></dt>
 <dd>
@@ -2050,7 +2050,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system"><span class="typeNameLink">MetaStore</span></a> - Class in <a href="io/atomix/copycat/server/storage/system/package-summary.html">io.atomix.copycat.server.storage.system</a></dt>
 <dd>
-<div class="block">Persists server state via the <a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> module.</div>
+<div class="block">Manages persistence of server configurations.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/system/MetaStore.html#MetaStore-java.lang.String-io.atomix.copycat.server.storage.Storage-">MetaStore(String, Storage)</a></span> - Constructor for class io.atomix.copycat.server.storage.system.<a href="io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system">MetaStore</a></dt>
 <dd>&nbsp;</dd>
@@ -2239,7 +2239,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/entry/OperationEntry.html" title="class in io.atomix.copycat.server.storage.entry"><span class="typeNameLink">OperationEntry</span></a>&lt;<a href="io/atomix/copycat/server/storage/entry/OperationEntry.html" title="type parameter in OperationEntry">T</a> extends <a href="io/atomix/copycat/server/storage/entry/OperationEntry.html" title="class in io.atomix.copycat.server.storage.entry">OperationEntry</a>&lt;<a href="io/atomix/copycat/server/storage/entry/OperationEntry.html" title="type parameter in OperationEntry">T</a>&gt;&gt; - Class in <a href="io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></dt>
 <dd>
-<div class="block">Operation entry.</div>
+<div class="block">Stores a state machine operation.</div>
 </dd>
 <dt><a href="io/atomix/copycat/client/error/OperationException.html" title="class in io.atomix.copycat.client.error"><span class="typeNameLink">OperationException</span></a> - Exception in <a href="io/atomix/copycat/client/error/package-summary.html">io.atomix.copycat.client.error</a></dt>
 <dd>
@@ -2361,7 +2361,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/entry/QueryEntry.html" title="class in io.atomix.copycat.server.storage.entry"><span class="typeNameLink">QueryEntry</span></a> - Class in <a href="io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></dt>
 <dd>
-<div class="block">Query entry.</div>
+<div class="block">Represents a state machine <a href="io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/QueryEntry.html#QueryEntry--">QueryEntry()</a></span> - Constructor for class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/QueryEntry.html" title="class in io.atomix.copycat.server.storage.entry">QueryEntry</a></dt>
 <dd>&nbsp;</dd>
@@ -2611,7 +2611,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/entry/RegisterEntry.html" title="class in io.atomix.copycat.server.storage.entry"><span class="typeNameLink">RegisterEntry</span></a> - Class in <a href="io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></dt>
 <dd>
-<div class="block">Register client entry.</div>
+<div class="block">Stores a client register request.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/RegisterEntry.html#RegisterEntry--">RegisterEntry()</a></span> - Constructor for class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/RegisterEntry.html" title="class in io.atomix.copycat.server.storage.entry">RegisterEntry</a></dt>
 <dd>&nbsp;</dd>
@@ -2825,7 +2825,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/entry/SessionEntry.html" title="class in io.atomix.copycat.server.storage.entry"><span class="typeNameLink">SessionEntry</span></a>&lt;<a href="io/atomix/copycat/server/storage/entry/SessionEntry.html" title="type parameter in SessionEntry">T</a> extends <a href="io/atomix/copycat/server/storage/entry/SessionEntry.html" title="class in io.atomix.copycat.server.storage.entry">SessionEntry</a>&lt;<a href="io/atomix/copycat/server/storage/entry/SessionEntry.html" title="type parameter in SessionEntry">T</a>&gt;&gt; - Class in <a href="io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></dt>
 <dd>
-<div class="block">Session entry.</div>
+<div class="block">Base class for session-related entries.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/session/SessionListener.html" title="interface in io.atomix.copycat.server.session"><span class="typeNameLink">SessionListener</span></a> - Interface in <a href="io/atomix/copycat/server/session/package-summary.html">io.atomix.copycat.server.session</a></dt>
 <dd>
@@ -2951,7 +2951,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot"><span class="typeNameLink">Snapshot</span></a> - Class in <a href="io/atomix/copycat/server/storage/snapshot/package-summary.html">io.atomix.copycat.server.storage.snapshot</a></dt>
 <dd>
-<div class="block">Stored server snapshot.</div>
+<div class="block">Manages reading and writing a single snapshot file.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/snapshot/SnapshotStore.html#snapshot-long-">snapshot(long)</a></span> - Method in class io.atomix.copycat.server.storage.snapshot.<a href="io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotStore</a></dt>
 <dd>
@@ -2977,11 +2977,11 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/snapshot/SnapshotReader.html" title="class in io.atomix.copycat.server.storage.snapshot"><span class="typeNameLink">SnapshotReader</span></a> - Class in <a href="io/atomix/copycat/server/storage/snapshot/package-summary.html">io.atomix.copycat.server.storage.snapshot</a></dt>
 <dd>
-<div class="block">Server snapshot reader.</div>
+<div class="block">Reads bytes from a state machine <a href="io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>Snapshot</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/snapshot/SnapshotStore.html#snapshots--">snapshots()</a></span> - Method in class io.atomix.copycat.server.storage.snapshot.<a href="io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotStore</a></dt>
 <dd>
-<div class="block">Returns a collection of all snapshots.</div>
+<div class="block">Returns a collection of all snapshots stored on disk.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot"><span class="typeNameLink">SnapshotStore</span></a> - Class in <a href="io/atomix/copycat/server/storage/snapshot/package-summary.html">io.atomix.copycat.server.storage.snapshot</a></dt>
 <dd>
@@ -2991,11 +2991,11 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/copycat/server/Snapshottable.html" title="interface in io.atomix.copycat.server"><span class="typeNameLink">Snapshottable</span></a> - Interface in <a href="io/atomix/copycat/server/package-summary.html">io.atomix.copycat.server</a></dt>
 <dd>
-<div class="block">Snapshottable state machine interface.</div>
+<div class="block">Support for periodically persisting <a href="io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server"><code>StateMachine</code></a> snapshots to disk.</div>
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/snapshot/SnapshotWriter.html" title="class in io.atomix.copycat.server.storage.snapshot"><span class="typeNameLink">SnapshotWriter</span></a> - Class in <a href="io/atomix/copycat/server/storage/snapshot/package-summary.html">io.atomix.copycat.server.storage.snapshot</a></dt>
 <dd>
-<div class="block">Server snapshot writer.</div>
+<div class="block">Writes bytes to a state machine <a href="io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>Snapshot</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#state--">state()</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></dt>
 <dd>
@@ -3191,7 +3191,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/entry/TimestampedEntry.html" title="class in io.atomix.copycat.server.storage.entry"><span class="typeNameLink">TimestampedEntry</span></a>&lt;<a href="io/atomix/copycat/server/storage/entry/TimestampedEntry.html" title="type parameter in TimestampedEntry">T</a> extends <a href="io/atomix/copycat/server/storage/entry/TimestampedEntry.html" title="class in io.atomix.copycat.server.storage.entry">TimestampedEntry</a>&lt;<a href="io/atomix/copycat/server/storage/entry/TimestampedEntry.html" title="type parameter in TimestampedEntry">T</a>&gt;&gt; - Class in <a href="io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></dt>
 <dd>
-<div class="block">Timestamped entry.</div>
+<div class="block">Base class for timestamped entries.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/DefaultCopycatClient.html#toString--">toString()</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/DefaultCopycatClient.html" title="class in io.atomix.copycat.client">DefaultCopycatClient</a></dt>
 <dd>&nbsp;</dd>
@@ -3365,7 +3365,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/entry/UnregisterEntry.html" title="class in io.atomix.copycat.server.storage.entry"><span class="typeNameLink">UnregisterEntry</span></a> - Class in <a href="io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></dt>
 <dd>
-<div class="block">Unregister entry.</div>
+<div class="block">Stores a client session close.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/UnregisterEntry.html#UnregisterEntry--">UnregisterEntry()</a></span> - Constructor for class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/UnregisterEntry.html" title="class in io.atomix.copycat.server.storage.entry">UnregisterEntry</a></dt>
 <dd>&nbsp;</dd>

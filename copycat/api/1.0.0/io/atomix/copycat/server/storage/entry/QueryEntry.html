@@ -135,7 +135,12 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">QueryEntry</span>
 extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/OperationEntry.html" title="class in io.atomix.copycat.server.storage.entry">OperationEntry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/QueryEntry.html" title="class in io.atomix.copycat.server.storage.entry">QueryEntry</a>&gt;</pre>
-<div class="block">Query entry.</div>
+<div class="block">Represents a state machine <a href="../../../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a>.
+ <p>
+ The <code>QueryEntry</code> is a special entry that is typically not ever written to the Raft log.
+ Query entries are simply used to represent the context within which a query is applied to the
+ state machine. Query entry <a href="../../../../../../io/atomix/copycat/server/storage/entry/OperationEntry.html#getSequence--"><code>sequence</code></a> numbers and <a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html#getIndex--"><code>indexes</code></a>
+ are used to sequence queries as they're applied to the user state machine.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

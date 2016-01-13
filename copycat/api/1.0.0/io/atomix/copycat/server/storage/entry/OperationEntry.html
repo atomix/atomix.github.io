@@ -134,7 +134,13 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public abstract class <span class="typeNameLabel">OperationEntry&lt;T extends OperationEntry&lt;T&gt;&gt;</span>
 extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/SessionEntry.html" title="class in io.atomix.copycat.server.storage.entry">SessionEntry</a>&lt;T&gt;</pre>
-<div class="block">Operation entry.</div>
+<div class="block">Stores a state machine operation.
+ <p>
+ Each state machine operation is stored with a client-provided <a href="../../../../../../io/atomix/copycat/server/storage/entry/OperationEntry.html#getSequence--"><code>sequence number</code></a>.
+ The sequence number is used by state machines to apply client operations in the order in which they
+ were submitted by the client (FIFO order). Additionally, each operation is written with the leader's
+ <a href="../../../../../../io/atomix/copycat/server/storage/entry/TimestampedEntry.html#getTimestamp--"><code>timestamp</code></a> at the time the entry was logged. This gives state machines an
+ approximation of time with which to react to the application of operations to the state machine.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

@@ -120,7 +120,7 @@ var activeTableTab = "activeTableTab";
 <pre>public abstract class <span class="typeNameLabel">Entry&lt;T extends Entry&lt;T&gt;&gt;</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ReferenceCounted</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&gt;, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a></pre>
-<div class="block">Log entry.
+<div class="block">Stores a state change in a <a href="../../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.
  <p>
  The <code>Entry</code> represents a single record in a Copycat <a href="../../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>. Each entry is stored at
  a unique <a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html#getIndex--"><code>index</code></a> in the log. Indexes are applied to entries once written to a log.
@@ -128,7 +128,12 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  Custom entry implementations should implement serialization and deserialization logic via
  <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable.writeObject(io.atomix.catalyst.buffer.BufferOutput, io.atomix.catalyst.serializer.Serializer)</code></a>
  and <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable.readObject(io.atomix.catalyst.buffer.BufferInput, io.atomix.catalyst.serializer.Serializer)</code></a>.
- respectively.</div>
+ respectively.
+ <p>
+ Because log entries may remain in memory for an arbitrary amount of time, <code>Entry</code> objects are
+ recycled by the log using the <a href="../../../../../../io/atomix/copycat/server/storage/entry/TypedEntryPool.html" title="class in io.atomix.copycat.server.storage.entry"><code>TypedEntryPool</code></a>. The lifecycle of an entry is managed via the
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util"><code>ReferenceCounted</code></a> interface. Once all references to an entry have been <a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html#release--"><code>released</code></a>
+ the entry will be placed back in the pool.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
