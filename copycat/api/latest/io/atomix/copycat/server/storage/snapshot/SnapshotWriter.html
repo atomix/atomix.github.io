@@ -116,7 +116,11 @@ var activeTableTab = "activeTableTab";
 <pre>public class <span class="typeNameLabel">SnapshotWriter</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/BufferOutput.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotWriter.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotWriter</a>&gt;</pre>
-<div class="block">Server snapshot writer.</div>
+<div class="block">Writes bytes to a state machine <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>Snapshot</code></a>.
+ <p>
+ This class provides the primary interface for writing snapshot buffers to disk or memory.
+ Snapshot bytes are written to an underlying <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a> which is backed by either memory
+ or disk based on the configured <a href="../../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage"><code>StorageLevel</code></a>.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>

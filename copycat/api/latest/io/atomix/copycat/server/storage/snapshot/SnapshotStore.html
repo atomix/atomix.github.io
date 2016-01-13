@@ -118,9 +118,42 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></pre>
 <div class="block">Persists server snapshots via the <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> module.
  <p>
- The server snapshot store is responsible for periodically persisting state machine state according
+ The server snapshot store is responsible for persisting periodic state machine snapshots according
  to the configured <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html#level--"><code>storage level</code></a>. Each server with a snapshottable state machine
- persists the state machine state to allow commands to be removed from disk.</div>
+ persists the state machine state to allow commands to be removed from disk.
+ <p>
+ When a snapshot store is <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html#openSnapshotStore-java.lang.String-"><code>created</code></a>, the store will load any
+ existing snapshots from disk and make them available for reading. Only snapshots that have been
+ written and <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html#complete--"><code>completed</code></a> will be read from disk. Incomplete snapshots are
+ automatically deleted from disk when the snapshot store is opened.
+ <p>
+ <pre>
+   <code>
+   SnapshotStore snapshots = storage.openSnapshotStore("test");
+   Snapshot snapshot = snapshots.snapshot(1);
+   </code>
+ </pre>
+ To create a new <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>Snapshot</code></a>, use the <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html#createSnapshot-long-"><code>createSnapshot(long)</code></a> method. Each snapshot must
+ be created with a unique <code>index</code> which represents the index of the server state machine at
+ the point at which the snapshot was taken. Snapshot indices are used to sort snapshots loaded from
+ disk and apply them at the correct point in the state machine.
+ <p>
+ <pre>
+   <code>
+   Snapshot snapshot = snapshots.create(10);
+   try (SnapshotWriter writer = snapshot.writer()) {
+     ...
+   }
+   snapshot.complete();
+   </code>
+ </pre>
+ Snapshots don't necessarily represent the beginning of the log. Typical Raft implementations take a
+ snapshot of the state machine state and then clear their logs up to that point. However, in Copycat
+ a snapshot may actually only represent a subset of the state machine's state. Indeed, internal Copycat
+ server state machines use log cleaning and store no state in snapshots. When a snapshot is taken of
+ the state machine state, only prior entries that contributed to the state stored in the snapshot -
+ commands marked with the <a href="../../../../../../io/atomix/copycat/client/Command.CompactionMode.html#SNAPSHOT"><code>SNAPSHOT</code></a>
+ compaction mode - are removed from the log prior to the snapshot.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -192,7 +225,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot">Snapshot</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html#snapshots--">snapshots</a></span>()</code>
-<div class="block">Returns a collection of all snapshots.</div>
+<div class="block">Returns a collection of all snapshots stored on disk.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
@@ -246,7 +279,11 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>currentSnapshot</h4>
 <pre>public&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot">Snapshot</a>&nbsp;currentSnapshot()</pre>
-<div class="block">Returns the most recent completed snapshot.</div>
+<div class="block">Returns the most recent completed snapshot.
+ <p>
+ The current snapshot is the last <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>Snapshot</code></a> successfully written <em>and</em>
+ <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html#complete--"><code>completed</code></a>. It represents the most recent snapshot successfully
+ written to disk and from which the server state can be restored.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The most recent completed snapshot.</dd>
@@ -260,7 +297,11 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>snapshots</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot">Snapshot</a>&gt;&nbsp;snapshots()</pre>
-<div class="block">Returns a collection of all snapshots.</div>
+<div class="block">Returns a collection of all snapshots stored on disk.
+ <p>
+ Snapshots will be loaded from the underlying <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> when the snapshot store is created.
+ The returned collection of <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>Snapshot</code></a>s will include any stored <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html#complete--"><code>complete</code></a>
+ snapshots. Both stored and new incomplete snapshots will be excluded from this list.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A collection of all snapshots.</dd>

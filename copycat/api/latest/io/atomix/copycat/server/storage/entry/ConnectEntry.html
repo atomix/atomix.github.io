@@ -125,7 +125,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">ConnectEntry</span>
 extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/TimestampedEntry.html" title="class in io.atomix.copycat.server.storage.entry">TimestampedEntry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/ConnectEntry.html" title="class in io.atomix.copycat.server.storage.entry">ConnectEntry</a>&gt;</pre>
-<div class="block">Unregister entry.</div>
+<div class="block">Stores a connection between a client and server.
+ <p>
+ The <code>ConnectEntry</code> is used to represent the establishment of a connection between a
+ specific <a href="../../../../../../io/atomix/copycat/server/storage/entry/ConnectEntry.html#getClient--"><code>client</code></a> and <a href="../../../../../../io/atomix/copycat/server/storage/entry/ConnectEntry.html#getAddress--"><code>server</code></a>. Storing and replicating
+ connections allows servers to share a consistent view of the clients connected to each server.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

@@ -125,7 +125,13 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">RegisterEntry</span>
 extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/TimestampedEntry.html" title="class in io.atomix.copycat.server.storage.entry">TimestampedEntry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/RegisterEntry.html" title="class in io.atomix.copycat.server.storage.entry">RegisterEntry</a>&gt;</pre>
-<div class="block">Register client entry.</div>
+<div class="block">Stores a client register request.
+ <p>
+ The <code>RegisterEntry</code> is stored and replicated when a client submits a
+ <a href="../../../../../../io/atomix/copycat/client/request/RegisterRequest.html" title="class in io.atomix.copycat.client.request"><code>RegisterRequest</code></a> to the cluster to register a new session.
+ Session registrations are replicated and applied on all state machines to ensure each server state
+ machine has a consistent view of the sessions in the cluster, and registration entries are not
+ removed from the underlying log until the session itself has been expired or closed.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

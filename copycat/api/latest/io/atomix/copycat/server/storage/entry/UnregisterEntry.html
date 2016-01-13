@@ -130,7 +130,14 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">UnregisterEntry</span>
 extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/SessionEntry.html" title="class in io.atomix.copycat.server.storage.entry">SessionEntry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/UnregisterEntry.html" title="class in io.atomix.copycat.server.storage.entry">UnregisterEntry</a>&gt;</pre>
-<div class="block">Unregister entry.</div>
+<div class="block">Stores a client session close.
+ <p>
+ The <code>UnregisterEntry</code> is stored in reaction to receiving a
+ <a href="../../../../../../io/atomix/copycat/client/request/UnregisterRequest.html" title="class in io.atomix.copycat.client.request"><code>UnregisterRequest</code></a> from a client or in reaction to a leader
+ expiring a session on the server. When a leader expires a session, the leader must commit an
+ <code>UnregisterEntry</code> to ensure that the session is expired deterministically across the cluster.
+ The <a href="../../../../../../io/atomix/copycat/server/storage/entry/UnregisterEntry.html#isExpired--"><code>isExpired()</code></a> method indicates whether the entry represents a session being expired by
+ the leader or an explicit request by a client to close its session.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

@@ -125,7 +125,12 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">InitializeEntry</span>
 extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/TimestampedEntry.html" title="class in io.atomix.copycat.server.storage.entry">TimestampedEntry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/InitializeEntry.html" title="class in io.atomix.copycat.server.storage.entry">InitializeEntry</a>&gt;</pre>
-<div class="block">Initialize entry.</div>
+<div class="block">Indicates a leader change has occurred.
+ <p>
+ The <code>InitializeEntry</code> is logged by a leader at the beginning of its term to indicate that
+ a leadership change has occurred. Importantly, initialize entries are logged with a <a href="../../../../../../io/atomix/copycat/server/storage/entry/TimestampedEntry.html#getTimestamp--"><code>timestamp</code></a>
+ which can be used by server state machines to reset session timeouts following leader changes. Initialize entries
+ are always the first entry to be committed at the start of a leader's term.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

@@ -120,7 +120,12 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">ConfigurationEntry</span>
 extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/ConfigurationEntry.html" title="class in io.atomix.copycat.server.storage.entry">ConfigurationEntry</a>&gt;</pre>
-<div class="block">Configuration entry.</div>
+<div class="block">Stores a cluster configuration.
+ <p>
+ The <code>ConfigurationEntry</code> stores information relevant to a single cluster configuration change.
+ Configuration change entries store a collection of <a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster"><code>members</code></a> which each represent a
+ server in the cluster. Each time the set of members changes or a property of a single member changes,
+ a new <code>ConfigurationEntry</code> must be logged for the configuration change.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

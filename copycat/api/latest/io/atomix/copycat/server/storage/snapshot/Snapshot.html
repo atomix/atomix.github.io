@@ -116,7 +116,36 @@ var activeTableTab = "activeTableTab";
 <pre>public abstract class <span class="typeNameLabel">Snapshot</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></pre>
-<div class="block">Stored server snapshot.</div>
+<div class="block">Manages reading and writing a single snapshot file.
+ <p>
+ User-provided state machines which implement the <a href="../../../../../../io/atomix/copycat/server/Snapshottable.html" title="interface in io.atomix.copycat.server"><code>Snapshottable</code></a> interface
+ transparently write snapshots to and read snapshots from files on disk. Each time a snapshot is taken of
+ the state machine state, the snapshot will be written to a single file represented by this interface.
+ Snapshots are backed by a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a> dictated by the parent
+ <a href="../../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage"><code>StorageLevel</code></a> configuration. Snapshots for file-based storage
+ levels like <a href="../../../../../../io/atomix/copycat/server/storage/StorageLevel.html#DISK"><code>DISK</code></a> and
+ <a href="../../../../../../io/atomix/copycat/server/storage/StorageLevel.html#MAPPED"><code>MAPPED</code></a> will be stored in a <a href="http://docs.oracle.com/javase/8/docs/api/java/io/RandomAccessFile.html?is-external=true" title="class or interface in java.io"><code>RandomAccessFile</code></a>
+ backed buffer, and <a href="../../../../../../io/atomix/copycat/server/storage/StorageLevel.html#MEMORY"><code>MEMORY</code></a> snapshots will
+ be stored in an on-heap buffer.
+ <p>
+ Snapshots are read and written by a <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotReader.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotReader</code></a> and <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotWriter.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotWriter</code></a> respectively.
+ To create a reader or writer, use the <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html#reader--"><code>reader()</code></a> and <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html#writer--"><code>writer()</code></a> methods.
+ <p>
+ <pre>
+   <code>
+   Snapshot snapshot = snapshotStore.snapshot(1);
+   try (SnapshotWriter writer = snapshot.writer()) {
+     writer.writeString("Hello world!");
+   }
+   snapshot.complete();
+   </code>
+ </pre>
+ A <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotReader.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotReader</code></a> is not allowed to be created until a <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotWriter.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotWriter</code></a> has
+ completed writing the snapshot file and the snapshot has been marked <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html#complete--"><code>complete</code></a>.
+ This allows snapshots to effectively be written and closed but not completed until other conditions
+ are met. Prior to the completion of a snapshot, a failure and recovery of the parent <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotStore</code></a>
+ will <em>not</em> recover an incomplete snapshot. Once a snapshot is complete, the snapshot becomes immutable,
+ can be recovered after a failure, and can be read by multiple readers concurrently.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -148,7 +177,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot">Snapshot</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html#complete--">complete</a></span>()</code>
-<div class="block">Completes the snapshot.</div>
+<div class="block">Completes writing the snapshot to persist it and make it available for reads.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -210,7 +239,9 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>index</h4>
 <pre>public abstract&nbsp;long&nbsp;index()</pre>
-<div class="block">Returns the snapshot index.</div>
+<div class="block">Returns the snapshot index.
+ <p>
+ The snapshot index is the index of the state machine at the point at which the snapshot was written.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The snapshot index.</dd>
@@ -224,7 +255,10 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>timestamp</h4>
 <pre>public abstract&nbsp;long&nbsp;timestamp()</pre>
-<div class="block">Returns the snapshot timestamp.</div>
+<div class="block">Returns the snapshot timestamp.
+ <p>
+ The timestamp is the logical state machine time at the <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html#index--"><code>index</code></a> at which the snapshot
+ was written.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The snapshot timestamp.</dd>
@@ -238,10 +272,16 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>writer</h4>
 <pre>public abstract&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotWriter.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotWriter</a>&nbsp;writer()</pre>
-<div class="block">Returns a new snapshot writer.</div>
+<div class="block">Returns a new snapshot writer.
+ <p>
+ Only a single <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotWriter.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotWriter</code></a> per <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>Snapshot</code></a> can be created. The single writer
+ must write the snapshot in full and <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html#complete--"><code>complete()</code></a> the snapshot to persist it to disk
+ and make it available for <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html#reader--"><code>reads</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A new snapshot writer.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - if a writer was already created or the snapshot is <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html#complete--"><code>complete</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -252,10 +292,16 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>reader</h4>
 <pre>public abstract&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotReader.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotReader</a>&nbsp;reader()</pre>
-<div class="block">Returns a new snapshot reader.</div>
+<div class="block">Returns a new snapshot reader.
+ <p>
+ A <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotReader.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotReader</code></a> can only be created for a snapshot that has been fully written and
+ <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html#complete--"><code>completed</code></a>. Multiple concurrent readers can be created for the same snapshot
+ since completed snapshots are immutable.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A new snapshot reader.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - if the snapshot is not <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html#complete--"><code>complete</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -266,7 +312,12 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <li class="blockList">
 <h4>complete</h4>
 <pre>public&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot">Snapshot</a>&nbsp;complete()</pre>
-<div class="block">Completes the snapshot.</div>
+<div class="block">Completes writing the snapshot to persist it and make it available for reads.
+ <p>
+ Snapshot writers must call this method to persist a snapshot to disk. Prior to completing a
+ snapshot, failure and recovery of the parent <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotStore</code></a> will not result in recovery
+ of this snapshot. Additionally, no <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html#reader--"><code>readers</code></a> can be created until the snapshot
+ has been completed.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The completed snapshot.</dd>
