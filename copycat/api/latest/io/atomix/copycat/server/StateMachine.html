@@ -129,9 +129,8 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  When <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a> (i.e. <em>operations</em>) are submitted to the Raft cluster,
  the <a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><code>CopycatServer</code></a> will log and replicate them as necessary and, once complete, apply them to the configured
  state machine.
- <p>
- <b>State machine operations</b>
- <p>
+
+ <h3>State machine operations</h3>
  State machine operations are implemented as methods on the state machine. Operations can be automatically detected
  by the state machine during setup or can be explicitly registered by overriding the <a href="../../../../io/atomix/copycat/server/StateMachine.html#configure-io.atomix.copycat.server.StateMachineExecutor-"><code>configure(StateMachineExecutor)</code></a>
  method. Each operation method must take a single <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a> argument for a specific operation type.
@@ -174,9 +173,8 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  and given the same commands in the same order, all servers' state machines should arrive at the same state with the
  same output (return value). The return value of each operation callback is the response value that will be sent back
  to the client.
- <p>
- <b>Deterministic scheduling</b>
- <p>
+
+ <h3>Deterministic scheduling</h3>
  The <a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server"><code>StateMachineExecutor</code></a> is responsible for executing state machine operations sequentially and provides an
  interface similar to that of <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html?is-external=true" title="class or interface in java.util.concurrent"><code>ScheduledExecutorService</code></a> to allow state machines to schedule
  time-based callbacks. Because of the determinism requirement, scheduled callbacks are guaranteed to be executed
@@ -224,9 +222,10 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  one server ever actually sends the event. Still, it's critical that all state machines publish all events to ensure
  consistency and fault tolerance. In the event that a server fails after publishing a session event, the client will transparently
  reconnect to another server and retrieve lost event messages.
- <p>
- <b>Cleaning commits</b>
- <p>
+ <h3>Snapshotting</h3>
+
+
+ <h3>Cleaning commits</h3>
  As operations are logged, replicated, committed, and applied to the state machine, the underlying
  <a href="../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> grows. Without freeing unnecessary commits from the log it would eventually
  consume all available disk or memory. Copycat uses a log cleaning algorithm to remove <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a>s that no longer
