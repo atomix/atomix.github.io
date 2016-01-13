@@ -112,42 +112,36 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/copycat/client/CopycatService.html" title="interface in io.atomix.copycat.client">CopycatService</a></td>
-<td class="colLast">
-<div class="block">Base interface for communicating with a Copycat cluster.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><a href="../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client">Operation</a>&lt;T&gt;</td>
 <td class="colLast">
 <div class="block">Base type for Raft state operations.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client">Query</a>&lt;T&gt;</td>
 <td class="colLast">
 <div class="block">Base interface for operations that read system state.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../../../io/atomix/copycat/client/RecoveryStrategy.html" title="interface in io.atomix.copycat.client">RecoveryStrategy</a></td>
 <td class="colLast">
 <div class="block">Strategy for recovering client sessions on failures.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../../io/atomix/copycat/client/RetryStrategy.html" title="interface in io.atomix.copycat.client">RetryStrategy</a></td>
 <td class="colLast">
 <div class="block">Strategy for handling operation submission failures by a client.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../../../io/atomix/copycat/client/RetryStrategy.Attempt.html" title="interface in io.atomix.copycat.client">RetryStrategy.Attempt</a></td>
 <td class="colLast">
-<div class="block">Operation attempt.</div>
+<div class="block">Represents a single attempt to submit an operation to the Copycat cluster.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../../io/atomix/copycat/client/ServerSelectionStrategy.html" title="interface in io.atomix.copycat.client">ServerSelectionStrategy</a></td>
 <td class="colLast">
 <div class="block">Strategy for selecting nodes to which to connect and submit operations.</div>
@@ -179,7 +173,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../io/atomix/copycat/client/NoOpCommand.html" title="class in io.atomix.copycat.client">NoOpCommand</a></td>
 <td class="colLast">
-<div class="block">A special placeholder command.</div>
+<div class="block">Special placeholder command representing a client operation that has no effect on the state machine.</div>
 </td>
 </tr>
 </tbody>
@@ -208,7 +202,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a></td>
 <td class="colLast">
-<div class="block">Basic connection strategies.</div>
+<div class="block">Strategies for handling client connection failures.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -232,7 +226,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../io/atomix/copycat/client/RetryStrategies.html" title="enum in io.atomix.copycat.client">RetryStrategies</a></td>
 <td class="colLast">
-<div class="block">Client operation retry strategies.</div>
+<div class="block">Strategies for resubmitting failed client operations to the cluster.</div>
 </td>
 </tr>
 <tr class="rowColor">

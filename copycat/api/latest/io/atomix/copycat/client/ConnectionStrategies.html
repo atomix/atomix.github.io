@@ -121,7 +121,20 @@ var activeTableTab = "activeTableTab";
 <pre>public enum <span class="typeNameLabel">ConnectionStrategies</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;<a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a>&gt;
 implements <a href="../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client">ConnectionStrategy</a></pre>
-<div class="block">Basic connection strategies.</div>
+<div class="block">Strategies for handling client connection failures.
+ <p>
+ This enum provides basic <a href="../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client"><code>ConnectionStrategy</code></a> implementations for common use cases.
+ Client connection strategies can be configured when constructing a client via the client
+ <a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client"><code>Builder</code></a>.
+ <p>
+ <pre>
+   <code>
+   CopycatClient client = CopycatClient.builder(members)
+     .withTransport(new NettyTransport())
+     .withConnectionStrategy(ConnectionStrategies.EXPONENTIAL_BACKOFF)
+     .build();
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -244,7 +257,11 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>ONCE</h4>
 <pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a> ONCE</pre>
-<div class="block">Attempts to connect to the cluster one time and fails.</div>
+<div class="block">Attempts to connect to the cluster one time and fails.
+ <p>
+ This strategy attempts to establish a connection and session with the cluster. In the event that
+ the client cannot connect to or register a session through any server in the cluster the attempt
+ will immediately fail.</div>
 </li>
 </ul>
 <a name="EXPONENTIAL_BACKOFF">
@@ -254,7 +271,12 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>EXPONENTIAL_BACKOFF</h4>
 <pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a> EXPONENTIAL_BACKOFF</pre>
-<div class="block">Attempts to connect to the cluster using exponential backoff up to a one minute retry interval.</div>
+<div class="block">Attempts to connect to the cluster using exponential backoff up to a one minute retry interval.
+ <p>
+ This strategy guarantees that the client can only be opened successfully and cannot fail registering
+ a session. In the event that the client cannot connect to any node in the cluster or cannot register
+ a session through any node in the cluster, the client will retry using exponential backoff until the
+ client successfully connects to a server and registers a session.</div>
 </li>
 </ul>
 <a name="FIBONACCI_BACKOFF">
@@ -264,7 +286,12 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>FIBONACCI_BACKOFF</h4>
 <pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/ConnectionStrategies.html" title="enum in io.atomix.copycat.client">ConnectionStrategies</a> FIBONACCI_BACKOFF</pre>
-<div class="block">Attempts to connect to the cluster using fibonacci sequence backoff.</div>
+<div class="block">Attempts to connect to the cluster using fibonacci sequence backoff.
+ <p>
+ This strategy guarantees that the client can only be opened successfully and cannot fail registering
+ a session. In the event that the client cannot connect to any node in the cluster or cannot register
+ a session through any node in the cluster, the client will retry using fibonacci backoff until the
+ client successfully connects to a server and registers a session.</div>
 </li>
 </ul>
 </li>

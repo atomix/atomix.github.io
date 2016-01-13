@@ -121,7 +121,20 @@ var activeTableTab = "activeTableTab";
 <pre>public enum <span class="typeNameLabel">RetryStrategies</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;<a href="../../../../io/atomix/copycat/client/RetryStrategies.html" title="enum in io.atomix.copycat.client">RetryStrategies</a>&gt;
 implements <a href="../../../../io/atomix/copycat/client/RetryStrategy.html" title="interface in io.atomix.copycat.client">RetryStrategy</a></pre>
-<div class="block">Client operation retry strategies.</div>
+<div class="block">Strategies for resubmitting failed client operations to the cluster.
+ <p>
+ This enum provides basic <a href="../../../../io/atomix/copycat/client/RetryStrategy.html" title="interface in io.atomix.copycat.client"><code>RetryStrategy</code></a> implementations for dictating how operations
+ submitted by a <a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client"><code>CopycatClient</code></a> are retried in the event of a failure. Retry strategies
+ can be configured via the client <a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client"><code>Builder</code></a>.
+ <p>
+ <pre>
+   <code>
+   CopycatClient client = CopycatClient.builder(members)
+     .withTransport(new NettyTransport())
+     .withRetryStrategy(RetryStrategies.EXPONENTIAL_BACKOFF)
+     .build();
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>

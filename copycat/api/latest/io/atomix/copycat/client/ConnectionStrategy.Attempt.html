@@ -106,7 +106,11 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public static interface <span class="typeNameLabel">ConnectionStrategy.Attempt</span></pre>
-<div class="block">Represents a failed attempt at connecting to the server.</div>
+<div class="block">Represents a failed attempt at connecting to the server.
+ <p>
+ For each attempt to connect to the cluster, a new <code>Attempt</code> object represents the attempt
+ to connect to and establish a session with any server in the cluster. In the event that an attempt
+ is <a href="../../../../io/atomix/copycat/client/ConnectionStrategy.Attempt.html#retry--"><code>retried</code></a>, a new attempt will be created.</div>
 </li>
 </ul>
 </div>
@@ -177,7 +181,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>attempt</h4>
 <pre>int&nbsp;attempt()</pre>
-<div class="block">Returns the attempt count.</div>
+<div class="block">Returns the attempt count.
+ <p>
+ The attempt count is representative of the number of connection attempts have been made
+ prior to the failure of this attempt. For the first <a href="../../../../io/atomix/copycat/client/ConnectionStrategy.Attempt.html" title="interface in io.atomix.copycat.client"><code>ConnectionStrategy.Attempt</code></a>, the attempt count will be
+ <code>1</code> and will increase for each <a href="../../../../io/atomix/copycat/client/ConnectionStrategy.Attempt.html#retry--"><code>retry</code></a> of an attempt.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The attempt count.</dd>
@@ -191,7 +199,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>fail</h4>
 <pre>void&nbsp;fail()</pre>
-<div class="block">Fails the connection attempt.</div>
+<div class="block">Fails the connection attempt.
+ <p>
+ When the attempt is failed with no user-provided exception, the associated
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#completeExceptionally-java.lang.Throwable-" title="class or interface in java.util.concurrent"><code>completed exceptionally</code></a>.</div>
 </li>
 </ul>
 <a name="fail-java.lang.Throwable-">
@@ -201,7 +213,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>fail</h4>
 <pre>void&nbsp;fail(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&nbsp;error)</pre>
-<div class="block">Fails the connection attempt with the given exception.</div>
+<div class="block">Fails the connection attempt with the given exception.
+ <p>
+ When the attempt is failed, the associated <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will
+ be <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#completeExceptionally-java.lang.Throwable-" title="class or interface in java.util.concurrent"><code>completed exceptionally</code></a>
+ with the provided exception.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>error</code> - The exception with which to fail the attempt.</dd>
@@ -215,7 +231,9 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>retry</h4>
 <pre>void&nbsp;retry()</pre>
-<div class="block">Immediately retries connecting to the cluster.</div>
+<div class="block">Immediately retries connecting to the cluster.
+ <p>
+ The client will immediately reattempt to connect to the cluster and establish a new session.</div>
 </li>
 </ul>
 <a name="retry-java.time.Duration-">
@@ -225,7 +243,10 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>retry</h4>
 <pre>void&nbsp;retry(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;after)</pre>
-<div class="block">Retries connecting to the cluster after the given duration.</div>
+<div class="block">Retries connecting to the cluster after the given duration.
+ <p>
+ After the provided <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time"><code>Duration</code></a> has elapsed, the client will reattempt to connect to the
+ cluster and establish a new session.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>after</code> - The duration after which to retry the connect attempt.</dd>
