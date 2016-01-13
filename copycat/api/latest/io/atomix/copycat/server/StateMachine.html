@@ -144,7 +144,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
          try {
            return previous.operation().value();
          } finally {
-           previous.clean();
+           previous.close();
          }
        }
        return null;
@@ -185,7 +185,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
    public void putWithTtl(Commit&lt;PutWithTtl&gt; commit) {
      map.put(commit.operation().key(), commit);
      executor.schedule(Duration.ofMillis(commit.operation().ttl()), () -&gt; {
-       map.remove(commit.operation().key()).clean();
+       map.remove(commit.operation().key()).close();
      });
    }
    </code>
@@ -202,7 +202,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
          next.session().publish("lock");
        }
      } finally {
-       commit.clean();
+       commit.close();
      }
    }
    </code>
@@ -252,12 +252,12 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  contributes to the state machine's state. Once a commit is no longer needed, commits should be <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a>.
  Closing a commit notifies the log compaction algorithm that it's safe to remove the commit from the internal
  commit log. Copycat will guarantee that <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a>s are persisted in the underlying
- <a href="../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> as long as is necessary (even after a commit is cleaned) to
+ <a href="../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> as long as is necessary (even after a commit is closed) to
  ensure all operations are applied to a majority of servers and to guarantee delivery of
  <a href="../../../../io/atomix/copycat/client/session/Session.html#publish-java.lang.String-java.lang.Object-"><code>session events</code></a> published as a result of specific operations.
  State machines only need to specify when it's safe to remove each commit from the log.
  <p>
- Note that if commits are not properly cleaned from the log and are instead garbage collected, a warning will be logged.
+ Note that if commits are not properly closed and are instead garbage collected, a warning will be logged.
  Failure to <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>close</code></a> a command commit should be considered a critical bug since instances of the
  command can eventually fill up disk.
 
@@ -284,7 +284,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  </pre>
  For snapshottable state machines, Copycat will periodically request a <a href="../../../../io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>Snapshot</code></a>
  of the state machine's state by calling the <a href="../../../../io/atomix/copycat/server/Snapshottable.html#snapshot-io.atomix.copycat.server.storage.snapshot.SnapshotWriter-"><code>Snapshottable.snapshot(SnapshotWriter)</code></a> method. Once the state
- machine has written a snapshot of its state, Copycat will automatically clean all commands from the underlying log
+ machine has written a snapshot of its state, Copycat will automatically remove all commands from the underlying log
  marked with the <a href="../../../../io/atomix/copycat/client/Command.CompactionMode.html#SNAPSHOT"><code>SNAPSHOT</code></a> compaction mode. Note that
  state machines should still ensure that snapshottable commits are <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>closed</code></a> once they've been
  applied to the state machine, but state machines are free to immediately close all snapshottable commits.</div>

@@ -121,8 +121,8 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/co
    <code>
    private Object putWithTtl(Commit&lt;PutWithTtl&gt; commit) {
      map.put(commit.operation().key(), commit);
-     executor().schedule(Duration.ofMillis(commit.operation().ttl()), () -&gt; {
-       map.remove(commit.operation().key()).clean();
+     executor.schedule(Duration.ofMillis(commit.operation().ttl()), () -&gt; {
+       map.remove(commit.operation().key()).close();
      });
    }
    </code>
