@@ -116,11 +116,13 @@ var activeTableTab = "activeTableTab";
 <pre>public class <span class="typeNameLabel">MetaStore</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></pre>
-<div class="block">Persists server state via the <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> module.
+<div class="block">Manages persistence of server configurations.
  <p>
- The server metastore is responsible for persisting server state according to the configured
+ The server metastore is responsible for persisting server configurations according to the configured
  <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html#level--"><code>storage level</code></a>. Each server persists their current <a href="../../../../../../io/atomix/copycat/server/storage/system/MetaStore.html#loadTerm--"><code>term</code></a>
- and last <a href="../../../../../../io/atomix/copycat/server/storage/system/MetaStore.html#loadVote--"><code>vote</code></a> as is dictated by the Raft consensus algorithm.</div>
+ and last <a href="../../../../../../io/atomix/copycat/server/storage/system/MetaStore.html#loadVote--"><code>vote</code></a> as is dictated by the Raft consensus algorithm. Additionally, the
+ metastore is responsible for storing the last know server <a href="../../../../../../io/atomix/copycat/server/storage/system/Configuration.html" title="class in io.atomix.copycat.server.storage.system"><code>Configuration</code></a>, including cluster
+ membership.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
