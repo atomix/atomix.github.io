@@ -1322,6 +1322,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/CommandEntry.html#getCompactionMode--">getCompactionMode()</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/CommandEntry.html" title="class in io.atomix.copycat.server.storage.entry">CommandEntry</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/ConfigurationEntry.html#getCompactionMode--">getCompactionMode()</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/ConfigurationEntry.html" title="class in io.atomix.copycat.server.storage.entry">ConfigurationEntry</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/entry/Entry.html#getCompactionMode--">getCompactionMode()</a></span> - Method in class io.atomix.copycat.server.storage.entry.<a href="io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a></dt>
 <dd>
 <div class="block">Returns the entry compaction mode.</div>
@@ -2599,7 +2601,7 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/session/SessionListener.html#register-io.atomix.copycat.client.session.Session-">register(Session)</a></span> - Method in interface io.atomix.copycat.server.session.<a href="io/atomix/copycat/server/session/SessionListener.html" title="interface in io.atomix.copycat.server.session">SessionListener</a></dt>
 <dd>
-<div class="block">Called when a session is registered.</div>
+<div class="block">Called when a new session is registered.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/StateMachineExecutor.html#register-java.lang.Class-java.util.function.Consumer-">register(Class&lt;T&gt;, Consumer&lt;Commit&lt;T&gt;&gt;)</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a></dt>
 <dd>
@@ -2829,7 +2831,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/session/SessionListener.html" title="interface in io.atomix.copycat.server.session"><span class="typeNameLink">SessionListener</span></a> - Interface in <a href="io/atomix/copycat/server/session/package-summary.html">io.atomix.copycat.server.session</a></dt>
 <dd>
-<div class="block">Session aware state machine interface.</div>
+<div class="block">Support for listening for state changes in server sessions.</div>
 </dd>
 <dt><a href="io/atomix/copycat/client/request/SessionRequest.html" title="class in io.atomix.copycat.client.request"><span class="typeNameLink">SessionRequest</span></a> - Class in <a href="io/atomix/copycat/client/request/package-summary.html">io.atomix.copycat.client.request</a></dt>
 <dd>
@@ -3925,9 +3927,9 @@ the order they are declared.</div>
 <dd>
 <div class="block">Sets the Raft session timeout, returning the Raft configuration for method chaining.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.Builder.html#withStateMachine-io.atomix.copycat.server.StateMachine-">withStateMachine(StateMachine)</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.Builder.html#withStateMachine-java.util.function.Supplier-">withStateMachine(Supplier&lt;StateMachine&gt;)</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></dt>
 <dd>
-<div class="block">Sets the Raft state machine.</div>
+<div class="block">Sets the Raft state machine factory.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/response/Response.Builder.html#withStatus-io.atomix.copycat.client.response.Response.Status-">withStatus(Response.Status)</a></span> - Method in class io.atomix.copycat.client.response.<a href="io/atomix/copycat/client/response/Response.Builder.html" title="class in io.atomix.copycat.client.response">Response.Builder</a></dt>
 <dd>

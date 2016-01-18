@@ -187,8 +187,8 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#withStateMachine-io.atomix.copycat.server.StateMachine-">withStateMachine</a></span>(<a href="../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server">StateMachine</a>&nbsp;stateMachine)</code>
-<div class="block">Sets the Raft state machine.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#withStateMachine-java.util.function.Supplier-">withStateMachine</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function">Supplier</a>&lt;<a href="../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server">StateMachine</a>&gt;&nbsp;factory)</code>
+<div class="block">Sets the Raft state machine factory.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
@@ -355,21 +355,21 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 </dl>
 </li>
 </ul>
-<a name="withStateMachine-io.atomix.copycat.server.StateMachine-">
+<a name="withStateMachine-java.util.function.Supplier-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>withStateMachine</h4>
-<pre>public&nbsp;<a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a>&nbsp;withStateMachine(<a href="../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server">StateMachine</a>&nbsp;stateMachine)</pre>
-<div class="block">Sets the Raft state machine.</div>
+<pre>public&nbsp;<a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a>&nbsp;withStateMachine(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function">Supplier</a>&lt;<a href="../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server">StateMachine</a>&gt;&nbsp;factory)</pre>
+<div class="block">Sets the Raft state machine factory.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>stateMachine</code> - The Raft state machine.</dd>
+<dd><code>factory</code> - The Raft state machine factory.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The Raft builder.</dd>
+<dd>The server builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>stateMachine</code> is null</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the <code>factory</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
