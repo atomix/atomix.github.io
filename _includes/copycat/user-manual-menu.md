@@ -27,7 +27,5 @@
    * [Sessions](#internal-sessions)
       * [How it works](#how-it-works)
       * [Server events](#server-events)
-   * [Session management](#session-management)
-      * [Session event protocol](#session-event-protocol)
    * [Dynamic membership changes](#membership-changes)
    * [Log compaction](#log-compaction)
