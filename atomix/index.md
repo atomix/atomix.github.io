@@ -37,7 +37,7 @@ value.set("Hello world!").thenRun(() -> {
 });
 ```
 </div>
-<div class="tab-pane active" id="distributed-long" markdown="1">
+<div class="tab-pane" id="distributed-long" markdown="1">
 ```java
 DistributedLong value = atomix.getLong("long").get();
 
