@@ -9,19 +9,20 @@ first-section: what-are-resources
 
 The true power of Atomix comes from [Resource][Resource] implementations. Resources are named distributed objects that are replicated and persisted in the Atomix cluster. Each name can be associated with a single resource, and each resource is backed by a replicated state machine managed by Atomix's underlying [implementation of the Raft consensus protocol][raft-framework].
 
-Resources are created by simply passing a `Resource` class to one of Atomix's `create` methods:
+Resources are created by simply using one of `Atomix`s `get*` methods or passing a custom `Resource` class to `get`:
 
 ```java
-DistributedMap<String, String> map = atomix.create("test-map", DistributedMap.class).get();
+DistributedMap<String, String> map = atomix.getMap("my-map").get();
 ```
 
-Atomix uses the provided `Class` to create an associated [StateMachine][state-machines] on each replica. This allows users to create and integrate [custom resources](/atomix/user-manual/custom-resources).
+Atomix create a replicated [StateMachine][StateMachine] on each replica in the cluster. Operations performed on the resource are submitted as state changes to the cluster where they're replicated and persisted before being applied to the replicated state machine.
 
 Atomix provides a number of resource implementations for common distributed systems problems. Currently, the provided resources are divided into three subsets that are represented as Maven submodules:
 
-* [Distributed collections](#distributed-collections) - `DistributedSet`, `DistributedMap`, etc
-* [Distributed atomic variables](#distributed-atomic-variables) - `DistributedAtomicValue`, etc
-* [Distributed coordination tools](#distributed-coordination) - `DistributedLock`, `DistributedLeaderElection`, etc
+* [Distributed collections](#distributed-collections) - `DistributedSet`, `DistributedMap`, `DistributedMultiMap`, `DistributedQueue`
+* [Distributed atomic variables](#distributed-variables) - `DistributedValue`, `DistributedLong`
+* [Distributed coordination tools](#distributed-coordination) - `DistributedLock`, `DistributedMembershipGroup`
+* [Distributed messaging](#distributed-messaging) - `DistributedTopic`, `DistributedMessageBus`
 
 ### Consistency levels
 
@@ -37,7 +38,7 @@ But real-world systems often must relax reliability and consistency constraints 
 To configure the `Consistency` for a resource, use the `with(Consistency)` method:
 
 ```java
-DistributedLock lock = atomix.create("lock", DistributedLock::new).get();
+DistributedLock lock = atomix.getLock("my-lock").get();
 
 lock.with(Consistency.ATOMIC).lock().thenRun(() -> System.out.println("Lock acquired!"));
 ```
