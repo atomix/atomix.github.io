@@ -24,12 +24,11 @@ project: atomix
     <div class="row">
     
 <div class="col-sm-7" markdown="1">
-{% include sync-tabs-params.html active="#distributed-value:Value" inactive="#distributed-map:Map,#distributed-lock:Lock,#distributed-leader:Leader Election,#distributed-group:Group,#distributed-bus:Bus" %}
+{% include sync-tabs-params.html active="#distributed-value:Value" inactive="#distributed-long:Long,#distributed-map:Map,#distributed-multimap:MultiMap,#distributed-set:Set,#distributed-queue:Queue,#distributed-lock:Lock,#distributed-group:Membership Group,#distributed-leader:Leader Election,#distributed-bus:Message Bus" %}
 <div class="tab-content" markdown="1">
 <div class="tab-pane active" id="distributed-value" markdown="1">
 ```java
-DistributedValue<String> value = 
-  atomix.create("value", DistributedValue::new).get();
+DistributedValue<String> value = atomix.getValue("value").get();
 
 value.set("Hello world!").thenRun(() -> {
   value.get().thenAccept(result -> {
@@ -38,48 +37,96 @@ value.set("Hello world!").thenRun(() -> {
 });
 ```
 </div>
+<div class="tab-pane active" id="distributed-long" markdown="1">
+```java
+DistributedLong value = atomix.getLong("long").get();
+
+value.incrementAndGet().thenAccept(result -> {
+  assert result == 1;
+});
+```
+</div>
 <div class="tab-pane" id="distributed-map" markdown="1">
 ```java
-DistributedMap<String, String> map = 
-  atomix.create("map", DistributedMap::new).get();
+DistributedMap<String, String> map = atomix.getMap("map").get();
 
-map.put("foo", "Hello world!").thenRun(() -> {
-  map.get("foo").thenAccept(result -> {
+map.put("bar", "Hello world!").thenRun(() -> {
+  map.get("bar").thenAccept(result -> {
     assert result.equals("Hello world!");
   });
 });
 ```
 </div>
-<div class="tab-pane" id="distributed-lock" markdown="1">
+<div class="tab-pane" id="distributed-multimap" markdown="1">
 ```java
-DistributedLock lock = 
-  atomix.create("lock", DistributedLock::new).get();
+DistributedMultiMap<String, String> multimap = atomix.getMultiMap("multimap").get();
 
-lock.lock().thenRun(() -> System.out.println("Acquired a lock!"));
+multimap.put("bar", "Hello world!").thenRun(() -> {
+  multimap.put("bar", "Hello world again!").thenRun(() -> {
+    multimap.get("bar").thenAccept(values -> {
+      values.forEach(value -> System.out.println(value));
+    });
+  });
+});
 ```
 </div>
-<div class="tab-pane" id="distributed-leader" markdown="1">
+<div class="tab-pane" id="distributed-set" markdown="1">
 ```java
-DistributedLeaderElection election = 
-  atomix.create("election", DistributedLeaderElection::new).get();
+DistributedSet<String> set = atomix.getSet("set").get();
 
-election.onElection(epoch -> System.out.println("Elected leader!"));
+set.add("foo").thenRun(() -> {
+  set.contains("foo").thenAccept(result -> {
+    if (result) {
+      System.out.println("set contains 'foo'");
+    }
+  });
+});
+```
+</div>
+<div class="tab-pane" id="distributed-queue" markdown="1">
+```java
+DistributedQueue<Integer> queue = atomix.getQueue("queue").get();
+
+queue.offer(1).join();
+queue.offer(2).join();
+queue.poll().thenAccept(value -> {
+  System.out.println("retrieved " + value);
+});
+```
+</div>
+<div class="tab-pane" id="distributed-lock" markdown="1">
+```java
+DistributedLock lock = atomix.getLock("foo").get();
+
+lock.lock().thenRun(() -> {
+  System.out.println("Acquired a lock!");
+  lock.unlock();
+});
 ```
 </div>
 <div class="tab-pane" id="distributed-group" markdown="1">
 ```java
-DistributedMembershipGroup group = 
-  atomix.create("group", DistributedMembershipGroup::new).get();
+DistributedMembershipGroup group = atomix.getMembershipGroup("group").get();
 
 group.join().thenRun(() -> System.out.println("Join successful"));
 
 group.onJoin(member -> System.out.println(member.id() + " joined the group"));
 ```
 </div>
+<div class="tab-pane" id="distributed-leader" markdown="1">
+```java
+DistributedMembershipGroup group = atomix.getMembershipGroup("election").get();
+
+LocalGroupMember member = group.join().get();
+member.onElection(term -> {
+  System.out.println("Elected leader!");
+  member.resign();
+});
+```
+</div>
 <div class="tab-pane" id="distributed-bus" markdown="1">
 ```java
-DistributedMessageBus bus = 
-  atomix.create("bus", DistributedMessageBus::new).get();
+DistributedMessageBus bus = atomix.getMessageBus("bus").get();
 
 bus.open(new Address("123.456.789.0", 5000)).join();
 
