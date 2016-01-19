@@ -86,13 +86,13 @@ public class Value<T> extends Resource {
   /**
    * Get query.
    */
-  public static class Get<T> implements Query<T>, Serializable {
+  public static class Get<T> implements Query<T> {
   }
 
   /**
    * Set command.
    */
-  public static class Set<T> implements Command<T>, Serializable {
+  public static class Set<T> implements Command<T> {
     private Object value;
 
     public Set() {

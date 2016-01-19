@@ -86,10 +86,6 @@ To create a state machine, extend the base `StateMachine` class:
 
 ```java
 public class MapStateMachine extends StateMachine {
-  @Override
-  protected void configure(StateMachineExecutor executor) {
-  
-  }
 }
 ```
 
@@ -144,8 +140,8 @@ public class RemoveCommand implements Command<Object> {
   }
 
   @Override
-  public PersistenceLevel persistence() {
-    return PersistenceLevel.PERSISTENT;
+  public CompactionMode compaction() {
+    return CompactionMode.SEQUENTIAL;
   }
 
   public Object key() {
@@ -156,25 +152,18 @@ public class RemoveCommand implements Command<Object> {
 
 ### Implementing state machine operations
 
-State machine operations are registered via the `StateMachineExecutor` in the `configure` method:
+State machine operations are implemented as `public` methods on the state machine class which accept a singl `Commit` parameter where the generic argument for the commit is the operation accepted by the method.
 
 ```java
 public class MapStateMachine extends StateMachine {
   private final Map<Object, Commit<PutCommand>> map = new HashMap<>();
 
-  @Override
-  protected void configure(StateMachineExecutor executor) {
-    executor.register(PutCommand.class, this::put);
-    executor.register(GetQuery.class, this::get);
-    executor.register(RemoveCommand.class, this::remove);
-  }
-
-  private Object put(Commit<PutCommand> commit) {
-    // Store the full commit object in the map to ensure we can properly clean it from the commit log once we're done.
+  public Object put(Commit<PutCommand> commit) {
+    // Store the full commit object in the map to ensure we can properly close it from the commit log once we're done.
     map.put(commit.operation().key(), commit);
   }
 
-  private Object get(Commit<GetQuery> commit) {
+  public Object get(Commit<GetQuery> commit) {
     try {
       // Get the commit value and return the operation value if available.
       Commit<PutCommand> value = map.get(commit.operation().key());
@@ -186,21 +175,21 @@ public class MapStateMachine extends StateMachine {
     }
   }
 
-  private Object remove(Commit<RemoveCommand> commit) {
+  public Object remove(Commit<RemoveCommand> commit) {
     try {
       // Remove the commit with the given key.
       Commit<PutCommand> value = map.remove(commit.operation().key());
 
-      // If a commit with the given key existed, get the result and then clean the commit from the log.
+      // If a commit with the given key existed, get the result and then close the commit from the log.
       if (value != null) {
         Object result = value.operation().value();
-        value.clean();
+        value.close();
         return result;
       }
       return null;
     } finally {
-      // Finally, clean the remove commit.
-      commit.clean();
+      // Finally, close the remove commit.
+      commit.close();
     }
   }
 }
@@ -219,7 +208,7 @@ Collection<Address> members = Arrays.asList(
 
 CopycatServer server = CopycatServer.builder(address, members)
   .withTransport(new NettyTransport())
-  .withStateMachine(new MapStateMachine())
+  .withStateMachine(MapStateMachine::new)
   .withStorage(new Storage("/path/to/logs", StorageLevel.DISK))
   .build();
 

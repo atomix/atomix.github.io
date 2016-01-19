@@ -23,7 +23,7 @@ To create a Raft server, use the server [Builder][builders]:
 CopycatServer server = CopycatServer.builder(address, members)
   .withTransport(new NettyTransport())
   .withStorage(new Storage("logs"))
-  .withStateMachine(new MyStateMachine())
+  .withStateMachine(MyStateMachine::new)
   .build();
 ```
 

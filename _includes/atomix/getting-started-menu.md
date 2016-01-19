@@ -2,5 +2,4 @@
   * [Installation](#installation)
   * [Setting up the cluster](#setting-up-the-cluster)
   * [Connecting the client](#connecting-the-client)
-  * [Embedding servers and clients](#embedding-servers-and-clients)
   * [Creating distributed resources](#creating-distributed-resources)

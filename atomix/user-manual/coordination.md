@@ -174,10 +174,12 @@ When a resource's state is changed to `SUSPENDED`, clients should assume that an
 member.onElection(term -> {
   group.onStateChange(state -> {
     if (state == Resource.State.SUSPENDED) {
-
+      member.resign();
     }
   });
 });
 ```
+
+If a client does not properly monitor the state of the resource and detect a `SUSPENDED` resource state - particularly for leaders - multiple leaders can potentially be elected at the same time. Users should assume that *any* change to the membership can occur while in the `SUSPENDED` state.
 
 {% include common-links.html %}

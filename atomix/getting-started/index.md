@@ -9,7 +9,7 @@ first-section: getting-started
 
 ### Installation
 
-Atomix can be found in standard Maven repositories. To add Atomix core - which includes `AtomixClient`, `AtomixServer`, and `AtomixReplica` - add the `atomix` artifact:
+Atomix can be found in standard Maven repositories. To add Atomix core - which includes `AtomixClient` and `AtomixReplica` - add the `atomix` artifact:
 
 ```
 <dependency>
@@ -19,7 +19,7 @@ Atomix can be found in standard Maven repositories. To add Atomix core - which i
 </dependency>
 ```
 
-Groups of Atomix core distributed resources - i.e. [collections], [variables][variables], [messaging][messaging] and [coordination tools][coordination] - are each packaged in separate artifacts based on the type of resource. The available resource artifacts are as follows:
+Groups of Atomix core distributed resources - i.e. [collections], [variables], [messaging] and [coordination tools][coordination] - are each packaged in separate artifacts based on the type of resource. The available resource artifacts are as follows:
 
 * `atomix-collections` provides distributed collections like maps, multimaps, sets, and queues
 * `atomix-variables` provides distributed atomic variables
@@ -151,6 +151,8 @@ replica.getLock("my-lock").thenAccept(lock -> {
 <div class="tab-pane" id="sync-create">
 ```java
 DistributedLock lock = client.getLock("my-lock").get();
+lock.lock().join();
+System.out.println("Acquired a lock!");
 ```
 </div>
 </div>

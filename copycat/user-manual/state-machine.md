@@ -24,12 +24,6 @@ State machines are created by extending the base `StateMachine` class and overri
 
 ```java
 public class MyStateMachine extends StateMachine {
-
-  @Override
-  protected void configure(StateMachineExecutor executor) {
-  
-  }
-
 }
 ```
 
@@ -51,6 +45,14 @@ Operation callbacks must accept a `Commit<T extends Operation<?>>` object for th
 
 ```java
 private Object get(Commit<GetQuery> commit) {
+  return map.get(commit.operation().key());
+}
+```
+
+State machine operations can also be registered by simply creating `public` methods on the state machine class:
+
+```java
+public Object get(Commit<GetQuery> commit) {
   return map.get(commit.operation().key());
 }
 ```
@@ -180,28 +182,56 @@ for (Session session : context().sessions()) {
 }
 ```
 
+### Listening for changes in sessions
+
+State machines can listen for clients opening new sessions with the cluster or for existing sessions being expired by the cluster or closed by the client. All state changes in server `Session`s happen deterministically - they occur at the same *logical* time on each server in the cluster, so it's safe to rely on session state changes to change the state of the state machine.
+
+To listen for changes in client sessions, implement the `SessionListener` interface:
+
+```java
+public class MyStateMachine extends StateMachine implements SessionListener {
+
+  @Override
+  public void register(Session session) {
+  }
+
+  @Override
+  public void expire(Session session) {
+  }
+
+  @Override
+  public void unregister(Session session) {
+  }
+
+  @Override
+  public void close(Session session) {
+  }
+
+}
+```
+
 ### Commit cleaning
 
 As commands are submitted to the cluster and applied to the Raft state machine, the underlying log grows. Without some mechanism to reduce the size of the log, the log would grow without bound and ultimately servers would run out of disk space. Raft suggests a few different approaches of handling log compaction. Copycat uses the log cleaning approach.
 
-`Commit` objects are backed by entries in Copycat's replicated log. When a `Commit` is no longer needed by the `StateMachine`, the state machine should clean the commit from Copycat's log by calling the `clean()` method:
+`Commit` objects are backed by entries in Copycat's replicated log. When a `Commit` is no longer needed by the `StateMachine`, the state machine should clean the commit from Copycat's log by calling the `close()` method:
 
 ```java
 protected void remove(Commit<RemoveCommand> commit) {
   map.remove(commit.operation().key());
-  commit.clean();
+  commit.close();
 }
 ```
 
-Internally, the `clean()` call will be proxied to Copycat's underlying log:
+Internally, the `close()` call will be proxied to Copycat's underlying log:
 
 ```java
 log.clean(commit.index());
 ```
 
-As commits are cleaned by the state machine, entries in the underlying log will be marked for deletion. *Note that it is not safe to assume that once a commit is cleaned it is permanently removed from the log*. Cleaning an entry only *marks* it for deletion, and the entry won't actually be removed from the log until a background thread cleans the relevant log segment. This means in the event of a crash-recovery and replay of the log, a previously `clean`ed commit may still exists. For this reason, if a commit is dependent on a prior commit, state machines should only `clean` those commits if no prior related commits have been seen. (More on this later)
+As commits are released from the state machine, entries in the underlying log will be marked for deletion. *Note that it is not safe to assume that once a commit is closed it is permanently removed from the log*. Cleaning an entry only *marks* it for deletion, and the entry won't actually be removed from the log until a background thread compacts the relevant log segment. This means in the event of a crash-recovery and replay of the log, a previously `close`ed commit may still exists. For this reason, if a commit is dependent on a prior commit, state machines should only `close` those commits if no prior related commits have been seen. (More on this later)
 
-Once the underlying `Log` has grown large enough, and once enough commits have been `clean`ed from the log, a pool of background threads will carry out their task to rewrite segments of the log to remove commits (entries) for which `clean()` has been called:
+Once the underlying `Log` has grown large enough, and once enough commits have been cleaned from the log, a pool of background threads will carry out their task to rewrite segments of the log to remove commits (entries) for which `close()` has been called:
 
 #### Deterministic scheduling
 

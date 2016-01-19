@@ -31,7 +31,7 @@ Consistency is guaranteed by [Atomix's implementation of the Raft consensus algo
 
 Unlike [ZooKeeper], Atomix natively supports linearizable reads as well. Much like writes, linearizable reads must go through the cluster leader (which always has the most recent cluster state) and may require contact with a majority of the cluster. For higher throughput, Atomix also allows reads from followers. Reads from followers guarantee *sequential consistency* or *causal consistency*, depending on the configuration, meaning all clients will see state changes in the same order but different clients may see different views of the state at any given time. Notably, *a client's view of the cluster will never go back in time* even when switching between servers. Additionally, Atomix places a bound on followers servicing reads: in order to service a read, a follower's log must be less than a heartbeat behind the leader's log.
 
-*See the [Raft implementation details](/user-manual/raft-internals/) for more information on consistency in Atomix*
+*See the [Raft implementation details](/copycat/user-manual/internals/) for more information on consistency in Atomix*
 
 ## Fault-tolerance
 
