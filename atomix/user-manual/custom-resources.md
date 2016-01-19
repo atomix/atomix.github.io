@@ -12,34 +12,62 @@ The Atomix API is designed to facilitate operating on arbitrary user-defined res
 To define a new resource, simply extend the base `Resource` class:
 
 ```java
-public class Value extends Resource {
-  @Override
-  protected Class<? extends StateMachine> stateMachine() {
-    return ValueStateMachine.class;
+@ResourceTypeInfo(id=1, stateMachine=ValueStateMachine.class)
+public class Value extends Resource<Value> {
+  public Value(CopycatClient client) {
+    super(client);
   }
 }
 ```
 
-The `Resource` implementation must return a `StateMachine` class that will be configured to manage the resource's state.
+The resource class must be annotated with the `@ResourceTypeInfo` annotation. This annotation is used to aid replicas in constructing resource state machines. The resource type `id` is can be any positive integer but must be unique, and the `stateMachine` indicates the state machine class to instantiate on each replica.
+
+Additionally, resources must be registered via the Java `ServiceLoader` by identifying the class in a `META-INF/services/io.atomix.resource.Resource` file:
+```
+com.mycompany.Value
+```
+
+Custom resources can be instantiated on any `Atomix` instance using the `get` method and passing the resource class:
 
 ```java
-atomix.create(Value.class).thenAccept(value -> {
+atomix.get(Value.class).thenAccept(value -> {
   System.out.println("Value resource created!");
 });
 ```
 
-When a resource is created via `Atomix.create(String, Class)`, the `StateMachine` class returned by the `Resource.stateMachine()` method will be constructed on each replica in the cluster. Once the state machine has been created on a majority of the replicas, the resource will be constructed and the returned `CompletableFuture` completed.
+When a resource is created for the first time, the resource `StateMachine` will be created on each replica in the cluster. In order for the resource to be successfully created all replicas must have the resource class on their classpath. Once a state machine has been created on a majority of the active replicas, the resource will be constructed and the returned `CompletableFuture` completed.
+
+Resource state machines must extend the base `ResourceStateMachine` class:
+
+```java
+public class ValueStateMachine extends ResourceStateMachine {
+}
+```
+
+Commands to the state machine are implemented as public methods of the state machine which take a single `Commit` argument where the generic argument is the type of the command to accept:
+
+```java
+public class ValueStateMachine extends ResourceStateMachine {
+  private Object value;
+
+  public void set(Commit<SetCommand> commit) {
+    try {
+      this.value = commit.operation().value();
+    } finally {
+      commit.close();
+    }
+  }
+
+}
+```
 
 Resource state changes are submitted to the Atomix cluster as [Command][Command] or [Query][Query] implementations. See the documentation on Raft [commands](#commands) and [queries](#queries) for specific information regarding the use cases and limitations of each type.
 
 To submit an operation to the Atomix cluster on behalf of the resource, expose a method that forwards a `Command` or `Query` to the cluster:
 
 ```java
+@ResourceTypeInfo(id=1, stateMachine=ValueStateMachine.class)
 public class Value<T> extends Resource {
-  @Override
-  protected Class<? extends StateMachine> stateMachine() {
-    return ValueStateMachine.class;
-  }
 
   /**
    * Returns the value.
@@ -58,45 +86,49 @@ public class Value<T> extends Resource {
   /**
    * Get query.
    */
-  private static class Get<T> implements Query<T> {
+  public static class Get<T> implements Query<T>, Serializable {
   }
 
   /**
    * Set command.
    */
-  private static class Set<T> implements Command<T> {
+  public static class Set<T> implements Command<T>, Serializable {
     private Object value;
 
-    private Set() {
+    public Set() {
     }
 
-    private Set(Object value) {
+    public Set(Object value) {
       this.value = value;
+    }
+
+    @Override
+    public CompactionMode compaction() {
+      return CompactionMode.SNAPSHOT;
     }
   }
 
   /**
    * Value state machine.
    */
-  private static class ValueStateMachine extends StateMachine {
+  public static class ValueStateMachine extends ResourceStateMachine {
     private Object value;
-
-    @Override
-    protected void configure(StateMachineExecutor executor) {
-      executor.register(Get.class, this::get);
-    }
 
     /**
      * Gets the value.
      */
-    private Object get(Commit<Get> commit) {
-      return value;
+    public Object get(Commit<Get> commit) {
+      try {
+        return value;
+      } finally {
+        commit.close();
+      }
     }
 
     /**
      * Sets the value.
      */
-    private void set(Commit<Set> commit) {
+    public void set(Commit<Set> commit) {
       this.value = commit.operation().value;
     }
   }
@@ -104,6 +136,6 @@ public class Value<T> extends Resource {
 ```
 
 {:.callout .callout-danger}
-Important: See [Raft state machine documentation][state-machines] for details on cleaning commits from the log
+Important: See [Raft state machine documentation][state-machines] for details on log compaction
 
 {% include common-links.html %}
