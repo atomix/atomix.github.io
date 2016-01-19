@@ -25,10 +25,10 @@ If your project does not depend on `atomix-all`, you must add the `atomix-collec
 
 The [DistributedMap][DistributedMap] resources provides an asynchronous API similar to that of `java.util.Map`.
 
-To create a `DistributedMap`, pass the class to `Atomix.create(String, Class)`:
+To create a `DistributedMap`, use the `Atomix.getMap` method:
 
 ```java
-atomix.<DistributedMap<String, String>>create("/test-map", DistributedMap.class).thenAccept(map -> {
+atomix.<String, String>getMap("foo-map").thenAccept(map -> {
   // Do something with the map
 });
 ```
@@ -66,10 +66,10 @@ Note that TTL timers are deterministically controlled by the cluster leader and 
 
 The [DistributedMultiMap][DistributedMultiMap] resources provides a map-like API for storing multiple values for each key in a map.
 
-To create a `DistributedMultiMap`, pass the class to `Atomix.create(String, Class)`:
+To create a `DistributedMultiMap`, use the `Atomix.getMultiMap` method:
 
 ```java
-atomix.<DistributedMultiMap<String, String>>create("/multi-map", DistributedMultiMap.class).thenAccept(map -> {
+atomix.<String, String>getMultiMap("foo-map").thenAccept(map -> {
   // Do something with the multimap
 });
 ```
@@ -89,10 +89,10 @@ assert values.contains("Hello world again!");
 
 The [DistributedSet][DistributedSet] resources provides an asynchronous API similar to that of `java.util.Set`.
 
-To create a `DistributedSet`, pass the class to `Atomix.create(String, Class)`:
+To create a `DistributedSet`, use the `Atomix.getSet` method:
 
 ```java
-atomix.<DistributedSet<String>>create("/test-set", DistributedSet.class).thenAccept(set -> {
+atomix.<String>getSet("foo-set").thenAccept(set -> {
   // Do something with the set
 });
 ```
@@ -128,10 +128,10 @@ Note that TTL timers are deterministically controlled by the cluster leader and 
 
 The [DistributedQueue] resources provides an asynchronous API similar to that of `java.util.Queue`.
 
-To create a `DistributedQueue`, pass the class to `Atomix.create(String, Class)`:
+To create a `DistributedQueue`, use the `Atomix.getQueue` method:
 
 ```java
-atomix.<DistributedQueue<String>>create("/test-queue", DistributedQueue.class).thenAccept(queue -> {
+atomix.<String>getQueue("foo-queue").thenAccept(queue -> {
   // Do something with the queue
 });
 ```

@@ -19,11 +19,12 @@ Atomix can be found in standard Maven repositories. To add Atomix core - which i
 </dependency>
 ```
 
-Groups of Atomix core distributed resources - i.e. [collections], [atomic variables][atomics], and [coordination tools][coordination] - are each packaged in separate artifacts based on the type of resource. The available resource artifacts are as follows:
+Groups of Atomix core distributed resources - i.e. [collections], [variables][variables], [messaging][messaging] and [coordination tools][coordination] - are each packaged in separate artifacts based on the type of resource. The available resource artifacts are as follows:
 
 * `atomix-collections` provides distributed collections like maps, multimaps, sets, and queues
-* `atomix-atomic` provides distributed atomic variables
-* `atomix-coordination` provides distributed coordination tools like locks, leader elections, group membership, and messaging
+* `atomix-variables` provides distributed atomic variables
+* `atomix-coordination` provides distributed coordination tools like locks, leader elections, and group membership
+* `atomix-messaging` provides reliable and unreliable distributed messaging tools
 
 To add Atomix core and all resources, use the `atomix-all` artifact:
 
@@ -37,11 +38,11 @@ To add Atomix core and all resources, use the `atomix-all` artifact:
 
 ### Setting up the cluster
 
-Atomix clusters consist of at least one (but usually 3 or 5) [servers][AtomixServer] or [replicas][AtomixReplica] and any number of [clients][AtomixClient]. *Servers* are stateful nodes that actively participate in the [Raft consensus protocol][Raft], and *clients* are stateless nodes that modify system state remotely. When a cluster is started, the servers in the cluster coordinate with one another to elect a leader.
+Atomix clusters consist of at least one (but usually 3 or 5) [replica][AtomixReplica] and any number of [clients][AtomixClient]. *Replicas* are stateful nodes that actively participate in the [Raft consensus protocol][Raft], and *clients* are stateless nodes that modify system state remotely. When a cluster is started, the servers in the cluster coordinate with one another to elect a leader.
 
 ![Atomix cluster](http://s24.postimg.org/3jrc7yuad/IMG_0007.png)
 
-To create an [AtomixServer], first you must define the server's [Address] and a list of addresses through which to communicate with other members of the cluster:
+To create an [AtomixReplica], first you must define the server's [Address] and a list of addresses through which to communicate with other members of the cluster:
 
 ```java
 Address address = new Address("123.456.789.0", 5000);
@@ -53,34 +54,34 @@ List<Address> members = Arrays.asList(
 );
 ```
 
-With the membership list, create an `AtomixServer.Builder` to build the server:
+With the membership list, create an `AtomixReplica.Builder` to build the server:
 
 ```java
-AtomixServer.Builder builder = AtomixServer.builder(address, members);
+AtomixReplica.Builder builder = AtomixReplica.builder(address, members);
 ```
 
-Each server can optionally be configured with a [Storage][storage-jd] module and [Transport]. The `Storage` object can be configured with differen `StorageLevel`s, such as `StorageLevel.MEMORY` or `StorageLevel.DISK`, indicating how the server should store state changes. The [NettyTransport] provides a fast, reliable communication layer for the cluster.
+Each replica can optionally be configured with a [Storage][storage-jd] module and [Transport]. The `Storage` object can be configured with differen `StorageLevel`s, such as `StorageLevel.MEMORY` or `StorageLevel.DISK`, indicating how the server should store state changes. The [NettyTransport] provides a fast, reliable communication layer for the cluster.
 
 ```java
 builder.withStorage(new Storage(StorageLevel.MEMORY)).withTransport(new NettyTransport());
 ```
 
-Once the server has been configured, construct the server with the `build` method:
+Once the replica has been configured, construct the replica with the `build` method:
 
 ```java
-AtomixServer server = builder.build();
+AtomixReplica replica = builder.build();
 ```
 
-To open the server, simple call the `open` method:
+To open the replica, simple call the `open` method:
 
 ```java
-server.open();
+replica.open();
 ```
 
 All Atomix APIs are fully asynchronous, so users must explicitly block if so desired:
 
 ```java
-CompletableFuture<AtomixServer> future = server.open();
+CompletableFuture<AtomixServer> future = replica.open();
 future.join();
 ```
 
@@ -130,70 +131,18 @@ System.out.println("Client started!");
 </div>
 </div>
 
-### Embedding servers and clients
-
-Atomix is designed to be used as an embedded framework is the user so chooses. In order to facilitate embedded use, Atomix provides a combined client/server called a *replica*. The replica acts both as a stateful server which communicates and coordinates with other servers and replicas in the cluster and exposes the [Atomix] client API.
-
-[AtomixReplica]s are constructed in exactly the same manner as servers:
-
-{% include sync-tabs.html target1="#async-replica" desc1="Async" target2="#sync-replica" desc2="Sync" %}
-{::options parse_block_html="true" /}
-<div class="tab-content">
-<div class="tab-pane active" id="async-replica">
-```java
-Address address = new Address("123.456.789.0", 5000);
-
-List<Address> members = Arrays.asList(
-  new Address("123.456.789.0", 5000),
-  new Address("123.456.789.1", 5000),
-  new Address("123.456.789.2", 5000)
-);
-
-AtomixReplica replica = AtomixReplica.builder(address, members)
-  .withTransport(new NettyTransport())
-  .withStorage(new Storage(StorageLevel.DISK))
-  .build();
-
-replica.open().thenRun(() -> {
-  System.out.println("Replica started!");
-});
-```
-</div>
-
-<div class="tab-pane" id="sync-replica">
-```java
-Address address = new Address("123.456.789.0", 5000);
-
-List<Address> members = Arrays.asList(
-  new Address("123.456.789.0", 5000),
-  new Address("123.456.789.1", 5000),
-  new Address("123.456.789.2", 5000)
-);
-
-AtomixReplica replica = AtomixReplica.builder(address, members)
-  .withTransport(new NettyTransport())
-  .withStorage(new Storage(StorageLevel.DISK))
-  .build();
-
-replica.open().get();
-
-System.out.println("Replica started!");
-```
-</div>
-</div>
-
 ### Creating distributed resources
 
 Clients and replicas operate on fault-tolerant, distributed [resources] like maps, sets, locks, leader elections, and more through the [Atomix] API. Atomix exposes an extensible interface that allows users to create and manage arbitrary resources.
 
-To create a resource, use the `create` method:
+To get a distributed resource, use one of the `get*` resource methods:
 
 {% include sync-tabs.html target1="#async-create" desc1="Async" target2="#sync-create" desc2="Sync" %}
 {::options parse_block_html="true" /}
 <div class="tab-content">
 <div class="tab-pane active" id="async-create">
 ```java
-client.create("lock", DistributedLock::new).thenAccept(lock -> {
+replica.getLock("my-lock").thenAccept(lock -> {
   lock.lock().thenRun(() -> System.out.println("Acquired a lock!"));
 });
 ```
@@ -201,31 +150,11 @@ client.create("lock", DistributedLock::new).thenAccept(lock -> {
 
 <div class="tab-pane" id="sync-create">
 ```java
-DistributedLock lock = client.create("lock", DistributedLock::new).get();
+DistributedLock lock = client.getLock("my-lock").get();
 ```
 </div>
 </div>
 
-Each resource in the cluster must be assigned a unique `String` name. If multiple clients `create` or `get` the same resource type with the same name, they both reference the same state in the server-side replicated state machine.
-
-Users can also access a singleton instance of any resource using the `get` method:
-
-{% include sync-tabs.html target1="#async-get" desc1="Async" target2="#sync-get" desc2="Sync" %}
-{::options parse_block_html="true" /}
-<div class="tab-content">
-<div class="tab-pane active" id="async-get">
-```java
-client.get("lock", DistributedLock::new).thenAccept(lock -> {
-  lock.lock().thenRun(() -> System.out.println("Acquired a lock!"));
-});
-```
-</div>
-
-<div class="tab-pane" id="sync-get">
-```java
-DistributedLock lock = client.get("lock", DistributedLock::new).get();
-```
-</div>
-</div>
+Each resource in the cluster must be assigned a unique `String` name. If multiple clients `get` the same resource type with the same name, they both reference the same state in the server-side replicated state machine.
 
 {% include common-links.html %}
