@@ -20,6 +20,7 @@ The following documentation details Copycat's implementation of the Raft consens
 Raft synchronizes state changes across a cluster by electing a leader and funneling writes through the leader to followers. The algorithm uses a replicated log to coordinate both leader elections and replication.
 
 A Raft cluster primarily consists of three different types of nodes: followers, candidates, and leaders. Each server can transition between these three states given that certain conditions are met. That is, any server can be a follower, candidate, or leader. The roles of the three states are as follows:
+
 * follower - the state in which a server receives replication from leaders and upon failing to receive a heartbeat from the leader for a randomized interval of time, transitions to candidate to start a new election
 * candidate - the state in which a server attempts to be elected leader
 * leader - the state in which a server receives commands from clients, logs and replicates commands to followers, and determines when commands have been stored on a majority of servers
@@ -43,6 +44,7 @@ Raft supports the concept of cluster membership changes through special configur
 The structure Copycat clusters differ significantly from typical Raft clusters primarily due to the need to support greater flexibility in systems in which Copycat is embedded. High-availability systems cannot be constrained by the strict quorum-based requirements of consensus algorithms, and so Copycat provides several node types to address scalability issues.
 
 Copycat clusters consist of three node types: active, passive, and reserve.
+
 * *active* nodes are stateful servers that fully participate in the Raft consensus algorithm
 * *passive* nodes are stateful servers that do not participate in the Raft consensus algorithm but receive only committed log entries from followers
 * *reserve* nodes are stateless servers that can be transitioned in and out of stateful states
@@ -86,6 +88,7 @@ There are certain scenarios where sequential consistency can be broken by client
 Because of the pattern with which clients communicate with servers, this may be an unlikely occurrence. Clients only switch servers in the event of a server failure. Nevertheless, failures are when it is most critical that systems maintain their guarantees, so servers ensure that commands are applied in the order in which they were sent by the client regardless of the order in which they were received by the leader.
 
 When the leader receives a command, it sequences the command based on the current session state and the sequence number provided in the request. The basic algorithm is as follows:
+
 * If the command sequence number is greater than the next expected sequence number for the session, queue the request to be handled in sequence. 
 * Otherwise, write the command to the log and commit it (no need to log again)
 * Once the command has been written to the log, handle any queued commands for `sequence + 1`
@@ -160,7 +163,8 @@ State machines push event notifications to clients as part of their normal opera
 
 Session events are typically pushed to the client by the server to which the client is connected. If the client is connected to a follower, that follower will push session events to the client. If the client is connected to the leader, the leader will push session events to the client. However, for fault tolerance and consistency, it’s still critical that all servers store session events in memory. State machines should behave deterministically regardless of whether a client is connected to the server managing any given state machine.
 
-![Session event fault-tolerance](/assets/img/docs/session_event_consistency.png)
+{% include lightbox.html href="/assets/img/docs/session_event_consistency.png" desc="Session event fault-tolerance" %}
+
 *This figure illustrates why it’s important that events be stored in memory on each server even though they may be sent to the client by only one server. In (a) S1 sends three events to the client. The client acknowledges two of the three events before S1 crashes in (b). The client submits a KeepAlive RPC which acknowledges events up to index 3 on S2 and S3 as is depicted in (c). Finally, in (d) the client reconnects to S2 which sends events for indexes 4 and 5 to the client.*
 
 All events are sent to and received by the client in sequential order. This makes it easier to reason about events and aids in tracking which events have been received by the client. In order to track events, each event is sent to the client with the index of the state machine command that triggered the event. The client expects to receive events in monotonically increasing order. However, because not all commands applied to the state machine may result in events published to any given session, the protocol must account for skipped indexes as well.
@@ -236,6 +240,7 @@ Once an event has been acknowledged by a client either directly to the server th
 But using the eventIndex provided by each client in KeepAlive RPCs will not suffice to properly track the completeIndex. Sessions are designed to allow indexes to be arbitrarily skipped as it pertains to session events. Indeed, some sessions could conceivably publish only a single event in their lifetime. In that case, if a single event is ever published to a session, the session’s eventAckIndex will remain at the index of that single event until another event is published or the session is unregistered or expired. Thus, in order to ensure completeIndex continues to advance in the absence of session events, the lowest eventAckIndex for each session should be calculated as n - 1 where n is the lowest index for which an event has not been acknowledged. If no events are awaiting acknowledgement, the eventAckIndex for the session is equal to lastApplied.
 
 The complete algorithm for tracking completeIndex is as follows:
+
 * When a KeepAlive entry is applied, remove events from the appropriate session up to and including eventAckIndex
 * If events are still waiting for acknowledgement, recalculate the eventAckIndex for the session as n - 1 where n is the index of the first event waiting to be acknowledged
 * If no events remain in memory, set eventAckIndex to lastApplied
@@ -284,6 +289,7 @@ Reserve servers do not maintain state machines and need not known about committe
 The process of replicating to passive servers parallels that of the process of catching up new servers during configuration changes. However, the implication of catching up new servers is that practically speaking it doesn’t place any additional load on the cluster. Once the server is caught up, it will become a full voting member and so will continue to receive AppendEntries RPCs from the leader at normal intervals anyways. Thus, it makes sense for the leader to  include new servers in AppendEntries RPCs. Conversely, passive servers persist for significantly longer than the time it takes to catch up a new server and the replication of entries to passive servers represents additional load on the cluster. Additionally, little is gained from the leader replicating entries to passive servers directly. Thus, we propose moving responsibility for replicating entries to passive servers from the leader to followers.
 
 Each follower is responsible for sending AppendEntries RPCs to a subset of passive servers at regular intervals. The algorithm for sending AppendEntries RPCs from followers to passive members is identical to that of the standard process for sending AppendEntries RPCs aside from a few relevant factors:
+
 * Each follower sends AppendEntries RPCs only to a subset of passive servers
 * Followers send only committed entries to passive servers
 
@@ -362,6 +368,7 @@ When a state machine indicates a command no longer contributes to its state and 
 Up until now we have described the methods by which commands are applied to the state machine and the state machine indicates which commands no longer contribute to the state machine state. But this does not suffice to solve the problem of an ever growing amount of disk space being consumed by cleaned entries.
 
 In order to ensure the log does not grow unbounded, a series of background tasks periodically select and rewrite segments of the log. The basic algorithm is as follows:
+
 1. Select a set of segments to compact based on some set of configurable criteria
 2. For each segment, iterate through entries in the segment file and rewrite live entries to a new segment on disk
 3. Discard the old segment file
@@ -390,7 +397,7 @@ A significant objective of the major compaction task is to remove tombstones fro
 
 Typically, as commands are stored on a majority of servers, committed, and applied to the state machine, they can be safely removed from the log once they no longer contribute to the state machine’s state. But a particular nuance in tombstones necessitates that they be applied on all servers prior to being removed from the log. Tombstones are typically cleaned immediately after they’re applied to the state machine and after any prior related commands are cleaned.
 
-![Tombstone compaction](/assets/img/docs/log_tombstone_compaction.png)
+{% include lightbox.html href="/assets/img/docs/tombstone_compaction.png" desc="Tombstone compaction" %}
 
 *This figure illustrates the inconsistencies that can occur if tombstones are not stored on all servers. Entries that assign the value nil are tombstones. When a tombstone is applied, the entry and any prior related entries are cleaned. The leader replicates entries up to the tombstone to server B and compacts its log before sending entries to server C and server C fails to remove the entry at index 4 from its log.*
 
@@ -430,12 +437,14 @@ Nevertheless, it's clear to us that managing time and expirations through the Ra
 
 Any implementation of the Raft consensus algorithm would incomplete without support for cluster configuration changes. Raft literature suggests a couple well-defined approaches to configuration changes. But configuration changes pose particular issues with the concept of tracking the index of globally replicated entries. When a new server joins the cluster, its log is empty. Thus, any previous `globalIndex` is effectively invalidated by a new member.
 
-![Global index unsafe](/assets/img/docs/global_index_unsafe.png)
+![Global index unsafe](/assets/img/docs/global_index_unsafe.png){: height="500px"}
+
 *This figure illustrates a case wherein replicating cleaned entries to a joining server can result in inconsistent logs. The grey boxes represent entries that have been cleaned but not removed from the log, and the write boxes represent entries that have been both cleaned and removed from the log. Server 1 begins replicating entries to the new member, Server 4, and crashes after replicating entries up to index 6. Server 2 is then elected leader and continues replicating entries to Server 4. However, because server 2 compacted entries from its log before Server 1, Server 1 ended up sending entries to Server 4 that were already removed from Server 2. This results in Server 1 sending entries that will never be compacted on Server 4 and thus results in an inconsistent state. By excluding cleaned entries where the entry index is less than the `globalIndex`, servers can ensure this type of inconsistency cannot result from catching up a joining server.*
 
 In a typical Raft cluster, the `commitIndex` is monotonically increasing. However, there are certain scenarios where the `commitIndex` can be decreased, such as in the case of a full cluster restart, and that does not break any of the guarantees of Raft. Similarly, it is safe to decrease the `globalIndex` without impacting the safety of the log compaction algorithm.
 
-![Global index safe](/assets/img/docs/global_index_safe.png)
+![Global index safe](/assets/img/docs/global_index_safe.png){: height="500px"}
+
 *This figure illustrates how servers replicate logs without cleaned entries to members joining the cluster. By removing cleaned entries when they're sent to a new server, the new server cannot receive globally committed entries that would otherwise have been compacted given the full context of the log, and so switching servers is safe.*
 
 <h3 id="internal-implementing-snapshots-via-log-cleaning">8.10 Implementing snapshots via log cleaning</h3>
