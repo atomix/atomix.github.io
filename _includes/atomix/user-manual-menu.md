@@ -15,7 +15,7 @@
    * [DistributedMultiMap](#distributedmultimap)
    * [DistributedSet](#distributedset)
    * [DistributedQueue](#distributedqueue)
-* [Distributed variables](atomics)
+* [Distributed variables](variables)
    * [DistributedValue](#distributedvalue)
    * [DistributedLong](#distributedlong)
 * [Distributed coordination](coordination)
