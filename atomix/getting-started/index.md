@@ -38,11 +38,9 @@ To add Atomix core and all resources, use the `atomix-all` artifact:
 
 ### Setting up the cluster
 
-Atomix clusters consist of at least one (but usually 3 or 5) [replica][AtomixReplica] and any number of [clients][AtomixClient]. *Replicas* are stateful nodes that actively participate in the [Raft consensus protocol][Raft], and *clients* are stateless nodes that modify system state remotely. When a cluster is started, the servers in the cluster coordinate with one another to elect a leader.
+Atomix can run on a cluster of any size. Atomix clusters consist of a set of core *active* replicas and any number of *passive* replicas. The user defines the desired number of *active* nodes in the cluster, and Atomix dynamically scales the cluster based on the number of nodes. Typically, an Atomix cluster consists of 3 or 5 active nodes and 1 backup per active node. For more information on node types see the [cluster documentation][cluster].
 
-![Atomix cluster](http://s24.postimg.org/3jrc7yuad/IMG_0007.png)
-
-To create an [AtomixReplica], first you must define the server's [Address] and a list of addresses through which to communicate with other members of the cluster:
+Clusters are formed by creating an [AtomixReplica] instance on each node. When creating a new replica, the replica must be initialized with an `Address` for the local server and list of active members of the cluster.
 
 ```java
 Address address = new Address("123.456.789.0", 5000);
@@ -52,12 +50,11 @@ List<Address> members = Arrays.asList(
   new Address("123.456.789.1", 5000),
   new Address("123.456.789.2", 5000)
 );
-```
 
-With the membership list, create an `AtomixReplica.Builder` to build the server:
-
-```java
-AtomixReplica.Builder builder = AtomixReplica.builder(address, members);
+AtomixReplica replica = AtomixReplica.builder(address, members)
+  .withTransport(new NettyTransport())
+  .withStorage(new Storage(StorageLevel.MEMORY))
+  .build();
 ```
 
 Each replica can optionally be configured with a [Storage][storage-jd] module and [Transport]. The `Storage` object can be configured with differen `StorageLevel`s, such as `StorageLevel.MEMORY` or `StorageLevel.DISK`, indicating how the server should store state changes. The [NettyTransport] provides a fast, reliable communication layer for the cluster.
