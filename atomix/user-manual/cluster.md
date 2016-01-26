@@ -9,7 +9,7 @@ first-section: cluster
 
 Atomix clusters consist of at least one (but usually 3 or 5) [replica] and any number of [clients][client]. *Replicas* are stateful nodes that actively participate in the Raft consensus protocol, and *clients* are stateless nodes that modify system state remotely. When a cluster is started, the replicas in the cluster coordinate with one another to elect a leader.
 
-![Atomix cluster](http://s24.postimg.org/3jrc7yuad/IMG_0007.png)
+![Atomix cluster](/assets/img/docs/cluster.png)
 
 Once a leader has been elected, clients connect to a random server in the cluster, create resources (e.g. maps, sets, locks, etc) and submit commands (writes) and queries (reads). All commands are proxied to the cluster leader. When the leader receives a command, it persists the write to disk and replicates it to the rest of the cluster. Once a command has been received and persisted on a majority of replicas, the state change is committed and guaranteed not to be lost.
 
