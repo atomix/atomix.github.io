@@ -4,5 +4,5 @@ project: catalyst
 ---
 
 <div class="container text-center">
-  <a href="/{{ page.project }}/user-manual" class="btn btn-default btn-lg doc-btn">User Manual</a>
+  <a href="/{{ page.project }}/docs" class="btn btn-default btn-lg doc-btn">Explore the Docs</a>
 </div>

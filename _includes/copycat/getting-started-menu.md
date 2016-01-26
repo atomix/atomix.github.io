@@ -1,7 +1,0 @@
-* [Getting Started](getting-started)
-  * [Installation](#installation)
-  * [Creating a state machine](#creating-a-state-machine)
-  * [Defining state machine operations](#defining-state-machine-operations)
-  * [Implementing state machine operations](#implementing-state-machine-operations)
-  * [Starting a Copycat server](#starting-a-copycat-server)
-  * [Submitting operations via the client](#submitting-operations-via-the-client)

@@ -27,7 +27,8 @@ $sideBar.affix({
       return (this.top = offsetTop - navOuterHeight - sideBarMargin - 20)
     },
     bottom: function () {
-      return (this.bottom = $('#footer').outerHeight(true) + 64)
+      footerHeightOffset = 200 // Adjust for footer height
+      return (this.bottom = $('#footer').outerHeight(true) + footerHeightOffset)
     }
   }
 })

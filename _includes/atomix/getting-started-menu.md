@@ -1,5 +1,0 @@
-* [Getting Started](getting-started)
-  * [Installation](#installation)
-  * [Setting up the cluster](#setting-up-the-cluster)
-  * [Connecting the client](#connecting-the-client)
-  * [Creating distributed resources](#creating-distributed-resources)

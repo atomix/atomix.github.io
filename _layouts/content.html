@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 {% include {{ page.project }}/vars.inc %}
+  <head>
 {% include head.html %}
+    <link href="/assets/css/styles/googlecode.css" rel="stylesheet">
+  </head>
 	<body>
 
 {% include header.html %}
@@ -16,7 +19,7 @@
   </div>
 </div>
 
-<div class="doc-container container">
+<div class="doc-container container content">
 	<div class="row">
 {% if page.menu %}
     <div class="col-md-9 docs">
@@ -49,8 +52,8 @@
       </div>
 {% endif %}
 
-    </div>
   </div>
+</div>
 
 {% include footer.html %}
 
@@ -59,12 +62,8 @@
 <script type="text/javascript">
   var currentPath = window.location.pathname
 
-  function isGettingStarted(href) {
-    return href == "getting-started";
-  }
-
   function adjustHref(href) {
-    return '/{{ page.project }}/' + (isGettingStarted(href) ? href : '{{ page.menu }}/' + href);
+    return '/{{ page.project }}/{{ page.menu }}/' + href;
   }
 
   // Adjust user manual TOC when for small screens
@@ -90,8 +89,6 @@
     
     $(this).parent().find("ul > li a").each(function () {
       var childHref = $(this).attr('href');
-      if (!isGettingStarted(parentRef))
-        $(this).attr('href', newRef + childHref);
       $(this).attr('data-target', childHref);
     });
   });
