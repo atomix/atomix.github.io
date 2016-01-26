@@ -19,6 +19,7 @@
       * [1.1 Leader election](#leader-election-basics)
       * [1.2 Log replication](#log-replication-basics)
       * [1.3 Membership changes](#membership-changes-basics)
+      * [1.4 Log compaction](#log-compaction-basics)
    * [2 The Copycat cluster](#the-copycat-cluster)
    * [3 Client interaction](#client-interaction)
       * [3.1 Sessions](#client-sessions)
