@@ -349,7 +349,7 @@ Because the index is used to index offsets in the log, and because offsets and l
 
 Once a segment has been [compacted](#log-compaction), however, some entries may be missing from the segment. Copycat's log compaction algorithm rewrites segments with arbitrary entries removed, and existing entries retain their indexes after a segment is compacted. When a segment is rewritten with cleaned entries removed, the segment's index skips those entries rather than indexing them to conserve memory. As such, a binary search algorithm must be used to do index lookups for compacted segments. We feel this is an acceptable trade-off considering the nature of the Raft algorithm. In the majority of cases, servers read and write their logs before they're ever compacted, and only when server is recovering from its log or a leader is catching up a joining server does binary search become a necessity.
 
-<h2 id="optimizing-log-indexes">7.3 Optimizing indexes for Raft log access patterns
+<h2 id="optimizing-log-indexes">7.3 Optimizing indexes for Raft log access patterns</h2>
 
 Copycat's log is optimized to perform well under the most common conditions of the Raft consensus algorithm. Under normal conditions, followers append entries to their log and only read entries from the tail of the log, and leaders tend to read sequentially through the log to send entries to each follower. If all servers are caught up to or are close behind the leader, servers ultimately write and read uncompacted segments. In these cases, the constant lookup time for segment index lookups significantly improves performance.
 
