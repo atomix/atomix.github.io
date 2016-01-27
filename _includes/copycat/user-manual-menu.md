@@ -54,6 +54,7 @@
    * [7 The Copycat log](#the-copycat-log)
       * [7.1 Structure of the log](#log-structure)
       * [7.2 Log indexes](#log-indexes)
+      * [7.3 Optimizing indexes for Raft log access patterns](#optimizing-log-indexes)
    * [8 Log compaction](#log-compaction)
       * [8.1 Cleaning entries from the log](#log-cleaning)
       * [8.2 Basics of log compaction](#log-compaction-basics)
