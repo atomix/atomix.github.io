@@ -171,16 +171,16 @@ State machines push event notifications to clients as part of their normal opera
 
 Session events are typically pushed to the client by the server to which the client is connected. If the client is connected to a follower, that follower will push session events to the client. If the client is connected to the leader, the leader will push session events to the client. However, for fault tolerance and consistency, it's still critical that all servers store session events in memory. State machines should behave deterministically regardless of whether a client is connected to the server managing any given state machine.
 
+{: class="text-center"}
 {% include lightbox.html href="/assets/img/docs/session_event_consistency.png" desc="Session event fault-tolerance" %}
-
-*This figure illustrates why it's important that events be stored in memory on each server even though they may be sent to the client by only one server. In (a) S1 sends three events to the client. The client acknowledges two of the three events before S1 crashes in (b). The client submits a *KeepAlive* RPC which acknowledges events up to index 3 on S2 and S3 as is depicted in (c). Finally, in (d) the client reconnects to S2 which sends events for indexes 4 and 5 to the client.*
+*This figure illustrates why it's important that events be stored in memory on each server even though they may be sent to the client by only one server. In (a) S1 sends three events to the client. The client acknowledges two of the three events before S1 crashes in (b). The client submits a KeepAlive RPC which acknowledges events up to index 3 on S2 and S3 as is depicted in (c). Finally, in (d) the client reconnects to S2 which sends events for indexes 4 and 5 to the client.*
 
 All events are sent to and received by the client in sequential order. This makes it easier to reason about events and aids in tracking which events have been received by the client. In order to track events, each event is sent to the client with the index of the state machine command that triggered the event. The client expects to receive events in monotonically increasing order. However, because not all commands applied to the state machine may result in events published to any given session, the protocol must account for skipped indexes as well.
 
 Sending only the index of each event published to the client provides the client with the context necessary to determine that it received some events in order, but not that it received all events.  If a server publishes event indexes 1 and 3 to a client, the client can ensure that those events were received in order, but without additional metadata it doesn't know whether it should have received an event for index 2. Thus, in order to handle missing indexes in the order of events for any given session, servers must include the index of the previous event sent to the client, aptly called `prevIndex`. The `prevIndex` provides clients the necessary context to determine whether all events have been received in order. If a client receives an event message with a `prevIndex` greater than the last index for which it received an event, it can reject the event and request missing messages.
 
-
-[![Session event sequencing](/assets/img/docs/session_event_sequencing.png){: height="500px" }]
+{: class="text-center"}
+[![Session event sequencing](/assets/img/docs/session_event_sequencing.png){: height="400px" }]
 *This figure illustrates how session event messages are sequenced when sent from a server to a client. For each command applied to the state machine, zero or more session event messages can be pushed to the client. The client sequences the events in the order in which they were published by the stat machine.*
 
 Similarly, some commands may result in multiple event messages being published to the same session, and order may still be important within multiple events for a single index. For instance, in a lock state machine, it may be possible for a session to passively listen for lock state change events. The release of the lock may result in two events related to a single command — release the lock from one session and then acquire the lock for another session — and order remains important for this binary state machine. Servers must ensure that clients can determine the order in which to handle events within a single index.
@@ -205,8 +205,8 @@ In order to guarantee ordering of session events published to a client, the clie
 
 The client initializes its `eventIndex` to 0. When the client receives a batch of events, it validates the request's `prevIndex` against its local `eventIndex` to verify that the batch is the next in the sequence. If the batch was received out of order, it responds immediately indicating the index of the last event batch received in sequence. This allows the sending server to resend batches from that point.
 
+{: class="text-center"}
 {% include lightbox.html href="/assets/img/docs/session_event_coordination.png" desc="Client session event coordination" %}
-
 *This figure depicts the process with which a client coordinates with a server pushing event messages to the client. In (a) the server sends event messages for index `5` to the client with a ``prevIndex`` of `2`. However, because the client last received events for index `2`, the client rejects the events in (b) and sends its ``prevIndex`` `2` back to the server. The server then sends entries for index `3` with a ``prevIndex`` of `2` (c) and the client acknowledges receipt of the events in sequence in (d).*
 
 Requirements for responding to session event messages is dependent upon the event consistency model. Clients can safely respond to session event messages before processing them, but in some cases linearizability for session events is desired. For instance, when a lock is released, it may be important that the next lock holder is notified before the lock release is complete. If linearizability is a requirement, clients must fully process all messages in a batch prior to responding to the Publish RPC. Responding to a Publish RPC prior to processing the messages therein can result in the triggering command being completed before event message handlers are completed.
@@ -335,8 +335,8 @@ Typical implementations of the Raft consensus algorithm use a snapshot-based app
 
 Copycat logs are broken into segments. Each segment of a log is backed by a single file on disk (or block of memory) and represents a sequence of entries in the log. Once a segment becomes full - either determined by its size or the number of entries - the log rolls over to a new segment. Each segment has a 64-byte header that describes the segment's starting index, timestamp, version, and other information relevant to log compaction and recovery.
 
+{: class="text-center"}
 ![Log structure](/assets/img/docs/log_structure.png)
-
 *This illustration depicts the structure of the log. The log is broken into segments with each segment holding a count- or size-based range of entries. Segmenting the log allows sections of the log to be compacted independently.*
 
 Each entry in the log is written with a 16-bit unsigned length, a 32-bit unsigned *offset*, and an optional 64-bit *term*. Because Raft guarantees that terms in the log are monotonically increasing, the term is written only to the first entry in a segment for a given term, and all later entries inherit the term. When an entry with a new term is appended, that entry is written with the new log term and subsequent entries inherit the term.
@@ -379,10 +379,7 @@ Alternatively, Raft literature proposes log cleaning as a viable approach to log
 > 2. It then copies the live entries (those that contribute to the current system state) from those segments to the head of the log.
 > 3. Finally, it frees the storage space for the segments, making that space available for new segments.
 
-> To minimize the effect on normal operation, this process can be done concurrently [98].
-As a result of copying the live entries forwards to the head of the log, the entries get to be out of
-order for replay. The entries can include additional information (e.g., version numbers) to recreate
-the correct ordering when the log is applied.
+> To minimize the effect on normal operation, this process can be done concurrently [98]. As a result of copying the live entries forwards to the head of the log, the entries get to be out of order for replay. The entries can include additional information (e.g., version numbers) to recreate the correct ordering when the log is applied.
 
 The advantage of log cleaning is that it compacts the log using efficient sequential reads and writes. However, the obvious complexity if the model as described above - writing live entries to the head of the log - is that an implementation that uses this model must account for out-of-order entries in the log.
 
@@ -407,6 +404,7 @@ The patterns with which LSM trees access and compact logs were certainly intrigu
 Each of these compaction models provide significant advantages and drawbacks. Snapshots provide the obvious benefit of simplicity from the perspective of the state machine. State machines simply need to persist their full state to disk and remove applied entries from the log. However, snapshots can result in inconsistent performance, and to some extent snapshots add complexity to the management of session events in Copycat. Log cleaning resolves potential performance issues with more consistent and efficient writes, but the added complexity of tracking liveness in the state machine can significantly reduce usability for an abstract framework like Copycat. Log cleaning also precludes counting state machines. Log-structured merge trees use interesting patterns to compact and combine runs, but the use case seems heavily geared towards random access reads from disk.
 
 We considered each of these approaches to log compaction and ultimately opted to combine them into a custom log compaction algorithm. To meet our needs, the compaction algorithm would have to:
+
 * Perform compaction using efficient sequential writes
 * Preserve the order of the Raft log after compaction to reduce complexity
 * Allow state machines to to implement log cleaning for all or a portion of entries
@@ -426,8 +424,8 @@ While log cleaning is a form of log compaction, the following sections refer to 
 
 State machines are responsible for specifying which entries may safely be removed from the log. As entries are committed and commands are applied to the state machine, the state machine must indicate when prior commands no longer contribute to its state. For instance, if the commands `x←1` and then `x←2` are applied to the state machine in that order, the first command `x←1` no longer contributes to the state machine's state. That is, we can arrive at the final state `x=2` without applying the command `x←1`. Therefore, it's safe to remove `x←1` from the log.
 
+{: class="text-center"}
 {% include lightbox.html href="/assets/img/docs/major_compaction.png" desc="Major Compaction" %}
-
 *This figure illustrates the process of cleaning entries from the log. As entries are committed and commands are applied, the state machine marks entries that no longer contribute to the system's state for removal from the log. Grey boxes represent entries that have been marked for removal (i.e. cleaned) but haven't yet been removed by log compaction processes.*
 
 When a state machine indicates a command no longer contributes to its state and is safe to remove from the log, the index of the associated entry is set in a memory-compact bit array used during log compaction to determine the liveness of each individual entry. Therefore, the overhead to log cleaning in terms of memory is equivalent to the number of entries stored on disk.
@@ -456,9 +454,9 @@ During log compaction, multiple neighboring segments can be rewritten into a sin
 
 The log compaction algorithm as described thus far is safe for removing commands that update state machine state. But this does not account for entries that remove state (called tombstones) from the state machine. Tombstones are entries in the log which amount to state changes that remove state. In other words, tombstones are an indicator that some set of prior entries no longer contribute to the state of the system, including the tombstone entry itself. Thus, it is critical that tombstones remain in the log as long as any prior related entries do. If a tombstone is removed from the log before its prior related entries, rebuilding a state machine from the log will result in inconsistencies.
 
+{: class="text-center"}
 {% include lightbox.html href="/assets/img/docs/major_compaction.png" desc="Major Compaction" %}
-
-*This figure illustrates the process of major compaction. The grey boxes represent entries that have been marked for removal (cleaned) from the log. To compact the log, the major compaction task iterates through committed segments and rewrites each segment with cleaned entries removed (c) resulting in a compacted segment(d). The same process is then performed on the next segment (c)(d) until all committed segments have been compacted.
+*This figure illustrates the process of major compaction. The grey boxes represent entries that have been marked for removal (cleaned) from the log. To compact the log, the major compaction task iterates through committed segments and rewrites each segment with cleaned entries removed (c) resulting in a compacted segment(d). The same process is then performed on the next segment (c)(d) until all committed segments have been compacted.*
 
 A significant objective of the major compaction task is to remove tombstones from the log in a manner that ensures failures before, during, or after the compaction task will not result in inconsistencies when state is rebuilt from the log. In order to ensure tombstones are removed only after any prior related entries, the major compaction task simply compacts segments in sequential order from the first index of the first segment to the last index of the last committed segment. This ensures that if a failure occurs during the compaction process, only entries earlier in the log will have been removed, and potential tombstones which erase the state of those entries will remain.
 
@@ -466,8 +464,8 @@ A significant objective of the major compaction task is to remove tombstones fro
 
 Typically, as commands are stored on a majority of servers, committed, and applied to the state machine, they can be safely removed from the log once they no longer contribute to the state machine's state. But a particular nuance in tombstones necessitates that they be applied on all servers prior to being removed from the log. Tombstones are typically cleaned immediately after they're applied to the state machine and after any prior related commands are cleaned.
 
+{: class="text-center"}
 {% include lightbox.html href="/assets/img/docs/tombstone_compaction.png" desc="Tombstone compaction" %}
-
 *This figure illustrates the inconsistencies that can occur if tombstones are not stored on all servers. Entries that assign the value nil are tombstones. When a tombstone is applied, the entry and any prior related entries are cleaned. The leader replicates entries up to the tombstone to server B and compacts its log before sending entries to server C and server C fails to remove the entry at index 4 from its log.*
 
 Some systems like Kafka handle tombstones by aging them out of the log after a large interval of time. If we translate this approach to Raft, tombstones must be stored on all servers within a bounded time frame. This ensures that systems have an opportunity to receive and apply tombstones prior to being removed from the log. However, we found this time bound to be less than ideal and wanted to instead ensure that tombstones have been persisted on all servers prior to cleaning them from the log. Instead, we extend the Raft algorithm to keep track of which entries have been applied on all servers. By keep track of the highest index stored on all servers, servers can safely compact tombstones from their logs sooner.
@@ -480,8 +478,8 @@ The major log compaction process as described thus far poses a potential issue f
 
 In order to ensure consistency, major compaction processes must ensure that if a tombstone is removed from the log, all prior related entries have been removed as well. If the state machine continues to mark entries for cleaning from the log during the major compaction process, a race condition can cause inconsistencies in the log. The state of cleaned entries in the log is not persisted to disk for performance reasons, and so it's important to note that the state of the log should always reflect the state of the state machine even if the state machine has marked entries for removal from the log since in the event of a crash and recovery, the log will lose information about which entries were cleaned.
 
+{: class="text-center"}
 {% include lightbox.html href="/assets/img/docs/major_compaction_race.png" desc="Major Compaction Race" %}
-
 *This figure illustrates how allowing state machines to continue cleaning logs during major compaction can result in inconsistencies in the log. After the major compaction process writes the first segment, the state machine cleans tombstones from the second segment. The major compaction process rewrites the second segment without tombstones, resulting in an inconsistent state in the log.*
 
 In order to prevent race conditions while removing tombstones from the log, we take an immutable snapshot of the state of cleaned entries at the start of log compaction. This ensures that the scenario in figure n cannot occur.
@@ -506,14 +504,14 @@ Nevertheless, it's clear to us that managing time and expirations through the Ra
 
 Any implementation of the Raft consensus algorithm would incomplete without support for cluster configuration changes. Raft literature suggests a couple well-defined approaches to configuration changes. But configuration changes pose particular issues with the concept of tracking the index of globally replicated entries. When a new server joins the cluster, its log is empty. Thus, any previous `globalIndex` is effectively invalidated by a new member.
 
-![Global index unsafe](/assets/img/docs/global_index_unsafe.png){: height="500px"}
-
+{: class="text-center"}
+![Global index unsafe](/assets/img/docs/global_index_unsafe.png){: height="400px"}
 *This figure illustrates a case wherein replicating cleaned entries to a joining server can result in inconsistent logs. The grey boxes represent entries that have been cleaned but not removed from the log, and the write boxes represent entries that have been both cleaned and removed from the log. Server 1 begins replicating entries to the new member, `Server 4`, and crashes after replicating entries up to index 6. `Server 2` is then elected leader and continues replicating entries to `Server 4`. However, because `Server 2` compacted entries from its log before Server 1, Server 1 ended up sending entries to `Server 4` that were already removed from `Server 2`. This results in `Server 1` sending entries that will never be compacted on `Server 4` and thus results in an inconsistent state. By excluding cleaned entries where the entry index is less than the `globalIndex`, servers can ensure this type of inconsistency cannot result from catching up a joining server.*
 
 In a typical Raft cluster, the `commitIndex` is monotonically increasing. However, there are certain scenarios where the `commitIndex` can be decreased, such as in the case of a full cluster restart, and that does not break any of the guarantees of Raft. Similarly, it is safe to decrease the `globalIndex` without impacting the safety of the log compaction algorithm.
 
-![Global index safe](/assets/img/docs/global_index_safe.png){: height="500px"}
-
+{: class="text-center"}
+![Global index safe](/assets/img/docs/global_index_safe.png){: height="400px"}
 *This figure illustrates how servers replicate logs without cleaned entries to members joining the cluster. By removing cleaned entries when they're sent to a new server, the new server cannot receive globally committed entries that would otherwise have been compacted given the full context of the log, and so switching servers is safe.*
 
 <h3 id="snapshots">8.3 Implementing snapshots via log compaction</h3>
