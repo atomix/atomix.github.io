@@ -374,9 +374,11 @@ The most common of the log compaction methodologies is snapshots. Snapshotting c
 Alternatively, Raft literature proposes log cleaning as a viable approach to log compaction. Log cleaning is the process of removing individual entries from the log once they no longer contribute to the state machine state. Diego Ongaro provides a concise description of [how log cleaning would be implemented in Raft](https://ramcloud.stanford.edu/~ongaro/thesis.pdf):
 
 > In log cleaning, the log is split into consecutive regions called segments. Each pass of the log cleaner compacts the log using a three-step algorithm:
+
 > 1. It first selects segments to clean that have accumulated a large fraction of obsolete entries.
 > 2. It then copies the live entries (those that contribute to the current system state) from those segments to the head of the log.
 > 3. Finally, it frees the storage space for the segments, making that space available for new segments.
+
 > To minimize the effect on normal operation, this process can be done concurrently [98].
 As a result of copying the live entries forwards to the head of the log, the entries get to be out of
 order for replay. The entries can include additional information (e.g., version numbers) to recreate
