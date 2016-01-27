@@ -22,7 +22,7 @@
       * [1.4 Log compaction](#log-compaction-basics)
    * [2 The Copycat cluster](#the-copycat-cluster)
    * [3 Client interaction](#client-interaction)
-      * [3.1 Sessions](#client-sessions)
+      * [3.1 Sessions](#sessions)
       * [3.2 Session lifecycle management](#session-lifecycle-management)
       * [3.3 Commands](#client-commands)
          * [3.3.1 Preserving program order](#preserving-program-order)

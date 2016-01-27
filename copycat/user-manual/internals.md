@@ -69,7 +69,7 @@ The basic Raft consensus algorithm dictates that clients should communicate dire
 
 Typically, will initially connect to a pseudo-random server to register their session and then reconnect to the leader once it has been discovered. In the event that the client cannot locate a leader it continues to retry against random servers until one is found. In Copycat, client connections are spread across the cluster by default. Clients are allowed to connect to any server, and clients are responsible for choosing a server. Once connected to a server, clients try to maintain their connections for as long as possible. Reducing the frequency with which clients switch servers improves latency in bi-directional communication between clients and servers since servers typically know the route through which a client can be reached.
 
-<h3 id="client-sessions">3.1 Sessions</h3>
+<h3 id="sessions">3.1 Sessions</h3>
 
 Clients interact with the cluster within the context of a session. Sessions provide a mechanism through which interactions between a single client and the cluster can be managed. Once a session is registered by a client, all future interactions between the client and any server are associated with the client's session. Session aid in sequencing client operations for FIFO order, providing linearizable semantics for operations submitted multiple times, and notifying clients about changes in state machine state.
 
