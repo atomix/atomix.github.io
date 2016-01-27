@@ -7,7 +7,7 @@ pitch: Raft architecture and implementation
 first-section: internals
 ---
 
-Copycat is an advanced, feature complete implementation of the [Raft consensus algorithm] which has been developed over a period of nearly three years. The implementation goes well beyond the [original Raft paper](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf) and includes a majority of the full implementation described in Diego Ongaro's [Raft dissertation](https://ramcloud.stanford.edu/~ongaro/thesis.pdf) in addition to several extensions to the algorithm.
+Copycat is an advanced, feature complete implementation of the [Raft consensus algorithm][Raft] which has been developed over a period of nearly three years. The implementation goes well beyond the [original Raft paper][raft-paper] and includes a majority of the full implementation described in Diego Ongaro's [Raft dissertation][raft-dissertation] in addition to several extensions to the algorithm.
 
 In some cases, Copycat's Raft implementation diverges from recommendations. For instance, Raft dictates that all reads and writes be executed through the leader node, but Copycat's Raft implementation supports per-request consistency levels that allow clients to sacrifice linearizability and read from followers. Similarly, Raft literature recommends snapshots as the simplest approach to log compaction, but Copycat prefers log cleaning to promote more consistent performance throughout the lifetime of a cluster. In other cases, Copycat's Raft implementation extends those described in the literature. For example, Copycat's Raft implementation extends the concept of sessions to allow server state machines to publish events to clients.
 
@@ -17,7 +17,7 @@ The following documentation details Copycat's implementation of the Raft consens
 
 <h2 id="raft-basics">1 Raft basics</h2>
 
-In order to understand the context within which Copycat was developed, it's important to understand the core concepts of the Raft consensus algorithm. This section provides a brief overview of the core concepts of the algorithm, including leader election, log replication, and membership changes. Of course, the best place to read about the basics of the Raft algorithm is in the original [Raft paper](https://www.usenix.org/system/files/conference/atc14/atc14-paper-ongaro.pdf).
+In order to understand the context within which Copycat was developed, it's important to understand the core concepts of the Raft consensus algorithm. This section provides a brief overview of the core concepts of the algorithm, including leader election, log replication, and membership changes. Of course, the best place to read about the basics of the Raft algorithm is in the original [Raft paper][raft-paper].
 
 Raft is a consensus algorithm designed from the ground up for understandability. It achieves this by using concepts that are relatively easy to understand and implement. At the core of Raft is a replicated log that's managed by a leader through which writes are funneled to the log and replicated throughout the cluster. The log is closely integrated with the leader election algorithm to ensure consistency.
 
