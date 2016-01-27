@@ -333,7 +333,7 @@ Typical implementations of the Raft consensus algorithm use a snapshot-based app
 
 <h3 id="log-structure">7.1 Structure of the log</h3>
 
-Copycat logs are broken into segments. Each segment of a log is backed by a single file on disk (or block of memory) and represents a sequence of entries in the log. Once a segment becomes full - either determined by its size or the number of entries - the log rolls over to a new segment. At the head of each segment is a 64-byte header that describes the segment's starting index, timestamp, version, and other information relevant to log compaction and recovery.
+Copycat logs are broken into segments. Each segment of a log is backed by a single file on disk (or block of memory) and represents a sequence of entries in the log. Once a segment becomes full - either determined by its size or the number of entries - the log rolls over to a new segment. Each segment has a 64-byte header that describes the segment's starting index, timestamp, version, and other information relevant to log compaction and recovery.
 
 ![Log structure](/assets/img/docs/log_structure.png)
 
@@ -345,33 +345,84 @@ Each entry in the log is written with a 16-bit unsigned length, a 32-bit unsigne
 
 Copycat reads entries from its log from a dense in-memory index of all entries in each segment. A separate index is associated with each segment and thus each file on disk, and each entry in the index points to the position of a specific *offset* in the segment. Offsets are zero-based sequence numbers used to represent the offset of an index relative to the starting *index* within a segment. For instance, if the index of an entry at offset `0` in a segment is `10` then offset `9` is index `20`. Making offsets relative to the starting index of a segment allows Copycat to use 32-bit unsigned integers to represent indexes in the log.
 
+Indexes are built as entries are written to the log. Offsets are written to the index in sorted order, and when the log is truncated, so too are the indexes associated with the relevant segments. When a log is recovered from disk, each segment rebuilds its in-memory index internally by reading the segment and repopulating the index.
+
 Because the index is used to index offsets in the log, and because offsets and log indices are always monotonically increasing, entries will always be appended to the index in sorted order. Additionally, for a leader appending new entries to its log, no offset will ever be skipped in a segment. Thus, performing an index lookup to locate any entry in an uncompacted segment is done in O(1) time by simply reading the relative position for the given offset from the index.
 
-Once a segment has been [compacted](#log-compaction), however, some entries may be missing from the segment. Copycat's log compaction algorithm rewrites segments with arbitrary entries removed, and existing entries retain their indexes after a segment is compacted. When a segment is rewritten with cleaned entries removed, the segment's index skips those entries rather than indexing them to conserve memory. As such, a binary search algorithm must be used to do index lookups for compacted segments. We feel this is an acceptable trade-off considering the nature of the Raft algorithm. In the majority of cases, servers read and write their logs before they're ever compacted, and only when server is recovering from its log or a leader is catching up a joining server does binary search become a necessity.
+But once a segment has been [compacted](#log-compaction), or if a server is being caught up by a leader whose log has been compacted, some entries may be missing from a segment. Copycat's log compaction algorithm rewrites segments with arbitrary entries removed, and existing entries retain their indexes after a segment is compacted. When a segment is rewritten, the segment's index skips compacted entries rather than indexing them to conserve memory. As such, a binary search algorithm must be used to do index lookups for segments with skipped entries. This is determined simply by tracking whether any offsets have been skipped in the index. We feel binary search is an acceptable trade-off for compacted segments considering the [access patterns of the Raft algorithm](#optimizing-log-indexes). In the majority of cases, servers read and write their logs before they're ever compacted, and only when server is recovering from its log or a leader is catching up a joining server does binary search become a necessity.
 
-<h2 id="optimizing-log-indexes">7.3 Optimizing indexes for Raft log access patterns</h2>
+<h3 id="optimizing-log-indexes">7.3 Optimizing indexes for Raft log access patterns</h3>
 
-Copycat's log is optimized to perform well under the most common conditions of the Raft consensus algorithm. Under normal conditions, followers append entries to their log and only read entries from the tail of the log, and leaders tend to read sequentially through the log to send entries to each follower. If all servers are caught up to or are close behind the leader, servers ultimately write and read uncompacted segments. In these cases, the constant lookup time for segment index lookups significantly improves performance.
+Copycat's log is optimized to perform well under the most common conditions of the Raft consensus algorithm. Under normal operation, followers append entries to their log and read entries from the head of the log, and leaders tend to read sequentially through the log to send entries to each follower. Log segments can only be compacted once all entries in a segment have been committed, so if all servers are operating primarily on uncommitted entries then servers ultimately only read uncompacted segments. In these cases, constant lookup time for segment index lookups significantly improves performance.
 
-Segment read performance suffers most significantly when a lookup requires binary search to locate an entry. Fortunately, even in the case of reading a compacted segment, read performance can be significantly improved via the segment index by again taking advantage of Raft's log access patterns. In particular, if a server is reading from a compacted segment of the log it's normally either replaying the log to itself or to another server (if the server is the leader). Because entries always maintain their position and index in the log and offset within a segment even after compaction, iterating entries in compacted segments of the log still only requires a single binary search. Once the starting position of a scan of the log is located, the index stores the position and offset of the last entry read from the index. On subsequent index lookups, the index first checks the next offset in the segment and only performs a binary search if the segment is not being read sequentially.
+Segment read performance suffers most significantly when a lookup requires binary search to locate an entry. Binary search of a segment's index is necessary once a segment has been compacted and entries have been removed. Fortunately, even in the case of reading a compacted segment, read performance can be significantly improved via the segment index by again taking advantage of Raft's log access patterns. In particular, if a server is reading from a compacted segment of the log it's normally either replaying the log to itself or to another server (if the server is the leader). Because entries always maintain their position and index in the log and offset within a segment even after compaction, iterating entries in compacted segments of the log still only requires a single binary search. Once the starting position of a scan of the log is located, the index stores the position and offset of the last entry read from the index. On subsequent index lookups, the index first checks the next offset in the segment and only performs a binary search if the segment is not being read sequentially.
 
 <h2 id="log-compaction">8 Log compaction</h2>
 
-The Raft literature suggests several ways to address the problem of logs growing unbounded. The most common of the log compaction methodologies is snapshots. Snapshotting compacts the Raft log by storing a snapshot of the state machine state and removing all commands applied to create that state. As simple as this sounds, though, there are some complexities. Servers have to ensure that snapshots are reflective of a specific point in the log even while continuing to service commands from clients. This may require that the process be forked for snapshotting or leaders step down prior to taking a snapshot. Additionally, if a follower falls too far behind the leader (the follower's log's last index is less than the leader's snapshot index), additional mechanisms are required to replicate snapshots from the leader to the follower.
+One of the most essential components of the Raft consensus algorithm is log compaction. Log compaction is the process of reducing the size of the log on disk such that servers can continue to service writes while maintaining their full state on disk.
 
-Alternative methods suggested in the Raft literature are mostly variations of log cleaning. Log cleaning is the process of removing individual entries from the log once they no longer contribute to the state machine state. The disadvantage of log cleaning is that it adds additional complexity in requiring state machines to keep track of commands that no longer apply to the state machine's state. This complexity is multiplied by the delicacy handling tombstones; commands that result in the absence of state must be carefully managed to ensure they're applied on all Raft servers. Nevertheless, log cleaning provides significant performance advantages by writing logs efficiently in long sequential strides.
+<h3 id="log-compaction-strategies">8.1 Log compaction strategies</h3>
 
-We opted to sacrifice some complexity to state machines in favor of more efficient log compaction. The reasoning behind this decision is log cleaning provides a lower level mechanism for log compaction than does snapshots, and higher level approaches can co-opt the log cleaning process for different use cases.
+The Raft literature suggests several approaches to log compaction in Raft, and we carefully considered each of them. We ultimately implemented a custom log compaction algorithm in Copycat. The following sections describe the advantages and drawbacks of each of the recommended approaches to log compaction as well as an in-depth description of Copycat's custom log compaction algorithms.
+
+<h4 id="snapshots">8.1.1 Snapshots</h4>
+
+The most common of the log compaction methodologies is snapshots. Snapshotting compacts the Raft log by storing a snapshot of the state machine state and removing all commands applied to create that state. As simple as this sounds, though, there are some complexities. Servers have to ensure that snapshots are reflective of a specific point in the log even while continuing to service commands from clients. This may require that the process be forked for snapshotting or leaders step down prior to taking a snapshot. Additionally, if a follower falls too far behind the leader (the follower's log's last index is less than the leader's snapshot index), additional mechanisms are required to replicate snapshots from the leader to the follower.
+
+<h4 id="log-cleaning">8.1.2 Log cleaning</h4>
+
+Alternatively, Raft literature proposes log cleaning as a viable approach to log compaction. Log cleaning is the process of removing individual entries from the log once they no longer contribute to the state machine state. Diego Ongaro provides a concise description of [how log cleaning would be implemented in Raft](https://ramcloud.stanford.edu/~ongaro/thesis.pdf):
+
+> In log cleaning, the log is split into consecutive regions called segments. Each pass of the log cleaner compacts the log using a three-step algorithm:
+> 1. It first selects segments to clean that have accumulated a large fraction of obsolete entries.
+> 2. It then copies the live entries (those that contribute to the current system state) from those segments to the head of the log.
+> 3. Finally, it frees the storage space for the segments, making that space available for new segments.
+> To minimize the effect on normal operation, this process can be done concurrently [98].
+As a result of copying the live entries forwards to the head of the log, the entries get to be out of
+order for replay. The entries can include additional information (e.g., version numbers) to recreate
+the correct ordering when the log is applied.
+
+The advantage of log cleaning is that it compacts the log using efficient sequential reads and writes. However, the obvious complexity if the model as described above - writing live entries to the head of the log - is that an implementation that uses this model must account for out-of-order entries in the log.
+
+> As a result of copying the live entries forwards to the head of the log, the entries get to be out of order for replay. The entries can include additional information (e.g., version numbers) to recreate the correct ordering when the log is applied.
+
+Because Raft is so heavily integrated with the log and its order, the prospect of having to account for order in the log made log cleaning rather impractical for us. Additionally, certain types of state machines can be difficult to implement absent snapshots. For instance, in a counting state machine which implements *increment* and *decrement*, the ultimate state of the system is necessarily dependent on all the entries in the log, and so all entries contribute as long as the counter persists. This poses a significant challenge for an abstract system like Copycat. We wanted Copycat to be able to model all types of state machines, and a pure log cleaning approach precludes that.
+
+Additionally, there are some subtle complexities with log cleaning. It is the responsibility of the state machine to determine when an entry no longer contributes to the state machine's state, however doing so for entries that represent the removal of state from the state machine (i.e. tombstones) is more complex. An entry that removes state contributes to the system's state as long as any prior entries that contributed that state are retained in the log. This means log compaction processes must determine when it's safe to remove a tombstone from the log based on prior compaction processes.
+
+<h4 id="log-structured-merge-trees">8.1.3 Log-structured merge trees</h4>
+
+Raft literature also suggests the use of log-structured merge trees (LSM trees) for log compaction in Raft.
+
+> LSM trees are tree-like data structures that store ordered key-value pairs. At a high level, they use disk similarly to log cleaning approaches: they write in large sequential strides and do not modify data on disk in place. However, instead of maintaining all state in the log, LSM trees reorganize the state for better random access.
+
+LSM trees initially keep keys in a small log on disk, and once that log fills up keys are sorted and written to *runs* on disk. To service reads, trees are searched by level to locate keys in the sorted runs. Runs are periodically compacted by merging runs and removing duplicate keys.
+
+The patterns with which LSM trees access and compact logs were certainly intriguing to us. However, considering that Copycat is not a pure key-value store and does not need random access to keys, significant value is lost for this application. Copycat's state machines are purely in-memory and are generated from replays of an ordered log, and so the ability to iterate through the log in sorted order is critical to the performance of the system. If we were to use log indexes as keys in LSM trees that would largely defeat the purpose of the sorting algorithm as entries in the Raft log are inherently sorted. More notable, however, it the method with which
+
+<h3 id="log-compaction-algorithm">8.2 Log compaction algorithm</h3>
+
+Each of these compaction models provide significant advantages and drawbacks. Snapshots provide the obvious benefit of simplicity from the perspective of the state machine. State machines simply need to persist their full state to disk and remove applied entries from the log. However, snapshots can result in inconsistent performance, and to some extent snapshots add complexity to the management of session events in Copycat. Log cleaning resolves potential performance issues with more consistent and efficient writes, but the added complexity of tracking liveness in the state machine can significantly reduce usability for an abstract framework like Copycat. Log cleaning also precludes counting state machines. Log-structured merge trees use interesting patterns to compact and combine runs, but the use case seems heavily geared towards random access reads from disk.
+
+We considered each of these approaches to log compaction and ultimately opted to combine them into a custom log compaction algorithm. To meet our needs, the compaction algorithm would have to:
+* Perform compaction using efficient sequential writes
+* Preserve the order of the Raft log after compaction to reduce complexity
+* Allow state machines to to implement log cleaning for all or a portion of entries
+* Allow state machines to implement snapshotting for all or a portion of entries
+
+These constraints dictated that we adopt many but not all of the concepts of log cleaning as described in the Raft literature. In particular, the need to preserve order in the log precludes writing live entries to the head of the log. Thus, Copycat implements an algorithm similar to the process of log cleaning as described in the Raft literature, but it retains the positions and indexes of individual entries in the log after compaction.
 
 As entries are written to the log and associated commands are applied to the state machine, state machines are responsible for explicitly cleaning the commits from the log. The log compaction algorithm is optimized to select segments of the log for compaction based on the number of commits marked for removal. Periodically, a series of background threads will rewrite segments of the log in a thread-safe manner that ensures all segments can continue to be read and written. Whenever possible, neighboring segments are combined into a single segment to reduce the number of open file descriptors.
 
-Typically, a Raft log contains non-null entries from the point of the last compaction through the commit index and to the end of the log. But this compaction model means that Copycat's Raft protocol must be capable of accounting for entries missing from the log. When entries are replicated to a follower, each entry is replicated with its index so that the follower can write entries to its own log in the proper sequence. Entries that are not present in a server's log or in an *AppendEntries* RPC are simply skipped in the log. In order to maintain consistency, it is critical that state machines implement log cleaning correctly. We can safely assume that if an entry is missing from the log due to compaction, it must have already been committed and so the consistency checks inherent in handling *AppendEntries* RPCs are largely irrelevant and can be bypassed.
+Typically, a Raft log contains entries from the point of the last compaction through the commit index and to the end of the log. But this compaction model means that Copycat's Raft protocol must be capable of accounting for entries missing from the log. When entries are replicated to a follower, each entry is replicated with its index so that the follower can write entries to its own log in the proper sequence. Entries that are not present in a server's log or in an *AppendEntries* RPC are simply skipped in the log. In order to maintain consistency, it is critical that state machines implement log cleaning correctly. We can safely assume that if an entry is missing from the log due to compaction, it must have already been committed and so the consistency checks inherent in handling *AppendEntries* RPCs are largely irrelevant and can be bypassed.
+
+This compaction model implies that state machines must contribute to the compaction process by indicating when a command no longer contributes to the state machine's state. This significantly increases the complexity of state machines and, as mentioned, precludes the implementation of certain types of state machines. As such, our goal was to provide the flexibility to [snapshot](#snapshots-via-log-compaction) specific portion of the state machine's state for implementing counting state machines and generally simplifying state machine implementations for certain use cases. Snapshots are implemented by simply writing a snapshot to disk and marking all snapshotted entries for removal from the log.
 
 While log cleaning is a form of log compaction, the following sections refer to cleaning and compaction in separate contexts. Cleaning refers to the process of the state machine marking a particular log entry for removal from the log. Compaction refers to the process of physically removing an entry from disk.
 
-<h3 id="log-cleaning">8.1 Cleaning entries from the log</h3>
+<h4 id="marking-entries">8.2.1 Marking entries for removal from the log</h4>
 
-With log cleaning, state machines are ultimately responsible for specifying which entries may safely be removed from the log. As entries are committed and commands are applied to the state machine, the state machine must indicate when prior commands no longer contribute to its state. For instance, if the commands `x←1` and then `x←2` are applied to the state machine in that order, the first command `x←1` no longer contributes to the state machine's state. That is, we can arrive at the final state `x=2` without applying the command `x←1`. Therefore, it's safe to remove `x←1` from the log.
+State machines are responsible for specifying which entries may safely be removed from the log. As entries are committed and commands are applied to the state machine, the state machine must indicate when prior commands no longer contribute to its state. For instance, if the commands `x←1` and then `x←2` are applied to the state machine in that order, the first command `x←1` no longer contributes to the state machine's state. That is, we can arrive at the final state `x=2` without applying the command `x←1`. Therefore, it's safe to remove `x←1` from the log.
 
 {% include lightbox.html href="/assets/img/docs/major_compaction.png" desc="Major Compaction" %}
 
@@ -379,7 +430,7 @@ With log cleaning, state machines are ultimately responsible for specifying whic
 
 When a state machine indicates a command no longer contributes to its state and is safe to remove from the log, the index of the associated entry is set in a memory-compact bit array used during log compaction to determine the liveness of each individual entry. Therefore, the overhead to log cleaning in terms of memory is equivalent to the number of entries stored on disk.
 
-<h3 id="log-compaction-basics">8.2 Basics of log compaction</h3>
+<h4 id="segment-selection">8.2.1 Basics of log compaction</h4>
 
 Up until now we have described the methods by which commands are applied to the state machine and the state machine indicates which commands no longer contribute to the state machine state. But this does not suffice to solve the problem of an ever growing amount of disk space being consumed by cleaned entries.
 
@@ -393,13 +444,13 @@ The criteria by which segments are selected for compaction can have significant 
 
 The removal of entries from the log necessitates some minor modifications to the Raft consensus protocol. In particular, *AppendEntries* RPCs must be capable of sending missing entries to followers. If a server does a consistency check and an entry is missing from its log, it can safely assume that the log is consistent with an *AppendEntries* request since only committed entries can be cleaned and compacted from the log, and the Log Matching Property guarantees that no other server could have applied an entry from a different term or with a different value.
 
-<h3 id="log-segment-compaction">8.3 Combining log segments</h3>
+<h3 id="log-segment-compaction">8.2.3 Combining log segments</h3>
 
 As the cluster progresses and entries are written to and removed from the log, each segment will shrink and the overall number of segments will increase. Eventually, the number of open resources can cause performance and fault tolerance issue. Therefore, in addition to reducing the size of individual segments, some mechanism is required to reduce the number of overall segments as well.
 
-During log compaction, multiple neighboring segments can be rewritten into a single segment to reduce the number of files on disk. When segments are selected for compaction, segments that are parallel to one another — such that the tail of one segment flows into the head of another segment — are given priority over disjointed segments. In our implementation, we select and combine neighboring segments iff the resulting compact segment will be smaller than the configured maximum segment size.
+During log compaction, multiple neighboring segments can be rewritten into a single segment to reduce the number of files on disk. When segments are selected for compaction, segments that are parallel to one another — such that the head of one segment flows into the tail of another segment — are given priority over disjointed segments. In our implementation, we select and combine neighboring segments iff the resulting compact segment will be smaller than the configured maximum segment size.
 
-<h3 id="log-tombstones">8.4 Removing tombstones from the log</h3>
+<h3 id="log-tombstones">8.2.4 Removing tombstones from the log</h3>
 
 The log compaction algorithm as described thus far is safe for removing commands that update state machine state. But this does not account for entries that remove state (called tombstones) from the state machine. Tombstones are entries in the log which amount to state changes that remove state. In other words, tombstones are an indicator that some set of prior entries no longer contribute to the state of the system, including the tombstone entry itself. Thus, it is critical that tombstones remain in the log as long as any prior related entries do. If a tombstone is removed from the log before its prior related entries, rebuilding a state machine from the log will result in inconsistencies.
 
@@ -409,7 +460,7 @@ The log compaction algorithm as described thus far is safe for removing commands
 
 A significant objective of the major compaction task is to remove tombstones from the log in a manner that ensures failures before, during, or after the compaction task will not result in inconsistencies when state is rebuilt from the log. In order to ensure tombstones are removed only after any prior related entries, the major compaction task simply compacts segments in sequential order from the first index of the first segment to the last index of the last committed segment. This ensures that if a failure occurs during the compaction process, only entries earlier in the log will have been removed, and potential tombstones which erase the state of those entries will remain.
 
-<h3 id="log-tombstone-safety">8.5 Ensuring tombstones are applied on all servers</h3>
+<h3 id="log-tombstone-safety">8.2.5 Ensuring tombstones are applied on all servers</h3>
 
 Typically, as commands are stored on a majority of servers, committed, and applied to the state machine, they can be safely removed from the log once they no longer contribute to the state machine's state. But a particular nuance in tombstones necessitates that they be applied on all servers prior to being removed from the log. Tombstones are typically cleaned immediately after they're applied to the state machine and after any prior related commands are cleaned.
 
@@ -421,7 +472,7 @@ Some systems like Kafka handle tombstones by aging them out of the log after a l
 
 Just as with the `commitIndex`, the leader is responsible for tracking which entries have been stored on all servers — known as the `globalIndex` — and sharing that information with followers through *AppendEntries* RPCs. The `globalIndex` is calculated simply as the minimum matchIndex for all servers in the cluster. Servers only perform major compaction to remove tombstones for segments for which all indices are less than the `globalIndex`. This ensures that tombstones are not removed from the log until they have been stored on all servers, and once stored each server will not remove any tombstone until it has been applied to and cleaned by the state machine.
 
-<h3 id="major-compaction-safety">8.6 Preventing race conditions in major compaction</h3>
+<h3 id="major-compaction-safety">8.2.6 Preventing race conditions in major compaction</h3>
 
 The major log compaction process as described thus far poses a potential issue for active servers. We wanted to allow the state machine to safely clean entries from the log at any point in time. This means we cannot assume once a tombstone is applied to the state machine it will be immediately cleaned. For instance, a command that sets a time-to-live (TTL) on a key is actually a tombstone since it ultimately results in the removal of state, but it won't be cleaned from the log until the amount of time specified by the TTL has expired. Because segments of the log are compacted sequentially, if the state machine continues to clean entries from the log during major compaction, inconsistencies can result.
 
@@ -433,13 +484,13 @@ In order to ensure consistency, major compaction processes must ensure that if a
 
 In order to prevent race conditions while removing tombstones from the log, we take an immutable snapshot of the state of cleaned entries at the start of log compaction. This ensures that the scenario in figure n cannot occur.
 
-<h3 id="major-compaction-liveness">8.7 Liveness in major compaction</h3>
+<h3 id="major-compaction-liveness">8.2.7 Liveness in major compaction</h3>
 
 The algorithm for ensuring log state remains consistent by storing tombstones on all servers introduces a liveness issue. If any server is down, `globalIndex` cannot increase and thus individual servers cannot continue to remove tombstones from their logs. In order to ensure servers can progress during temporary failures, we propose that leaders keep track of which servers are actively participating in replication and effectively demote servers that can't be reached for some time period. If the leader fails to successfully heartbeat a follower for some time bound — for instance, ten heart beats — it demotes the follower by committing a configuration change. Once the configuration change has been applied, the next *AppendEntries* RPC to that follower will truncate the follower's log and begin resending entries. This allows live servers to continue to compact their logs, including removing tombstones, and ensures that servers are caught up safely once they rejoin the cluster.
 
 One concern with this algorithm is that it requires servers to be caught up from the start of their logs after falling too far behind the leader. But this is effectively not very different from a similar restriction placed on snapshotted logs. In a cluster that uses snapshots for log compaction, if any server crashes for some period of time or otherwise falls too far behind the leader, the leader will ultimately have to send its snapshot to the follower once it rejoins the cluster. In Copycat, the log effectively represents a snapshot of the state machine at any point in time — albeit with greater overhead in most cases — so we contend that the performance impact of sending complete logs to followers is minimal as compared to snapshotting.
 
-<h3 id="log-compaction-time">8.8 Managing time and timeouts in a compacted log</h3>
+<h3 id="log-compaction-time">8.2.8 Managing time and timeouts in a compacted log</h3>
 
 Many Raft implementations use the replicated Raft log to provide a consistent view of time. To do so, implementations append the leader's timestamp to certain entries in the log. When an entry is applied to the state machine, the entry's timestamp is used to increment a monotonically increasing logical clock. This approach can be used to expire keys or sessions. Indeed, sessions as described in the Raft literature use leader timestamps to remove expired session information from memory when a client fails to send a keep-alive request to the cluster in a timely manner.
 
@@ -449,7 +500,7 @@ In order to handle time based expirations in conjunction with log cleaning, we i
 
 Nevertheless, it's clear to us that managing time and expirations through the Raft log poses significant challenges for systems that rely on log cleaning. Thus, we recommend that compaction for time-based commands be managed through [snapshots](#snapshots).
 
-<h3 id="log-compaction-membership-changes">8.9 Handling configuration changes</h3>
+<h3 id="log-compaction-membership-changes">8.2.9 Handling configuration changes</h3>
 
 Any implementation of the Raft consensus algorithm would incomplete without support for cluster configuration changes. Raft literature suggests a couple well-defined approaches to configuration changes. But configuration changes pose particular issues with the concept of tracking the index of globally replicated entries. When a new server joins the cluster, its log is empty. Thus, any previous `globalIndex` is effectively invalidated by a new member.
 
@@ -463,17 +514,17 @@ In a typical Raft cluster, the `commitIndex` is monotonically increasing. Howeve
 
 *This figure illustrates how servers replicate logs without cleaned entries to members joining the cluster. By removing cleaned entries when they're sent to a new server, the new server cannot receive globally committed entries that would otherwise have been compacted given the full context of the log, and so switching servers is safe.*
 
-<h3 id="snapshots">8.10 Implementing snapshots via log cleaning</h3>
+<h3 id="snapshots">8.3 Implementing snapshots via log compaction</h3>
 
 Snapshots are the typical mechanism by which Raft servers compact their logs. Snapshots work by periodically writing the state machine's state to a snapshot on disk and then removing all entries up to the last index applied to the state machine. While snapshots can impact performance, they do provide a significantly simpler approach for managing system state with respect to log compaction. Indeed, some types of state machines - such as counting state machines - necessitate snapshotting. With snapshots, state machines do not have to keep track of which commands apply to their state since a snapshot represents the complete state machine state at a point in logical time. Thus, we wanted to find a way to take advantage of the simplicity of snapshots while maintaining the performance advantages of sequential writes during log compaction.
 
-Snapshots are implemented on top of Copycat's log cleaning algorithm. A snapshot of the state machine's state is taken each time the log rolls over to a new segment and the `commitIndex` surpasses the last index of the previous segment, thus making the prior segment compactable. When a snapshot is taken, the state machine writes its state to a snapshot file on disk and Copycat cleans all snapshottable entries (entries which indicate they're compacted via snapshots) up to the last applied index.
+Snapshots are implemented on top of Copycat's log compaction algorithm. A snapshot of the state machine's state is taken each time the log rolls over to a new segment and the `commitIndex` surpasses the last index of the previous segment, thus making the prior segment compactable. When a snapshot is taken, the state machine writes its state to a snapshot file on disk and Copycat cleans all snapshottable entries (entries which indicate they're compacted via snapshots) up to the last applied index.
 
-<h3 id="log-cleaning-snapshots">8.11 Combining snapshots and log cleaning</h3>
+<h3 id="log-compaction-snapshots">8.3.1 Combining snapshots and log compaction</h3>
 
 Snapshottable commands are commands applied to the state machine for which associated state is persisted in a snapshot once taken. In contrast to typical snapshotting in Raft, though, there is some potential in Copycat for snapshottable commands to be applied to the state machine after a later snapshot has already been taken. If a server stores a snapshot of its state and crashes before it can compact prior snapshottable commands from its log, snapshottable commands will be replayed to the state machine on recovery. Thus, state machine implementations must take care to overwrite state from snapshottable commands when installing a snapshot just as state from snapshottable commands is stored in a snapshot.
 
-<h3 id="snapshot-session-events">8.12 Managing session events for snapshotted logs</h3>
+<h3 id="snapshot-session-events">8.3.2 Managing session events for snapshotted logs</h3>
 
 Session event messages are derived from individual commands applied to the state machine. Event messages are stored in memory for fault tolerance, and in the event of a crash and replay of the Raft log event messages must be recreated from the commands on disk. This means individual commands must must be retained in the log until related events have been received by all clients. If a snapshot is taken of the state machine state and snapshotted entries are removed from disk before being received by all clients, a failure of the server can result in lost session event messages.
 
