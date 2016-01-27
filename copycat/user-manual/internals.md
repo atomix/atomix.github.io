@@ -444,13 +444,13 @@ The criteria by which segments are selected for compaction can have significant 
 
 The removal of entries from the log necessitates some minor modifications to the Raft consensus protocol. In particular, *AppendEntries* RPCs must be capable of sending missing entries to followers. If a server does a consistency check and an entry is missing from its log, it can safely assume that the log is consistent with an *AppendEntries* request since only committed entries can be cleaned and compacted from the log, and the Log Matching Property guarantees that no other server could have applied an entry from a different term or with a different value.
 
-<h3 id="log-segment-compaction">8.2.3 Combining log segments</h3>
+<h4 id="log-segment-compaction">8.2.3 Combining log segments</h4>
 
 As the cluster progresses and entries are written to and removed from the log, each segment will shrink and the overall number of segments will increase. Eventually, the number of open resources can cause performance and fault tolerance issue. Therefore, in addition to reducing the size of individual segments, some mechanism is required to reduce the number of overall segments as well.
 
 During log compaction, multiple neighboring segments can be rewritten into a single segment to reduce the number of files on disk. When segments are selected for compaction, segments that are parallel to one another — such that the head of one segment flows into the tail of another segment — are given priority over disjointed segments. In our implementation, we select and combine neighboring segments iff the resulting compact segment will be smaller than the configured maximum segment size.
 
-<h3 id="log-tombstones">8.2.4 Removing tombstones from the log</h3>
+<h4 id="log-tombstones">8.2.4 Removing tombstones from the log</h4>
 
 The log compaction algorithm as described thus far is safe for removing commands that update state machine state. But this does not account for entries that remove state (called tombstones) from the state machine. Tombstones are entries in the log which amount to state changes that remove state. In other words, tombstones are an indicator that some set of prior entries no longer contribute to the state of the system, including the tombstone entry itself. Thus, it is critical that tombstones remain in the log as long as any prior related entries do. If a tombstone is removed from the log before its prior related entries, rebuilding a state machine from the log will result in inconsistencies.
 
@@ -460,7 +460,7 @@ The log compaction algorithm as described thus far is safe for removing commands
 
 A significant objective of the major compaction task is to remove tombstones from the log in a manner that ensures failures before, during, or after the compaction task will not result in inconsistencies when state is rebuilt from the log. In order to ensure tombstones are removed only after any prior related entries, the major compaction task simply compacts segments in sequential order from the first index of the first segment to the last index of the last committed segment. This ensures that if a failure occurs during the compaction process, only entries earlier in the log will have been removed, and potential tombstones which erase the state of those entries will remain.
 
-<h3 id="log-tombstone-safety">8.2.5 Ensuring tombstones are applied on all servers</h3>
+<h4 id="log-tombstone-safety">8.2.5 Ensuring tombstones are applied on all servers</h4>
 
 Typically, as commands are stored on a majority of servers, committed, and applied to the state machine, they can be safely removed from the log once they no longer contribute to the state machine's state. But a particular nuance in tombstones necessitates that they be applied on all servers prior to being removed from the log. Tombstones are typically cleaned immediately after they're applied to the state machine and after any prior related commands are cleaned.
 
@@ -472,7 +472,7 @@ Some systems like Kafka handle tombstones by aging them out of the log after a l
 
 Just as with the `commitIndex`, the leader is responsible for tracking which entries have been stored on all servers — known as the `globalIndex` — and sharing that information with followers through *AppendEntries* RPCs. The `globalIndex` is calculated simply as the minimum matchIndex for all servers in the cluster. Servers only perform major compaction to remove tombstones for segments for which all indices are less than the `globalIndex`. This ensures that tombstones are not removed from the log until they have been stored on all servers, and once stored each server will not remove any tombstone until it has been applied to and cleaned by the state machine.
 
-<h3 id="major-compaction-safety">8.2.6 Preventing race conditions in major compaction</h3>
+<h4 id="major-compaction-safety">8.2.6 Preventing race conditions in major compaction</h4>
 
 The major log compaction process as described thus far poses a potential issue for active servers. We wanted to allow the state machine to safely clean entries from the log at any point in time. This means we cannot assume once a tombstone is applied to the state machine it will be immediately cleaned. For instance, a command that sets a time-to-live (TTL) on a key is actually a tombstone since it ultimately results in the removal of state, but it won't be cleaned from the log until the amount of time specified by the TTL has expired. Because segments of the log are compacted sequentially, if the state machine continues to clean entries from the log during major compaction, inconsistencies can result.
 
@@ -484,13 +484,13 @@ In order to ensure consistency, major compaction processes must ensure that if a
 
 In order to prevent race conditions while removing tombstones from the log, we take an immutable snapshot of the state of cleaned entries at the start of log compaction. This ensures that the scenario in figure n cannot occur.
 
-<h3 id="major-compaction-liveness">8.2.7 Liveness in major compaction</h3>
+<h4 id="major-compaction-liveness">8.2.7 Liveness in major compaction</h4>
 
 The algorithm for ensuring log state remains consistent by storing tombstones on all servers introduces a liveness issue. If any server is down, `globalIndex` cannot increase and thus individual servers cannot continue to remove tombstones from their logs. In order to ensure servers can progress during temporary failures, we propose that leaders keep track of which servers are actively participating in replication and effectively demote servers that can't be reached for some time period. If the leader fails to successfully heartbeat a follower for some time bound — for instance, ten heart beats — it demotes the follower by committing a configuration change. Once the configuration change has been applied, the next *AppendEntries* RPC to that follower will truncate the follower's log and begin resending entries. This allows live servers to continue to compact their logs, including removing tombstones, and ensures that servers are caught up safely once they rejoin the cluster.
 
 One concern with this algorithm is that it requires servers to be caught up from the start of their logs after falling too far behind the leader. But this is effectively not very different from a similar restriction placed on snapshotted logs. In a cluster that uses snapshots for log compaction, if any server crashes for some period of time or otherwise falls too far behind the leader, the leader will ultimately have to send its snapshot to the follower once it rejoins the cluster. In Copycat, the log effectively represents a snapshot of the state machine at any point in time — albeit with greater overhead in most cases — so we contend that the performance impact of sending complete logs to followers is minimal as compared to snapshotting.
 
-<h3 id="log-compaction-time">8.2.8 Managing time and timeouts in a compacted log</h3>
+<h4 id="log-compaction-time">8.2.8 Managing time and timeouts in a compacted log</h4>
 
 Many Raft implementations use the replicated Raft log to provide a consistent view of time. To do so, implementations append the leader's timestamp to certain entries in the log. When an entry is applied to the state machine, the entry's timestamp is used to increment a monotonically increasing logical clock. This approach can be used to expire keys or sessions. Indeed, sessions as described in the Raft literature use leader timestamps to remove expired session information from memory when a client fails to send a keep-alive request to the cluster in a timely manner.
 
@@ -520,11 +520,11 @@ Snapshots are the typical mechanism by which Raft servers compact their logs. Sn
 
 Snapshots are implemented on top of Copycat's log compaction algorithm. A snapshot of the state machine's state is taken each time the log rolls over to a new segment and the `commitIndex` surpasses the last index of the previous segment, thus making the prior segment compactable. When a snapshot is taken, the state machine writes its state to a snapshot file on disk and Copycat cleans all snapshottable entries (entries which indicate they're compacted via snapshots) up to the last applied index.
 
-<h3 id="log-compaction-snapshots">8.3.1 Combining snapshots and log compaction</h3>
+<h4 id="log-compaction-snapshots">8.3.1 Combining snapshots and log compaction</h4>
 
 Snapshottable commands are commands applied to the state machine for which associated state is persisted in a snapshot once taken. In contrast to typical snapshotting in Raft, though, there is some potential in Copycat for snapshottable commands to be applied to the state machine after a later snapshot has already been taken. If a server stores a snapshot of its state and crashes before it can compact prior snapshottable commands from its log, snapshottable commands will be replayed to the state machine on recovery. Thus, state machine implementations must take care to overwrite state from snapshottable commands when installing a snapshot just as state from snapshottable commands is stored in a snapshot.
 
-<h3 id="snapshot-session-events">8.3.2 Managing session events for snapshotted logs</h3>
+<h4 id="snapshot-session-events">8.3.2 Managing session events for snapshotted logs</h4>
 
 Session event messages are derived from individual commands applied to the state machine. Event messages are stored in memory for fault tolerance, and in the event of a crash and replay of the Raft log event messages must be recreated from the commands on disk. This means individual commands must must be retained in the log until related events have been received by all clients. If a snapshot is taken of the state machine state and snapshotted entries are removed from disk before being received by all clients, a failure of the server can result in lost session event messages.
 
