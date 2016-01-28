@@ -405,7 +405,7 @@ We considered each of these approaches to log compaction and ultimately opted to
  * Allow state machines to implement snapshotting for all or a portion of entries
  * Reduce the cost of replication
 
-These constraints dictated that we adopt many but not all of the concepts of log cleaning. In particular, the need to preserve order in the log precludes the use of log cleaning as it’s described in the Raft literature. Thus, Copycat implements an algorithm similar to the process of log cleaning, but rather than copying live entries to the head of the log, it retains the positions and indexes of individual entries in the log after compaction.
+These constraints dictated that we adopt many but not all of the concepts of log cleaning. In particular, the need to preserve order in the log precludes the use of log cleaning as it's described in the Raft literature. Thus, Copycat implements an algorithm similar to the process of log cleaning, but rather than copying live entries to the head of the log, it retains the positions and indexes of individual entries in the log after compaction.
 
 As entries are written to the log and associated commands are applied to the state machine, state machines are responsible for explicitly releasing the commits from the log. The log compaction algorithm is optimized to select segments of the log for compaction based on the number of commits marked for removal. Periodically, a series of background threads will rewrite segments of the log in a thread-safe manner that ensures all segments can continue to be read and written. Whenever possible, neighboring segments are combined into a single segment to reduce the number of open file descriptors.
 
