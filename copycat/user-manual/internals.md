@@ -417,10 +417,6 @@ This compaction model implies that state machines must contribute to the compact
 
 State machines are responsible for specifying which entries may safely be removed from the log. As entries are committed and commands are applied to the state machine, the state machine must indicate when prior commands no longer contribute to its state. For instance, if the commands `x←1` and then `x←2` are applied to the state machine in that order, the first command `x←1` no longer contributes to the state machine's state. That is, we can arrive at the final state `x=2` without applying the command `x←1`. Therefore, it's safe to remove `x←1` from the log.
 
-{: class="text-center"}
-{% include lightbox.html href="/assets/img/docs/major_compaction.png" desc="Major Compaction" %}
-*This figure illustrates the process of releasing entries from the log. As entries are committed and commands are applied, entries that no longer contribute to the system's state are *released* by the state machine. Grey boxes represent entries that have been marked for removal (i.e. released) but haven't yet been removed by log compaction processes.*
-
 When a state machine indicates a command no longer contributes to its state and is safe to remove from the log, the index of the associated entry is set in a memory-compact bit array used during log compaction to determine the liveness of each individual entry. Therefore, the overhead to log compaction in terms of memory grows linearly with the number of entries stored on disk.
 
 <h4 id="segment-selection">8.2.1 Basics of log compaction</h4>
