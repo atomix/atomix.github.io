@@ -367,7 +367,7 @@ The canonical form of log compaction in Raft is snapshotting. Snapshotting compa
 
 <h4 id="log-cleaning">8.1.2 Log cleaning</h4>
 
-Alternatively, Raft literature proposes log cleaning as a viable approach to log compaction. Log cleaning is the process of removing individual entries from the log once they no longer contribute to the state of the system. Diego Ongaro provides a concise description of [how log cleaning would be implemented in Raft](https://ramcloud.stanford.edu/~ongaro/thesis.pdf):
+Alternatively, Raft literature proposes log cleaning as a viable approach to log compaction. Log cleaning is the process of removing individual entries from the log once they no longer contribute to the state of the system. Diego Ongaro provides a concise description of [how log cleaning would be implemented in Raft][raft-dissertation]:
 
 > In log cleaning, the log is split into consecutive regions called segments. Each pass of the log cleaner compacts the log using a three-step algorithm:
 >
