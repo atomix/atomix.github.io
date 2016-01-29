@@ -26,7 +26,8 @@ $callout-danger-color: #d14;
 
 /* Fonts */
 $heading-fonts: 'Open Sans', sans-serif;
-$content-fonts: "Helvetica Neue",Helvetica,Arial,sans-serif;
+$content-fonts: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$doc-fonts: 'Merriweather', sans-serif;
 
 /** GENERAL */
 
@@ -340,7 +341,7 @@ body.index {
 
 .docs {
   line-height: 1.5em;
-  font-family: 'Merriweather', sans-serif;
+  font-family: $doc-fonts;
   font-size: 15px;
 
   .no-margin-top {
@@ -382,8 +383,15 @@ body.index {
     padding: 1px 1px;
   }
 
-  blockquote > p {
-    margin-top: 0px;
+  blockquote {
+    margin: 20px 0px 25px;
+    font-style: italic;
+    border-left: 5px solid $link-color;
+    font-family: $heading-fonts;
+
+    p {
+      margin-top: 0px;
+    }
   }
 
   #toc > ul > li, #user-manual-index ul > li > ul {
