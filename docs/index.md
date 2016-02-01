@@ -1,7 +1,7 @@
 ---
 layout: content
 project: atomix
-title: Documenation
+title: Documentation
 ---
 
 {:.no-margin-top}
@@ -9,21 +9,21 @@ title: Documenation
   <div class="row">
     <div class="col-md-4">
       <div class="docs-logo-heading"><img src="/assets/img/atomix.png" /><h2>Atomix</h2></div>
-      <div id="docs-index">
+      <div id="toc" project="atomix">
 {% capture usermanual %}{% include atomix/docs-menu.md %}{% endcapture %}
 {{ usermanual | markdownify }}
       </div>
     </div>
     <div class="col-md-4">
       <div class="docs-logo-heading"><img src="/assets/img/copycat.png" /><h2>Copycat</h2></div>
-      <div id="docs-index">
+      <div id="toc" project="copycat">
 {% capture usermanual %}{% include copycat/docs-menu.md %}{% endcapture %}
 {{ usermanual | markdownify }}
       </div>
     </div>
     <div class="col-md-4">
       <div class="docs-logo-heading"><img src="/assets/img/catalyst.png" /><h2>Catalyst</h2></div>
-      <div id="docs-index">
+      <div id="toc" project="catalyst">
 {% capture usermanual %}{% include catalyst/docs-menu.md %}{% endcapture %}
 {{ usermanual | markdownify }}
       </div>

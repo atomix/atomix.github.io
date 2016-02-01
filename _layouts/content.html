@@ -33,7 +33,7 @@
 
 {% capture pagemenu %}{{ page.project }}/{{ page.menu }}-menu.md{% endcapture %}
 {% if page.menu %}
-      <div class="hidden-md hidden-lg" id="toc">
+      <div class="hidden-md hidden-lg" id="toc" project="{{ page.project }}">
         <h3>Table of Contents</h3>
   {% capture toc %}{% include {{ pagemenu }} %}{% endcapture %}
   {{ toc | markdownify }}
@@ -66,12 +66,11 @@
     return '/{{ page.project }}/{{ page.menu }}/' + href;
   }
 
-  // Adjust user manual TOC when for small screens
+  // Adjust user manual TOC
   $("#toc > ul > li > a").each(function() {
     var href = $(this).attr('href');
-    if (currentPath.indexOf(href) > -1) 
-      $(this).parent().css('display', 'block');
-    $(this).attr('href', adjustHref(href));
+    var project = $(this).parent().parent().parent().attr("project");
+    $(this).attr('href', "/" + project + "/docs/" + href);
   });
 
   // Adjust sidebar links

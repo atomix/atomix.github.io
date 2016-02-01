@@ -5,7 +5,7 @@ title: Documentation
 ---
 
 {:.no-margin-top}
-<div id="docs-index">
+<div id="toc" project="copycat">
 {% capture usermanual %}{% include copycat/docs-menu.md %}{% endcapture %}
 {{ usermanual | markdownify }}
 </div>

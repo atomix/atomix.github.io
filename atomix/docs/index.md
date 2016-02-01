@@ -5,7 +5,7 @@ title: Documentation
 ---
 
 {:.no-margin-top}
-<div id="docs-index">
+<div id="toc" project="atomix">
 {% capture usermanual %}{% include atomix/docs-menu.md %}{% endcapture %}
 {{ usermanual | markdownify }}
 </div>
