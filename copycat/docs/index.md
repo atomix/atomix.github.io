@@ -1,7 +1,7 @@
 ---
 layout: content
 project: copycat
-title: User Manual
+title: Documentation
 ---
 
 {:.no-margin-top}
