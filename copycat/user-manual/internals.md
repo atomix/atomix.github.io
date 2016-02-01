@@ -399,11 +399,11 @@ Each of these compaction models provide significant advantages and drawbacks. Sn
 
 We considered each of these approaches to log compaction and ultimately opted to combine them into a custom log compaction algorithm. To meet our needs, the compaction algorithm would have to:
 
- * *Perform incremental compaction* using efficient sequential reads and writes
- * *Preserve order* in the Raft log after compaction to reduce complexity
- * Allow state machines to to *implement log cleaning* for all or a portion of entries
- * Allow state machines to *implement snapshotting* for all or a portion of entries
- * *Reduce the cost* of replication
+ * Perform incremental compaction using efficient sequential reads and writes
+ * Preserve order in the Raft log after compaction to reduce complexity
+ * Allow state machines to to implement log cleaning for all or a portion of entries
+ * Allow state machines to implement snapshotting for all or a portion of entries
+ * Reduce the cost of replication
 
 These constraints dictated that we adopt many but not all of the concepts of log cleaning. In particular, the need to preserve order in the log precluded the use of log cleaning as it's described in the Raft literature. Thus, Copycat implements an algorithm similar to the process of log cleaning, but rather than copying live entries to the head of the log, it retains the positions and indexes of individual entries in the log after compaction.
 
@@ -411,7 +411,7 @@ As entries are written to the log and associated commands are applied to the sta
 
 Typically, a Raft log contains entries from the point of the last compaction through the commit index and to the end of the log, but this compaction model allows entries to be missing at arbitrary points in the log. Copycat takes advantage of the added context of which entries contribute to the state machine's state to exclude obsolete entries from replication, significantly reducing the overall number of entries that need to be replicated, particularly to slower members of the cluster. However, having holes in the log is not without consequence. Copycat must account for missing entries in replication and logging. When entries are replicated to a follower, each entry is replicated with its index so that the follower can write entries to its own log in the proper sequence. Entries that are not present in a server's log or in an *AppendEntries* RPC are simply skipped in the log. In order to maintain consistency, it is critical that state machines correctly and deterministically implement processes for releasing obsolete entries from the log.
 
-This compaction model implies that state machines must contribute to the compaction process by indicating when a command no longer contributes to the state machine's state. This significantly increases the complexity of state machines and, as mentioned, precludes the implementation of certain types of state machines. As such, our goal was to provide the flexibility to [snapshot](#snapshots-via-log-compaction) specific portion of the state machine's state for implementing counting state machines and generally simplifying state machine implementations for certain use cases. Snapshots are implemented by simply writing a snapshot to disk and marking all snapshotted entries for removal from the log.
+This compaction model implies that state machines must contribute to the compaction process by indicating when a command no longer contributes to the state machine's state. In practice, this can significantly increase the complexity of state machine and, as mentioned, makes certain types of state machines all but impossible to implement. However, the flexibility of the algorithm ultimately allowed us to [implement optional snapshots](#snapshots-via-log-compaction) to support a wider array of use cases while retaining the efficiency of the underlying algorithm.
 
 <h4 id="releasing-entries">8.2.1 Releasing entries from the log</h4>
 
