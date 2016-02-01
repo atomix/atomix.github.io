@@ -5,7 +5,7 @@ title: Documentation
 ---
 
 {:.no-margin-top}
-<div id="toc" project="catalyst">
+<div id="doc-index" project="catalyst">
 {% capture usermanual %}{% include catalyst/docs-menu.md %}{% endcapture %}
 {{ usermanual | markdownify }}
 </div>
