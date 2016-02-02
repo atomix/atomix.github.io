@@ -28,6 +28,8 @@ $callout-info-color: #5bc0de;
 $callout-warning-color: #f0ad4e;
 $callout-danger-color: #d14;
 
+$icon-color: #212121;
+
 /* Fonts */
 $heading-fonts: 'Open Sans', sans-serif;
 $content-fonts: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -240,7 +242,7 @@ body.index {
     width: 250px;
     
     path {
-      fill: #212121;
+      fill: $icon-color;
     }
   }
 
@@ -363,10 +365,6 @@ body.index {
   padding: 16.5px 0 22px;
 }
 
-.doc-container {
-  margin-top: 20px;
-}
-
 .docs {
   line-height: 1.5em;
   font-family: $doc-fonts;
@@ -465,6 +463,46 @@ body.index {
 
   h3 {
     color: $text-color;
+  }
+
+  >.row {
+    margin-bottom: 20px;
+  }
+
+  .col-sm-4 {
+    padding-right: 0px;
+  }
+
+  .contributor {
+    margin-bottom: 25px;
+
+    .svg {
+      height: 20px;
+
+      path {
+        fill: $icon-color;
+      }
+    }
+
+    .contributor-left {
+      display: table-cell;
+
+      img {
+        width: 75px;
+        height: 75px;
+        border-radius: 5px;
+      }
+    }
+
+    .contributor-body {
+      display: table-cell;
+      vertical-align: top;
+      padding-left: 14px;
+
+      h4 {
+        margin-top: 0px;
+      }
+    }
   }
 }
 

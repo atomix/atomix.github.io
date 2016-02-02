@@ -1,13 +1,21 @@
-## Pre-requisites
+## Setup
 
 ```
 gem install jekyll
 ```
 
-## Run locally
+## Run
 
 ```
-jekyll serve -w
+jekyll serve
 ```
 
 Then browse to `http://localhost:4000`
+
+## Other Tasks
+
+#### Re-generating the contributors list
+
+```
+python bin/gen-contributors.py <github_username> <github_password>
+```

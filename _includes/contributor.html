@@ -1,0 +1,21 @@
+      <div class="contributor">
+        <div class="contributor-left">
+          <a href="{{ contributor.html_url }}"><img class="contributor-avatar" src="{{ contributor.avatar_url }}"></a>
+        </div>
+        <div class="contributor-body">
+          <h4><a href="{{ contributor.html_url }}">{{ contributor.name }}</a></h4>
+          {% if contributor.blog %}
+            {% if contributor.blog contains "http" %}
+              <a href="{{ contributor.blog }}">
+            {% else %}
+              <a href="http://{{ contributor.blog }}">
+            {% endif %}
+            <img class="svg" src="/assets/img/globe.svg"></a> 
+          {% endif %}
+          <a href="{{ contributor.html_url }}"><img class="svg" src="/assets/img/github.svg"></a>
+          {% if site.data.twitter[contributor.login] %}
+            <a href="https://twitter.com/{{ site.data.twitter[contributor.login] }}"><img class="svg" src="/assets/img/twitter.svg"></a>
+          {% endif %}
+          </p>
+        </div>
+      </div>
