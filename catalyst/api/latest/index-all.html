@@ -490,12 +490,6 @@
 <dd>
 <div class="block">Provides an interface for serializable types.</div>
 </dd>
-<dt><a href="io/atomix/catalyst/serializer/CatalystSerializableSerializer.html" title="class in io.atomix.catalyst.serializer"><span class="typeNameLink">CatalystSerializableSerializer</span></a>&lt;<a href="io/atomix/catalyst/serializer/CatalystSerializableSerializer.html" title="type parameter in CatalystSerializableSerializer">T</a> extends <a href="io/atomix/catalyst/serializer/CatalystSerializable.html" title="interface in io.atomix.catalyst.serializer">CatalystSerializable</a>&gt; - Class in <a href="io/atomix/catalyst/serializer/package-summary.html">io.atomix.catalyst.serializer</a></dt>
-<dd>
-<div class="block">This is a special <a href="io/atomix/catalyst/serializer/TypeSerializer.html" title="interface in io.atomix.catalyst.serializer"><code>TypeSerializer</code></a> implementation that handles serialization for <a href="io/atomix/catalyst/serializer/CatalystSerializable.html" title="interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a> objects.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/serializer/CatalystSerializableSerializer.html#CatalystSerializableSerializer--">CatalystSerializableSerializer()</a></span> - Constructor for class io.atomix.catalyst.serializer.<a href="io/atomix/catalyst/serializer/CatalystSerializableSerializer.html" title="class in io.atomix.catalyst.serializer">CatalystSerializableSerializer</a></dt>
-<dd>&nbsp;</dd>
 <dt><a href="io/atomix/catalyst/util/concurrent/CatalystThread.html" title="class in io.atomix.catalyst.util.concurrent"><span class="typeNameLink">CatalystThread</span></a> - Class in <a href="io/atomix/catalyst/util/concurrent/package-summary.html">io.atomix.catalyst.util.concurrent</a></dt>
 <dd>
 <div class="block">Catalyst thread.</div>
@@ -803,6 +797,10 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/buffer/util/DirectMemoryAllocator.html#DirectMemoryAllocator--">DirectMemoryAllocator()</a></span> - Constructor for class io.atomix.catalyst.buffer.util.<a href="io/atomix/catalyst/buffer/util/DirectMemoryAllocator.html" title="class in io.atomix.catalyst.buffer.util">DirectMemoryAllocator</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/serializer/Serializer.html#disableWhitelist--">disableWhitelist()</a></span> - Method in class io.atomix.catalyst.serializer.<a href="io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></dt>
+<dd>
+<div class="block">Disables whitelisting for serializable types.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/buffer/Bytes.html#DOUBLE">DOUBLE</a></span> - Static variable in interface io.atomix.catalyst.buffer.<a href="io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -811,6 +809,10 @@
 </a>
 <h2 class="title">E</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/serializer/Serializer.html#enableWhitelist--">enableWhitelist()</a></span> - Method in class io.atomix.catalyst.serializer.<a href="io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></dt>
+<dd>
+<div class="block">Enables whitelisting for serializable types.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/Address.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class io.atomix.catalyst.transport.<a href="io/atomix/catalyst/transport/Address.html" title="class in io.atomix.catalyst.transport">Address</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/LocalClient.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class io.atomix.catalyst.transport.<a href="io/atomix/catalyst/transport/LocalClient.html" title="class in io.atomix.catalyst.transport">LocalClient</a></dt>
@@ -1208,6 +1210,10 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/buffer/SwappedBuffer.html#isReadOnly--">isReadOnly()</a></span> - Method in class io.atomix.catalyst.buffer.<a href="io/atomix/catalyst/buffer/SwappedBuffer.html" title="class in io.atomix.catalyst.buffer">SwappedBuffer</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/serializer/Serializer.html#isWhitelistRequired--">isWhitelistRequired()</a></span> - Method in class io.atomix.catalyst.serializer.<a href="io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></dt>
+<dd>
+<div class="block">Indicates whether whitelisting is enabled for the serializer.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/util/Listeners.html#iterator--">iterator()</a></span> - Method in class io.atomix.catalyst.util.<a href="io/atomix/catalyst/util/Listeners.html" title="class in io.atomix.catalyst.util">Listeners</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -1302,10 +1308,6 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/buffer/Bytes.html#LONG">LONG</a></span> - Static variable in interface io.atomix.catalyst.buffer.<a href="io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/serializer/SerializerRegistry.html#lookup-java.lang.Class-">lookup(Class&lt;?&gt;)</a></span> - Method in class io.atomix.catalyst.serializer.<a href="io/atomix/catalyst/serializer/SerializerRegistry.html" title="class in io.atomix.catalyst.serializer">SerializerRegistry</a></dt>
-<dd>
-<div class="block">Looks up the serializer for the given class else <code>null</code> if no serializer is registered for the <code>type</code>.</div>
-</dd>
 </dl>
 <a name="I:M">
 <!--   -->
@@ -1531,12 +1533,6 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/buffer/PooledHeapAllocator.html#PooledHeapAllocator--">PooledHeapAllocator()</a></span> - Constructor for class io.atomix.catalyst.buffer.<a href="io/atomix/catalyst/buffer/PooledHeapAllocator.html" title="class in io.atomix.catalyst.buffer">PooledHeapAllocator</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="io/atomix/catalyst/serializer/PooledSerializer.html" title="class in io.atomix.catalyst.serializer"><span class="typeNameLink">PooledSerializer</span></a>&lt;<a href="io/atomix/catalyst/serializer/PooledSerializer.html" title="type parameter in PooledSerializer">T</a> extends <a href="io/atomix/catalyst/util/ReferenceCounted.html" title="interface in io.atomix.catalyst.util">ReferenceCounted</a>&lt;<a href="io/atomix/catalyst/serializer/PooledSerializer.html" title="type parameter in PooledSerializer">T</a>&gt;&gt; - Class in <a href="io/atomix/catalyst/serializer/package-summary.html">io.atomix.catalyst.serializer</a></dt>
-<dd>
-<div class="block">Provides pooled object serialization.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/serializer/PooledSerializer.html#PooledSerializer--">PooledSerializer()</a></span> - Constructor for class io.atomix.catalyst.serializer.<a href="io/atomix/catalyst/serializer/PooledSerializer.html" title="class in io.atomix.catalyst.serializer">PooledSerializer</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/Address.html#port--">port()</a></span> - Method in class io.atomix.catalyst.transport.<a href="io/atomix/catalyst/transport/Address.html" title="class in io.atomix.catalyst.transport">Address</a></dt>
 <dd>
 <div class="block">Returns the address port.</div>
@@ -1722,10 +1718,6 @@
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/buffer/WrappedBytes.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read(long, Bytes, long, long)</a></span> - Method in class io.atomix.catalyst.buffer.<a href="io/atomix/catalyst/buffer/WrappedBytes.html" title="class in io.atomix.catalyst.buffer">WrappedBytes</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/buffer/WrappedBytes.html#read-long-byte:A-long-long-">read(long, byte[], long, long)</a></span> - Method in class io.atomix.catalyst.buffer.<a href="io/atomix/catalyst/buffer/WrappedBytes.html" title="class in io.atomix.catalyst.buffer">WrappedBytes</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/serializer/CatalystSerializableSerializer.html#read-java.lang.Class-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">read(Class&lt;T&gt;, BufferInput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.catalyst.serializer.<a href="io/atomix/catalyst/serializer/CatalystSerializableSerializer.html" title="class in io.atomix.catalyst.serializer">CatalystSerializableSerializer</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/serializer/PooledSerializer.html#read-java.lang.Class-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">read(Class&lt;T&gt;, BufferInput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.catalyst.serializer.<a href="io/atomix/catalyst/serializer/PooledSerializer.html" title="class in io.atomix.catalyst.serializer">PooledSerializer</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/serializer/TypeSerializer.html#read-java.lang.Class-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">read(Class&lt;T&gt;, BufferInput&lt;?&gt;, Serializer)</a></span> - Method in interface io.atomix.catalyst.serializer.<a href="io/atomix/catalyst/serializer/TypeSerializer.html" title="interface in io.atomix.catalyst.serializer">TypeSerializer</a></dt>
 <dd>
@@ -2902,8 +2894,6 @@
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/buffer/WrappedBytes.html#write-long-io.atomix.catalyst.buffer.Bytes-long-long-">write(long, Bytes, long, long)</a></span> - Method in class io.atomix.catalyst.buffer.<a href="io/atomix/catalyst/buffer/WrappedBytes.html" title="class in io.atomix.catalyst.buffer">WrappedBytes</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/buffer/WrappedBytes.html#write-long-byte:A-long-long-">write(long, byte[], long, long)</a></span> - Method in class io.atomix.catalyst.buffer.<a href="io/atomix/catalyst/buffer/WrappedBytes.html" title="class in io.atomix.catalyst.buffer">WrappedBytes</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/serializer/CatalystSerializableSerializer.html#write-T-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">write(T, BufferOutput&lt;?&gt;, Serializer)</a></span> - Method in class io.atomix.catalyst.serializer.<a href="io/atomix/catalyst/serializer/CatalystSerializableSerializer.html" title="class in io.atomix.catalyst.serializer">CatalystSerializableSerializer</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/serializer/TypeSerializer.html#write-T-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">write(T, BufferOutput&lt;?&gt;, Serializer)</a></span> - Method in interface io.atomix.catalyst.serializer.<a href="io/atomix/catalyst/serializer/TypeSerializer.html" title="interface in io.atomix.catalyst.serializer">TypeSerializer</a></dt>
 <dd>

@@ -150,6 +150,18 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></code></td>
+<td class="colLast"><span class="typeNameLabel">Serializer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/Serializer.html#disableWhitelist--">disableWhitelist</a></span>()</code>
+<div class="block">Disables whitelisting for serializable types.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></code></td>
+<td class="colLast"><span class="typeNameLabel">Serializer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/Serializer.html#enableWhitelist--">enableWhitelist</a></span>()</code>
+<div class="block">Enables whitelisting for serializable types.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Serializer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/Serializer.html#register-java.lang.Class-">register</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;?&gt;&nbsp;type)</code>
 <div class="block">Registers a serializable type.</div>
 </td>
@@ -213,18 +225,6 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/serializer/CatalystSerializableSerializer.html" title="type parameter in CatalystSerializableSerializer">T</a></code></td>
-<td class="colLast"><span class="typeNameLabel">CatalystSerializableSerializer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/CatalystSerializableSerializer.html#read-java.lang.Class-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">read</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;<a href="../../../../../io/atomix/catalyst/serializer/CatalystSerializableSerializer.html" title="type parameter in CatalystSerializableSerializer">T</a>&gt;&nbsp;type,
-    <a href="../../../../../io/atomix/catalyst/buffer/BufferInput.html" title="interface in io.atomix.catalyst.buffer">BufferInput</a>&lt;?&gt;&nbsp;buffer,
-    <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/serializer/PooledSerializer.html" title="type parameter in PooledSerializer">T</a></code></td>
-<td class="colLast"><span class="typeNameLabel">PooledSerializer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/PooledSerializer.html#read-java.lang.Class-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">read</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;<a href="../../../../../io/atomix/catalyst/serializer/PooledSerializer.html" title="type parameter in PooledSerializer">T</a>&gt;&nbsp;type,
-    <a href="../../../../../io/atomix/catalyst/buffer/BufferInput.html" title="interface in io.atomix.catalyst.buffer">BufferInput</a>&lt;?&gt;&nbsp;buffer,
-    <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/serializer/TypeSerializer.html" title="type parameter in TypeSerializer">T</a></code></td>
 <td class="colLast"><span class="typeNameLabel">TypeSerializer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/TypeSerializer.html#read-java.lang.Class-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">read</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;<a href="../../../../../io/atomix/catalyst/serializer/TypeSerializer.html" title="type parameter in TypeSerializer">T</a>&gt;&nbsp;type,
     <a href="../../../../../io/atomix/catalyst/buffer/BufferInput.html" title="interface in io.atomix.catalyst.buffer">BufferInput</a>&lt;?&gt;&nbsp;buffer,
@@ -241,19 +241,13 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">CatalystSerializableSerializer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/CatalystSerializableSerializer.html#write-T-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">write</a></span>(<a href="../../../../../io/atomix/catalyst/serializer/CatalystSerializableSerializer.html" title="type parameter in CatalystSerializableSerializer">T</a>&nbsp;object,
-     <a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;&nbsp;buffer,
-     <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">TypeSerializer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/TypeSerializer.html#write-T-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">write</a></span>(<a href="../../../../../io/atomix/catalyst/serializer/TypeSerializer.html" title="type parameter in TypeSerializer">T</a>&nbsp;object,
      <a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;&nbsp;buffer,
      <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
 <div class="block">Writes the object to the given buffer.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">CatalystSerializable.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/CatalystSerializable.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;&nbsp;buffer,
            <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
