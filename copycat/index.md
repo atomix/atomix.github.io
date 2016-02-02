@@ -3,7 +3,7 @@ layout: project-index
 project: copycat
 ---
 
-<div class="highlight highlight-intro">
+<div class="showcase showcase-intro">
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
@@ -16,7 +16,7 @@ Copycat enables you to turn simple application logic into a consistent, fault to
 </div>
 
 <!-- Reliable -->
-<div class="highlight highlight-gray">
+<div class="showcase showcase-gray">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
@@ -32,7 +32,7 @@ Copycat enables you to turn simple application logic into a consistent, fault to
   </div>
 </div>
 
-<div class="highlight highlight-white">
+<div class="showcase showcase-white">
   <div class="container">
     <div class="row">
       <div class="col-sm-5 col-sm-offset-1">
@@ -48,7 +48,7 @@ Copycat enables you to turn simple application logic into a consistent, fault to
   </div>
 </div>
 
-<!-- <div class="highlight highlight-white">
+<!-- <div class="showcase showcase-white">
   <div class="container">
     <div class="row">
 <div class="col-sm-6" markdown="1">
@@ -87,7 +87,7 @@ public class MapStateMachine extends StateMachine {
 </div> -->
 
 <!--Resilient -->
-<div class="highlight highlight-gray">
+<div class="showcase showcase-gray">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
@@ -101,7 +101,7 @@ public class MapStateMachine extends StateMachine {
   </div>
 </div>
 
-<!-- <div class="highlight highlight-gray">
+<!-- <div class="showcase showcase-gray">
   <div class="container">
     <div class="row">
 <div class="col-sm-6" markdown="1">
@@ -123,7 +123,7 @@ AtomixReplica replica = AtomixReplica.builder(address, members)
 </div> -->
 
 <!--Learn more -->
-<div class="highlight highlight-get-started">
+<div class="showcase showcase-get-started">
   <div class="container">
     <div class="row">
       <div class="col-sm-12 text-center">

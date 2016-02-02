@@ -11,7 +11,7 @@ first-section: getting-started
 
 Atomix can be found in standard Maven repositories. To add Atomix core - which includes `AtomixClient` and `AtomixReplica` - add the `atomix` artifact:
 
-```
+```xml
 <dependency>
   <groupId>io.atomix</groupId>
   <artifactId>atomix</artifactId>
@@ -28,7 +28,7 @@ Groups of Atomix core distributed resources - i.e. [collections], [variables], [
 
 To add Atomix core and all resources, use the `atomix-all` artifact:
 
-```
+```xml
 <dependency>
   <groupId>io.atomix</groupId>
   <artifactId>atomix-all</artifactId>
