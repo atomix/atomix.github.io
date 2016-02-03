@@ -26,20 +26,16 @@ title: Community
       </ul>
     </div>
   </div>
-  <div class="row">
+  <div class="row row-tall">
     <div class="col-sm-3">
       <h2 id="#contributing">Contributing</h2>
     </div>
     <div class="col-sm-8">
-      <h3>Source</h3>
-      <ul>
-        <li><a href="https://github.com/atomix/atomix">Atomix</a></li>
-        <li><a href="https://github.com/atomix/copycat">Copycat</a></li>
-        <li><a href="https://github.com/atomix/catalyst">Catalyst</a></li>
-      </ul>
+      <p>Bug fixes and feature contributions in the form of pull requests are welcome. If you have a non-trivial change in mind that you'd like to discuss, 
+        feel free to ping us on <a href="https://gitter.im/atomix/atomix">Gitter</a> or the <a href="https://groups.google.com/forum/#!forum/atomixio">user group</a>.</p>
     </div>
   </div>
-  <div class="row">
+  <div class="row row-tall">
     <div class="col-sm-3">
       <h2 id="committers">Committers</h2>
     </div>
