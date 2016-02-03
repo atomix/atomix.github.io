@@ -7,7 +7,7 @@ title: Documentation
 <div class="documentation">
   <div class="row">
     <div class="col-sm-3">
-      <h2 id="core-stack">Core Stack</h2>
+      <h2><span id="core-stack"></span>Core Stack</h2>
     </div>
     <div class="col-sm-9">
       <div class="row">
@@ -46,7 +46,7 @@ title: Documentation
   <hr>
   <div class="row">
     <div class="col-sm-3">
-      <h2 id="integrations">Integrations</h2>
+      <h2><span id="integrations"></span>Integrations</h2>
     </div>
     <div class="col-sm-9">
       <div class="row">
@@ -64,7 +64,7 @@ title: Documentation
   <hr>
   <div class="row">
     <div class="col-sm-3">
-      <h2 id="bindings">Language Bindings</h2>
+      <h2><span id="bindings"></span>Language Bindings</h2>
     </div>
     <div class="col-sm-9">
       <div class="row">
