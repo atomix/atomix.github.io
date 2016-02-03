@@ -93,5 +93,3 @@ title: Community
     </div>
   </div>
 </div>
-
-{% include common-links.html %}

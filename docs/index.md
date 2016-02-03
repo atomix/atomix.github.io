@@ -81,5 +81,3 @@ title: Documentation
     </div>
   </div>
 </div>
-
-{% include common-links.html %}
