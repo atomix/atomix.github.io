@@ -1,5 +1,5 @@
 ---
-layout: content
+layout: docs
 project: copycat
 title: Documentation
 ---

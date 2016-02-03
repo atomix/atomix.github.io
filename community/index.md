@@ -1,11 +1,11 @@
 ---
-layout: content
+layout: info
 project: atomix
 title: Community
 ---
 
 {:.no-margin-top}
-<div class="container community">
+<div class="community">
   <div class="row">
     <div class="col-sm-3">
       <h2 id="support">Support</h2>
@@ -38,15 +38,17 @@ title: Community
       </div>
     </div>
   </div>
-  <div class="row row-tall">
+  <hr>
+  <div class="row">
     <div class="col-sm-3">
       <h2 id="#contributing">Contributing</h2>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
       <p>Bug fixes and feature <a href="https://github.com/atomix">contributions</a> in the form of pull requests are welcome. If you have a non-trivial change in mind that you'd like to discuss, feel free to ping us on <a href="https://gitter.im/atomix/atomix">Gitter</a> or the <a href="https://groups.google.com/forum/#!forum/atomixio">user group</a>.</p>
     </div>
   </div>
-  <div class="row row-tall">
+  <hr>
+  <div class="row">
     <div class="col-sm-3">
       <h2 id="committers">Committers</h2>
     </div>
@@ -60,6 +62,7 @@ title: Community
       </div>
     </div>
   </div>
+  <hr>
   <div class="row">
     <div class="col-sm-3">
       <h2 id="contributors">Contributors</h2>
@@ -74,11 +77,12 @@ title: Community
       </div>
     </div>
   </div>
+  <hr>
   <div class="row">
     <div class="col-sm-3">
       <h2 id="thanks">Thanks</h2>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-9">
       <p>
         YourKit is kindly supporting open source projects with its full-featured Java Profiler.
         YourKit, LLC is the creator of innovative and intelligent tools for profiling

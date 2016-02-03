@@ -1,5 +1,5 @@
 ---
-layout: project-index
+layout: project
 project: catalyst
 ---
 

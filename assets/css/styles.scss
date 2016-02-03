@@ -1,7 +1,8 @@
 ---
 ---
 
-/* Colors */
+// Colors
+
 $white: #fff;
 $medium-gray: #eee;
 $dark-gray: #d4d4d4;
@@ -9,13 +10,14 @@ $dark-gray: #d4d4d4;
 $text-color: #333;
 
 $link-color: #009DB7;
-$link-color-bright: #FF2D62; //#d14;
+$link-color-bright: #FF2D62;
 
 $nav-color: #038fa7;
 $nav-separator-color: #e7e7e7;
 
 $code-color: rgb(51, 51, 51);
 $code-bg-color: #f5f5f5;
+$code-bg-color-dark: #474949;
 
 $header-color: #01768a;
 $pitch-color: #848484;
@@ -30,12 +32,13 @@ $callout-danger-color: #d14;
 
 $icon-color: #212121;
 
-/* Fonts */
+// Fonts
+
 $heading-fonts: 'Open Sans', sans-serif;
 $content-fonts: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $doc-fonts: 'Merriweather', sans-serif;
 
-/** GENERAL */
+// Base HTML tags
 
 html {
   height: 100%;
@@ -50,10 +53,6 @@ body {
   font-size: 16px;
 }
 
-.content {
-  flex: 1 0 auto;
-}
-
 a {
   color: $link-color;
 }
@@ -62,9 +61,20 @@ h1 {
   font-size: 46px;
 }
 
+body, h1, h2, h3, h4, h5, p > strong {
+  font-family: $heading-fonts;
+}
+
+hr {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
 code {
   background-color: $code-bg-color;
 }
+
+// Base styles
 
 @media (max-width: 1456px) {
   #reactive-ribbon {
@@ -72,15 +82,28 @@ code {
   }
 }
 
-.doc-btn {
-  color: $nav-color;
-  margin-top: 27px;
-  margin-right: 5px;
-  font-size: 23px;
+.flex {
+  flex: 1 0 auto;
 }
 
-body, h1, h2, h3, h4, h5, p > strong, .nav {
-  font-family: $heading-fonts;
+.no-margin-top {
+  margin-top: 0px;
+}
+
+.colored-background {
+  background-color: $header-color;
+}
+
+.white-background {
+  background-color: $white;
+}
+
+.gray-background {
+  background-color: $medium-gray;
+}
+
+.dark-gray-background {
+  background-color: $dark-gray;
 }
 
 /*
@@ -110,7 +133,7 @@ body, h1, h2, h3, h4, h5, p > strong, .nav {
   }
 }
 
-/* Navbar */
+// Navbar
 
 .navbar {
   font-size: 18px;
@@ -123,6 +146,7 @@ body, h1, h2, h3, h4, h5, p > strong, .nav {
     
     .navbar-brand-logo {
       padding: 18px 20px;
+      margin-left: -5px;
       background-repeat: no-repeat;
       background-size: 36px 36px;
       background-position: left center;
@@ -143,33 +167,33 @@ body, h1, h2, h3, h4, h5, p > strong, .nav {
       border-right: 2px solid $nav-separator-color;
     }
   }
+
+  .nav {
+    font-family: $heading-fonts;
+  }
 }
 
-/* Header */
+// Headers
 
-.header, .index-header .background-color {
+.index-header, .content-header {
   background-color: $header-color;
 
-  /*background-color: #0C6979;*/
-  /*rgba(23, 153, 179, 0.89)*/
-}
-
-.header {
   h1, h2, h3, h4, h5 {
     color: #fff;
   }
 }
 
-/** Index page */
+// .index-header {
+//   background: linear-gradient(to bottom, rgba(255,255,255,.5) 0%, rgba(255,255,255,.5) 100%), url(../img/boxes.png);
+//   background-size: 150px;
+// }
 
-body.index {
-  background-color: $header-color;
+.content-header {
+  margin: 0 0 25px;
+  padding: 16.5px 0 22px;
 }
 
-.index-header {
-  /*  background: linear-gradient(to bottom, rgba(255,255,255,.5) 0%, rgba(255,255,255,.5) 100%), url(../img/boxes.png);*/
-  background-size: 150px;
-}
+// Banner
 
 .banner {
   padding-top: 68px;
@@ -185,14 +209,6 @@ body.index {
   h2 {
     font-weight: 200;
   }
-
-  .github-btn {
-    padding-top: 4px;
-    margin-top: 30px;
-    margin-left: 10px;
-    padding-left: 10px;
-    display: inline-block;
-  }
 }
 
 @media (max-width: 767px) {
@@ -205,74 +221,38 @@ body.index {
   }
 }
 
-.showcase {
-  padding-top: 55px;
-  padding-bottom: 35px;
+// Home page
 
-  h2 {
-    font-size: 57px;
-    color: $text-color;
-    letter-spacing: -1px;
-    margin-top: 0px;
-
-    a {
-      &:hover {
-        color: $link-color-bright;
-        text-decoration: none;
-      }
-    }
-  }
-
-  p {
-    margin-top: 33px;
-    font-size: 24px;
-    font-weight: 200;
-  }
-
-  img {
-    width: 250px;
-  }
-
-  .svg  {
-    width: 250px;
-    
-    path {
-      fill: $icon-color;
-    }
-  }
-
-  &.showcase-white {
-    background-color: $white;
-  }
-
-  &.showcase-gray {
-    background-color: $medium-gray;
-  }
-
-  &.showcase-dark-gray {
-    background-color: $dark-gray;
-  }
-
-  &.showcase-get-started {
-    padding-bottom: 0px;
-
-    h2 {
-      color: $white;
-    }
-  }
-
-  &.stack {
+.home {
+  .stack {
     padding-top: 35px;
     padding-bottom: 35px;
 
-    p {
-      margin-top: 27px;
+    h2 {
+      font-size: 57px;
+      color: $text-color;
+      letter-spacing: -1px;
+      margin-top: 0px;
+
+      a {
+        &:hover {
+          color: $link-color-bright;
+          text-decoration: none;
+        }
+      }
     }
 
-    .stack-logo-heading {
+    p {
+      margin-top: 27px;
+      font-size: 24px;
+      font-weight: 200;
+    }
+
+    .logo-heading {
       img {
         width: 43px;
         margin-top: -28px;
+        margin-left: -5px;
         margin-right: 4px;
       }
 
@@ -281,105 +261,215 @@ body.index {
       }
     }
   }
+}
 
-  &.showcase-intro {
-    background-color: $white;
-    padding-top: 23px;
-    padding-bottom: 43px;
+// Project page
+
+.project {
+  .index-header .github-btn {
+    padding-top: 4px;
+    margin-top: 30px;
+    margin-left: 10px;
+    padding-left: 10px;
+    display: inline-block;
+  }
+
+  .feature {
+    padding-top: 55px;
+    padding-bottom: 35px;
 
     h2 {
-      font-size: 42px;
+      font-size: 57px;
+      color: $text-color;
+      letter-spacing: -1px;
+      margin-top: 0px;
+
+      a {
+        &:hover {
+          color: $link-color-bright;
+          text-decoration: none;
+        }
+      }
     }
 
     p {
-      font-size: 21px;
-      // text-indent: 25px;
+      margin-top: 33px;
+      font-size: 24px;
+      font-weight: 200;
     }
-  }
 
-  /* Front page code styles */
-  $code-bg-color: #474949;
+    img {
+      width: 250px;
+    }
 
-  pre {
-    border: 0px;
-    border-radius: 10px;
-    border-top-left-radius: 0px;
-    background-color: $code-bg-color;
-
-    code {
-      min-height: 250px;
-      margin-bottom: 0px;
-
-      &.hljs {
-        background-color: $code-bg-color;
-        color: #F4F4F5;
-
-        // .hljs-command, .hljs-string, .hljs-tag .hljs-value, .hljs-doctag, .tex .hljs-formula, .hljs-regexp, .hljs-hexcolor {
-        //   color: #FF97FA;
-        // }
-
-        // .hljs-keyword, .clojure .hljs-attribute, .hljs-winutils, .javascript .hljs-title, .hljs-addition, .css .hljs-tag {
-        //   color: #F36; 
-        // }
-
-        // .hljs-class .hljs-title, .smalltalk .hljs-class, .hljs-doctag, .hljs-type, .hljs-typename, .hljs-tag .hljs-attribute, .hljs-doctype, .hljs-class .hljs-id, .hljs-built_in, .setting, .hljs-params, .hljs-variable, .hljs-name {
-        //   color: #ECA2EC;
-        // }
-
-        // .hljs-number {
-        //   color: #E8A954;
-        // }
+    .svg  {
+      width: 250px;
+      
+      path {
+        fill: $icon-color;
       }
     }
-  }
 
-  /* Code nav tabs */
-  .nav-tabs {
-    border: none;
+    .nav-tabs {
+      border: none;
 
-    li {
-      margin-bottom: 0px;
+      li {
+        margin-bottom: 0px;
 
-      a, a:hover {
-        border: 1px solid $dark-gray;
+        a, a:hover {
+          border: 1px solid $dark-gray;
+        }
+
+        &.active a {
+          border: 1px solid $code-bg-color-dark;
+          background-color: $code-bg-color-dark;
+          color: $white;
+        }
+      }
+    }
+
+    pre {
+      border: 0px;
+      border-radius: 10px;
+      border-top-left-radius: 0px;
+      background-color: $code-bg-color-dark;
+
+      code {
+        min-height: 250px;
+        margin-bottom: 0px;
+
+        &.hljs {
+          background-color: $code-bg-color-dark;
+          color: #F4F4F5;
+        }
+      }
+    }
+
+    &.intro {
+      background-color: $white;
+      padding-top: 23px;
+      padding-bottom: 43px;
+
+      h2 {
+        font-size: 42px;
       }
 
-      &.active a {
-        border: 1px solid $code-bg-color;
-        background-color: $code-bg-color;
+      p {
+        font-size: 21px;
+      }
+    }
+
+    &.get-started {
+      padding-bottom: 0px;
+
+      h2 {
         color: $white;
       }
+
+      .doc-btn {
+        color: $nav-color;
+        margin-top: 27px;
+        margin-right: 5px;
+        font-size: 23px;
+      }
     }
   }
 }
 
-/* Content pages */
+// Info page
 
-.page-header {
-  margin: 0 0 25px;
-  padding: 16.5px 0 22px;
+.info {
+  h2 {
+    border-left: 8px solid $header-color;
+    margin-top: 0px;
+    padding: 10px 15px;
+  }
+
+  h3 {
+    color: $text-color;
+  }
+
+  // Documentation page
+
+  .documentation {
+    .project {
+      p {
+        margin-top: 10px;
+      }
+
+      .logo-heading {
+        margin-top: 18px;
+
+        img {
+          width: 36px;
+          margin-top: -10px;
+          margin-left: -5px;
+          margin-right: 4px;
+        }
+
+        h3 {
+          display: inline;
+        }
+      }
+    }
+  }
+
+  // Community page
+
+  .community {
+    .contributor {
+      margin-top: 10px;
+      margin-bottom: 15px;
+
+      .svg {
+        height: 20px;
+
+        path {
+          fill: $icon-color;
+        }
+      }
+
+      .contributor-left {
+        display: table-cell;
+
+        img {
+          width: 75px;
+          height: 75px;
+          border-radius: 5px;
+        }
+      }
+
+      .contributor-body {
+        display: table-cell;
+        vertical-align: top;
+        padding-left: 14px;
+
+        h4 {
+          margin-top: 0px;
+        }
+      }
+    }
+  }
 }
+
+// Docs page
 
 .docs {
   line-height: 1.5em;
   font-family: $doc-fonts;
   font-size: 15px;
 
-  .no-margin-top {
-    margin-top: 0px;
-  }
-
-  .docs-logo-heading {
-    margin-bottom: 15px;
-
-    img {
-      width: 36px;
-      margin-top: -10px;
-      margin-right: 4px;
+  .doc-index {
+    h2, h4 {
+      color: $text-color;
     }
 
     h2 {
-      display: inline;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-top: 8px;
     }
   }
 
@@ -453,99 +543,7 @@ body.index {
   }
 }
 
-.community {
-  h2 {
-    color: $text-color;
-    border-left: 8px solid $header-color;
-    margin-top: 0px;
-    padding: 10px 15px;
-  }
-
-  h3 {
-    color: $text-color;
-  }
-
-  >.row {
-    margin-bottom: 25px;
-  }
-
-  >.row-tall {
-    margin-bottom: 45px;
-  }
-
-  .col-sm-4 {
-    padding-right: 0px;
-  }
-
-  .contributor {
-    margin-bottom: 25px;
-
-    .svg {
-      height: 20px;
-
-      path {
-        fill: $icon-color;
-      }
-    }
-
-    .contributor-left {
-      display: table-cell;
-
-      img {
-        width: 75px;
-        height: 75px;
-        border-radius: 5px;
-      }
-    }
-
-    .contributor-body {
-      display: table-cell;
-      vertical-align: top;
-      padding-left: 14px;
-
-      h4 {
-        margin-top: 0px;
-      }
-    }
-  }
-}
-
-/* Sidebar */
-
-@media screen and (min-width: 992px) {
-  #sidebar {
-    ul > .active > ul, ul > .current > ul {
-      display: block;
-    }
-
-    &.affix, &.affix-bottom {
-      width: 213px;
-    }
-
-    &.affix {
-      position: fixed;
-
-      /* Undo the static from mobile first approach */
-      top: 80px;
-    }
-
-    &.affix-bottom {
-      position: absolute;
-
-      /* Undo the static from mobile first approach */
-    }
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  /* Widen the fixed sidebar again */
-
-  #sidebar {
-    &.affix-bottom, &.affix {
-      width: 263px;
-    }
-  }
-}
+// Sidebar
 
 #sidebar {
   padding: 0;
@@ -590,7 +588,42 @@ body.index {
   }
 }
 
-/* Footer */
+@media screen and (min-width: 992px) {
+  #sidebar {
+    ul > .active > ul, ul > .current > ul {
+      display: block;
+    }
+
+    &.affix, &.affix-bottom {
+      width: 213px;
+    }
+
+    &.affix {
+      position: fixed;
+
+      /* Undo the static from mobile first approach */
+      top: 80px;
+    }
+
+    &.affix-bottom {
+      position: absolute;
+
+      /* Undo the static from mobile first approach */
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  /* Widen the fixed sidebar again */
+
+  #sidebar {
+    &.affix-bottom, &.affix {
+      width: 263px;
+    }
+  }
+}
+
+// Footer
 
 footer {
   background-color: $footer-bg-color;
@@ -607,7 +640,7 @@ footer {
   }
 }
 
-/* Callouts */
+// Callouts
 
 .callout {
   padding: 20px;

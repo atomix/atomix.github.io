@@ -1,5 +1,5 @@
 ---
-layout: content
+layout: docs
 project: copycat
 menu: docs
 title: Raft Implementation Details

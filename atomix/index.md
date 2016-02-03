@@ -1,10 +1,10 @@
 ---
-layout: project-index
+layout: project
 project: atomix
 ---
 
 <!-- Reliable -->
-<div class="showcase showcase-white">
+<div class="feature white-background">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
@@ -19,7 +19,7 @@ project: atomix
 </div>
 
 <!-- Simple -->
-<div class="showcase showcase-gray">
+<div class="feature gray-background">
   <div class="container">
     <div class="row">
     
@@ -146,7 +146,7 @@ bus.consumer("foo", message -> System.out.println("Consumed " + message));
 </div>
 
 <!--Resilient -->
-<div class="showcase showcase-white">
+<div class="feature white-background">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
@@ -160,7 +160,7 @@ bus.consumer("foo", message -> System.out.println("Consumed " + message));
   </div>
 </div>
 
-<div class="showcase showcase-gray">
+<div class="feature gray-background">
   <div class="container">
     <div class="row">
 <div class="col-sm-6" markdown="1">
@@ -182,7 +182,7 @@ AtomixReplica replica = AtomixReplica.builder(address, members)
 </div>
 
 <!--Learn more -->
-<div class="showcase showcase-get-started">
+<div class="feature get-started">
   <div class="container">
     <div class="row">
       <div class="col-sm-12 text-center">
