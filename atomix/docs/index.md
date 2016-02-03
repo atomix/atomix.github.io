@@ -1,7 +1,7 @@
 ---
 layout: docs
 project: atomix
-title: Documentation
+title: User Manual
 ---
 
 {:.no-margin-top}

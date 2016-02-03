@@ -12,7 +12,7 @@ title: Documentation
     <div class="col-sm-9">
       <div class="row">
         <div class="col-sm-4 project">
-          <div class="logo-heading"><img src="/assets/img/atomix.png" /><h3>Atomix</h3></div>
+          <div class="logo-heading"><img src="/assets/img/logos/atomix.png" /><h3>Atomix</h3></div>
           <p>A Fault-tolerant distributed coordination framework.</p>
           <ul>
             <li><a href="/atomix/docs">User Manual</a></li>
@@ -22,7 +22,7 @@ title: Documentation
           </ul>
         </div>
         <div class="col-sm-4 project">
-          <div class="logo-heading"><img src="/assets/img/copycat.png" /><h3>Copycat</h3></div>
+          <div class="logo-heading"><img src="/assets/img/logos/copycat.png" /><h3>Copycat</h3></div>
           <p>A novel implementation of the Raft consensus algorithm.</p>
           <ul>
             <li><a href="/copycat/docs">User Manual</a></li>
@@ -32,7 +32,7 @@ title: Documentation
           </ul>
         </div>
         <div class="col-sm-4 project">
-          <div class="logo-heading"><img src="/assets/img/catalyst.png" /><h3>Catalyst</h3></div>
+          <div class="logo-heading"><img src="/assets/img/logos/catalyst.png" /><h3>Catalyst</h3></div>
           <p>A fast, extensible, asynchronous I/O & binary serialization library.</p>
           <ul>
             <li><a href="/catalyst/docs">User Manual</a></li>

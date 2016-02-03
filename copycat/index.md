@@ -26,7 +26,7 @@ Copycat enables you to turn simple application logic into a consistent, fault to
         </p>
       </div>
       <div class="col-sm-5 text-right">
-        <img class="svg" src="/assets/img/reliable14.svg">
+        <img class="svg" src="/assets/img/icons/reliable.svg">
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@ Copycat enables you to turn simple application logic into a consistent, fault to
   <div class="container">
     <div class="row">
       <div class="col-sm-5 col-sm-offset-1">
-        <img class="svg" src="/assets/img/consensus.svg">
+        <img class="svg" src="/assets/img/icons/consensus.svg">
       </div>
       <div class="col-sm-6 text-right">
         <h2>Raft Consensus</h2>
@@ -95,7 +95,7 @@ public class MapStateMachine extends StateMachine {
         <p>Copycat clusters are resilient to failure, automatically replacing cluster members as needed without any data loss.</p>
       </div>
       <div class="col-sm-5 text-right">
-        <img class="svg" src="/assets/img/resilient.svg">
+        <img class="svg" src="/assets/img/icons/resilient.svg">
       </div>
     </div>
   </div>

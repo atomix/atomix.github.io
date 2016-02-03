@@ -12,7 +12,7 @@ project: atomix
         <p>Atomix features reliable data consistency guarantees that are maintained even when machine or network failures occur.</p>
       </div>
       <div class="col-sm-5 text-right">
-        <img class="svg" src="/assets/img/reliable14.svg">
+        <img class="svg" src="/assets/img/icons/reliable.svg">
       </div>
     </div>
   </div>
@@ -154,7 +154,7 @@ bus.consumer("foo", message -> System.out.println("Consumed " + message));
         <p>Atomix clusters are resilient to failure, automatically replacing cluster members as needed without any data loss.</p>
       </div>
       <div class="col-sm-5 text-right">
-        <img class="svg" src="/assets/img/resilient.svg">
+        <img class="svg" src="/assets/img/icons/resilient.svg">
       </div>
     </div>
   </div>
