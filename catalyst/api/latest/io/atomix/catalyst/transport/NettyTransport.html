@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -142,7 +142,10 @@ implements <a href="../../../../io/atomix/catalyst/transport/Transport.html" tit
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/transport/NettyTransport.html#NettyTransport--">NettyTransport</a></span>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/transport/NettyTransport.html#NettyTransport-int-">NettyTransport</a></span>(int&nbsp;threads)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/transport/NettyTransport.html#NettyTransport-io.atomix.catalyst.transport.NettyProperties-">NettyTransport</a></span>(<a href="../../../../io/atomix/catalyst/transport/NettyProperties.html" title="class in io.atomix.catalyst.transport">NettyProperties</a>&nbsp;properties)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/transport/NettyTransport.html#NettyTransport-java.util.Properties-">NettyTransport</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;properties)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -172,6 +175,18 @@ implements <a href="../../../../io/atomix/catalyst/transport/Transport.html" tit
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="http://netty.io/4.0/api/io/netty/channel/EventLoopGroup.html?is-external=true" title="class or interface in io.netty.channel">EventLoopGroup</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/transport/NettyTransport.html#eventLoopGroup--">eventLoopGroup</a></span>()</code>
+<div class="block">Returns the Netty event loop group.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/catalyst/transport/NettyProperties.html" title="class in io.atomix.catalyst.transport">NettyProperties</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/transport/NettyTransport.html#properties--">properties</a></span>()</code>
+<div class="block">Returns the Netty transport properties.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/transport/Server.html" title="interface in io.atomix.catalyst.transport">Server</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/transport/NettyTransport.html#server--">server</a></span>()</code>
 <div class="block">Creates a new transport server.</div>
@@ -208,17 +223,22 @@ implements <a href="../../../../io/atomix/catalyst/transport/Transport.html" tit
 <pre>public&nbsp;NettyTransport()</pre>
 </li>
 </ul>
-<a name="NettyTransport-int-">
+<a name="NettyTransport-java.util.Properties-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>NettyTransport</h4>
+<pre>public&nbsp;NettyTransport(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;properties)</pre>
+</li>
+</ul>
+<a name="NettyTransport-io.atomix.catalyst.transport.NettyProperties-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>NettyTransport</h4>
-<pre>public&nbsp;NettyTransport(int&nbsp;threads)</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if <code>threads</code> is not positive</dd>
-</dl>
+<pre>public&nbsp;NettyTransport(<a href="../../../../io/atomix/catalyst/transport/NettyProperties.html" title="class in io.atomix.catalyst.transport">NettyProperties</a>&nbsp;properties)</pre>
 </li>
 </ul>
 </li>
@@ -229,6 +249,34 @@ implements <a href="../../../../io/atomix/catalyst/transport/Transport.html" tit
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="properties--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>properties</h4>
+<pre>public&nbsp;<a href="../../../../io/atomix/catalyst/transport/NettyProperties.html" title="class in io.atomix.catalyst.transport">NettyProperties</a>&nbsp;properties()</pre>
+<div class="block">Returns the Netty transport properties.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The Netty transport properties.</dd>
+</dl>
+</li>
+</ul>
+<a name="eventLoopGroup--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>eventLoopGroup</h4>
+<pre>public&nbsp;<a href="http://netty.io/4.0/api/io/netty/channel/EventLoopGroup.html?is-external=true" title="class or interface in io.netty.channel">EventLoopGroup</a>&nbsp;eventLoopGroup()</pre>
+<div class="block">Returns the Netty event loop group.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The Netty event loop group.</dd>
+</dl>
+</li>
+</ul>
 <a name="client--">
 <!--   -->
 </a>
