@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -145,8 +145,9 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/system/MetaStore.html#MetaStore-java.lang.String-io.atomix.copycat.server.storage.Storage-">MetaStore</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-         <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/system/MetaStore.html#MetaStore-java.lang.String-io.atomix.copycat.server.storage.Storage-io.atomix.catalyst.serializer.Serializer-">MetaStore</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+         <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage,
+         <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -192,24 +193,30 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </td>
 </tr>
 <tr id="i5" class="rowColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/system/MetaStore.html#serializer--">serializer</a></span>()</code>
+<div class="block">Returns the metastore serializer.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system">MetaStore</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/system/MetaStore.html#storeConfiguration-io.atomix.copycat.server.storage.system.Configuration-">storeConfiguration</a></span>(<a href="../../../../../../io/atomix/copycat/server/storage/system/Configuration.html" title="class in io.atomix.copycat.server.storage.system">Configuration</a>&nbsp;configuration)</code>
 <div class="block">Stores the current cluster configuration.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system">MetaStore</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/system/MetaStore.html#storeTerm-long-">storeTerm</a></span>(long&nbsp;term)</code>
 <div class="block">Stores the current server term.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system">MetaStore</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/system/MetaStore.html#storeVote-int-">storeVote</a></span>(int&nbsp;vote)</code>
 <div class="block">Stores the last voted server.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/system/MetaStore.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
@@ -235,14 +242,15 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="MetaStore-java.lang.String-io.atomix.copycat.server.storage.Storage-">
+<a name="MetaStore-java.lang.String-io.atomix.copycat.server.storage.Storage-io.atomix.catalyst.serializer.Serializer-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>MetaStore</h4>
 <pre>public&nbsp;MetaStore(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-                 <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage)</pre>
+                 <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage,
+                 <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
 </li>
 </ul>
 </li>
@@ -253,6 +261,20 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="serializer--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>serializer</h4>
+<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer()</pre>
+<div class="block">Returns the metastore serializer.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The metastore serializer.</dd>
+</dl>
+</li>
+</ul>
 <a name="storeTerm-long-">
 <!--   -->
 </a>
