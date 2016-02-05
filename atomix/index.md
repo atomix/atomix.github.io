@@ -24,7 +24,7 @@ project: atomix
     <div class="row">
     
 <div class="col-sm-7" markdown="1">
-{% include sync-tabs-params.html active="#distributed-value:Value" inactive="#distributed-long:Long,#distributed-map:Map,#distributed-multimap:MultiMap,#distributed-set:Set,#distributed-queue:Queue,#distributed-lock:Lock,#distributed-group:Membership Group,#distributed-leader:Leader Election,#distributed-bus:Message Bus" %}
+{% include sync-tabs-params.html active="#distributed-value:Value" inactive="#distributed-long:Long,#distributed-map:Map,#distributed-multimap:MultiMap,#distributed-set:Set,#distributed-queue:Queue,#distributed-lock:Lock,#distributed-group:Group,#distributed-leader:Leader Election,#distributed-bus:Message Bus,#distributed-topic:Topic,#distributed-task-queue:Task Queue" %}
 <div class="tab-content" markdown="1">
 <div class="tab-pane active" id="distributed-value" markdown="1">
 ```java
@@ -106,18 +106,19 @@ lock.lock().thenRun(() -> {
 </div>
 <div class="tab-pane" id="distributed-group" markdown="1">
 ```java
-DistributedMembershipGroup group = atomix.getMembershipGroup("group").get();
+DistributedGroup group = atomix.getGroup("group").get();
 
 group.join().thenRun(() -> System.out.println("Join successful"));
 
-group.onJoin(member -> System.out.println(member.id() + " joined the group"));
+group.onJoin(member -> System.out.println(member + " joined the group"));
 ```
 </div>
 <div class="tab-pane" id="distributed-leader" markdown="1">
 ```java
-DistributedMembershipGroup group = atomix.getMembershipGroup("election").get();
+DistributedGroup group = atomix.getGroup("election").get();
 
 LocalGroupMember member = group.join().get();
+
 member.onElection(term -> {
   System.out.println("Elected leader!");
   member.resign();
@@ -133,6 +134,26 @@ bus.open(new Address("123.456.789.0", 5000)).join();
 bus.producer("foo").send("hello").get();
 
 bus.consumer("foo", message -> System.out.println("Consumed " + message));
+```
+</div>
+<div class="tab-pane" id="distributed-topic" markdown="1">
+```java
+DistributedTopic<String> topic = atomix.getTopic("topic").get();
+
+topic.onMessage(message -> System.out.println("Got message: " + message));
+
+topic.publish("Hello world!").thenRun(() -> System.out.println("Published!"));
+```
+</div>
+<div class="tab-pane" id="distributed-task-queue" markdown="1">
+```java
+DistributedTaskQueue<String> queue = atomix.getTaskQueue("tasks").get();
+
+queue.consumer(task -> {
+  System.out.println("Received " + task);
+});
+
+queue.submit("work task");
 ```
 </div>
 </div>
