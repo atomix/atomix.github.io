@@ -126,7 +126,7 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
  creation and management of <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a> objects via a filesystem like interface. There is a
  one-to-one relationship between keys and resources, so each key can be associated with one and only one resource.
  <p>
- To create a resource, pass the resource <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang"><code>Class</code></a> to the <code>Atomix#create(String, ResourceType)</code> method.
+ To create a resource, pass the resource <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang"><code>Class</code></a> to the <a href="../../io/atomix/Atomix.html#get-java.lang.String-io.atomix.resource.ResourceType-"><code>get(String, ResourceType)</code></a> method.
  When a resource is created, the <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server"><code>StateMachine</code></a> associated with the resource will be created on each Raft server
  and future operations submitted for that resource will be applied to the state machine. Internally, resource state
  machines are multiplexed across a shared Raft log.</div>
