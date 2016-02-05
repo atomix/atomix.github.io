@@ -21,7 +21,7 @@ Atomix provides a number of resource implementations for common distributed syst
 
 * [Distributed collections](#distributed-collections) - `DistributedSet`, `DistributedMap`, `DistributedMultiMap`, `DistributedQueue`
 * [Distributed atomic variables](#distributed-variables) - `DistributedValue`, `DistributedLong`
-* [Distributed coordination tools](#distributed-coordination) - `DistributedLock`, `DistributedMembershipGroup`
+* [Distributed coordination tools](#distributed-coordination) - `DistributedLock`, `DistributedGroup`
 * [Distributed messaging](#distributed-messaging) - `DistributedTopic`, `DistributedMessageBus`
 
 ### Consistency levels

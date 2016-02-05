@@ -52,16 +52,16 @@ lock.lock().join();
 lock.unlock().join();
 ```
 
-### DistributedMembershipGroup
+### DistributedGroup
 
-The [DistributedMembershipGroup] resources provides an asynchronous API for coordinating group membership across the cluster. Group membership can be used to track, for example, nodes in a cluster.
+The [DistributedGroup] resources provides an asynchronous API for coordinating group membership across the cluster. Group membership can be used to track, for example, nodes in a cluster.
 
 When new members [join](#joining-the-group) a membership group, all existing members of the group may be [notified](#listening-for-membership-changes). Typically, in fault tolerant systems members join the group until they fail. When a member's session is disconnected from the cluster, remaining members of the group will again be notified that the member has left the cluster.
 
-To create a `DistributedMembershipGroup`, use the `Atomix.getMembershipGroup` method:
+To create a `DistributedGroup`, use the `Atomix.getGroup` method:
 
 ```java
-DistributedMembershipGroup group = atomix.getMembershipGroup("my-group").get();
+DistributedGroup group = atomix.getGroup("my-group").get();
 ```
 
 #### Joining the group
@@ -104,12 +104,12 @@ group.onLeave(member -> {
 
 #### Leader election
 
-[Leader election](https://en.wikipedia.org/wiki/Leader_election) is a pattern commonly used in distributed systems to coordinate some task or access to a resource among a set of processes. Atomix's `DistributedMembershipGroup` handles the coordination of a leader and notifies processes when they become the leader.
+[Leader election](https://en.wikipedia.org/wiki/Leader_election) is a pattern commonly used in distributed systems to coordinate some task or access to a resource among a set of processes. Atomix's `DistributedGroup` handles the coordination of a leader and notifies processes when they become the leader.
 
 Atomix provides support for leader election as a component of membership groups. Any member in a group can be elected leader, and indeed a leader is always elected for any group. To await the current leader being elected, use the `onElection` method of the `LocalGroupMember`:
 
 ```java
-atomix.getMembershipGroup("group").thenAccept(group -> {
+atomix.getGroup("group").thenAccept(group -> {
   group.join().thenAccept(member -> {
     member.onElection(term -> {
       System.out.println("Elected leader!");
@@ -136,7 +136,7 @@ group.onElection(member -> {
 
 #### Scheduling remote callbacks
 
-Members in a [DistributedMembershipGroup] are represented as [GroupMember] objects. The `GroupMember` class provides an interface for remote execution on specific members of the group.
+Members in a [DistributedGroup] are represented as [GroupMember] objects. The `GroupMember` class provides an interface for remote execution on specific members of the group.
 
 ```java
 group.onJoin(member -> {
@@ -158,7 +158,7 @@ member.schedule(Duration.ofSeconds(10), () -> System.out.println("Printed after 
 
 #### Handling failures
 
-Atomix membership groups are fault-tolerant and will automatically remove a member and elect a new leader as necessary when a member node crashes or is partitioned. However, in some cases a member of the group can become partitioned from the cluster without crashing, and in that case it may not receive updates on membership changes or be notified when it is itself evicted from the group. Atomix provides a mechanism for detecting these types of communication issues through the `Resource.State` API. Each instance of a `DistributedMembershipGroup` on any node will track its ability to maintain communication with the rest of the cluster. In the event that the client cannot communicate with the rest of the cluter, the membership group's state will change to `SUSPENDED`.
+Atomix membership groups are fault-tolerant and will automatically remove a member and elect a new leader as necessary when a member node crashes or is partitioned. However, in some cases a member of the group can become partitioned from the cluster without crashing, and in that case it may not receive updates on membership changes or be notified when it is itself evicted from the group. Atomix provides a mechanism for detecting these types of communication issues through the `Resource.State` API. Each instance of a `DistributedGroup` on any node will track its ability to maintain communication with the rest of the cluster. In the event that the client cannot communicate with the rest of the cluter, the membership group's state will change to `SUSPENDED`.
 
 ```java
 group.onStateChange(state -> {

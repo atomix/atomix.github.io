@@ -3,10 +3,10 @@ layout: docs
 project: atomix
 menu: docs
 title: Overview
-pitch: An asynchronous framework for building distributed systems
 first-section: overview
 ---
 
+{:.no-margin-top}
 Atomix is a framework for consistent distributed coordination. At the core of Atomix is a generic implementation of the [Raft consensus algorithm][Raft]. On top of Raft, Atomix provides a high level API for creating and managing arbitrary user-defined replicated state machines such as maps, sets, locks, or user-defined resources. Resources can be created and modified by any replica or client in the cluster.
 
 > So what's the difference between Atomix and those other projects?
