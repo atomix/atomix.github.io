@@ -145,22 +145,38 @@ bus.consumer("foo", message -> System.out.println("Consumed " + message));
   </div>
 </div>
 
-<!--Resilient -->
+<!--Scalable -->
 <div class="feature white-background">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <h2>Resilient</h2>
-        <p>Atomix clusters are resilient to failure, automatically replacing cluster members as needed without any data loss.</p>
+        <h2>Scalable</h2>
+        <p>Copycat scales along with the rest of your system, providing high read throughput while maintaining strong write consistency.</p>
       </div>
       <div class="col-sm-5 text-right">
-        <img class="svg" src="/assets/img/icons/resilient.svg">
+        <img class="svg" src="/assets/img/icons/scalable.svg">
       </div>
     </div>
   </div>
 </div>
 
+<!--Resilient -->
 <div class="feature gray-background">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5 col-sm-offset-1">
+        <img class="svg" src="/assets/img/icons/resilient.svg">
+      </div>
+      <div class="col-sm-6 text-right">
+        <h2>Resilient</h2>
+        <p>Atomix clusters are resilient to failure, automatically replacing cluster members as needed without any data loss.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Embeddable -->
+<!-- <div class="feature gray-background">
   <div class="container">
     <div class="row">
 <div class="col-sm-6" markdown="1">
@@ -179,7 +195,7 @@ AtomixReplica replica = AtomixReplica.builder(address, members)
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!--Learn more -->
 <div class="feature get-started">
