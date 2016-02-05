@@ -32,7 +32,10 @@ def get_users(repos, valid_keys, fetcher):
     for page in contributors:
         for c in page:
           user = retain_keys(c.__dict__, valid_keys)
-          result[user['login']] = user
+          if user['login'] in result and user.has_key('contributions'):
+            result[user['login']]['contributions'] += user['contributions']
+          else:
+            result[user['login']] = user
   for user in result.values():
     user.update(get_user(user['login']))
   return result
