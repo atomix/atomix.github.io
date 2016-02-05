@@ -9,7 +9,7 @@ first-section: Introduction
 {:.no-margin-top}
 ## Introduction
 
-Atomix is an easy to use library that embeds inside of your clustered application. It provides various distributed resources for common data structures and patterns. These include:
+Atomix is an easy to use library that embeds inside of your clustered application. It provides various distributed resources for common data structures and patterns including:
 
 * Distributed [variables]
 * Distributed [collections] such as maps, multi-maps, sets, and queues
@@ -32,7 +32,7 @@ This dependency provides you with all of the Atomix resources along with a [Nett
 
 ## Creating a cluster
 
-The first step in using Atomix is creating a cluster. An atomix cluster consists of a set of replicas through which resources are created and operated on. Each replica maintains a copy of the state of each resource that you create in the cluster. State is stored according to a configurable [StorageLevel] and state changes are replicated according to a given [ConsistencyLevel][CommandConsistencyLevel]. 
+The first step in using Atomix is creating a cluster. An atomix cluster consists of a set of [replicas] through which resources are created and operated on. Each replica maintains a copy of the state of each resource that you create in the cluster. State is stored according to a configurable [StorageLevel] and state changes are replicated according to a given [ConsistencyLevel][CommandConsistencyLevel]. 
 
 Clusters can contain both *active* and *passive* replicas. Active replicas take part in the processing of state changes while passive replicas are kept in sync in order to replace active replicas when a fault occurs. Typically, an Atomix cluster consists of 3 or 5 active replicas and 1 or more passive replicas. While Atomix embeds inside your clustered application, the number of nodes participating in the Atomix cluster does not need to match that of your application.
 
@@ -87,16 +87,15 @@ To establish a cluster, a replica will need to be opened on each of the member a
 
 ## Creating distributed resources
 
-With our [AtomixReplica] ready and open, we can create some distributed resources. To get or create a distributed resource, use one of the [Atomix] `get` methods:
+With our [AtomixReplica] ready and open, we can create some distributed resources. To get or create a distributed resource, use one of the [Atomix] `get` methods. Let's create a [DistributedLock]:
 
 {% include sync-tabs.html target1="#async-create" desc1="Async" target2="#sync-create" desc2="Sync" %}
 {::options parse_block_html="true" /}
 <div class="tab-content">
 <div class="tab-pane active" id="async-create">
 ```java
-replica.getLock("my-lock").thenAccept(lock -> {
-  lock.lock().thenRun(() -> System.out.println("Acquired a lock!"));
-});
+DistributedLock lock = replica.getLock("my-lock").get();
+lock.lock().thenRun(() -> System.out.println("Acquired a lock!"));
 ```
 </div>
 <div class="tab-pane" id="sync-create">
@@ -108,11 +107,11 @@ System.out.println("Acquired a lock!");
 </div>
 </div>
 
-Each resource in the cluster must be assigned a unique `String` name. If multiple clients `get` the same resource type with the same name, they will both reference the same resource stored in the cluster.
+Each resource in the cluster must be assigned a unique `String` name. If multiple [Atomix] instances `get` the same resource type with the same name, they will all reference the same resource stored in the cluster.
 
 ## Creating a client
 
-In addition to creating and acessing resources directly through an [AtomixReplica], Atomix also supports clients which can be used to remotely access resources stored in a cluster.
+In addition to creating and acessing resources directly through an [AtomixReplica], Atomix also supports [clients] which can be used to remotely access resources stored in a cluster.
 
 Creating a client is similar to creating a replica:
 
