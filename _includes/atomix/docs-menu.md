@@ -26,7 +26,7 @@
    * [DistributedLong](#distributedlong)
 * [Distributed coordination](coordination)
    * [DistributedLock](#distributedlock)
-   * [DistributedMembershipGroup](#distributedmembershipgroup)
+   * [DistributedGroup](#distributedgroup)
       * [Joining the group](#joining-the-group)
       * [Leaving the group](#leaving-the-group)
       * [Listening for membership changes](#listening-for-membership-changes)
