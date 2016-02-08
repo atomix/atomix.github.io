@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
+var methods = {"i0":9,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -226,72 +226,90 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#deleteLog-java.lang.String-">deleteLog</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
+<div class="block">Deletes a <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#deleteMetaStore-java.lang.String-">deleteMetaStore</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
+<div class="block">Deletes a <a href="../../../../../io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system"><code>MetaStore</code></a>.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#deleteSnapshotStore-java.lang.String-">deleteSnapshotStore</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
+<div class="block">Deletes a <a href="../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotStore</code></a>.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#directory--">directory</a></span>()</code>
 <div class="block">Returns the storage directory.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#level--">level</a></span>()</code>
 <div class="block">Returns the storage level.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#majorCompactionInterval--">majorCompactionInterval</a></span>()</code>
 <div class="block">Returns the major compaction interval.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#maxEntriesPerSegment--">maxEntriesPerSegment</a></span>()</code>
 <div class="block">Returns the maximum number of entries per segment.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#maxSegmentSize--">maxSegmentSize</a></span>()</code>
 <div class="block">Returns the maximum log segment size.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#maxSnapshotSize--">maxSnapshotSize</a></span>()</code>
 <div class="block">Returns the maximum snapshot size.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#minorCompactionInterval--">minorCompactionInterval</a></span>()</code>
 <div class="block">Returns the minor compaction interval.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#openLog-java.lang.String-">openLog</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system">MetaStore</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#openMetaStore-java.lang.String-">openMetaStore</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system"><code>MetaStore</code></a>.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotStore</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#openSnapshotStore-java.lang.String-">openSnapshotStore</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotStore</code></a>.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#retainStaleSnapshots--">retainStaleSnapshots</a></span>()</code>
 <div class="block">Returns a boolean value indicating whether to retain stale snapshots on disk.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
@@ -600,6 +618,20 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
+<a name="deleteMetaStore-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>deleteMetaStore</h4>
+<pre>public&nbsp;void&nbsp;deleteMetaStore(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
+<div class="block">Deletes a <a href="../../../../../io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system"><code>MetaStore</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - The metastore name.</dd>
+</dl>
+</li>
+</ul>
 <a name="openSnapshotStore-java.lang.String-">
 <!--   -->
 </a>
@@ -616,6 +648,20 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
+<a name="deleteSnapshotStore-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>deleteSnapshotStore</h4>
+<pre>public&nbsp;void&nbsp;deleteSnapshotStore(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
+<div class="block">Deletes a <a href="../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotStore</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - The snapshot store name.</dd>
+</dl>
+</li>
+</ul>
 <a name="openLog-java.lang.String-">
 <!--   -->
 </a>
@@ -629,8 +675,24 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
  according to the provided log <code>name</code>. If segments for the given log name are present on disk, segments
  will be loaded and indexes will be rebuilt from disk. If no segments are found, an empty log will be created.</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - The log name.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The opened log.</dd>
+</dl>
+</li>
+</ul>
+<a name="deleteLog-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>deleteLog</h4>
+<pre>public&nbsp;void&nbsp;deleteLog(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
+<div class="block">Deletes a <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - The log name.</dd>
 </dl>
 </li>
 </ul>

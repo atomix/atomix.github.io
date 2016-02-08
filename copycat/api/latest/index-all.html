@@ -616,6 +616,10 @@
 <dd>
 <div class="block">Returns the number of entries in the segment that have been cleaned.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/StorageCleaner.html#cleanFiles-java.util.function.Predicate-">cleanFiles(Predicate&lt;File&gt;)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/StorageCleaner.html" title="class in io.atomix.copycat.server.storage">StorageCleaner</a></dt>
+<dd>
+<div class="block">Cleans up files.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#cleanPredicate--">cleanPredicate()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>
 <div class="block">Returns a predicate for cleaned offsets in the segment.</div>
@@ -1051,10 +1055,6 @@
 <dd>
 <div class="block">Deletes the server and its logs.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Log.html#delete--">delete()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></dt>
-<dd>
-<div class="block">Deletes the log.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#delete--">delete()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>
 <div class="block">Deletes the segment.</div>
@@ -1062,10 +1062,6 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.html#delete--">delete()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a></dt>
 <dd>
 <div class="block">Deletes the descriptor.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentManager.html#delete--">delete()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a></dt>
-<dd>
-<div class="block">Deletes all segments.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/snapshot/Snapshot.html#delete--">delete()</a></span> - Method in class io.atomix.copycat.server.storage.snapshot.<a href="io/atomix/copycat/server/storage/snapshot/Snapshot.html" title="class in io.atomix.copycat.server.storage.snapshot">Snapshot</a></dt>
 <dd>
@@ -1075,13 +1071,17 @@
 <dd>
 <div class="block">Deletes the descriptor.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/snapshot/SnapshotStore.html#delete--">delete()</a></span> - Method in class io.atomix.copycat.server.storage.snapshot.<a href="io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotStore</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.html#deleteLog-java.lang.String-">deleteLog(String)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></dt>
 <dd>
-<div class="block">Deletes the metastore.</div>
+<div class="block">Deletes a <a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/system/MetaStore.html#delete--">delete()</a></span> - Method in class io.atomix.copycat.server.storage.system.<a href="io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system">MetaStore</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.html#deleteMetaStore-java.lang.String-">deleteMetaStore(String)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></dt>
 <dd>
-<div class="block">Deletes the metastore.</div>
+<div class="block">Deletes a <a href="io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system"><code>MetaStore</code></a>.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.html#deleteSnapshotStore-java.lang.String-">deleteSnapshotStore(String)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></dt>
+<dd>
+<div class="block">Deletes a <a href="io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotStore</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/cluster/Member.html#demote--">demote()</a></span> - Method in interface io.atomix.copycat.server.cluster.<a href="io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a></dt>
 <dd>
@@ -1250,6 +1250,14 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/RetryStrategy.Attempt.html#fail-java.lang.Throwable-">fail(Throwable)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/RetryStrategy.Attempt.html" title="interface in io.atomix.copycat.client">RetryStrategy.Attempt</a></dt>
 <dd>
 <div class="block">Fails the operation with a specific exception.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentFile.html#file--">file()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentFile.html" title="class in io.atomix.copycat.server.storage">SegmentFile</a></dt>
+<dd>
+<div class="block">Returns the segment file.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/snapshot/SnapshotFile.html#file--">file()</a></span> - Method in class io.atomix.copycat.server.storage.snapshot.<a href="io/atomix/copycat/server/storage/snapshot/SnapshotFile.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotFile</a></dt>
+<dd>
+<div class="block">Returns the snapshot file.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Log.html#firstIndex--">firstIndex()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></dt>
 <dd>
@@ -1502,6 +1510,10 @@
 <dd>
 <div class="block">Returns the segment identifier.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentFile.html#id--">id()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentFile.html" title="class in io.atomix.copycat.server.storage">SegmentFile</a></dt>
+<dd>
+<div class="block">Returns the segment identifier.</div>
+</dd>
 <dt><a href="io/atomix/copycat/client/error/IllegalMemberStateException.html" title="class in io.atomix.copycat.client.error"><span class="typeNameLink">IllegalMemberStateException</span></a> - Exception in <a href="io/atomix/copycat/client/error/package-summary.html">io.atomix.copycat.client.error</a></dt>
 <dd>
 <div class="block">Illegal member state exception.</div>
@@ -1557,6 +1569,10 @@
 <div class="block">Returns the snapshot index.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/snapshot/SnapshotDescriptor.html#index--">index()</a></span> - Method in class io.atomix.copycat.server.storage.snapshot.<a href="io/atomix/copycat/server/storage/snapshot/SnapshotDescriptor.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotDescriptor</a></dt>
+<dd>
+<div class="block">Returns the snapshot index.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/snapshot/SnapshotFile.html#index--">index()</a></span> - Method in class io.atomix.copycat.server.storage.snapshot.<a href="io/atomix/copycat/server/storage/snapshot/SnapshotFile.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotFile</a></dt>
 <dd>
 <div class="block">Returns the snapshot index.</div>
 </dd>
@@ -1721,6 +1737,14 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#isOpen--">isOpen()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>
 <div class="block">Returns a boolean value indicating whether the segment is open.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentFile.html#isSegmentFile-java.lang.String-java.io.File-">isSegmentFile(String, File)</a></span> - Static method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentFile.html" title="class in io.atomix.copycat.server.storage">SegmentFile</a></dt>
+<dd>
+<div class="block">Returns a boolean value indicating whether the given file appears to be a parsable segment file.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/snapshot/SnapshotFile.html#isSnapshotFile-java.lang.String-java.io.File-">isSnapshotFile(String, File)</a></span> - Static method in class io.atomix.copycat.server.storage.snapshot.<a href="io/atomix/copycat/server/storage/snapshot/SnapshotFile.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotFile</a></dt>
+<dd>
+<div class="block">Returns a boolean value indicating whether the given file appears to be a parsable snapshot file.</div>
 </dd>
 </dl>
 <a name="I:J">
@@ -2747,6 +2771,10 @@
 <dd>
 <div class="block">Segment descriptor builder.</div>
 </dd>
+<dt><a href="io/atomix/copycat/server/storage/SegmentFile.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">SegmentFile</span></a> - Class in <a href="io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a></dt>
+<dd>
+<div class="block">Segment file utility.</div>
+</dd>
 <dt><a href="io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">SegmentManager</span></a> - Class in <a href="io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a></dt>
 <dd>
 <div class="block">Manages creation and deletion of <a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s of the <a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.</div>
@@ -2977,6 +3005,10 @@
 <dd>
 <div class="block">Snapshot descriptor builder.</div>
 </dd>
+<dt><a href="io/atomix/copycat/server/storage/snapshot/SnapshotFile.html" title="class in io.atomix.copycat.server.storage.snapshot"><span class="typeNameLink">SnapshotFile</span></a> - Class in <a href="io/atomix/copycat/server/storage/snapshot/package-summary.html">io.atomix.copycat.server.storage.snapshot</a></dt>
+<dd>
+<div class="block">Represents a snapshot file on disk.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/Compactor.html#snapshotIndex-long-">snapshotIndex(long)</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></dt>
 <dd>
 <div class="block">Sets the snapshot index to indicate commands entries that can be removed during compaction.</div>
@@ -3069,6 +3101,12 @@
 <dd>
 <div class="block">Builds a <a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> configuration.</div>
 </dd>
+<dt><a href="io/atomix/copycat/server/storage/StorageCleaner.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">StorageCleaner</span></a> - Class in <a href="io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a></dt>
+<dd>
+<div class="block">Handles deletion of files.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/StorageCleaner.html#StorageCleaner-io.atomix.copycat.server.storage.Storage-">StorageCleaner(Storage)</a></span> - Constructor for class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/StorageCleaner.html" title="class in io.atomix.copycat.server.storage">StorageCleaner</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="io/atomix/copycat/server/storage/StorageException.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">StorageException</span></a> - Exception in <a href="io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a></dt>
 <dd>
 <div class="block">Log exception.</div>
@@ -3192,6 +3230,10 @@
 <div class="block">Returns the snapshot timestamp.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/snapshot/SnapshotDescriptor.html#timestamp--">timestamp()</a></span> - Method in class io.atomix.copycat.server.storage.snapshot.<a href="io/atomix/copycat/server/storage/snapshot/SnapshotDescriptor.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotDescriptor</a></dt>
+<dd>
+<div class="block">Returns the snapshot timestamp.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/snapshot/SnapshotFile.html#timestamp--">timestamp()</a></span> - Method in class io.atomix.copycat.server.storage.snapshot.<a href="io/atomix/copycat/server/storage/snapshot/SnapshotFile.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotFile</a></dt>
 <dd>
 <div class="block">Returns the snapshot timestamp.</div>
 </dd>
@@ -3565,6 +3607,10 @@ the order they are declared.</div>
 the order they are declared.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentDescriptor.html#version--">version()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a></dt>
+<dd>
+<div class="block">Returns the segment version.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentFile.html#version--">version()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentFile.html" title="class in io.atomix.copycat.server.storage">SegmentFile</a></dt>
 <dd>
 <div class="block">Returns the segment version.</div>
 </dd>
