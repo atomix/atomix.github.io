@@ -5,7 +5,7 @@ import yaml
 import operator
 
 DATA_DIR = os.path.join(os.path.dirname( __file__ ), '../_data')
-ATOMIX_STACK = ['atomix', 'copycat', 'catalyst']
+ATOMIX_STACK = ['atomix', 'copycat', 'catalyst', 'atomix.github.io']
 
 gh = Github(login=sys.argv[1], password=sys.argv[2])
 
