@@ -37,7 +37,7 @@ Raft's leader election algorithm is heavily dependent on the log. When a followe
 
 <h3 id="log-replication-basics">1.2 Log replication</h3>
 
-Logs are replicated from leaders to followers. When a command is submitted to the cluster, the leader appends the command as an entry in its log. Leaders periodically sends entries to each available follower in batches. Each batch of entries is send with a the index and term of the previous entry in the leader's log, and followers use that information to perform consistency checks against their own logs. If a follower's log is inconsistent with the leader's log, the follower will truncate entries from its log and the leader will resend missing entries to the follower. Once a majority of the servers have acknowledged receipt of a given entry it is considered committed and is applied to the leader's state machine. Eventually, followers are notified of the commitment of the command and apply it to their own logs as well.
+Logs are replicated from leaders to followers. When a command is submitted to the cluster, the leader appends the command as an entry in its log. Leaders periodically sends entries to each available follower in batches. Each batch of entries is sent with the index and term of the previous entry in the leader's log, and followers use that information to perform consistency checks against their own logs. If a follower's log is inconsistent with the leader's log, the follower will truncate entries from its log and the leader will resend missing entries to the follower. Once a majority of the servers have acknowledged receipt of a given entry, it is considered committed and is applied to the leader's state machine. Eventually, followers are notified of the commitment of the command and apply it to their own logs as well.
 
 <h3 id="membership-changes-basics">1.3 Membership changes</h3>
 
@@ -49,7 +49,7 @@ As commands are submitted to a Raft cluster and logged and replicated, the repli
 
 <h2 id="the-copycat-cluster">2 The Copycat cluster</h2>
 
-The structure Copycat clusters differ significantly from typical Raft clusters primarily due to the need to support greater flexibility in systems in which Copycat is embedded. High-availability systems cannot be constrained by the strict quorum-based requirements of consensus algorithms, so Copycat provides several node types to address scalability issues.
+The structure of Copycat clusters differs significantly from typical Raft clusters primarily due to the need to support greater flexibility in systems in which Copycat is embedded. High-availability systems cannot be constrained by the strict quorum-based requirements of consensus algorithms, so Copycat provides several node types to address scalability issues.
 
 Copycat clusters consist of three node types: active, passive, and reserve.
 
@@ -67,11 +67,11 @@ Each stateful server in a cluster maintains two logical state machines. An inter
 
 The basic Raft consensus algorithm dictates that clients should communicate directly with the leader to submit reads and writes to the cluster. The leader services writes by committing commands to the Raft log, and in linearizable systems the leader services reads by synchronously verifying its leadership with a majority of the cluster before applying them to the state machine. But practical systems can benefit from relaxed consistency models, and indeed the Raft literature does describe some ways to achieve this. Clients can submit read-only queries to followers without losing sequential consistency. In fact, there are even ways to make reads on followers linearizable, albeit at significant cost.
 
-Typically, will initially connect to a pseudo-random server to register their session and then reconnect to the leader once it has been discovered. In the event that the client cannot locate a leader it continues to retry against random servers until one is found. In Copycat, client connections are spread across the cluster by default. Clients are allowed to connect to any server, and clients are responsible for choosing a server. Once connected to a server, clients try to maintain their connections for as long as possible. Reducing the frequency with which clients switch servers improves latency in bi-directional communication between clients and servers since servers typically know the route through which a client can be reached.
+Typically, clients will initially connect to a pseudo-random server to register their session and then reconnect to the leader once it has been discovered. In the event that the client cannot locate a leader it continues to retry against random servers until one is found. In Copycat, client connections are spread across the cluster by default. Clients are allowed to connect to any server, and clients are responsible for choosing a server. Once connected to a server, clients try to maintain their connections for as long as possible. Reducing the frequency with which clients switch servers improves latency in bi-directional communication between clients and servers since servers typically know the route through which a client can be reached.
 
 <h3 id="sessions">3.1 Sessions</h3>
 
-Clients interact with the cluster within the context of a session. Sessions provide a mechanism through which interactions between a single client and the cluster can be managed. Once a session is registered by a client, all future interactions between the client and any server are associated with the client's session. Session aid in sequencing client operations for FIFO ordering, providing linearizable semantics for operations submitted multiple times, and notifying clients about changes in state machine state.
+Clients interact with the cluster within the context of a session. Sessions provide a mechanism through which interactions between a single client and the cluster can be managed. Once a session is registered by a client, all future interactions between the client and any server are associated with the client's session. Sessions aid in sequencing client operations for FIFO ordering, providing linearizable semantics for operations submitted multiple times, and notifying clients about changes in state machine state.
 
 Clients' sessions are managed through the Raft log and state machine, affording servers a deterministic view of the active sessions in the cluster. Sessions are registered by committing an entry to the Raft log and kept alive over time with periodic commits. In the event that a client fails to keep its session alive, each server will expire the client's session deterministically.
 
@@ -105,7 +105,7 @@ When a client submits a command to the cluster, it tags the command with a monot
 
 <h4 id="linearizable-semantics">3.3.2 Linearizable semantics</h4>
 
-Sequence numbers are also used to provide linearizability for commands submitted to the cluster by clients by storing command output by sequence number and deduplicate commands as they're applied to the state machine. If a client submits a command to a server but disconnects from the server before receiving a response, or if the server to which the client submitted the command itself fails, the client doesn't necessarily know whether or not the command succeeded. Indeed, the command could have been replicated to a majority of the cluster prior to the server failure. In that case, the command would ultimately be committed and applied to the state machine, but the client may never receive the command output. Session-based linearizability ensures that clients can still read output for commands resubmitted to the cluster. Servers simply log and commit all commands submitted to the cluster, and in the event  mm and with the same sequence number is applied to the state machine more than once, the state machine returns the result from the original application of the command, thus preventing it from being applied multiple times. Effectively, state machines in Copycat are idempotent.
+Sequence numbers are also used to provide linearizability for commands submitted to the cluster by clients by storing command output by sequence number and deduplicating commands as they're applied to the state machine. If a client submits a command to a server but disconnects from the server before receiving a response, or if the server to which the client submitted the command itself fails, the client doesn't necessarily know whether or not the command succeeded. Indeed, the command could have been replicated to a majority of the cluster prior to the server failure. In that case, the command would ultimately be committed and applied to the state machine, but the client may never receive the command output. Session-based linearizability ensures that clients can still read output for commands resubmitted to the cluster. Servers simply log and commit all commands submitted to the cluster, and in the event a command from the same client with the same sequence number is applied to the state machine more than once, the state machine returns the result from the original application of the command, thus preventing it from being applied multiple times. Effectively, state machines in Copycat are idempotent.
 
 <h3 id="client-queries">3.4 Queries</h3>
 
@@ -117,7 +117,7 @@ Queries are optionally allowed to read stale state from followers. In order to d
 
 <h4 id="processing-queries-on-followers">3.4.1 Processing queries on followers</h4>
 
-When queries are submitted to the cluster, the client specifies the highest `index` for which it has received a response. Awaiting that index when servicing queries on followers ensures that state does not go back in time if a client switches servers. Once the server's state machine has caught up to the client's `index`, the server applies the query to its state machine and response with the state machine output.
+When queries are submitted to the cluster, the client specifies the highest `index` for which it has received a response. Awaiting that index when servicing queries on followers ensures that state does not go back in time if a client switches servers. Once the server's state machine has caught up to the client's `index`, the server applies the query to its state machine and responds with the state machine output.
 
 Clients' indexes are based on feedback received from the cluster when submitting commands and queries. Clients receive indexes for each command and query submitted to the cluster. When a client submits a command to the cluster, the command's index in the Raft replicated log will be returned to the client along with the output. This is the client's last read index. Similarly, when a client submits a query to the cluster, the server that services the query will respond with the query output and the server's `lastApplied` index as the read index.
 
@@ -147,7 +147,7 @@ In the event of a network partition or other loss of quorum, Raft can require an
 
 <h2 id="state-machines">4 State machines</h2>
 
-Each server is configured with a state machine to which it applies committed commands and queries. State machines operations are executed in a separate state machine thread to ensure that blocking state machine operations do not block the internal server event loop.
+Each server is configured with a state machine to which it applies committed commands and queries. State machine operations are executed in a separate state machine thread to ensure that blocking state machine operations do not block the internal server event loop.
 
 Servers maintain both an internal state machine and a user state machine. The internal state machine is responsible for maintaining internal system state such as sessions and membership and applying commands and queries to the user-provided `StateMachine`.
 
