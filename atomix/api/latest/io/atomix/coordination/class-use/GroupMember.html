@@ -86,7 +86,7 @@
 <td class="colFirst"><a href="#io.atomix.coordination">io.atomix.coordination</a></td>
 <td class="colLast">
 <div class="block">Provides distributed coordination resources such as <a href="../../../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination"><code>DistributedLock</code></a> and
- <code>io.atomix.coordination.DistributedLeaderElection</code>, and <a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><code>DistributedMembershipGroup</code></a>.</div>
+ <code>io.atomix.coordination.DistributedLeaderElection</code>, and <a href="../../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination"><code>DistributedGroup</code></a>.</div>
 </td>
 </tr>
 </tbody>
@@ -122,13 +122,13 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html#leader--">leader</a></span>()</code>
+<td class="colLast"><span class="typeNameLabel">DistributedGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedGroup.html#leader--">leader</a></span>()</code>
 <div class="block">Returns the current group leader.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html#member-java.lang.String-">member</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</code>
+<td class="colLast"><span class="typeNameLabel">DistributedGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedGroup.html#member-java.lang.String-">member</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</code>
 <div class="block">Gets a group member by ID.</div>
 </td>
 </tr>
@@ -143,25 +143,25 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html#members--">members</a></span>()</code>
+<td class="colLast"><span class="typeNameLabel">DistributedGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedGroup.html#members--">members</a></span>()</code>
 <div class="block">Gets the collection of all members in the group.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html#onElection-java.util.function.Consumer-">onElection</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;callback)</code>
+<td class="colLast"><span class="typeNameLabel">DistributedGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedGroup.html#onElection-java.util.function.Consumer-">onElection</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;callback)</code>
 <div class="block">Registers a callback to be called when a member of the group is elected leader.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html#onJoin-java.util.function.Consumer-">onJoin</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;listener)</code>
+<td class="colLast"><span class="typeNameLabel">DistributedGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedGroup.html#onJoin-java.util.function.Consumer-">onJoin</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;listener)</code>
 <div class="block">Adds a listener for members joining the group.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;listener)</code>
+<td class="colLast"><span class="typeNameLabel">DistributedGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedGroup.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;listener)</code>
 <div class="block">Adds a listener for members leaving the group.</div>
 </td>
 </tr>
@@ -176,19 +176,19 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html#onElection-java.util.function.Consumer-">onElection</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;callback)</code>
+<td class="colLast"><span class="typeNameLabel">DistributedGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedGroup.html#onElection-java.util.function.Consumer-">onElection</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;callback)</code>
 <div class="block">Registers a callback to be called when a member of the group is elected leader.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html#onJoin-java.util.function.Consumer-">onJoin</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;listener)</code>
+<td class="colLast"><span class="typeNameLabel">DistributedGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedGroup.html#onJoin-java.util.function.Consumer-">onJoin</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;listener)</code>
 <div class="block">Adds a listener for members joining the group.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedMembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedMembershipGroup.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;listener)</code>
+<td class="colLast"><span class="typeNameLabel">DistributedGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/coordination/DistributedGroup.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;listener)</code>
 <div class="block">Adds a listener for members leaving the group.</div>
 </td>
 </tr>

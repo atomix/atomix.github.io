@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -114,12 +114,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></dd>
+<dd><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/SessionListener.html?is-external=true" title="class or interface in io.atomix.copycat.server.session">SessionListener</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public abstract class <span class="typeNameLabel">ResourceStateMachine&lt;T extends <a href="../../../io/atomix/resource/Resource.Config.html" title="interface in io.atomix.resource">Resource.Config</a>&gt;</span>
-extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server">StateMachine</a></pre>
+extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server">StateMachine</a>
+implements <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/SessionListener.html?is-external=true" title="class or interface in io.atomix.copycat.server.session">SessionListener</a></pre>
 <div class="block">Base resource state machine.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -189,19 +190,35 @@ extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/St
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#close-io.atomix.copycat.client.session.Session-">close</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/session/Session.html?is-external=true" title="class or interface in io.atomix.copycat.client.session">Session</a>&nbsp;session)</code>&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#configure-T-">configure</a></span>(<a href="../../../io/atomix/resource/ResourceStateMachine.html" title="type parameter in ResourceStateMachine">T</a>&nbsp;config)</code>
 <div class="block">Configures the resource.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#delete--">delete</a></span>()</code>
 <div class="block">Deletes state machine state.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#expire-io.atomix.copycat.client.session.Session-">expire</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/session/Session.html?is-external=true" title="class or interface in io.atomix.copycat.client.session">Session</a>&nbsp;session)</code>&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#init-io.atomix.copycat.server.StateMachineExecutor-">init</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachineExecutor.html?is-external=true" title="class or interface in io.atomix.copycat.server">StateMachineExecutor</a>&nbsp;executor)</code>&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#register-io.atomix.copycat.client.session.Session-">register</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/session/Session.html?is-external=true" title="class or interface in io.atomix.copycat.client.session">Session</a>&nbsp;session)</code>&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#unregister-io.atomix.copycat.client.session.Session-">unregister</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/session/Session.html?is-external=true" title="class or interface in io.atomix.copycat.client.session">Session</a>&nbsp;session)</code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -275,6 +292,58 @@ extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/St
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>config</code> - The resource configuration.</dd>
+</dl>
+</li>
+</ul>
+<a name="register-io.atomix.copycat.client.session.Session-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>register</h4>
+<pre>public&nbsp;void&nbsp;register(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/session/Session.html?is-external=true" title="class or interface in io.atomix.copycat.client.session">Session</a>&nbsp;session)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/SessionListener.html?is-external=true#register-io.atomix.copycat.client.session.Session-" title="class or interface in io.atomix.copycat.server.session">register</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/SessionListener.html?is-external=true" title="class or interface in io.atomix.copycat.server.session">SessionListener</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="unregister-io.atomix.copycat.client.session.Session-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>unregister</h4>
+<pre>public&nbsp;void&nbsp;unregister(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/session/Session.html?is-external=true" title="class or interface in io.atomix.copycat.client.session">Session</a>&nbsp;session)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/SessionListener.html?is-external=true#unregister-io.atomix.copycat.client.session.Session-" title="class or interface in io.atomix.copycat.server.session">unregister</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/SessionListener.html?is-external=true" title="class or interface in io.atomix.copycat.server.session">SessionListener</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="expire-io.atomix.copycat.client.session.Session-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>expire</h4>
+<pre>public&nbsp;void&nbsp;expire(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/session/Session.html?is-external=true" title="class or interface in io.atomix.copycat.client.session">Session</a>&nbsp;session)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/SessionListener.html?is-external=true#expire-io.atomix.copycat.client.session.Session-" title="class or interface in io.atomix.copycat.server.session">expire</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/SessionListener.html?is-external=true" title="class or interface in io.atomix.copycat.server.session">SessionListener</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="close-io.atomix.copycat.client.session.Session-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>close</h4>
+<pre>public&nbsp;void&nbsp;close(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/session/Session.html?is-external=true" title="class or interface in io.atomix.copycat.client.session">Session</a>&nbsp;session)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/SessionListener.html?is-external=true#close-io.atomix.copycat.client.session.Session-" title="class or interface in io.atomix.copycat.server.session">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/SessionListener.html?is-external=true" title="class or interface in io.atomix.copycat.server.session">SessionListener</a></code></dd>
 </dl>
 </li>
 </ul>

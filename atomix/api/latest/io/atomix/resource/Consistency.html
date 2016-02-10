@@ -167,17 +167,12 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Consistency.html#NONE">NONE</a></span></code>
-<div class="block">Provides no guarantees regarding write atomicity or order.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Consistency.html#PROCESS">PROCESS</a></span></code>
 <div class="block">Guarantees atomicity for write operations and ensures clients see state progress monotonically for
  non-concurrent operations.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Consistency.html#SEQUENTIAL">SEQUENTIAL</a></span></code>
 <div class="block">Guarantees atomicity for write operations and ensures clients will see state progress monotonically
  for all operations.</div>
@@ -252,26 +247,6 @@ the order they are declared.</div>
 <!--   -->
 </a>
 <h3>Enum Constant Detail</h3>
-<a name="NONE">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>NONE</h4>
-<pre>public static final&nbsp;<a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource">Consistency</a> NONE</pre>
-<div class="block">Provides no guarantees regarding write atomicity or order.
- <p>
- This consistency level places no additional burden of coordination on write operations submitted to the
- cluster. This means an operation on any resource that modifies that resource's state may be applied to
- the resource's replicated state machine more than once and it arbitrary order.
- <p>
- Read-only operations submitted with this consistency level are only guaranteed to be completed within
- a bounded time of the leader, but order for concurrent queries is not enforced.
- <p>
- Resource events triggered by operations submitted with this consistency level are similarly not guaranteed
- to be received by the client exactly once or in any particular order.</div>
-</li>
-</ul>
 <a name="PROCESS">
 <!--   -->
 </a>

@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../io/atomix/coordination/LocalGroupMember.html" title="interface in io.atomix.coordination"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -106,10 +106,10 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">GroupMember</span></pre>
-<div class="block">Provides an interface to interacting with members of a <a href="../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><code>DistributedMembershipGroup</code></a>.
+<div class="block">Provides an interface to interacting with members of a <a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination"><code>DistributedGroup</code></a>.
  <p>
  A <code>GroupMember</code> represents a reference to a single instance of a resource which has
- <a href="../../../io/atomix/coordination/DistributedMembershipGroup.html#join--"><code>joined</code></a> a membership group. Each member is guaranteed to
+ <a href="../../../io/atomix/coordination/DistributedGroup.html#join--"><code>joined</code></a> a membership group. Each member is guaranteed to
  have a unique <a href="../../../io/atomix/coordination/GroupMember.html#id--"><code>id()</code></a> throughout the lifetime of the distributed resource. Group members
  can <a href="../../../io/atomix/coordination/GroupMember.html#schedule-java.time.Duration-java.lang.Runnable-"><code>schedule</code></a> or <a href="../../../io/atomix/coordination/GroupMember.html#execute-java.lang.Runnable-"><code>execute</code></a> callbacks
  remotely on member nodes.</div>
@@ -233,7 +233,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">Gets the value of a property of the member.
  <p>
  Properties are identified by a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> name. Properties may only be set by the local member but
- can be accessed by any instance of the <a href="../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><code>DistributedMembershipGroup</code></a>.</div>
+ can be accessed by any instance of the <a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination"><code>DistributedGroup</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The property type.</dd>
@@ -255,7 +255,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">Sends a message to the member.
  <p>
  Group messaging guarantees sequential consistency such that members are guaranteed to receive messages
- in the order in which they were sent. Messages will be sent according to the parent <a href="../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><code>DistributedMembershipGroup</code></a>'s
+ in the order in which they were sent. Messages will be sent according to the parent <a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination"><code>DistributedGroup</code></a>'s
  <a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource"><code>consistency</code></a> level. If the consistency level is
  <a href="../../../io/atomix/resource/Consistency.html#ATOMIC"><code>Consistency.ATOMIC</code></a> (the default), the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will
  be completed once the member has received the message or has left the group. Note that the completion of
@@ -350,7 +350,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/coordination/DistributedMembershipGroup.html" title="class in io.atomix.coordination"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../io/atomix/coordination/LocalGroupMember.html" title="interface in io.atomix.coordination"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
