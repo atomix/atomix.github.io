@@ -319,6 +319,9 @@
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/BufferObjectOutput.html#BufferObjectOutput-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">BufferObjectOutput</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;&nbsp;buffer,
                   <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
 </tr>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/BufferOutputStream.html#BufferOutputStream-io.atomix.catalyst.buffer.BufferOutput-">BufferOutputStream</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;&nbsp;buffer)</code>&nbsp;</td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -350,21 +353,38 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><code>abstract void</code></td>
+<td class="colLast"><span class="typeNameLabel">Identifier.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/Identifier.html#write-int-io.atomix.catalyst.buffer.BufferOutput-">write</a></span>(int&nbsp;id,
+     <a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&nbsp;output)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">GenericJacksonSerializer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/GenericJacksonSerializer.html#write-java.lang.Object-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">write</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;object,
+     <a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&nbsp;buffer,
+     <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">GenericKryoSerializer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/GenericKryoSerializer.html#write-java.lang.Object-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">write</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;object,
+     <a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&nbsp;buffer,
+     <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">TypeSerializer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/TypeSerializer.html#write-T-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">write</a></span>(<a href="../../../../../io/atomix/catalyst/serializer/TypeSerializer.html" title="type parameter in TypeSerializer">T</a>&nbsp;object,
-     <a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;&nbsp;buffer,
+     <a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&nbsp;buffer,
      <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
 <div class="block">Writes the object to the given buffer.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">CatalystSerializable.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/CatalystSerializable.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;&nbsp;buffer,
            <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
 <div class="block">Writes the object to the given buffer.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">Serializer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/Serializer.html#writeObject-T-io.atomix.catalyst.buffer.BufferOutput-">writeObject</a></span>(T&nbsp;object,
            <a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;&nbsp;buffer)</code>
