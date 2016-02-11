@@ -156,10 +156,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
    .build();
  </code>
  </pre>
- All serialization is performed with a Catalyst <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a>. By default, the serializer loads registered
- <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a> types with <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/ServiceLoaderTypeResolver.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>ServiceLoaderTypeResolver</code></a>, but users
- can provide a custom serializer via <a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-"><code>CopycatServer.Builder.withSerializer(Serializer)</code></a>.
- The server will still ensure that internal serializable types are properly registered on user-provided serializers.
+ All serialization is performed with a Catalyst <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a>.
  <p>
  Once the server has been created, to connect to a cluster simply <a href="../../../../io/atomix/copycat/server/CopycatServer.html#open--"><code>open()</code></a> the server. The server API is
  fully asynchronous and relies on <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> to provide promises:
@@ -409,12 +406,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  <p>
  The provided <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> is the address to which to bind the server being constructed. The provided set of
  members will be used to connect to the other members in the Raft cluster. The local server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> does
- not have to be present in the address list.
- <p>
- The returned server builder will use the <code>NettyTransport</code> by default. Additionally, serializable types will
- be registered using the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/ServiceLoaderTypeResolver.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>ServiceLoaderTypeResolver</code></a>. To register serializable types for the server, simply
- add a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> or <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>
- file to your <code>META-INF/services</code> folder on the classpath.</div>
+ not have to be present in the address list.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>address</code> - The address through which clients and servers connect to this server.</dd>
@@ -436,12 +428,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  <p>
  The provided <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> is the address to which to bind the server being constructed. The provided set of
  members will be used to connect to the other members in the Raft cluster. The local server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> does
- not have to be present in the address list.
- <p>
- The returned server builder will use the <code>NettyTransport</code> by default. Additionally, serializable types will
- be registered using the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/ServiceLoaderTypeResolver.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>ServiceLoaderTypeResolver</code></a>. To register serializable types for the server, simply
- add a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> or <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>
- file to your <code>META-INF/services</code> folder on the classpath.</div>
+ not have to be present in the address list.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>address</code> - The address through which clients and servers connect to this server.</dd>
@@ -464,12 +451,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  <p>
  The provided <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> is the address to which to bind the server being constructed. The provided set of
  members will be used to connect to the other members in the Raft cluster. The local server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> does
- not have to be present in the address list.
- <p>
- The returned server builder will use the <code>NettyTransport</code> by default. Additionally, serializable types will
- be registered using the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/ServiceLoaderTypeResolver.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>ServiceLoaderTypeResolver</code></a>. To register serializable types for the server, simply
- add a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> or <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>
- file to your <code>META-INF/services</code> folder on the classpath.</div>
+ not have to be present in the address list.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>type</code> - The server member type.</dd>
@@ -493,12 +475,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  <p>
  The provided <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> is the address to which to bind the server being constructed. The provided set of
  members will be used to connect to the other members in the Raft cluster. The local server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> does
- not have to be present in the address list.
- <p>
- The returned server builder will use the <code>NettyTransport</code> by default. Additionally, serializable types will
- be registered using the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/ServiceLoaderTypeResolver.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>ServiceLoaderTypeResolver</code></a>. To register serializable types for the server, simply
- add a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> or <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>
- file to your <code>META-INF/services</code> folder on the classpath.</div>
+ not have to be present in the address list.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>type</code> - The server member type.</dd>
@@ -522,12 +499,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  <p>
  The provided <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> is the address to which to bind the server being constructed. The provided set of
  members will be used to connect to the other members in the Raft cluster. The local server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> does
- not have to be present in the address list.
- <p>
- The returned server builder will use the <code>NettyTransport</code> by default. Additionally, serializable types will
- be registered using the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/ServiceLoaderTypeResolver.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>ServiceLoaderTypeResolver</code></a>. To register serializable types for the server, simply
- add a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> or <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>
- file to your <code>META-INF/services</code> folder on the classpath.</div>
+ not have to be present in the address list.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>clientAddress</code> - The address through which clients connect to the server.</dd>
@@ -551,12 +523,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  <p>
  The provided <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> is the address to which to bind the server being constructed. The provided set of
  members will be used to connect to the other members in the Raft cluster. The local server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> does
- not have to be present in the address list.
- <p>
- The returned server builder will use the <code>NettyTransport</code> by default. Additionally, serializable types will
- be registered using the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/ServiceLoaderTypeResolver.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>ServiceLoaderTypeResolver</code></a>. To register serializable types for the server, simply
- add a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> or <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>
- file to your <code>META-INF/services</code> folder on the classpath.</div>
+ not have to be present in the address list.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>clientAddress</code> - The address through which clients connect to the server.</dd>
@@ -581,12 +548,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  <p>
  The provided <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> is the address to which to bind the server being constructed. The provided set of
  members will be used to connect to the other members in the Raft cluster. The local server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> does
- not have to be present in the address list.
- <p>
- The returned server builder will use the <code>NettyTransport</code> by default. Additionally, serializable types will
- be registered using the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/ServiceLoaderTypeResolver.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>ServiceLoaderTypeResolver</code></a>. To register serializable types for the server, simply
- add a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> or <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>
- file to your <code>META-INF/services</code> folder on the classpath.</div>
+ not have to be present in the address list.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>type</code> - The server member type.</dd>
@@ -612,12 +574,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  <p>
  The provided <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> is the address to which to bind the server being constructed. The provided set of
  members will be used to connect to the other members in the Raft cluster. The local server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> does
- not have to be present in the address list.
- <p>
- The returned server builder will use the <code>NettyTransport</code> by default. Additionally, serializable types will
- be registered using the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/ServiceLoaderTypeResolver.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>ServiceLoaderTypeResolver</code></a>. To register serializable types for the server, simply
- add a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> or <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>
- file to your <code>META-INF/services</code> folder on the classpath.</div>
+ not have to be present in the address list.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>type</code> - The server member type.</dd>

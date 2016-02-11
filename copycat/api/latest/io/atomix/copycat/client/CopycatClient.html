@@ -612,7 +612,7 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Ma
 <div class="block">Registers a void event listener.
  <p>
  The registered <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang"><code>Runnable</code></a> will be <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true#run--" title="class or interface in java.lang"><code>called</code></a> when an event is received
- from the Raft cluster for the client. <code>CopycatService</code> implementations must guarantee that consumers are
+ from the Raft cluster for the client. <a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client"><code>CopycatClient</code></a> implementations must guarantee that consumers are
  always called in the same thread for the session. Therefore, no two events will be received concurrently
  by the session. Additionally, events are guaranteed to be received in the order in which they were sent by
  the state machine.</div>
@@ -638,7 +638,7 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Ma
 <div class="block">Registers an event listener.
  <p>
  The registered <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function"><code>Consumer</code></a> will be <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true#accept-T-" title="class or interface in java.util.function"><code>called</code></a> when an event is received
- from the Raft cluster for the session. <code>CopycatService</code> implementations must guarantee that consumers are
+ from the Raft cluster for the session. <a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client"><code>CopycatClient</code></a> implementations must guarantee that consumers are
  always called in the same thread for the session. Therefore, no two events will be received concurrently
  by the session. Additionally, events are guaranteed to be received in the order in which they were sent by
  the state machine.</div>
