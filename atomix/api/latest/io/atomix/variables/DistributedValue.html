@@ -18,6 +18,12 @@
     catch(err) {
     }
 //-->
+var methods = {"i0":9,"i1":9};
+var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
+var altColor = "altColor";
+var rowColor = "rowColor";
+var tableTab = "tableTab";
+var activeTableTab = "activeTableTab";
 </script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -71,13 +77,13 @@
 <li><a href="#nested.classes.inherited.from.class.io.atomix.resource.Resource">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
-<li><a href="#methods.inherited.from.class.io.atomix.variables.AbstractDistributedValue">Method</a></li>
+<li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <a name="skip.navbar.top">
@@ -94,10 +100,10 @@
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">io.atomix.resource.Resource</a>&lt;T,U&gt;</li>
+<li><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">io.atomix.resource.Resource</a>&lt;T&gt;</li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">io.atomix.variables.AbstractDistributedValue</a>&lt;<a href="../../../io/atomix/variables/DistributedValue.html" title="class in io.atomix.variables">DistributedValue</a>&lt;T&gt;,<a href="../../../io/atomix/resource/Resource.Options.html" title="interface in io.atomix.resource">Resource.Options</a>,T&gt;</li>
+<li><a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">io.atomix.variables.AbstractDistributedValue</a>&lt;<a href="../../../io/atomix/variables/DistributedValue.html" title="class in io.atomix.variables">DistributedValue</a>&lt;T&gt;,T&gt;</li>
 <li>
 <ul class="inheritance">
 <li>io.atomix.variables.DistributedValue&lt;T&gt;</li>
@@ -118,7 +124,7 @@
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">DistributedValue&lt;T&gt;</span>
-extends <a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">AbstractDistributedValue</a>&lt;<a href="../../../io/atomix/variables/DistributedValue.html" title="class in io.atomix.variables">DistributedValue</a>&lt;T&gt;,<a href="../../../io/atomix/resource/Resource.Options.html" title="interface in io.atomix.resource">Resource.Options</a>,T&gt;</pre>
+extends <a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">AbstractDistributedValue</a>&lt;<a href="../../../io/atomix/variables/DistributedValue.html" title="class in io.atomix.variables">DistributedValue</a>&lt;T&gt;,T&gt;</pre>
 <div class="block">Distributed value.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -141,7 +147,7 @@ extends <a href="../../../io/atomix/variables/AbstractDistributedValue.html" tit
 <!--   -->
 </a>
 <h3>Nested classes/interfaces inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></h3>
-<code><a href="../../../io/atomix/resource/Resource.Config.html" title="interface in io.atomix.resource">Resource.Config</a>, <a href="../../../io/atomix/resource/Resource.Options.html" title="interface in io.atomix.resource">Resource.Options</a>, <a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a></code></li>
+<code><a href="../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>, <a href="../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>, <a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a></code></li>
 </ul>
 </li>
 </ul>
@@ -158,7 +164,7 @@ extends <a href="../../../io/atomix/variables/AbstractDistributedValue.html" tit
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/variables/DistributedValue.html#DistributedValue-io.atomix.copycat.client.CopycatClient-io.atomix.resource.Resource.Options-">DistributedValue</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html?is-external=true" title="class or interface in io.atomix.copycat.client">CopycatClient</a>&nbsp;client,
-                <a href="../../../io/atomix/resource/Resource.Options.html" title="interface in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>&nbsp;</td>
+                <a href="../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -169,19 +175,38 @@ extends <a href="../../../io/atomix/variables/AbstractDistributedValue.html" tit
 <!--   -->
 </a>
 <h3>Method Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Static Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tr id="i0" class="altColor">
+<td class="colFirst"><code>static <a href="../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/variables/DistributedValue.html#config--">config</a></span>()</code>
+<div class="block">Returns a new value configuration.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>static <a href="../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/variables/DistributedValue.html#options--">options</a></span>()</code>
+<div class="block">Returns new value options.</div>
+</td>
+</tr>
+</table>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.variables.AbstractDistributedValue">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;io.atomix.variables.<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">AbstractDistributedValue</a></h3>
-<code><a href="../../../io/atomix/variables/AbstractDistributedValue.html#compareAndSet-V-V-">compareAndSet</a>, <a href="../../../io/atomix/variables/AbstractDistributedValue.html#compareAndSet-V-V-java.time.Duration-">compareAndSet</a>, <a href="../../../io/atomix/variables/AbstractDistributedValue.html#get--">get</a>, <a href="../../../io/atomix/variables/AbstractDistributedValue.html#getAndSet-V-">getAndSet</a>, <a href="../../../io/atomix/variables/AbstractDistributedValue.html#getAndSet-V-java.time.Duration-">getAndSet</a>, <a href="../../../io/atomix/variables/AbstractDistributedValue.html#set-V-">set</a>, <a href="../../../io/atomix/variables/AbstractDistributedValue.html#set-V-java.time.Duration-">set</a></code></li>
+<code><a href="../../../io/atomix/variables/AbstractDistributedValue.html#compareAndSet-U-U-">compareAndSet</a>, <a href="../../../io/atomix/variables/AbstractDistributedValue.html#compareAndSet-U-U-java.time.Duration-">compareAndSet</a>, <a href="../../../io/atomix/variables/AbstractDistributedValue.html#get--">get</a>, <a href="../../../io/atomix/variables/AbstractDistributedValue.html#getAndSet-U-">getAndSet</a>, <a href="../../../io/atomix/variables/AbstractDistributedValue.html#getAndSet-U-java.time.Duration-">getAndSet</a>, <a href="../../../io/atomix/variables/AbstractDistributedValue.html#set-U-">set</a>, <a href="../../../io/atomix/variables/AbstractDistributedValue.html#set-U-java.time.Duration-">set</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.resource.Resource">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></h3>
-<code><a href="../../../io/atomix/resource/Resource.html#close--">close</a>, <a href="../../../io/atomix/resource/Resource.html#consistency--">consistency</a>, <a href="../../../io/atomix/resource/Resource.html#context--">context</a>, <a href="../../../io/atomix/resource/Resource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/Resource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/Resource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/Resource.html#isClosed--">isClosed</a>, <a href="../../../io/atomix/resource/Resource.html#isOpen--">isOpen</a>, <a href="../../../io/atomix/resource/Resource.html#onStateChange-java.util.function.Consumer-">onStateChange</a>, <a href="../../../io/atomix/resource/Resource.html#open--">open</a>, <a href="../../../io/atomix/resource/Resource.html#state--">state</a>, <a href="../../../io/atomix/resource/Resource.html#toString--">toString</a>, <a href="../../../io/atomix/resource/Resource.html#type--">type</a>, <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">with</a></code></li>
+<code><a href="../../../io/atomix/resource/Resource.html#close--">close</a>, <a href="../../../io/atomix/resource/Resource.html#configure-io.atomix.resource.Resource.Config-">configure</a>, <a href="../../../io/atomix/resource/Resource.html#consistency--">consistency</a>, <a href="../../../io/atomix/resource/Resource.html#context--">context</a>, <a href="../../../io/atomix/resource/Resource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/Resource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/Resource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/Resource.html#isClosed--">isClosed</a>, <a href="../../../io/atomix/resource/Resource.html#isOpen--">isOpen</a>, <a href="../../../io/atomix/resource/Resource.html#onStateChange-java.util.function.Consumer-">onStateChange</a>, <a href="../../../io/atomix/resource/Resource.html#open--">open</a>, <a href="../../../io/atomix/resource/Resource.html#state--">state</a>, <a href="../../../io/atomix/resource/Resource.html#toString--">toString</a>, <a href="../../../io/atomix/resource/Resource.html#type--">type</a>, <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">with</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -211,7 +236,43 @@ extends <a href="../../../io/atomix/variables/AbstractDistributedValue.html" tit
 <li class="blockList">
 <h4>DistributedValue</h4>
 <pre>public&nbsp;DistributedValue(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html?is-external=true" title="class or interface in io.atomix.copycat.client">CopycatClient</a>&nbsp;client,
-                        <a href="../../../io/atomix/resource/Resource.Options.html" title="interface in io.atomix.resource">Resource.Options</a>&nbsp;options)</pre>
+                        <a href="../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</pre>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ============ METHOD DETAIL ========== -->
+<ul class="blockList">
+<li class="blockList"><a name="method.detail">
+<!--   -->
+</a>
+<h3>Method Detail</h3>
+<a name="options--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>options</h4>
+<pre>public static&nbsp;<a href="../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options()</pre>
+<div class="block">Returns new value options.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>New value options.</dd>
+</dl>
+</li>
+</ul>
+<a name="config--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>config</h4>
+<pre>public static&nbsp;<a href="../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config()</pre>
+<div class="block">Returns a new value configuration.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A new value configuration.</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -270,13 +331,13 @@ extends <a href="../../../io/atomix/variables/AbstractDistributedValue.html" tit
 <li><a href="#nested.classes.inherited.from.class.io.atomix.resource.Resource">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
-<li><a href="#methods.inherited.from.class.io.atomix.variables.AbstractDistributedValue">Method</a></li>
+<li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
-<li>Method</li>
+<li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
 <a name="skip.navbar.bottom">
