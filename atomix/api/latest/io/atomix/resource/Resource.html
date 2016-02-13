@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/resource/InstanceTypeResolver.html" title="class in io.atomix.resource"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -140,8 +140,8 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  on the class path. The resource registration allows the Atomix resource manager to locate and load the resource
  state machine on each server in the cluster.
  <p>
- Resources have varying consistency guarantees depending on the configured resource <a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource"><code>Consistency</code></a>
- and the semantics of the specific resource implementation.</div>
+ Resources have varying consistency guarantees depending on the configured resource <a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource"><code>WriteConsistency</code></a>
+ and <a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource"><code>ReadConsistency</code></a> and the semantics of the specific resource implementation.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -210,49 +210,49 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource">Consistency</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#consistency--">consistency</a></span>()</code>
-<div class="block">Returns the configured resource consistency level.</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">ThreadContext</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#context--">context</a></span>()</code>
 <div class="block">Returns the resource thread context.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#delete--">delete</a></span>()</code>
 <div class="block">Deletes the resource state.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#equals-java.lang.Object-">equals</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;object)</code>&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#hashCode--">hashCode</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#isClosed--">isClosed</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#isOpen--">isOpen</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#onStateChange-java.util.function.Consumer-">onStateChange</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a>&gt;&nbsp;callback)</code>
 <div class="block">Registers a resource state change listener.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#open--">open</a></span>()</code>
 <div class="block">Opens the resource.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code><a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#readConsistency--">readConsistency</a></span>()</code>
+<div class="block">Returns the configured read consistency level.</div>
 </td>
 </tr>
 <tr id="i11" class="rowColor">
@@ -273,8 +273,20 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">with</a></span>(<a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource">Consistency</a>&nbsp;consistency)</code>
-<div class="block">Sets the resource consistency level.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.ReadConsistency-">with</a></span>(<a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a>&nbsp;consistency)</code>
+<div class="block">Sets the read consistency level.</div>
+</td>
+</tr>
+<tr id="i15" class="rowColor">
+<td class="colFirst"><code><a href="../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.WriteConsistency-">with</a></span>(<a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource">WriteConsistency</a>&nbsp;consistency)</code>
+<div class="block">Sets the write consistency level.</div>
+</td>
+</tr>
+<tr id="i16" class="altColor">
+<td class="colFirst"><code><a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource">WriteConsistency</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#writeConsistency--">writeConsistency</a></span>()</code>
+<div class="block">Returns the configured write consistency level.</div>
 </td>
 </tr>
 </table>
@@ -378,18 +390,18 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 </dl>
 </li>
 </ul>
-<a name="consistency--">
+<a name="writeConsistency--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>consistency</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource">Consistency</a>&nbsp;consistency()</pre>
-<div class="block">Returns the configured resource consistency level.
+<h4>writeConsistency</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource">WriteConsistency</a>&nbsp;writeConsistency()</pre>
+<div class="block">Returns the configured write consistency level.
  <p>
- Resource consistency levels are configured via the <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-"><code>with(Consistency)</code></a> setter. By default,
- all resources submit commands under the <a href="../../../io/atomix/resource/Consistency.html#ATOMIC"><code>Consistency.ATOMIC</code></a> consistency level. See the
- <a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource"><code>Consistency</code></a> documentation for information about guarantees provided by specific consistency
+ Resource consistency levels are configured via the <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.WriteConsistency-"><code>with(WriteConsistency)</code></a> setter. By default,
+ all resources submit commands under the <a href="../../../io/atomix/resource/WriteConsistency.html#ATOMIC"><code>WriteConsistency.ATOMIC</code></a> consistency level. See the
+ <a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource"><code>WriteConsistency</code></a> documentation for information about guarantees provided by specific consistency
  levels.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -397,32 +409,84 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 </dl>
 </li>
 </ul>
-<a name="with-io.atomix.resource.Consistency-">
+<a name="with-io.atomix.resource.WriteConsistency-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>with</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a>&nbsp;with(<a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource">Consistency</a>&nbsp;consistency)</pre>
-<div class="block">Sets the resource consistency level.
+<pre>public&nbsp;<a href="../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a>&nbsp;with(<a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource">WriteConsistency</a>&nbsp;consistency)</pre>
+<div class="block">Sets the write consistency level.
  <p>
  The configured consistency level specifies how operations on the resource should be handled by the
  cluster. Consistency levels dictate the order in which reads, writes, and events should be handled
  by the Atomix cluster and the consistency requirements for completing different types of operations.
  <p>
  Note that consistency configurations apply only to a single instance of a distributed resource. Two
- instances of the same resource on the same or different nodes can have differen consistency requirements,
+ instances of the same resource on the same or different nodes can have different consistency requirements,
  and the cluster will obey those differences.
  <p>
- By default, all resource operations are submitted to the cluster with the <a href="../../../io/atomix/resource/Consistency.html#ATOMIC"><code>Consistency.ATOMIC</code></a>
+ By default, all resource operations are submitted to the cluster with the <a href="../../../io/atomix/resource/WriteConsistency.html#ATOMIC"><code>WriteConsistency.ATOMIC</code></a>
  consistency level. Atomic consistency means that the distributed resource will behave as a single
  object for all instances. Users can decrease the default consistency level, but note that in some
- cases resource implementations may override the configured <a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource"><code>Consistency</code></a> for safety. For instance,
+ cases resource implementations may override the configured <a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource"><code>WriteConsistency</code></a> for safety. For instance,
  a leader election may enforce atomic consistency at all times to ensure no two leaders can be
  elected at the same time.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>consistency</code> - The resource consistency level.</dd>
+<dd><code>consistency</code> - The write consistency level.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The resource instance.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>consistency</code> is null</dd>
+</dl>
+</li>
+</ul>
+<a name="readConsistency--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>readConsistency</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a>&nbsp;readConsistency()</pre>
+<div class="block">Returns the configured read consistency level.
+ <p>
+ Resource consistency levels are configured via the <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.ReadConsistency-"><code>with(ReadConsistency)</code></a> setter. By default,
+ all resources submit commands under the <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>ReadConsistency.ATOMIC</code></a> consistency level. See the
+ <a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource"><code>ReadConsistency</code></a> documentation for information about guarantees provided by specific consistency
+ levels.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The configured resource consistency level.</dd>
+</dl>
+</li>
+</ul>
+<a name="with-io.atomix.resource.ReadConsistency-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>with</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a>&nbsp;with(<a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a>&nbsp;consistency)</pre>
+<div class="block">Sets the read consistency level.
+ <p>
+ The configured consistency level specifies how operations on the resource should be handled by the
+ cluster. Consistency levels dictate the order in which reads, writes, and events should be handled
+ by the Atomix cluster and the consistency requirements for completing different types of operations.
+ <p>
+ Note that consistency configurations apply only to a single instance of a distributed resource. Two
+ instances of the same resource on the same or different nodes can have different consistency requirements,
+ and the cluster will obey those differences.
+ <p>
+ By default, all resource operations are submitted to the cluster with the <a href="../../../io/atomix/resource/WriteConsistency.html#ATOMIC"><code>WriteConsistency.ATOMIC</code></a>
+ consistency level. Atomic consistency means that the distributed resource will behave as a single
+ object for all instances. Users can decrease the default consistency level, but note that in some
+ cases resource implementations may override the configured <a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource"><code>WriteConsistency</code></a> for safety. For instance,
+ a leader election may enforce atomic consistency at all times to ensure no two leaders can be
+ elected at the same time.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>consistency</code> - The read consistency level.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The resource instance.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -576,7 +640,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/resource/InstanceTypeResolver.html" title="class in io.atomix.resource"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

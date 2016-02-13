@@ -248,7 +248,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></h3>
-<code><a href="../../../io/atomix/resource/Resource.html#close--">close</a>, <a href="../../../io/atomix/resource/Resource.html#configure-io.atomix.resource.Resource.Config-">configure</a>, <a href="../../../io/atomix/resource/Resource.html#consistency--">consistency</a>, <a href="../../../io/atomix/resource/Resource.html#context--">context</a>, <a href="../../../io/atomix/resource/Resource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/Resource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/Resource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/Resource.html#isClosed--">isClosed</a>, <a href="../../../io/atomix/resource/Resource.html#isOpen--">isOpen</a>, <a href="../../../io/atomix/resource/Resource.html#onStateChange-java.util.function.Consumer-">onStateChange</a>, <a href="../../../io/atomix/resource/Resource.html#state--">state</a>, <a href="../../../io/atomix/resource/Resource.html#toString--">toString</a>, <a href="../../../io/atomix/resource/Resource.html#type--">type</a>, <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-">with</a></code></li>
+<code><a href="../../../io/atomix/resource/Resource.html#close--">close</a>, <a href="../../../io/atomix/resource/Resource.html#configure-io.atomix.resource.Resource.Config-">configure</a>, <a href="../../../io/atomix/resource/Resource.html#context--">context</a>, <a href="../../../io/atomix/resource/Resource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/Resource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/Resource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/Resource.html#isClosed--">isClosed</a>, <a href="../../../io/atomix/resource/Resource.html#isOpen--">isOpen</a>, <a href="../../../io/atomix/resource/Resource.html#onStateChange-java.util.function.Consumer-">onStateChange</a>, <a href="../../../io/atomix/resource/Resource.html#readConsistency--">readConsistency</a>, <a href="../../../io/atomix/resource/Resource.html#state--">state</a>, <a href="../../../io/atomix/resource/Resource.html#toString--">toString</a>, <a href="../../../io/atomix/resource/Resource.html#type--">type</a>, <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.ReadConsistency-">with</a>, <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.WriteConsistency-">with</a>, <a href="../../../io/atomix/resource/Resource.html#writeConsistency--">writeConsistency</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -348,8 +348,8 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <pre>public&nbsp;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;sync()</pre>
 <div class="block">Sets the topic to synchronous mode.
  <p>
- Setting the topic to synchronous mode effectively configures the topic's <a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource"><code>Consistency</code></a> to
- <a href="../../../io/atomix/resource/Consistency.html#ATOMIC"><code>Consistency.ATOMIC</code></a>. Atomic consistency means that messages <a href="../../../io/atomix/messaging/DistributedTopic.html#publish-T-"><code>published</code></a> to the
+ Setting the topic to synchronous mode effectively configures the topic's <a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource"><code>WriteConsistency</code></a> to
+ <a href="../../../io/atomix/resource/WriteConsistency.html#ATOMIC"><code>WriteConsistency.ATOMIC</code></a>. Atomic consistency means that messages <a href="../../../io/atomix/messaging/DistributedTopic.html#publish-T-"><code>published</code></a> to the
  topic will be received by all <a href="../../../io/atomix/messaging/DistributedTopic.html#subscribe-java.util.function.Consumer-"><code>subscribers</code></a> some time between the invocation of
  the publish operation and its completion.</div>
 <dl>
@@ -367,8 +367,8 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <pre>public&nbsp;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&lt;<a href="../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&gt;&nbsp;async()</pre>
 <div class="block">Sets the topic to asynchronous mode.
  <p>
- Setting the topic to asynchronous mode effectively configures the topic's <a href="../../../io/atomix/resource/Consistency.html" title="enum in io.atomix.resource"><code>Consistency</code></a> to
- <a href="../../../io/atomix/resource/Consistency.html#SEQUENTIAL"><code>Consistency.SEQUENTIAL</code></a>. Sequential consistency means that once a message is <a href="../../../io/atomix/messaging/DistributedTopic.html#publish-T-"><code>published</code></a>
+ Setting the topic to asynchronous mode effectively configures the topic's <a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource"><code>WriteConsistency</code></a> to
+ <a href="../../../io/atomix/resource/WriteConsistency.html#SEQUENTIAL_EVENT"><code>WriteConsistency.SEQUENTIAL_EVENT</code></a>. Sequential consistency means that once a message is <a href="../../../io/atomix/messaging/DistributedTopic.html#publish-T-"><code>published</code></a>
  to the topic, the message will be persisted in the cluster but may be delivered to <a href="../../../io/atomix/messaging/DistributedTopic.html#subscribe-java.util.function.Consumer-"><code>subscribers</code></a>
  after some arbitrary delay. Messages are guaranteed to be delivered to subscribers in the order in which they were sent
  (sequential consistency) but different subscribers may receive different messages at different points in time.</div>
@@ -389,8 +389,8 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;publish(<a href="../../../io/atomix/messaging/DistributedTopic.html" title="type parameter in DistributedTopic">T</a>&nbsp;message)</pre>
 <div class="block">Publishes a message to the topic.
  <p>
- The message will be published according to the <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.Consistency-"><code>configured consistency level</code></a>.
- Events published with <a href="../../../io/atomix/resource/Consistency.html#ATOMIC"><code>Consistency.ATOMIC</code></a> consistency are guaranteed to be received by all
+ The message will be published according to the <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.WriteConsistency-"><code>configured consistency level</code></a>.
+ Events published with <a href="../../../io/atomix/resource/WriteConsistency.html#ATOMIC"><code>WriteConsistency.ATOMIC</code></a> consistency are guaranteed to be received by all
  subscribers prior to the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> returned by this method being completed. For all other
  consistency levels, messages will be received by subscribers asynchronously.
  <p>
