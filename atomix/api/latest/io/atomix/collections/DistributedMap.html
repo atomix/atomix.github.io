@@ -125,17 +125,26 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">DistributedMap&lt;K,V&gt;</span>
 extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a>&lt;K,V&gt;&gt;</pre>
-<div class="block">Distributed map.
+<div class="block">Stores a map of keys to values.
  <p>
- The distributed map resource provides an interface and behavior similar to <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util"><code>Map</code></a>.
+ The distributed map stores a map of keys and values via an interface similar to that of <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util"><code>Map</code></a>.
+ Map entries are stored in memory on each stateful node and backed by disk, thus the size of the map is
+ limited to the available memory on the smallest node in the cluster. This map requires non-null keys but
+ supports <code>null</code> values. All keys and values must be serializable by a
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a>. Serializable types include implementations of
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io"><code>Serializable</code></a> or <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>. See the
+ serialization API for more information.
+ <p>
+ A <code>DistributedMap</code> can be created either via the <code>Atomix</code> API or by wrapping a <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html?is-external=true" title="class or interface in io.atomix.copycat.client"><code>CopycatClient</code></a>
+ directly. To create a map via the Atomix API, use the <code>getMap</code> factory method:
  <pre>
    <code>
-   DistributedMap&lt;String, String&gt; map = atomix.getMap("map").get();
+   DistributedMap&lt;String, String&gt; map = atomix.getMap("foo").get();
    </code>
  </pre>
- The map requires non-<code>null</code> keys but supports <code>null</code> values. All keys and values
- must be serializable by a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a>. Serializable types
- include implementations of <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io"><code>Serializable</code></a> or <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>.
+ Maps are distributed and are referenced by the map name. If a value is <a href="../../../io/atomix/collections/DistributedMap.html#put-K-V-"><code>put(Object, Object)</code></a> in
+ a map on one node, that value is immediately available for <a href="../../../io/atomix/collections/DistributedMap.html#get-java.lang.Object-"><code>reading</code></a> by any other node
+ in the cluster by operating on the same map.
  <p>
  In addition to supporting normal <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util"><code>Map</code></a> methods, this implementation supports values
  with TTLs. When a key is set with a TTL, the value will expire and be automatically evicted from the map
@@ -177,6 +186,9 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedMap.html#DistributedMap-io.atomix.copycat.client.CopycatClient-">DistributedMap</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html?is-external=true" title="class or interface in io.atomix.copycat.client">CopycatClient</a>&nbsp;client)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedMap.html#DistributedMap-io.atomix.copycat.client.CopycatClient-io.atomix.resource.Resource.Options-">DistributedMap</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html?is-external=true" title="class or interface in io.atomix.copycat.client">CopycatClient</a>&nbsp;client,
               <a href="../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>&nbsp;</td>
 </tr>
@@ -413,6 +425,15 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
+<a name="DistributedMap-io.atomix.copycat.client.CopycatClient-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>DistributedMap</h4>
+<pre>public&nbsp;DistributedMap(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html?is-external=true" title="class or interface in io.atomix.copycat.client">CopycatClient</a>&nbsp;client)</pre>
+</li>
+</ul>
 <a name="DistributedMap-io.atomix.copycat.client.CopycatClient-io.atomix.resource.Resource.Options-">
 <!--   -->
 </a>

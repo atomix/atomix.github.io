@@ -120,7 +120,40 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">DistributedMultiMap&lt;K,V&gt;</span>
 extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a>&lt;K,V&gt;&gt;</pre>
-<div class="block">Distributed multi-map.</div>
+<div class="block">Stores a map of keys to multiple values.
+ <p>
+ The multi-map resource stores a map of keys that allows multiple values to be associated with each key.
+ Multimap entries are stored in memory on each stateful node and backed by disk, thus the size of a multi-map
+ is limited by the available memory on the smallest node in the cluster.
+ <p>
+ To create a multimap, use the <code>getMultiMap</code> factory method on an <code>Atomix</code> instance:
+ <pre>
+   <code>
+   DistributedMultiMap&lt;String, String&gt; multiMap = atomix.getMultiMap("foo").get();
+   </code>
+ </pre>
+ The multi-map interface closely simulates that of <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util"><code>Map</code></a> except that values are <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util"><code>Collection</code></a>s
+ rather than <code>V</code>.
+ <h3>Value order</h3>
+ By default, the values associated with each key are stored in insertion order. However, this behavior can
+ be configured via the <a href="../../../io/atomix/collections/DistributedMultiMap.Config.html" title="class in io.atomix.collections"><code>map configuration</code></a> by setting
+ the value <a href="../../../io/atomix/collections/DistributedMultiMap.Order.html" title="enum in io.atomix.collections"><code>DistributedMultiMap.Order</code></a>. To set the order of values in a multi-map, create a configuration and provide the
+ configuration at the creation of the map.
+ <pre>
+   <code>
+   DistributedMultiMap.Config config = DistributedMultiMap.config()
+     .withValueOrder(DistributedMultiMap.Order.NATURAL);
+   DistributedMultiMap&lt;String, String&gt; multiMap = atomix.getMultiMap("foo", config).get();
+   </code>
+ </pre>
+ The multimap can also be configured after the instance is created via the <a href="../../../io/atomix/resource/Resource.html#configure-io.atomix.resource.Resource.Config-"><code>Resource.configure(Resource.Config)</code></a>
+ method. Note that configurations effect <em>all</em> instances of the resource throughout the cluster.
+ If one node sets the value order to <a href="../../../io/atomix/collections/DistributedMultiMap.Order.html#INSERT"><code>DistributedMultiMap.Order.INSERT</code></a> and then another to <a href="../../../io/atomix/collections/DistributedMultiMap.Order.html#NATURAL"><code>DistributedMultiMap.Order.NATURAL</code></a>, the
+ last configuration applied will be used.
+ <p>
+ Multi-maps support relaxed consistency levels for some read operations line <a href="../../../io/atomix/collections/DistributedMultiMap.html#size-io.atomix.resource.ReadConsistency-"><code>size(ReadConsistency)</code></a>
+ and <a href="../../../io/atomix/collections/DistributedMultiMap.html#containsKey-K-io.atomix.resource.ReadConsistency-"><code>containsKey(Object, ReadConsistency)</code></a>. By default, read operations on a queue are linearizable
+ but require some level of communication between nodes.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -152,7 +185,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <tr class="rowColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedMultiMap.Order.html" title="enum in io.atomix.collections">DistributedMultiMap.Order</a></span></code>
-<div class="block">Map value order.</div>
+<div class="block">Represents the order of values in a multimap.</div>
 </td>
 </tr>
 </table>

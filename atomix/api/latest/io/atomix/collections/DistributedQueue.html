@@ -124,7 +124,31 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">DistributedQueue&lt;T&gt;</span>
 extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/collections/DistributedQueue.html" title="class in io.atomix.collections">DistributedQueue</a>&lt;T&gt;&gt;</pre>
-<div class="block">Distributed queue.</div>
+<div class="block">Distributed collection designed for holding ordered items for processing.
+ <p>
+ The distributed queue is closely modeled on Java's queues. All methods present in the
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Queue.html?is-external=true" title="class or interface in java.util"><code>Queue</code></a> interface are present in this interface. Queued items are held in
+ memory on each stateful node and backed by replicated logs on disk, thus the size of a queue
+ is limited by the memory available to the smallest node in the cluster.
+ <p>
+ Internally, <code>DistributedQueue</code> uses an <a href="http://docs.oracle.com/javase/8/docs/api/java/util/ArrayDeque.html?is-external=true" title="class or interface in java.util"><code>ArrayDeque</code></a> to enqueue items
+ in memory in the replicated state machine. Operations submitted through this interface are
+ replicated and result in calling the associated method on the replicated <a href="http://docs.oracle.com/javase/8/docs/api/java/util/ArrayDeque.html?is-external=true" title="class or interface in java.util"><code>ArrayDeque</code></a>
+ on each stateful node.
+ <p>
+ To create a distributed queue, use the <code>getQueue</code> factory method:
+ <pre>
+   <code>
+   DistributedQueue&lt;String&gt; queue = atomix.getQueue("foo").get();
+   </code>
+ </pre>
+ All queue modification operations are linearizable, so items added to or removed from the queue will
+ be immediately reflected from the perspective of all clients operating on the queue. The queue is
+ shared by processes based on the queue name.
+ <p>
+ Queues support relaxed consistency levels for some read operations line <a href="../../../io/atomix/collections/DistributedQueue.html#size-io.atomix.resource.ReadConsistency-"><code>size(ReadConsistency)</code></a>
+ and <a href="../../../io/atomix/collections/DistributedQueue.html#contains-java.lang.Object-io.atomix.resource.ReadConsistency-"><code>contains(Object, ReadConsistency)</code></a>. By default, read operations on a queue are linearizable
+ but require some level of communication between nodes.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
