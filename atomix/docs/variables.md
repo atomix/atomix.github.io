@@ -3,27 +3,15 @@ layout: docs
 project: atomix
 menu: docs
 title: Distributed Variables
-pitch: Simple distributed atomic variables
 first-section: distributed-variables
 ---
 
-## Distributed variables
-
-The `atomix-variables` module provides a set of distributed atomic variables modeled on Java's `java.util.concurrent.atomic` package. The resources provided by the atomic module do not implement JDK atomic interfaces because Atomix's APIs are asynchronous, but their methods are equivalent to their blocking counterparts and so atomic resources can be easily wrapped in blocking interfaces.
-
-If your project does not depend on `atomix-all`, you must add the `atomix-variables` dependency in order to access the atomic classes:
-
-```
-<dependency>
-  <groupId>io.atomix</groupId>
-  <artifactId>atomix-variables</artifactId>
-  <version>{{ site.version }}</version>
-</dependency>
-```
+{:.no-margin-top}
+The `atomix-variables` module provides a set of distributed atomic variables modeled on Java's [java.util.concurrent.atomic][JdkAtomic] package. The resources provided by the variables module do not implement JDK atomic interfaces because Atomix's APIs are asynchronous, but their methods are equivalent to their blocking counterparts and can easily be wrapped in blocking interfaces.
 
 ### DistributedValue
 
-The [DistributedValue][DistributedValue] resource provides an asynchronous API similar to that of `java.util.concurrent.atomic.AtomicReference`.
+The [DistributedValue] resource provides an asynchronous API similar to that of the JDK's [AtomicReference].
 
 To create a `DistributedValue`, use the `Atomix.getValue` method:
 
@@ -33,7 +21,7 @@ atomix.<String>getValue("test-value").thenAccept(value -> {
 });
 ```
 
-Once the value has been created, the methods closely mimic those of `java.util.concurrent.atomic.AtomicReference`. `DistributedValue` returns `CompletableFuture` for all methods:
+The `DistributedValue` API is asynchronous and returns `CompletableFuture` for all methods:
 
 ```java
 value.set("Hello world!").thenRun(() -> {
@@ -57,7 +45,7 @@ Note that TTL timers are deterministically controlled by the cluster leader and 
 
 ### DistributedLong
 
-The [DistributedLong] resource extends [DistributedValue] to provide atomic methods for incrementing and decrementing a 64-bit number. The `DistributedLong` interface closely mimics that of Java's `java.util.concurrent.atomic.AtomicLong`.
+The [DistributedLong] resource extends [DistributedValue] to provide atomic methods for incrementing and decrementing a 64-bit number. The `DistributedLong` interface closely mimics that of Java's [AtomicLong].
 
 To create a `DistributedLong`, use the `getLong` method:
 

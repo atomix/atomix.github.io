@@ -3,27 +3,15 @@ layout: docs
 project: atomix
 menu: docs
 title: Distributed Collections
-pitch: Distributed collections
 first-section: distributed-collections
 ---
 
-## Distributed collections
-
-The `atomix-collections` module provides a set of asynchronous, distributed collection-like [resources]. The resources provided by the collections module do not implement JDK collection interfaces because Atomix's APIs are asynchronous, but their methods are equivalent to their blocking counterparts and so collection resources can be easily wrapped in blocking collection interfaces.
-
-If your project does not depend on `atomix-all`, you must add the `atomix-collections` dependency in order to access the collection classes:
-
-```
-<dependency>
-  <groupId>io.atomix</groupId>
-  <artifactId>atomix-collections</artifactId>
-  <version>{{ site.version }}</version>
-</dependency>
-```
+{:.no-margin-top}
+The `atomix-collections` module provides a set of asynchronous, distributed collection-like [resources]. The resources provided by the collections module do not implement JDK collection interfaces because Atomix's APIs are asynchronous, but their methods are equivalent to their blocking counterparts and can easily be wrapped in blocking collection interfaces.
 
 ### DistributedMap
 
-The [DistributedMap][DistributedMap] resources provides an asynchronous API similar to that of `java.util.Map`.
+The [DistributedMap] resources provides an asynchronous API similar to that of `java.util.Map`.
 
 To create a `DistributedMap`, use the `Atomix.getMap` method:
 

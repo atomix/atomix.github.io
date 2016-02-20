@@ -7,19 +7,8 @@ pitch: Reliable and unreliable distributed messaging
 first-section: distributed-messaging
 ---
 
-## Distributed messaging
-
+{:.no-margin-top}
 The `atomix-messaging` module provides a set of distributed messaging tools. These tools are designed tofacilitate communication in a distributed system.
-
-If your project does not depend on `atomix-all`, you must add the `atomix-messaging` dependency in order to access the coordination classes:
-
-```
-<dependency>
-  <groupId>io.atomix</groupId>
-  <artifactId>atomix-messaging</artifactId>
-  <version>{{ site.version }}</version>
-</dependency>
-```
 
 ### DistributedMessageBus
 

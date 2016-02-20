@@ -3,27 +3,15 @@ layout: docs
 project: atomix
 menu: docs
 title: Distributed Coordination
-pitch: Coordinating processes
+pitch: Primitives for process coordination
 first-section: distributed-coordination
 ---
 
-## Distributed coordination
-
 The `atomix-coordination` module provides a set of distributed coordination tools. These tools are designed to facilitate decision making and synchronization in a distributed system.
-
-If your project does not depend on `atomix-all`, you must add the `atomix-coordination` dependency in order to access the coordination classes:
-
-```
-<dependency>
-  <groupId>io.atomix</groupId>
-  <artifactId>atomix-coordination</artifactId>
-  <version>{{ site.version }}</version>
-</dependency>
-```
 
 ### DistributedLock
 
-The [DistributedLock][DistributedLock] resources provides an asynchronous API similar to that of `java.util.concurrent.locks.Lock`.
+The [DistributedLock] resources provides an asynchronous API similar to that of the JDK's [Lock][JdkLock].
 
 To create a `DistributedLock`, use the `Atomix.getLock` method:
 
@@ -33,7 +21,7 @@ atomix.getLock("foo").thenAccept(lock -> {
 });
 ```
 
-Once the lock has been created, the methods closely mimic those of `java.util.concurrent.locks.Lock`. `DistributedLock` returns `CompletableFuture` for all methods:
+The `DistributedLock` API is asynchronous and returns `CompletableFuture` for all methods:
 
 ```java
 lock.lock().thenRun(() -> {
@@ -56,7 +44,7 @@ lock.unlock().join();
 
 The [DistributedGroup] resources provides an asynchronous API for coordinating group membership across the cluster. Group membership can be used to track, for example, nodes in a cluster.
 
-When new members [join](#joining-the-group) a membership group, all existing members of the group may be [notified](#listening-for-membership-changes). Typically, in fault tolerant systems members join the group until they fail. When a member's session is disconnected from the cluster, remaining members of the group will again be notified that the member has left the cluster.
+When new members [join](#joining-the-group) a membership group, all existing members of the group may be [notified](#listening-for-membership-changes). Typically, in fault tolerant systems members remain in the group until they fail. When a member's session is disconnected from the cluster, remaining members of the group will again be notified that the member has left the cluster.
 
 To create a `DistributedGroup`, use the `Atomix.getGroup` method:
 
@@ -66,7 +54,7 @@ DistributedGroup group = atomix.getGroup("my-group").get();
 
 #### Joining the group
 
-Once a new group membership instance has been created, `join` the group:
+Once a new `DistributedGroup` instance has been created, `join` the group:
 
 ```java
 group.join().join();
@@ -82,7 +70,7 @@ Typically, members remain part of the group until their session becomes disconne
 group.leave().join();
 ```
 
-#### Listening for membership changes
+#### Membership events
 
 To listen for group members joining the group, use the `onJoin` event listener:
 
@@ -104,9 +92,9 @@ group.onLeave(member -> {
 
 #### Leader election
 
-[Leader election](https://en.wikipedia.org/wiki/Leader_election) is a pattern commonly used in distributed systems to coordinate some task or access to a resource among a set of processes. Atomix's `DistributedGroup` handles the coordination of a leader and notifies processes when they become the leader.
+[Leader election](https://en.wikipedia.org/wiki/Leader_election) is a pattern commonly used in distributed systems to elect some leader from a set of processes as the primary point of access to some resource. Atomix's `DistributedGroup` handles the coordination of a leader and notifies processes when they become the leader.
 
-Atomix provides support for leader election as a component of membership groups. Any member in a group can be elected leader, and indeed a leader is always elected for any group. To await the current leader being elected, use the `onElection` method of the `LocalGroupMember`:
+Any member in a group can be elected leader, and indeed a leader is always elected for any group. To await the current leader being elected, use the `onElection` method of the `LocalGroupMember`:
 
 ```java
 atomix.getGroup("group").thenAccept(group -> {
@@ -134,7 +122,7 @@ group.onElection(member -> {
 });
 ```
 
-#### Scheduling remote callbacks
+#### Remote execution
 
 Members in a [DistributedGroup] are represented as [GroupMember] objects. The `GroupMember` class provides an interface for remote execution on specific members of the group.
 
