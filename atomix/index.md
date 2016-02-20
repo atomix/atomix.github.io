@@ -24,7 +24,7 @@ project: atomix
     <div class="row">
     
 <div class="col-sm-7" markdown="1">
-{% include sync-tabs-params.html active="#distributed-value:Value" inactive="#distributed-long:Long,#distributed-map:Map,#distributed-multimap:MultiMap,#distributed-set:Set,#distributed-queue:Queue,#distributed-lock:Lock,#distributed-group:Group,#distributed-leader:Leader Election,#distributed-bus:Message Bus,#distributed-topic:Topic,#distributed-task-queue:Task Queue" %}
+{% include sync-tabs-params.html active="#distributed-value:Value" inactive="#distributed-long:Long,#distributed-map:Map,#distributed-multimap:MultiMap,#distributed-set:Set,#distributed-queue:Queue,#distributed-lock:Lock,#distributed-group:Group,#distributed-leader:Leader Election,#remote-execution:Remote Execution,#distributed-bus:Message Bus,#distributed-topic:Topic,#distributed-task-queue:Task Queue" %}
 <div class="tab-content" markdown="1">
 <div class="tab-pane active" id="distributed-value" markdown="1">
 ```java
@@ -89,6 +89,7 @@ DistributedQueue<Integer> queue = atomix.getQueue("queue").get();
 
 queue.offer(1).join();
 queue.offer(2).join();
+
 queue.poll().thenAccept(value -> {
   System.out.println("retrieved " + value);
 });
@@ -122,6 +123,17 @@ LocalGroupMember member = group.join().get();
 member.onElection(term -> {
   System.out.println("Elected leader!");
   member.resign();
+});
+```
+</div>
+<div class="tab-pane" id="remote-execution" markdown="1">
+```java
+DistributedGroup group = atomix.getGroup("election").get();
+
+group.join().join();
+
+group.members().forEach(member -> {
+  member.execute(() -> System.out.println("On member " + member.id());
 });
 ```
 </div>

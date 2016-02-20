@@ -13,8 +13,8 @@ Atomix is an easy to use library that embeds inside of your clustered applicatio
 
 * Distributed [variables]
 * Distributed [collections] such as maps, multi-maps, sets, and queues
-* Distributed [coordination] tools such as locks, group membership, and leader election
-* Distributed [messaging] tools such as message bus, topic, and task queue
+* Distributed [coordination] tools such as locks, group membership, leader election, and remote execution
+* Distributed [messaging] tools such as a message bus, topics, and task queues
 
 ## Setup
 
