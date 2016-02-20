@@ -100,10 +100,15 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">io.atomix.copycat.server.storage.entry.Entry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/ConfigurationEntry.html" title="class in io.atomix.copycat.server.storage.entry">ConfigurationEntry</a>&gt;</li>
+<li><a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">io.atomix.copycat.server.storage.entry.Entry</a>&lt;T&gt;</li>
+<li>
+<ul class="inheritance">
+<li><a href="../../../../../../io/atomix/copycat/server/storage/entry/TimestampedEntry.html" title="class in io.atomix.copycat.server.storage.entry">io.atomix.copycat.server.storage.entry.TimestampedEntry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/ConfigurationEntry.html" title="class in io.atomix.copycat.server.storage.entry">ConfigurationEntry</a>&gt;</li>
 <li>
 <ul class="inheritance">
 <li>io.atomix.copycat.server.storage.entry.ConfigurationEntry</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -119,7 +124,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">ConfigurationEntry</span>
-extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/ConfigurationEntry.html" title="class in io.atomix.copycat.server.storage.entry">ConfigurationEntry</a>&gt;</pre>
+extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/TimestampedEntry.html" title="class in io.atomix.copycat.server.storage.entry">TimestampedEntry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/ConfigurationEntry.html" title="class in io.atomix.copycat.server.storage.entry">ConfigurationEntry</a>&gt;</pre>
 <div class="block">Stores a cluster configuration.
  <p>
  The <code>ConfigurationEntry</code> stores information relevant to a single cluster configuration change.
@@ -201,6 +206,13 @@ extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.
            <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
 </tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.copycat.server.storage.entry.TimestampedEntry">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;io.atomix.copycat.server.storage.entry.<a href="../../../../../../io/atomix/copycat/server/storage/entry/TimestampedEntry.html" title="class in io.atomix.copycat.server.storage.entry">TimestampedEntry</a></h3>
+<code><a href="../../../../../../io/atomix/copycat/server/storage/entry/TimestampedEntry.html#getTimestamp--">getTimestamp</a>, <a href="../../../../../../io/atomix/copycat/server/storage/entry/TimestampedEntry.html#setTimestamp-long-">setTimestamp</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.copycat.server.storage.entry.Entry">
 <!--   -->
@@ -316,7 +328,7 @@ extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-" title="class or interface in io.atomix.catalyst.serializer">writeObject</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/ConfigurationEntry.html" title="class in io.atomix.copycat.server.storage.entry">ConfigurationEntry</a>&gt;</code></dd>
+<dd><code><a href="../../../../../../io/atomix/copycat/server/storage/entry/TimestampedEntry.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../io/atomix/copycat/server/storage/entry/TimestampedEntry.html" title="class in io.atomix.copycat.server.storage.entry">TimestampedEntry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/ConfigurationEntry.html" title="class in io.atomix.copycat.server.storage.entry">ConfigurationEntry</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>
@@ -332,7 +344,7 @@ extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-" title="class or interface in io.atomix.catalyst.serializer">readObject</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">CatalystSerializable</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/ConfigurationEntry.html" title="class in io.atomix.copycat.server.storage.entry">ConfigurationEntry</a>&gt;</code></dd>
+<dd><code><a href="../../../../../../io/atomix/copycat/server/storage/entry/TimestampedEntry.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../io/atomix/copycat/server/storage/entry/TimestampedEntry.html" title="class in io.atomix.copycat.server.storage.entry">TimestampedEntry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/ConfigurationEntry.html" title="class in io.atomix.copycat.server.storage.entry">ConfigurationEntry</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>
@@ -345,7 +357,7 @@ extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dd><code><a href="../../../../../../io/atomix/copycat/server/storage/entry/TimestampedEntry.html#toString--">toString</a></code>&nbsp;in class&nbsp;<code><a href="../../../../../../io/atomix/copycat/server/storage/entry/TimestampedEntry.html" title="class in io.atomix.copycat.server.storage.entry">TimestampedEntry</a>&lt;<a href="../../../../../../io/atomix/copycat/server/storage/entry/ConfigurationEntry.html" title="class in io.atomix.copycat.server.storage.entry">ConfigurationEntry</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>

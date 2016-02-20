@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -252,6 +252,12 @@ var activeTableTab = "activeTableTab";
 <div class="block">Returns the member type.</div>
 </td>
 </tr>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/time/Instant.html?is-external=true" title="class or interface in java.time">Instant</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/cluster/Member.html#updated--">updated</a></span>()</code>
+<div class="block">Returns the time at which the member was updated.</div>
+</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -360,10 +366,33 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>status</h4>
 <pre><a href="../../../../../io/atomix/copycat/server/cluster/Member.Status.html" title="enum in io.atomix.copycat.server.cluster">Member.Status</a>&nbsp;status()</pre>
-<div class="block">Returns the member status.</div>
+<div class="block">Returns the member status.
+ <p>
+ The status is indicative of the leader's ability to communicate with this member. If this member is a local
+ member, the member's status will be <a href="../../../../../io/atomix/copycat/server/cluster/Member.Status.html#AVAILABLE"><code>Member.Status.AVAILABLE</code></a> while the server is alive and will not change
+ regardless of the leader's ability to communicate with the local member. Similarly, if the local server is
+ partitioned from the leader then changes in statuses seen on other nodes may not be visible to this node.
+ Status changes are guaranteed to occur in the same order on all nodes but without a real-time constraint.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The member status.</dd>
+</dl>
+</li>
+</ul>
+<a name="updated--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>updated</h4>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/time/Instant.html?is-external=true" title="class or interface in java.time">Instant</a>&nbsp;updated()</pre>
+<div class="block">Returns the time at which the member was updated.
+ <p>
+ The member update time is not guaranteed to be consistent across servers or consistent across server
+ restarts. The update time is guaranteed to be monotonically increasing.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The time at which the member was updated.</dd>
 </dl>
 </li>
 </ul>
