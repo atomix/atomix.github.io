@@ -183,7 +183,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.ConsistencyLevel.html?is-external=true" title="class or interface in io.atomix.copycat.client">Query.ConsistencyLevel</a></code></td>
+<td class="colFirst"><code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Query.ConsistencyLevel.html?is-external=true" title="class or interface in io.atomix.copycat">Query.ConsistencyLevel</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ReadConsistency.html#level--">level</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -238,10 +238,10 @@ the order they are declared.</div>
 <div class="block">Guarantees atomicity (linearizability) for read operations.
  <p>
  The atomic consistency level guarantees linearizability by contacting a majority of the cluster on every read.
- When a <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html?is-external=true" title="class or interface in io.atomix.copycat.client"><code>Query</code></a> is submitted to the cluster with linearizable consistency, it must be
+ When a <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Query.html?is-external=true" title="class or interface in io.atomix.copycat"><code>Query</code></a> is submitted to the cluster with linearizable consistency, it must be
  forwarded to the current cluster leader. Once received by the leader, the leader will contact a majority of the
  cluster before applying the query to its state machine and returning the result. Note that if the leader is already
- in the process of contacting a majority of the cluster, it will queue the <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html?is-external=true" title="class or interface in io.atomix.copycat.client"><code>Query</code></a> to
+ in the process of contacting a majority of the cluster, it will queue the <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Query.html?is-external=true" title="class or interface in io.atomix.copycat"><code>Query</code></a> to
  be processed on the next round trip. This allows the leader to batch expensive quorum based reads for efficiency.</div>
 </li>
 </ul>
@@ -256,7 +256,7 @@ the order they are declared.</div>
  <p>
  Atomic lease consistency is a special implementation of linearizable reads that relies on the semantics of Raft's
  election timers to determine whether it is safe to immediately apply a query to the Raft state machine. When a
- linearizable <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html?is-external=true" title="class or interface in io.atomix.copycat.client"><code>Query</code></a> is submitted to the Raft cluster with linearizable consistency,
+ linearizable <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Query.html?is-external=true" title="class or interface in io.atomix.copycat"><code>Query</code></a> is submitted to the Raft cluster with linearizable consistency,
  it must be forwarded to the current cluster leader. For lease-based linearizability, the leader will determine whether
  it's safe to apply the query to its state machine based on the last time it successfully contacted a majority of the
  cluster. If the leader contacted a majority of the cluster within the last election timeout, it assumes that no other
@@ -275,7 +275,7 @@ the order they are declared.</div>
 <div class="block">Guarantees sequential consistency for read operations.
  <p>
  Sequential read consistency requires that clients always see state progress in monotonically increasing order. Note that
- this constraint allows reads from followers. When a sequential <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html?is-external=true" title="class or interface in io.atomix.copycat.client"><code>Query</code></a> is submitted to the cluster, the first
+ this constraint allows reads from followers. When a sequential <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Query.html?is-external=true" title="class or interface in io.atomix.copycat"><code>Query</code></a> is submitted to the cluster, the first
  server that receives the query will handle it. However, in order to ensure that state does not go back in time, the
  client must submit its last known index with the query as well. If the server that receives the query has not advanced
  past the provided client index, it will queue the query and await more entries from the leader.</div>
@@ -291,7 +291,7 @@ the order they are declared.</div>
 <div class="block">Guarantees causal consistency for read operations.
  <p>
  Causal consistency requires that clients always see non-overlapping state progress monotonically. This constraint allows
- reads from followers. When a causally consistent <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html?is-external=true" title="class or interface in io.atomix.copycat.client"><code>Query</code></a> is submitted to the cluster, the first server that
+ reads from followers. When a causally consistent <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Query.html?is-external=true" title="class or interface in io.atomix.copycat"><code>Query</code></a> is submitted to the cluster, the first server that
  receives the query will attempt to handle it. If the server that receives the query is more than a heartbeat behind the
  leader, the query will be forwarded to the leader. If the server that receives the query has not advanced past the
  client's last write, the read will be queued until it can be satisfied.</div>
@@ -353,7 +353,7 @@ not permitted.)</div>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>level</h4>
-<pre>public&nbsp;<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.ConsistencyLevel.html?is-external=true" title="class or interface in io.atomix.copycat.client">Query.ConsistencyLevel</a>&nbsp;level()</pre>
+<pre>public&nbsp;<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Query.ConsistencyLevel.html?is-external=true" title="class or interface in io.atomix.copycat">Query.ConsistencyLevel</a>&nbsp;level()</pre>
 </li>
 </ul>
 </li>

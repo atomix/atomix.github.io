@@ -127,7 +127,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 <div class="block">Indicates the state of the resource's communication with the cluster.
  <p>
  The resource state is indicative of the resource's ability to communicate with the cluster within the
- context of the underlying <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/session/Session.html?is-external=true" title="class or interface in io.atomix.copycat.client.session"><code>Session</code></a>. In some cases, resource state changes may be indicative of a
+ context of the underlying <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/session/Session.html?is-external=true" title="class or interface in io.atomix.copycat.session"><code>Session</code></a>. In some cases, resource state changes may be indicative of a
  loss of guarantees. Users of the resource should <a href="../../../io/atomix/resource/Resource.html#onStateChange-java.util.function.Consumer-"><code>watch</code></a> the state
  of a resource to determine when guarantees are lost and react to changes in the resource's ability to communicate
  with the cluster.
@@ -266,7 +266,7 @@ the order they are declared.</div>
 <div class="block">Indicates that the resource is suspended and its session may or may not be expired.
  <p>
  The <code>SUSPENDED</code> state is indicative of an inability to communicate with the cluster within the context of
- the underlying client's <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/session/Session.html?is-external=true" title="class or interface in io.atomix.copycat.client.session"><code>Session</code></a>. Operations performed on resources in this state should be considered
+ the underlying client's <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/session/Session.html?is-external=true" title="class or interface in io.atomix.copycat.session"><code>Session</code></a>. Operations performed on resources in this state should be considered
  unsafe. An operation performed on a <a href="../../../io/atomix/resource/Resource.State.html#CONNECTED"><code>CONNECTED</code></a> resource that transitions to the <code>SUSPENDED</code> state
  prior to the operation's completion may be committed multiple times in the event that the underlying session
  is ultimately <code>expired</code>, thus breaking linearizability. Additionally, state machines

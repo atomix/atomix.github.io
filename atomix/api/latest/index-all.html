@@ -254,7 +254,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceCommit.html#close--">close()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceCommit.html" title="class in io.atomix.resource">ResourceCommit</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceStateMachine.html#close-io.atomix.copycat.client.session.Session-">close(Session)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource">ResourceStateMachine</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceStateMachine.html#close-io.atomix.copycat.server.session.ServerSession-">close(ServerSession)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource">ResourceStateMachine</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/util/AtomixCopycatClient.html#close--">close()</a></span> - Method in class io.atomix.util.<a href="io/atomix/util/AtomixCopycatClient.html" title="class in io.atomix.util">AtomixCopycatClient</a></dt>
 <dd>&nbsp;</dd>
@@ -564,7 +564,7 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#exists-java.lang.String-">exists(String)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceStateMachine.html#expire-io.atomix.copycat.client.session.Session-">expire(Session)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource">ResourceStateMachine</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceStateMachine.html#expire-io.atomix.copycat.server.session.ServerSession-">expire(ServerSession)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource">ResourceStateMachine</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a name="I:F">
@@ -894,7 +894,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceClient.html#InstanceClient-io.atomix.resource.Instance-io.atomix.copycat.client.CopycatClient-">InstanceClient(Instance, CopycatClient)</a></span> - Constructor for class io.atomix.resource.<a href="io/atomix/resource/InstanceClient.html" title="class in io.atomix.resource">InstanceClient</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="io/atomix/resource/InstanceCommand.html" title="class in io.atomix.resource"><span class="typeNameLink">InstanceCommand</span></a>&lt;<a href="io/atomix/resource/InstanceCommand.html" title="type parameter in InstanceCommand">T</a> extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command</a>&lt;<a href="io/atomix/resource/InstanceCommand.html" title="type parameter in InstanceCommand">U</a>&gt;,<a href="io/atomix/resource/InstanceCommand.html" title="type parameter in InstanceCommand">U</a>&gt; - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
+<dt><a href="io/atomix/resource/InstanceCommand.html" title="class in io.atomix.resource"><span class="typeNameLink">InstanceCommand</span></a>&lt;<a href="io/atomix/resource/InstanceCommand.html" title="type parameter in InstanceCommand">T</a> extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Command.html?is-external=true" title="class or interface in io.atomix.copycat">Command</a>&lt;<a href="io/atomix/resource/InstanceCommand.html" title="type parameter in InstanceCommand">U</a>&gt;,<a href="io/atomix/resource/InstanceCommand.html" title="type parameter in InstanceCommand">U</a>&gt; - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
 <dd>
 <div class="block">Resource command.</div>
 </dd>
@@ -910,11 +910,11 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceEvent.html#InstanceEvent-long-T-">InstanceEvent(long, T)</a></span> - Constructor for class io.atomix.resource.<a href="io/atomix/resource/InstanceEvent.html" title="class in io.atomix.resource">InstanceEvent</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="io/atomix/resource/InstanceOperation.html" title="class in io.atomix.resource"><span class="typeNameLink">InstanceOperation</span></a>&lt;<a href="io/atomix/resource/InstanceOperation.html" title="type parameter in InstanceOperation">T</a> extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Operation.html?is-external=true" title="class or interface in io.atomix.copycat.client">Operation</a>&lt;<a href="io/atomix/resource/InstanceOperation.html" title="type parameter in InstanceOperation">U</a>&gt;,<a href="io/atomix/resource/InstanceOperation.html" title="type parameter in InstanceOperation">U</a>&gt; - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
+<dt><a href="io/atomix/resource/InstanceOperation.html" title="class in io.atomix.resource"><span class="typeNameLink">InstanceOperation</span></a>&lt;<a href="io/atomix/resource/InstanceOperation.html" title="type parameter in InstanceOperation">T</a> extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Operation.html?is-external=true" title="class or interface in io.atomix.copycat">Operation</a>&lt;<a href="io/atomix/resource/InstanceOperation.html" title="type parameter in InstanceOperation">U</a>&gt;,<a href="io/atomix/resource/InstanceOperation.html" title="type parameter in InstanceOperation">U</a>&gt; - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
 <dd>
 <div class="block">Resource operation.</div>
 </dd>
-<dt><a href="io/atomix/resource/InstanceQuery.html" title="class in io.atomix.resource"><span class="typeNameLink">InstanceQuery</span></a>&lt;<a href="io/atomix/resource/InstanceQuery.html" title="type parameter in InstanceQuery">T</a> extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html?is-external=true" title="class or interface in io.atomix.copycat.client">Query</a>&lt;<a href="io/atomix/resource/InstanceQuery.html" title="type parameter in InstanceQuery">U</a>&gt;,<a href="io/atomix/resource/InstanceQuery.html" title="type parameter in InstanceQuery">U</a>&gt; - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
+<dt><a href="io/atomix/resource/InstanceQuery.html" title="class in io.atomix.resource"><span class="typeNameLink">InstanceQuery</span></a>&lt;<a href="io/atomix/resource/InstanceQuery.html" title="type parameter in InstanceQuery">T</a> extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Query.html?is-external=true" title="class or interface in io.atomix.copycat">Query</a>&lt;<a href="io/atomix/resource/InstanceQuery.html" title="type parameter in InstanceQuery">U</a>&gt;,<a href="io/atomix/resource/InstanceQuery.html" title="type parameter in InstanceQuery">U</a>&gt; - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
 <dd>
 <div class="block">Resource query.</div>
 </dd>
@@ -926,7 +926,7 @@
 <dd>
 <div class="block">Resource session.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceSession.html#InstanceSession-long-io.atomix.copycat.client.session.Session-io.atomix.catalyst.util.concurrent.ThreadContext-">InstanceSession(long, Session, ThreadContext)</a></span> - Constructor for class io.atomix.resource.<a href="io/atomix/resource/InstanceSession.html" title="class in io.atomix.resource">InstanceSession</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceSession.html#InstanceSession-long-io.atomix.copycat.session.Session-io.atomix.catalyst.util.concurrent.ThreadContext-">InstanceSession(long, Session, ThreadContext)</a></span> - Constructor for class io.atomix.resource.<a href="io/atomix/resource/InstanceSession.html" title="class in io.atomix.resource">InstanceSession</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/resource/InstanceTypeResolver.html" title="class in io.atomix.resource"><span class="typeNameLink">InstanceTypeResolver</span></a> - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
 <dd>
@@ -1158,10 +1158,6 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceClient.html#onEvent-java.lang.String-java.util.function.Consumer-">onEvent(String, Consumer&lt;T&gt;)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceClient.html" title="class in io.atomix.resource">InstanceClient</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceSession.html#onEvent-java.lang.String-java.lang.Runnable-">onEvent(String, Runnable)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceSession.html" title="class in io.atomix.resource">InstanceSession</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceSession.html#onEvent-java.lang.String-java.util.function.Consumer-">onEvent(String, Consumer&lt;T&gt;)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceSession.html" title="class in io.atomix.resource">InstanceSession</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/util/AtomixCopycatClient.html#onEvent-java.lang.String-java.lang.Runnable-">onEvent(String, Runnable)</a></span> - Method in class io.atomix.util.<a href="io/atomix/util/AtomixCopycatClient.html" title="class in io.atomix.util">AtomixCopycatClient</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/util/AtomixCopycatClient.html#onEvent-java.lang.String-java.util.function.Consumer-">onEvent(String, Consumer&lt;T&gt;)</a></span> - Method in class io.atomix.util.<a href="io/atomix/util/AtomixCopycatClient.html" title="class in io.atomix.util">AtomixCopycatClient</a></dt>
@@ -1302,10 +1298,6 @@
 <dd>
 <div class="block">Publishes a message to the topic.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceSession.html#publish-java.lang.String-">publish(String)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceSession.html" title="class in io.atomix.resource">InstanceSession</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceSession.html#publish-java.lang.String-java.lang.Object-">publish(String, Object)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceSession.html" title="class in io.atomix.resource">InstanceSession</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#put-K-V-">put(K, V)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
 <div class="block">Puts a value in the map for the given <code>key</code>.</div>
@@ -1378,7 +1370,7 @@
 <dd>
 <div class="block">Registers a resource type.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceStateMachine.html#register-io.atomix.copycat.client.session.Session-">register(Session)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource">ResourceStateMachine</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceStateMachine.html#register-io.atomix.copycat.server.session.ServerSession-">register(ServerSession)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource">ResourceStateMachine</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceStateMachineExecutor.html#register-java.lang.Class-java.util.function.Consumer-">register(Class&lt;T&gt;, Consumer&lt;Commit&lt;T&gt;&gt;)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceStateMachineExecutor.html" title="class in io.atomix.resource">ResourceStateMachineExecutor</a></dt>
 <dd>&nbsp;</dd>
@@ -1480,15 +1472,15 @@
 <dd>
 <div class="block">Indicates the state of the resource's communication with the cluster.</div>
 </dd>
-<dt><a href="io/atomix/resource/ResourceCommand.html" title="class in io.atomix.resource"><span class="typeNameLink">ResourceCommand</span></a>&lt;<a href="io/atomix/resource/ResourceCommand.html" title="type parameter in ResourceCommand">T</a> extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Command.html?is-external=true" title="class or interface in io.atomix.copycat.client">Command</a>&lt;<a href="io/atomix/resource/ResourceCommand.html" title="type parameter in ResourceCommand">U</a>&gt;,<a href="io/atomix/resource/ResourceCommand.html" title="type parameter in ResourceCommand">U</a>&gt; - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
+<dt><a href="io/atomix/resource/ResourceCommand.html" title="class in io.atomix.resource"><span class="typeNameLink">ResourceCommand</span></a>&lt;<a href="io/atomix/resource/ResourceCommand.html" title="type parameter in ResourceCommand">T</a> extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Command.html?is-external=true" title="class or interface in io.atomix.copycat">Command</a>&lt;<a href="io/atomix/resource/ResourceCommand.html" title="type parameter in ResourceCommand">U</a>&gt;,<a href="io/atomix/resource/ResourceCommand.html" title="type parameter in ResourceCommand">U</a>&gt; - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
 <dd>
 <div class="block">Resource command.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceCommand.html#ResourceCommand--">ResourceCommand()</a></span> - Constructor for class io.atomix.resource.<a href="io/atomix/resource/ResourceCommand.html" title="class in io.atomix.resource">ResourceCommand</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceCommand.html#ResourceCommand-T-io.atomix.copycat.client.Command.ConsistencyLevel-">ResourceCommand(T, Command.ConsistencyLevel)</a></span> - Constructor for class io.atomix.resource.<a href="io/atomix/resource/ResourceCommand.html" title="class in io.atomix.resource">ResourceCommand</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceCommand.html#ResourceCommand-T-io.atomix.copycat.Command.ConsistencyLevel-">ResourceCommand(T, Command.ConsistencyLevel)</a></span> - Constructor for class io.atomix.resource.<a href="io/atomix/resource/ResourceCommand.html" title="class in io.atomix.resource">ResourceCommand</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="io/atomix/resource/ResourceCommit.html" title="class in io.atomix.resource"><span class="typeNameLink">ResourceCommit</span></a>&lt;<a href="io/atomix/resource/ResourceCommit.html" title="type parameter in ResourceCommit">T</a> extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Operation.html?is-external=true" title="class or interface in io.atomix.copycat.client">Operation</a>&gt; - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
+<dt><a href="io/atomix/resource/ResourceCommit.html" title="class in io.atomix.resource"><span class="typeNameLink">ResourceCommit</span></a>&lt;<a href="io/atomix/resource/ResourceCommit.html" title="type parameter in ResourceCommit">T</a> extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Operation.html?is-external=true" title="class or interface in io.atomix.copycat">Operation</a>&gt; - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
 <dd>
 <div class="block">Resource commit.</div>
 </dd>
@@ -1508,17 +1500,17 @@
 <dd>
 <div class="block">Resource factory.</div>
 </dd>
-<dt><a href="io/atomix/resource/ResourceOperation.html" title="class in io.atomix.resource"><span class="typeNameLink">ResourceOperation</span></a>&lt;<a href="io/atomix/resource/ResourceOperation.html" title="type parameter in ResourceOperation">T</a> extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Operation.html?is-external=true" title="class or interface in io.atomix.copycat.client">Operation</a>&lt;<a href="io/atomix/resource/ResourceOperation.html" title="type parameter in ResourceOperation">U</a>&gt;,<a href="io/atomix/resource/ResourceOperation.html" title="type parameter in ResourceOperation">U</a>&gt; - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
+<dt><a href="io/atomix/resource/ResourceOperation.html" title="class in io.atomix.resource"><span class="typeNameLink">ResourceOperation</span></a>&lt;<a href="io/atomix/resource/ResourceOperation.html" title="type parameter in ResourceOperation">T</a> extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Operation.html?is-external=true" title="class or interface in io.atomix.copycat">Operation</a>&lt;<a href="io/atomix/resource/ResourceOperation.html" title="type parameter in ResourceOperation">U</a>&gt;,<a href="io/atomix/resource/ResourceOperation.html" title="type parameter in ResourceOperation">U</a>&gt; - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
 <dd>
 <div class="block">Resource operation.</div>
 </dd>
-<dt><a href="io/atomix/resource/ResourceQuery.html" title="class in io.atomix.resource"><span class="typeNameLink">ResourceQuery</span></a>&lt;<a href="io/atomix/resource/ResourceQuery.html" title="type parameter in ResourceQuery">T</a> extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/Query.html?is-external=true" title="class or interface in io.atomix.copycat.client">Query</a>&lt;<a href="io/atomix/resource/ResourceQuery.html" title="type parameter in ResourceQuery">U</a>&gt;,<a href="io/atomix/resource/ResourceQuery.html" title="type parameter in ResourceQuery">U</a>&gt; - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
+<dt><a href="io/atomix/resource/ResourceQuery.html" title="class in io.atomix.resource"><span class="typeNameLink">ResourceQuery</span></a>&lt;<a href="io/atomix/resource/ResourceQuery.html" title="type parameter in ResourceQuery">T</a> extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Query.html?is-external=true" title="class or interface in io.atomix.copycat">Query</a>&lt;<a href="io/atomix/resource/ResourceQuery.html" title="type parameter in ResourceQuery">U</a>&gt;,<a href="io/atomix/resource/ResourceQuery.html" title="type parameter in ResourceQuery">U</a>&gt; - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
 <dd>
 <div class="block">Resource query.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceQuery.html#ResourceQuery--">ResourceQuery()</a></span> - Constructor for class io.atomix.resource.<a href="io/atomix/resource/ResourceQuery.html" title="class in io.atomix.resource">ResourceQuery</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceQuery.html#ResourceQuery-T-io.atomix.copycat.client.Query.ConsistencyLevel-">ResourceQuery(T, Query.ConsistencyLevel)</a></span> - Constructor for class io.atomix.resource.<a href="io/atomix/resource/ResourceQuery.html" title="class in io.atomix.resource">ResourceQuery</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceQuery.html#ResourceQuery-T-io.atomix.copycat.Query.ConsistencyLevel-">ResourceQuery(T, Query.ConsistencyLevel)</a></span> - Constructor for class io.atomix.resource.<a href="io/atomix/resource/ResourceQuery.html" title="class in io.atomix.resource">ResourceQuery</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/resource/ResourceRegistry.html" title="class in io.atomix.resource"><span class="typeNameLink">ResourceRegistry</span></a> - Class in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
 <dd>
@@ -1678,13 +1670,13 @@
 <dd>
 <div class="block">Submits a task to the task queue.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceClient.html#submit-io.atomix.copycat.client.Command-">submit(Command&lt;T&gt;)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceClient.html" title="class in io.atomix.resource">InstanceClient</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceClient.html#submit-io.atomix.copycat.Command-">submit(Command&lt;T&gt;)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceClient.html" title="class in io.atomix.resource">InstanceClient</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceClient.html#submit-io.atomix.copycat.client.Query-">submit(Query&lt;T&gt;)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceClient.html" title="class in io.atomix.resource">InstanceClient</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/InstanceClient.html#submit-io.atomix.copycat.Query-">submit(Query&lt;T&gt;)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/InstanceClient.html" title="class in io.atomix.resource">InstanceClient</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/util/AtomixCopycatClient.html#submit-io.atomix.copycat.client.Command-">submit(Command&lt;T&gt;)</a></span> - Method in class io.atomix.util.<a href="io/atomix/util/AtomixCopycatClient.html" title="class in io.atomix.util">AtomixCopycatClient</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/util/AtomixCopycatClient.html#submit-io.atomix.copycat.Command-">submit(Command&lt;T&gt;)</a></span> - Method in class io.atomix.util.<a href="io/atomix/util/AtomixCopycatClient.html" title="class in io.atomix.util">AtomixCopycatClient</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/util/AtomixCopycatClient.html#submit-io.atomix.copycat.client.Query-">submit(Query&lt;T&gt;)</a></span> - Method in class io.atomix.util.<a href="io/atomix/util/AtomixCopycatClient.html" title="class in io.atomix.util">AtomixCopycatClient</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/util/AtomixCopycatClient.html#submit-io.atomix.copycat.Query-">submit(Query&lt;T&gt;)</a></span> - Method in class io.atomix.util.<a href="io/atomix/util/AtomixCopycatClient.html" title="class in io.atomix.util">AtomixCopycatClient</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/messaging/DistributedTopic.html#subscribe-java.util.function.Consumer-">subscribe(Consumer&lt;T&gt;)</a></span> - Method in class io.atomix.messaging.<a href="io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a></dt>
 <dd>
@@ -1796,7 +1788,7 @@
 <dd>
 <div class="block">Releases the lock.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceStateMachine.html#unregister-io.atomix.copycat.client.session.Session-">unregister(Session)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource">ResourceStateMachine</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceStateMachine.html#unregister-io.atomix.copycat.server.session.ServerSession-">unregister(ServerSession)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource">ResourceStateMachine</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a name="I:V">
