@@ -83,37 +83,39 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.copycat.server.request">io.atomix.copycat.server.request</a></td>
+<td class="colFirst"><a href="#io.atomix.copycat.server.protocol">io.atomix.copycat.server.protocol</a></td>
 <td class="colLast">
-<div class="block"><a href="../../../../../../io/atomix/copycat/client/request/Request.html" title="interface in io.atomix.copycat.client.request"><code>Request</code></a> implementations for server-to-server communication.</div>
+<div class="block"><a href="../../../../../../io/atomix/copycat/protocol/Request.html" title="interface in io.atomix.copycat.protocol"><code>Request</code></a> and <a href="../../../../../../io/atomix/copycat/protocol/Response.html" title="interface in io.atomix.copycat.protocol"><code>Response</code></a> implementations for
+ server-to-server communication.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server.storage">io.atomix.copycat.server.storage</a></td>
 <td class="colLast">
-<div class="block">Provides a standalone segmented log for Copycat's <a href="https://raftconsensus.github.io/">Raft</a> implementation.</div>
+<div class="block">Standalone segmented log for Copycat's <a href="https://raftconsensus.github.io/">Raft</a> implementation.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server.storage.entry">io.atomix.copycat.server.storage.entry</a></td>
 <td class="colLast">
-<div class="block">Provides entry implementations for the Raft log.</div>
+<div class="block"><a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>Entry</code></a> implementations used internally to replicate
+ state changes, sessions, and configuration changes in the cluster.</div>
 </td>
 </tr>
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="io.atomix.copycat.server.request">
+<li class="blockList"><a name="io.atomix.copycat.server.protocol">
 <!--   -->
 </a>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../../../io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a> used by <a href="../../../../../../io/atomix/copycat/server/request/package-summary.html">io.atomix.copycat.server.request</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Classes in <a href="../../../../../../io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a> used by <a href="../../../../../../io/atomix/copycat/server/protocol/package-summary.html">io.atomix.copycat.server.protocol</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colOne" scope="col">Class and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colOne"><a href="../../../../../../io/atomix/copycat/server/storage/entry/class-use/Entry.html#io.atomix.copycat.server.request">Entry</a>
+<td class="colOne"><a href="../../../../../../io/atomix/copycat/server/storage/entry/class-use/Entry.html#io.atomix.copycat.server.protocol">Entry</a>
 <div class="block">Stores a state change in a <a href="../../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.</div>
 </td>
 </tr>
@@ -148,7 +150,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colOne"><a href="../../../../../../io/atomix/copycat/server/storage/entry/class-use/CommandEntry.html#io.atomix.copycat.server.storage.entry">CommandEntry</a>
-<div class="block">Stores a state machine <a href="../../../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a>.</div>
+<div class="block">Stores a state machine <a href="../../../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>Command</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -178,7 +180,7 @@
 </tr>
 <tr class="altColor">
 <td class="colOne"><a href="../../../../../../io/atomix/copycat/server/storage/entry/class-use/QueryEntry.html#io.atomix.copycat.server.storage.entry">QueryEntry</a>
-<div class="block">Represents a state machine <a href="../../../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a>.</div>
+<div class="block">Represents a state machine <a href="../../../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>Query</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">

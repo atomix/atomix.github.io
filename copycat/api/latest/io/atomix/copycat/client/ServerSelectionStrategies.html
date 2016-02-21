@@ -249,7 +249,7 @@ the order they are declared.</div>
 <pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/ServerSelectionStrategies.html" title="enum in io.atomix.copycat.client">ServerSelectionStrategies</a> LEADER</pre>
 <div class="block">The <code>LEADER</code> selection strategy forces the client to attempt to connect to the cluster's leader.
  Connecting to the leader means the client's operations are always handled by the first server to receive
- them. However, clients connected to the leader will not significantly benefit from <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a>
+ them. However, clients connected to the leader will not significantly benefit from <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>queries</code></a>
  with lower consistency levels, and more clients connected to the leader could mean more load on a single
  point in the cluster.
  <p>
@@ -265,7 +265,7 @@ the order they are declared.</div>
 <pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/ServerSelectionStrategies.html" title="enum in io.atomix.copycat.client">ServerSelectionStrategies</a> FOLLOWERS</pre>
 <div class="block">The <code>FOLLOWERS</code> selection strategy forces the client to connect only to followers. Connecting to
  followers ensures that the leader is not overloaded with direct client requests. This strategy should be
- used when clients frequently submit <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a> with lower consistency levels that don't need to
+ used when clients frequently submit <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>queries</code></a> with lower consistency levels that don't need to
  be forwarded to the cluster leader. For clients that frequently submit commands or queries with linearizable
  consistency, the <a href="../../../../io/atomix/copycat/client/ServerSelectionStrategies.html#LEADER"><code>LEADER</code></a> ConnectionStrategy may be more performant.</div>
 </li>

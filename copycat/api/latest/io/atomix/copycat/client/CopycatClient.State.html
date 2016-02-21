@@ -127,7 +127,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 <div class="block">Indicates the state of the client's communication with the Copycat cluster.
  <p>
  Throughout the lifetime of a client, the client will transition through various states according to its
- ability to communicate with the cluster within the context of a <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a>. In some cases, client
+ ability to communicate with the cluster within the context of a <a href="../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>Session</code></a>. In some cases, client
  state changes may be indicative of a loss of guarantees. Users of the client should
  <a href="../../../../io/atomix/copycat/client/CopycatClient.html#onStateChange-java.util.function.Consumer-"><code>watch the state of the client</code></a> to determine when guarantees
  are lost and react to changes in the client's ability to communicate with the cluster.
@@ -250,10 +250,10 @@ the order they are declared.</div>
 <pre>public static final&nbsp;<a href="../../../../io/atomix/copycat/client/CopycatClient.State.html" title="enum in io.atomix.copycat.client">CopycatClient.State</a> CONNECTED</pre>
 <div class="block">Indicates that the client is connected and its session is open.
  <p>
- The <code>CONNECTED</code> state indicates that the client is healthy and operating normally. <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a>
- and <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a> submitted and completed while the client is in this state are guaranteed to adhere to
- the respective <a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><code>consistency</code></a>
- <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><code>levels</code></a>.</div>
+ The <code>CONNECTED</code> state indicates that the client is healthy and operating normally. <a href="../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>commands</code></a>
+ and <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>queries</code></a> submitted and completed while the client is in this state are guaranteed to adhere to
+ the respective <code>consistency</code>
+ <code>levels</code>.</div>
 </li>
 </ul>
 <a name="SUSPENDED">
@@ -266,7 +266,7 @@ the order they are declared.</div>
 <div class="block">Indicates that the client is suspended and its session may or may not be expired.
  <p>
  The <code>SUSPENDED</code> state is indicative of an inability to communicate with the cluster within the context of
- the client's <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a>. Operations submitted to or completed by clients in this state should be considered
+ the client's <a href="../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>Session</code></a>. Operations submitted to or completed by clients in this state should be considered
  unsafe. An operation submitted to a <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#CONNECTED"><code>CONNECTED</code></a> client that transitions to the <code>SUSPENDED</code> state
  prior to the operation's completion may be committed multiple times in the event that the underlying session
  is ultimately <code>expired</code>, thus breaking linearizability. Additionally, state machines
@@ -293,7 +293,7 @@ the order they are declared.</div>
 <div class="block">Indicates that the client is closed.
  <p>
  A client may transition to this state as a result of an expired session or an explicit <a href="../../../../io/atomix/copycat/client/CopycatClient.html#close--"><code>close</code></a>
- by the user. In the event that the client's <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a> is lost, if the configured <a href="../../../../io/atomix/copycat/client/RecoveryStrategy.html" title="interface in io.atomix.copycat.client"><code>RecoveryStrategy</code></a>
+ by the user. In the event that the client's <a href="../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>Session</code></a> is lost, if the configured <a href="../../../../io/atomix/copycat/client/RecoveryStrategy.html" title="interface in io.atomix.copycat.client"><code>RecoveryStrategy</code></a>
  forces the client to close upon failure, the client will immediately be closed. If the <a href="../../../../io/atomix/copycat/client/RecoveryStrategy.html" title="interface in io.atomix.copycat.client"><code>RecoveryStrategy</code></a>
  attempts to recover the client's session, the client still may close if it is unable to register a new session.</div>
 </li>

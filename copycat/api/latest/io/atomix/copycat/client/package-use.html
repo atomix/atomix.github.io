@@ -85,32 +85,13 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat.client">io.atomix.copycat.client</a></td>
 <td class="colLast">
-<div class="block">Provides classes for communicating with a Raft cluster and submitting
- <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a>.</div>
+<div class="block">Fully-featured Copycat client for interacting with replicated state machines.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.copycat.client.request">io.atomix.copycat.client.request</a></td>
-<td class="colLast">
-<div class="block"><a href="../../../../io/atomix/copycat/client/request/Request.html" title="interface in io.atomix.copycat.client.request"><code>Request</code></a> implementations for all client communication.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat.client.session">io.atomix.copycat.client.session</a></td>
 <td class="colLast">
-<div class="block">Classes and interfaces for managing client sessions.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.copycat.server">io.atomix.copycat.server</a></td>
-<td class="colLast">
-<div class="block">Provides a standalone, feature-complete implementation of the <a href="https://raft.github.io/">Raft consensus algorithm</a>.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.copycat.server.storage.entry">io.atomix.copycat.server.storage.entry</a></td>
-<td class="colLast">
-<div class="block">Provides entry implementations for the Raft log.</div>
+<div class="block">Facilitates communication with the Copycat cluster within the context of a session.</div>
 </td>
 </tr>
 </tbody>
@@ -126,63 +107,33 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Command.html#io.atomix.copycat.client">Command</a>
-<div class="block">Base interface for operations that modify system state.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Command.CompactionMode.html#io.atomix.copycat.client">Command.CompactionMode</a>
-<div class="block">Constants for specifying command compaction modes.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Command.ConsistencyLevel.html#io.atomix.copycat.client">Command.ConsistencyLevel</a>
-<div class="block">Constants for specifying Raft <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a> consistency levels.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/ConnectionStrategies.html#io.atomix.copycat.client">ConnectionStrategies</a>
 <div class="block">Strategies for handling client connection failures.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/ConnectionStrategy.html#io.atomix.copycat.client">ConnectionStrategy</a>
 <div class="block">Connection strategies define how clients should handle initializing connections to the cluster.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/ConnectionStrategy.Attempt.html#io.atomix.copycat.client">ConnectionStrategy.Attempt</a>
 <div class="block">Represents a failed attempt at connecting to the server.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/CopycatClient.html#io.atomix.copycat.client">CopycatClient</a>
-<div class="block">Provides an interface for submitting <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> queries to the Copycat cluster.</div>
+<div class="block">Provides an interface for submitting <a href="../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>commands</code></a> and <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>Query</code></a> queries to the Copycat cluster.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/CopycatClient.Builder.html#io.atomix.copycat.client">CopycatClient.Builder</a>
 <div class="block">Builds a new Copycat client.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/CopycatClient.State.html#io.atomix.copycat.client">CopycatClient.State</a>
 <div class="block">Indicates the state of the client's communication with the Copycat cluster.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Operation.html#io.atomix.copycat.client">Operation</a>
-<div class="block">Base type for Raft state operations.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Query.html#io.atomix.copycat.client">Query</a>
-<div class="block">Base interface for operations that read system state.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Query.ConsistencyLevel.html#io.atomix.copycat.client">Query.ConsistencyLevel</a>
-<div class="block">Constants for specifying Raft <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> consistency levels.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -223,33 +174,6 @@
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="io.atomix.copycat.client.request">
-<!--   -->
-</a>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a> used by <a href="../../../../io/atomix/copycat/client/request/package-summary.html">io.atomix.copycat.client.request</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Class and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Command.html#io.atomix.copycat.client.request">Command</a>
-<div class="block">Base interface for operations that modify system state.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Operation.html#io.atomix.copycat.client.request">Operation</a>
-<div class="block">Base type for Raft state operations.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Query.html#io.atomix.copycat.client.request">Query</a>
-<div class="block">Base interface for operations that read system state.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
 <li class="blockList"><a name="io.atomix.copycat.client.session">
 <!--   -->
 </a>
@@ -260,72 +184,13 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Command.html#io.atomix.copycat.client.session">Command</a>
-<div class="block">Base interface for operations that modify system state.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/ConnectionStrategy.html#io.atomix.copycat.client.session">ConnectionStrategy</a>
 <div class="block">Connection strategies define how clients should handle initializing connections to the cluster.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Operation.html#io.atomix.copycat.client.session">Operation</a>
-<div class="block">Base type for Raft state operations.</div>
-</td>
-</tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Query.html#io.atomix.copycat.client.session">Query</a>
-<div class="block">Base interface for operations that read system state.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/RetryStrategy.html#io.atomix.copycat.client.session">RetryStrategy</a>
 <div class="block">Strategy for handling operation submission failures by a client.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.copycat.server">
-<!--   -->
-</a>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a> used by <a href="../../../../io/atomix/copycat/server/package-summary.html">io.atomix.copycat.server</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Class and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Operation.html#io.atomix.copycat.server">Operation</a>
-<div class="block">Base type for Raft state operations.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.copycat.server.storage.entry">
-<!--   -->
-</a>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../io/atomix/copycat/client/package-summary.html">io.atomix.copycat.client</a> used by <a href="../../../../io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Class and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Command.html#io.atomix.copycat.server.storage.entry">Command</a>
-<div class="block">Base interface for operations that modify system state.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Operation.html#io.atomix.copycat.server.storage.entry">Operation</a>
-<div class="block">Base type for Raft state operations.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/copycat/client/class-use/Query.html#io.atomix.copycat.server.storage.entry">Query</a>
-<div class="block">Base interface for operations that read system state.</div>
 </td>
 </tr>
 </tbody>

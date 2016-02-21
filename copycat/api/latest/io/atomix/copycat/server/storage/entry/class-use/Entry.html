@@ -83,21 +83,23 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.copycat.server.request">io.atomix.copycat.server.request</a></td>
+<td class="colFirst"><a href="#io.atomix.copycat.server.protocol">io.atomix.copycat.server.protocol</a></td>
 <td class="colLast">
-<div class="block"><a href="../../../../../../../io/atomix/copycat/client/request/Request.html" title="interface in io.atomix.copycat.client.request"><code>Request</code></a> implementations for server-to-server communication.</div>
+<div class="block"><a href="../../../../../../../io/atomix/copycat/protocol/Request.html" title="interface in io.atomix.copycat.protocol"><code>Request</code></a> and <a href="../../../../../../../io/atomix/copycat/protocol/Response.html" title="interface in io.atomix.copycat.protocol"><code>Response</code></a> implementations for
+ server-to-server communication.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server.storage">io.atomix.copycat.server.storage</a></td>
 <td class="colLast">
-<div class="block">Provides a standalone segmented log for Copycat's <a href="https://raftconsensus.github.io/">Raft</a> implementation.</div>
+<div class="block">Standalone segmented log for Copycat's <a href="https://raftconsensus.github.io/">Raft</a> implementation.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server.storage.entry">io.atomix.copycat.server.storage.entry</a></td>
 <td class="colLast">
-<div class="block">Provides entry implementations for the Raft log.</div>
+<div class="block"><a href="../../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>Entry</code></a> implementations used internally to replicate
+ state changes, sessions, and configuration changes in the cluster.</div>
 </td>
 </tr>
 </tbody>
@@ -105,12 +107,12 @@
 </li>
 <li class="blockList">
 <ul class="blockList">
-<li class="blockList"><a name="io.atomix.copycat.server.request">
+<li class="blockList"><a name="io.atomix.copycat.server.protocol">
 <!--   -->
 </a>
-<h3>Uses of <a href="../../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a> in <a href="../../../../../../../io/atomix/copycat/server/request/package-summary.html">io.atomix.copycat.server.request</a></h3>
+<h3>Uses of <a href="../../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a> in <a href="../../../../../../../io/atomix/copycat/server/protocol/package-summary.html">io.atomix.copycat.server.protocol</a></h3>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../../../io/atomix/copycat/server/request/package-summary.html">io.atomix.copycat.server.request</a> that return types with arguments of type <a href="../../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Methods in <a href="../../../../../../../io/atomix/copycat/server/protocol/package-summary.html">io.atomix.copycat.server.protocol</a> that return types with arguments of type <a href="../../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
@@ -118,43 +120,43 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="../../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AppendRequest.</span><code><span class="memberNameLink"><a href="../../../../../../../io/atomix/copycat/server/request/AppendRequest.html#entries--">entries</a></span>()</code>
+<td class="colLast"><span class="typeNameLabel">AppendRequest.</span><code><span class="memberNameLink"><a href="../../../../../../../io/atomix/copycat/server/protocol/AppendRequest.html#entries--">entries</a></span>()</code>
 <div class="block">Returns the log entries to append.</div>
 </td>
 </tr>
 </tbody>
 </table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../../../io/atomix/copycat/server/request/package-summary.html">io.atomix.copycat.server.request</a> with parameters of type <a href="../../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Methods in <a href="../../../../../../../io/atomix/copycat/server/protocol/package-summary.html">io.atomix.copycat.server.protocol</a> with parameters of type <a href="../../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../../../io/atomix/copycat/server/request/AppendRequest.Builder.html" title="class in io.atomix.copycat.server.request">AppendRequest.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">AppendRequest.Builder.</span><code><span class="memberNameLink"><a href="../../../../../../../io/atomix/copycat/server/request/AppendRequest.Builder.html#addEntry-io.atomix.copycat.server.storage.entry.Entry-">addEntry</a></span>(<a href="../../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&nbsp;entry)</code>
+<td class="colFirst"><code><a href="../../../../../../../io/atomix/copycat/server/protocol/AppendRequest.Builder.html" title="class in io.atomix.copycat.server.protocol">AppendRequest.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AppendRequest.Builder.</span><code><span class="memberNameLink"><a href="../../../../../../../io/atomix/copycat/server/protocol/AppendRequest.Builder.html#addEntry-io.atomix.copycat.server.storage.entry.Entry-">addEntry</a></span>(<a href="../../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&nbsp;entry)</code>
 <div class="block">Adds an entry to the request.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../../../io/atomix/copycat/server/request/AppendRequest.Builder.html" title="class in io.atomix.copycat.server.request">AppendRequest.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">AppendRequest.Builder.</span><code><span class="memberNameLink"><a href="../../../../../../../io/atomix/copycat/server/request/AppendRequest.Builder.html#withEntries-io.atomix.copycat.server.storage.entry.Entry...-">withEntries</a></span>(<a href="../../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>...&nbsp;entries)</code>
+<td class="colFirst"><code><a href="../../../../../../../io/atomix/copycat/server/protocol/AppendRequest.Builder.html" title="class in io.atomix.copycat.server.protocol">AppendRequest.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AppendRequest.Builder.</span><code><span class="memberNameLink"><a href="../../../../../../../io/atomix/copycat/server/protocol/AppendRequest.Builder.html#withEntries-io.atomix.copycat.server.storage.entry.Entry...-">withEntries</a></span>(<a href="../../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>...&nbsp;entries)</code>
 <div class="block">Sets the request entries.</div>
 </td>
 </tr>
 </tbody>
 </table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Method parameters in <a href="../../../../../../../io/atomix/copycat/server/request/package-summary.html">io.atomix.copycat.server.request</a> with type arguments of type <a href="../../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Method parameters in <a href="../../../../../../../io/atomix/copycat/server/protocol/package-summary.html">io.atomix.copycat.server.protocol</a> with type arguments of type <a href="../../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../../../io/atomix/copycat/server/request/AppendRequest.Builder.html" title="class in io.atomix.copycat.server.request">AppendRequest.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">AppendRequest.Builder.</span><code><span class="memberNameLink"><a href="../../../../../../../io/atomix/copycat/server/request/AppendRequest.Builder.html#withEntries-java.util.List-">withEntries</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="../../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&gt;&nbsp;entries)</code>
+<td class="colFirst"><code><a href="../../../../../../../io/atomix/copycat/server/protocol/AppendRequest.Builder.html" title="class in io.atomix.copycat.server.protocol">AppendRequest.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AppendRequest.Builder.</span><code><span class="memberNameLink"><a href="../../../../../../../io/atomix/copycat/server/protocol/AppendRequest.Builder.html#withEntries-java.util.List-">withEntries</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;? extends <a href="../../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&gt;&nbsp;entries)</code>
 <div class="block">Sets the request entries.</div>
 </td>
 </tr>
@@ -243,7 +245,7 @@
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../io/atomix/copycat/server/storage/entry/CommandEntry.html" title="class in io.atomix.copycat.server.storage.entry">CommandEntry</a></span></code>
-<div class="block">Stores a state machine <a href="../../../../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a>.</div>
+<div class="block">Stores a state machine <a href="../../../../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>Command</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -279,7 +281,7 @@
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../../io/atomix/copycat/server/storage/entry/QueryEntry.html" title="class in io.atomix.copycat.server.storage.entry">QueryEntry</a></span></code>
-<div class="block">Represents a state machine <a href="../../../../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a>.</div>
+<div class="block">Represents a state machine <a href="../../../../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>Query</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">

@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev&nbsp;Class</li>
+<li><a href="../../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../../io/atomix/copycat/server/session/Sessions.html" title="interface in io.atomix.copycat.server.session"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -106,14 +106,14 @@ var activeTableTab = "activeTableTab";
  <p>
  When implemented by a <a href="../../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server"><code>StateMachine</code></a>, this interface provides
  support to state machines for reacting to changes in the sessions connected to the cluster. State machines
- can react to clients <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#register-io.atomix.copycat.client.session.Session-"><code>registering</code></a> and <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#unregister-io.atomix.copycat.client.session.Session-"><code>unregistering</code></a>
- sessions and servers <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#expire-io.atomix.copycat.client.session.Session-"><code>expiring</code></a> sessions.
+ can react to clients <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#register-io.atomix.copycat.server.session.ServerSession-"><code>registering</code></a> and <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#unregister-io.atomix.copycat.server.session.ServerSession-"><code>unregistering</code></a>
+ sessions and servers <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#expire-io.atomix.copycat.server.session.ServerSession-"><code>expiring</code></a> sessions.
  <p>
- <a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a>s represent a single client's open connection to a cluster. Within the context of a session,
+ <a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>Session</code></a>s represent a single client's open connection to a cluster. Within the context of a session,
  Copycat provides additional guarantees for clients like linearizability for writes and sequential consistency
  for reads. Additionally, state machines can push messages to specific clients via sessions. Typically, all
  state machines that rely on session-based messaging should implement this interface to track when a session
- is <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#close-io.atomix.copycat.client.session.Session-"><code>closed</code></a>.</div>
+ is <code>closed</code>.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -138,25 +138,25 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#close-io.atomix.copycat.client.session.Session-">close</a></span>(<a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>&nbsp;session)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#close-io.atomix.copycat.server.session.ServerSession-">close</a></span>(<a href="../../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session">ServerSession</a>&nbsp;session)</code>
 <div class="block">Called when a session was closed.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#expire-io.atomix.copycat.client.session.Session-">expire</a></span>(<a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>&nbsp;session)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#expire-io.atomix.copycat.server.session.ServerSession-">expire</a></span>(<a href="../../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session">ServerSession</a>&nbsp;session)</code>
 <div class="block">Called when a session is expired by the system.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#register-io.atomix.copycat.client.session.Session-">register</a></span>(<a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>&nbsp;session)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#register-io.atomix.copycat.server.session.ServerSession-">register</a></span>(<a href="../../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session">ServerSession</a>&nbsp;session)</code>
 <div class="block">Called when a new session is registered.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#unregister-io.atomix.copycat.client.session.Session-">unregister</a></span>(<a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>&nbsp;session)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#unregister-io.atomix.copycat.server.session.ServerSession-">unregister</a></span>(<a href="../../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session">ServerSession</a>&nbsp;session)</code>
 <div class="block">Called when a session is unregistered by the client.</div>
 </td>
 </tr>
@@ -175,18 +175,18 @@ var activeTableTab = "activeTableTab";
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="register-io.atomix.copycat.client.session.Session-">
+<a name="register-io.atomix.copycat.server.session.ServerSession-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>register</h4>
-<pre>void&nbsp;register(<a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>&nbsp;session)</pre>
+<pre>void&nbsp;register(<a href="../../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session">ServerSession</a>&nbsp;session)</pre>
 <div class="block">Called when a new session is registered.
  <p>
  A session is registered when a new client connects to the cluster or an existing client recovers its
  session after being partitioned from the cluster. It's important to note that when this method is called,
- the <a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a> is <em>not yet open</em> and so events cannot be <a href="../../../../../io/atomix/copycat/client/session/Session.html#publish-java.lang.String-java.lang.Object-"><code>published</code></a>
+ the <a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>Session</code></a> is <em>not yet open</em> and so events cannot be <a href="../../../../../io/atomix/copycat/server/session/ServerSession.html#publish-java.lang.String-java.lang.Object-"><code>published</code></a>
  to the registered session. This is because clients cannot reliably track messages pushed from server state machines
  to the client until the session has been fully registered. Session event messages may still be published to
  other already-registered sessions in reaction to a session being registered.
@@ -209,21 +209,21 @@ var activeTableTab = "activeTableTab";
 </dl>
 </li>
 </ul>
-<a name="unregister-io.atomix.copycat.client.session.Session-">
+<a name="unregister-io.atomix.copycat.server.session.ServerSession-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>unregister</h4>
-<pre>void&nbsp;unregister(<a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>&nbsp;session)</pre>
+<pre>void&nbsp;unregister(<a href="../../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session">ServerSession</a>&nbsp;session)</pre>
 <div class="block">Called when a session is unregistered by the client.
  <p>
  This method is called only when a client explicitly unregisters its session by closing it. In other words,
- calls to this method indicate that the session was closed by the client rather than <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#expire-io.atomix.copycat.client.session.Session-"><code>expired</code></a>
- by a server. This method will always be called for a given session before <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#close-io.atomix.copycat.client.session.Session-"><code>close(Session)</code></a>, and
- <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#close-io.atomix.copycat.client.session.Session-"><code>close(Session)</code></a> will always be called following this method.
+ calls to this method indicate that the session was closed by the client rather than <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#expire-io.atomix.copycat.server.session.ServerSession-"><code>expired</code></a>
+ by a server. This method will always be called for a given session before <code>#close(Session)</code>, and
+ <code>#close(Session)</code> will always be called following this method.
  <p>
- State machines are free to <a href="../../../../../io/atomix/copycat/client/session/Session.html#publish-java.lang.String-java.lang.Object-"><code>Session.publish(String, Object)</code></a> session event messages to any session except
+ State machines are free to <a href="../../../../../io/atomix/copycat/server/session/ServerSession.html#publish-java.lang.String-java.lang.Object-"><code>ServerSession.publish(String, Object)</code></a> session event messages to any session except
  the one being unregistered. Session event messages sent to the session being unregistered will be lost.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -231,21 +231,21 @@ var activeTableTab = "activeTableTab";
 </dl>
 </li>
 </ul>
-<a name="expire-io.atomix.copycat.client.session.Session-">
+<a name="expire-io.atomix.copycat.server.session.ServerSession-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>expire</h4>
-<pre>void&nbsp;expire(<a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>&nbsp;session)</pre>
+<pre>void&nbsp;expire(<a href="../../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session">ServerSession</a>&nbsp;session)</pre>
 <div class="block">Called when a session is expired by the system.
  <p>
  This method is called when a client fails to keep its session alive with the cluster. If the leader hasn't heard
  from a client for a configurable time interval, the leader will expire the session to free the related memory.
- This method will always be called for a given session before <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#close-io.atomix.copycat.client.session.Session-"><code>close(Session)</code></a>, and <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#close-io.atomix.copycat.client.session.Session-"><code>close(Session)</code></a>
+ This method will always be called for a given session before <code>#close(Session)</code>, and <code>#close(Session)</code>
  will always be called following this method.
  <p>
- State machines are free to <a href="../../../../../io/atomix/copycat/client/session/Session.html#publish-java.lang.String-java.lang.Object-"><code>Session.publish(String, Object)</code></a> session event messages to any session except
+ State machines are free to <a href="../../../../../io/atomix/copycat/server/session/ServerSession.html#publish-java.lang.String-java.lang.Object-"><code>ServerSession.publish(String, Object)</code></a> session event messages to any session except
  the one that expired. Session event messages sent to the session that expired will be lost.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -253,19 +253,19 @@ var activeTableTab = "activeTableTab";
 </dl>
 </li>
 </ul>
-<a name="close-io.atomix.copycat.client.session.Session-">
+<a name="close-io.atomix.copycat.server.session.ServerSession-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>close</h4>
-<pre>void&nbsp;close(<a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>&nbsp;session)</pre>
+<pre>void&nbsp;close(<a href="../../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session">ServerSession</a>&nbsp;session)</pre>
 <div class="block">Called when a session was closed.
  <p>
- This method is called after a <a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a> is either <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#unregister-io.atomix.copycat.client.session.Session-"><code>unregistered</code></a> or
- <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#expire-io.atomix.copycat.client.session.Session-"><code>expired</code></a>. State machines can implement this method to react to any session being
+ This method is called after a <a href="../../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session"><code>ServerSession</code></a> is either <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#unregister-io.atomix.copycat.server.session.ServerSession-"><code>unregistered</code></a> or
+ <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#expire-io.atomix.copycat.server.session.ServerSession-"><code>expired</code></a>. State machines can implement this method to react to any session being
  removed from memory. This method will always be called for a specific session after either
- <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#unregister-io.atomix.copycat.client.session.Session-"><code>unregister(Session)</code></a> or <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#expire-io.atomix.copycat.client.session.Session-"><code>expire(Session)</code></a>, and one of those methods will always be called
+ <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#unregister-io.atomix.copycat.server.session.ServerSession-"><code>unregister(ServerSession)</code></a> or <a href="../../../../../io/atomix/copycat/server/session/SessionListener.html#expire-io.atomix.copycat.server.session.ServerSession-"><code>expire(ServerSession)</code></a>, and one of those methods will always be called
  before this method.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -301,7 +301,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev&nbsp;Class</li>
+<li><a href="../../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../../io/atomix/copycat/server/session/Sessions.html" title="interface in io.atomix.copycat.server.session"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

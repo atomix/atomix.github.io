@@ -93,7 +93,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">io.atomix.copycat.server</div>
-<h2 title="Interface Commit" class="title">Interface Commit&lt;T extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client">Operation</a>&gt;</h2>
+<h2 title="Interface Commit" class="title">Interface Commit&lt;T extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&gt;</h2>
 </div>
 <div class="contentContainer">
 <div class="description">
@@ -105,25 +105,28 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public interface <span class="typeNameLabel">Commit&lt;T extends <a href="../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client">Operation</a>&gt;</span>
+<pre>public interface <span class="typeNameLabel">Commit&lt;T extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&gt;</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></pre>
 <div class="block">Represents the committed state and metadata of a Raft state machine operation.
  <p>
- When <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a> are applied to the Raft <a href="../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server"><code>StateMachine</code></a>, they're
+ Commits are representative of a log <a href="../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>Entry</code></a> that has been replicated
+ and committed via the Raft consensus algorithm.
+ When <a href="../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>commands</code></a> and <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>queries</code></a> are applied to the Raft <a href="../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server"><code>StateMachine</code></a>, they're
  wrapped in a commit object. The commit object provides useful metadata regarding the location of the commit
- in the Raft replicated log, the <a href="../../../../io/atomix/copycat/server/Commit.html#time--"><code>time()</code></a> at which the commit was logged, and the <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a> that
+ in the Raft replicated log, the <a href="../../../../io/atomix/copycat/server/Commit.html#time--"><code>time()</code></a> at which the commit was logged, and the <a href="../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>Session</code></a> that
  submitted the operation to the cluster.
  <p>
- When state machines are done using a commit object, users should always call <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>close()</code></a>.
- Failing to call either method is a bug, and Copycat will log a warning message in such cases.</div>
+ All metadata exposed by this interface is backed by disk and is guaranteed to be consistent across all servers
+ in the cluster.
+ <p>
+ When state machines are done using a commit object, users should release the commit by calling <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>close()</code></a>.
+ This notifies Copycat that it's safe to remove the commit from the log as it no longer contributes to the state
+ machine's state. Copycat guarantees that a commit will be retained in the log and replicated as long as it is
+ held open by the state machine. Failing to call either method is a bug and will result in disk eventually filling
+ up, and Copycat will log a warning message in such cases.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a>, 
-<a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a>, 
-<a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a>, 
-<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Instant.html?is-external=true" title="class or interface in java.time"><code>Instant</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -162,7 +165,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a></code></td>
+<td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session">ServerSession</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#session--">session</a></span>()</code>
 <div class="block">Returns the session that submitted the operation.</div>
 </td>
@@ -203,11 +206,11 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <pre>long&nbsp;index()</pre>
 <div class="block">Returns the commit index.
  <p>
- This is the index at which the committed <a href="../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client"><code>Operation</code></a> was written in the Raft log.
- Copycat guarantees that this index will be unique for <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a> commits and will be the same for all
+ This is the index at which the committed <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat"><code>Operation</code></a> was written in the Raft log.
+ Copycat guarantees that this index will be unique for <a href="../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>Command</code></a> commits and will be the same for all
  instances of the given operation on all servers in the cluster.
  <p>
- For <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> operations, the returned <code>index</code> may actually be representative of the last committed
+ For <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>Query</code></a> operations, the returned <code>index</code> may actually be representative of the last committed
  index in the Raft log since queries are not actually written to disk. Thus, query commits cannot be assumed
  to have unique indexes.</div>
 <dl>
@@ -224,11 +227,11 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <ul class="blockList">
 <li class="blockList">
 <h4>session</h4>
-<pre><a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>&nbsp;session()</pre>
+<pre><a href="../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session">ServerSession</a>&nbsp;session()</pre>
 <div class="block">Returns the session that submitted the operation.
  <p>
- The returned <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a> is representative of the session that submitted the operation
- that resulted in this <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a>. The session can be used to <a href="../../../../io/atomix/copycat/client/session/Session.html#publish-java.lang.String-java.lang.Object-"><code>Session.publish(String, Object)</code></a>
+ The returned <a href="../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>Session</code></a> is representative of the session that submitted the operation
+ that resulted in this <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a>. The session can be used to <a href="../../../../io/atomix/copycat/server/session/ServerSession.html#publish-java.lang.String-java.lang.Object-"><code>ServerSession.publish(String, Object)</code></a>
  event messages to the client.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>

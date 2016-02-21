@@ -134,9 +134,9 @@ extends <a href="../../../../../../io/atomix/copycat/server/storage/entry/Sessio
  <p>
  The <code>KeepAliveEntry</code> is logged and replicated to the cluster to indicate that a client
  has kept its <a href="../../../../../../io/atomix/copycat/server/storage/entry/SessionEntry.html#getSession--"><code>session</code></a> alive. Each client must periodically submit a
- <a href="../../../../../../io/atomix/copycat/client/request/KeepAliveRequest.html" title="class in io.atomix.copycat.client.request"><code>KeepAliveRequest</code></a> which results in a keep-alive entry
+ <a href="../../../../../../io/atomix/copycat/protocol/KeepAliveRequest.html" title="class in io.atomix.copycat.protocol"><code>KeepAliveRequest</code></a> which results in a keep-alive entry
  being written to the Raft log. When a keep-alive is committed to the internal Raft state machine,
- the session timeout for the associated <a href="../../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a> will be
+ the session timeout for the associated <a href="../../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>Session</code></a> will be
  reset.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>

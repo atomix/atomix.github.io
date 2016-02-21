@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/atomix/copycat/client/CopycatClient.State.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/copycat/client/NoOpCommand.html" title="class in io.atomix.copycat.client"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/copycat/client/RecoveryStrategies.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/copycat/client/DefaultCopycatClient.html" target="_top">Frames</a></li>
@@ -227,7 +227,7 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
 </td>
 </tr>
 <tr id="i13" class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a></code></td>
+<td class="colFirst"><code><a href="../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/DefaultCopycatClient.html#session--">session</a></span>()</code>
 <div class="block">Returns the client session.</div>
 </td>
@@ -240,13 +240,13 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/DefaultCopycatClient.html#submit-io.atomix.copycat.client.Command-">submit</a></span>(<a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client">Command</a>&lt;T&gt;&nbsp;command)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/DefaultCopycatClient.html#submit-io.atomix.copycat.Command-">submit</a></span>(<a href="../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat">Command</a>&lt;T&gt;&nbsp;command)</code>
 <div class="block">Submits a command to the Copycat cluster.</div>
 </td>
 </tr>
 <tr id="i16" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/DefaultCopycatClient.html#submit-io.atomix.copycat.client.Query-">submit</a></span>(<a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client">Query</a>&lt;T&gt;&nbsp;query)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/DefaultCopycatClient.html#submit-io.atomix.copycat.Query-">submit</a></span>(<a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat">Query</a>&lt;T&gt;&nbsp;query)</code>
 <div class="block">Submits a query to the Copycat cluster.</div>
 </td>
 </tr>
@@ -273,7 +273,7 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;io.atomix.copycat.client.<a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></h3>
-<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#builder-io.atomix.catalyst.transport.Address...-">builder</a>, <a href="../../../../io/atomix/copycat/client/CopycatClient.html#builder-java.util.Collection-">builder</a>, <a href="../../../../io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.client.Operation-">submit</a></code></li>
+<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#builder-io.atomix.catalyst.transport.Address...-">builder</a>, <a href="../../../../io/atomix/copycat/client/CopycatClient.html#builder-java.util.Collection-">builder</a>, <a href="../../../../io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.Operation-">submit</a></code></li>
 </ul>
 </li>
 </ul>
@@ -360,8 +360,8 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#serializer--">CopycatClient</a></code></span></div>
 <div class="block">Returns the client serializer.
  <p>
- The serializer can be used to manually register serializable types for submitted <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>commands</code></a> and
- <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>queries</code></a>.
+ The serializer can be used to manually register serializable types for submitted <a href="../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>commands</code></a> and
+ <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>queries</code></a>.
  <pre>
    <code>
      client.serializer().register(MyObject.class, 1);
@@ -382,24 +382,11 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
 <ul class="blockList">
 <li class="blockList">
 <h4>session</h4>
-<pre>public&nbsp;<a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>&nbsp;session()</pre>
+<pre>public&nbsp;<a href="../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a>&nbsp;session()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#session--">CopycatClient</a></code></span></div>
 <div class="block">Returns the client session.
  <p>
- The <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a> object can be used to receive session events from replicated state machines. Session events are
- named messages. To register a session event handler, use the <a href="../../../../io/atomix/copycat/client/session/Session.html#onEvent-java.lang.String-java.util.function.Consumer-"><code>Session.onEvent(String, Consumer)</code></a> method:
- <pre>
-   <code>
-   client.session().onEvent("lock", v -&gt; System.out.println("acquired lock!"));
-   </code>
- </pre>
- When a server-side state machine <a href="../../../../io/atomix/copycat/client/session/Session.html#publish-java.lang.String-java.lang.Object-"><code>publishes</code></a> an event message to this session, the
- event message is guaranteed to be received in the order in which it was sent by the state machine. Note that the point
- in time at which events are received by the client is determined by the <a href="../../../../io/atomix/copycat/client/Command.html#consistency--"><code>Command.consistency()</code></a> of the command being
- executed when the state machine published the event. Events are not necessarily guaranteed to be received by the client
- during command execution. See the <a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><code>Command.ConsistencyLevel</code></a> documentation for more info.
- <p>
- The returned <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a> instance will remain constant as long as the client maintains its session with the cluster.
+ The returned <a href="../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>Session</code></a> instance will remain constant as long as the client maintains its session with the cluster.
  Maintaining the client's session requires that the client be able to communicate with one server that can communicate
  with the leader at any given time. During periods where the cluster is electing a new leader, the client's session will
  not timeout but will resume once a new leader is elected.</div>
@@ -478,14 +465,14 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
 </dl>
 </li>
 </ul>
-<a name="submit-io.atomix.copycat.client.Command-">
+<a name="submit-io.atomix.copycat.Command-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>submit</h4>
-<pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;submit(<a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client">Command</a>&lt;T&gt;&nbsp;command)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.client.Command-">CopycatClient</a></code></span></div>
+<pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;submit(<a href="../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat">Command</a>&lt;T&gt;&nbsp;command)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.Command-">CopycatClient</a></code></span></div>
 <div class="block">Submits a command to the Copycat cluster.
  <p>
  Commands are used to alter state machine state. All commands will be forwarded to the current cluster leader.
@@ -498,33 +485,33 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
  <p>
  Note that all client submissions are guaranteed to be completed in the same order in which they were sent (program order)
  and on the same thread. This does not, however, mean that they'll be applied to the server-side replicated state machine
- in that order. State machine order is dependent on the configured <a href="../../../../io/atomix/copycat/client/Command.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><code>Command.ConsistencyLevel</code></a>.</div>
+ in that order. State machine order is dependent on the configured <code>Command.ConsistencyLevel</code>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.client.Command-">submit</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></code></dd>
+<dd><code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.Command-">submit</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></code></dd>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The command result type.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>command</code> - The command to submit.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the command result. The future is guaranteed to be completed after all
- <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a> or <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> submission futures that preceded it. The future will always be completed on the</dd>
+ <a href="../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>Command</code></a> or <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>Query</code></a> submission futures that preceded it. The future will always be completed on the</dd>
 </dl>
 </li>
 </ul>
-<a name="submit-io.atomix.copycat.client.Query-">
+<a name="submit-io.atomix.copycat.Query-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>submit</h4>
-<pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;submit(<a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client">Query</a>&lt;T&gt;&nbsp;query)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.client.Query-">CopycatClient</a></code></span></div>
+<pre>public&nbsp;&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;submit(<a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat">Query</a>&lt;T&gt;&nbsp;query)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.Query-">CopycatClient</a></code></span></div>
 <div class="block">Submits a query to the Copycat cluster.
  <p>
  Queries are used to read state machine state. The behavior of query submissions is primarily dependent on the
- query's <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat.client"><code>Query.ConsistencyLevel</code></a>. For <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html#LINEARIZABLE"><code>Query.ConsistencyLevel.LINEARIZABLE</code></a>
- and <a href="../../../../io/atomix/copycat/client/Query.ConsistencyLevel.html#BOUNDED_LINEARIZABLE"><code>Query.ConsistencyLevel.BOUNDED_LINEARIZABLE</code></a> consistency levels, queries will be forwarded
+ query's <code>Query.ConsistencyLevel</code>. For <code>Query.ConsistencyLevel#LINEARIZABLE</code>
+ and <code>Query.ConsistencyLevel#BOUNDED_LINEARIZABLE</code> consistency levels, queries will be forwarded
  to the cluster leader. For lower consistency levels, queries are allowed to read from followers. All queries are executed
  by applying queries to an internal server state machine.
  <p>
@@ -532,14 +519,14 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
  will be completed with the state machine output.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.client.Query-">submit</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></code></dd>
+<dd><code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.Query-">submit</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></code></dd>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The query result type.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>query</code> - The query to submit.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the query result. The future is guaranteed to be completed after all
- <a href="../../../../io/atomix/copycat/client/Command.html" title="interface in io.atomix.copycat.client"><code>Command</code></a> or <a href="../../../../io/atomix/copycat/client/Query.html" title="interface in io.atomix.copycat.client"><code>Query</code></a> submission futures that preceded it. The future will always be completed on the</dd>
+ <a href="../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>Command</code></a> or <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>Query</code></a> submission futures that preceded it. The future will always be completed on the</dd>
 </dl>
 </li>
 </ul>
@@ -609,7 +596,7 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#recover--">CopycatClient</a></code></span></div>
 <div class="block">Recovers the client session.
  <p>
- When a client is recovered, the client will create and register a new <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a>. Once the session is
+ When a client is recovered, the client will create and register a new <a href="../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>Session</code></a>. Once the session is
  recovered, the client will transition to the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#CONNECTED"><code>CopycatClient.State.CONNECTED</code></a> state and resubmit pending operations
  from the previous session. Pending operations are guaranteed to be submitted to the new session in the same
  order in which they were submitted to the prior session and prior to submitting any new operations.</div>
@@ -631,7 +618,7 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#close--">CopycatClient</a></code></span></div>
 <div class="block">Closes the client.
  <p>
- Closing the client will cause the client to unregister its current <a href="../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a> if open. Once the
+ Closing the client will cause the client to unregister its current <a href="../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>Session</code></a> if open. Once the
  client's session is unregistered, the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed. If the client
  is unable to unregister its session, the client will transition to the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#SUSPENDED"><code>CopycatClient.State.SUSPENDED</code></a> state and
  continue to attempt to reconnect and unregister its session until it is able to unregister its session or
@@ -741,7 +728,7 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/atomix/copycat/client/CopycatClient.State.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/copycat/client/NoOpCommand.html" title="class in io.atomix.copycat.client"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/copycat/client/RecoveryStrategies.html" title="enum in io.atomix.copycat.client"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/copycat/client/DefaultCopycatClient.html" target="_top">Frames</a></li>

@@ -392,7 +392,7 @@ var activeTableTab = "activeTableTab";
  to open a new server and join the cluster in order to ensure all associated resources are property opened.
  <p>
  When a server joins the cluster, the server will connect to arbitrary <a href="../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster"><code>Member</code></a>s, attempting to locate
- the cluster leader and send a <a href="../../../../../io/atomix/copycat/server/request/JoinRequest.html" title="class in io.atomix.copycat.server.request"><code>JoinRequest</code></a>. Once the leader has been
+ the cluster leader and send a <a href="../../../../../io/atomix/copycat/server/protocol/JoinRequest.html" title="class in io.atomix.copycat.server.protocol"><code>JoinRequest</code></a>. Once the leader has been
  found, the leader will replicate and commit a configuration change, notifying other members of the cluster of
  the joining server.
  <p>
@@ -420,7 +420,7 @@ var activeTableTab = "activeTableTab";
  <em>This method is for advanced usage only.</em> Typically, users should use <a href="../../../../../io/atomix/copycat/server/CopycatServer.html#close--"><code>CopycatServer.close()</code></a>
  to leave the cluster and close a server in order to ensure all associated resources are properly closed.
  <p>
- When a server leaves the cluster, the server submits a <a href="../../../../../io/atomix/copycat/server/request/LeaveRequest.html" title="class in io.atomix.copycat.server.request"><code>LeaveRequest</code></a>
+ When a server leaves the cluster, the server submits a <a href="../../../../../io/atomix/copycat/server/protocol/LeaveRequest.html" title="class in io.atomix.copycat.server.protocol"><code>LeaveRequest</code></a>
  to the cluster leader. The leader will replicate and commit the configuration change in order to remove the
  leaving server from the cluster and notify each member of the leaving server.
  <p>
