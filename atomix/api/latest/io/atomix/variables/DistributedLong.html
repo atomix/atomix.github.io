@@ -125,7 +125,30 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">DistributedLong</span>
 extends <a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">AbstractDistributedValue</a>&lt;<a href="../../../io/atomix/variables/DistributedLong.html" title="class in io.atomix.variables">DistributedLong</a>,<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;</pre>
-<div class="block">Distributed long.</div>
+<div class="block">Stores a replicated 64-bit number, supporting atomic increments, decrements, and compare-and-set.
+ <p>
+ The <code>DistributedLong</code> resource is modeled on Java's <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/AtomicLong.html?is-external=true" title="class or interface in java.util.concurrent.atomic"><code>AtomicLong</code></a>,
+ providing asynchronous versions of all the methods present in that class. Users can use <code>DistributedLong</code>
+ to generate unique IDs or monotonically increasing tokens or as a counter. State change operations are
+ linearizable and are therefore guaranteed to take place some time between the invocation of a state change
+ method and the completion of the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>.
+ <pre>
+   <code>
+   DistributedLong value = atomix.getLong("foo").get();
+   value.set(1).join();
+   value.incrementAndGet(value -&gt; {
+     ...
+   });
+   </code>
+ </pre>
+ <h3>Implementation</h3>
+ State management for the <code>DistributedLong</code> resource is implemented as a snapshottable Copycat
+ <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server"><code>StateMachine</code></a>. Changes to the long value are written to a log and
+ replicated to a majority of the cluster before being applied to the state machine. State changes
+ are applied to the state machine atomically, and the value is stored in a single 64-bit field.
+ Periodically, a 64-bit snapshot of the resource's state is written to disk, and prior
+ <a href="../../../io/atomix/variables/DistributedLong.html#incrementAndGet--"><code>increment</code></a> and <a href="../../../io/atomix/variables/DistributedLong.html#decrementAndGet--"><code>decrement</code></a> operations are removed
+ from the replicated log during compaction.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -318,7 +341,14 @@ extends <a href="../../../io/atomix/variables/AbstractDistributedValue.html" tit
 <li class="blockList">
 <h4>addAndGet</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;addAndGet(long&nbsp;delta)</pre>
-<div class="block">Adds a delta to the long and returns the updated value.</div>
+<div class="block">Adds a delta to the long and returns the updated value.
+ <p>
+ This is an atomic operation that is guaranteed to take place exactly once between the invocation
+ of the method call and the completion of the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>. Once the returned
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> is completed, all other instances of the resource can see the state change
+ when writing or reading using <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic consistency</code></a>.
+ <p>
+ If the operation is successful, the returned future will be completed with the updated value.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>delta</code> - The delta to add.</dd>
@@ -334,7 +364,14 @@ extends <a href="../../../io/atomix/variables/AbstractDistributedValue.html" tit
 <li class="blockList">
 <h4>getAndAdd</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;getAndAdd(long&nbsp;delta)</pre>
-<div class="block">Adds a delta to the value and returns the previous value.</div>
+<div class="block">Adds a delta to the value and returns the previous value.
+ <p>
+ This is an atomic operation that is guaranteed to take place exactly once between the invocation
+ of the method call and the completion of the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>. Once the returned
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> is completed, all other instances of the resource can see the state change
+ when writing or reading using <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic consistency</code></a>.
+ <p>
+ If the operation is successful, the returned future will be completed with value prior to the update.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>delta</code> - The delta to add.</dd>
@@ -350,7 +387,14 @@ extends <a href="../../../io/atomix/variables/AbstractDistributedValue.html" tit
 <li class="blockList">
 <h4>incrementAndGet</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;incrementAndGet()</pre>
-<div class="block">Increments the value and returns the updated value.</div>
+<div class="block">Increments the value and returns the updated value.
+ <p>
+ This is an atomic operation that is guaranteed to take place exactly once between the invocation
+ of the method call and the completion of the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>. Once the returned
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> is completed, all other instances of the resource can see the state change
+ when writing or reading using <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic consistency</code></a>.
+ <p>
+ If the operation is successful, the returned future will be completed with the updated value.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the result.</dd>
@@ -364,7 +408,14 @@ extends <a href="../../../io/atomix/variables/AbstractDistributedValue.html" tit
 <li class="blockList">
 <h4>decrementAndGet</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;decrementAndGet()</pre>
-<div class="block">Decrements the value and returns the updated value.</div>
+<div class="block">Decrements the value and returns the updated value.
+ <p>
+ This is an atomic operation that is guaranteed to take place exactly once between the invocation
+ of the method call and the completion of the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>. Once the returned
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> is completed, all other instances of the resource can see the state change
+ when writing or reading using <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic consistency</code></a>.
+ <p>
+ If the operation is successful, the returned future will be completed with the updated value.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the result.</dd>
@@ -378,7 +429,14 @@ extends <a href="../../../io/atomix/variables/AbstractDistributedValue.html" tit
 <li class="blockList">
 <h4>getAndIncrement</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;getAndIncrement()</pre>
-<div class="block">Increments the value and returns the previous value.</div>
+<div class="block">Increments the value and returns the previous value.
+ <p>
+ This is an atomic operation that is guaranteed to take place exactly once between the invocation
+ of the method call and the completion of the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>. Once the returned
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> is completed, all other instances of the resource can see the state change
+ when writing or reading using <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic consistency</code></a>.
+ <p>
+ If the operation is successful, the returned future will be completed with the value prior to the update.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the result.</dd>
@@ -392,7 +450,14 @@ extends <a href="../../../io/atomix/variables/AbstractDistributedValue.html" tit
 <li class="blockList">
 <h4>getAndDecrement</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;getAndDecrement()</pre>
-<div class="block">Decrements the value and returns the previous value.</div>
+<div class="block">Decrements the value and returns the previous value.
+ <p>
+ This is an atomic operation that is guaranteed to take place exactly once between the invocation
+ of the method call and the completion of the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>. Once the returned
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> is completed, all other instances of the resource can see the state change
+ when writing or reading using <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic consistency</code></a>.
+ <p>
+ If the operation is successful, the returned future will be completed with the value prior to the update.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the result.</dd>

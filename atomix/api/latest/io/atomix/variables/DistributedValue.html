@@ -125,7 +125,30 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">DistributedValue&lt;T&gt;</span>
 extends <a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">AbstractDistributedValue</a>&lt;<a href="../../../io/atomix/variables/DistributedValue.html" title="class in io.atomix.variables">DistributedValue</a>&lt;T&gt;,T&gt;</pre>
-<div class="block">Distributed value.</div>
+<div class="block">Stores a single replicated value, providing atomic operations for modifying the value.
+ <p>
+ The value resource stores a single value that can be accessed across the Atomix cluster. The value
+ must be of a type that is serializable by the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> on
+ any client that opens the resource and on all replicas in the cluster. Atomic operations like
+ <a href="../../../io/atomix/variables/AbstractDistributedValue.html#compareAndSet-U-U-"><code>AbstractDistributedValue.compareAndSet(Object, Object)</code></a> can be used to check and update the state of the value.
+ <pre>
+   <code>
+   DistributedValue&lt;String&gt; value = atomix.getValue("foo").get();
+   value.compareAndSet("foo", "bar").thenAccept(succeeded -&gt; {
+     ...
+   });
+   </code>
+ </pre>
+ Changes to the state of the value are linearizable and are therefore guaranteed to take place some
+ time between the invocation of a state changing method and the completion of the returned
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>.
+ <h3>Implementation</h3>
+ State management for the <code>DistributedValue</code> resource is implemented as a basic Copycat
+ <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server"><code>StateMachine</code></a>. Changes to the value are written to a log and replicated
+ to a majority of the cluster before being applied to the state machine. State change are applied to the
+ state machine atomically, and the state machine keeps track of state changes that apply to the current
+ system state. Once a write no longer contributes to the state machine's state, it is released to be
+ removed from the log during compaction.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

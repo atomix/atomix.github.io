@@ -124,7 +124,13 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public abstract class <span class="typeNameLabel">AbstractDistributedValue&lt;T extends AbstractDistributedValue&lt;T,U&gt;,U&gt;</span>
 extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;T&gt;</pre>
-<div class="block">Abstract distributed value.</div>
+<div class="block">Base class for distributed atomic variables.
+ <p>
+ This class provides functionality shared by <a href="../../../io/atomix/variables/DistributedValue.html" title="class in io.atomix.variables"><code>DistributedValue</code></a> and <a href="../../../io/atomix/variables/DistributedLong.html" title="class in io.atomix.variables"><code>DistributedLong</code></a>, including
+ <a href="../../../io/atomix/variables/AbstractDistributedValue.html#set-U-"><code>set</code></a>, <a href="../../../io/atomix/variables/AbstractDistributedValue.html#get--"><code>get</code></a>, and atomic <a href="../../../io/atomix/variables/AbstractDistributedValue.html#compareAndSet-U-U-"><code>compare-and-set</code></a>
+ operations. The methods are closely modeled on those of Java's <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/AtomicReference.html?is-external=true" title="class or interface in java.util.concurrent.atomic"><code>AtomicReference</code></a>.
+ Operations that modify the resource state are atomic. Operations that read resource state may be atomic
+ depending on the configured <a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource"><code>read consistency level</code></a>.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -166,7 +172,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/variables/AbstractDistributedValue.html#compareAndSet-U-U-">compareAndSet</a></span>(<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&nbsp;expect,
              <a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&nbsp;update)</code>
-<div class="block">Compares the current value and updated it if expected value == the current value.</div>
+<div class="block">Compares the current value and updated it if expected value equals the current value.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -174,7 +180,8 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/variables/AbstractDistributedValue.html#compareAndSet-U-U-java.time.Duration-">compareAndSet</a></span>(<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&nbsp;expect,
              <a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&nbsp;update,
              <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</code>
-<div class="block">Compares the current value and updated it if expected value == the current value.</div>
+<div class="block">Compares the current value and updated it if expected value equals the current value, setting a time-to-live
+ on the updated value.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -199,20 +206,20 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/variables/AbstractDistributedValue.html#getAndSet-U-java.time.Duration-">getAndSet</a></span>(<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&nbsp;value,
          <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</code>
-<div class="block">Gets the current value and updates it.</div>
+<div class="block">Gets the current value and updates it, setting a time-to-live on the updated value.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/variables/AbstractDistributedValue.html#set-U-">set</a></span>(<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&nbsp;value)</code>
-<div class="block">Sets the current value.</div>
+<div class="block">Sets the value.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/variables/AbstractDistributedValue.html#set-U-java.time.Duration-">set</a></span>(<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&nbsp;value,
    <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</code>
-<div class="block">Sets the value with a TTL.</div>
+<div class="block">Sets the value with a time-to-live.</div>
 </td>
 </tr>
 </table>
@@ -251,7 +258,12 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <li class="blockList">
 <h4>get</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&gt;&nbsp;get()</pre>
-<div class="block">Gets the current value.</div>
+<div class="block">Gets the current value.
+ <p>
+ The value will be read using the configured <a href="../../../io/atomix/resource/Resource.html#readConsistency--"><code>read consistency</code></a> level for
+ the resource. For <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic reads</code></a>, reads will be forwarded to the cluster
+ leader. Weaker reads may be evaluated on non-leader nodes. However, consistency constraints guarantee
+ that state will never go back in time.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the current value.</dd>
@@ -265,7 +277,12 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <li class="blockList">
 <h4>get</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&gt;&nbsp;get(<a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a>&nbsp;consistency)</pre>
-<div class="block">Gets the current value.</div>
+<div class="block">Gets the current value.
+ <p>
+ The value will be read using the provided <a href="../../../io/atomix/resource/Resource.html#readConsistency--"><code>read consistency</code></a> level.
+ For <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic reads</code></a>, reads will be forwarded to the cluster leader.
+ Weaker reads may be evaluated on non-leader nodes. However, consistency constraints guarantee
+ that state will never go back in time.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>consistency</code> - The read consistency level.</dd>
@@ -283,7 +300,12 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <li class="blockList">
 <h4>set</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;set(<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&nbsp;value)</pre>
-<div class="block">Sets the current value.</div>
+<div class="block">Sets the value.
+ <p>
+ This is an atomic operation that is guaranteed to take place exactly once between the invocation
+ of the method call and the completion of the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>. Once the returned
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> is completed, all other instances of the resource can see the state change
+ when writing or reading using <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic consistency</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>value</code> - The current value.</dd>
@@ -302,7 +324,17 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <h4>set</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;set(<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&nbsp;value,
                                    <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</pre>
-<div class="block">Sets the value with a TTL.</div>
+<div class="block">Sets the value with a time-to-live.
+ <p>
+ This is an atomic operation that is guaranteed to take place exactly once between the invocation
+ of the method call and the completion of the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>. Once the returned
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> is completed, all other instances of the resource can see the state change
+ when writing or reading using <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic consistency</code></a>.
+ <p>
+ The value set will be expired after the given <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time"><code>Duration</code></a> so long as it's not overridden
+ by a later call from this or another instance of the resource. The time-to-live on the value
+ is coarse grained, and the value is only guaranteed to expire up to a session timeout after
+ the given time-to-live has expired.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>value</code> - The value to set.</dd>
@@ -321,7 +353,15 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <li class="blockList">
 <h4>getAndSet</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&gt;&nbsp;getAndSet(<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&nbsp;value)</pre>
-<div class="block">Gets the current value and updates it.</div>
+<div class="block">Gets the current value and updates it.
+ <p>
+ This is an atomic operation that is guaranteed to take place exactly once between the invocation
+ of the method call and the completion of the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>. Once the returned
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> is completed, all other instances of the resource can see the state change
+ when writing or reading using <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic consistency</code></a>.
+ <p>
+ Once the operation is complete, the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed with the
+ value of the resource prior to setting the updated value.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>value</code> - The updated value.</dd>
@@ -340,7 +380,18 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <h4>getAndSet</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&gt;&nbsp;getAndSet(<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&nbsp;value,
                                       <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</pre>
-<div class="block">Gets the current value and updates it.</div>
+<div class="block">Gets the current value and updates it, setting a time-to-live on the updated value.
+ <p>
+ This is an atomic operation that is guaranteed to take place exactly once between the invocation
+ of the method call and the completion of the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>. Once the returned
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> is completed, all other instances of the resource can see the state change
+ when writing or reading using <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic consistency</code></a>.
+ <p>
+ Once the operation is complete, the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed with the
+ value of the resource prior to setting the updated value. The value set will be expired after the
+ given <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time"><code>Duration</code></a> so long as it's not overridden by a later call from this or another instance
+ of the resource. The time-to-live on the value is coarse grained, and the value is only guaranteed
+ to expire up to a session timeout after the given time-to-live has expired.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>value</code> - The updated value.</dd>
@@ -360,7 +411,17 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <h4>compareAndSet</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;compareAndSet(<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&nbsp;expect,
                                                 <a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&nbsp;update)</pre>
-<div class="block">Compares the current value and updated it if expected value == the current value.</div>
+<div class="block">Compares the current value and updated it if expected value equals the current value.
+ <p>
+ This is an atomic operation that is guaranteed to take place exactly once between the invocation
+ of the method call and the completion of the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>. If the <code>expect</code>
+ value is equal to the current resource value, the value will be updated and the returned
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed <code>true</code>, otherwise the value will not be updated and
+ the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed <code>false</code>. In contrast to Java's atomic
+ variables, value comparisons are done with <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang"><code>Object.equals(Object)</code></a> rather than <code>==</code>. This
+ is necessary because of serialization. Once the returned future is completed, all other instances of
+ the resource can see the state change when writing or reading using
+ <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic consistency</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>expect</code> - The expected value.</dd>
@@ -381,7 +442,24 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;compareAndSet(<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&nbsp;expect,
                                                 <a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&nbsp;update,
                                                 <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</pre>
-<div class="block">Compares the current value and updated it if expected value == the current value.</div>
+<div class="block">Compares the current value and updated it if expected value equals the current value, setting a time-to-live
+ on the updated value.
+ <p>
+ This is an atomic operation that is guaranteed to take place exactly once between the invocation
+ of the method call and the completion of the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a>. If the <code>expect</code>
+ value is equal to the current resource value, the value will be updated and the returned
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed <code>true</code>, otherwise the value will not be updated and
+ the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed <code>false</code>. If the value is not updated then
+ the provided time-to-live will not apply to the existing value. In contrast to Java's atomic
+ variables, value comparisons are done with <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang"><code>Object.equals(Object)</code></a> rather than <code>==</code>. This
+ is necessary because of serialization. Once the returned future is completed, all other instances of
+ the resource can see the state change when writing or reading using
+ <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic consistency</code></a>.
+ <p>
+ If the value is changed, the updated value will be expired after the given <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time"><code>Duration</code></a> so long
+ as it's not overridden by a later call from this or another instance of the resource. The time-to-live
+ on the value is coarse grained, and the value is only guaranteed to expire up to a session timeout after
+ the given time-to-live has expired.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>expect</code> - The expected value.</dd>

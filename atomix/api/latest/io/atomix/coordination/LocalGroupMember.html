@@ -107,7 +107,37 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public interface <span class="typeNameLabel">LocalGroupMember</span>
 extends <a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a></pre>
-<div class="block">Local group member.</div>
+<div class="block">A <a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination"><code>DistributedGroup</code></a> member representing a member of the group controlled by the
+ local process.
+ <p>
+ Local group members can only be acquired by <a href="../../../io/atomix/coordination/DistributedGroup.html#join--"><code>joining</code></a> a membership
+ group. Local members provide the interface necessary to set member properties, receive messages,
+ and react to the election of the member as the group leader.
+ <p>
+ To receive messages sent to the joined member of the group, register a message consumer. Messages
+ sent to the member are associated with a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> topic, and separate handlers can be registered
+ for each topic supported by the local member:
+ <pre>
+   <code>
+   LocalGroupMember member = group.join().get();
+   member.onMessage("foo", message -&gt; System.out.println("received: " + message));
+   </code>
+ </pre>
+ Membership groups automatically elect a leader for the group at all times. To determine when the local group
+ member has been elected leader, register a leader <a href="../../../io/atomix/coordination/LocalGroupMember.html#onElection-java.util.function.Consumer-"><code>election listener</code></a>:
+ <pre>
+   <code>
+   LocalGroupMember member = group.join().get();
+   group.onElection(term -&gt; {
+     System.out.println("Elected leader for term " + term);
+   });
+   </code>
+ </pre>
+ The leader is guaranteed to be unique within a given <a href="../../../io/atomix/coordination/DistributedGroup.html#term--"><code>term</code></a>. However, once
+ the member is elected leader, it is not guaranteed to remain the leader of the group until failure. In the
+ event that the local group instance is partitioned from the rest of the cluster, the member may be removed
+ from leadership and another member of the group may be elected. Users should use the provided <code>term</code>
+ for fencing when interacting with external resources.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -146,7 +176,7 @@ extends <a href="../../../io/atomix/coordination/GroupMember.html" title="interf
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/LocalGroupMember.html#onMessage-java.lang.String-java.util.function.Consumer-">onMessage</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic,
          <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;T&gt;&nbsp;consumer)</code>
-<div class="block">Handles a message to the member.</div>
+<div class="block">Registers a consumer for messages sent to the local member.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -198,7 +228,12 @@ extends <a href="../../../io/atomix/coordination/GroupMember.html" title="interf
 <h4>set</h4>
 <pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;set(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;property,
                             <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</pre>
-<div class="block">Sets the value of a property of the member.</div>
+<div class="block">Sets the value of a property of the member.
+ <p>
+ The property will be associated with the local group member and can be
+ <a href="../../../io/atomix/coordination/GroupMember.html#get-java.lang.String-"><code>read</code></a> by any other instance of the membership group. If the
+ member <a href="../../../io/atomix/coordination/GroupMember.html#id--"><code>GroupMember.id()</code></a> is a user provided ID, the group will retain the same properties
+ in the event of the member leaving and rejoining the group.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>property</code> - The property to set.</dd>
@@ -232,7 +267,10 @@ extends <a href="../../../io/atomix/coordination/GroupMember.html" title="interf
 <h4>onMessage</h4>
 <pre>&lt;T&gt;&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;T&gt;&nbsp;onMessage(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic,
                           <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;T&gt;&nbsp;consumer)</pre>
-<div class="block">Handles a message to the member.</div>
+<div class="block">Registers a consumer for messages sent to the local member.
+ <p>
+ The provided message consumer will be called when a message sent to the local member
+ is received for the given <code>topic</code>.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The message type.</dd>
@@ -251,7 +289,25 @@ extends <a href="../../../io/atomix/coordination/GroupMember.html" title="interf
 <li class="blockList">
 <h4>onElection</h4>
 <pre><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;onElection(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;callback)</pre>
-<div class="block">Registers a callback to be called when this member is elected leader.</div>
+<div class="block">Registers a callback to be called when this member is elected leader.
+ <p>
+ The provided <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function"><code>Consumer</code></a> will be called when the local member is elected leader.
+ The term for which the member was elected leader will be provided to the callback.
+ <pre>
+   <code>
+   group.join().thenAccept(member -&gt; {
+     member.onElection(term -&gt; {
+       System.out.println("Elected leader for term " + term);
+     });
+   });
+   </code>
+ </pre>
+ Leader election is performed using a fair algorithm. However, once the member is elected
+ leader, it is not guaranteed to remain the leader of the group until failure. In the
+ event that the local group instance is partitioned from the rest of the cluster, the
+ member may be removed from leadership and another member of the group may be elected.
+ Users should use the provided <code>term</code> for fencing when interacting with external
+ resources.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>callback</code> - The callback to call.</dd>
@@ -267,7 +323,21 @@ extends <a href="../../../io/atomix/coordination/GroupMember.html" title="interf
 <li class="blockList">
 <h4>resign</h4>
 <pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;resign()</pre>
-<div class="block">Resigns from leadership.</div>
+<div class="block">Resigns from leadership.
+ <p>
+ Resigning as the leader of the group will result in the local member being placed at the
+ tail of the leader election queue. Once the member has resigned, the <a href="../../../io/atomix/coordination/DistributedGroup.html#term--"><code>DistributedGroup.term()</code></a>
+ will be incremented and a new leader will be elected from the leader queue. If the local member
+ is the only member of the group, it will immediately be reassigned as the leader for the new
+ term.
+ <pre>
+   <code>
+   member.onElection(term -&gt; {
+     // I don't want to be the leader!
+     member.resign();
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the member has resigned.</dd>

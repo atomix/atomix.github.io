@@ -143,9 +143,7 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
  Clients communicate with the cluster via a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a>. By default, the <code>NettyTransport</code> is used if
  no transport is explicitly configured. Thus, if no transport is configured then the Netty transport is expected
  to be available on the classpath.
- <p>
- <b>Client lifecycle</b>
- <p>
+ <h2>Client lifecycle</h2>
  When a client is <a href="../../io/atomix/Atomix.html#open--"><code>started</code></a>, the client will attempt to contact random servers in the provided
  <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> list to open a new session. Opening a client session requires only that the client be able to
  communicate with at least one server which can communicate with the leader. Once a session has been opened,

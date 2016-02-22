@@ -106,13 +106,25 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">GroupMember</span></pre>
-<div class="block">Provides an interface to interacting with members of a <a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination"><code>DistributedGroup</code></a>.
+<div class="block">A <a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination"><code>DistributedGroup</code></a> member representing a member of the group controlled by a local
+ or remote process.
  <p>
  A <code>GroupMember</code> represents a reference to a single instance of a resource which has
  <a href="../../../io/atomix/coordination/DistributedGroup.html#join--"><code>joined</code></a> a membership group. Each member is guaranteed to
  have a unique <a href="../../../io/atomix/coordination/GroupMember.html#id--"><code>id()</code></a> throughout the lifetime of the distributed resource. Group members
  can <a href="../../../io/atomix/coordination/GroupMember.html#schedule-java.time.Duration-java.lang.Runnable-"><code>schedule</code></a> or <a href="../../../io/atomix/coordination/GroupMember.html#execute-java.lang.Runnable-"><code>execute</code></a> callbacks
- remotely on member nodes.</div>
+ remotely on member nodes.
+ <p>
+ Group members support direct messaging via the <a href="../../../io/atomix/coordination/GroupMember.html#send-java.lang.String-java.lang.Object-"><code>send(String, Object)</code></a> method. Messages
+ sent between group members must be associated with a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> topic. The topic is used
+ to identify the type of message being sent.
+ <pre>
+   <code>
+   group.member("foo").send("bar", "Hello world!");
+   </code>
+ </pre>
+ Messages sent between group members are persisted and replicated in the cluster and are guaranteed
+ to be received by the member as long as its session remains open.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -202,7 +214,10 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>id</h4>
 <pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;id()</pre>
-<div class="block">Returns the member ID.</div>
+<div class="block">Returns the member ID.
+ <p>
+ The member ID is guaranteed to be unique across the cluster. Depending on how the member was
+ constructed, it may be a user-provided identifier or an automatically generated <a href="http://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util"><code>UUID</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The member ID.</dd>
@@ -216,7 +231,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>isLeader</h4>
 <pre>boolean&nbsp;isLeader()</pre>
-<div class="block">Returns a boolean value indicating whether this member is the current leader.</div>
+<div class="block">Returns a boolean value indicating whether this member is the current leader.
+ <p>
+ Whether this member is the current leader is dependent on the last known configuration of the membership
+ group. If the local group instance is partitioned from the cluster, it may believe a member to be the
+ leader when it has in fact been replaced.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Indicates whether this member is the current leader.</dd>
@@ -256,11 +275,16 @@ var activeTableTab = "activeTableTab";
  <p>
  Group messaging guarantees sequential consistency such that members are guaranteed to receive messages
  in the order in which they were sent. Messages will be sent according to the parent <a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination"><code>DistributedGroup</code></a>'s
- <code>consistency</code> level. If the consistency level is
- <code>io.atomix.resource.Consistency#ATOMIC</code> (the default), the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will
+ <a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource"><code>consistency</code></a> level. If the consistency level is
+ <a href="../../../io/atomix/resource/WriteConsistency.html#ATOMIC"><code>WriteConsistency.ATOMIC</code></a> (the default), the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will
  be completed once the member has received the message or has left the group. Note that the completion of
  the returned future does not necessarily guarantee that the message was received and processed, only that
- it was <em>either</em> received and processed <em>or</em> the member left the group or disconnected.</div>
+ it was <em>either</em> received and processed <em>or</em> the member left the group or disconnected.
+ <pre>
+   <code>
+   group.member("foo").send("bar", "Hello world!");
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>topic</code> - The message topic.</dd>

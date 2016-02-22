@@ -76,7 +76,7 @@
 <dl>
 <dt><a href="io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables"><span class="typeNameLink">AbstractDistributedValue</span></a>&lt;<a href="io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">T</a> extends <a href="io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">AbstractDistributedValue</a>&lt;<a href="io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">T</a>,<a href="io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&gt;,<a href="io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&gt; - Class in <a href="io/atomix/variables/package-summary.html">io.atomix.variables</a></dt>
 <dd>
-<div class="block">Abstract distributed value.</div>
+<div class="block">Base class for distributed atomic variables.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedQueue.html#add-T-">add(T)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedQueue.html" title="class in io.atomix.collections">DistributedQueue</a></dt>
 <dd>
@@ -244,11 +244,12 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/variables/AbstractDistributedValue.html#compareAndSet-U-U-">compareAndSet(U, U)</a></span> - Method in class io.atomix.variables.<a href="io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">AbstractDistributedValue</a></dt>
 <dd>
-<div class="block">Compares the current value and updated it if expected value == the current value.</div>
+<div class="block">Compares the current value and updated it if expected value equals the current value.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/variables/AbstractDistributedValue.html#compareAndSet-U-U-java.time.Duration-">compareAndSet(U, U, Duration)</a></span> - Method in class io.atomix.variables.<a href="io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">AbstractDistributedValue</a></dt>
 <dd>
-<div class="block">Compares the current value and updated it if expected value == the current value.</div>
+<div class="block">Compares the current value and updated it if expected value equals the current value, setting a time-to-live
+ on the updated value.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#config--">config()</a></span> - Static method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
@@ -404,19 +405,20 @@
 </dd>
 <dt><a href="io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination"><span class="typeNameLink">DistributedGroup</span></a> - Class in <a href="io/atomix/coordination/package-summary.html">io.atomix.coordination</a></dt>
 <dd>
-<div class="block">Provides a mechanism for managing group membership and remote scheduling and execution.</div>
+<div class="block">Generic group abstraction for managing group membership, service discovery, leader election, and remote
+ scheduling and execution.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedGroup.html#DistributedGroup-io.atomix.copycat.client.CopycatClient-io.atomix.resource.Resource.Options-">DistributedGroup(CopycatClient, Resource.Options)</a></span> - Constructor for class io.atomix.coordination.<a href="io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination"><span class="typeNameLink">DistributedLock</span></a> - Class in <a href="io/atomix/coordination/package-summary.html">io.atomix.coordination</a></dt>
 <dd>
-<div class="block">Provides a mechanism for synchronizing access to cluster-wide shared resources.</div>
+<div class="block">Facilitates synchronizing access to cluster-wide shared resources.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedLock.html#DistributedLock-io.atomix.copycat.client.CopycatClient-io.atomix.resource.Resource.Options-">DistributedLock(CopycatClient, Resource.Options)</a></span> - Constructor for class io.atomix.coordination.<a href="io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/variables/DistributedLong.html" title="class in io.atomix.variables"><span class="typeNameLink">DistributedLong</span></a> - Class in <a href="io/atomix/variables/package-summary.html">io.atomix.variables</a></dt>
 <dd>
-<div class="block">Distributed long.</div>
+<div class="block">Stores a replicated 64-bit number, supporting atomic increments, decrements, and compare-and-set.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/variables/DistributedLong.html#DistributedLong-io.atomix.copycat.client.CopycatClient-io.atomix.resource.Resource.Options-">DistributedLong(CopycatClient, Resource.Options)</a></span> - Constructor for class io.atomix.variables.<a href="io/atomix/variables/DistributedLong.html" title="class in io.atomix.variables">DistributedLong</a></dt>
 <dd>&nbsp;</dd>
@@ -478,7 +480,7 @@
 <dd>&nbsp;</dd>
 <dt><a href="io/atomix/variables/DistributedValue.html" title="class in io.atomix.variables"><span class="typeNameLink">DistributedValue</span></a>&lt;<a href="io/atomix/variables/DistributedValue.html" title="type parameter in DistributedValue">T</a>&gt; - Class in <a href="io/atomix/variables/package-summary.html">io.atomix.variables</a></dt>
 <dd>
-<div class="block">Distributed value.</div>
+<div class="block">Stores a single replicated value, providing atomic operations for modifying the value.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/variables/DistributedValue.html#DistributedValue-io.atomix.copycat.client.CopycatClient-io.atomix.resource.Resource.Options-">DistributedValue(CopycatClient, Resource.Options)</a></span> - Constructor for class io.atomix.variables.<a href="io/atomix/variables/DistributedValue.html" title="class in io.atomix.variables">DistributedValue</a></dt>
 <dd>&nbsp;</dd>
@@ -592,7 +594,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/variables/AbstractDistributedValue.html#getAndSet-U-java.time.Duration-">getAndSet(U, Duration)</a></span> - Method in class io.atomix.variables.<a href="io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">AbstractDistributedValue</a></dt>
 <dd>
-<div class="block">Gets the current value and updates it.</div>
+<div class="block">Gets the current value and updates it, setting a time-to-live on the updated value.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#getGroup-java.lang.String-">getGroup(String)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
 <dd>
@@ -784,7 +786,8 @@
 </dd>
 <dt><a href="io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination"><span class="typeNameLink">GroupMember</span></a> - Interface in <a href="io/atomix/coordination/package-summary.html">io.atomix.coordination</a></dt>
 <dd>
-<div class="block">Provides an interface to interacting with members of a <a href="io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination"><code>DistributedGroup</code></a>.</div>
+<div class="block">A <a href="io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination"><code>DistributedGroup</code></a> member representing a member of the group controlled by a local
+ or remote process.</div>
 </dd>
 </dl>
 <a name="I:H">
@@ -954,7 +957,8 @@
 </dd>
 <dt><a href="io/atomix/coordination/LocalGroupMember.html" title="interface in io.atomix.coordination"><span class="typeNameLink">LocalGroupMember</span></a> - Interface in <a href="io/atomix/coordination/package-summary.html">io.atomix.coordination</a></dt>
 <dd>
-<div class="block">Local group member.</div>
+<div class="block">A <a href="io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination"><code>DistributedGroup</code></a> member representing a member of the group controlled by the
+ local process.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/DistributedLock.html#lock--">lock()</a></span> - Method in class io.atomix.coordination.<a href="io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a></dt>
 <dd>
@@ -1020,7 +1024,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/coordination/LocalGroupMember.html#onMessage-java.lang.String-java.util.function.Consumer-">onMessage(String, Consumer&lt;T&gt;)</a></span> - Method in interface io.atomix.coordination.<a href="io/atomix/coordination/LocalGroupMember.html" title="interface in io.atomix.coordination">LocalGroupMember</a></dt>
 <dd>
-<div class="block">Handles a message to the member.</div>
+<div class="block">Registers a consumer for messages sent to the local member.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/messaging/MessageConsumer.html#onMessage-java.util.function.Function-">onMessage(Function&lt;T, ?&gt;)</a></span> - Method in interface io.atomix.messaging.<a href="io/atomix/messaging/MessageConsumer.html" title="interface in io.atomix.messaging">MessageConsumer</a></dt>
 <dd>
@@ -1326,11 +1330,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/variables/AbstractDistributedValue.html#set-U-">set(U)</a></span> - Method in class io.atomix.variables.<a href="io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">AbstractDistributedValue</a></dt>
 <dd>
-<div class="block">Sets the current value.</div>
+<div class="block">Sets the value.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/variables/AbstractDistributedValue.html#set-U-java.time.Duration-">set(U, Duration)</a></span> - Method in class io.atomix.variables.<a href="io/atomix/variables/AbstractDistributedValue.html" title="class in io.atomix.variables">AbstractDistributedValue</a></dt>
 <dd>
-<div class="block">Sets the value with a TTL.</div>
+<div class="block">Sets the value with a time-to-live.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#size--">size()</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
