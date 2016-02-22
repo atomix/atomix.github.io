@@ -137,8 +137,8 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
  Commands to a Copycat state machine typically come in one of two flavors; commands are either compacted from
  the log via snapshotting or log cleaning. Log cleaning is the process of removing commands from the log when
  they no longer contribute to the state machine's state. Commands compacted via log cleaning are represented
- by the <a href="../../../io/atomix/copycat/Command.CompactionMode.html#QUORUM"><code>QUORUM</code></a>, <a href="../../../io/atomix/copycat/Command.CompactionMode.html#FULL"><code>FULL</code></a>, and <a href="../../../io/atomix/copycat/Command.CompactionMode.html#SEQUENTIAL"><code>SEQUENTIAL</code></a> compaction modes. These types of commands
- are removed from the log in a manor consistent with the configured compaction mode.
+ by the <a href="../../../io/atomix/copycat/Command.CompactionMode.html#QUORUM"><code>QUORUM</code></a>, <a href="../../../io/atomix/copycat/Command.CompactionMode.html#FULL"><code>FULL</code></a>, <a href="../../../io/atomix/copycat/Command.CompactionMode.html#SEQUENTIAL"><code>SEQUENTIAL</code></a>, and <a href="../../../io/atomix/copycat/Command.CompactionMode.html#TOMBSTONE"><code>TOMBSTONE</code></a> compaction modes. These types
+ of commands are removed from the log in a manor consistent with the configured compaction mode.
  <p>
  Alternatively, the simpler mode of compaction is snapshotting. Snapshotted commands are indicated by the
  <a href="../../../io/atomix/copycat/Command.CompactionMode.html#SNAPSHOT"><code>SNAPSHOT</code></a> compaction mode. When a server takes a snapshot of a state machine, all commands applied
@@ -203,6 +203,12 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/copycat/Command.CompactionMode.html#TOMBSTONE">TOMBSTONE</a></span></code>
+<div class="block">The tombstone compaction mode is an alias for the <a href="../../../io/atomix/copycat/Command.CompactionMode.html#SEQUENTIAL"><code>SEQUENTIAL</code></a> compaction mode that is specifically intended
+ for tombstone commands.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/copycat/Command.CompactionMode.html#UNKNOWN">UNKNOWN</a></span></code>
 <div class="block">The <code>UNKNOWN</code> compaction mode is a special compaction mode that behaves consistently for all
  system types.</div>
@@ -363,7 +369,7 @@ the order they are declared.</div>
 <a name="SEQUENTIAL">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>SEQUENTIAL</h4>
 <pre>public static final&nbsp;<a href="../../../io/atomix/copycat/Command.CompactionMode.html" title="enum in io.atomix.copycat">Command.CompactionMode</a> SEQUENTIAL</pre>
@@ -373,7 +379,26 @@ the order they are declared.</div>
  The <code>SEQUENTIAL</code> compaction mode adds to the <em>full replication</em> requirement of the <code>FULL</code>
  compaction mode to also require that commands be removed from the log <em>in sequential order</em>. Typically,
  this compaction mode is used for so called <em>tombstone</em> commands. Sequential ordering is critical in
- the handling of tombstones since they essentially represent the absense of state. A tombstone cannot be safely
+ the handling of tombstones since they essentially represent the absence of state. A tombstone cannot be safely
+ removed from the log until all prior related entries have been removed. Compacting tombstones sequentially ensures
+ that any prior related commands will have been compacted from the log prior to the tombstone being removed.</div>
+</li>
+</ul>
+<a name="TOMBSTONE">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>TOMBSTONE</h4>
+<pre>public static final&nbsp;<a href="../../../io/atomix/copycat/Command.CompactionMode.html" title="enum in io.atomix.copycat">Command.CompactionMode</a> TOMBSTONE</pre>
+<div class="block">The tombstone compaction mode is an alias for the <a href="../../../io/atomix/copycat/Command.CompactionMode.html#SEQUENTIAL"><code>SEQUENTIAL</code></a> compaction mode that is specifically intended
+ for tombstone commands. Tombstones will be retained in the log until stored and applied on all servers, and tombstones
+ will only be removed from the log once all prior released entries have been removed.
+ <p>
+ The <code>TOMBSTONE</code> compaction mode adds to the <em>full replication</em> requirement of the <code>FULL</code>
+ compaction mode to also require that commands be removed from the log <em>in sequential order</em>. Typically,
+ this compaction mode is used for so called <em>tombstone</em> commands. Sequential ordering is critical in
+ the handling of tombstones since they essentially represent the absence of state. A tombstone cannot be safely
  removed from the log until all prior related entries have been removed. Compacting tombstones sequentially ensures
  that any prior related commands will have been compacted from the log prior to the tombstone being removed.</div>
 </li>
