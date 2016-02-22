@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -120,7 +120,7 @@ var activeTableTab = "activeTableTab";
 <pre>public static class <span class="typeNameLabel">AtomixReplica.Builder</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a>&gt;</pre>
-<div class="block">Builds an <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.
+<div class="block">Builder for programmatically constructing an <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.
  <p>
  The replica builder configures an <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a> to listen for connections from clients and other
  servers/replica, connect to other servers in a cluster, and manage a replicated log. To create a replica builder,
@@ -168,7 +168,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withBackupCount-int-">withBackupCount</a></span>(int&nbsp;backupCount)</code>
-<div class="block">Sets the backup count.</div>
+<div class="block">Sets the replica backup count.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -185,53 +185,59 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withHeartbeatInterval-java.time.Duration-">withHeartbeatInterval</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;heartbeatInterval)</code>
-<div class="block">Sets the replica heartbeat interval, returning the replica builder for method chaining.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withGlobalSuspendTimeout-java.time.Duration-">withGlobalSuspendTimeout</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;globalSuspendTimeout)</code>
+<div class="block">Sets the replica's global suspend timeout.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withQuorumHint-int-">withQuorumHint</a></span>(int&nbsp;quorumHint)</code>
-<div class="block">Sets the quorum hint.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withHeartbeatInterval-java.time.Duration-">withHeartbeatInterval</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;heartbeatInterval)</code>
+<div class="block">Sets the replica heartbeat interval, returning the replica builder for method chaining.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withQuorumHint-io.atomix.Quorum-">withQuorumHint</a></span>(<a href="../../io/atomix/Quorum.html" title="enum in io.atomix">Quorum</a>&nbsp;quorum)</code>
-<div class="block">Sets the quorum hint.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withQuorumHint-int-">withQuorumHint</a></span>(int&nbsp;quorumHint)</code>
+<div class="block">Sets the cluster quorum hint.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withResourceResolver-io.atomix.resource.ResourceTypeResolver-">withResourceResolver</a></span>(<a href="../../io/atomix/resource/ResourceTypeResolver.html" title="interface in io.atomix.resource">ResourceTypeResolver</a>&nbsp;resolver)</code>
-<div class="block">Sets the Atomix resource type resolver.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withQuorumHint-io.atomix.Quorum-">withQuorumHint</a></span>(<a href="../../io/atomix/Quorum.html" title="enum in io.atomix">Quorum</a>&nbsp;quorum)</code>
+<div class="block">Sets the cluster quorum hint.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
+<td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withResourceResolver-io.atomix.resource.util.ResourceTypeResolver-">withResourceResolver</a></span>(io.atomix.resource.util.ResourceTypeResolver&nbsp;resolver)</code>
+<div class="block">Sets the Atomix resource type resolver.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-">withSerializer</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
 <div class="block">Sets the serializer, returning the replica builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withServerTransport-io.atomix.catalyst.transport.Transport-">withServerTransport</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</code>
 <div class="block">Sets the server transport, returning the server builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withSessionTimeout-java.time.Duration-">withSessionTimeout</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;sessionTimeout)</code>
 <div class="block">Sets the replica session timeout, returning the replica builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withStorage-io.atomix.copycat.server.storage.Storage-">withStorage</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage)</code>
 <div class="block">Sets the replica storage module, returning the replica builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withTransport-io.atomix.catalyst.transport.Transport-">withTransport</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</code>
 <div class="block">Sets the replica transport, returning the replica builder for method chaining.</div>
@@ -352,12 +358,41 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <li class="blockList">
 <h4>withQuorumHint</h4>
 <pre>public&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;withQuorumHint(int&nbsp;quorumHint)</pre>
-<div class="block">Sets the quorum hint.</div>
+<div class="block">Sets the cluster quorum hint.
+ <p>
+ The quorum hint specifies the optimal number of replicas to actively participate in the Raft
+ consensus algorithm. As long as there are at least <code>quorumHint</code> replicas in the cluster,
+ Atomix will automatically balance replicas to ensure that at least <code>quorumHint</code> replicas
+ are active participants in the Raft algorithm at any given time. Replicas can be added to or
+ removed from the cluster at will, and remaining replicas will be transparently promoted and demoted
+ as necessary to maintain the desired quorum size.
+ <p>
+ By default, the configured quorum hint is <a href="../../io/atomix/Quorum.html#SEED"><code>Quorum.SEED</code></a> which is based on the number of
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>members</code></a> provided to the <a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-"><code>builder factory</code></a>
+ when constructing this builder.
+ <p>
+ The size of the quorum is relevant both to performance and fault-tolerance. When resources are
+ created or deleted or resource state changes are submitted to the cluster, Atomix will synchronously
+ replicate changes to a majority of the cluster before they can be committed and update state. For
+ example, in a cluster where the <code>quorumHint</code> is <code>3</code>, a
+ <a href="../../io/atomix/collections/DistributedMap.html#put-K-V-"><code>DistributedMap.put(Object, Object)</code></a> command must be sent to the leader
+ and then synchronously replicated to one other replica before it can be committed and applied to the
+ map state machine. This also means that a cluster with <code>quorumHint</code> equal to <code>3</code> can tolerate
+ at most one failure.
+ <p>
+ Users should set the <code>quorumHint</code> to an odd number of replicas or use one of the <a href="../../io/atomix/Quorum.html" title="enum in io.atomix"><code>Quorum</code></a>
+ magic constants for the greatest level of fault tolerance. Typically, in write-heavy workloads, the most
+ performant configuration will be a <code>quorumHint</code> of <code>3</code>. In read-heavy workloads, quorum hints
+ of <code>3</code> or <code>5</code> can be used depending on the size of the cluster and desired level of fault tolerance.
+ Additional active replicas may or may not improve read performance depending on usage and in particular
+ <a href="../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource"><code>read consistency</code></a> levels.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>quorumHint</code> - The quorum hint.</dd>
+<dd><code>quorumHint</code> - The quorum hint. This must be the same on all replicas in the cluster.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The replica builder.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if the quorum hint is less than <code>-1</code></dd>
 </dl>
 </li>
 </ul>
@@ -368,12 +403,41 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <li class="blockList">
 <h4>withQuorumHint</h4>
 <pre>public&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;withQuorumHint(<a href="../../io/atomix/Quorum.html" title="enum in io.atomix">Quorum</a>&nbsp;quorum)</pre>
-<div class="block">Sets the quorum hint.</div>
+<div class="block">Sets the cluster quorum hint.
+ <p>
+ The quorum hint specifies the optimal number of replicas to actively participate in the Raft
+ consensus algorithm. As long as there are at least <code>quorumHint</code> replicas in the cluster,
+ Atomix will automatically balance replicas to ensure that at least <code>quorumHint</code> replicas
+ are active participants in the Raft algorithm at any given time. Replicas can be added to or
+ removed from the cluster at will, and remaining replicas will be transparently promoted and demoted
+ as necessary to maintain the desired quorum size.
+ <p>
+ By default, the configured quorum hint is <a href="../../io/atomix/Quorum.html#SEED"><code>Quorum.SEED</code></a> which is based on the number of
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>members</code></a> provided to the <a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-"><code>builder factory</code></a>
+ when constructing this builder.
+ <p>
+ The size of the quorum is relevant both to performance and fault-tolerance. When resources are
+ created or deleted or resource state changes are submitted to the cluster, Atomix will synchronously
+ replicate changes to a majority of the cluster before they can be committed and update state. For
+ example, in a cluster where the <code>quorumHint</code> is <code>3</code>, a
+ <a href="../../io/atomix/collections/DistributedMap.html#put-K-V-"><code>DistributedMap.put(Object, Object)</code></a> command must be sent to the leader
+ and then synchronously replicated to one other replica before it can be committed and applied to the
+ map state machine. This also means that a cluster with <code>quorumHint</code> equal to <code>3</code> can tolerate
+ at most one failure.
+ <p>
+ Users should set the <code>quorumHint</code> to an odd number of replicas or use one of the <a href="../../io/atomix/Quorum.html" title="enum in io.atomix"><code>Quorum</code></a>
+ magic constants for the greatest level of fault tolerance. Typically, in write-heavy workloads, the most
+ performant configuration will be a <code>quorumHint</code> of <code>3</code>. In read-heavy workloads, quorum hints
+ of <code>3</code> or <code>5</code> can be used depending on the size of the cluster and desired level of fault tolerance.
+ Additional active replicas may or may not improve read performance depending on usage and in particular
+ <a href="../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource"><code>read consistency</code></a> levels.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>quorum</code> - The quorum hint.</dd>
+<dd><code>quorum</code> - The quorum hint. This must be the same on all replicas in the cluster.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The replica builder.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the quorum hint is null</dd>
 </dl>
 </li>
 </ul>
@@ -384,23 +448,49 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <li class="blockList">
 <h4>withBackupCount</h4>
 <pre>public&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;withBackupCount(int&nbsp;backupCount)</pre>
-<div class="block">Sets the backup count.</div>
+<div class="block">Sets the replica backup count.
+ <p>
+ The backup count specifies the maximum number of replicas per <a href="../../io/atomix/AtomixReplica.Builder.html#withQuorumHint-int-"><code>active</code></a> replica
+ to participate in asynchronous replication of state. Backup replicas allow quorum-member replicas to be
+ more quickly replaced in the event of a failure or an active replica leaving the cluster. Additionally,
+ backup replicas may service <a href="../../io/atomix/resource/ReadConsistency.html#SEQUENTIAL"><code>SEQUENTIAL</code></a> and
+ <a href="../../io/atomix/resource/ReadConsistency.html#CAUSAL"><code>CAUSAL</code></a> reads to allow read operations to be further
+ spread across the cluster.
+ <p>
+ The backup count is used to calculate the number of backup replicas per non-leader active member. The
+ number of actual backups is calculated by <code>(quorumHint - 1) * backupCount</code>. If the
+ <code>backupCount</code> is <code>1</code> and the <code>quorumHint</code> is <code>3</code>, the number of backup replicas
+ will be <code>2</code>.
+ <p>
+ By default, the backup count is <code>0</code>, indicating no backups should be maintained. However, it is
+ recommended that each cluster have at least a backup count of <code>1</code> to ensure active replicas can
+ be quickly replaced in the event of a network partition or other failure. Quick replacement of active
+ member nodes improves fault tolerance in cases where a majority of the active members in the cluster are
+ not lost simultaneously.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>backupCount</code> - The backup count.</dd>
+<dd><code>backupCount</code> - The number of backup replicas per active replica. This must be the same on all
+                    replicas in the cluster.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The replica builder.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if the <code>backupCount</code> is negative</dd>
 </dl>
 </li>
 </ul>
-<a name="withResourceResolver-io.atomix.resource.ResourceTypeResolver-">
+<a name="withResourceResolver-io.atomix.resource.util.ResourceTypeResolver-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>withResourceResolver</h4>
-<pre>public&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;withResourceResolver(<a href="../../io/atomix/resource/ResourceTypeResolver.html" title="interface in io.atomix.resource">ResourceTypeResolver</a>&nbsp;resolver)</pre>
-<div class="block">Sets the Atomix resource type resolver.</div>
+<pre>public&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;withResourceResolver(io.atomix.resource.util.ResourceTypeResolver&nbsp;resolver)</pre>
+<div class="block">Sets the Atomix resource type resolver.
+ <p>
+ The resource resolver can be used to register custom <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a> types
+ with the replica. In order for a client or replica to <a href="../../io/atomix/Atomix.html#get-java.lang.String-java.lang.Class-"><code>create</code></a> an instance
+ of a custom resource, the resource type must be registered on all replicas and on any client that
+ accesses the resource.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>resolver</code> - The resource type resolver.</dd>
@@ -427,7 +517,10 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
      .build();
    </code>
  </pre>
- For more complex storage configurations, use the <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.Builder.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage"><code>Storage.Builder</code></a>:
+ Users can configure how state changes are stored on the replica by setting the
+ <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/StorageLevel.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage"><code>StorageLevel</code></a>. Use the
+ <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.Builder.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage"><code>Storage.Builder</code></a> for the greatest flexibility in configuring
+ the replica's storage layer:
  <pre>
    <code>
    Atomix replica = AtomixReplica.builder(address, members)
@@ -438,7 +531,13 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
        .build())
      .build();
    </code>
- </pre></div>
+ </pre>
+ For the greatest safety, it's recommended that users use the
+ <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/StorageLevel.html?is-external=true#DISK" title="class or interface in io.atomix.copycat.server.storage"><code>DISK</code></a> storage level. Alternatively, the
+ <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/StorageLevel.html?is-external=true#MAPPED" title="class or interface in io.atomix.copycat.server.storage"><code>MAPPED</code></a> storage level provides significantly
+ greater performance without significantly relaxing safety. The <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/StorageLevel.html?is-external=true#MEMORY" title="class or interface in io.atomix.copycat.server.storage"><code>MEMORY</code></a>
+ storage level is not recommended for production. For replicas that use the <code>MEMORY</code> storage level,
+ Atomix cannot guarantee writes will not be lost of a majority of the cluster is lost.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>storage</code> - The replica storage module.</dd>
@@ -463,7 +562,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  larger than <a href="../../io/atomix/AtomixReplica.Builder.html#withHeartbeatInterval-java.time.Duration-"><code>withHeartbeatInterval(Duration)</code></a> in order to prevent unnecessary elections.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>electionTimeout</code> - The replica election timeout in milliseconds.</dd>
+<dd><code>electionTimeout</code> - The replica election timeout.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The replica builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -485,7 +584,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  always be some fraction of <a href="../../io/atomix/AtomixReplica.Builder.html#withElectionTimeout-java.time.Duration-"><code>withElectionTimeout(Duration)</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>heartbeatInterval</code> - The replica heartbeat interval in milliseconds.</dd>
+<dd><code>heartbeatInterval</code> - The replica heartbeat interval.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The replica builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -508,11 +607,41 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  timeout, its session may be expired.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>sessionTimeout</code> - The replica session timeout in milliseconds.</dd>
+<dd><code>sessionTimeout</code> - The replica session timeout.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The replica builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>sessionTimeout</code> is null</dd>
+</dl>
+</li>
+</ul>
+<a name="withGlobalSuspendTimeout-java.time.Duration-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withGlobalSuspendTimeout</h4>
+<pre>public&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;withGlobalSuspendTimeout(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;globalSuspendTimeout)</pre>
+<div class="block">Sets the replica's global suspend timeout.
+ <p>
+ The global suspend timeout is an advanced configuration option that controls how long a leader
+ waits for a partitioned follower to rejoin the cluster before forcing that follower to truncate
+ its logs. Because of various consistency issues, followers must be forced to truncate their logs
+ after crashing or being partitioned for a lengthy amount of time in order to allow the cluster to
+ progress. Specifically, in Atomix while a follower is partitioned replicas cannot compact their
+ logs of certain types of commits like resource deletes and other tombstones.
+ <p>
+ By default, replicas will wait at least an hour for a partitioned follower to rejoin the cluster
+ before advancing compaction and forcing the follower to truncate its logs once the partition heals.
+ However, for clusters that have a surplus of replicas, Atomix may replace a partitioned follower
+ with a connected follower anyways, so this option frequently does not apply to larger clusters.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>globalSuspendTimeout</code> - The global suspend timeout.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The replica builder.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>globalSuspendTimeout</code> is null</dd>
 </dl>
 </li>
 </ul>

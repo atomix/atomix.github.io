@@ -49,8 +49,8 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/resource/ResourceRegistry.html" title="class in io.atomix.resource"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../io/atomix/resource/ResourceStateMachine.ConfigureCommand.html" title="class in io.atomix.resource"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/resource/ResourceException.html" title="class in io.atomix.resource"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/resource/ResourceStateMachineExecutor.html" title="class in io.atomix.resource"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/resource/ResourceStateMachine.html" target="_top">Frames</a></li>
@@ -74,7 +74,7 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -121,7 +121,84 @@ var activeTableTab = "activeTableTab";
 <pre>public abstract class <span class="typeNameLabel">ResourceStateMachine</span>
 extends <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server">StateMachine</a>
 implements <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/SessionListener.html?is-external=true" title="class or interface in io.atomix.copycat.server.session">SessionListener</a></pre>
-<div class="block">Base resource state machine.</div>
+<div class="block">Base class for resource state machines.
+ <p>
+ Resource implementations should extend the resource state machine for support in Atomix core.
+ This state machine implements functionality necessary to multiplexing the state machine on a
+ single Copycat log and provides facilities for configuring and cleaning up the resource upon
+ deletion.
+ <p>
+ To implement a resource state machine, simply extend this class. State machines must adhere
+ to the same rules as those outlined in the Copycat documentation. See the <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server"><code>StateMachine</code></a>
+ documentation for more information.
+ <pre>
+   <code>
+   public class MapStateMachine extends ResourceStateMachine {
+     private final Map&lt;Object, Object&gt; map = new HashMap&lt;&gt;();
+
+     public void put(Commit&lt;PutCommand&gt; commit) {
+       try {
+         map.put(commit.operation().key(), commit.operation().value());
+       } finally {
+         commit.close();
+       }
+     }
+   }
+   </code>
+ </pre>
+ Resource state machines should override the <a href="../../../io/atomix/resource/ResourceStateMachine.html#delete--"><code>delete()</code></a> method to perform cleanup of
+ the resource state upon deletion of the resource. Cleanup tasks might include notifying clients
+ of the deletion of the resource or releasing <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/Commit.html?is-external=true" title="class or interface in io.atomix.copycat.server"><code>commits</code></a> held by the state machine.
+ <pre>
+   <code>
+   public class MapStateMachine extends ResourceStateMachine {
+     private final Map&lt;Object, Commit&lt;PutCommand&gt;&gt; map = new HashMap&lt;&gt;();
+
+     public void put(Commit&lt;PutCommand&gt; commit) {
+       map.put(commit.operation().key(), commit);
+     }
+
+     public void delete() {
+       for (Map.Entry&lt;Object, Commit&lt;PutCommand&gt;&gt; entry : map.entrySet()) {
+         entry.getValue().close();
+       }
+       map.clear();
+     }
+   }
+   </code>
+ </pre>
+ Resource state machines implement Copycat's <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/SessionListener.html?is-external=true" title="class or interface in io.atomix.copycat.server.session"><code>SessionListener</code></a> interface to allow state
+ machines to listen for changes in client sessions. When used in an Atomix cluster, sessions
+ are specific to a state machine and not the entire cluster. When a client or replica opens
+ a resource, a new logical session to that resource is opened and the session listener's
+ <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/SessionListener.html?is-external=true#register-io.atomix.copycat.server.session.ServerSession-" title="class or interface in io.atomix.copycat.server.session"><code>SessionListener.register(ServerSession)</code></a> method will be called. When a client or replica
+ closes a resource, the <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/SessionListener.html?is-external=true#close-io.atomix.copycat.server.session.ServerSession-" title="class or interface in io.atomix.copycat.server.session"><code>SessionListener.close(ServerSession)</code></a> method will be called.
+ In other words, sessions in resource state machines represent a client's open resource instance,
+ and event messages <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/ServerSession.html?is-external=true#publish-java.lang.String-java.lang.Object-" title="class or interface in io.atomix.copycat.server.session"><code>published</code></a> to that session will
+ be received by the specific client side <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a> instance.
+ <pre>
+   <code>
+   public class MapStateMachine extends ResourceStateMachine {
+     private final Map&lt;Object, Object&gt; map = new HashMap&lt;&gt;();
+     private final Set&lt;ServerSession&gt; listeners = new HashSet&lt;&gt;();
+
+     public void listen(Commit&lt;ListenCommand&gt; commit) {
+       listeners.add(commit.session());
+     }
+
+     public void put(Commit&lt;PutCommand&gt; commit) {
+       map.put(commit.operation().key(), commit.operation().value());
+       for (ServerSession listener : listeners) {
+         listener.publish(commit.operation().key(), commit.operation().value());
+       }
+     }
+
+     public void close(ServerSession session) {
+       listeners.remove(session);
+     }
+   }
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -132,33 +209,6 @@ implements <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
-<!-- ======== NESTED CLASS SUMMARY ======== -->
-<ul class="blockList">
-<li class="blockList"><a name="nested.class.summary">
-<!--   -->
-</a>
-<h3>Nested Class Summary</h3>
-<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
-<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Class and Description</th>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.ConfigureCommand.html" title="class in io.atomix.resource">ResourceStateMachine.ConfigureCommand</a></span></code>
-<div class="block">Resource configure command.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.DeleteCommand.html" title="class in io.atomix.resource">ResourceStateMachine.DeleteCommand</a></span></code>
-<div class="block">Resource delete command.</div>
-</td>
-</tr>
-</table>
-</li>
-</ul>
 <!-- ========== METHOD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="method.summary">
@@ -178,13 +228,13 @@ implements <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#configure-java.util.Properties-">configure</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;config)</code>
-<div class="block">Configures the resource.</div>
+<div class="block">Applies a configuration to the resource state machine.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#delete--">delete</a></span>()</code>
-<div class="block">Deletes state machine state.</div>
+<div class="block">Cleans up deleted state machine state.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -252,7 +302,13 @@ implements <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server
 <li class="blockList">
 <h4>configure</h4>
 <pre>public&nbsp;void&nbsp;configure(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;config)</pre>
-<div class="block">Configures the resource.</div>
+<div class="block">Applies a configuration to the resource state machine.
+ <p>
+ State machine implementations should override this method to receive configurations from
+ client-side <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>s. Configurations are guaranteed to be applied to the state machine
+ on all nodes at the same logical time (i.e. <code>index</code>). Configurations may be changed at
+ runtime by any client, so state machines should account for runtime configuration changes and
+ update existing state according to the provided configuration if necessary.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>config</code> - The resource configuration.</dd>
@@ -318,7 +374,32 @@ implements <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server
 <li class="blockList">
 <h4>delete</h4>
 <pre>public&nbsp;void&nbsp;delete()</pre>
-<div class="block">Deletes state machine state.</div>
+<div class="block">Cleans up deleted state machine state.
+ <p>
+ This method is called when a client <a href="../../../io/atomix/resource/Resource.html#delete--"><code>deletes</code></a> a resource in the cluster.
+ This method is guaranteed to eventually be called on all servers at the same point in logical time
+ (i.e. <code>index</code>). State machines should override this method to clean up state machine state,
+ including releasing <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/Commit.html?is-external=true" title="class or interface in io.atomix.copycat.server"><code>Commit</code></a>s held by the state machine.
+ <pre>
+   <code>
+   public class MapStateMachine extends ResourceStateMachine {
+     private final Map&lt;Object, Commit&lt;PutCommand&gt;&gt; map = new HashMap&lt;&gt;();
+
+     public void put(Commit&lt;PutCommand&gt; commit) {
+       map.put(commit.operation().key(), commit);
+     }
+
+     public void delete() {
+       for (Map.Entry&lt;Object, Commit&lt;PutCommand&gt;&gt; entry : map.entrySet()) {
+         entry.getValue().close();
+       }
+       map.clear();
+     }
+   }
+   </code>
+ </pre>
+ Failing to override this method to clean up commits held by a resource state machine is considered
+ a bug and will eventually result in disk filling up.</div>
 </li>
 </ul>
 </li>
@@ -349,8 +430,8 @@ implements <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/resource/ResourceRegistry.html" title="class in io.atomix.resource"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../io/atomix/resource/ResourceStateMachine.ConfigureCommand.html" title="class in io.atomix.resource"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/resource/ResourceException.html" title="class in io.atomix.resource"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/resource/ResourceStateMachineExecutor.html" title="class in io.atomix.resource"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/resource/ResourceStateMachine.html" target="_top">Frames</a></li>
@@ -374,7 +455,7 @@ implements <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>

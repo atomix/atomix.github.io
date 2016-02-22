@@ -120,7 +120,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public enum <span class="typeNameLabel">Quorum</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;<a href="../../io/atomix/Quorum.html" title="enum in io.atomix">Quorum</a>&gt;</pre>
-<div class="block">Quorum configuration constants.</div>
+<div class="block">Magic quorum configuration constants.
+ <p>
+ Quorum constants can be used to configure "magic" quorum hints for an <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.
+ Quorum hints define the minimum number of replicas that must participate in the Raft consensus
+ algorithm.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -170,7 +174,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Quorum.html#size--">size</a></span>()</code>
-<div class="block">Returns the quorum size.</div>
+<div class="block">Returns the quorum size hint.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -222,7 +226,13 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>SEED</h4>
 <pre>public static final&nbsp;<a href="../../io/atomix/Quorum.html" title="enum in io.atomix">Quorum</a> SEED</pre>
-<div class="block">Indicates that the seed members should represent the quorum size.</div>
+<div class="block">Indicates that the seed members should represent the quorum size.
+ <p>
+ This is a magic quorum hint that is based on the number of replica
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>addresses</code></a> provided to the
+ <a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-"><code>replica builder factory</code></a> when constructing a new
+ replica. If the number of <code>members</code> provided to the replica builder is <code>3</code> then the
+ configured quorum hint will be <code>3</code>. This is the default quorum hint.</div>
 </li>
 </ul>
 <a name="ALL">
@@ -232,7 +242,10 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>ALL</h4>
 <pre>public static final&nbsp;<a href="../../io/atomix/Quorum.html" title="enum in io.atomix">Quorum</a> ALL</pre>
-<div class="block">Indicates that all members of the cluster should participate in the quorum.</div>
+<div class="block">Indicates that all members of the cluster should participate in the quorum.
+ <p>
+ This is a special quorum hint that forces all <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>s in the cluster to be full
+ voting members of the Raft consensus algorithm. This is only recommended for small clusters.</div>
 </li>
 </ul>
 </li>
@@ -292,10 +305,10 @@ not permitted.)</div>
 <li class="blockList">
 <h4>size</h4>
 <pre>public&nbsp;int&nbsp;size()</pre>
-<div class="block">Returns the quorum size.</div>
+<div class="block">Returns the quorum size hint.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The quorum size.</dd>
+<dd>The quorum size hint.</dd>
 </dl>
 </li>
 </ul>

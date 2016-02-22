@@ -72,7 +72,7 @@
 <div class="header">
 <h1 title="Package" class="title">Package&nbsp;io.atomix</h1>
 <div class="docSummary">
-<div class="block">Core Atomix APIs, including <code>ResourceClient</code> and <code>io.atomix.manager.ResourceReplica</code>.</div>
+<div class="block">Core Atomix APIs for creating and operating on distributed objects.</div>
 </div>
 <p>See:&nbsp;<a href="#package.description">Description</a></p>
 </div>
@@ -101,7 +101,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></td>
 <td class="colLast">
-<div class="block">Builds an <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a>.</div>
+<div class="block">Builder for programmatically constructing an <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -113,7 +113,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></td>
 <td class="colLast">
-<div class="block">Builds an <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.</div>
+<div class="block">Builder for programmatically constructing an <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.</div>
 </td>
 </tr>
 </tbody>
@@ -130,7 +130,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../io/atomix/Quorum.html" title="enum in io.atomix">Quorum</a></td>
 <td class="colLast">
-<div class="block">Quorum configuration constants.</div>
+<div class="block">Magic quorum configuration constants.</div>
 </td>
 </tr>
 </tbody>
@@ -158,14 +158,11 @@
 <!--   -->
 </a>
 <h2 title="Package io.atomix Description">Package io.atomix Description</h2>
-<div class="block">Core Atomix APIs, including <code>ResourceClient</code> and <code>io.atomix.manager.ResourceReplica</code>.
- <p>
+<div class="block">Core Atomix APIs for creating and operating on distributed objects.
  <h3>The Atomix cluster</h3>
  This package provides the primary mechanisms for creating and managing Atomix clusters. An Atomix cluster
- consists of one or more <code>servers</code> or <code>replicas</code>
- and any number of clients. To create a cluster, construct an <code>AtomixServer</code> or
- <code>AtomixReplica</code>.
- <p>
+ consists of one or more <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replicas</code></a> and any number of <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>clients</code></a>.
+ To create a cluster, construct an <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.
  <pre>
    <code>
    Address address = new Address("localhost", 5000);
@@ -178,32 +175,50 @@
    AtomixReplica replica = AtomixReplica.builder(address, members)
      .withTransport(new NettyTransport())
      .withStorage(new Storage("logs"))
+     .withQuorumHint(3)
+     .withBackupCount(1)
      .build();
    replica.open();
    </code>
  </pre>
  Atomix is built on the <a href="http://raft.github.io">Raft consensus algorithm</a> and so state changes
- in the Atomix cluster are quorum-based. Atomix clusters typically consist of an odd number of servers or
- replicas - e.g. <code>3</code> or <code>5</code> - to acheive the greatest level of fault tolerance.
+ in the Atomix cluster are quorum-based. This typically necessitates clusters of <code>3</code> or <code>5</code> nodes.
  <p>
- <b>Servers vs Replicas</b>
+ But Atomix is designed to be embedded and scale in clusters much larger than the typical <code>3</code> or <code>5</code>
+ node consensus based cluster. To do so, Atomix assigns a portion of the cluster to participate in the Raft
+ algorithm, and the remainder of the replicas participate in asynchronous replication or await failures as standby
+ nodes. A typical Atomix cluster may consist of <code>3</code> active Raft-voting replicas, <code>2</code> backup replicas,
+ and any number of reserve nodes. As replicas are added to or removed from the cluster, Atomix transparently
+ balances the cluster to ensure it maintains the desired number of active and backup replicas.
  <p>
- The sole difference between <code>servers</code> and <code>replicas</code>
- is the ability to operate on <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>resources</code></a>. Servers should be used when constructing
- a standalone system with which only <code>clients</code> can communicate, and replicas should be
- used for embedding a server while simultaneously operating on that server's state.
+ Atomix clusters are configured by setting the desired number of Raft participating nodes - known as the
+ <em>quorum hint</em> - and the desired number of backup replicas - the <em>backup count</em>. Given these two
+ parameters, Atomix clusters balance themselves to ensure that at least the desired number of replicas are
+ participants in the Raft consensus algorithm at any time.
  <p>
+ The size of the quorum is relevant both to performance and fault-tolerance. When resources are
+ created or deleted or resource state changes are submitted to the cluster, Atomix will synchronously
+ replicate changes to a majority of the cluster before they can be committed and update state. For
+ example, in a cluster where the <code>quorumHint</code> is <code>3</code>, a
+ <a href="../../io/atomix/collections/DistributedMap.html#put-K-V-"><code>DistributedMap.put(Object, Object)</code></a> command must be sent to the leader
+ and then synchronously replicated to one other replica before it can be committed and applied to the
+ map state machine. This also means that a cluster with <code>quorumHint</code> equal to <code>3</code> can tolerate
+ at most one failure.
+ <p>
+ Backup replicas receive state changes asynchronously <em>after</em> they're committed via the Raft participating
+ replicas. Further replicating state changes to backup replicas allows active replicas to be easily replaced in
+ the event of a failure. If an active member of the Raft cluster is partitioned or crashes, Atomix will attempt to
+ replace it with a backup replica if possible. Because the backup is largely caught up to the partitioned replica,
+ replacing the Raft replica is a quick and painless operation. This allows Atomix clusters to handle failures of
+ a majority of the cluster so long as a majority of the Raft replicas do not fail simultaneously.
  <h3>Resources</h3>
- <p>
- Atomix <code>servers</code> and <code>replicas</code> provide the ability
- to manage and replicate state, and <code>replicas</code> and <code>clients</code>
- provide the interface to operate on that state. The <code>Atomix</code> interface provides the
- methods necessary to manage creating and operating on <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resources</code></a>.
- A resource is a stateful, fault-tolerant, distributed object that's manged by a replicated state machine. To
- create a resource, simply call <code>ResourceClient.get(java.lang.String, io.atomix.resource.ResourceType)</code> or
- <code>io.atomix.manager.ResourceClient#create(java.lang.String, io.atomix.resource.ResourceType)</code> on a
- <code>client</code> or <code>replica</code>.
- <p>
+ Atomix <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replicas</code></a> manage and replicate state, and both
+ <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replicas</code></a> and <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>clients</code></a> provide the interface
+ to operate on that state. The <a href="../../io/atomix/Atomix.html" title="class in io.atomix"><code>Atomix</code></a> interface provides the methods necessary
+ to manage creating and operating on <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resources</code></a>. A resource is a stateful,
+ fault-tolerant, distributed object that's manged by a replicated state machine. To create a resource, simply
+ call <a href="../../io/atomix/Atomix.html#get-java.lang.String-io.atomix.resource.ResourceType-"><code>Atomix.get(java.lang.String, io.atomix.resource.ResourceType)</code></a> or
+ use one of the <code>getResource</code> methods like <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-"><code>Atomix.getMap(java.lang.String)</code></a>.
  <pre>
    <code>
    DistributedGroup group = atomix.getGroup("group").get();
@@ -211,16 +226,14 @@
  </pre>
  A <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>resource</code></a> is simply an interface to a replicated state machine. When a
  resource is created, a state machine is created on each <code>server</code> or
- <code>replica</code> in the cluster, and operations on the resource are submitted to the
+ <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replica</code></a> in the cluster, and operations on the resource are submitted to the
  cluster where they're logged, replicated, and applied to the resource's specific <a href="../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource"><code>ResourceStateMachine</code></a>.
- <p>
- <b>Clients vs Replicas</b>
- <p>
- The sole difference between <code>clients</code> and <code>replicas</code> is
+ <h4>Clients vs Replicas</h4>
+ The sole difference between <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>clients</code></a> and <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replicas</code></a> is
  the ability to store state and participate in replication. Clients operate on resource state purely remotely. When
- a resource created by an <code>AtomixClient</code> is modified, operations are submitted remotely
+ a resource created by an <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a> is modified, operations are submitted remotely
  to the cluster. The same is true of replicas; when operations are performed on a resource created via an
- <code>AtomixReplica</code>, state changes may be performed remotely, but the replica also participates
+ <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>, state changes may be performed remotely, but the replica also participates
  in the replication and commitment of the state changes. This allows servers to be effectively be embedded in code that
  operates on resource state.</div>
 <dl>

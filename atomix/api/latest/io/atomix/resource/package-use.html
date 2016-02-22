@@ -85,7 +85,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix">io.atomix</a></td>
 <td class="colLast">
-<div class="block">Core Atomix APIs, including <code>ResourceClient</code> and <code>io.atomix.manager.ResourceReplica</code>.</div>
+<div class="block">Core Atomix APIs for creating and operating on distributed objects.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -114,7 +114,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.resource">io.atomix.resource</a></td>
 <td class="colLast">
-<div class="block">Provides classes and interfaces for creating and operating on Raft replicated state machines.</div>
+<div class="block">Base classes and interfaces for creating and operating on replicated state machines in Atomix.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -143,22 +143,17 @@
 </tr>
 <tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Config.html#io.atomix">Resource.Config</a>
-<div class="block">Resource configuration.</div>
+<div class="block">Base class for cluster-wide resource configurations.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Options.html#io.atomix">Resource.Options</a>
-<div class="block">Resource options.</div>
+<div class="block">Base class for local resource options.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceType.html#io.atomix">ResourceType</a>
-<div class="block">Resource type.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceTypeResolver.html#io.atomix">ResourceTypeResolver</a>
-<div class="block">The resource type resolver is responsible for locating resource types.</div>
+<div class="block">Identifier for resource metadata and <a href="../../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource"><code>state machine</code></a> information.</div>
 </td>
 </tr>
 </tbody>
@@ -175,7 +170,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/ReadConsistency.html#io.atomix.collections">ReadConsistency</a>
-<div class="block">Resource read consistency levels.</div>
+<div class="block">Constants for controlling read consistency constraints on a per-request basis.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -185,17 +180,17 @@
 </tr>
 <tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Config.html#io.atomix.collections">Resource.Config</a>
-<div class="block">Resource configuration.</div>
+<div class="block">Base class for cluster-wide resource configurations.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Options.html#io.atomix.collections">Resource.Options</a>
-<div class="block">Resource options.</div>
+<div class="block">Base class for local resource options.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceTypeInfo.html#io.atomix.collections">ResourceTypeInfo</a>
-<div class="block">Resource type info.</div>
+<div class="block">Annotation for specifying resource state and serialization information.</div>
 </td>
 </tr>
 </tbody>
@@ -217,17 +212,17 @@
 </tr>
 <tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Config.html#io.atomix.coordination">Resource.Config</a>
-<div class="block">Resource configuration.</div>
+<div class="block">Base class for cluster-wide resource configurations.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Options.html#io.atomix.coordination">Resource.Options</a>
-<div class="block">Resource options.</div>
+<div class="block">Base class for local resource options.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceTypeInfo.html#io.atomix.coordination">ResourceTypeInfo</a>
-<div class="block">Resource type info.</div>
+<div class="block">Annotation for specifying resource state and serialization information.</div>
 </td>
 </tr>
 </tbody>
@@ -249,17 +244,17 @@
 </tr>
 <tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Config.html#io.atomix.messaging">Resource.Config</a>
-<div class="block">Resource configuration.</div>
+<div class="block">Base class for cluster-wide resource configurations.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Options.html#io.atomix.messaging">Resource.Options</a>
-<div class="block">Resource options.</div>
+<div class="block">Base class for local resource options.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceTypeInfo.html#io.atomix.messaging">ResourceTypeInfo</a>
-<div class="block">Resource type info.</div>
+<div class="block">Annotation for specifying resource state and serialization information.</div>
 </td>
 </tr>
 </tbody>
@@ -275,78 +270,38 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colOne"><a href="../../../io/atomix/resource/class-use/Instance.html#io.atomix.resource">Instance</a>
-<div class="block">Resource instance.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../io/atomix/resource/class-use/Instance.Method.html#io.atomix.resource">Instance.Method</a>
-<div class="block">Instance open method.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../io/atomix/resource/class-use/InstanceOperation.html#io.atomix.resource">InstanceOperation</a>
-<div class="block">Resource operation.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/ReadConsistency.html#io.atomix.resource">ReadConsistency</a>
-<div class="block">Resource read consistency levels.</div>
+<div class="block">Constants for controlling read consistency constraints on a per-request basis.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.html#io.atomix.resource">Resource</a>
 <div class="block">Base class for fault-tolerant stateful distributed objects.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Config.html#io.atomix.resource">Resource.Config</a>
-<div class="block">Resource configuration.</div>
-</td>
-</tr>
 <tr class="altColor">
-<td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Options.html#io.atomix.resource">Resource.Options</a>
-<div class="block">Resource options.</div>
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Config.html#io.atomix.resource">Resource.Config</a>
+<div class="block">Base class for cluster-wide resource configurations.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.State.html#io.atomix.resource">Resource.State</a>
-<div class="block">Indicates the state of the resource's communication with the cluster.</div>
+<div class="block">Resource session state constants.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceFactory.html#io.atomix.resource">ResourceFactory</a>
-<div class="block">Resource factory.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceOperation.html#io.atomix.resource">ResourceOperation</a>
-<div class="block">Resource operation.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceRegistry.html#io.atomix.resource">ResourceRegistry</a>
-<div class="block">Resource registry.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceStateMachine.html#io.atomix.resource">ResourceStateMachine</a>
-<div class="block">Base resource state machine.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceType.html#io.atomix.resource">ResourceType</a>
-<div class="block">Resource type.</div>
+<div class="block">Base class for resource state machines.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceTypeResolver.html#io.atomix.resource">ResourceTypeResolver</a>
-<div class="block">The resource type resolver is responsible for locating resource types.</div>
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceType.html#io.atomix.resource">ResourceType</a>
+<div class="block">Identifier for resource metadata and <a href="../../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource"><code>state machine</code></a> information.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/WriteConsistency.html#io.atomix.resource">WriteConsistency</a>
-<div class="block">Resource write consistency level.</div>
+<div class="block">Constants for controlling write consistency constraints on a per-request basis.</div>
 </td>
 </tr>
 </tbody>
@@ -363,7 +318,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/ReadConsistency.html#io.atomix.variables">ReadConsistency</a>
-<div class="block">Resource read consistency levels.</div>
+<div class="block">Constants for controlling read consistency constraints on a per-request basis.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -373,17 +328,17 @@
 </tr>
 <tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Config.html#io.atomix.variables">Resource.Config</a>
-<div class="block">Resource configuration.</div>
+<div class="block">Base class for cluster-wide resource configurations.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Options.html#io.atomix.variables">Resource.Options</a>
-<div class="block">Resource options.</div>
+<div class="block">Base class for local resource options.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceTypeInfo.html#io.atomix.variables">ResourceTypeInfo</a>
-<div class="block">Resource type info.</div>
+<div class="block">Annotation for specifying resource state and serialization information.</div>
 </td>
 </tr>
 </tbody>

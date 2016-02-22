@@ -111,7 +111,11 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public class <span class="typeNameLabel">ResourceType</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
-<div class="block">Resource type.</div>
+<div class="block">Identifier for resource metadata and <a href="../../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource"><code>state machine</code></a> information.
+ <p>
+ Given a <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a> class, the <code>ResourceType</code> provides information about that resource
+ necessary to handle state changes and serialization in the cluster. Resource classes provided to
+ the <code>ResourceType</code> constructor must be annotated with the <a href="../../../io/atomix/resource/ResourceTypeInfo.html" title="annotation in io.atomix.resource"><code>ResourceTypeInfo</code></a> annotation.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -156,7 +160,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceType.html#equals-java.lang.Object-">equals</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;object)</code>&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/resource/ResourceFactory.html" title="interface in io.atomix.resource">ResourceFactory</a></code></td>
+<td class="colFirst"><code>io.atomix.resource.util.ResourceFactory</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceType.html#factory--">factory</a></span>()</code>
 <div class="block">Returns the resource instance factory.</div>
 </td>
@@ -266,7 +270,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>factory</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/resource/ResourceFactory.html" title="interface in io.atomix.resource">ResourceFactory</a>&nbsp;factory()</pre>
+<pre>public&nbsp;io.atomix.resource.util.ResourceFactory&nbsp;factory()</pre>
 <div class="block">Returns the resource instance factory.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>

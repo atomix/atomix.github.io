@@ -132,7 +132,13 @@
 <br>
 <pre>public static class <span class="typeNameLabel">Resource.Options</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a></pre>
-<div class="block">Resource options.</div>
+<div class="block">Base class for local resource options.
+ <p>
+ Options are configurations that are specific to a local resource instance. The first time a resource
+ is created by a client, the client may provide <code>Options</code> specifying the behavior of the resource
+ instance. Those initial options configure the behavior of the resource instance on the local node only.
+ For instance, options may include an <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> to which to
+ bind a server or a default <a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource"><code>WriteConsistency</code></a> level.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../serialized-form.html#io.atomix.resource.Resource.Options">Serialized Form</a></dd>
