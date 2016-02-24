@@ -265,7 +265,7 @@ CopycatClient client = CopycatClient.builder(members)
 ```
 
 Because the client will be submitting `PutCommand` and `GetQuery` to the cluster, we need to register those operations with the client's serializer as well to ensure they can be serialized in the same way the server expects them:
-`
+
 ```java
 client.serializer().register(PutCommand.class);
 client.serializer().register(GetQuery.class);
