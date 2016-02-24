@@ -217,7 +217,7 @@ client.serializer().register(PutCommand.class);
 client.serializer().register(GetQuery.class);
 ```
 
-This approach is slightly more efficient, but even more efficient means of serialization are described in the [Catalyst documentation][serialization].
+This approach is slightly more efficient, but even more efficient means of serialization are described in the [Catalyst documentation][io-serialization].
 
 Once the server has been built, start the server by calling `open`:
 
