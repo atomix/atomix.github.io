@@ -94,20 +94,6 @@
 <div class="block">Facilitates communication with the Copycat cluster within the context of a session.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.copycat.protocol">io.atomix.copycat.protocol</a></td>
-<td class="colLast">
-<div class="block"><a href="../../../../io/atomix/copycat/protocol/Request.html" title="interface in io.atomix.copycat.protocol"><code>Request</code></a> and <a href="../../../../io/atomix/copycat/protocol/Response.html" title="interface in io.atomix.copycat.protocol"><code>Response</code></a> implementations for all
- client-server communication.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.copycat.server.storage.entry">io.atomix.copycat.server.storage.entry</a></td>
-<td class="colLast">
-<div class="block"><a href="../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>Entry</code></a> implementations used internally to replicate
- state changes, sessions, and configuration changes in the cluster.</div>
-</td>
-</tr>
 </tbody>
 </table>
 </li>
@@ -152,76 +138,6 @@
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">ClientSession.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/session/ClientSession.html#submit-io.atomix.copycat.Query-">submit</a></span>(<a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat">Query</a>&lt;T&gt;&nbsp;query)</code>
 <div class="block">Submits a query to the session.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.copycat.protocol">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat">Query</a> in <a href="../../../../io/atomix/copycat/protocol/package-summary.html">io.atomix.copycat.protocol</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../io/atomix/copycat/protocol/package-summary.html">io.atomix.copycat.protocol</a> that return <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat">Query</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat">Query</a></code></td>
-<td class="colLast"><span class="typeNameLabel">QueryRequest.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/protocol/QueryRequest.html#query--">query</a></span>()</code>
-<div class="block">Returns the query.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../io/atomix/copycat/protocol/package-summary.html">io.atomix.copycat.protocol</a> with parameters of type <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat">Query</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/copycat/protocol/QueryRequest.Builder.html" title="class in io.atomix.copycat.protocol">QueryRequest.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">QueryRequest.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/protocol/QueryRequest.Builder.html#withQuery-io.atomix.copycat.Query-">withQuery</a></span>(<a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat">Query</a>&nbsp;query)</code>
-<div class="block">Sets the request query.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.copycat.server.storage.entry">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat">Query</a> in <a href="../../../../io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a> that return <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat">Query</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat">Query</a></code></td>
-<td class="colLast"><span class="typeNameLabel">QueryEntry.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/storage/entry/QueryEntry.html#getQuery--">getQuery</a></span>()</code>
-<div class="block">Returns the query.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a> with parameters of type <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat">Query</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/storage/entry/QueryEntry.html" title="class in io.atomix.copycat.server.storage.entry">QueryEntry</a></code></td>
-<td class="colLast"><span class="typeNameLabel">QueryEntry.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/storage/entry/QueryEntry.html#setQuery-io.atomix.copycat.Query-">setQuery</a></span>(<a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat">Query</a>&nbsp;query)</code>
-<div class="block">Sets the query.</div>
 </td>
 </tr>
 </tbody>

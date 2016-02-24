@@ -120,7 +120,39 @@ var activeTableTab = "activeTableTab";
 <pre>public static class <span class="typeNameLabel">CopycatServer.Builder</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</pre>
-<div class="block">Raft server builder.</div>
+<div class="block">Builds a single-use Copycat server.
+ <p>
+ This builder should be used to programmatically configure and construct a new <a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><code>CopycatServer</code></a> instance.
+ The builder provides methods for configuring all aspects of a Copycat server. The <code>CopycatServer.Builder</code>
+ class cannot be instantiated directly. To create a new builder, use one of the
+ <a href="../../../../io/atomix/copycat/server/CopycatServer.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-"><code>server builder factory</code></a> methods.
+ <pre>
+   <code>
+   CopycatServer.Builder builder = CopycatServer.builder(address, members);
+   </code>
+ </pre>
+ Once the server has been configured, use the <a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#build--"><code>build()</code></a> method to build the server instance:
+ <pre>
+   <code>
+   CopycatServer server = CopycatServer.builder(address, members)
+     ...
+     .build();
+   </code>
+ </pre>
+ Each server <em>must</em> be configured with a <a href="../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server"><code>StateMachine</code></a>. The state machine is the component of the
+ server that stores state and reacts to commands and queries submitted by clients to the cluster. State machines
+ are provided to the server in the form of a state machine <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function"><code>factory</code></a> to allow the server to reconstruct
+ its state when necessary.
+ <pre>
+   <code>
+   CopycatServer server = CopycatServer.builder(address, members)
+     .withStateMachine(MyStateMachine::new)
+     .build();
+   </code>
+ </pre>
+ Similarly critical to the operation of the server are the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a> and <a href="../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> layers. By default,
+ servers are configured with the <code>io.atomix.catalyst.transport.NettyTransport</code> transport if it's available on
+ the classpath. Users should provide a <a href="../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> instance to specify how the server stores state changes.</div>
 </li>
 </ul>
 </div>

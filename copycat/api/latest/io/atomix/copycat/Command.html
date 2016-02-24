@@ -117,9 +117,7 @@ extends <a href="../../../io/atomix/copycat/Operation.html" title="interface in 
  is submitted to the cluster, if the command is received by a follower, the Raft protocol dictates that it must be
  forwarded to the cluster leader. Once the leader receives a command, it logs and replicates the command to a majority
  of the cluster before applying it to its state machine and responding with the result.
- <p>
- <h3>Consistency levels</h3>
- <p>
+ <h2>Consistency levels</h2>
  Commands are allow both to modify system state and to trigger events
  published to client <a href="../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>sessions</code></a>. Whereas <a href="../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>Query</code></a> consistency
  levels dictate when and how queries can be executed on follower nodes, command
@@ -130,9 +128,7 @@ extends <a href="../../../io/atomix/copycat/Operation.html" title="interface in 
  and perhaps send a message to any lock waiters notifying them that the lock is available. In this case,
  <a href="../../../io/atomix/copycat/Command.ConsistencyLevel.html#LINEARIZABLE"><code>linearizable</code></a> consistency can be used to ensure
  that lock holders are notified before the <code>unlock</code> operation completes.
- <p>
- <h3>Compaction modes</h3>
- <p>
+ <h2>Compaction modes</h2>
  <em>Determinism is the number one rule of state machines!</em>
  <p>
  When commands are submitted to the Raft cluster, they're written to a commit log on disk or in memory (based on the
@@ -143,9 +139,7 @@ extends <a href="../../../io/atomix/copycat/Operation.html" title="interface in 
  to safely handle the complexities of removing state from state machines while ensuring state machines remain
  deterministic, particularly in the event of a failure and replay of the commit log. See the
  <a href="../../../io/atomix/copycat/Command.CompactionMode.html" title="enum in io.atomix.copycat"><code>Command.CompactionMode</code></a> documentation for more info.
- <p>
  <h3>Serialization</h3>
- <p>
  Commands must be serializable both by the client and by all servers in the cluster. By default, all operations use
  Java serialization. However, default serialization in slow because it requires the full class name and does not allocate
  memory efficiently. For this reason, it's recommended that commands implement <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>

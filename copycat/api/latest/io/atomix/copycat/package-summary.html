@@ -72,8 +72,7 @@
 <div class="header">
 <h1 title="Package" class="title">Package&nbsp;io.atomix.copycat</h1>
 <div class="docSummary">
-<div class="block">Provides classes for communicating with a Raft cluster and submitting
- <a href="../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>commands</code></a> and <a href="../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>queries</code></a>.</div>
+<div class="block">Core interfaces for operating on replicated state machines in the Copycat cluster.</div>
 </div>
 <p>See:&nbsp;<a href="#package.description">Description</a></p>
 </div>
@@ -159,8 +158,28 @@
 <!--   -->
 </a>
 <h2 title="Package io.atomix.copycat Description">Package io.atomix.copycat Description</h2>
-<div class="block">Provides classes for communicating with a Raft cluster and submitting
- <a href="../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>commands</code></a> and <a href="../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>queries</code></a>.</div>
+<div class="block">Core interfaces for operating on replicated state machines in the Copycat cluster.
+ <p>
+ The interfaces in this package are shared by both clients and servers. They are the interfaces through which clients and servers communicate
+ state change and query information with one another.
+ <p>
+ Clients operate on Copycat replicated state machines by submitting state change <a href="../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat"><code>operations</code></a> to the cluster.
+ Copycat supports separate operations - <a href="../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>Command</code></a> and <a href="../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>Query</code></a> - for submitting state change
+ and read-only operations respectively. Each operation maps to a method of a replicated state machine. The handling of operations is dependent
+ on a variety of factors, including the operation type and the operation's <a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat"><code>consistency level</code></a>.
+ When an operation is submitted to the cluster, the operation will eventually be translated into a method call on the replicated state machine
+ and a response will be sent back to the client.
+ <h2>Commands</h2>
+ <a href="../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>Commands</code></a> are operations that modify the state of the replicated state machine. A command is a serializable
+ object that will be sent to the leader of the cluster and replicated to a persisted on a majority of the servers in the Copycat cluster before
+ being applied to the state machine. Once a command is committed (stored on a majority of servers), it's translated into a method call on the
+ state machine on each server. The return value of the state machine method on the <em>leader</em> is sent back to the client.
+ <h2>Queries</h2>
+ <a href="../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>Queries</code></a> are operations that read but do not modify the state of the replicated state machine. Because queries
+ do not effect the state of the system, servers do not have to replicate them to a majority of the cluster, and no disk I/O is necessary to
+ complete a query of the state machine's state. Like commands, queries translate to a method call on the replicated state machine, but only
+ the server to which the query is submitted applies the query to its state machine. Once a query is completed, the return value of the state
+ machine method called is sent back to the client.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>

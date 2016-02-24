@@ -89,20 +89,6 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.copycat.server.protocol">io.atomix.copycat.server.protocol</a></td>
-<td class="colLast">
-<div class="block"><a href="../../../../../../io/atomix/copycat/protocol/Request.html" title="interface in io.atomix.copycat.protocol"><code>Request</code></a> and <a href="../../../../../../io/atomix/copycat/protocol/Response.html" title="interface in io.atomix.copycat.protocol"><code>Response</code></a> implementations for
- server-to-server communication.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.copycat.server.storage.entry">io.atomix.copycat.server.storage.entry</a></td>
-<td class="colLast">
-<div class="block"><a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>Entry</code></a> implementations used internally to replicate
- state changes, sessions, and configuration changes in the cluster.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server.storage.system">io.atomix.copycat.server.storage.system</a></td>
 <td class="colLast">
 <div class="block">Classes and interfaces that aid in storing and loading persistent cluster and server configurations.</div>
@@ -206,118 +192,6 @@
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">Cluster.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/cluster/Cluster.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a>&gt;&nbsp;callback)</code>
 <div class="block">Registers a callback to be called when a member leaves the cluster.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.copycat.server.protocol">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a> in <a href="../../../../../../io/atomix/copycat/server/protocol/package-summary.html">io.atomix.copycat.server.protocol</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../../io/atomix/copycat/server/protocol/package-summary.html">io.atomix.copycat.server.protocol</a> that return <a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigurationRequest.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/protocol/ConfigurationRequest.html#member--">member</a></span>()</code>
-<div class="block">Returns the member to configure.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../../io/atomix/copycat/server/protocol/package-summary.html">io.atomix.copycat.server.protocol</a> that return types with arguments of type <a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigureRequest.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/protocol/ConfigureRequest.html#members--">members</a></span>()</code>
-<div class="block">Returns the configuration members.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigurationResponse.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/protocol/ConfigurationResponse.html#members--">members</a></span>()</code>
-<div class="block">Returns the configuration members list.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../../io/atomix/copycat/server/protocol/package-summary.html">io.atomix.copycat.server.protocol</a> with parameters of type <a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/protocol/ConfigurationRequest.Builder.html" title="type parameter in ConfigurationRequest.Builder">T</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigurationRequest.Builder.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/protocol/ConfigurationRequest.Builder.html#withMember-io.atomix.copycat.server.cluster.Member-">withMember</a></span>(<a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a>&nbsp;member)</code>
-<div class="block">Sets the request member.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Method parameters in <a href="../../../../../../io/atomix/copycat/server/protocol/package-summary.html">io.atomix.copycat.server.protocol</a> with type arguments of type <a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/protocol/ConfigureRequest.Builder.html" title="class in io.atomix.copycat.server.protocol">ConfigureRequest.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigureRequest.Builder.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/protocol/ConfigureRequest.Builder.html#withMembers-java.util.Collection-">withMembers</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a>&gt;&nbsp;members)</code>
-<div class="block">Sets the request members.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/protocol/ConfigurationResponse.Builder.html" title="type parameter in ConfigurationResponse.Builder">T</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigurationResponse.Builder.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/protocol/ConfigurationResponse.Builder.html#withMembers-java.util.Collection-">withMembers</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a>&gt;&nbsp;members)</code>
-<div class="block">Sets the response members.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.copycat.server.storage.entry">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a> in <a href="../../../../../../io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../../io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a> that return types with arguments of type <a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigurationEntry.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/entry/ConfigurationEntry.html#getMembers--">getMembers</a></span>()</code>
-<div class="block">Returns the members.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Method parameters in <a href="../../../../../../io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a> with type arguments of type <a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/entry/ConfigurationEntry.html" title="class in io.atomix.copycat.server.storage.entry">ConfigurationEntry</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConfigurationEntry.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/entry/ConfigurationEntry.html#setMembers-java.util.Collection-">setMembers</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a>&gt;&nbsp;members)</code>
-<div class="block">Sets the members.</div>
 </td>
 </tr>
 </tbody>

@@ -120,7 +120,7 @@ var activeTableTab = "activeTableTab";
  Membership exposed via this interface is provided from the perspective of the local server and may not
  necessarily be consistent with cluster membership from the perspective of other nodes. The only consistent
  membership list is on the <a href="../../../../../io/atomix/copycat/server/cluster/Cluster.html#leader--"><code>leader</code></a> node.
- <h3>Cluster management</h3>
+ <h2>Cluster management</h2>
  Users can use the <code>Cluster</code> to manage the Copycat cluster membership. Typically, servers join the
  cluster by calling <a href="../../../../../io/atomix/copycat/server/CopycatServer.html#open--"><code>CopycatServer.open()</code></a> or <a href="../../../../../io/atomix/copycat/server/cluster/Cluster.html#join--"><code>join()</code></a>, but in the event that a server fails
  permanently and thus cannot remove itself, other nodes can remove arbitrary servers.
@@ -132,9 +132,17 @@ var activeTableTab = "activeTableTab";
    });
    </code>
  </pre>
+ When a member is removed from the cluster, the configuration change removing the member will be replicated to all
+ the servers in the cluster and persisted to disk. Once a member has been removed, for that member to rejoin the cluster
+ it must fully restart and request to rejoin the cluster. For servers configured with a persistent
+ <a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage"><code>StorageLevel</code></a>, cluster configurations are stored on disk.
+ <p>
  Additionally, members can be <a href="../../../../../io/atomix/copycat/server/cluster/Member.html#promote--"><code>promoted</code></a> and <a href="../../../../../io/atomix/copycat/server/cluster/Member.html#demote--"><code>demoted</code></a> by any
- other member of the cluster. See the <a href="../../../../../io/atomix/copycat/server/cluster/Member.Type.html" title="enum in io.atomix.copycat.server.cluster"><code>Member.Type</code></a> documentation for more information on promotion
- and demotion of members.</div>
+ other member of the cluster. When a member state is changed, a cluster configuration change request is sent
+ to the cluster leader where it's logged and replicated through the Raft consensus algorithm. <em>During</em>
+ the configuration change, servers' cluster configurations will be updated. Once the configuration change is
+ complete, it will be persisted to disk on all servers and is guaranteed not to be lost even in the event of a
+ full cluster shutdown (assuming the server uses a persistent <a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage"><code>StorageLevel</code></a>).</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -266,8 +274,10 @@ var activeTableTab = "activeTableTab";
 <pre>long&nbsp;term()</pre>
 <div class="block">Returns the current cluster term.
  <p>
- The term is a monotonically increasing number used by the Raft algorithm to represent a point in logical
- time. For any given term, only one <a href="../../../../../io/atomix/copycat/server/cluster/Cluster.html#leader--"><code>leader</code></a> may be elected.</div>
+ The term is representative of the epoch determined by the underlying Raft consensus algorithm. The term is a monotonically
+ increasing number used by Raft to represent a point in logical time. If the cluster is persistent (i.e. all servers use a persistent
+ <a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage"><code>StorageLevel</code></a>), the term is guaranteed to be unique and monotonically increasing even across
+ cluster restarts. Additionally, for any given term, Raft guarantees that only a single <a href="../../../../../io/atomix/copycat/server/cluster/Cluster.html#leader--"><code>leader</code></a> can be elected.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The current cluster term.</dd>
@@ -283,17 +293,19 @@ var activeTableTab = "activeTableTab";
 <pre><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a>&gt;&nbsp;onLeaderElection(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a>&gt;&nbsp;callback)</pre>
 <div class="block">Registers a callback to be called when a leader is elected.
  <p>
- The provided <code>callback</code> will be called when a new leader is elected for any given term. Once a
- leader election callback is called, the correct <a href="../../../../../io/atomix/copycat/server/cluster/Cluster.html#term--"><code>term()</code></a> for the leader is guaranteed to have
- already been set. Thus, to get the term for the provided leader, simply read the cluster <a href="../../../../../io/atomix/copycat/server/cluster/Cluster.html#term--"><code>term()</code></a>.
- <p>
+ The provided <code>callback</code> will be called when a new leader is elected for a term. Because Raft ensures only a single leader
+ can be elected for any given term, each election callback will be called at most once per term. However, note that a leader may
+ not be elected for a term as well.
  <pre>
    <code>
    server.cluster().onLeaderElection(member -&gt; {
      System.out.println(member.address() + " elected for term " + server.cluster().term());
    });
    </code>
- </pre></div>
+ </pre>
+ The <a href="../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster"><code>Member</code></a> provided to the callback represents the member that was elected leader. Copycat guarantees that this member is
+ a member of the <a href="../../../../../io/atomix/copycat/server/cluster/Cluster.html" title="interface in io.atomix.copycat.server.cluster"><code>Cluster</code></a>. When a leader election callback is called, the correct <a href="../../../../../io/atomix/copycat/server/cluster/Cluster.html#term--"><code>term()</code></a> for the leader is guaranteed
+ to have already been set. Thus, to get the term for the provided leader, simply read the cluster <a href="../../../../../io/atomix/copycat/server/cluster/Cluster.html#term--"><code>term()</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>callback</code> - The callback to be called when a new leader is elected.</dd>
@@ -311,9 +323,8 @@ var activeTableTab = "activeTableTab";
 <pre><a href="../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a>&nbsp;member()</pre>
 <div class="block">Returns the local cluster member.
  <p>
- The local member is representative of the parent <a href="../../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><code>CopycatServer</code></a> to which this cluster
- perspective belongs. The local cluster member will always be non-null and
- <a href="../../../../../io/atomix/copycat/server/cluster/Member.Status.html#AVAILABLE"><code>AVAILABLE</code></a>.</div>
+ The local member is representative of the local <a href="../../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><code>CopycatServer</code></a>. The local cluster member will always be non-null and
+ <a href="../../../../../io/atomix/copycat/server/cluster/Member.Status.html#AVAILABLE"><code>AVAILABLE</code></a> if the server is running.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The local cluster member.</dd>
@@ -392,7 +403,7 @@ var activeTableTab = "activeTableTab";
  to open a new server and join the cluster in order to ensure all associated resources are property opened.
  <p>
  When a server joins the cluster, the server will connect to arbitrary <a href="../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster"><code>Member</code></a>s, attempting to locate
- the cluster leader and send a <a href="../../../../../io/atomix/copycat/server/protocol/JoinRequest.html" title="class in io.atomix.copycat.server.protocol"><code>JoinRequest</code></a>. Once the leader has been
+ the cluster leader and send a <code>JoinRequest</code>. Once the leader has been
  found, the leader will replicate and commit a configuration change, notifying other members of the cluster of
  the joining server.
  <p>
@@ -420,7 +431,7 @@ var activeTableTab = "activeTableTab";
  <em>This method is for advanced usage only.</em> Typically, users should use <a href="../../../../../io/atomix/copycat/server/CopycatServer.html#close--"><code>CopycatServer.close()</code></a>
  to leave the cluster and close a server in order to ensure all associated resources are properly closed.
  <p>
- When a server leaves the cluster, the server submits a <a href="../../../../../io/atomix/copycat/server/protocol/LeaveRequest.html" title="class in io.atomix.copycat.server.protocol"><code>LeaveRequest</code></a>
+ When a server leaves the cluster, the server submits a <code>LeaveRequest</code>
  to the cluster leader. The leader will replicate and commit the configuration change in order to remove the
  leaving server from the cluster and notify each member of the leaving server.
  <p>

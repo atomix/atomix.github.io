@@ -122,7 +122,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  consistency between members and manage cluster configurations, client sessions, state machine operations, and other
  tasks.
  <p>
- State changes are written to the log as <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>Entry</code></a> objects. Each entry is associated with an <code>index</code> and
+ State changes are written to the log as <code>Entry</code> objects. Each entry is associated with an <code>index</code> and
  <code>term</code>. The <code>index</code> is a 1-based entry index from the start of the log. The <code>term</code> is used for
  various consistency checks in the Raft algorithm. Raft guarantees that a <a href="../../../../../io/atomix/copycat/server/storage/Log.html#commit-long-"><code>committed</code></a> entry at any
  index <code>i</code> that has term <code>t</code> will also be present in the logs on all other servers in the cluster at the
@@ -144,7 +144,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
    </code>
  </pre>
  <p>
- <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>entries</code></a> are appended to <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s in the log. Segments are individual file or memory based
+ <code>entries</code> are appended to <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s in the log. Segments are individual file or memory based
  groups of sequential entries. Each segment has a fixed capacity in terms of either number of entries or size in
  bytes. Once the capacity of a segment has been reached, the log rolls over to a new segment for the next entry that's
  appended.
@@ -224,7 +224,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>long</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#append-io.atomix.copycat.server.storage.entry.Entry-">append</a></span>(<a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&nbsp;entry)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#append-io.atomix.copycat.server.storage.entry.Entry-">append</a></span>(io.atomix.copycat.server.storage.entry.Entry&nbsp;entry)</code>
 <div class="block">Appends an entry to the log.</div>
 </td>
 </tr>
@@ -259,7 +259,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&lt;T&gt;&gt;<br>T</code></td>
+<td class="colFirst"><code>&lt;T extends io.atomix.copycat.server.storage.entry.Entry&lt;T&gt;&gt;<br>T</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#create-java.lang.Class-">create</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type)</code>
 <div class="block">Creates a new log entry.</div>
 </td>
@@ -277,7 +277,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </td>
 </tr>
 <tr id="i9" class="rowColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&gt;<br>T</code></td>
+<td class="colFirst"><code>&lt;T extends io.atomix.copycat.server.storage.entry.Entry&gt;<br>T</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#get-long-">get</a></span>(long&nbsp;index)</code>
 <div class="block">Gets an entry from the log at the given index.</div>
 </td>
@@ -463,7 +463,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <pre>public&nbsp;long&nbsp;length()</pre>
 <div class="block">Returns the number of entries in the log.
  <p>
- The length is the total number of <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>entries</code></a> represented by the log on disk. This includes entries
+ The length is the total number of <code>entries</code> represented by the log on disk. This includes entries
  that have been compacted from the log. So, in that sense, the length represents the total range of indexes.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -530,11 +530,11 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <ul class="blockList">
 <li class="blockList">
 <h4>create</h4>
-<pre>public&nbsp;&lt;T extends <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&lt;T&gt;&gt;&nbsp;T&nbsp;create(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type)</pre>
+<pre>public&nbsp;&lt;T extends io.atomix.copycat.server.storage.entry.Entry&lt;T&gt;&gt;&nbsp;T&nbsp;create(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type)</pre>
 <div class="block">Creates a new log entry.
  <p>
- Users should ensure that the returned <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>Entry</code></a> is closed once the write is complete. Closing the entry will
- result in its contents being persisted to the log. Only a single <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>Entry</code></a> instance may be open via the this
+ Users should ensure that the returned <code>Entry</code> is closed once the write is complete. Closing the entry will
+ result in its contents being persisted to the log. Only a single <code>Entry</code> instance may be open via the this
  method at any given time.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -553,7 +553,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <ul class="blockList">
 <li class="blockList">
 <h4>append</h4>
-<pre>public&nbsp;long&nbsp;append(<a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&nbsp;entry)</pre>
+<pre>public&nbsp;long&nbsp;append(io.atomix.copycat.server.storage.entry.Entry&nbsp;entry)</pre>
 <div class="block">Appends an entry to the log.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -596,14 +596,14 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <ul class="blockList">
 <li class="blockList">
 <h4>get</h4>
-<pre>public&nbsp;&lt;T extends <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry">Entry</a>&gt;&nbsp;T&nbsp;get(long&nbsp;index)</pre>
+<pre>public&nbsp;&lt;T extends io.atomix.copycat.server.storage.entry.Entry&gt;&nbsp;T&nbsp;get(long&nbsp;index)</pre>
 <div class="block">Gets an entry from the log at the given index.
  <p>
  If the given index is outside of the bounds of the log then a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IndexOutOfBoundsException.html?is-external=true" title="class or interface in java.lang"><code>IndexOutOfBoundsException</code></a> will be thrown. If
  the entry at the given index has been compacted then the returned entry will be <code>null</code>.
  <p>
  Entries returned by this method are pooled and <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util"><code>reference counted</code></a>.
- In order to ensure the entry is released back to the internal entry pool call <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html#close--"><code>Entry.close()</code></a> or load the
+ In order to ensure the entry is released back to the internal entry pool call <code>Entry.close()</code> or load the
  entry in a try-with-resources statement. <pre>
    <code>
    try (RaftEntry entry = log.get(123)) {

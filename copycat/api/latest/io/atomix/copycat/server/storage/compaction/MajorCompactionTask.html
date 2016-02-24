@@ -119,7 +119,7 @@ implements <a href="../../../../../../io/atomix/copycat/server/storage/compactio
 <div class="block">Removes tombstones from the log and combines <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s to reclaim disk space.
  <p>
  Major compaction is a more heavyweight compaction task which is responsible both for removing <em>tombstone</em>
- <a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>entries</code></a> from the log and combining groups of neighboring log <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s together.
+ <code>entries</code> from the log and combining groups of neighboring log <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s together.
  <p>
  <b>Combining segments</b>
  <p>
@@ -134,7 +134,7 @@ implements <a href="../../../../../../io/atomix/copycat/server/storage/compactio
  <p>
  <b>Removing tombstones</b>
  <p>
- Tombstones are <a href="../../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>entries</code></a> in the log which amount to state changes that <em>remove</em> state. That is,
+ Tombstones are <code>entries</code> in the log which amount to state changes that <em>remove</em> state. That is,
  tombstones are an indicator that some set of prior entries no longer contribute to the state of the system. Thus,
  it is critical that tombstones remain in the log as long as any prior related entries do. If a tombstone is removed
  from the log before its prior related entries, rebuilding state from the log will result in inconsistencies.

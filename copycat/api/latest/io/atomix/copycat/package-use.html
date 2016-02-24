@@ -85,8 +85,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat">io.atomix.copycat</a></td>
 <td class="colLast">
-<div class="block">Provides classes for communicating with a Raft cluster and submitting
- <a href="../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>commands</code></a> and <a href="../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>queries</code></a>.</div>
+<div class="block">Core interfaces for operating on replicated state machines in the Copycat cluster.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -102,23 +101,9 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.copycat.protocol">io.atomix.copycat.protocol</a></td>
-<td class="colLast">
-<div class="block"><a href="../../../io/atomix/copycat/protocol/Request.html" title="interface in io.atomix.copycat.protocol"><code>Request</code></a> and <a href="../../../io/atomix/copycat/protocol/Response.html" title="interface in io.atomix.copycat.protocol"><code>Response</code></a> implementations for all
- client-server communication.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server">io.atomix.copycat.server</a></td>
 <td class="colLast">
 <div class="block">Standalone, feature-complete implementation of the <a href="https://raft.github.io/">Raft consensus algorithm</a>.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.copycat.server.storage.entry">io.atomix.copycat.server.storage.entry</a></td>
-<td class="colLast">
-<div class="block"><a href="../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>Entry</code></a> implementations used internally to replicate
- state changes, sessions, and configuration changes in the cluster.</div>
 </td>
 </tr>
 </tbody>
@@ -215,33 +200,6 @@
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="io.atomix.copycat.protocol">
-<!--   -->
-</a>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../io/atomix/copycat/package-summary.html">io.atomix.copycat</a> used by <a href="../../../io/atomix/copycat/protocol/package-summary.html">io.atomix.copycat.protocol</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Class and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colOne"><a href="../../../io/atomix/copycat/class-use/Command.html#io.atomix.copycat.protocol">Command</a>
-<div class="block">Base interface for operations that modify system state.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../io/atomix/copycat/class-use/Operation.html#io.atomix.copycat.protocol">Operation</a>
-<div class="block">Base type for Raft state operations.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../io/atomix/copycat/class-use/Query.html#io.atomix.copycat.protocol">Query</a>
-<div class="block">Base interface for operations that read system state.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
 <li class="blockList"><a name="io.atomix.copycat.server">
 <!--   -->
 </a>
@@ -254,33 +212,6 @@
 <tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/copycat/class-use/Operation.html#io.atomix.copycat.server">Operation</a>
 <div class="block">Base type for Raft state operations.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.copycat.server.storage.entry">
-<!--   -->
-</a>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../io/atomix/copycat/package-summary.html">io.atomix.copycat</a> used by <a href="../../../io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Class and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colOne"><a href="../../../io/atomix/copycat/class-use/Command.html#io.atomix.copycat.server.storage.entry">Command</a>
-<div class="block">Base interface for operations that modify system state.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../io/atomix/copycat/class-use/Operation.html#io.atomix.copycat.server.storage.entry">Operation</a>
-<div class="block">Base type for Raft state operations.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../io/atomix/copycat/class-use/Query.html#io.atomix.copycat.server.storage.entry">Query</a>
-<div class="block">Base interface for operations that read system state.</div>
 </td>
 </tr>
 </tbody>

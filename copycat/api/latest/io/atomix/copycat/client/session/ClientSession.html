@@ -116,7 +116,22 @@ var activeTableTab = "activeTableTab";
 <pre>public class <span class="typeNameLabel">ClientSession</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a>&gt;</pre>
-<div class="block">Client session.</div>
+<div class="block">Handles submitting state machine <a href="../../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>commands</code></a> and <a href="../../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>queries</code></a> to the Copycat cluster.
+ <p>
+ The client session is responsible for maintaining a client's connection to a Copycat cluster and coordinating
+ the submission of <a href="../../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>commands</code></a> and <a href="../../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>queries</code></a> to various nodes in the cluster. Client
+ sessions are single-use objects that represent the context within which a cluster can guarantee linearizable
+ semantics for state machine operations. When a session is <a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#open--"><code>opened</code></a>, the session will register
+ itself with the cluster by attempting to contact each of the known servers. Once the session has been successfully
+ registered, kee-alive requests will be periodically sent to keep the session alive.
+ <p>
+ Sessions are responsible for sequencing concurrent operations to ensure they're applied to the system state
+ in the order in which they were submitted by the client. To do so, the session coordinates with its server-side
+ counterpart using unique per-operation sequence numbers. The session relies upon the client's various configured
+ <a href="../../../../../io/atomix/copycat/client/RetryStrategies.html" title="enum in io.atomix.copycat.client"><code>strategies</code></a> to ensure fault-tolerance of state machine operations.
+ <p>
+ In the event that the client session expires, clients are responsible for opening a new session by creating and
+ opening a new session object.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>

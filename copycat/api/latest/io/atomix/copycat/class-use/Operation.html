@@ -85,8 +85,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat">io.atomix.copycat</a></td>
 <td class="colLast">
-<div class="block">Provides classes for communicating with a Raft cluster and submitting
- <a href="../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>commands</code></a> and <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>queries</code></a>.</div>
+<div class="block">Core interfaces for operating on replicated state machines in the Copycat cluster.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -102,23 +101,9 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.copycat.protocol">io.atomix.copycat.protocol</a></td>
-<td class="colLast">
-<div class="block"><a href="../../../../io/atomix/copycat/protocol/Request.html" title="interface in io.atomix.copycat.protocol"><code>Request</code></a> and <a href="../../../../io/atomix/copycat/protocol/Response.html" title="interface in io.atomix.copycat.protocol"><code>Response</code></a> implementations for all
- client-server communication.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server">io.atomix.copycat.server</a></td>
 <td class="colLast">
 <div class="block">Standalone, feature-complete implementation of the <a href="https://raft.github.io/">Raft consensus algorithm</a>.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.copycat.server.storage.entry">io.atomix.copycat.server.storage.entry</a></td>
-<td class="colLast">
-<div class="block"><a href="../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>Entry</code></a> implementations used internally to replicate
- state changes, sessions, and configuration changes in the cluster.</div>
 </td>
 </tr>
 </tbody>
@@ -222,34 +207,6 @@
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="io.atomix.copycat.protocol">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a> in <a href="../../../../io/atomix/copycat/protocol/package-summary.html">io.atomix.copycat.protocol</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../io/atomix/copycat/protocol/package-summary.html">io.atomix.copycat.protocol</a> that return <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a></code></td>
-<td class="colLast"><span class="typeNameLabel">QueryRequest.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/protocol/QueryRequest.html#operation--">operation</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>abstract <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a></code></td>
-<td class="colLast"><span class="typeNameLabel">OperationRequest.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/protocol/OperationRequest.html#operation--">operation</a></span>()</code>
-<div class="block">Returns the request operation.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a></code></td>
-<td class="colLast"><span class="typeNameLabel">CommandRequest.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/protocol/CommandRequest.html#operation--">operation</a></span>()</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
 <li class="blockList"><a name="io.atomix.copycat.server">
 <!--   -->
 </a>
@@ -289,34 +246,6 @@
         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;T&gt;,U&gt;&nbsp;callback)</code>
 <div class="block">Registers an operation callback.</div>
 </td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.copycat.server.storage.entry">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a> in <a href="../../../../io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../io/atomix/copycat/server/storage/entry/package-summary.html">io.atomix.copycat.server.storage.entry</a> that return <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a></code></td>
-<td class="colLast"><span class="typeNameLabel">QueryEntry.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/storage/entry/QueryEntry.html#getOperation--">getOperation</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>abstract <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&lt;<a href="../../../../io/atomix/copycat/server/storage/entry/OperationEntry.html" title="type parameter in OperationEntry">T</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">OperationEntry.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/storage/entry/OperationEntry.html#getOperation--">getOperation</a></span>()</code>
-<div class="block">Returns the entry operation.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a></code></td>
-<td class="colLast"><span class="typeNameLabel">CommandEntry.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/storage/entry/CommandEntry.html#getOperation--">getOperation</a></span>()</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

@@ -262,7 +262,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a>&nbsp;withStorageLevel(<a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a>&nbsp;storageLevel)</pre>
 <div class="block">Sets the log storage level, returning the builder for method chaining.
  <p>
- The storage level indicates how individual <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>entries</code></a>
+ The storage level indicates how individual <code>entries</code>
  should be persisted in the log.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -468,6 +468,8 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <dd><code>interval</code> - The minor compaction interval.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The storage builder.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the interval is null</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionManager</code></a>, 
 <a href="../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionTask</code></a></dd>
@@ -492,6 +494,8 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <dd><code>interval</code> - The major compaction interval.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The storage builder.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the interval is null</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../../io/atomix/copycat/server/storage/compaction/MajorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MajorCompactionManager</code></a>, 
 <a href="../../../../../io/atomix/copycat/server/storage/compaction/MajorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MajorCompactionTask</code></a></dd>
@@ -510,7 +514,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  <p>
  The compaction threshold is used during <a href="../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html#MINOR"><code>minor compaction</code></a>
  to determine the set of segments to compact. By default, the compaction threshold is <code>0.5</code>. Increasing the
- compaction threshold will increase the number of <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>entries</code></a> that
+ compaction threshold will increase the number of <code>entries</code> that
  must be cleaned from the segment before compaction and thus decrease the likelihood that a segment will be compacted.
  Conversely, decreasing the compaction threshold will increase the frequency of compaction at the cost of unnecessary
  I/O.</div>
@@ -519,6 +523,8 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <dd><code>threshold</code> - The segment compact threshold.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The storage builder.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if the threashold is not positive</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionManager</code></a></dd>
 </dl>

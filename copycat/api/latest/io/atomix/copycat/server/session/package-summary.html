@@ -43,7 +43,7 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../io/atomix/copycat/server/protocol/package-summary.html">Prev&nbsp;Package</a></li>
+<li><a href="../../../../../io/atomix/copycat/server/cluster/package-summary.html">Prev&nbsp;Package</a></li>
 <li><a href="../../../../../io/atomix/copycat/server/storage/package-summary.html">Next&nbsp;Package</a></li>
 </ul>
 <ul class="navList">
@@ -72,8 +72,7 @@
 <div class="header">
 <h1 title="Package" class="title">Package&nbsp;io.atomix.copycat.server.session</h1>
 <div class="docSummary">
-<div class="block">Interfaces for managing client <a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>sessions</code></a> on a Raft
- <code>server</code>.</div>
+<div class="block">Interfaces for managing client <a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>sessions</code></a> on a <a href="../../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><code>Copycat server</code></a>.</div>
 </div>
 <p>See:&nbsp;<a href="#package.description">Description</a></p>
 </div>
@@ -113,8 +112,12 @@
 <!--   -->
 </a>
 <h2 title="Package io.atomix.copycat.server.session Description">Package io.atomix.copycat.server.session Description</h2>
-<div class="block">Interfaces for managing client <a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>sessions</code></a> on a Raft
- <code>server</code>.</div>
+<div class="block">Interfaces for managing client <a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>sessions</code></a> on a <a href="../../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><code>Copycat server</code></a>.
+ <p>
+ Client session information is exposed to server <a href="../../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server"><code>state machines</code></a> in the form of a
+ <a href="../../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session"><code>ServerSession</code></a> object. Server sessions provide functionality in addition to normal session state
+ information to allow replicated state machines to <a href="../../../../../io/atomix/copycat/server/session/ServerSession.html#publish-java.lang.String-java.lang.Object-"><code>publish</code></a>
+ event notifications to clients through their session.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -141,7 +144,7 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../io/atomix/copycat/server/protocol/package-summary.html">Prev&nbsp;Package</a></li>
+<li><a href="../../../../../io/atomix/copycat/server/cluster/package-summary.html">Prev&nbsp;Package</a></li>
 <li><a href="../../../../../io/atomix/copycat/server/storage/package-summary.html">Next&nbsp;Package</a></li>
 </ul>
 <ul class="navList">
