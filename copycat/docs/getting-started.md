@@ -123,7 +123,7 @@ public class MapStateMachine extends StateMachine {
 }
 ```
 
-In each operation method, once the commit has been applied to the state machine, the `Commit` must be `close`d. This releases the `Commit` object back to a pool. In certain types of state machines, commits can be held open across method calls. This is explained in more detail in the [state machine][state-machine] documentation.
+In each operation method, once the commit has been applied to the state machine, the `Commit` must be `close`d. This releases the `Commit` object back to a pool. In certain types of state machines, commits can be held open across method calls. This is explained in more detail in the [state machine][state-machines] documentation.
 
 ### Implementing snapshot support
 
