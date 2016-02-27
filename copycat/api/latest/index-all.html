@@ -220,29 +220,9 @@
 </a>
 <h2 class="title">C</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Log.html#clean-long-">clean(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></dt>
-<dd>
-<div class="block">Cleans the entry at the given index.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/LogCleaner.html#clean-long-">clean(long)</a></span> - Method in interface io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/LogCleaner.html" title="interface in io.atomix.copycat.server.storage">LogCleaner</a></dt>
-<dd>
-<div class="block">Cleans the given index from the log.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#clean-long-">clean(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
-<dd>
-<div class="block">Cleans an entry from the segment.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#cleanCount--">cleanCount()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
-<dd>
-<div class="block">Returns the number of entries in the segment that have been cleaned.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/StorageCleaner.html#cleanFiles-java.util.function.Predicate-">cleanFiles(Predicate&lt;File&gt;)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/StorageCleaner.html" title="class in io.atomix.copycat.server.storage">StorageCleaner</a></dt>
 <dd>
 <div class="block">Cleans up files.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#cleanPredicate--">cleanPredicate()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
-<dd>
-<div class="block">Returns a predicate for cleaned offsets in the segment.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/cluster/Member.html#clientAddress--">clientAddress()</a></span> - Method in interface io.atomix.copycat.server.cluster.<a href="io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a></dt>
 <dd>
@@ -858,10 +838,6 @@
 <dd>
 <div class="block">Classes and interfaces for managing client sessions.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#isClean-long-">isClean(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
-<dd>
-<div class="block">Returns a boolean value indicating whether the given index was cleaned from the segment.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/DefaultCopycatClient.html#isClosed--">isClosed()</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/DefaultCopycatClient.html" title="class in io.atomix.copycat.client">DefaultCopycatClient</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/session/ClientSession.html#isClosed--">isClosed()</a></span> - Method in class io.atomix.copycat.client.session.<a href="io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></dt>
@@ -889,6 +865,10 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#isFull--">isFull()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>
 <div class="block">Returns a boolean value indicating whether the segment is full.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#isLive-long-">isLive(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
+<dd>
+<div class="block">Returns a boolean value indicating whether the given index was released from the segment.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/DefaultCopycatClient.html#isOpen--">isOpen()</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/DefaultCopycatClient.html" title="class in io.atomix.copycat.client">DefaultCopycatClient</a></dt>
 <dd>&nbsp;</dd>
@@ -1014,10 +994,6 @@
 <dd>
 <div class="block">Stores Raft log entries in a segmented log in memory or on disk.</div>
 </dd>
-<dt><a href="io/atomix/copycat/server/storage/LogCleaner.html" title="interface in io.atomix.copycat.server.storage"><span class="typeNameLink">LogCleaner</span></a> - Interface in <a href="io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a></dt>
-<dd>
-<div class="block">Cleans entries in a log.</div>
-</dd>
 </dl>
 <a name="I:M">
 <!--   -->
@@ -1116,7 +1092,7 @@
 </dd>
 <dt><a href="io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><span class="typeNameLink">MinorCompactionTask</span></a> - Class in <a href="io/atomix/copycat/server/storage/compaction/package-summary.html">io.atomix.copycat.server.storage.compaction</a></dt>
 <dd>
-<div class="block">Removes <a href="io/atomix/copycat/server/storage/Log.html#clean-long-"><code>cleaned</code></a> entries from an individual
+<div class="block">Removes <a href="io/atomix/copycat/server/storage/Log.html#release-long-"><code>released</code></a> entries from an individual
  log <a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a> to reclaim disk space.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/compaction/Compactor.html#minorIndex-long-">minorIndex(long)</a></span> - Method in class io.atomix.copycat.server.storage.compaction.<a href="io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></dt>
@@ -1178,6 +1154,10 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#offset-long-">offset(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
 <dd>
 <div class="block">Returns the offset of the given index within the segment.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#offsetPredicate--">offsetPredicate()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
+<dd>
+<div class="block">Returns a predicate for live offsets in the segment.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.html#onEvent-java.lang.String-java.lang.Runnable-">onEvent(String, Runnable)</a></span> - Method in interface io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></dt>
 <dd>
@@ -1421,6 +1401,18 @@
 <dd>
 <div class="block">Registers an operation callback.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Log.html#release-long-">release(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></dt>
+<dd>
+<div class="block">Releases the entry at the given index.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#release-long-">release(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
+<dd>
+<div class="block">Releases an entry from the segment.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Segment.html#releaseCount--">releaseCount()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></dt>
+<dd>
+<div class="block">Returns the number of entries in the segment that have been released.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/snapshot/SnapshotReader.html#remaining--">remaining()</a></span> - Method in class io.atomix.copycat.server.storage.snapshot.<a href="io/atomix/copycat/server/storage/snapshot/SnapshotReader.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotReader</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/cluster/Member.html#remove--">remove()</a></span> - Method in interface io.atomix.copycat.server.cluster.<a href="io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a></dt>
@@ -1487,7 +1479,7 @@
 <dl>
 <dt><a href="io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Segment</span></a> - Class in <a href="io/atomix/copycat/server/storage/package-summary.html">io.atomix.copycat.server.storage</a></dt>
 <dd>
-<div class="block">Stores a set of sequential entries in a single file or memory <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a>.</div>
+<div class="block">Stores a sequence of entries with monotonically increasing indexes in a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/SegmentManager.html#segment-long-">segment(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/SegmentManager.html" title="class in io.atomix.copycat.server.storage">SegmentManager</a></dt>
 <dd>
@@ -2085,7 +2077,7 @@ the order they are declared.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withCompactionThreshold-double-">withCompactionThreshold(double)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
 <dd>
-<div class="block">Sets the percentage of entries in the segment that must be cleaned before a segment can be compacted,
+<div class="block">Sets the percentage of entries in the segment that must be released before a segment can be compacted,
  returning the builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/client/CopycatClient.Builder.html#withConnectionStrategy-io.atomix.copycat.client.ConnectionStrategy-">withConnectionStrategy(ConnectionStrategy)</a></span> - Method in class io.atomix.copycat.client.<a href="io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client">CopycatClient.Builder</a></dt>

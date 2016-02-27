@@ -126,19 +126,19 @@ implements <a href="../../../../../../io/atomix/copycat/server/storage/compactio
  <p>
  Segments are selected for minor compaction based on several factors:
  <ul>
-   <li>The number of <code>entries</code> in the segment that have been <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html#clean-long-"><code>cleaned</code></a></li>
+   <li>The number of <code>entries</code> in the segment that have been <a href="../../../../../../io/atomix/copycat/server/storage/Segment.html#release-long-"><code>released</code></a></li>
    <li>The number of times the segment has been compacted already</li>
  </ul>
  <p>
- Given the number of entries that have been cleaned from the segment, a percentage of entries reclaimed by
- compacting the segment is calculated. Then, the percentage of entries that have been cleaned is multiplied
+ Given the number of entries that have been released from the segment, a percentage of entries reclaimed by
+ compacting the segment is calculated. Then, the percentage of entries that have been released is multiplied
  by the number of times the segment has been compacted. If the result of this calculation is greater than
  the configured <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html#compactionThreshold--"><code>Storage.compactionThreshold()</code></a> then the segment is selected for compaction.
  <p>
  The final formula is as follows:
  <pre>
    <code>
-   if ((segment.cleanCount() / (double) segment.count()) * segment.descriptor().version() &gt; storage.compactionThreshold()) {
+   if ((segment.releaseCount() / (double) segment.count()) * segment.descriptor().version() &gt; storage.compactionThreshold()) {
      // Compact the segment
    }
    </code>

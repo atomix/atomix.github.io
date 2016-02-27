@@ -129,7 +129,7 @@ implements <a href="../../../../../../io/atomix/copycat/server/storage/compactio
  the major compaction task rewrites groups of segments provided by the <a href="../../../../../../io/atomix/copycat/server/storage/compaction/MajorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MajorCompactionManager</code></a>. For each group
  of segments, a single compact segment will be created with the same <code>version</code> and starting <code>index</code> as
  the first segment in the group. All entries from all segments in the group that haven't been
- <a href="../../../../../../io/atomix/copycat/server/storage/Log.html#clean-long-"><code>cleaned</code></a> will then be written to the new compact segment.
+ <a href="../../../../../../io/atomix/copycat/server/storage/Log.html#release-long-"><code>released</code></a> will then be written to the new compact segment.
  Once the rewrite is complete, the compact segment will be locked and the set of old segments deleted.
  <p>
  <b>Removing tombstones</b>
@@ -148,18 +148,18 @@ implements <a href="../../../../../../io/atomix/copycat/server/storage/compactio
  will remain.
  <p>
  Nevertheless, there are some significant potential race conditions that must be considered in the implementation of
- major compaction. The major compaction task assumes that state machines will always clean <em>related</em> entries
+ major compaction. The major compaction task assumes that state machines will always release <em>related</em> entries
  in monotonically increasing order. That is, if a state machines receives a <a href="../../../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a>
  <code>remove 1</code> that deletes the state of a prior <code>Commit</code> <code>set 1</code>, the state machine will call
- <a href="../../../../../../io/atomix/copycat/server/Commit.html#close--"><code>Commit.close()</code></a> on the <code>set 1</code> commit before cleaning the <code>remove 1</code> commit. But even if applications
- clean entries from the log in monotonic order, and the major compaction task compacts segments in sequential order,
+ <a href="../../../../../../io/atomix/copycat/server/Commit.html#close--"><code>Commit.close()</code></a> on the <code>set 1</code> commit before releasing the <code>remove 1</code> commit. But even if applications
+ release entries from the log in monotonic order, and the major compaction task compacts segments in sequential order,
  inconsistencies can still arise. Consider the following history:
  <ul>
    <li><code>set 1</code> is at index <code>1</code> in segment <code>1</code></li>
    <li><code>remove 1</code> is at index <code>12345</code> in segment <code>8</code></li>
    <li>The major compaction task rewrites segment <code>1</code></li>
-   <li>The application cleans <code>set 1</code> at index <code>1</code> in the <em>rewritten</em> version of segment <code>1</code></li>
-   <li>The application cleans <code>remove 1</code> at index <code>12345</code> in segment <code>8</code>, which the compaction task
+   <li>The application releases <code>set 1</code> at index <code>1</code> in the <em>rewritten</em> version of segment <code>1</code></li>
+   <li>The application releases <code>remove 1</code> at index <code>12345</code> in segment <code>8</code>, which the compaction task
    has yet to compact</li>
    <li>The compaction task compacts segments <code>2</code> through <code>8</code>, removing tombstone entry <code>12345</code> during
    the process</li>
@@ -171,8 +171,8 @@ implements <a href="../../../../../../io/atomix/copycat/server/storage/compactio
  <code>1</code> and entry <code>12345</code> during major compaction.
  <p>
  In order to prevent such a scenario from occurring, the major compaction task takes an immutable snapshot of the
- cleaned offsets underlying all the segments to be compacted prior to rewriting any entries. This ensures that any
- entries cleaned after the start of rewriting segments will not be considered for compaction during the execution
+ state of offsets underlying all the segments to be compacted prior to rewriting any entries. This ensures that any
+ entries released after the start of rewriting segments will not be considered for compaction during the execution
  of this task.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>

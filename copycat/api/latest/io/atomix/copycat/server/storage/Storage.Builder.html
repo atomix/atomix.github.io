@@ -167,7 +167,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html#withCompactionThreshold-double-">withCompactionThreshold</a></span>(double&nbsp;threshold)</code>
-<div class="block">Sets the percentage of entries in the segment that must be cleaned before a segment can be compacted,
+<div class="block">Sets the percentage of entries in the segment that must be released before a segment can be compacted,
  returning the builder for method chaining.</div>
 </td>
 </tr>
@@ -438,7 +438,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <div class="block">Sets the number of log compaction threads, returning the builder for method chaining.
  <p>
  The compaction thread count dictates the parallelism with which the log
- <a href="../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction"><code>Compactor</code></a> can rewrite segments in the log. By default,
+ <a href="../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction"><code>Compactor</code></a> can rewrite segments of the log. By default,
  the log uses <code>Runtime.getRuntime().availableProcessors() / 2</code> compaction threads.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -509,13 +509,13 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <li class="blockList">
 <h4>withCompactionThreshold</h4>
 <pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a>&nbsp;withCompactionThreshold(double&nbsp;threshold)</pre>
-<div class="block">Sets the percentage of entries in the segment that must be cleaned before a segment can be compacted,
+<div class="block">Sets the percentage of entries in the segment that must be released before a segment can be compacted,
  returning the builder for method chaining.
  <p>
  The compaction threshold is used during <a href="../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html#MINOR"><code>minor compaction</code></a>
  to determine the set of segments to compact. By default, the compaction threshold is <code>0.5</code>. Increasing the
  compaction threshold will increase the number of <code>entries</code> that
- must be cleaned from the segment before compaction and thus decrease the likelihood that a segment will be compacted.
+ must be released from the segment before compaction and thus decrease the likelihood that a segment will be compacted.
  Conversely, decreasing the compaction threshold will increase the frequency of compaction at the cost of unnecessary
  I/O.</div>
 <dl>

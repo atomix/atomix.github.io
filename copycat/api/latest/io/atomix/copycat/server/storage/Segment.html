@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../io/atomix/copycat/server/storage/LogCleaner.html" title="interface in io.atomix.copycat.server.storage"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -116,7 +116,7 @@ var activeTableTab = "activeTableTab";
 <pre>public class <span class="typeNameLabel">Segment</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></pre>
-<div class="block">Stores a set of sequential entries in a single file or memory <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a>.
+<div class="block">Stores a sequence of entries with monotonically increasing indexes in a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a>.
  <p>
  Segments are individual file or memory based groups of sequential entries. Each segment has a fixed capacity
  in terms of either number of entries or size in bytes.
@@ -131,16 +131,16 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  the Raft consensus algorithm, readers should typically benefit from O(1) lookups.
  <p>
  When a segment is constructed, the segment will attempt to rebuild its index from the underlying segment
- <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a>. This is done by reading a 16-bit unsigned length and 32-bit offset for each entry. Once the
- segment has been built, new entries will be <a href="../../../../../io/atomix/copycat/server/storage/Segment.html#append-io.atomix.copycat.server.storage.entry.Entry-"><code>appended</code></a> at the end of the segment.
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a>. This is done by reading a 32-bit length and 64-bit offset for each entry. Once the segment
+ has been built, new entries will be <a href="../../../../../io/atomix/copycat/server/storage/Segment.html#append-io.atomix.copycat.server.storage.entry.Entry-"><code>appended</code></a> at the end of the segment.
  <p>
- Additionally, segments are responsible for keeping track of entries that have been <a href="../../../../../io/atomix/copycat/server/storage/Segment.html#clean-long-"><code>cleaned</code></a>.
- Cleaned entries are tracked in an internal <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/util/BitArray.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer.util"><code>BitArray</code></a> with a size equal
+ Additionally, segments are responsible for keeping track of entries that have been <a href="../../../../../io/atomix/copycat/server/storage/Segment.html#release-long-"><code>released</code></a>.
+ Entry liveness is tracked in an internal <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/util/BitArray.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer.util"><code>BitArray</code></a> with a size equal
  to the segment's entry <a href="../../../../../io/atomix/copycat/server/storage/Segment.html#count--"><code>count()</code></a>.
  <p>
  An entry in the log is written in binary format. The binary format of an entry is as follows:
  <ul>
-   <li>Required 16-bit unsigned entry length</li>
+   <li>Required 32-bit entry length</li>
    <li>Required 64-bit offset</li>
    <li>Required 8-bit term flag</li>
    <li>Optional 64-bit term</li>
@@ -174,121 +174,121 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#clean-long-">clean</a></span>(long&nbsp;index)</code>
-<div class="block">Cleans an entry from the segment.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>long</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#cleanCount--">cleanCount</a></span>()</code>
-<div class="block">Returns the number of entries in the segment that have been cleaned.</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html?is-external=true" title="class or interface in java.util.function">Predicate</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#cleanPredicate--">cleanPredicate</a></span>()</code>
-<div class="block">Returns a predicate for cleaned offsets in the segment.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#close--">close</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#contains-long-">contains</a></span>(long&nbsp;index)</code>
 <div class="block">Returns a boolean value indicating whether the entry at the given index is active.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#count--">count</a></span>()</code>
 <div class="block">Returns the count of all entries in the segment.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#delete--">delete</a></span>()</code>
 <div class="block">Deletes the segment.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage">SegmentDescriptor</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#descriptor--">descriptor</a></span>()</code>
 <div class="block">Returns the <a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage"><code>SegmentDescriptor</code></a> for the segment.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#firstIndex--">firstIndex</a></span>()</code>
 <div class="block">Returns the index of the first entry in the segment.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage">Segment</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#flush--">flush</a></span>()</code>
 <div class="block">Flushes the segment buffers to disk.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>&lt;T extends io.atomix.copycat.server.storage.entry.Entry&gt;<br>T</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#get-long-">get</a></span>(long&nbsp;index)</code>
 <div class="block">Reads the entry at the given index.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#isClean-long-">isClean</a></span>(long&nbsp;index)</code>
-<div class="block">Returns a boolean value indicating whether the given index was cleaned from the segment.</div>
-</td>
-</tr>
-<tr id="i13" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#isCompacted--">isCompacted</a></span>()</code>
 <div class="block">Returns a boolean value indicating whether the segment has been compacted.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#isEmpty--">isEmpty</a></span>()</code>
 <div class="block">Returns a boolean value indicating whether the segment is empty.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#isFull--">isFull</a></span>()</code>
 <div class="block">Returns a boolean value indicating whether the segment is full.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i12" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#isLive-long-">isLive</a></span>(long&nbsp;index)</code>
+<div class="block">Returns a boolean value indicating whether the given index was released from the segment.</div>
+</td>
+</tr>
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#isOpen--">isOpen</a></span>()</code>
 <div class="block">Returns a boolean value indicating whether the segment is open.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#lastIndex--">lastIndex</a></span>()</code>
 <div class="block">Returns the index of the last entry in the segment.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#length--">length</a></span>()</code>
 <div class="block">Returns the current range of the segment.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#nextIndex--">nextIndex</a></span>()</code>
 <div class="block">Returns the next index in the segment.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#offset-long-">offset</a></span>(long&nbsp;index)</code>
 <div class="block">Returns the offset of the given index within the segment.</div>
+</td>
+</tr>
+<tr id="i18" class="altColor">
+<td class="colFirst"><code>io.atomix.copycat.server.storage.util.OffsetPredicate</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#offsetPredicate--">offsetPredicate</a></span>()</code>
+<div class="block">Returns a predicate for live offsets in the segment.</div>
+</td>
+</tr>
+<tr id="i19" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#release-long-">release</a></span>(long&nbsp;index)</code>
+<div class="block">Releases an entry from the segment.</div>
+</td>
+</tr>
+<tr id="i20" class="altColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Segment.html#releaseCount--">releaseCount</a></span>()</code>
+<div class="block">Returns the number of entries in the segment that have been released.</div>
 </td>
 </tr>
 <tr id="i21" class="rowColor">
@@ -610,69 +610,69 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </dl>
 </li>
 </ul>
-<a name="clean-long-">
+<a name="release-long-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>clean</h4>
-<pre>public&nbsp;boolean&nbsp;clean(long&nbsp;index)</pre>
-<div class="block">Cleans an entry from the segment.</div>
+<h4>release</h4>
+<pre>public&nbsp;boolean&nbsp;release(long&nbsp;index)</pre>
+<div class="block">Releases an entry from the segment.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>index</code> - The index of the entry to clean.</dd>
+<dd><code>index</code> - The index of the entry to release.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>Indicates whether the entry was newly cleaned from the segment.</dd>
+<dd>Indicates whether the entry was newly released from the segment.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - if the segment is not open</dd>
 </dl>
 </li>
 </ul>
-<a name="isClean-long-">
+<a name="isLive-long-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>isClean</h4>
-<pre>public&nbsp;boolean&nbsp;isClean(long&nbsp;index)</pre>
-<div class="block">Returns a boolean value indicating whether the given index was cleaned from the segment.</div>
+<h4>isLive</h4>
+<pre>public&nbsp;boolean&nbsp;isLive(long&nbsp;index)</pre>
+<div class="block">Returns a boolean value indicating whether the given index was released from the segment.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>index</code> - The index of the entry to check.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>Indicates whether the given entry was cleaned from the segment.</dd>
+<dd>Indicates whether the given entry was released from the segment.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - if the segment is not open</dd>
 </dl>
 </li>
 </ul>
-<a name="cleanCount--">
+<a name="releaseCount--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>cleanCount</h4>
-<pre>public&nbsp;long&nbsp;cleanCount()</pre>
-<div class="block">Returns the number of entries in the segment that have been cleaned.</div>
+<h4>releaseCount</h4>
+<pre>public&nbsp;long&nbsp;releaseCount()</pre>
+<div class="block">Returns the number of entries in the segment that have been released.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The number of entries in the segment that have been cleaned.</dd>
+<dd>The number of entries in the segment that have been released.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang">IllegalStateException</a></code> - if the segment is not open</dd>
 </dl>
 </li>
 </ul>
-<a name="cleanPredicate--">
+<a name="offsetPredicate--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>cleanPredicate</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html?is-external=true" title="class or interface in java.util.function">Predicate</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;cleanPredicate()</pre>
-<div class="block">Returns a predicate for cleaned offsets in the segment.</div>
+<h4>offsetPredicate</h4>
+<pre>public&nbsp;io.atomix.copycat.server.storage.util.OffsetPredicate&nbsp;offsetPredicate()</pre>
+<div class="block">Returns a predicate for live offsets in the segment.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>A predicate for cleaned offsets in the segment.</dd>
+<dd>A predicate for live offsets in the segment.</dd>
 </dl>
 </li>
 </ul>
@@ -790,7 +790,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../io/atomix/copycat/server/storage/LogCleaner.html" title="interface in io.atomix.copycat.server.storage"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

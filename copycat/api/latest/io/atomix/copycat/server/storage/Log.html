@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../io/atomix/copycat/server/storage/DescriptorException.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../io/atomix/copycat/server/storage/LogCleaner.html" title="interface in io.atomix.copycat.server.storage"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?io/atomix/copycat/server/storage/Log.html" target="_top">Frames</a></li>
@@ -157,9 +157,9 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  <p>
  In order to prevent exhausting disk space, the log manages a set of background threads that periodically rewrite and
  combine segments to free disk space. This is known as log compaction. As entries are committed to the log and applied
- to the Raft state machine as <a href="../../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a> objects, state machines <a href="../../../../../io/atomix/copycat/server/storage/Log.html#clean-long-"><code>clean(long)</code></a>
+ to the Raft state machine as <a href="../../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a> objects, state machines <a href="../../../../../io/atomix/copycat/server/storage/Log.html#release-long-"><code>release(long)</code></a>
  entries that no longer apply to the state machine state. Internally, each log <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a> maintains a compact
- <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/util/BitArray.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer.util"><code>BitArray</code></a> to track cleaned entries. When an entry is cleaned, the entry's
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/util/BitArray.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer.util"><code>BitArray</code></a> to track the liveness of entries. When an entry is released, the entry's
  offset is set in the bit array for the associated segment. The bit array represents the state of entries waiting to
  be compacted from the log.
  <p>
@@ -173,12 +173,12 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  Minor compaction is the more frequent and lightweight process. Periodically, according to the configured
  <a href="../../../../../io/atomix/copycat/server/storage/Storage.html#minorCompactionInterval--"><code>Storage.minorCompactionInterval()</code></a>, a background thread will evaluate the log for minor compaction. The minor
  compaction process iterates through segments and selects compactable segments based on the ratio of entries that have
- been <a href="../../../../../io/atomix/copycat/server/storage/Log.html#clean-long-"><code>cleaned</code></a>. Minor compaction is generational. The
+ been <a href="../../../../../io/atomix/copycat/server/storage/Log.html#release-long-"><code>released</code></a>. Minor compaction is generational. The
  <a href="../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionManager</code></a> is more likely to select segments that haven't
  yet been compacted than ones that have. Once a set of segments have been compacted, for each segment a
- <a href="../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionTask</code></a> rewrites the segment without cleaned entries.
+ <a href="../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionTask</code></a> rewrites the segment without released entries.
  This rewriting results in a segment with missing entries, and Copycat's Raft implementation accounts for that. For
- instance, a segment with entries <code>{1, 2, 3}</code> can become <code>{1, 3}</code> after being cleaned, and any attempt to
+ instance, a segment with entries <code>{1, 2, 3}</code> can become <code>{1, 3}</code> after being released, and any attempt to
  <a href="../../../../../io/atomix/copycat/server/storage/Log.html#get-long-"><code>read</code></a> entry <code>2</code> will result in a <code>null</code> entry.
  <p>
  However, note that minor compaction only applies to non-tombstone entries. Tombstones are entries that represent the
@@ -229,93 +229,93 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#clean-long-">clean</a></span>(long&nbsp;index)</code>
-<div class="block">Cleans the entry at the given index.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#close--">close</a></span>()</code>
 <div class="block">Closes the log.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#commit-long-">commit</a></span>(long&nbsp;index)</code>
 <div class="block">Commits entries up to the given index to the log.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction">Compactor</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#compactor--">compactor</a></span>()</code>
 <div class="block">Returns the log compactor.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#contains-long-">contains</a></span>(long&nbsp;index)</code>
 <div class="block">Returns a boolean value indicating whether the log contains a live entry at the given index.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>&lt;T extends io.atomix.copycat.server.storage.entry.Entry&lt;T&gt;&gt;<br>T</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#create-java.lang.Class-">create</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type)</code>
 <div class="block">Creates a new log entry.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#firstIndex--">firstIndex</a></span>()</code>
 <div class="block">Returns the log's current first index.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#flush--">flush</a></span>()</code>
 <div class="block">Flushes the log to disk.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>&lt;T extends io.atomix.copycat.server.storage.entry.Entry&gt;<br>T</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#get-long-">get</a></span>(long&nbsp;index)</code>
 <div class="block">Gets an entry from the log at the given index.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#isClosed--">isClosed</a></span>()</code>
 <div class="block">Returns a boolean value indicating whether the log is closed.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#isEmpty--">isEmpty</a></span>()</code>
 <div class="block">Returns a boolean value indicating whether the log is empty.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#isOpen--">isOpen</a></span>()</code>
 <div class="block">Returns a boolean value indicating whether the log is open.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#lastIndex--">lastIndex</a></span>()</code>
 <div class="block">Returns the index of the last entry in the log.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#length--">length</a></span>()</code>
 <div class="block">Returns the number of entries in the log.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#nextIndex--">nextIndex</a></span>()</code>
 <div class="block">Returns the next index in the log.</div>
+</td>
+</tr>
+<tr id="i15" class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Log.html#release-long-">release</a></span>(long&nbsp;index)</code>
+<div class="block">Releases the entry at the given index.</div>
 </td>
 </tr>
 <tr id="i16" class="altColor">
@@ -640,17 +640,17 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </dl>
 </li>
 </ul>
-<a name="clean-long-">
+<a name="release-long-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>clean</h4>
-<pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a>&nbsp;clean(long&nbsp;index)</pre>
-<div class="block">Cleans the entry at the given index.</div>
+<h4>release</h4>
+<pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a>&nbsp;release(long&nbsp;index)</pre>
+<div class="block">Releases the entry at the given index.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>index</code> - The index of the entry to clean.</dd>
+<dd><code>index</code> - The index of the entry to release.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The log.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -823,7 +823,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../io/atomix/copycat/server/storage/DescriptorException.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../io/atomix/copycat/server/storage/LogCleaner.html" title="interface in io.atomix.copycat.server.storage"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?io/atomix/copycat/server/storage/Log.html" target="_top">Frames</a></li>
