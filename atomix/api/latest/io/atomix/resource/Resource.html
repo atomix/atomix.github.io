@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -204,9 +204,9 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#configure-io.atomix.resource.Resource.Config-">configure</a></span>(<a href="../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</code>
-<div class="block">Configures the cluster-wide resource.</div>
+<td class="colFirst"><code><a href="../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#config--">config</a></span>()</code>
+<div class="block">Returns the resource configuration.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -250,40 +250,46 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 </td>
 </tr>
 <tr id="i10" class="altColor">
+<td class="colFirst"><code><a href="../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#options--">options</a></span>()</code>
+<div class="block">Returns the resource options.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#readConsistency--">readConsistency</a></span>()</code>
 <div class="block">Returns the configured read consistency level.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#state--">state</a></span>()</code>
 <div class="block">Returns the current resource state.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#type--">type</a></span>()</code>
 <div class="block">Returns the resource type.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.ReadConsistency-">with</a></span>(<a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a>&nbsp;consistency)</code>
 <div class="block">Sets the read consistency level.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.WriteConsistency-">with</a></span>(<a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource">WriteConsistency</a>&nbsp;consistency)</code>
 <div class="block">Sets the write consistency level.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource">WriteConsistency</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#writeConsistency--">writeConsistency</a></span>()</code>
 <div class="block">Returns the configured write consistency level.</div>
@@ -322,6 +328,34 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The resource type.</dd>
+</dl>
+</li>
+</ul>
+<a name="config--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>config</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config()</pre>
+<div class="block">Returns the resource configuration.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The resource configuration.</dd>
+</dl>
+</li>
+</ul>
+<a name="options--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>options</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options()</pre>
+<div class="block">Returns the resource options.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The configured resource options.</dd>
 </dl>
 </li>
 </ul>
@@ -371,27 +405,6 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The resource thread context.</dd>
-</dl>
-</li>
-</ul>
-<a name="configure-io.atomix.resource.Resource.Config-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>configure</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a>&gt;&nbsp;configure(<a href="../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</pre>
-<div class="block">Configures the cluster-wide resource.
- <p>
- The resource configuration will be submitted to the cluster, replicated, and applied on all
- state machines in the cluster. Once successful, the configuration is guaranteed to be applied
- on all replicas and all resource instances will rely on the updated configuration for linearizable
- operations.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>config</code> - The resource configuration.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A completable future to be completed once the resource has been configured.</dd>
 </dl>
 </li>
 </ul>
