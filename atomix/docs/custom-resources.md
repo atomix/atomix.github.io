@@ -3,10 +3,9 @@ layout: docs
 project: atomix
 menu: docs
 title: Custom Resources
-pitch: Custom resources
-first-section: custom-resources
 ---
 
+{:.no-margin-top}
 The Atomix API is designed to facilitate operating on arbitrary user-defined resources. When a custom resource is created via `Atomix.create`, an associated state machine will be created on each Atomix replica, and operations submitted by the resource instance will be applied to the replicated state machine. In that sense, think of a `Resource` instance as a client-side object and a `StateMachine` instance as the server-side representation of that object.
 
 To define a new resource, simply extend the base `Resource` class:

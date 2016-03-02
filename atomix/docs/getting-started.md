@@ -9,12 +9,15 @@ first-section: Introduction
 {:.no-margin-top}
 ## Introduction
 
-Atomix is an easy to use library that embeds inside of your clustered application. It provides various distributed resources for common data structures and patterns including:
+Atomix is an easy to use, zero-dependency library that embeds inside of your clustered application. It provides various primitives for distributed computing including:
 
 * Distributed [variables]
 * Distributed [collections] such as maps, multi-maps, sets, and queues
 * Distributed [coordination] tools such as locks, group membership, leader election, and remote execution
 * Distributed [messaging] tools such as a message bus, topics, and task queues
+
+Along with these resources, Atomix provides a high-level API for creating and managing [custom user-defined resources][custom-resources]. Atomix also provides robust fault tolerance and is built on top of [Copycat](/copycat) which supports strong consistency guarantees through its implementation of the [Raft consensus algorithm][Raft].
+
 
 ## Setup
 
@@ -32,9 +35,9 @@ This dependency provides you with all of the Atomix resources along with a [Nett
 
 ## Creating a cluster
 
-The first step in using Atomix is creating a cluster. An atomix cluster consists of a set of [replicas] through which resources are created and operated on. Each replica maintains a copy of the state of each resource that you create in the cluster. State is stored according to a configurable [StorageLevel] and state changes are replicated according to a given [ConsistencyLevel][CommandConsistencyLevel]. 
+The first step with Atomix is to create a cluster. An atomix cluster consists of stateful distributed resources such as maps, queues, and groups, and a set of [replicas] through which resources are created and operated on. Each replica maintains a copy of the state of each resource created in the cluster. State is stored according to a configurable [StorageLevel] and state changes are replicated according to a given [ConsistencyLevel][CommandConsistencyLevel]. 
 
-Clusters can contain both *active* and *passive* replicas. Active replicas take part in the processing of state changes while passive replicas are kept in sync in order to replace active replicas when a fault occurs. Typically, an Atomix cluster consists of 3 or 5 active replicas and 1 or more passive replicas. While Atomix embeds inside your clustered application, the number of nodes participating in the Atomix cluster does not need to match that of your application.
+Clusters can contain both *active* and *passive* replicas. Active replicas take part in the processing of state changes while passive replicas are kept in sync in order to replace active replicas when a fault occurs. Typically, an Atomix cluster consists of 3 or 5 active replicas and 1 or more passive replicas. While Atomix embeds inside your clustered application, the number of nodes participating in the Atomix cluster does not need to match that of your application, allowing your application to scale independant of Atomix.
 
 > For more information on node types see the [cluster documentation][cluster].
 
