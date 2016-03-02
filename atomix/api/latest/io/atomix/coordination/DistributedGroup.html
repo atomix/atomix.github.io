@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li>Prev&nbsp;Class</li>
-<li><a href="../../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/coordination/DistributedGroup.Config.html" title="class in io.atomix.coordination"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/coordination/DistributedGroup.html" target="_top">Frames</a></li>
@@ -74,7 +74,7 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested.classes.inherited.from.class.io.atomix.resource.Resource">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -100,7 +100,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">io.atomix.resource.Resource</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</li>
+<li><a href="../../../io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">io.atomix.resource.AbstractResource</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</li>
 <li>
 <ul class="inheritance">
 <li>io.atomix.coordination.DistributedGroup</li>
@@ -114,17 +114,17 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</dd>
+<dd><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;, <a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">DistributedGroup</span>
-extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</pre>
+extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</pre>
 <div class="block">Generic group abstraction for managing group membership, service discovery, leader election, and remote
  scheduling and execution.
  <p>
  The distributed membership group resource facilitates managing group membership within the Atomix cluster.
- Each instance of a <code>DistributedGroup</code> resource represents a single <a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination"><code>GroupMember</code></a>.
+ Each instance of a <code>DistributedGroup</code> resource represents a single <a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination"><code>GroupMember</code></a>.
  Members can <a href="../../../io/atomix/coordination/DistributedGroup.html#join--"><code>join()</code></a> and <a href="../../../io/atomix/coordination/LocalGroupMember.html#leave--"><code>LocalGroupMember.leave()</code></a> the group and be notified of other members
  <a href="../../../io/atomix/coordination/DistributedGroup.html#onJoin-java.util.function.Consumer-"><code>joining</code></a> and <a href="../../../io/atomix/coordination/DistributedGroup.html#onLeave-java.util.function.Consumer-"><code>leaving</code></a> the group. Members may leave the group
  either voluntarily or due to a failure or other disconnection from the cluster.
@@ -180,7 +180,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
  elected for each group automatically.
  <p>
  Leaders are elected using a fair policy. The first member to <a href="../../../io/atomix/coordination/DistributedGroup.html#join--"><code>join</code></a> a group will always become the
- initial group leader. Each unique leader in a group is associated with a <a href="../../../io/atomix/coordination/DistributedGroup.html#term--"><code>term</code></a>. The term is a
+ initial group leader. Each unique leader in a group is associated with a <a href="../../../io/atomix/coordination/GroupElection.html#term--"><code>term</code></a>. The term is a
  globally unique, monotonically increasing token that can be used for fencing. Users can listen for changes in
  group terms and leaders with event listeners:
  <pre>
@@ -194,7 +194,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
    });
    </code>
  </pre>
- The <a href="../../../io/atomix/coordination/DistributedGroup.html#term--"><code>term</code></a> is guaranteed to be incremented prior to the election of a new <a href="../../../io/atomix/coordination/DistributedGroup.html#leader--"><code>leader</code></a>,
+ The <a href="../../../io/atomix/coordination/GroupElection.html#term--"><code>term</code></a> is guaranteed to be incremented prior to the election of a new <a href="../../../io/atomix/coordination/GroupElection.html#leader--"><code>leader</code></a>,
  and only a single leader for any given term will ever be elected. Each instance of a group is guaranteed to see
  terms and leaders progress monotonically, and no two leaders can exist in the same term. In that sense, the
  terminology and constrains of leader election in Atomix borrow heavily from the Raft algorithm that underlies it.
@@ -210,8 +210,8 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
  To guard against inconsistencies resulting from arbitrary process pauses, clients can use the monotonically
  increasing term for coordination and managing optimistic access to external resources.
  <h2>Remote execution</h2>
- Once members of the group, any member can <a href="../../../io/atomix/coordination/GroupMember.html#execute-java.lang.Runnable-"><code>execute</code></a> immediate callbacks or
- <a href="../../../io/atomix/coordination/GroupMember.html#schedule-java.time.Duration-java.lang.Runnable-"><code>schedule</code></a> delayed callbacks to be run on any other member of the
+ Once members of the group, any member can <a href="../../../io/atomix/coordination/GroupScheduler.html#execute-java.lang.Runnable-"><code>execute</code></a> immediate callbacks or
+ <a href="../../../io/atomix/coordination/GroupScheduler.html#schedule-java.time.Duration-java.lang.Runnable-"><code>schedule</code></a> delayed callbacks to be run on any other member of the
  group. Submitting a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang"><code>Runnable</code></a> callback to a member will cause it to be serialized and sent to that node
  to be executed.
  <pre>
@@ -262,7 +262,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination"><code>GroupMember</code></a></dd>
+<dd><a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination"><code>GroupMember</code></a></dd>
 </dl>
 </li>
 </ul>
@@ -276,12 +276,31 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <!--   -->
 </a>
 <h3>Nested Class Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.Config.html" title="class in io.atomix.coordination">DistributedGroup.Config</a></span></code>
+<div class="block">Group configuration.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.Options.html" title="class in io.atomix.coordination">DistributedGroup.Options</a></span></code>
+<div class="block">Group options.</div>
+</td>
+</tr>
+</table>
 <ul class="blockList">
 <li class="blockList"><a name="nested.classes.inherited.from.class.io.atomix.resource.Resource">
 <!--   -->
 </a>
-<h3>Nested classes/interfaces inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></h3>
-<code><a href="../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>, <a href="../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>, <a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a></code></li>
+<h3>Nested classes/interfaces inherited from interface&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></h3>
+<code><a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a></code></li>
 </ul>
 </li>
 </ul>
@@ -297,8 +316,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#DistributedGroup-io.atomix.copycat.client.CopycatClient-java.util.Properties-java.util.Properties-">DistributedGroup</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html?is-external=true" title="class or interface in io.atomix.copycat.client">CopycatClient</a>&nbsp;client,
-                <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;config,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#DistributedGroup-io.atomix.copycat.client.CopycatClient-java.util.Properties-">DistributedGroup</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html?is-external=true" title="class or interface in io.atomix.copycat.client">CopycatClient</a>&nbsp;client,
                 <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;options)</code>&nbsp;</td>
 </tr>
 </table>
@@ -317,78 +335,90 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/LocalGroupMember.html" title="interface in io.atomix.coordination">LocalGroupMember</a>&gt;</code></td>
+<td class="colFirst"><code><a href="../../../io/atomix/coordination/GroupElection.html" title="class in io.atomix.coordination">GroupElection</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#election--">election</a></span>()</code>
+<div class="block">Returns the group election.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/LocalGroupMember.html" title="class in io.atomix.coordination">LocalGroupMember</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#join--">join</a></span>()</code>
 <div class="block">Joins the instance to the membership group.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/LocalGroupMember.html" title="interface in io.atomix.coordination">LocalGroupMember</a>&gt;</code></td>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/LocalGroupMember.html" title="class in io.atomix.coordination">LocalGroupMember</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#join-java.lang.String-">join</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</code>
 <div class="block">Joins the instance to the membership group with a user-provided member ID.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#leader--">leader</a></span>()</code>
-<div class="block">Returns the current group leader.</div>
-</td>
-</tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a></code></td>
+<td class="colFirst"><code><a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">GroupMember</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#member-java.lang.String-">member</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</code>
 <div class="block">Gets a group member by ID.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">GroupMember</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#members--">members</a></span>()</code>
 <div class="block">Gets the collection of all members in the group.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#onElection-java.util.function.Consumer-">onElection</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;callback)</code>
-<div class="block">Registers a callback to be called when a member of the group is elected leader.</div>
-</td>
-</tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#onJoin-java.util.function.Consumer-">onJoin</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;listener)</code>
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">GroupMember</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#onJoin-java.util.function.Consumer-">onJoin</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">GroupMember</a>&gt;&nbsp;listener)</code>
 <div class="block">Adds a listener for members joining the group.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;listener)</code>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">GroupMember</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">GroupMember</a>&gt;&nbsp;listener)</code>
 <div class="block">Adds a listener for members leaving the group.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#onTerm-java.util.function.Consumer-">onTerm</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;callback)</code>
-<div class="block">Registers a callback to be called when the term changes.</div>
-</td>
-</tr>
-<tr id="i9" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#open--">open</a></span>()</code>
 <div class="block">Opens the resource.</div>
 </td>
 </tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code><a href="../../../io/atomix/coordination/DistributedGroup.Options.html" title="class in io.atomix.coordination">DistributedGroup.Options</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#options--">options</a></span>()</code>
+<div class="block">Returns the resource options.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code><a href="../../../io/atomix/coordination/GroupPartitions.html" title="class in io.atomix.coordination">GroupPartitions</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#partitions--">partitions</a></span>()</code>
+<div class="block">Returns the group partitions.</div>
+</td>
+</tr>
 <tr id="i10" class="altColor">
-<td class="colFirst"><code>long</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#term--">term</a></span>()</code>
-<div class="block">Returns the current group term.</div>
+<td class="colFirst"><code><a href="../../../io/atomix/coordination/GroupProperties.html" title="class in io.atomix.coordination">GroupProperties</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#properties--">properties</a></span>()</code>
+<div class="block">Returns the group properties.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code><a href="../../../io/atomix/coordination/GroupScheduler.html" title="class in io.atomix.coordination">GroupScheduler</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#scheduler--">scheduler</a></span>()</code>
+<div class="block">Returns the group scheduler.</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
+<td class="colFirst"><code><a href="../../../io/atomix/coordination/GroupTaskQueue.html" title="class in io.atomix.coordination">GroupTaskQueue</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/DistributedGroup.html#tasks--">tasks</a></span>()</code>
+<div class="block">Returns the group task queue.</div>
 </td>
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.io.atomix.resource.Resource">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.resource.AbstractResource">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></h3>
-<code><a href="../../../io/atomix/resource/Resource.html#close--">close</a>, <a href="../../../io/atomix/resource/Resource.html#config--">config</a>, <a href="../../../io/atomix/resource/Resource.html#context--">context</a>, <a href="../../../io/atomix/resource/Resource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/Resource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/Resource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/Resource.html#isClosed--">isClosed</a>, <a href="../../../io/atomix/resource/Resource.html#isOpen--">isOpen</a>, <a href="../../../io/atomix/resource/Resource.html#onStateChange-java.util.function.Consumer-">onStateChange</a>, <a href="../../../io/atomix/resource/Resource.html#options--">options</a>, <a href="../../../io/atomix/resource/Resource.html#readConsistency--">readConsistency</a>, <a href="../../../io/atomix/resource/Resource.html#state--">state</a>, <a href="../../../io/atomix/resource/Resource.html#toString--">toString</a>, <a href="../../../io/atomix/resource/Resource.html#type--">type</a>, <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.ReadConsistency-">with</a>, <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.WriteConsistency-">with</a>, <a href="../../../io/atomix/resource/Resource.html#writeConsistency--">writeConsistency</a></code></li>
+<h3>Methods inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></h3>
+<code><a href="../../../io/atomix/resource/AbstractResource.html#close--">close</a>, <a href="../../../io/atomix/resource/AbstractResource.html#config--">config</a>, <a href="../../../io/atomix/resource/AbstractResource.html#context--">context</a>, <a href="../../../io/atomix/resource/AbstractResource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/AbstractResource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/AbstractResource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/AbstractResource.html#isClosed--">isClosed</a>, <a href="../../../io/atomix/resource/AbstractResource.html#isOpen--">isOpen</a>, <a href="../../../io/atomix/resource/AbstractResource.html#onStateChange-java.util.function.Consumer-">onStateChange</a>, <a href="../../../io/atomix/resource/AbstractResource.html#readConsistency--">readConsistency</a>, <a href="../../../io/atomix/resource/AbstractResource.html#state--">state</a>, <a href="../../../io/atomix/resource/AbstractResource.html#toString--">toString</a>, <a href="../../../io/atomix/resource/AbstractResource.html#type--">type</a>, <a href="../../../io/atomix/resource/AbstractResource.html#with-io.atomix.resource.ReadConsistency-">with</a>, <a href="../../../io/atomix/resource/AbstractResource.html#with-io.atomix.resource.WriteConsistency-">with</a>, <a href="../../../io/atomix/resource/AbstractResource.html#writeConsistency--">writeConsistency</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -411,14 +441,13 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="DistributedGroup-io.atomix.copycat.client.CopycatClient-java.util.Properties-java.util.Properties-">
+<a name="DistributedGroup-io.atomix.copycat.client.CopycatClient-java.util.Properties-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>DistributedGroup</h4>
 <pre>public&nbsp;DistributedGroup(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html?is-external=true" title="class or interface in io.atomix.copycat.client">CopycatClient</a>&nbsp;client,
-                        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;config,
                         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;options)</pre>
 </li>
 </ul>
@@ -430,118 +459,92 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="open--">
+<a name="options--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>open</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;&nbsp;open()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#open--">Resource</a></code></span></div>
-<div class="block">Opens the resource.
- <p>
- Once the resource is opened, the resource will be transitioned to the <a href="../../../io/atomix/resource/Resource.State.html#CONNECTED"><code>Resource.State.CONNECTED</code></a> state
- and the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed.</div>
+<h4>options</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/coordination/DistributedGroup.Options.html" title="class in io.atomix.coordination">DistributedGroup.Options</a>&nbsp;options()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/resource/AbstractResource.html#options--">AbstractResource</a></code></span></div>
+<div class="block">Returns the resource options.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#open--" title="class or interface in io.atomix.catalyst.util">open</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</code></dd>
+<dd><code><a href="../../../io/atomix/resource/Resource.html#options--">options</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</code></dd>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../../io/atomix/resource/Resource.html#open--">open</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</code></dd>
+<dd><code><a href="../../../io/atomix/resource/AbstractResource.html#options--">options</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>A completable future to be completed once the resource is opened.</dd>
+<dd>The configured resource options.</dd>
 </dl>
 </li>
 </ul>
-<a name="leader--">
+<a name="properties--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>leader</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&nbsp;leader()</pre>
-<div class="block">Returns the current group leader.
- <p>
- The returned leader is the last known leader for the group. The leader is associated with
- the current <a href="../../../io/atomix/coordination/DistributedGroup.html#term--"><code>term()</code></a> which is guaranteed to be unique and monotonically increasing.
- All resource instances are guaranteed to see leader changes in the same order. If a leader
- leaves the group, it is guaranteed that all open resource instances are notified of the change
- in leadership prior to the leave operation being completed. This guarantee is maintained only
- as long as the resource's session remains open.
- <p>
- The leader is <em>not</em> guaranteed to be consistent across the cluster at any given point
- in time. For example, a long garbage collection pause can result in the resource's session expiring
- and the resource failing to increment the leader at the appropriate time. Users should use
- the <a href="../../../io/atomix/coordination/DistributedGroup.html#term--"><code>term()</code></a> for fencing when interacting with external systems.</div>
+<h4>properties</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/coordination/GroupProperties.html" title="class in io.atomix.coordination">GroupProperties</a>&nbsp;properties()</pre>
+<div class="block">Returns the group properties.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The current group leader.</dd>
+<dd>The group properties.</dd>
 </dl>
 </li>
 </ul>
-<a name="term--">
+<a name="election--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>term</h4>
-<pre>public&nbsp;long&nbsp;term()</pre>
-<div class="block">Returns the current group term.
- <p>
- The term is a globally unique, monotonically increasing token that represents an epoch.
- All resource instances are guaranteed to see term changes in the same order. If a leader
- leaves the group, it is guaranteed that the term will be incremented and all open resource
- instances are notified of the term change prior to the leave operation being completed. However,
- this guarantee is maintained only as long as the resource's session remains open.
- <p>
- For any given term, the group guarantees that a single <a href="../../../io/atomix/coordination/DistributedGroup.html#leader--"><code>leader()</code></a> will be elected
- and any leader elected after the leader for this term will be associated with a higher
- term.
- <p>
- The term is <em>not</em> guaranteed to be unique across the cluster at any given point in time.
- For example, a long garbage collection pause can result in the resource's session expiring and the
- resource failing to increment the term at the appropriate time. Users should use the term for
- fencing when interacting with external systems.</div>
+<h4>election</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/coordination/GroupElection.html" title="class in io.atomix.coordination">GroupElection</a>&nbsp;election()</pre>
+<div class="block">Returns the group election.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The current group term.</dd>
+<dd>The group election.</dd>
 </dl>
 </li>
 </ul>
-<a name="onTerm-java.util.function.Consumer-">
+<a name="tasks--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>onTerm</h4>
-<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;onTerm(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;callback)</pre>
-<div class="block">Registers a callback to be called when the term changes.
- <p>
- The provided callback will be called when a term change notification is received by the resource.
- The returned <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util"><code>Listener</code></a> can be used to unregister the term listener via <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.util"><code>Listener.close()</code></a>.</div>
+<h4>tasks</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/coordination/GroupTaskQueue.html" title="class in io.atomix.coordination">GroupTaskQueue</a>&nbsp;tasks()</pre>
+<div class="block">Returns the group task queue.</div>
 <dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>callback</code> - The callback to be called when the term changes.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The term listener.</dd>
+<dd>The group task queue.</dd>
 </dl>
 </li>
 </ul>
-<a name="onElection-java.util.function.Consumer-">
+<a name="scheduler--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>onElection</h4>
-<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;onElection(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;callback)</pre>
-<div class="block">Registers a callback to be called when a member of the group is elected leader.
- <p>
- The provided callback will be called when notification of a leader change is received by the resource.
- The returned <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util"><code>Listener</code></a> can be used to unregister the term listener via <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.util"><code>Listener.close()</code></a>.</div>
+<h4>scheduler</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/coordination/GroupScheduler.html" title="class in io.atomix.coordination">GroupScheduler</a>&nbsp;scheduler()</pre>
+<div class="block">Returns the group scheduler.</div>
 <dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>callback</code> - The callback to call when a member of the group is elected leader.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The leader election listener.</dd>
+<dd>The group scheduler.</dd>
+</dl>
+</li>
+</ul>
+<a name="partitions--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>partitions</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/coordination/GroupPartitions.html" title="class in io.atomix.coordination">GroupPartitions</a>&nbsp;partitions()</pre>
+<div class="block">Returns the group partitions.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The group partitions.</dd>
 </dl>
 </li>
 </ul>
@@ -551,14 +554,14 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockList">
 <li class="blockList">
 <h4>member</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&nbsp;member(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</pre>
+<pre>public&nbsp;<a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">GroupMember</a>&nbsp;member(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</pre>
 <div class="block">Gets a group member by ID.
  <p>
  If the member with the given ID has not <a href="../../../io/atomix/coordination/DistributedGroup.html#join--"><code>joined</code></a> the membership group, the resulting
- <a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination"><code>GroupMember</code></a> will be <code>null</code>.</div>
+ <a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination"><code>GroupMember</code></a> will be <code>null</code>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>memberId</code> - The member ID for which to return a <a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination"><code>GroupMember</code></a>.</dd>
+<dd><code>memberId</code> - The member ID for which to return a <a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination"><code>GroupMember</code></a>.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The member with the given <code>memberId</code> or <code>null</code> if it is not a known member of the group.</dd>
 </dl>
@@ -570,10 +573,10 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockList">
 <li class="blockList">
 <h4>members</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;members()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">GroupMember</a>&gt;&nbsp;members()</pre>
 <div class="block">Gets the collection of all members in the group.
  <p>
- The group members are fetched from the cluster. If any <a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination"><code>GroupMember</code></a> instances have been referenced
+ The group members are fetched from the cluster. If any <a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination"><code>GroupMember</code></a> instances have been referenced
  by this membership group instance, the same object will be returned for that member.
  <p>
  This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
@@ -607,13 +610,13 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockList">
 <li class="blockList">
 <h4>join</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/LocalGroupMember.html" title="interface in io.atomix.coordination">LocalGroupMember</a>&gt;&nbsp;join()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/LocalGroupMember.html" title="class in io.atomix.coordination">LocalGroupMember</a>&gt;&nbsp;join()</pre>
 <div class="block">Joins the instance to the membership group.
  <p>
  When this instance joins the membership group, the membership lists of this and all other instances
  in the group are guaranteed to be updated <em>before</em> the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> returned by
  this method is completed. Once this instance has joined the group, the returned future will be completed
- with the <a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination"><code>GroupMember</code></a> instance for this member.
+ with the <a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination"><code>GroupMember</code></a> instance for this member.
  <p>
  This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
  or to be notified in a separate thread once the operation completes. To block until the operation completes,
@@ -642,13 +645,13 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockList">
 <li class="blockList">
 <h4>join</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/LocalGroupMember.html" title="interface in io.atomix.coordination">LocalGroupMember</a>&gt;&nbsp;join(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/LocalGroupMember.html" title="class in io.atomix.coordination">LocalGroupMember</a>&gt;&nbsp;join(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</pre>
 <div class="block">Joins the instance to the membership group with a user-provided member ID.
  <p>
  When this instance joins the membership group, the membership lists of this and all other instances
  in the group are guaranteed to be updated <em>before</em> the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> returned by
  this method is completed. Once this instance has joined the group, the returned future will be completed
- with the <a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination"><code>GroupMember</code></a> instance for this member.
+ with the <a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination"><code>GroupMember</code></a> instance for this member.
  <p>
  This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
  or to be notified in a separate thread once the operation completes. To block until the operation completes,
@@ -679,7 +682,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <ul class="blockList">
 <li class="blockList">
 <h4>onJoin</h4>
-<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;onJoin(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;listener)</pre>
+<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">GroupMember</a>&gt;&nbsp;onJoin(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">GroupMember</a>&gt;&nbsp;listener)</pre>
 <div class="block">Adds a listener for members joining the group.
  <p>
  The provided <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function"><code>Consumer</code></a> will be called each time a member joins the group. Note that
@@ -698,10 +701,10 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <a name="onLeave-java.util.function.Consumer-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>onLeave</h4>
-<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;onLeave(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a>&gt;&nbsp;listener)</pre>
+<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">GroupMember</a>&gt;&nbsp;onLeave(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">GroupMember</a>&gt;&nbsp;listener)</pre>
 <div class="block">Adds a listener for members leaving the group.
  <p>
  The provided <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function"><code>Consumer</code></a> will be called each time a member leaves the group. Members can
@@ -716,6 +719,30 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <dd><code>listener</code> - The leave listener.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The listener context.</dd>
+</dl>
+</li>
+</ul>
+<a name="open--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>open</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;&nbsp;open()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/resource/AbstractResource.html#open--">AbstractResource</a></code></span></div>
+<div class="block">Opens the resource.
+ <p>
+ Once the resource is opened, the resource will be transitioned to the <code>State#CONNECTED</code> state
+ and the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#open--" title="class or interface in io.atomix.catalyst.util">open</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../io/atomix/resource/Resource.html#open--">open</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/resource/AbstractResource.html#open--">open</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a>&lt;<a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the resource is opened.</dd>
 </dl>
 </li>
 </ul>
@@ -748,7 +775,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <div class="subNav">
 <ul class="navList">
 <li>Prev&nbsp;Class</li>
-<li><a href="../../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/coordination/DistributedGroup.Config.html" title="class in io.atomix.coordination"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/coordination/DistributedGroup.html" target="_top">Frames</a></li>
@@ -772,7 +799,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested.classes.inherited.from.class.io.atomix.resource.Resource">Nested</a>&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>

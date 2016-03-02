@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/resource/ResourceException.html" title="class in io.atomix.resource"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/resource/ResourceFactory.html" title="interface in io.atomix.resource"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../io/atomix/resource/ResourceStateMachineExecutor.html" title="class in io.atomix.resource"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -175,7 +175,7 @@ implements <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server
  closes a resource, the <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/SessionListener.html?is-external=true#close-io.atomix.copycat.server.session.ServerSession-" title="class or interface in io.atomix.copycat.server.session"><code>SessionListener.close(ServerSession)</code></a> method will be called.
  In other words, sessions in resource state machines represent a client's open resource instance,
  and event messages <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/ServerSession.html?is-external=true#publish-java.lang.String-java.lang.Object-" title="class or interface in io.atomix.copycat.server.session"><code>published</code></a> to that session will
- be received by the specific client side <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a> instance.
+ be received by the specific client side <a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a> instance.
  <pre>
    <code>
    public class MapStateMachine extends ResourceStateMachine {
@@ -227,29 +227,23 @@ implements <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#configure-java.util.Properties-">configure</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;config)</code>
-<div class="block">Applies a configuration to the resource state machine.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#delete--">delete</a></span>()</code>
 <div class="block">Cleans up deleted state machine state.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#expire-io.atomix.copycat.server.session.ServerSession-">expire</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/ServerSession.html?is-external=true" title="class or interface in io.atomix.copycat.server.session">ServerSession</a>&nbsp;session)</code>&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#init-io.atomix.copycat.server.StateMachineExecutor-">init</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachineExecutor.html?is-external=true" title="class or interface in io.atomix.copycat.server">StateMachineExecutor</a>&nbsp;executor)</code>&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#register-io.atomix.copycat.server.session.ServerSession-">register</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/ServerSession.html?is-external=true" title="class or interface in io.atomix.copycat.server.session">ServerSession</a>&nbsp;session)</code>&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceStateMachine.html#unregister-io.atomix.copycat.server.session.ServerSession-">unregister</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/ServerSession.html?is-external=true" title="class or interface in io.atomix.copycat.server.session">ServerSession</a>&nbsp;session)</code>&nbsp;</td>
 </tr>
@@ -292,26 +286,6 @@ implements <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true#init-io.atomix.copycat.server.StateMachineExecutor-" title="class or interface in io.atomix.copycat.server">init</a></code>&nbsp;in class&nbsp;<code><a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server">StateMachine</a></code></dd>
-</dl>
-</li>
-</ul>
-<a name="configure-java.util.Properties-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>configure</h4>
-<pre>public&nbsp;void&nbsp;configure(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;config)</pre>
-<div class="block">Applies a configuration to the resource state machine.
- <p>
- State machine implementations should override this method to receive configurations from
- client-side <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>s. Configurations are guaranteed to be applied to the state machine
- on all nodes at the same logical time (i.e. <code>index</code>). Configurations may be changed at
- runtime by any client, so state machines should account for runtime configuration changes and
- update existing state according to the provided configuration if necessary.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>config</code> - The resource configuration.</dd>
 </dl>
 </li>
 </ul>
@@ -430,7 +404,7 @@ implements <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/resource/ResourceException.html" title="class in io.atomix.resource"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/resource/ResourceFactory.html" title="interface in io.atomix.resource"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../io/atomix/resource/ResourceStateMachineExecutor.html" title="class in io.atomix.resource"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

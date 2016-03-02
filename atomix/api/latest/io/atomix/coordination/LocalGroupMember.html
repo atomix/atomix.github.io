@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -49,8 +49,8 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li>Next&nbsp;Class</li>
+<li><a href="../../../io/atomix/coordination/LocalGroupConnection.html" title="class in io.atomix.coordination"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/coordination/LocalGroupTaskQueue.html" title="class in io.atomix.coordination"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/coordination/LocalGroupMember.html" target="_top">Frames</a></li>
@@ -93,20 +93,29 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">io.atomix.coordination</div>
-<h2 title="Interface LocalGroupMember" class="title">Interface LocalGroupMember</h2>
+<h2 title="Class LocalGroupMember" class="title">Class LocalGroupMember</h2>
 </div>
 <div class="contentContainer">
+<ul class="inheritance">
+<li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>
+<ul class="inheritance">
+<li><a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">io.atomix.coordination.GroupMember</a></li>
+<li>
+<ul class="inheritance">
+<li>io.atomix.coordination.LocalGroupMember</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
-<dl>
-<dt>All Superinterfaces:</dt>
-<dd><a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a></dd>
-</dl>
 <hr>
 <br>
-<pre>public interface <span class="typeNameLabel">LocalGroupMember</span>
-extends <a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a></pre>
+<pre>public class <span class="typeNameLabel">LocalGroupMember</span>
+extends <a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">GroupMember</a></pre>
 <div class="block">A <a href="../../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination"><code>DistributedGroup</code></a> member representing a member of the group controlled by the
  local process.
  <p>
@@ -133,7 +142,7 @@ extends <a href="../../../io/atomix/coordination/GroupMember.html" title="interf
    });
    </code>
  </pre>
- The leader is guaranteed to be unique within a given <a href="../../../io/atomix/coordination/DistributedGroup.html#term--"><code>term</code></a>. However, once
+ The leader is guaranteed to be unique within a given <a href="../../../io/atomix/coordination/GroupElection.html#term--"><code>term</code></a>. However, once
  the member is elected leader, it is not guaranteed to remain the leader of the group until failure. In the
  event that the local group instance is partitioned from the rest of the cluster, the member may be removed
  from leadership and another member of the group may be elected. Users should use the provided <code>term</code>
@@ -155,56 +164,51 @@ extends <a href="../../../io/atomix/coordination/GroupMember.html" title="interf
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code><a href="../../../io/atomix/coordination/LocalGroupConnection.html" title="class in io.atomix.coordination">LocalGroupConnection</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/LocalGroupMember.html#connection--">connection</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/LocalGroupMember.html#leave--">leave</a></span>()</code>
 <div class="block">Leaves the membership group.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/LocalGroupMember.html#onElection-java.util.function.Consumer-">onElection</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;callback)</code>
 <div class="block">Registers a callback to be called when this member is elected leader.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;T&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/LocalGroupMember.html#onMessage-java.lang.String-java.util.function.Consumer-">onMessage</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic,
-         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;T&gt;&nbsp;consumer)</code>
-<div class="block">Registers a consumer for messages sent to the local member.</div>
-</td>
-</tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/LocalGroupMember.html#remove-java.lang.String-">remove</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;property)</code>
-<div class="block">Removes a property of the member.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/LocalGroupMember.html#resign--">resign</a></span>()</code>
 <div class="block">Resigns from leadership.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/LocalGroupMember.html#set-java.lang.String-java.lang.Object-">set</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;property,
-   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</code>
-<div class="block">Sets the value of a property of the member.</div>
-</td>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code><a href="../../../io/atomix/coordination/LocalGroupTaskQueue.html" title="class in io.atomix.coordination">LocalGroupTaskQueue</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/coordination/LocalGroupMember.html#tasks--">tasks</a></span>()</code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.coordination.GroupMember">
 <!--   -->
 </a>
-<h3>Methods inherited from interface&nbsp;io.atomix.coordination.<a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination">GroupMember</a></h3>
-<code><a href="../../../io/atomix/coordination/GroupMember.html#execute-java.lang.Runnable-">execute</a>, <a href="../../../io/atomix/coordination/GroupMember.html#get-java.lang.String-">get</a>, <a href="../../../io/atomix/coordination/GroupMember.html#id--">id</a>, <a href="../../../io/atomix/coordination/GroupMember.html#isLeader--">isLeader</a>, <a href="../../../io/atomix/coordination/GroupMember.html#schedule-java.time.Duration-java.lang.Runnable-">schedule</a>, <a href="../../../io/atomix/coordination/GroupMember.html#schedule-java.time.Instant-java.lang.Runnable-">schedule</a>, <a href="../../../io/atomix/coordination/GroupMember.html#send-java.lang.String-java.lang.Object-">send</a></code></li>
+<h3>Methods inherited from class&nbsp;io.atomix.coordination.<a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">GroupMember</a></h3>
+<code><a href="../../../io/atomix/coordination/GroupMember.html#address--">address</a>, <a href="../../../io/atomix/coordination/GroupMember.html#id--">id</a>, <a href="../../../io/atomix/coordination/GroupMember.html#isLeader--">isLeader</a>, <a href="../../../io/atomix/coordination/GroupMember.html#properties--">properties</a>, <a href="../../../io/atomix/coordination/GroupMember.html#scheduler--">scheduler</a>, <a href="../../../io/atomix/coordination/GroupMember.html#toString--">toString</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -220,65 +224,29 @@ extends <a href="../../../io/atomix/coordination/GroupMember.html" title="interf
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="set-java.lang.String-java.lang.Object-">
+<a name="tasks--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>set</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;set(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;property,
-                            <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</pre>
-<div class="block">Sets the value of a property of the member.
- <p>
- The property will be associated with the local group member and can be
- <a href="../../../io/atomix/coordination/GroupMember.html#get-java.lang.String-"><code>read</code></a> by any other instance of the membership group. If the
- member <a href="../../../io/atomix/coordination/GroupMember.html#id--"><code>GroupMember.id()</code></a> is a user provided ID, the group will retain the same properties
- in the event of the member leaving and rejoining the group.</div>
+<h4>tasks</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/coordination/LocalGroupTaskQueue.html" title="class in io.atomix.coordination">LocalGroupTaskQueue</a>&nbsp;tasks()</pre>
 <dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>property</code> - The property to set.</dd>
-<dd><code>value</code> - The value of the property to set.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A completable future to be completed once the value has been set.</dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/coordination/GroupMember.html#tasks--">tasks</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">GroupMember</a></code></dd>
 </dl>
 </li>
 </ul>
-<a name="remove-java.lang.String-">
+<a name="connection--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>remove</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;remove(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;property)</pre>
-<div class="block">Removes a property of the member.</div>
+<h4>connection</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/coordination/LocalGroupConnection.html" title="class in io.atomix.coordination">LocalGroupConnection</a>&nbsp;connection()</pre>
 <dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>property</code> - The property to remove.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A completable future to be completed once the property has been removed.</dd>
-</dl>
-</li>
-</ul>
-<a name="onMessage-java.lang.String-java.util.function.Consumer-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>onMessage</h4>
-<pre>&lt;T&gt;&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;T&gt;&nbsp;onMessage(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;topic,
-                          <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;T&gt;&nbsp;consumer)</pre>
-<div class="block">Registers a consumer for messages sent to the local member.
- <p>
- The provided message consumer will be called when a message sent to the local member
- is received for the given <code>topic</code>.</div>
-<dl>
-<dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>T</code> - The message type.</dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>topic</code> - The message topic.</dd>
-<dd><code>consumer</code> - The message consumer.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The local group member.</dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/coordination/GroupMember.html#connection--">connection</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/coordination/GroupMember.html" title="class in io.atomix.coordination">GroupMember</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -288,7 +256,7 @@ extends <a href="../../../io/atomix/coordination/GroupMember.html" title="interf
 <ul class="blockList">
 <li class="blockList">
 <h4>onElection</h4>
-<pre><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;onElection(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;callback)</pre>
+<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;onElection(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true" title="class or interface in java.lang">Long</a>&gt;&nbsp;callback)</pre>
 <div class="block">Registers a callback to be called when this member is elected leader.
  <p>
  The provided <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function"><code>Consumer</code></a> will be called when the local member is elected leader.
@@ -322,11 +290,11 @@ extends <a href="../../../io/atomix/coordination/GroupMember.html" title="interf
 <ul class="blockList">
 <li class="blockList">
 <h4>resign</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;resign()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;resign()</pre>
 <div class="block">Resigns from leadership.
  <p>
  Resigning as the leader of the group will result in the local member being placed at the
- tail of the leader election queue. Once the member has resigned, the <a href="../../../io/atomix/coordination/DistributedGroup.html#term--"><code>DistributedGroup.term()</code></a>
+ tail of the leader election queue. Once the member has resigned, the <a href="../../../io/atomix/coordination/GroupElection.html#term--"><code>GroupElection.term()</code></a>
  will be incremented and a new leader will be elected from the leader queue. If the local member
  is the only member of the group, it will immediately be reassigned as the leader for the new
  term.
@@ -350,7 +318,7 @@ extends <a href="../../../io/atomix/coordination/GroupMember.html" title="interf
 <ul class="blockListLast">
 <li class="blockList">
 <h4>leave</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;leave()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;leave()</pre>
 <div class="block">Leaves the membership group.
  <p>
  When this member leaves the membership group, the membership lists of this and all other instances
@@ -406,8 +374,8 @@ extends <a href="../../../io/atomix/coordination/GroupMember.html" title="interf
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/coordination/GroupMember.html" title="interface in io.atomix.coordination"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li>Next&nbsp;Class</li>
+<li><a href="../../../io/atomix/coordination/LocalGroupConnection.html" title="class in io.atomix.coordination"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/coordination/LocalGroupTaskQueue.html" title="class in io.atomix.coordination"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/coordination/LocalGroupMember.html" target="_top">Frames</a></li>

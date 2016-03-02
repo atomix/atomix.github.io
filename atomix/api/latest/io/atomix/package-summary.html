@@ -89,13 +89,13 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></td>
 <td class="colLast">
-<div class="block">Base type for creating and managing distributed <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>resources</code></a> in a Atomix cluster.</div>
+<div class="block">Base type for creating and managing distributed <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>resources</code></a> in a Atomix cluster.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="../../io/atomix/AtomixClient.html" title="class in io.atomix">AtomixClient</a></td>
 <td class="colLast">
-<div class="block">Provides an interface for creating and operating on <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>s remotely.</div>
+<div class="block">Provides an interface for creating and operating on <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a>s remotely.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -107,7 +107,7 @@
 <tr class="rowColor">
 <td class="colFirst"><a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a></td>
 <td class="colLast">
-<div class="block">Provides an interface for creating and operating on <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>s as a stateful node.</div>
+<div class="block">Provides an interface for creating and operating on <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a>s as a stateful node.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -215,16 +215,16 @@
  Atomix <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replicas</code></a> manage and replicate state, and both
  <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replicas</code></a> and <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>clients</code></a> provide the interface
  to operate on that state. The <a href="../../io/atomix/Atomix.html" title="class in io.atomix"><code>Atomix</code></a> interface provides the methods necessary
- to manage creating and operating on <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resources</code></a>. A resource is a stateful,
+ to manage creating and operating on <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resources</code></a>. A resource is a stateful,
  fault-tolerant, distributed object that's manged by a replicated state machine. To create a resource, simply
- call <a href="../../io/atomix/Atomix.html#get-java.lang.String-io.atomix.resource.ResourceType-"><code>Atomix.get(java.lang.String, io.atomix.resource.ResourceType)</code></a> or
+ call <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-"><code>Atomix.getResource(java.lang.String, io.atomix.resource.ResourceType)</code></a> or
  use one of the <code>getResource</code> methods like <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-"><code>Atomix.getMap(java.lang.String)</code></a>.
  <pre>
    <code>
    DistributedGroup group = atomix.getGroup("group").get();
    </code>
  </pre>
- A <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>resource</code></a> is simply an interface to a replicated state machine. When a
+ A <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>resource</code></a> is simply an interface to a replicated state machine. When a
  resource is created, a state machine is created on each <code>server</code> or
  <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>replica</code></a> in the cluster, and operations on the resource are submitted to the
  cluster where they're logged, replicated, and applied to the resource's specific <a href="../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource"><code>ResourceStateMachine</code></a>.

@@ -120,13 +120,13 @@ var activeTableTab = "activeTableTab";
 <pre>public abstract class <span class="typeNameLabel">Atomix</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</pre>
-<div class="block">Base type for creating and managing distributed <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>resources</code></a> in a Atomix cluster.
+<div class="block">Base type for creating and managing distributed <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>resources</code></a> in a Atomix cluster.
  <p>
  Resources are user provided stateful objects backed by a distributed state machine. This class facilitates the
- creation and management of <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a> objects via a filesystem like interface. There is a
+ creation and management of <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a> objects via a filesystem like interface. There is a
  one-to-one relationship between keys and resources, so each key can be associated with one and only one resource.
  <p>
- To create a resource, pass the resource <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang"><code>Class</code></a> to the <a href="../../io/atomix/Atomix.html#get-java.lang.String-io.atomix.resource.ResourceType-"><code>get(String, ResourceType)</code></a> method.
+ To create a resource, pass the resource <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang"><code>Class</code></a> to the <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-"><code>getResource(String, ResourceType)</code></a> method.
  When a resource is created, the <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server"><code>StateMachine</code></a> associated with the resource will be created on each Raft server
  and future operations submitted for that resource will be applied to the state machine. Internally, resource state
  machines are multiplexed across a shared Raft log.</div>
@@ -169,111 +169,47 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#get-java.lang.String-java.lang.Class-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</code>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#get-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Config-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type,
-   <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</code>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
-</td>
-</tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#get-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type,
-   <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
-   <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
-</td>
-</tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#get-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Options-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type,
-   <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#get-java.lang.String-io.atomix.resource.ResourceType-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-   <a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
-</td>
-</tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#get-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-   <a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
-   <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</code>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
-</td>
-</tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#get-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-   <a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
-   <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
-   <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
-</td>
-</tr>
-<tr id="i10" class="altColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#get-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Options-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-   <a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
-   <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
-</td>
-</tr>
-<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-">getGroup</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
 <div class="block">Gets or creates a distributed group for managing group membership and leader elections.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.resource.Resource.Config-">getGroup</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-        <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.coordination.DistributedGroup.Config-">getGroup</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+        <a href="../../io/atomix/coordination/DistributedGroup.Config.html" title="class in io.atomix.coordination">DistributedGroup.Config</a>&nbsp;config)</code>
 <div class="block">Gets or creates a distributed group for managing group membership and leader elections.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getGroup</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-        <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
-        <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.coordination.DistributedGroup.Config-io.atomix.coordination.DistributedGroup.Options-">getGroup</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+        <a href="../../io/atomix/coordination/DistributedGroup.Config.html" title="class in io.atomix.coordination">DistributedGroup.Config</a>&nbsp;config,
+        <a href="../../io/atomix/coordination/DistributedGroup.Options.html" title="class in io.atomix.coordination">DistributedGroup.Options</a>&nbsp;options)</code>
 <div class="block">Gets or creates a distributed group for managing group membership and leader elections.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.resource.Resource.Options-">getGroup</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-        <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.coordination.DistributedGroup.Options-">getGroup</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+        <a href="../../io/atomix/coordination/DistributedGroup.Options.html" title="class in io.atomix.coordination">DistributedGroup.Options</a>&nbsp;options)</code>
 <div class="block">Gets or creates a distributed group for managing group membership and leader elections.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getLock-java.lang.String-">getLock</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
 <div class="block">Gets or creates a distributed lock with default configuration and options.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getLock-java.lang.String-io.atomix.resource.Resource.Config-">getLock</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
        <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</code>
 <div class="block">Gets or creates a distributed lock with a cluster-wide configuration.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getLock-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getLock</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
        <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
@@ -281,27 +217,27 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 <div class="block">Gets or creates a distributed lock with a cluster-wide configuration and local options.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/coordination/DistributedLock.html" title="class in io.atomix.coordination">DistributedLock</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getLock-java.lang.String-io.atomix.resource.Resource.Options-">getLock</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
        <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
 <div class="block">Gets or creates a distributed lock with local options.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/variables/DistributedLong.html" title="class in io.atomix.variables">DistributedLong</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getLong-java.lang.String-">getLong</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
 <div class="block">Gets or creates a distributed long with default configuration and options.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/variables/DistributedLong.html" title="class in io.atomix.variables">DistributedLong</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getLong-java.lang.String-io.atomix.resource.Resource.Config-">getLong</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
        <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</code>
 <div class="block">Gets or creates a distributed long with a cluster-wide configuration.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/variables/DistributedLong.html" title="class in io.atomix.variables">DistributedLong</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getLong-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getLong</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
        <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
@@ -309,27 +245,27 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 <div class="block">Gets or creates a distributed long with a cluster-wide configuration and local options.</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/variables/DistributedLong.html" title="class in io.atomix.variables">DistributedLong</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getLong-java.lang.String-io.atomix.resource.Resource.Options-">getLong</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
        <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
 <div class="block">Gets or creates a distributed long with local options.</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>&lt;K,V&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a>&lt;K,V&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getMap-java.lang.String-">getMap</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
 <div class="block">Gets or creates a distributed map with default configuration and options.</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>&lt;K,V&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a>&lt;K,V&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Config-">getMap</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
       <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</code>
 <div class="block">Gets or creates a distributed map with a cluster-wide configuration.</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>&lt;K,V&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a>&lt;K,V&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getMap</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
       <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
@@ -337,34 +273,34 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 <div class="block">Gets or creates a distributed map with a cluster-wide configuration and local options.</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>&lt;K,V&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a>&lt;K,V&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Options-">getMap</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
       <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
 <div class="block">Gets or creates a distributed map with local options.</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getMessageBus-java.lang.String-">getMessageBus</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
 <div class="block">Gets or creates a distributed message bus for unreliable direct messaging.</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getMessageBus-java.lang.String-io.atomix.messaging.DistributedMessageBus.Options-">getMessageBus</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
              <a href="../../io/atomix/messaging/DistributedMessageBus.Options.html" title="class in io.atomix.messaging">DistributedMessageBus.Options</a>&nbsp;options)</code>
 <div class="block">Gets or creates a distributed message bus for unreliable direct messaging.</div>
 </td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getMessageBus-java.lang.String-io.atomix.resource.Resource.Config-">getMessageBus</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
              <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</code>
 <div class="block">Gets or creates a distributed message bus for unreliable direct messaging.</div>
 </td>
 </tr>
-<tr id="i30" class="altColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getMessageBus-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.messaging.DistributedMessageBus.Options-">getMessageBus</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
              <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
@@ -372,20 +308,20 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 <div class="block">Gets or creates a distributed message bus for unreliable direct messaging.</div>
 </td>
 </tr>
-<tr id="i31" class="rowColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>&lt;K,V&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a>&lt;K,V&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-">getMultiMap</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
 <div class="block">Gets or creates a distributed multi map with default configuration and options.</div>
 </td>
 </tr>
-<tr id="i32" class="altColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>&lt;K,V&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a>&lt;K,V&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-io.atomix.collections.DistributedMultiMap.Config-">getMultiMap</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
            <a href="../../io/atomix/collections/DistributedMultiMap.Config.html" title="class in io.atomix.collections">DistributedMultiMap.Config</a>&nbsp;config)</code>
 <div class="block">Gets or creates a distributed multi map with a cluster-wide configuration.</div>
 </td>
 </tr>
-<tr id="i33" class="rowColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code>&lt;K,V&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a>&lt;K,V&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-io.atomix.collections.DistributedMultiMap.Config-io.atomix.resource.Resource.Options-">getMultiMap</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
            <a href="../../io/atomix/collections/DistributedMultiMap.Config.html" title="class in io.atomix.collections">DistributedMultiMap.Config</a>&nbsp;config,
@@ -393,27 +329,27 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 <div class="block">Gets or creates a distributed multi map with a cluster-wide configuration and local options.</div>
 </td>
 </tr>
-<tr id="i34" class="altColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code>&lt;K,V&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/collections/DistributedMultiMap.html" title="class in io.atomix.collections">DistributedMultiMap</a>&lt;K,V&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-io.atomix.resource.Resource.Options-">getMultiMap</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
            <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
 <div class="block">Gets or creates a distributed multi map with local options.</div>
 </td>
 </tr>
-<tr id="i35" class="rowColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/collections/DistributedQueue.html" title="class in io.atomix.collections">DistributedQueue</a>&lt;T&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-">getQueue</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
 <div class="block">Gets or creates a distributed queue with default configuration and options.</div>
 </td>
 </tr>
-<tr id="i36" class="altColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/collections/DistributedQueue.html" title="class in io.atomix.collections">DistributedQueue</a>&lt;T&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-io.atomix.resource.Resource.Config-">getQueue</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
         <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</code>
 <div class="block">Gets or creates a distributed queue with a cluster-wide configuration.</div>
 </td>
 </tr>
-<tr id="i37" class="rowColor">
+<tr id="i29" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/collections/DistributedQueue.html" title="class in io.atomix.collections">DistributedQueue</a>&lt;T&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getQueue</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
         <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
@@ -421,11 +357,75 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 <div class="block">Gets or creates a distributed queue with a cluster-wide configuration and local options.</div>
 </td>
 </tr>
-<tr id="i38" class="altColor">
+<tr id="i30" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/collections/DistributedQueue.html" title="class in io.atomix.collections">DistributedQueue</a>&lt;T&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-io.atomix.resource.Resource.Options-">getQueue</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
         <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
 <div class="block">Gets or creates a distributed queue with local options.</div>
+</td>
+</tr>
+<tr id="i31" class="rowColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-">getResource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</code>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
+</td>
+</tr>
+<tr id="i32" class="altColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Config-">getResource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type,
+           <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</code>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
+</td>
+</tr>
+<tr id="i33" class="rowColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getResource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type,
+           <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
+           <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
+</td>
+</tr>
+<tr id="i34" class="altColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Options-">getResource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type,
+           <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
+</td>
+</tr>
+<tr id="i35" class="rowColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-">getResource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
+</td>
+</tr>
+<tr id="i36" class="altColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-">getResource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
+           <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</code>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
+</td>
+</tr>
+<tr id="i37" class="rowColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getResource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
+           <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
+           <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
+</td>
+</tr>
+<tr id="i38" class="altColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Options-">getResource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
+           <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
 </td>
 </tr>
 <tr id="i39" class="rowColor">
@@ -555,7 +555,7 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 </td>
 </tr>
 <tr id="i58" class="altColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;</code></td>
+<td class="colFirst"><code>&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#keys-java.lang.Class-">keys</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</code>
 <div class="block">Returns the keys of existing resources belonging to a resource type.</div>
 </td>
@@ -582,7 +582,7 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 </tr>
 <tr id="i63" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#type-java.lang.Class-">type</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;?&gt;&gt;&nbsp;type)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/Atomix.html#type-java.lang.Class-">type</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;?&gt;&gt;&nbsp;type)</code>
 <div class="block">Returns the resource type for the given resource class.</div>
 </td>
 </tr>
@@ -1716,14 +1716,14 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 </dl>
 </li>
 </ul>
-<a name="getGroup-java.lang.String-io.atomix.resource.Resource.Config-">
+<a name="getGroup-java.lang.String-io.atomix.coordination.DistributedGroup.Config-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getGroup</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;&nbsp;getGroup(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-                                                    <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</pre>
+                                                    <a href="../../io/atomix/coordination/DistributedGroup.Config.html" title="class in io.atomix.coordination">DistributedGroup.Config</a>&nbsp;config)</pre>
 <div class="block">Gets or creates a distributed group for managing group membership and leader elections.
  <p>
  The returned resource can be used to perform a variety of common distributed systems tasks, most notable
@@ -1751,14 +1751,14 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 </dl>
 </li>
 </ul>
-<a name="getGroup-java.lang.String-io.atomix.resource.Resource.Options-">
+<a name="getGroup-java.lang.String-io.atomix.coordination.DistributedGroup.Options-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getGroup</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;&nbsp;getGroup(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-                                                    <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</pre>
+                                                    <a href="../../io/atomix/coordination/DistributedGroup.Options.html" title="class in io.atomix.coordination">DistributedGroup.Options</a>&nbsp;options)</pre>
 <div class="block">Gets or creates a distributed group for managing group membership and leader elections.
  <p>
  The returned resource can be used to perform a variety of common distributed systems tasks, most notable
@@ -1785,15 +1785,15 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 </dl>
 </li>
 </ul>
-<a name="getGroup-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">
+<a name="getGroup-java.lang.String-io.atomix.coordination.DistributedGroup.Config-io.atomix.coordination.DistributedGroup.Options-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getGroup</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/coordination/DistributedGroup.html" title="class in io.atomix.coordination">DistributedGroup</a>&gt;&nbsp;getGroup(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-                                                    <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
-                                                    <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</pre>
+                                                    <a href="../../io/atomix/coordination/DistributedGroup.Config.html" title="class in io.atomix.coordination">DistributedGroup.Config</a>&nbsp;config,
+                                                    <a href="../../io/atomix/coordination/DistributedGroup.Options.html" title="class in io.atomix.coordination">DistributedGroup.Options</a>&nbsp;options)</pre>
 <div class="block">Gets or creates a distributed group for managing group membership and leader elections.
  <p>
  The returned resource can be used to perform a variety of common distributed systems tasks, most notable
@@ -2289,7 +2289,7 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 <ul class="blockList">
 <li class="blockList">
 <h4>type</h4>
-<pre>public&nbsp;<a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;?&gt;&gt;&nbsp;type)</pre>
+<pre>public&nbsp;<a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;?&gt;&gt;&nbsp;type)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code>io.atomix.manager.ResourceManager</code></span></div>
 <div class="block">Returns the resource type for the given resource class.</div>
 <dl>
@@ -2323,7 +2323,7 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
  <pre>
    <code>
    if (!atomix.exists("lock").get()) {
-     DistributedLock lock = atomix.create("lock", DistributedLock.class).get();
+     DistributedLock lock = atomix.getResource("lock", DistributedLock.class).get();
    }
    </code>
  </pre>
@@ -2333,7 +2333,7 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
    <code>
    atomix.exists("lock").thenAccept(exists -&gt; {
      if (!exists) {
-       atomix.&lt;DistributedLock&gt;create("lock", DistributedLock.class).thenAccept(lock -&gt; {
+       atomix.&lt;DistributedLock&gt;getResource("lock", DistributedLock.class).thenAccept(lock -&gt; {
          ...
        });
      }
@@ -2392,7 +2392,7 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 <ul class="blockList">
 <li class="blockList">
 <h4>keys</h4>
-<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;&nbsp;keys(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</pre>
+<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;&nbsp;keys(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code>io.atomix.manager.ResourceManager</code></span></div>
 <div class="block">Returns the keys of existing resources belonging to a resource type.
 
@@ -2464,14 +2464,14 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 </dl>
 </li>
 </ul>
-<a name="get-java.lang.String-java.lang.Class-">
+<a name="getResource-java.lang.String-java.lang.Class-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>get</h4>
-<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-                                                     <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</pre>
+<h4>getResource</h4>
+<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;getResource(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+                                                             <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code>io.atomix.manager.ResourceManager</code></span></div>
 <div class="block">Gets or creates the given resource and acquires a singleton reference to it.
  <p>
@@ -2479,8 +2479,8 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
  matches the given type. If no resource yet exists, a new resource will be created in the cluster. Once
  the session for the resource has been opened, a resource instance will be returned.
  <p>
- The returned <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a> instance will be a singleton reference to an global instance for this node.
- That is, multiple calls to this method for the same resource will result in the same <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>
+ The returned <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a> instance will be a singleton reference to an global instance for this node.
+ That is, multiple calls to this method for the same resource will result in the same <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a>
  instance being returned.
  <p>
  This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
@@ -2488,21 +2488,21 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
  use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method:
  <pre>
    <code>
-   DistributedLock lock = atomix.get("lock", DistributedLock.class).get();
+   DistributedLock lock = atomix.getResource("lock", DistributedLock.class).get();
    </code>
  </pre>
  Alternatively, to execute the operation asynchronous and be notified once the result is received in a different
  thread, use one of the many completable future callbacks:
  <pre>
    <code>
-   atomix.&lt;DistributedLock&gt;get("lock", DistributedLock.class).thenAccept(lock -&gt; {
+   atomix.&lt;DistributedLock&gt;getResource("lock", DistributedLock.class).thenAccept(lock -&gt; {
      ...
    });
    </code>
  </pre></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>get</code>&nbsp;in interface&nbsp;<code>io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
+<dd><code>getResource</code>&nbsp;in interface&nbsp;<code>io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The resource type.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -2513,15 +2513,15 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 </dl>
 </li>
 </ul>
-<a name="get-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Config-">
+<a name="getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Config-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>get</h4>
-<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-                                                     <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type,
-                                                     <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</pre>
+<h4>getResource</h4>
+<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;getResource(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+                                                             <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type,
+                                                             <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code>io.atomix.manager.ResourceManager</code></span></div>
 <div class="block">Gets or creates the given resource and acquires a singleton reference to it.
  <p>
@@ -2529,8 +2529,8 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
  matches the given type. If no resource yet exists, a new resource will be created in the cluster. Once
  the session for the resource has been opened, a resource instance will be returned.
  <p>
- The returned <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a> instance will be a singleton reference to an global instance for this node.
- That is, multiple calls to this method for the same resource will result in the same <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>
+ The returned <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a> instance will be a singleton reference to an global instance for this node.
+ That is, multiple calls to this method for the same resource will result in the same <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a>
  instance being returned.
  <p>
  This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
@@ -2538,225 +2538,21 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
  use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method:
  <pre>
    <code>
-   DistributedLock lock = atomix.get("lock", DistributedLock.class).get();
+   DistributedLock lock = atomix.getResource("lock", DistributedLock.class).get();
    </code>
  </pre>
  Alternatively, to execute the operation asynchronous and be notified once the result is received in a different
  thread, use one of the many completable future callbacks:
  <pre>
    <code>
-   atomix.&lt;DistributedLock&gt;get("lock", DistributedLock.class).thenAccept(lock -&gt; {
+   atomix.&lt;DistributedLock&gt;getResource("lock", DistributedLock.class).thenAccept(lock -&gt; {
      ...
    });
    </code>
  </pre></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>get</code>&nbsp;in interface&nbsp;<code>io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
-<dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>T</code> - The resource type.</dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>key</code> - The key at which to get the resource.</dd>
-<dd><code>type</code> - The expected resource type.</dd>
-<dd><code>config</code> - The cluster-wide resource configuration.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A completable future to be completed once the resource has been loaded.</dd>
-</dl>
-</li>
-</ul>
-<a name="get-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Options-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>get</h4>
-<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-                                                     <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type,
-                                                     <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code>io.atomix.manager.ResourceManager</code></span></div>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.
- <p>
- If a resource at the given key already exists, the resource will be validated to verify that its type
- matches the given type. If no resource yet exists, a new resource will be created in the cluster. Once
- the session for the resource has been opened, a resource instance will be returned.
- <p>
- The returned <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a> instance will be a singleton reference to an global instance for this node.
- That is, multiple calls to this method for the same resource will result in the same <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>
- instance being returned.
- <p>
- This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
- or to be notified in a separate thread once the operation completes. To block until the operation completes,
- use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method:
- <pre>
-   <code>
-   DistributedLock lock = atomix.get("lock", DistributedLock.class).get();
-   </code>
- </pre>
- Alternatively, to execute the operation asynchronous and be notified once the result is received in a different
- thread, use one of the many completable future callbacks:
- <pre>
-   <code>
-   atomix.&lt;DistributedLock&gt;get("lock", DistributedLock.class).thenAccept(lock -&gt; {
-     ...
-   });
-   </code>
- </pre></div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>get</code>&nbsp;in interface&nbsp;<code>io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
-<dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>T</code> - The resource type.</dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>key</code> - The key at which to get the resource.</dd>
-<dd><code>type</code> - The expected resource type.</dd>
-<dd><code>options</code> - The local resource options.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A completable future to be completed once the resource has been loaded.</dd>
-</dl>
-</li>
-</ul>
-<a name="get-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>get</h4>
-<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-                                                     <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type,
-                                                     <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
-                                                     <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code>io.atomix.manager.ResourceManager</code></span></div>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.
- <p>
- If a resource at the given key already exists, the resource will be validated to verify that its type
- matches the given type. If no resource yet exists, a new resource will be created in the cluster. Once
- the session for the resource has been opened, a resource instance will be returned.
- <p>
- The returned <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a> instance will be a singleton reference to an global instance for this node.
- That is, multiple calls to this method for the same resource will result in the same <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>
- instance being returned.
- <p>
- This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
- or to be notified in a separate thread once the operation completes. To block until the operation completes,
- use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method:
- <pre>
-   <code>
-   DistributedLock lock = atomix.get("lock", DistributedLock.class).get();
-   </code>
- </pre>
- Alternatively, to execute the operation asynchronous and be notified once the result is received in a different
- thread, use one of the many completable future callbacks:
- <pre>
-   <code>
-   atomix.&lt;DistributedLock&gt;get("lock", DistributedLock.class).thenAccept(lock -&gt; {
-     ...
-   });
-   </code>
- </pre></div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>get</code>&nbsp;in interface&nbsp;<code>io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
-<dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>T</code> - The resource type.</dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>key</code> - The key at which to get the resource.</dd>
-<dd><code>type</code> - The expected resource type.</dd>
-<dd><code>config</code> - The cluster-wide resource configuration.</dd>
-<dd><code>options</code> - The local resource options.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A completable future to be completed once the resource has been loaded.</dd>
-</dl>
-</li>
-</ul>
-<a name="get-java.lang.String-io.atomix.resource.ResourceType-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>get</h4>
-<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-                                                     <a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code>io.atomix.manager.ResourceManager</code></span></div>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.
- <p>
- If a resource at the given key already exists, the resource will be validated to verify that its type
- matches the given type. If no resource yet exists, a new resource will be created in the cluster. Once
- the session for the resource has been opened, a resource instance will be returned.
- <p>
- The returned <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a> instance will be a singleton reference to an global instance for this node.
- That is, multiple calls to this method for the same resource will result in the same <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>
- instance being returned.
- <p>
- This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
- or to be notified in a separate thread once the operation completes. To block until the operation completes,
- use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method:
- <pre>
-   <code>
-   DistributedLock lock = atomix.get("lock", DistributedLock.class).get();
-   </code>
- </pre>
- Alternatively, to execute the operation asynchronous and be notified once the result is received in a different
- thread, use one of the many completable future callbacks:
- <pre>
-   <code>
-   atomix.&lt;DistributedLock&gt;get("lock", DistributedLock.class).thenAccept(lock -&gt; {
-     ...
-   });
-   </code>
- </pre></div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>get</code>&nbsp;in interface&nbsp;<code>io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
-<dt><span class="paramLabel">Type Parameters:</span></dt>
-<dd><code>T</code> - The resource type.</dd>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>key</code> - The key at which to get the resource.</dd>
-<dd><code>type</code> - The expected resource type.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A completable future to be completed once the resource has been loaded.</dd>
-</dl>
-</li>
-</ul>
-<a name="get-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>get</h4>
-<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-                                                     <a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
-                                                     <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code>io.atomix.manager.ResourceManager</code></span></div>
-<div class="block">Gets or creates the given resource and acquires a singleton reference to it.
- <p>
- If a resource at the given key already exists, the resource will be validated to verify that its type
- matches the given type. If no resource yet exists, a new resource will be created in the cluster. Once
- the session for the resource has been opened, a resource instance will be returned.
- <p>
- The returned <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a> instance will be a singleton reference to an global instance for this node.
- That is, multiple calls to this method for the same resource will result in the same <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>
- instance being returned.
- <p>
- This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
- or to be notified in a separate thread once the operation completes. To block until the operation completes,
- use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method:
- <pre>
-   <code>
-   DistributedLock lock = atomix.get("lock", DistributedLock.class).get();
-   </code>
- </pre>
- Alternatively, to execute the operation asynchronous and be notified once the result is received in a different
- thread, use one of the many completable future callbacks:
- <pre>
-   <code>
-   atomix.&lt;DistributedLock&gt;get("lock", DistributedLock.class).thenAccept(lock -&gt; {
-     ...
-   });
-   </code>
- </pre></div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>get</code>&nbsp;in interface&nbsp;<code>io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
+<dd><code>getResource</code>&nbsp;in interface&nbsp;<code>io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The resource type.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -2768,15 +2564,15 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 </dl>
 </li>
 </ul>
-<a name="get-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Options-">
+<a name="getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Options-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>get</h4>
-<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-                                                     <a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
-                                                     <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</pre>
+<h4>getResource</h4>
+<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;getResource(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+                                                             <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type,
+                                                             <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code>io.atomix.manager.ResourceManager</code></span></div>
 <div class="block">Gets or creates the given resource and acquires a singleton reference to it.
  <p>
@@ -2784,8 +2580,8 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
  matches the given type. If no resource yet exists, a new resource will be created in the cluster. Once
  the session for the resource has been opened, a resource instance will be returned.
  <p>
- The returned <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a> instance will be a singleton reference to an global instance for this node.
- That is, multiple calls to this method for the same resource will result in the same <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>
+ The returned <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a> instance will be a singleton reference to an global instance for this node.
+ That is, multiple calls to this method for the same resource will result in the same <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a>
  instance being returned.
  <p>
  This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
@@ -2793,21 +2589,21 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
  use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method:
  <pre>
    <code>
-   DistributedLock lock = atomix.get("lock", DistributedLock.class).get();
+   DistributedLock lock = atomix.getResource("lock", DistributedLock.class).get();
    </code>
  </pre>
  Alternatively, to execute the operation asynchronous and be notified once the result is received in a different
  thread, use one of the many completable future callbacks:
  <pre>
    <code>
-   atomix.&lt;DistributedLock&gt;get("lock", DistributedLock.class).thenAccept(lock -&gt; {
+   atomix.&lt;DistributedLock&gt;getResource("lock", DistributedLock.class).thenAccept(lock -&gt; {
      ...
    });
    </code>
  </pre></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>get</code>&nbsp;in interface&nbsp;<code>io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
+<dd><code>getResource</code>&nbsp;in interface&nbsp;<code>io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The resource type.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -2819,16 +2615,16 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
 </dl>
 </li>
 </ul>
-<a name="get-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">
+<a name="getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>get</h4>
-<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
-                                                     <a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
-                                                     <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
-                                                     <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</pre>
+<h4>getResource</h4>
+<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;getResource(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+                                                             <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? super T&gt;&nbsp;type,
+                                                             <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
+                                                             <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code>io.atomix.manager.ResourceManager</code></span></div>
 <div class="block">Gets or creates the given resource and acquires a singleton reference to it.
  <p>
@@ -2836,8 +2632,8 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
  matches the given type. If no resource yet exists, a new resource will be created in the cluster. Once
  the session for the resource has been opened, a resource instance will be returned.
  <p>
- The returned <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a> instance will be a singleton reference to an global instance for this node.
- That is, multiple calls to this method for the same resource will result in the same <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>
+ The returned <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a> instance will be a singleton reference to an global instance for this node.
+ That is, multiple calls to this method for the same resource will result in the same <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a>
  instance being returned.
  <p>
  This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
@@ -2845,21 +2641,225 @@ implements io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.
  use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method:
  <pre>
    <code>
-   DistributedLock lock = atomix.get("lock", DistributedLock.class).get();
+   DistributedLock lock = atomix.getResource("lock", DistributedLock.class).get();
    </code>
  </pre>
  Alternatively, to execute the operation asynchronous and be notified once the result is received in a different
  thread, use one of the many completable future callbacks:
  <pre>
    <code>
-   atomix.&lt;DistributedLock&gt;get("lock", DistributedLock.class).thenAccept(lock -&gt; {
+   atomix.&lt;DistributedLock&gt;getResource("lock", DistributedLock.class).thenAccept(lock -&gt; {
      ...
    });
    </code>
  </pre></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code>get</code>&nbsp;in interface&nbsp;<code>io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
+<dd><code>getResource</code>&nbsp;in interface&nbsp;<code>io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The resource type.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>key</code> - The key at which to get the resource.</dd>
+<dd><code>type</code> - The expected resource type.</dd>
+<dd><code>config</code> - The cluster-wide resource configuration.</dd>
+<dd><code>options</code> - The local resource options.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the resource has been loaded.</dd>
+</dl>
+</li>
+</ul>
+<a name="getResource-java.lang.String-io.atomix.resource.ResourceType-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getResource</h4>
+<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;getResource(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+                                                             <a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code>io.atomix.manager.ResourceManager</code></span></div>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.
+ <p>
+ If a resource at the given key already exists, the resource will be validated to verify that its type
+ matches the given type. If no resource yet exists, a new resource will be created in the cluster. Once
+ the session for the resource has been opened, a resource instance will be returned.
+ <p>
+ The returned <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a> instance will be a singleton reference to an global instance for this node.
+ That is, multiple calls to this method for the same resource will result in the same <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a>
+ instance being returned.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method:
+ <pre>
+   <code>
+   DistributedLock lock = atomix.getResource("lock", DistributedLock.class).get();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the result is received in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   atomix.&lt;DistributedLock&gt;getResource("lock", DistributedLock.class).thenAccept(lock -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>getResource</code>&nbsp;in interface&nbsp;<code>io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The resource type.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>key</code> - The key at which to get the resource.</dd>
+<dd><code>type</code> - The expected resource type.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the resource has been loaded.</dd>
+</dl>
+</li>
+</ul>
+<a name="getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getResource</h4>
+<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;getResource(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+                                                             <a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
+                                                             <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code>io.atomix.manager.ResourceManager</code></span></div>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.
+ <p>
+ If a resource at the given key already exists, the resource will be validated to verify that its type
+ matches the given type. If no resource yet exists, a new resource will be created in the cluster. Once
+ the session for the resource has been opened, a resource instance will be returned.
+ <p>
+ The returned <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a> instance will be a singleton reference to an global instance for this node.
+ That is, multiple calls to this method for the same resource will result in the same <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a>
+ instance being returned.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method:
+ <pre>
+   <code>
+   DistributedLock lock = atomix.getResource("lock", DistributedLock.class).get();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the result is received in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   atomix.&lt;DistributedLock&gt;getResource("lock", DistributedLock.class).thenAccept(lock -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>getResource</code>&nbsp;in interface&nbsp;<code>io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The resource type.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>key</code> - The key at which to get the resource.</dd>
+<dd><code>type</code> - The expected resource type.</dd>
+<dd><code>config</code> - The cluster-wide resource configuration.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the resource has been loaded.</dd>
+</dl>
+</li>
+</ul>
+<a name="getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Options-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getResource</h4>
+<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;getResource(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+                                                             <a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
+                                                             <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code>io.atomix.manager.ResourceManager</code></span></div>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.
+ <p>
+ If a resource at the given key already exists, the resource will be validated to verify that its type
+ matches the given type. If no resource yet exists, a new resource will be created in the cluster. Once
+ the session for the resource has been opened, a resource instance will be returned.
+ <p>
+ The returned <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a> instance will be a singleton reference to an global instance for this node.
+ That is, multiple calls to this method for the same resource will result in the same <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a>
+ instance being returned.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method:
+ <pre>
+   <code>
+   DistributedLock lock = atomix.getResource("lock", DistributedLock.class).get();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the result is received in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   atomix.&lt;DistributedLock&gt;getResource("lock", DistributedLock.class).thenAccept(lock -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>getResource</code>&nbsp;in interface&nbsp;<code>io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The resource type.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>key</code> - The key at which to get the resource.</dd>
+<dd><code>type</code> - The expected resource type.</dd>
+<dd><code>options</code> - The local resource options.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the resource has been loaded.</dd>
+</dl>
+</li>
+</ul>
+<a name="getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getResource</h4>
+<pre>public&nbsp;&lt;T extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;&nbsp;getResource(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+                                                             <a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
+                                                             <a href="../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
+                                                             <a href="../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code>io.atomix.manager.ResourceManager</code></span></div>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.
+ <p>
+ If a resource at the given key already exists, the resource will be validated to verify that its type
+ matches the given type. If no resource yet exists, a new resource will be created in the cluster. Once
+ the session for the resource has been opened, a resource instance will be returned.
+ <p>
+ The returned <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a> instance will be a singleton reference to an global instance for this node.
+ That is, multiple calls to this method for the same resource will result in the same <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource"><code>Resource</code></a>
+ instance being returned.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#get--" title="class or interface in java.util.concurrent"><code>CompletableFuture.get()</code></a> method:
+ <pre>
+   <code>
+   DistributedLock lock = atomix.getResource("lock", DistributedLock.class).get();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the result is received in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   atomix.&lt;DistributedLock&gt;getResource("lock", DistributedLock.class).thenAccept(lock -&gt; {
+     ...
+   });
+   </code>
+ </pre></div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>getResource</code>&nbsp;in interface&nbsp;<code>io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The resource type.</dd>
 <dt><span class="paramLabel">Parameters:</span></dt>

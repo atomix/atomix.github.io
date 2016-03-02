@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -160,84 +160,108 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#addResourceType-java.lang.Class-">addResourceType</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;?&gt;&gt;&nbsp;type)</code>
+<div class="block">Adds a resource type to the replica.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#addResourceType-io.atomix.resource.ResourceType-">addResourceType</a></span>(<a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>
+<div class="block">Adds a resource type to the replica.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#build--">build</a></span>()</code>
 <div class="block">Builds the replica.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withBackupCount-int-">withBackupCount</a></span>(int&nbsp;backupCount)</code>
 <div class="block">Sets the replica backup count.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withClientTransport-io.atomix.catalyst.transport.Transport-">withClientTransport</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</code>
 <div class="block">Sets the client transport, returning the server builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withElectionTimeout-java.time.Duration-">withElectionTimeout</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;electionTimeout)</code>
 <div class="block">Sets the replica election timeout, returning the replica builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withGlobalSuspendTimeout-java.time.Duration-">withGlobalSuspendTimeout</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;globalSuspendTimeout)</code>
 <div class="block">Sets the replica's global suspend timeout.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withHeartbeatInterval-java.time.Duration-">withHeartbeatInterval</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;heartbeatInterval)</code>
 <div class="block">Sets the replica heartbeat interval, returning the replica builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withQuorumHint-int-">withQuorumHint</a></span>(int&nbsp;quorumHint)</code>
 <div class="block">Sets the cluster quorum hint.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withQuorumHint-io.atomix.Quorum-">withQuorumHint</a></span>(<a href="../../io/atomix/Quorum.html" title="enum in io.atomix">Quorum</a>&nbsp;quorum)</code>
 <div class="block">Sets the cluster quorum hint.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withResourceResolver-io.atomix.resource.util.ResourceTypeResolver-">withResourceResolver</a></span>(io.atomix.resource.util.ResourceTypeResolver&nbsp;resolver)</code>
-<div class="block">Sets the Atomix resource type resolver.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withResourceTypes-java.lang.Class...-">withResourceTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;?&gt;&gt;...&nbsp;types)</code>
+<div class="block">Sets the available resource types.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withResourceTypes-java.util.Collection-">withResourceTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&gt;&nbsp;types)</code>
+<div class="block">Sets the available resource types.</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
+<td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withResourceTypes-io.atomix.resource.ResourceType...-">withResourceTypes</a></span>(<a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>...&nbsp;types)</code>
+<div class="block">Sets the available resource types.</div>
+</td>
+</tr>
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-">withSerializer</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
 <div class="block">Sets the serializer, returning the replica builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withServerTransport-io.atomix.catalyst.transport.Transport-">withServerTransport</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</code>
 <div class="block">Sets the server transport, returning the server builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withSessionTimeout-java.time.Duration-">withSessionTimeout</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;sessionTimeout)</code>
 <div class="block">Sets the replica session timeout, returning the replica builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withStorage-io.atomix.copycat.server.storage.Storage-">withStorage</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage)</code>
 <div class="block">Sets the replica storage module, returning the replica builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Builder.html#withTransport-io.atomix.catalyst.transport.Transport-">withTransport</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</code>
 <div class="block">Sets the replica transport, returning the replica builder for method chaining.</div>
@@ -478,27 +502,6 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 </dl>
 </li>
 </ul>
-<a name="withResourceResolver-io.atomix.resource.util.ResourceTypeResolver-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>withResourceResolver</h4>
-<pre>public&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;withResourceResolver(io.atomix.resource.util.ResourceTypeResolver&nbsp;resolver)</pre>
-<div class="block">Sets the Atomix resource type resolver.
- <p>
- The resource resolver can be used to register custom <a href="../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a> types
- with the replica. In order for a client or replica to <a href="../../io/atomix/Atomix.html#get-java.lang.String-java.lang.Class-"><code>create</code></a> an instance
- of a custom resource, the resource type must be registered on all replicas and on any client that
- accesses the resource.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>resolver</code> - The resource type resolver.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The Atomix builder.</dd>
-</dl>
-</li>
-</ul>
 <a name="withStorage-io.atomix.copycat.server.storage.Storage-">
 <!--   -->
 </a>
@@ -642,6 +645,86 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <dd>The replica builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>globalSuspendTimeout</code> is null</dd>
+</dl>
+</li>
+</ul>
+<a name="withResourceTypes-java.lang.Class...-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withResourceTypes</h4>
+<pre>public&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;withResourceTypes(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;?&gt;&gt;...&nbsp;types)</pre>
+<div class="block">Sets the available resource types.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>types</code> - The available resource types.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The replica builder.</dd>
+</dl>
+</li>
+</ul>
+<a name="withResourceTypes-io.atomix.resource.ResourceType...-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withResourceTypes</h4>
+<pre>public&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;withResourceTypes(<a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>...&nbsp;types)</pre>
+<div class="block">Sets the available resource types.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>types</code> - The available resource types.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The replica builder.</dd>
+</dl>
+</li>
+</ul>
+<a name="withResourceTypes-java.util.Collection-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withResourceTypes</h4>
+<pre>public&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;withResourceTypes(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&gt;&nbsp;types)</pre>
+<div class="block">Sets the available resource types.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>types</code> - The available resource types.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The replica builder.</dd>
+</dl>
+</li>
+</ul>
+<a name="addResourceType-java.lang.Class-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addResourceType</h4>
+<pre>public&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;addResourceType(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;?&gt;&gt;&nbsp;type)</pre>
+<div class="block">Adds a resource type to the replica.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>type</code> - The resource type.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The replica builder.</dd>
+</dl>
+</li>
+</ul>
+<a name="addResourceType-io.atomix.resource.ResourceType-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addResourceType</h4>
+<pre>public&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;addResourceType(<a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</pre>
+<div class="block">Adds a resource type to the replica.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>type</code> - The resource type.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The replica builder.</dd>
 </dl>
 </li>
 </ul>

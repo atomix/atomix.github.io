@@ -96,13 +96,7 @@
 <pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/annotation/Target.html?is-external=true" title="class or interface in java.lang.annotation">@Target</a>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/annotation/Target.html?is-external=true#value--" title="class or interface in java.lang.annotation">value</a>=<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/annotation/ElementType.html?is-external=true#TYPE" title="class or interface in java.lang.annotation">TYPE</a>)
  <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/annotation/Retention.html?is-external=true" title="class or interface in java.lang.annotation">@Retention</a>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/annotation/Retention.html?is-external=true#value--" title="class or interface in java.lang.annotation">value</a>=<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/annotation/RetentionPolicy.html?is-external=true#RUNTIME" title="class or interface in java.lang.annotation">RUNTIME</a>)
 public @interface <span class="memberNameLabel">ResourceTypeInfo</span></pre>
-<div class="block">Annotation for specifying resource state and serialization information.
- <p>
- <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource"><code>Resource</code></a>s <em>must</em> be annotated with this annotation to be managed by the Atomix cluster.
- This annotation provides information about the resource's <a href="../../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource"><code>state machine</code></a>
- and <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/SerializableTypeResolver.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>serialization</code></a> of resource commands. Atomix will use the annotation
- at runtime to create a <a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource"><code>ResourceType</code></a> with which it can identify the resource type and create
- server-side replicated state machines and register serializable types relevant to the resource.</div>
+<div class="block">Annotation for specifying resource state and serialization information.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -126,21 +120,15 @@ public @interface <span class="memberNameLabel">ResourceTypeInfo</span></pre>
 <th class="colLast" scope="col">Required Element and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceTypeInfo.html#id--">id</a></span></code>
-<div class="block">The 8-bit resource type ID.</div>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../io/atomix/resource/ResourceFactory.html" title="interface in io.atomix.resource">ResourceFactory</a>&lt;?&gt;&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceTypeInfo.html#factory--">factory</a></span></code>
+<div class="block">The resource factory class.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource">ResourceStateMachine</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceTypeInfo.html#stateMachine--">stateMachine</a></span></code>
-<div class="block">The resource state machine class.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/SerializableTypeResolver.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">SerializableTypeResolver</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceTypeInfo.html#typeResolver--">typeResolver</a></span></code>
-<div class="block">The resource serializable type resolver.</div>
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ResourceTypeInfo.html#id--">id</a></span></code>
+<div class="block">The 8-bit resource type ID.</div>
 </td>
 </tr>
 </table>
@@ -176,37 +164,18 @@ public @interface <span class="memberNameLabel">ResourceTypeInfo</span></pre>
 </li>
 </ul>
 <ul class="blockList">
-<li class="blockList"><a name="stateMachine--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>stateMachine</h4>
-<pre>public abstract&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource">ResourceStateMachine</a>&gt;&nbsp;stateMachine</pre>
-<div class="block">The resource state machine class.
- <p>
- This is the state machine class that Atomix will construct on each server in the cluster.
- The state machine is responsible for managing state on each server. Each resource instance
- has an associated state machine which will last throughout its lifetime.</div>
-</li>
-</ul>
-</li>
-</ul>
-<ul class="blockList">
-<li class="blockList"><a name="typeResolver--">
+<li class="blockList"><a name="factory--">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>typeResolver</h4>
-<pre>public abstract&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/SerializableTypeResolver.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">SerializableTypeResolver</a>&gt;&nbsp;typeResolver</pre>
-<div class="block">The resource serializable type resolver.
+<h4>factory</h4>
+<pre>public abstract&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../io/atomix/resource/ResourceFactory.html" title="interface in io.atomix.resource">ResourceFactory</a>&lt;?&gt;&gt;&nbsp;factory</pre>
+<div class="block">The resource factory class.
  <p>
- Resource types should provided a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/SerializableTypeResolver.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>SerializableTypeResolver</code></a> to specify how to serialize
- <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Command.html?is-external=true" title="class or interface in io.atomix.copycat"><code>commands</code></a> and <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Query.html?is-external=true" title="class or interface in io.atomix.copycat"><code>queries</code></a> and any
- other types of objects required to operate the resource. Atomix will query the type resolver
- to ensure serializable types are registered on both clients and servers prior to usage of the
- resource.</div>
+ Resources must provide a factory class for constructing instances of the resource for a
+ given configuration. The factory will define the resource instance type and state machine
+ to construct based on the configuration.</div>
 </li>
 </ul>
 </li>

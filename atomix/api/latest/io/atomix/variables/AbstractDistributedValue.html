@@ -74,7 +74,7 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested.classes.inherited.from.class.io.atomix.resource.Resource">Nested</a>&nbsp;|&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -100,7 +100,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">io.atomix.resource.Resource</a>&lt;T&gt;</li>
+<li><a href="../../../io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">io.atomix.resource.AbstractResource</a>&lt;T&gt;</li>
 <li>
 <ul class="inheritance">
 <li>io.atomix.variables.AbstractDistributedValue&lt;T,U&gt;</li>
@@ -114,7 +114,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;T&gt;</dd>
+<dd><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;T&gt;, <a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;T&gt;</dd>
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
@@ -123,7 +123,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public abstract class <span class="typeNameLabel">AbstractDistributedValue&lt;T extends AbstractDistributedValue&lt;T,U&gt;,U&gt;</span>
-extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a>&lt;T&gt;</pre>
+extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a>&lt;T&gt;</pre>
 <div class="block">Base class for distributed atomic variables.
  <p>
  This class provides functionality shared by <a href="../../../io/atomix/variables/DistributedValue.html" title="class in io.atomix.variables"><code>DistributedValue</code></a> and <a href="../../../io/atomix/variables/DistributedLong.html" title="class in io.atomix.variables"><code>DistributedLong</code></a>, including
@@ -151,7 +151,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <li class="blockList"><a name="nested.classes.inherited.from.class.io.atomix.resource.Resource">
 <!--   -->
 </a>
-<h3>Nested classes/interfaces inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></h3>
+<h3>Nested classes/interfaces inherited from interface&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></h3>
 <code><a href="../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>, <a href="../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>, <a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a></code></li>
 </ul>
 </li>
@@ -224,11 +224,11 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.io.atomix.resource.Resource">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.resource.AbstractResource">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/Resource.html" title="class in io.atomix.resource">Resource</a></h3>
-<code><a href="../../../io/atomix/resource/Resource.html#close--">close</a>, <a href="../../../io/atomix/resource/Resource.html#config--">config</a>, <a href="../../../io/atomix/resource/Resource.html#context--">context</a>, <a href="../../../io/atomix/resource/Resource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/Resource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/Resource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/Resource.html#isClosed--">isClosed</a>, <a href="../../../io/atomix/resource/Resource.html#isOpen--">isOpen</a>, <a href="../../../io/atomix/resource/Resource.html#onStateChange-java.util.function.Consumer-">onStateChange</a>, <a href="../../../io/atomix/resource/Resource.html#open--">open</a>, <a href="../../../io/atomix/resource/Resource.html#options--">options</a>, <a href="../../../io/atomix/resource/Resource.html#readConsistency--">readConsistency</a>, <a href="../../../io/atomix/resource/Resource.html#state--">state</a>, <a href="../../../io/atomix/resource/Resource.html#toString--">toString</a>, <a href="../../../io/atomix/resource/Resource.html#type--">type</a>, <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.ReadConsistency-">with</a>, <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.WriteConsistency-">with</a>, <a href="../../../io/atomix/resource/Resource.html#writeConsistency--">writeConsistency</a></code></li>
+<h3>Methods inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></h3>
+<code><a href="../../../io/atomix/resource/AbstractResource.html#close--">close</a>, <a href="../../../io/atomix/resource/AbstractResource.html#config--">config</a>, <a href="../../../io/atomix/resource/AbstractResource.html#context--">context</a>, <a href="../../../io/atomix/resource/AbstractResource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/AbstractResource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/AbstractResource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/AbstractResource.html#isClosed--">isClosed</a>, <a href="../../../io/atomix/resource/AbstractResource.html#isOpen--">isOpen</a>, <a href="../../../io/atomix/resource/AbstractResource.html#onStateChange-java.util.function.Consumer-">onStateChange</a>, <a href="../../../io/atomix/resource/AbstractResource.html#open--">open</a>, <a href="../../../io/atomix/resource/AbstractResource.html#options--">options</a>, <a href="../../../io/atomix/resource/AbstractResource.html#readConsistency--">readConsistency</a>, <a href="../../../io/atomix/resource/AbstractResource.html#state--">state</a>, <a href="../../../io/atomix/resource/AbstractResource.html#toString--">toString</a>, <a href="../../../io/atomix/resource/AbstractResource.html#type--">type</a>, <a href="../../../io/atomix/resource/AbstractResource.html#with-io.atomix.resource.ReadConsistency-">with</a>, <a href="../../../io/atomix/resource/AbstractResource.html#with-io.atomix.resource.WriteConsistency-">with</a>, <a href="../../../io/atomix/resource/AbstractResource.html#writeConsistency--">writeConsistency</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -260,7 +260,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&gt;&nbsp;get()</pre>
 <div class="block">Gets the current value.
  <p>
- The value will be read using the configured <a href="../../../io/atomix/resource/Resource.html#readConsistency--"><code>read consistency</code></a> level for
+ The value will be read using the configured <a href="../../../io/atomix/resource/AbstractResource.html#readConsistency--"><code>read consistency</code></a> level for
  the resource. For <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic reads</code></a>, reads will be forwarded to the cluster
  leader. Weaker reads may be evaluated on non-leader nodes. However, consistency constraints guarantee
  that state will never go back in time.</div>
@@ -279,7 +279,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&gt;&nbsp;get(<a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a>&nbsp;consistency)</pre>
 <div class="block">Gets the current value.
  <p>
- The value will be read using the provided <a href="../../../io/atomix/resource/Resource.html#readConsistency--"><code>read consistency</code></a> level.
+ The value will be read using the provided <a href="../../../io/atomix/resource/AbstractResource.html#readConsistency--"><code>read consistency</code></a> level.
  For <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic reads</code></a>, reads will be forwarded to the cluster leader.
  Weaker reads may be evaluated on non-leader nodes. However, consistency constraints guarantee
  that state will never go back in time.</div>
@@ -523,7 +523,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="class in io.a
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested.classes.inherited.from.class.io.atomix.resource.Resource">Nested</a>&nbsp;|&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
