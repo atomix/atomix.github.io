@@ -8,12 +8,12 @@ title: Threading Model
 {:.no-margin-top}
 Atomix is designed to be used in an asynchronous manner that provides easily understood guarantees for users. All usage of asynchronous APIs such as [CompletableFuture] are carefully orchestrated to ensure that various callbacks are executed in a deterministic manner. To that end, Atomix provides the following guarantees:
 
-* Callbacks for any given object are guaranteed to always be executed on the same thread
-* `CompletableFuture`s are guaranteed to be completed in the same order in which they were created
+* Callbacks for any given object are guaranteed to always be executed on the same thread.
+* `CompletableFuture`s are guaranteed to be completed in the same order in which they were created.
 
 ### Asynchronous API usage
 
-Atomix's API makes heavy use of Java 8's [CompletableFuture][CompletableFuture] for asynchronous completion of method calls. The asynchronous API allows users to execute multiple operations concurrently instead of blocking on each operation in sequence. For information on the usage of `CompletableFuture` see the [CompletableFuture documentation][CompletableFuture].
+Atomix's API makes heavy use of Java 8's [CompletableFuture][CompletableFuture] for asynchronous completion of method calls. The asynchronous API allows users to execute multiple operations concurrently instead of blocking on each operation in sequence. For information on the usage of `CompletableFuture` see the [documentation][CompletableFuture].
 
 ### Synchronous API usage
 

@@ -39,7 +39,8 @@ The first step with Atomix is to create a cluster. An atomix cluster consists of
 
 Clusters can contain both *active* and *passive* replicas. Active replicas take part in the processing of state changes while passive replicas are kept in sync in order to replace active replicas when a fault occurs. Typically, an Atomix cluster consists of 3 or 5 active replicas and 1 or more passive replicas. While Atomix embeds inside your clustered application, the number of nodes participating in the Atomix cluster does not need to match that of your application, allowing your application to scale independant of Atomix.
 
-> For more information on node types see the [cluster documentation][clusters].
+{:.callout .callout-info}
+For more information on node types see the [cluster documentation][clusters].
 
 To create a cluster, first define the `Address` of the local server along with a list of addressess for all the active members of the cluster:
 
@@ -80,11 +81,14 @@ We'll start the replica by calling the `open` method which attempts to establish
 CompletableFuture<Atomix> future = replica.open();
 ```
 
-Since all of the Atomix APIs are fully asynchronous, `open()` returns a [CompletableFuture] which we can use to wait for the replica to successfully start:
+`open()` returns a [CompletableFuture] which we can use to wait for the replica to successfully start:
 
 ```java
 future.join();
 ```
+
+{:.callout .callout-info}
+All of the Atomix APIs are [fully asynchronous](/atomix/docs/threading-model/#asynchronous-api-usage), allowing users to perform multiple operations concurrently. The [CompletableFuture] API can still be used in a synchronous manner by using the blocking on the `get` or `join` methods, such as above.
 
 To establish a cluster, a replica will need to be opened on each of the member addresses defined above.
 
