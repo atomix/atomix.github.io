@@ -13,16 +13,16 @@
 
 <span class="doc-menu-header"><img src="/assets/img/icons/concepts.svg" class="concepts"> Concepts</span>
 
-* [Concepts](concepts)
+* [Consistency](consistency)
   * [CAP theorem](#cap-theorem)
   * [Consistency model](#consistency-model)
-  * [Fault-tolerance](#fault-tolerance)
-  * [Threading model](#threading-model)
-    * [Asynchronous API usage](#asynchronous-api-usage)
-    * [Synchronous API usage](#synchronous-api-usage)
-* [Atomix clusters](cluster)
+* [Fault tolerance](fault-tolerance)
+* [Clusters](clusters)
   * [Replicas](#replicas)
   * [Clients](#clients)
+* [Threading model](threading-model)
+  * [Asynchronous API usage](#asynchronous-api-usage)
+  * [Synchronous API usage](#synchronous-api-usage)
 
 <span class="doc-menu-header"><img src="/assets/img/icons/resources.svg" class="resources"> Resources</span>
 

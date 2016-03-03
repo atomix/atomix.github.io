@@ -2,11 +2,11 @@
 layout: docs
 project: atomix
 menu: docs
-title: Concepts
+title: Consistency
 ---
 
 {:.no-margin-top}
-Atomix is built around several fundamental concepts that are worth learning about in order to fully utilize its capabilities.
+Consistency and how it is achieved is a fundamental concept in Atomix. This page describe's Atomix's consistency model and where it fits among other systems.
 
 ## CAP theorem
 
@@ -29,44 +29,5 @@ Unlike [ZooKeeper], Atomix natively supports linearizable reads as well. Much li
 
 {:.callout .callout-info}
 See the [Raft implementation details](/copycat/docs/internals/) for more information on consistency in Atomix.
-
-## Fault-tolerance
-
-Because Atomix falls on the CP side of the CAP theorem, it favors consistency over availability, particularly under failure. In order to ensure consistency, Atomix's [consensus protocol][raft-framework] requires that a majority of the cluster be alive and operating normally to service reads and writes. This means:
-
-* A cluster of `1` replica can tolerate `0` failures
-* A cluster of `2` replicas can tolerate `0` failures
-* A cluster of `3` replicas can tolerate `1` failure
-* A cluster of `4` replicas can tolerate `1` failure
-* A cluster of `5` replicas can tolerate `2` failures
-
-Failures in Atomix are handled by Raft's [leader election](https://en.wikipedia.org/wiki/Leader_election) algorithm. When the Atomix cluster starts, a leader is elected. Leaders are elected by a round of voting wherein servers vote for a candidate based on the [consistency of its log](#consistency-model).
-
-In the event of a failure of the leader, the remaining servers in the cluster will begin a new election and a new leader will be elected. This means for a brief period (seconds) the cluster will be unavailable.
-
-In the event of a partition, if the leader is on a quorum side of the partition, it will continue to operate normally. Alternatively, if the leader is on a non-quorum side of the partition, the leader will detect the partition (based on the fact that it can no longer contact a majority of the cluster) and step down, and the servers on the majority side of the partition will elect a new leader. Once the partition is resolved, nodes on the non-quorum side of the partition will join the quorum side and receive updates to their log from the remaining leader.
-
-## Threading model
-
-Atomix is designed to be used in an asynchronous manner that provides easily understood guarantees for users. All usage of asynchronous APIs such as [CompletableFuture] are carefully orchestrated to ensure that various callbacks are executed in a deterministic manner. To that end, Atomix provides the following guarantees:
-
-* Callbacks for any given object are guaranteed to always be executed on the same thread
-* `CompletableFuture`s are guaranteed to be completed in the same order in which they were created
-
-### Asynchronous API usage
-
-Atomix's API makes heavy use of Java 8's [CompletableFuture][CompletableFuture] for asynchronous completion of method calls. The asynchronous API allows users to execute multiple operations concurrently instead of blocking on each operation in sequence. For information on the usage of `CompletableFuture` see the [CompletableFuture documentation][CompletableFuture].
-
-### Synchronous API usage
-
-Atomix makes heavy use of Java 8's [CompletableFuture][CompletableFuture] in part because it allows users to easily block on asynchronous method calls. To block and wait for a `CompletableFuture` result instead of registering an asynchronous callback, simply use the `get()` or `join()` methods.
-
-```java
-// Get the "foo" key from a map
-CompletableFuture<String> future = map.get("foo");
-
-// Block to wait for the result
-String result = future.get();
-```
 
 {% include common-links.html %}

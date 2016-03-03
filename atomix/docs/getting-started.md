@@ -39,7 +39,7 @@ The first step with Atomix is to create a cluster. An atomix cluster consists of
 
 Clusters can contain both *active* and *passive* replicas. Active replicas take part in the processing of state changes while passive replicas are kept in sync in order to replace active replicas when a fault occurs. Typically, an Atomix cluster consists of 3 or 5 active replicas and 1 or more passive replicas. While Atomix embeds inside your clustered application, the number of nodes participating in the Atomix cluster does not need to match that of your application, allowing your application to scale independant of Atomix.
 
-> For more information on node types see the [cluster documentation][cluster].
+> For more information on node types see the [cluster documentation][clusters].
 
 To create a cluster, first define the `Address` of the local server along with a list of addressess for all the active members of the cluster:
 
