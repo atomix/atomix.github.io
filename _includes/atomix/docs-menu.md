@@ -1,9 +1,18 @@
+<span class="doc-menu-header"><img src="/assets/img/icons/introduction.svg" class="introduction"> Introduction</span>
+
 * [Getting Started](getting-started)
   * [Introduction](#introduction)
   * [Setup](#setup)
   * [Creating a cluster](#creating-a-cluster)
-  * [Creating distributed resources](#creating-distributed-resources)
+  * [Creating resources](#creating-distributed-resources)
   * [Creating a client](#creating-a-client)
+* [Comparisons](comparisons)
+  * [Something Unique](#something-unique)
+  * [ZooKeeper](#zookeeper)
+  * [Hazelcast](#hazelcast)
+
+<span class="doc-menu-header"><img src="/assets/img/icons/concepts.svg" class="concepts"> Concepts</span>
+
 * [Concepts](concepts)
   * [CAP theorem](#cap-theorem)
   * [Consistency model](#consistency-model)
@@ -11,13 +20,12 @@
   * [Threading model](#threading-model)
     * [Asynchronous API usage](#asynchronous-api-usage)
     * [Synchronous API usage](#synchronous-api-usage)
-* [Comparisons](comparisons)
-  * [Something Unique](#something-unique)
-  * [ZooKeeper](#zookeeper)
-  * [Hazelcast](#hazelcast)
 * [Atomix clusters](cluster)
   * [Replicas](#replicas)
   * [Clients](#clients)
+
+<span class="doc-menu-header"><img src="/assets/img/icons/resources.svg" class="resources"> Resources</span>
+
 * [What are resources?](resources)
   * [Consistency levels](#consistency-levels)
 * [Distributed collections](collections)
@@ -42,5 +50,5 @@
     * [Message producers](#message-producers)
     * [Message consumers](#message-consumers)
   * [DistributedTopic](#distributedtopic)
-* [Writing custom resources](custom-resources)
+* [Custom resources](custom-resources)
 * [Resource internals](internals)

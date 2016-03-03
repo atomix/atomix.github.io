@@ -479,7 +479,7 @@ pre {
     margin-top: 0px;
   }
 
-  .doc-index {
+  #doc-index {
     h2, h4 {
       color: $text-color;
     }
@@ -543,27 +543,31 @@ pre {
     list-style-position: inside;
   }
 
-  #toc > ul > li, #doc-index > ul > li > ul {
+  #toc > ul > li, #doc-index > ul > li > ul, #toc .doc-menu-header {
     display: none;
   }
+}
 
-  .pitch {
-    color: $pitch-color;
-    margin-top: 0px;
-    margin-bottom: 29px;
-    font-style: italic;
+.doc-menu-header {
+  font-size: 18px;
+
+  img {
   }
 
-  .nav-tabs {
-    margin-bottom: 13px;
+  img.introduction,  {
+    width: 24px;
+    margin-top: -4px;
   }
 
-  .tab-pane {
-    display: none;
+  img.concepts {
+    width: 24px;
+    margin-top: -4px;
+  }
 
-    &.active {
-      display: block;
-    }
+  img.resources {
+    width: 20px;
+    margin-top: -2px;
+    margin-right: 4px;
   }
 }
 
@@ -582,7 +586,7 @@ pre {
   }
 
   > ul {
-    padding-left: 10px;
+    padding-left: 23px;
   }
 
   > ul {
@@ -610,6 +614,25 @@ pre {
     position: relative;
     display: block;
   }
+
+  .pitch {
+    color: $pitch-color;
+    margin-top: 0px;
+    margin-bottom: 29px;
+    font-style: italic;
+  }
+
+  .nav-tabs {
+    margin-bottom: 13px;
+  }
+
+  .tab-pane {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
 }
 
 @media screen and (min-width: 992px) {
@@ -634,6 +657,10 @@ pre {
 
       /* Undo the static from mobile first approach */
     }
+  }
+
+  #sidebar > .sidebar-menu-header {
+    display: block;
   }
 }
 

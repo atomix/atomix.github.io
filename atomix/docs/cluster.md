@@ -80,7 +80,7 @@ Once created, the replica can be used as any `Atomix` instance to create and ope
 
 ## Clients
 
-The [AtomixClient][AtomixClient] is a [Atomix][Atomix] implementation that manages and operates on resources by communicating with a remote cluster of *servers* or *replicas*. Users should think of clients as stateless members of the Atomix cluster.
+The [AtomixClient][AtomixClient] is an [Atomix][Atomix] implementation that manages and operates on resources by communicating with a remote cluster of *servers* or *replicas*. Users should think of clients as stateless members of the Atomix cluster.
 
 To create a `AtomixClient`, use the client [Builder][builders] and provide a [Transport][Transport] and a list of `Members` to which to connect:
 
