@@ -17,7 +17,7 @@ That said, it's helpful to understand what Atomix offers by comparing to other w
 
 ## ZooKeeper
 
-Atomix and [ZooKeeper] are both backed by a similar consensus-based persistence/replication layer. But Atomix is a framework that can be embedded instead of depending on an external cluster. Additionally, ZooKeeper's low-level primitives require complex recipes or other tools like [Apache Curator](http://curator.apache.org/), whereas Atomix provides [high-level interfaces](/docs/distributed-resources#resources) for common data structures and coordination tools like [locks](/docs/distributed-resources#distributedlock), [maps](/docs/distributed-resources#distributedmap), and [leader elections](/docs/distributed-resources#distributedleaderelection), along with the ability to create [custom replicated state machines](/docs/distributed-resources#custom-resources).
+Atomix and [ZooKeeper] are both backed by a similar consensus-based persistence/replication layer. But Atomix is a framework that can be embedded instead of depending on an external cluster. Additionally, ZooKeeper's low-level primitives require complex recipes or other tools like [Apache Curator](http://curator.apache.org/), whereas Atomix provides [high-level interfaces][resources] for common data structures and coordination tools like [locks](/atomix/docs/coordination/#distributedlock), [maps](/atomix/docs/collections/#distributedmap), and [server groups](/atomix/docs/coordination/#distributedgroup), along with the ability to create [custom replicated state machines][custom-resources].
 
 ## Hazelcast
 
