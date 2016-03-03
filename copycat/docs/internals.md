@@ -2,7 +2,7 @@
 layout: docs
 project: copycat
 menu: docs
-title: Raft Implementation Details
+title: Copycat Internals
 pitch: Raft architecture and implementation
 first-section: internals
 ---

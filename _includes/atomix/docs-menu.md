@@ -51,4 +51,11 @@
     * [Message consumers](#message-consumers)
   * [DistributedTopic](#distributedtopic)
 * [Custom resources](custom-resources)
+
+<span class="doc-menu-header"><img src="/assets/img/icons/operations.svg" class="operations"> Operations</span>
+
+* [Scaling and Deployment](deployment)
+
+<span class="doc-menu-header"><img src="/assets/img/icons/architecture.svg" class="architecture"> Architecture</span>
+
 * [Resource internals](internals)

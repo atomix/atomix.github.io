@@ -2,13 +2,11 @@
 layout: docs
 project: copycat
 menu: docs
-title: Raft Consensus Algorithm
-pitch: Sophisticated Raft Consensus implementation
+title: State Machines
 first-section: state-machine
 ---
 
-## State machines
-
+{:.no-margin-top}
 State machines are the server-side representation of state based on a series of [commands](#commands) and [queries](#queries) submitted to the Raft cluster.
 
 {:.callout .callout-danger}

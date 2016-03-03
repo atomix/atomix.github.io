@@ -2,15 +2,11 @@
 layout: docs
 project: copycat
 menu: docs
-title: Raft Consensus Algorithm
-pitch: Sophisticated Raft Consensus implementation
+title: Raft Clients
 first-section: client
 ---
 
-Copycat is a standalone, feature-complete implementation of the [Raft consensus algorithm][Raft].
-
-## CopycatClient
-
+{:.no-margin-top}
 The [CopycatClient][CopycatClient] provides an interface for submitting [commands](#commands) and [queries](#queries) to a cluster of [Raft servers](#copycatserver).
 
 To create a client, you must supply the client [Builder][builders] with a set of `Address`es to which to connect.

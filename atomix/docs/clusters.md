@@ -2,7 +2,7 @@
 layout: docs
 project: atomix
 menu: docs
-title: Atomix Cluster
+title: Clusters
 pitch: Working with clients and replicas
 first-section: cluster
 ---

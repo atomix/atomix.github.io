@@ -2,7 +2,7 @@
 layout: docs
 project: atomix
 menu: docs
-title: Resource internals
+title: Resource Internals
 first-section: internals
 ---
 
