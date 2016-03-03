@@ -1,3 +1,5 @@
+<span class="doc-menu-header"><img src="/assets/img/icons/introduction.svg" class="introduction"> Introduction</span>
+
 * [Getting Started](getting-started)
   * [Installation](#installation)
   * [Creating a state machine](#creating-a-state-machine)
@@ -5,6 +7,9 @@
   * [Implementing state machine operations](#implementing-state-machine-operations)
   * [Starting a Copycat server](#starting-a-copycat-server)
   * [Submitting operations via the client](#submitting-operations-via-the-client)
+
+<span class="doc-menu-header"><img src="/assets/img/icons/concepts.svg" class="concepts"> Concepts</span>
+
 * [Raft servers](server)
    * [The server lifecycle](#server-lifecycle)
 * [State machines](state-machine)
@@ -21,6 +26,9 @@
    * [The client lifecycle](#client-lifecycle)
    * [Submitting state machine operations](#submitting-state-machine-operations)
    * [Client sessions](#client-sessions)
+
+<span class="doc-menu-header"><img src="/assets/img/icons/architecture.svg" class="architecture"> Architecture</span>
+
 * [Copycat internals](internals)
    * [1 Raft basics](#raft-basics)
       * [1.1 Leader election](#leader-election-basics)
