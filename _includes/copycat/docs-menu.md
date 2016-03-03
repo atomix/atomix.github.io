@@ -11,7 +11,7 @@
 <span class="doc-menu-header"><img src="/assets/img/icons/concepts.svg" class="concepts"> Concepts</span>
 
 * [Raft servers](server)
-   * [The server lifecycle](#server-lifecycle)
+   * [Server lifecycle](#server-lifecycle)
 * [State machines](state-machine)
    * [Creating a state machine](#creating-a-state-machine)
    * [Defining state machine operations](#defining-state-machine-operations)
@@ -23,7 +23,7 @@
    * [Publishing session events](#publishing-session-events)
    * [Working with time and scheduling](#working-with-time-and-scheduling)
 * [Raft clients](client)
-   * [The client lifecycle](#client-lifecycle)
+   * [Client lifecycle](#client-lifecycle)
    * [Submitting state machine operations](#submitting-state-machine-operations)
    * [Client sessions](#client-sessions)
 
