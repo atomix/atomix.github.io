@@ -354,6 +354,86 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
  sending side of the <a href="../../../io/atomix/group/GroupConnection.html" title="class in io.atomix.group"><code>connection</code></a> until the sender or receiver is removed from the
  group.
  <h2>Task queues</h2>
+ In addition to supporting direct messaging between members of the group, <code>DistributedGroup</code> provides
+ mechanisms for reliable, persistent messaging. Tasks are arbitrary objects that can be sent between members
+ of the group or to all members of a group by any node. In contrast to direct messaging, tasks are uni-directional
+ in that <a href="../../../io/atomix/group/GroupTaskQueue.html" title="class in io.atomix.group"><code>task queues</code></a> only support sending a task but not receiving a reply. Tasks are
+ submitted directly to the replicated state machine and once task submissions are complete are guaranteed to
+ be persisted either until received and acknowledged by their target member or until that member leaves the
+ cluster.
+ <p>
+ Task processing is event-driven and requires no polling on the receiving side of a task queue. When a task
+ is received and persisted by the replicated state machine, if the member to which the task is sent is available
+ for processing, the task will be pushed to that member through its open session. If the member is already
+ processing another task, the task will be queued until all preceding tasks have been acked by the receiving
+ member.
+ <p>
+ Tasks can be submitted to all members of a group or to a specific member through the object's associated
+ <a href="../../../io/atomix/group/GroupTaskQueue.html" title="class in io.atomix.group"><code>GroupTaskQueue</code></a>. Once a task has completed processing, the task acknowledgement will be sent back
+ to the sender. In the event a task fails processing, an exception will be thrown on the sender.
+ <pre>
+   <code>
+   DistributedGroup group = atomix.getGroup("task-group").get();
+
+   // Submit a task to all members of the group
+   group.tasks().submit("doIt").whenComplete((result, error) -&gt; {
+     if (error == null) {
+       // All available members succeeded
+     } else {
+       // At least one member failed
+     }
+   });
+
+   // Submit a task to a specific member of the group when it joins
+   group.onJoin(member -&gt; {
+     member.tasks().submit("doSetupTasks").whenComplete((result, error) -&gt; {
+       if (error == null) {
+         // The member received and processed the task
+       } else {
+         // The member did not receive the task or failed it
+       }
+     });
+   });
+   </code>
+ </pre>
+ When submitting a task to all members of the group via the group's <a href="../../../io/atomix/group/DistributedGroup.html#tasks--"><code>task queue</code></a>, the task will
+ be enqueued for processing by all current members of the group. However, in the event an ephemeral member
+ leaves the group (or crashes) during the processing of the task, the task will simply be skipped for that member.
+ To ensure a member receives a task through a failure, use persistent members.
+ <p>
+ Tasks sent directly to specific members behave a bit differently. In the event that an ephemeral member leaves
+ the group during the execution of a task, the task will be explicitly failed and an error will be returned
+ to the task submitter.
+ <p>
+ Tasks are processed by <a href="../../../io/atomix/group/LocalGroupMember.html" title="class in io.atomix.group"><code>LocalGroupMember</code></a>s by registering a <a href="../../../io/atomix/group/LocalGroupTaskQueue.html#onTask-java.util.function.Consumer-"><code>task listener</code></a>
+ on the member's queue. Once a member is done processing a task, it must <a href="../../../io/atomix/group/GroupTask.html#ack--"><code>ack</code></a> the task to
+ fetch the next one from the cluster.
+ <pre>
+   <code>
+   LocalGroupMember member = group.join("member-a").get();
+   member.tasks().onTask(task -&gt; {
+     doSetup();
+     task.ack();
+   });
+   </code>
+ </pre>
+ Task receivers are free to take as long as is necessary to process a task. Task callbacks may be asynchronous.
+ Members need only call <a href="../../../io/atomix/group/GroupTask.html#ack--"><code>GroupTask.ack()</code></a> once processing is complete. Tasks can also be explicitly
+ <a href="../../../io/atomix/group/GroupTask.html#fail--"><code>fail</code></a>ed by receivers. Task failures will be sent back to the sender in the form of
+ a <a href="../../../io/atomix/group/TaskFailedException.html" title="class in io.atomix.group"><code>TaskFailedException</code></a>.
+ <pre>
+   <code>
+   member.tasks().onTask(task -&gt; {
+     doSetupAsync().whenComplete((result, error) -&gt; {
+       if (error == null) {
+         task.ack();
+       } else {
+         task.fail();
+       }
+     });
+   });
+   </code>
+ </pre>
  <h2>Partitioning</h2>
  Membership groups also provide features to aid in supporting replication via consistent hashing and partitioning.
  When a group is created, users can configure the group to support a particular number of partitions and replication
@@ -413,6 +493,32 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
    </code>
  </pre>
  <h3>Serialization</h3>
+ Users are responsible for ensuring the serializability of tasks, messages, and properties set on the group
+ and members of the group. Serialization is controlled by the group's <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a>
+ which can be access via <a href="../../../io/atomix/resource/AbstractResource.html#serializer--"><code>AbstractResource.serializer()</code></a> or on the parent <code>Atomix</code> instance. Because objects are
+ typically replicated throughout the cluster, <em>it's critical that any object sent from any node should be
+ serializable by all other nodes</em>.
+ <p>
+ Users should register serializable types before performing any operations on the group.
+ <pre>
+   <code>
+   DistributedGroup group = atomix.getGroup("group").get();
+   group.serializer().register(User.class, UserSerializer.class);
+   </code>
+ </pre>
+ For the best performance from serialization, it is recommended that serializable types be registered with
+ unique type IDs. This allows the Catalyst <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> to identify the
+ type by its serialization ID rather than its class name. It's essential that the ID for a given type is
+ the same all all nodes in the cluster.
+ <pre>
+   <code>
+   group.serializer().register(User.class, 1, UserSerializer.class);
+   </code>
+ </pre>
+ Users can also serialize <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io"><code>Serializable</code></a> types by simply registering the class without any
+ other serializer. Catalyst will attempt to use the optimal serializer based on the interfaces implemented
+ by the class. Alternatively, type registration can be disabled altogether via <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true#disableWhitelist--" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer.disableWhitelist()</code></a>,
+ however this is not recommended as arbitrary deserialization of class names is slow and is a security risk.
  <h3>Implementation</h3>
  Group state is managed in a Copycat replicated <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server"><code>StateMachine</code></a>. When a
  <code>DistributedGroup</code> is created, an instance of the group state machine is created on each replica in
