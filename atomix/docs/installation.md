@@ -9,7 +9,7 @@ first-section: embedded-usage
 {:.no-margin-top}
 ## Embedded Usage
 
-The most common way of using Atomix is as an embedded library via one of the Atomix Maven artifacts. There are a few different artifacts to choose from depending on your needs:
+The most common way of using Atomix is as an embedded library via the Atomix Maven artifacts. There are a few different artifacts to choose from depending on your needs:
 
 #### atomix-all
 
@@ -39,7 +39,7 @@ If you're planning to write a custom resource and do not need to use any of the 
 
 ### Transports
 
-Atomix uses [Catalyst](/catalyst) for its [Transport] API, which is required in order for Atomix clients and servers to communicate with each other.
+Atomix requires a [Transport] implementation in order for clients and servers to communicate with each other:
 
 #### catalyst-netty
 
