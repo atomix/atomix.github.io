@@ -31,7 +31,7 @@ value.set("Hello world!").thenRun(() -> {
 });
 ```
 
-#### Expiring value
+#### Expiring Value
 
 `DistributedValue` supports configurable TTLs for values. To set a TTL on the value, simply pass a `Duration` when setting the value:
 

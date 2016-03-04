@@ -33,7 +33,7 @@ To get started, add the `atomix-all` Maven artifact to your project:
 
 This dependency provides you with all of the Atomix resources along with a [Netty] based transport that Atomix nodes can use to communicate with each other.
 
-## Creating a cluster
+## Creating a Cluster
 
 The first step with Atomix is to create a cluster. An atomix cluster consists of stateful distributed resources such as maps, queues, and groups, and a set of [replicas] through which resources are created and operated on. Each replica maintains a copy of the state of each resource created in the cluster. State is stored according to a configurable [StorageLevel] and state changes are replicated according to a given [ConsistencyLevel][CommandConsistencyLevel]. 
 
@@ -92,7 +92,7 @@ All of the Atomix APIs are [fully asynchronous](/atomix/docs/threading-model/#as
 
 To establish a cluster, a replica will need to be opened on each of the member addresses defined above.
 
-## Creating distributed resources
+## Creating Distributed Resources
 
 With our [AtomixReplica] ready and open, we can create some distributed resources. To get or create a distributed resource, use one of the [Atomix] `get` methods. Let's create a [DistributedLock]:
 
@@ -116,7 +116,7 @@ System.out.println("Acquired a lock!");
 
 Each resource in the cluster must be assigned a unique `String` name. If multiple [Atomix] instances `get` the same resource type with the same name, they will all reference the same resource stored in the cluster.
 
-## Creating a client
+## Creating a Client
 
 In addition to creating and acessing resources directly through an [AtomixReplica], Atomix also supports [clients] which can be used to remotely access resources stored in a cluster.
 

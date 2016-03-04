@@ -24,7 +24,7 @@ Atomix provides a number of resource implementations for common distributed syst
 * [Distributed coordination tools](#distributed-coordination) - `DistributedLock`, `DistributedGroup`
 * [Distributed messaging](#distributed-messaging) - `DistributedTopic`, `DistributedMessageBus`
 
-### Consistency levels
+### Consistency Levels
 
 When performing operations on resources, Atomix separates the types of operations into two categories:
 

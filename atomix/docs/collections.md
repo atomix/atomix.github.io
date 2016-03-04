@@ -38,7 +38,7 @@ map.put("foo", "Hello world!").join();
 assert map.get("foo").get().equals("Hello world!");
 ```
 
-#### Expiring keys
+#### Expiring Keys
 
 `DistributedMap` supports configurable TTLs for map keys. To set a TTL on a key, simply pass a `Duration` when adding a key to the map:
 
@@ -95,7 +95,7 @@ set.add("Hello world!").thenRun(() -> {
 });
 ```
 
-#### Expiring values
+#### Expiring Values
 
 `DistributedSet` supports configurable TTLs for set values. To set a TTL on a value, simply pass a `Duration` when adding a value to the set:
 

@@ -16,7 +16,7 @@ To create a `DistributedGroup`, use the `Atomix.getGroup` method:
 DistributedGroup group = atomix.getGroup("my-group").get();
 ```
 
-#### Joining the group
+#### Joining the Group
 
 Once a new `DistributedGroup` instance has been created, `join` the group:
 
@@ -26,7 +26,7 @@ group.join().join();
 
 When the member joins the group, a new [GroupMember] will be added and all existing group members will be notified. Atomix guarantees that existing members will be notified prior to the `join` operation's completion.
 
-#### Leaving the group
+#### Leaving the Group
 
 Typically, members remain part of the group until their session becomes disconnected from the cluster, at which time they will be automatically removed from the group and remaining members will be [notified](#listening-for-membership-changes). Alternatively, members can explicitly `leave` the group:
 
@@ -34,7 +34,7 @@ Typically, members remain part of the group until their session becomes disconne
 group.leave().join();
 ```
 
-#### Membership events
+#### Membership Events
 
 To listen for group members joining the group, use the `onJoin` event listener:
 
@@ -54,7 +54,7 @@ group.onLeave(member -> {
 });
 ```
 
-#### Leader election
+#### Leader Election
 
 [Leader election](https://en.wikipedia.org/wiki/Leader_election) is a pattern commonly used in distributed systems to elect some leader from a set of processes as the primary point of access to some resource. Atomix's `DistributedGroup` handles the coordination of a leader and notifies processes when they become the leader.
 
@@ -86,7 +86,7 @@ group.onElection(member -> {
 });
 ```
 
-#### Remote execution
+#### Remote Execution
 
 Members in a [DistributedGroup] are represented as [GroupMember] objects. The `GroupMember` class provides an interface for remote execution on specific members of the group.
 
@@ -108,7 +108,7 @@ To schedule a remote execution, use the `schedule` method, passing a `Duration` 
 member.schedule(Duration.ofSeconds(10), () -> System.out.println("Printed after 10 seconds on member " + member.id()));
 ```
 
-#### Handling failures
+#### Handling Failures
 
 Atomix membership groups are fault-tolerant and will automatically remove a member and elect a new leader as necessary when a member node crashes or is partitioned. However, in some cases a member of the group can become partitioned from the cluster without crashing, and in that case it may not receive updates on membership changes or be notified when it is itself evicted from the group. Atomix provides a mechanism for detecting these types of communication issues through the `Resource.State` API. Each instance of a `DistributedGroup` on any node will track its ability to maintain communication with the rest of the cluster. In the event that the client cannot communicate with the rest of the cluter, the membership group's state will change to `SUSPENDED`.
 

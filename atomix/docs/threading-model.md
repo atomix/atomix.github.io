@@ -11,11 +11,11 @@ Atomix is designed to be used in an asynchronous manner that provides easily und
 * Callbacks for any given object are guaranteed to always be executed on the same thread.
 * `CompletableFuture`s are guaranteed to be completed in the same order in which they were created.
 
-### Asynchronous API usage
+### Asynchronous API Usage
 
 Atomix's API makes heavy use of Java 8's [CompletableFuture][CompletableFuture] for asynchronous completion of method calls. The asynchronous API allows users to execute multiple operations concurrently instead of blocking on each operation in sequence. For information on the usage of `CompletableFuture` see the [documentation][CompletableFuture].
 
-### Synchronous API usage
+### Synchronous API Usage
 
 Atomix makes heavy use of Java 8's [CompletableFuture][CompletableFuture] in part because it allows users to easily block on asynchronous method calls. To block and wait for a `CompletableFuture` result instead of registering an asynchronous callback, simply use the `get()` or `join()` methods.
 

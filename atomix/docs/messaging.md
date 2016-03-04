@@ -30,7 +30,7 @@ bus.open(address).join();
 
 When the message bus is opened, all other instances of the message bus resource will be notified before the `open` operation completes.
 
-#### Message producers
+#### Message Producers
 
 To send a message to a registered message bus address, create a `MessageProducer` and `send` the message:
 
@@ -42,7 +42,7 @@ producer.send("hello");
 
 The `send` method returns a `CompletableFuture` which will be completed with the response value of the receiver once received.
 
-#### Message consumers
+#### Message Consumers
 
 To register a message consumer, create a `MessageConsumer` for a message bus *address*:
 

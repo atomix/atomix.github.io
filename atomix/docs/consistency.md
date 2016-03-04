@@ -8,7 +8,7 @@ title: Consistency
 {:.no-margin-top}
 Consistency and how it is achieved is a fundamental concept in Atomix. This page describe's Atomix's consistency model and where it fits among other systems.
 
-## CAP theorem
+## CAP Theorem
 
 The [CAP theorem][CAP] is frequently cited in discussion of distributed systems as a way of classifying the behavior of a system according to how it deals with **C**onsistency, **A**vailability, and **P**artition tolerance. Since the CAP theorem states that only 2 out of 3 can be achieved, and since partition tolerance is usually a necessity, systems are left to choose between consistency and availability, or some degree of each, in the event of a partition.
 
@@ -19,7 +19,7 @@ Alternatively, systems like [ZooKeeper] and Atomix, which fall under the *C* and
 {:.callout .callout-info}
 Fortunately, Atomix provides support for passive and standby replicas to minimize the risk  of losing availability in the case of a node loss.
 
-## Consistency model
+## Consistency Model
 
 In terms of the CAP theorem, Atomix falls squarely in the CP range. That means Atomix provides configurable strong consistency levels: [linearizability][Linearizability] for both reads, writes, and other events, and optional weaker [sequential consistency][SequentialConsistency] or [causal consistency][CausalConsistency] for certain operations. Linearizability says that all operations must take place some time between their invocation and completion. This means that once a write is committed to a Atomix cluster, all clients are guaranteed to see the resulting state.
 
