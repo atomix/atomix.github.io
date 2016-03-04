@@ -2,45 +2,9 @@
 layout: docs
 project: atomix
 menu: docs
-title: Distributed Coordination
-pitch: Primitives for process coordination
-first-section: distributed-coordination
+title: Distributed Group
+pitch: Primitives for distributed group operations
 ---
-
-The `atomix-coordination` module provides a set of distributed coordination tools. These tools are designed to facilitate decision making and synchronization in a distributed system.
-
-### DistributedLock
-
-The [DistributedLock] resources provides an asynchronous API similar to that of the JDK's [Lock][JdkLock].
-
-To create a `DistributedLock`, use the `Atomix.getLock` method:
-
-```java
-atomix.getLock("foo").thenAccept(lock -> {
-  // Do something with the lock
-});
-```
-
-The `DistributedLock` API is asynchronous and returns `CompletableFuture` for all methods:
-
-```java
-lock.lock().thenRun(() -> {
-  // Do some stuff and then...
-  lock.unlock();
-});
-```
-
-To block and wait for the lock to be acquired instead, call `join()` or `get()` on the returned `CompletableFuture`s:
-
-```java
-lock.lock().join();
-
-// Do some stuff
-
-lock.unlock().join();
-```
-
-### DistributedGroup
 
 The [DistributedGroup] resources provides an asynchronous API for coordinating group membership across the cluster. Group membership can be used to track, for example, nodes in a cluster.
 
