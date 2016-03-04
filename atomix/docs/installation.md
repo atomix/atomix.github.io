@@ -27,13 +27,13 @@ The simplest way to get up and running with Atomix, which we saw in the [Getting
 
 #### atomix
 
-The [atomix][atomix-mvn] artifact provides APIs for creating core resources such as [variables], [collections], [groups] and more via the `AtomixClient` and `AtomixReplica` classes, along with custom, user-defined resources. It [bundles](https://github.com/atomix/atomix/blob/master/core/pom.xml#L20-L49) the `atomix-resource-manager` with the various core resource implementations.
+The [atomix][atomix-mvn] artifact provides APIs for creating core resources such as [variables], [collections], [groups] and more via the [AtomixClient] and [AtomixReplica] classes, along with custom, user-defined resources. It [bundles](https://github.com/atomix/atomix/blob/master/core/pom.xml#L20-L49) the `atomix-resource-manager` with the various core resource implementations.
 
 If you're planning to use a different [Transport] implementation than the Netty transport, you can use the `atomix` artifact directly instead of `atomix-all`.
 
 #### atomix-resource-manager
 
-The [atomix-resource-manager][resource-manager-mvn] Maven artifact provides APIs for creating custom, user-defined resources via the `ResourceClient` class.
+The [atomix-resource-manager][resource-manager-mvn] Maven artifact provides APIs for creating custom, user-defined resources via the [ResourceClient] class.
 
 If you're planning to write a custom resource and do not need to use any of the core atomix resources, you can use the `atomix-resource-manager` artifact directly along with a [Transport] implementation of your choosing.
 

@@ -18,6 +18,7 @@ Atomix is an easy to use, zero-dependency, embeddable library that provides stro
 * Distributed [messaging] tools such as a message bus, topics, and task queues
 
 Atomix also provides a high-level API for creating and managing [custom user-defined resources][custom-resources] where fault-tolerance and consistency is provided automatically with the help of [Copycat](/copycat), a sophisticated implementation of the [Raft consensus algorithm][Raft] which Atomix is built upon.
+
 ## Setup
 
 To get started, add the `atomix-all` Maven artifact to your project:
