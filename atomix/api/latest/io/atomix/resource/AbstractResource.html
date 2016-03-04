@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -223,34 +223,40 @@ implements <a href="../../../io/atomix/resource/Resource.html" title="interface 
 </td>
 </tr>
 <tr id="i12" class="altColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/AbstractResource.html#serializer--">serializer</a></span>()</code>
+<div class="block">Returns the resource serializer.</div>
+</td>
+</tr>
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/AbstractResource.html#state--">state</a></span>()</code>
 <div class="block">Returns the current resource state.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/AbstractResource.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/AbstractResource.html#type--">type</a></span>()</code>
 <div class="block">Returns the resource type.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/resource/AbstractResource.html" title="type parameter in AbstractResource">T</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/AbstractResource.html#with-io.atomix.resource.ReadConsistency-">with</a></span>(<a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a>&nbsp;consistency)</code>
 <div class="block">Sets the read consistency level.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/resource/AbstractResource.html" title="type parameter in AbstractResource">T</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/AbstractResource.html#with-io.atomix.resource.WriteConsistency-">with</a></span>(<a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource">WriteConsistency</a>&nbsp;consistency)</code>
 <div class="block">Sets the write consistency level.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource">WriteConsistency</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/AbstractResource.html#writeConsistency--">writeConsistency</a></span>()</code>
 <div class="block">Returns the configured write consistency level.</div>
@@ -285,12 +291,30 @@ implements <a href="../../../io/atomix/resource/Resource.html" title="interface 
 <li class="blockList">
 <h4>type</h4>
 <pre>public&nbsp;<a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#type--">Resource</a></code></span></div>
 <div class="block">Returns the resource type.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../io/atomix/resource/Resource.html#type--">type</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/resource/AbstractResource.html" title="type parameter in AbstractResource">T</a> extends <a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/resource/AbstractResource.html" title="type parameter in AbstractResource">T</a>&gt;&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The resource type.</dd>
+</dl>
+</li>
+</ul>
+<a name="serializer--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>serializer</h4>
+<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#serializer--">Resource</a></code></span></div>
+<div class="block">Returns the resource serializer.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../io/atomix/resource/Resource.html#serializer--">serializer</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/resource/AbstractResource.html" title="type parameter in AbstractResource">T</a> extends <a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/resource/AbstractResource.html" title="type parameter in AbstractResource">T</a>&gt;&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The resource serializer.</dd>
 </dl>
 </li>
 </ul>
@@ -301,6 +325,7 @@ implements <a href="../../../io/atomix/resource/Resource.html" title="interface 
 <li class="blockList">
 <h4>config</h4>
 <pre>public&nbsp;<a href="../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#config--">Resource</a></code></span></div>
 <div class="block">Returns the resource configuration.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -317,6 +342,7 @@ implements <a href="../../../io/atomix/resource/Resource.html" title="interface 
 <li class="blockList">
 <h4>options</h4>
 <pre>public&nbsp;<a href="../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#options--">Resource</a></code></span></div>
 <div class="block">Returns the resource options.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -333,10 +359,11 @@ implements <a href="../../../io/atomix/resource/Resource.html" title="interface 
 <li class="blockList">
 <h4>state</h4>
 <pre>public&nbsp;<a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a>&nbsp;state()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#state--">Resource</a></code></span></div>
 <div class="block">Returns the current resource state.
  <p>
- The resource's <code>State</code> is indicative of the resource's ability to communicate with the cluster at any given
- time. Users of the resource should use the state to determine when guarantees may be lost. See the <code>State</code>
+ The resource's <a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource"><code>Resource.State</code></a> is indicative of the resource's ability to communicate with the cluster at any given
+ time. Users of the resource should use the state to determine when guarantees may be lost. See the <a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource"><code>Resource.State</code></a>
  documentation for information on the specific states, and see resource implementation documentation for the
  implications of different states on resource consistency.</div>
 <dl>
@@ -354,6 +381,7 @@ implements <a href="../../../io/atomix/resource/Resource.html" title="interface 
 <li class="blockList">
 <h4>onStateChange</h4>
 <pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a>&gt;&nbsp;onStateChange(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a>&gt;&nbsp;callback)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#onStateChange-java.util.function.Consumer-">Resource</a></code></span></div>
 <div class="block">Registers a resource state change listener.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -372,6 +400,7 @@ implements <a href="../../../io/atomix/resource/Resource.html" title="interface 
 <li class="blockList">
 <h4>context</h4>
 <pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">ThreadContext</a>&nbsp;context()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#context--">Resource</a></code></span></div>
 <div class="block">Returns the resource thread context.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -388,9 +417,10 @@ implements <a href="../../../io/atomix/resource/Resource.html" title="interface 
 <li class="blockList">
 <h4>writeConsistency</h4>
 <pre>public&nbsp;<a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource">WriteConsistency</a>&nbsp;writeConsistency()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#writeConsistency--">Resource</a></code></span></div>
 <div class="block">Returns the configured write consistency level.
  <p>
- Resource consistency levels are configured via the <a href="../../../io/atomix/resource/AbstractResource.html#with-io.atomix.resource.WriteConsistency-"><code>with(WriteConsistency)</code></a> setter. By default,
+ Resource consistency levels are configured via the <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.WriteConsistency-"><code>Resource.with(WriteConsistency)</code></a> setter. By default,
  all resources submit commands under the <a href="../../../io/atomix/resource/WriteConsistency.html#ATOMIC"><code>WriteConsistency.ATOMIC</code></a> consistency level. See the
  <a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource"><code>WriteConsistency</code></a> documentation for information about guarantees provided by specific consistency
  levels.</div>
@@ -409,6 +439,7 @@ implements <a href="../../../io/atomix/resource/Resource.html" title="interface 
 <li class="blockList">
 <h4>with</h4>
 <pre>public&nbsp;<a href="../../../io/atomix/resource/AbstractResource.html" title="type parameter in AbstractResource">T</a>&nbsp;with(<a href="../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource">WriteConsistency</a>&nbsp;consistency)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.WriteConsistency-">Resource</a></code></span></div>
 <div class="block">Sets the write consistency level.
  <p>
  The configured consistency level specifies how operations on the resource should be handled by the
@@ -432,8 +463,6 @@ implements <a href="../../../io/atomix/resource/Resource.html" title="interface 
 <dd><code>consistency</code> - The write consistency level.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The resource instance.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>consistency</code> is null</dd>
 </dl>
 </li>
 </ul>
@@ -444,9 +473,10 @@ implements <a href="../../../io/atomix/resource/Resource.html" title="interface 
 <li class="blockList">
 <h4>readConsistency</h4>
 <pre>public&nbsp;<a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a>&nbsp;readConsistency()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#readConsistency--">Resource</a></code></span></div>
 <div class="block">Returns the configured read consistency level.
  <p>
- Resource consistency levels are configured via the <a href="../../../io/atomix/resource/AbstractResource.html#with-io.atomix.resource.ReadConsistency-"><code>with(ReadConsistency)</code></a> setter. By default,
+ Resource consistency levels are configured via the <a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.ReadConsistency-"><code>Resource.with(ReadConsistency)</code></a> setter. By default,
  all resources submit commands under the <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>ReadConsistency.ATOMIC</code></a> consistency level. See the
  <a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource"><code>ReadConsistency</code></a> documentation for information about guarantees provided by specific consistency
  levels.</div>
@@ -465,6 +495,7 @@ implements <a href="../../../io/atomix/resource/Resource.html" title="interface 
 <li class="blockList">
 <h4>with</h4>
 <pre>public&nbsp;<a href="../../../io/atomix/resource/AbstractResource.html" title="type parameter in AbstractResource">T</a>&nbsp;with(<a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a>&nbsp;consistency)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#with-io.atomix.resource.ReadConsistency-">Resource</a></code></span></div>
 <div class="block">Sets the read consistency level.
  <p>
  The configured consistency level specifies how operations on the resource should be handled by the
@@ -488,8 +519,6 @@ implements <a href="../../../io/atomix/resource/Resource.html" title="interface 
 <dd><code>consistency</code> - The read consistency level.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The resource instance.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>consistency</code> is null</dd>
 </dl>
 </li>
 </ul>
@@ -500,9 +529,10 @@ implements <a href="../../../io/atomix/resource/Resource.html" title="interface 
 <li class="blockList">
 <h4>open</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/resource/AbstractResource.html" title="type parameter in AbstractResource">T</a>&gt;&nbsp;open()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#open--">Resource</a></code></span></div>
 <div class="block">Opens the resource.
  <p>
- Once the resource is opened, the resource will be transitioned to the <code>State#CONNECTED</code> state
+ Once the resource is opened, the resource will be transitioned to the <a href="../../../io/atomix/resource/Resource.State.html#CONNECTED"><code>Resource.State.CONNECTED</code></a> state
  and the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -534,9 +564,10 @@ implements <a href="../../../io/atomix/resource/Resource.html" title="interface 
 <li class="blockList">
 <h4>close</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;close()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#close--">Resource</a></code></span></div>
 <div class="block">Closes the resource.
  <p>
- Once the resource is closed, the resource will be transitioned to the <code>State#CLOSED</code> state and
+ Once the resource is closed, the resource will be transitioned to the <a href="../../../io/atomix/resource/Resource.State.html#CLOSED"><code>Resource.State.CLOSED</code></a> state and
  the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed. Thereafter, attempts to operate on the resource
  will fail.</div>
 <dl>
@@ -569,6 +600,7 @@ implements <a href="../../../io/atomix/resource/Resource.html" title="interface 
 <li class="blockList">
 <h4>delete</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;delete()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#delete--">Resource</a></code></span></div>
 <div class="block">Deletes the resource state.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
