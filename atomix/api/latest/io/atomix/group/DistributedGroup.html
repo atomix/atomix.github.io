@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -479,19 +479,6 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
    group.partitions().partition("foo").members().forEach(m -&gt; m.send("foo"));
    </code>
  </pre>
- <h2>Remote execution</h2>
- Once members of the group, any member can <a href="../../../io/atomix/group/GroupScheduler.html#execute-java.lang.Runnable-"><code>execute</code></a> immediate callbacks or
- <a href="../../../io/atomix/group/GroupScheduler.html#schedule-java.time.Duration-java.lang.Runnable-"><code>schedule</code></a> delayed callbacks to be run on any other member of the
- group. Submitting a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang"><code>Runnable</code></a> callback to a member will cause it to be serialized and sent to that node
- to be executed.
- <pre>
-   <code>
-   group.onJoin(member -&gt; {
-     String memberId = member.id();
-     member.scheduler().execute((Serializable &amp; Runnable) () -&gt; System.out.println("Executing on " + memberId));
-   });
-   </code>
- </pre>
  <h3>Serialization</h3>
  Users are responsible for ensuring the serializability of tasks, messages, and properties set on the group
  and members of the group. Serialization is controlled by the group's <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a>
@@ -704,12 +691,6 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 </td>
 </tr>
 <tr id="i11" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/group/GroupScheduler.html" title="class in io.atomix.group">GroupScheduler</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/DistributedGroup.html#scheduler--">scheduler</a></span>()</code>
-<div class="block">Returns the group scheduler.</div>
-</td>
-</tr>
-<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/group/GroupTaskQueue.html" title="class in io.atomix.group">GroupTaskQueue</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/DistributedGroup.html#tasks--">tasks</a></span>()</code>
 <div class="block">Returns the group task queue.</div>
@@ -820,20 +801,6 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The group task queue.</dd>
-</dl>
-</li>
-</ul>
-<a name="scheduler--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>scheduler</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/group/GroupScheduler.html" title="class in io.atomix.group">GroupScheduler</a>&nbsp;scheduler()</pre>
-<div class="block">Returns the group scheduler.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The group scheduler.</dd>
 </dl>
 </li>
 </ul>
