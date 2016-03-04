@@ -3,8 +3,20 @@ layout: project
 project: atomix
 ---
 
+<div class="feature intro">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <p>
+Atomix is an embeddable library that provides strong, fault-tolerant consistency for stateful resources in your distributed application, along with a high-level API for creating and managing custom user-defined resources where fault-tolerance and consistency is provided automatically.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Reliable -->
-<div class="feature white-background">
+<div class="feature gray-background">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
@@ -19,7 +31,7 @@ project: atomix
 </div>
 
 <!-- Simple -->
-<div class="feature gray-background">
+<div class="feature white-background">
   <div class="container">
     <div class="row">
     
@@ -179,7 +191,7 @@ group.members().forEach(member -> {
 </div>
 
 <!--Scalable -->
-<div class="feature white-background">
+<div class="feature gray-background">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
@@ -194,7 +206,7 @@ group.members().forEach(member -> {
 </div>
 
 <!--Resilient -->
-<div class="feature gray-background">
+<div class="feature white-background">
   <div class="container">
     <div class="row">
       <div class="col-sm-5 col-sm-offset-1">

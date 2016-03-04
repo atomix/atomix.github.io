@@ -9,16 +9,15 @@ first-section: Introduction
 {:.no-margin-top}
 ## Introduction
 
-Atomix is an easy to use, zero-dependency library that embeds inside of your clustered application. It provides various primitives for distributed computing including:
+Atomix is an easy to use, zero-dependency, embeddable library that provides strong, fault-tolerant consistency for stateful resources in your distributed application. Some of the resources provided by Atomix include:
 
 * Distributed [variables]
 * Distributed [collections] such as maps, multi-maps, sets, and queues
-* Distributed [coordination] tools such as locks, group membership, leader election, and remote execution
+* Distributed [group] tools such as group membership, leader election, and remote execution
+* Distributed [concurrency] tools such as locks
 * Distributed [messaging] tools such as a message bus, topics, and task queues
 
-Along with these resources, Atomix provides a high-level API for creating and managing [custom user-defined resources][custom-resources]. Atomix also provides robust fault tolerance and is built on top of [Copycat](/copycat) which supports strong consistency guarantees through its implementation of the [Raft consensus algorithm][Raft].
-
-
+Atomix also provides a high-level API for creating and managing [custom user-defined resources][custom-resources] where fault-tolerance and consistency is provided automatically with the help of [Copycat](/copycat), a sophisticated implementation of the [Raft consensus algorithm][Raft] which Atomix is built upon.
 ## Setup
 
 To get started, add the `atomix-all` Maven artifact to your project:
