@@ -86,7 +86,9 @@
     var parentRef = $(this).attr('href');
 
     // Activate current sidebar item
-    if (currentPath.indexOf(parentRef) > -1) {
+    var pathTokens = currentPath.replace(/\?.+/, '').replace(/\#.+/, '').replace(/\/+$/, '').split("/");
+    var lastToken = pathTokens[pathTokens.length - 1];
+    if (lastToken === parentRef) {
       $(this).parent().attr('class', 'current');
     }
     
