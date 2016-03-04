@@ -123,6 +123,11 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 <div class="block">Generic group abstraction for managing group membership, service discovery, leader election, and remote
  scheduling and execution.
  <p>
+ The distributed group resource facilitates managing group membership within an Atomix cluster. Membership is
+ managed by nodes <a href="../../../io/atomix/group/DistributedGroup.html#join--"><code>joining</code></a> and <a href="../../../io/atomix/group/LocalGroupMember.html#leave--"><code>leaving</code></a> the group, and instances
+ of the group throughout the cluster are notified on changes to the structure of the group. Groups can elect a
+ leader, and members can communicate directly with one another or through persistent queues.
+
  The distributed membership group resource facilitates managing group membership within the Atomix cluster.
  Each instance of a <code>DistributedGroup</code> resource represents a single <a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group"><code>GroupMember</code></a>.
  Members can <a href="../../../io/atomix/group/DistributedGroup.html#join--"><code>join()</code></a> and <a href="../../../io/atomix/group/LocalGroupMember.html#leave--"><code>LocalGroupMember.leave()</code></a> the group and be notified of other members
@@ -463,13 +468,6 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
    group.partitions().partition(1).members().forEach(m -&gt; ...);
    </code>
  </pre>
- Partitions change over time while members are added to or removed from the group. Each time a member is added or
- removed, the group state machine will reassign the minimal number of partitions necessary to balance the cluster,
- and <code>DistributedGroup</code> instances will be notified and updated automatically. Atomix guarantees that when a
- new member <a href="../../../io/atomix/group/DistributedGroup.html#join--"><code>joins</code></a> a group, all partition information on all connected group instances will be updated
- before the join completes. Similarly, when a member <a href="../../../io/atomix/group/LocalGroupMember.html#leave--"><code>leaves</code></a> the group, all partition
- information on all connected group instances are guaranteed to be updated before the operation completes.
- <p>
  Groups also aid in hashing objects to specific partitions and thus replicas within the group. Users can provide a
  <a href="../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group"><code>GroupPartitioner</code></a> class in the <a href="../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group"><code>DistributedGroup.Options</code></a> when a group instance is first created on a node.
  The partitioner will be used to determine the partition to which an object maps within the current set of partitions
@@ -479,6 +477,42 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
    group.partitions().partition("foo").members().forEach(m -&gt; m.send("foo"));
    </code>
  </pre>
+ <h3>Partition migration</h3>
+ Partitions change over time while members are added to or removed from the group. Each time a member is added or
+ removed, the group state machine will reassign the minimal number of partitions necessary to balance the cluster,
+ and <code>DistributedGroup</code> instances will be notified and updated automatically. Atomix guarantees that when a
+ new member <a href="../../../io/atomix/group/DistributedGroup.html#join--"><code>joins</code></a> a group, all partition information on all connected group instances will be updated
+ before the join completes. Similarly, when a member <a href="../../../io/atomix/group/LocalGroupMember.html#leave--"><code>leaves</code></a> the group, all partition
+ information on all connected group instances are guaranteed to be updated before the operation completes.
+ <p>
+ Users can detect when partitions change membership to repartition data and update replicas. To listen for changes
+ in a partition's membership, register a <a href="../../../io/atomix/group/GroupPartition.html#onMigration-java.util.function.Consumer-"><code>GroupPartition.onMigration(Consumer)</code></a> listener. The migration listener
+ will be called any time a replica within the partition is moved to a new member, which can happen when nodes are
+ added to or removed from the group. A <a href="../../../io/atomix/group/GroupPartitionMigration.html" title="class in io.atomix.group"><code>GroupPartitionMigration</code></a> will be provided to the migration callback
+ indicating the source and destination of the partition migration.
+ <pre>
+   <code>
+   group.partitions().partition(1).onMigration(migration -&gt; {
+     // Send a message to the source replica and tell it to migrate its state to the target replica
+     migration.source().connection().send("migrate", migration.target().id());
+   });
+   </code>
+ </pre>
+ The <a href="../../../io/atomix/group/GroupPartitions.html" title="class in io.atomix.group"><code>GroupPartitions</code></a> also provides a similar listener interface for listening for migrations of
+ <em>all</em> partitions.
+ <pre>
+   <code>
+   group.partitions().onMigration(migration -&gt; {
+     // Send a message to the source replica and tell it to migrate its state to the target replica
+     migration.source().connection().send("migrate-" + migration.partition().id(), migration.target().id());
+   });
+   </code>
+ </pre>
+ In some cases, a partition can be migrated from a non-existent replica to an existing member or vice-versa.
+ For instance, if the <a href="../../../io/atomix/group/DistributedGroup.Config.html#withReplicationFactor-int-"><code>replication factor</code></a> is <code>3</code>
+ and there are only two members in the group, when a third member is added all partitions will be migrated from
+ a <code>null</code> third member to the new concrete third member. Group partitioners provide the maximum number
+ of replicas possible given the current group configuration.
  <h3>Serialization</h3>
  Users are responsible for ensuring the serializability of tasks, messages, and properties set on the group
  and members of the group. Serialization is controlled by the group's <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a>
