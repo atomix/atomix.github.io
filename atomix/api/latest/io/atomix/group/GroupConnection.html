@@ -117,57 +117,16 @@ var activeTableTab = "activeTableTab";
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">Facilitates direct communication between group members.
  <p>
- Members of a group and group instances can communicate with one another through the direct messaging API,
- <a href="../../../io/atomix/group/GroupConnection.html" title="class in io.atomix.group"><code>GroupConnection</code></a>. Direct messaging between group members is considered <em>unreliable</em> and is
- done over the local node's configured <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a>. Messages between members
- of a group are ordered according only to the transport and are not guaranteed to be delivered. While request-reply
- can be used to achieve some level of assurance that messages are delivered to specific members of the group,
- direct message consumers should be idempotent and commutative.
- <p>
- In order to enable direct messaging for a group instance, the instance must be initialized with
- <a href="../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group"><code>DistributedGroup.Options</code></a> that define the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> to which to bind a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Server.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Server</code></a> for messaging.
+ Members in a <a href="../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group"><code>DistributedGroup</code></a> can communicate with each other directly via a connection.
+ To send a direct message to a remote <a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group"><code>GroupMember</code></a>, the member must have been configured with
+ an <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> to which to bind its server.
  <pre>
    <code>
-   DistributedGroup.Options options = new DistributedGroup.Options()
-     .withAddress(new Address("localhost", 6000));
-   DistributedGroup group = atomix.getGroup("message-group", options).get();
-   </code>
- </pre>
- Once a group instance has been configured with an address for direct messaging, messages can be sent between
- group members using the <a href="../../../io/atomix/group/GroupConnection.html" title="class in io.atomix.group"><code>GroupConnection</code></a> for any member of the group. Messages sent between members must
- be associated with a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> topic, and messages can be any value that is serializable by the group instance's
- <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a>.
- <pre>
-   <code>
-   group.member("foo").connection().send("hello", "World!").thenAccept(reply -&gt; {
+   group.member("foo").send("user", "1").thenAccept(reply -&gt; {
      ...
    });
    </code>
- </pre>
- Direct messages can only be <em>received</em> by a <a href="../../../io/atomix/group/LocalGroupMember.html" title="class in io.atomix.group"><code>LocalGroupMember</code></a> which must be created by
- joining the group. Local members register a listener for a link topic on the joined member's
- <a href="../../../io/atomix/group/LocalGroupConnection.html" title="class in io.atomix.group"><code>LocalGroupConnection</code></a>. Message listeners are asynchronous. When a <a href="../../../io/atomix/group/GroupMessage.html" title="class in io.atomix.group"><code>GroupMessage</code></a> is received
- by a local member, the member can perform any processing it wishes and <a href="../../../io/atomix/group/GroupMessage.html#reply-java.lang.Object-"><code>reply</code></a>
- to the message or <a href="../../../io/atomix/group/GroupMessage.html#ack--"><code>acknowledge</code></a> completion of handling the message to send a response
- back to the sender.
- <pre>
-   <code>
-   // Join the group and run the given callback once successful
-   group.join().thenAccept(member -&gt; {
-
-     // Register a listener for the "hello" topic
-     member.connection().onMessage("hello", message -&gt; {
-       // Handle the message and reply
-       handleMessage(message);
-       message.reply("Hello world!");
-     });
-
-   });
-   </code>
- </pre>
- It's critical that message listeners reply to messages, otherwise futures will be held in memory on the
- sending side of the <a href="../../../io/atomix/group/GroupConnection.html" title="class in io.atomix.group"><code>connection</code></a> until the sender or receiver is removed from the
- group.</div>
+ </pre></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -235,14 +194,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
                                        T&nbsp;message)</pre>
 <div class="block">Sends a direct message to the member.
  <p>
- Messages are ordered and replayed according to the semantics of the underlying <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a>.
- The connection does not inherently guarantee any order or exactly-once semantics.
- <p>
- The message will be sent to the member on the given <code>topic</code>. If no listener has been registered
- by the member for the topic, the message will fail. If a listener exists for the topic, the message
- will be handled by the listener and the <a href="../../../io/atomix/group/GroupMessage.html#reply-java.lang.Object-"><code>reply</code></a> will be sent back
- to this sender. Once the reply is received, the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed
- with the response from the member.</div>
+ The returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed with the response from the member.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The message type.</dd>
@@ -252,8 +204,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <dd><code>message</code> - The message to send.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed with the message response.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the <code>topic</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>

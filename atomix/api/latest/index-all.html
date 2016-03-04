@@ -82,10 +82,6 @@
 <dd>
 <div class="block">Abstract resource.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/group/GroupMessage.html#ack--">ack()</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupMessage.html" title="class in io.atomix.group">GroupMessage</a></dt>
-<dd>
-<div class="block">Acknowledges receipt of the message with a <code>null</code> reply.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/group/GroupTask.html#ack--">ack()</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupTask.html" title="class in io.atomix.group">GroupTask</a></dt>
 <dd>
 <div class="block">Acknowledges completion of the task.</div>
@@ -277,7 +273,9 @@
 <div class="block">Closes the producer.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#close--">close()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Closes the resource.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#close--">close()</a></span> - Method in interface io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dt>
 <dd>
 <div class="block">Closes the resource.</div>
@@ -304,7 +302,9 @@
 <dt><span class="memberNameLink"><a href="io/atomix/group/DistributedGroup.Config.html#Config-java.util.Properties-">Config(Properties)</a></span> - Constructor for class io.atomix.group.<a href="io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#config--">config()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Returns the resource configuration.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#config--">config()</a></span> - Method in interface io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dt>
 <dd>
 <div class="block">Returns the resource configuration.</div>
@@ -390,7 +390,9 @@
 <dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#context--">context()</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#context--">context()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Returns the resource thread context.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#context--">context()</a></span> - Method in interface io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dt>
 <dd>
 <div class="block">Returns the resource thread context.</div>
@@ -414,7 +416,9 @@
 <div class="block">Decrements the value and returns the updated value.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#delete--">delete()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Deletes the resource state.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#delete--">delete()</a></span> - Method in interface io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dt>
 <dd>
 <div class="block">Deletes the resource state.</div>
@@ -534,6 +538,10 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceType.html#equals-java.lang.Object-">equals(Object)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/group/GroupScheduler.html#execute-java.lang.Runnable-">execute(Runnable)</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupScheduler.html" title="class in io.atomix.group">GroupScheduler</a></dt>
+<dd>
+<div class="block">Executes a remote callback.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceStateMachineExecutor.html#executor--">executor()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceStateMachineExecutor.html" title="class in io.atomix.resource">ResourceStateMachineExecutor</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#exists-java.lang.String-">exists(String)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
@@ -830,7 +838,7 @@
 </dd>
 <dt><a href="io/atomix/group/GroupElection.html" title="class in io.atomix.group"><span class="typeNameLink">GroupElection</span></a> - Class in <a href="io/atomix/group/package-summary.html">io.atomix.group</a></dt>
 <dd>
-<div class="block">Manages an election among <a href="io/atomix/group/DistributedGroup.html" title="class in io.atomix.group"><code>DistributedGroup</code></a> members.</div>
+<div class="block">Group election.</div>
 </dd>
 <dt><a href="io/atomix/group/GroupMember.html" title="class in io.atomix.group"><span class="typeNameLink">GroupMember</span></a> - Class in <a href="io/atomix/group/package-summary.html">io.atomix.group</a></dt>
 <dd>
@@ -861,10 +869,6 @@
 <dd>
 <div class="block">Group partitioner.</div>
 </dd>
-<dt><a href="io/atomix/group/GroupPartitionMigration.html" title="class in io.atomix.group"><span class="typeNameLink">GroupPartitionMigration</span></a> - Class in <a href="io/atomix/group/package-summary.html">io.atomix.group</a></dt>
-<dd>
-<div class="block">Group partition migration.</div>
-</dd>
 <dt><a href="io/atomix/group/GroupPartitions.html" title="class in io.atomix.group"><span class="typeNameLink">GroupPartitions</span></a> - Class in <a href="io/atomix/group/package-summary.html">io.atomix.group</a></dt>
 <dd>
 <div class="block">Group partitions.</div>
@@ -872,6 +876,10 @@
 <dt><a href="io/atomix/group/GroupProperties.html" title="class in io.atomix.group"><span class="typeNameLink">GroupProperties</span></a> - Class in <a href="io/atomix/group/package-summary.html">io.atomix.group</a></dt>
 <dd>
 <div class="block">Group properties.</div>
+</dd>
+<dt><a href="io/atomix/group/GroupScheduler.html" title="class in io.atomix.group"><span class="typeNameLink">GroupScheduler</span></a> - Class in <a href="io/atomix/group/package-summary.html">io.atomix.group</a></dt>
+<dd>
+<div class="block">Group scheduler.</div>
 </dd>
 <dt><a href="io/atomix/group/GroupTask.html" title="class in io.atomix.group"><span class="typeNameLink">GroupTask</span></a>&lt;<a href="io/atomix/group/GroupTask.html" title="type parameter in GroupTask">T</a>&gt; - Class in <a href="io/atomix/group/package-summary.html">io.atomix.group</a></dt>
 <dd>
@@ -945,7 +953,10 @@
  <code>io.atomix.coordination.DistributedGroup</code>.</div>
 </dd>
 <dt><a href="io/atomix/group/package-summary.html">io.atomix.group</a> - package io.atomix.group</dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Provides distributed group operations tools via <a href="io/atomix/group/DistributedGroup.html" title="class in io.atomix.group"><code>DistributedGroup</code></a> including leader election,
+ direct messaging, tasks queues, partitioning, and remote execution.</div>
+</dd>
 <dt><a href="io/atomix/messaging/package-summary.html">io.atomix.messaging</a> - package io.atomix.messaging</dt>
 <dd>
 <div class="block">Provides distributed messaging resources such as <a href="io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging"><code>DistributedMessageBus</code></a> for unreliable
@@ -1170,16 +1181,10 @@
 <dd>
 <div class="block">Sets a message consumer callback.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/group/GroupPartition.html#onMigration-java.util.function.Consumer-">onMigration(Consumer&lt;GroupPartitionMigration&gt;)</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupPartition.html" title="class in io.atomix.group">GroupPartition</a></dt>
-<dd>
-<div class="block">Registers a partition migration listener.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/group/GroupPartitions.html#onMigration-java.util.function.Consumer-">onMigration(Consumer&lt;GroupPartitionMigration&gt;)</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupPartitions.html" title="class in io.atomix.group">GroupPartitions</a></dt>
-<dd>
-<div class="block">Registers a partition migration listener.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#onStateChange-java.util.function.Consumer-">onStateChange(Consumer&lt;Resource.State&gt;)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Registers a resource state change listener.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#onStateChange-java.util.function.Consumer-">onStateChange(Consumer&lt;Resource.State&gt;)</a></span> - Method in interface io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dt>
 <dd>
 <div class="block">Registers a resource state change listener.</div>
@@ -1207,7 +1212,9 @@
 <dt><span class="memberNameLink"><a href="io/atomix/messaging/DistributedTopic.html#open--">open()</a></span> - Method in class io.atomix.messaging.<a href="io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#open--">open()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Opens the resource.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#open--">open()</a></span> - Method in interface io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dt>
 <dd>
 <div class="block">Opens the resource.</div>
@@ -1223,7 +1230,9 @@
 <dt><span class="memberNameLink"><a href="io/atomix/messaging/DistributedMessageBus.Options.html#Options-java.util.Properties-">Options(Properties)</a></span> - Constructor for class io.atomix.messaging.<a href="io/atomix/messaging/DistributedMessageBus.Options.html" title="class in io.atomix.messaging">DistributedMessageBus.Options</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#options--">options()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Returns the resource options.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#options--">options()</a></span> - Method in interface io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dt>
 <dd>
 <div class="block">Returns the resource options.</div>
@@ -1241,10 +1250,6 @@
 <dt><span class="memberNameLink"><a href="io/atomix/group/GroupPartitioner.html#partition-java.lang.Object-int-">partition(Object, int)</a></span> - Method in interface io.atomix.group.<a href="io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group">GroupPartitioner</a></dt>
 <dd>
 <div class="block">Returns the partition for the given value.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/group/GroupPartitionMigration.html#partition--">partition()</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupPartitionMigration.html" title="class in io.atomix.group">GroupPartitionMigration</a></dt>
-<dd>
-<div class="block">Returns the migration partition.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/group/GroupPartitions.html#partition-int-">partition(int)</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupPartitions.html" title="class in io.atomix.group">GroupPartitions</a></dt>
 <dd>
@@ -1331,7 +1336,9 @@
 <h2 class="title">R</h2>
 <dl>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#readConsistency--">readConsistency()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Returns the configured read consistency level.</div>
+</dd>
 <dt><a href="io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource"><span class="typeNameLink">ReadConsistency</span></a> - Enum in <a href="io/atomix/resource/package-summary.html">io.atomix.resource</a></dt>
 <dd>
 <div class="block">Constants for controlling read consistency constraints on a per-request basis.</div>
@@ -1482,10 +1489,22 @@
 </a>
 <h2 class="title">S</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="io/atomix/group/GroupScheduler.html#schedule-java.time.Duration-java.lang.Runnable-">schedule(Duration, Runnable)</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupScheduler.html" title="class in io.atomix.group">GroupScheduler</a></dt>
+<dd>
+<div class="block">Schedules a callback to be run after the given delay.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceStateMachineExecutor.html#schedule-java.time.Duration-java.lang.Runnable-">schedule(Duration, Runnable)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceStateMachineExecutor.html" title="class in io.atomix.resource">ResourceStateMachineExecutor</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceStateMachineExecutor.html#schedule-java.time.Duration-java.time.Duration-java.lang.Runnable-">schedule(Duration, Duration, Runnable)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceStateMachineExecutor.html" title="class in io.atomix.resource">ResourceStateMachineExecutor</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/group/DistributedGroup.html#scheduler--">scheduler()</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/DistributedGroup.html" title="class in io.atomix.group">DistributedGroup</a></dt>
+<dd>
+<div class="block">Returns the group scheduler.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/group/GroupMember.html#scheduler--">scheduler()</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a></dt>
+<dd>
+<div class="block">Returns the remote scheduler for the member.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/group/GroupConnection.html#send-java.lang.String-T-">send(String, T)</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupConnection.html" title="class in io.atomix.group">GroupConnection</a></dt>
 <dd>
 <div class="block">Sends a direct message to the member.</div>
@@ -1497,12 +1516,6 @@
 <dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#serializer--">serializer()</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
 <dd>
 <div class="block">Returns the Atomix serializer.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#serializer--">serializer()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#serializer--">serializer()</a></span> - Method in interface io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dt>
-<dd>
-<div class="block">Returns the resource serializer.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/ResourceStateMachineExecutor.html#serializer--">serializer()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/ResourceStateMachineExecutor.html" title="class in io.atomix.resource">ResourceStateMachineExecutor</a></dt>
 <dd>&nbsp;</dd>
@@ -1562,12 +1575,10 @@
 <dd>
 <div class="block">Returns the quorum size hint.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/group/GroupPartitionMigration.html#source--">source()</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupPartitionMigration.html" title="class in io.atomix.group">GroupPartitionMigration</a></dt>
-<dd>
-<div class="block">Returns the migration source.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#state--">state()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Returns the current resource state.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#state--">state()</a></span> - Method in interface io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dt>
 <dd>
 <div class="block">Returns the current resource state.</div>
@@ -1598,10 +1609,6 @@
 </a>
 <h2 class="title">T</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="io/atomix/group/GroupPartitionMigration.html#target--">target()</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupPartitionMigration.html" title="class in io.atomix.group">GroupPartitionMigration</a></dt>
-<dd>
-<div class="block">Returns the migration target.</div>
-</dd>
 <dt><a href="io/atomix/group/TaskFailedException.html" title="class in io.atomix.group"><span class="typeNameLink">TaskFailedException</span></a> - Exception in <a href="io/atomix/group/package-summary.html">io.atomix.group</a></dt>
 <dd>
 <div class="block">Group task failed exception.</div>
@@ -1658,11 +1665,11 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/group/GroupPartition.html#toString--">toString()</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupPartition.html" title="class in io.atomix.group">GroupPartition</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/group/GroupPartitionMigration.html#toString--">toString()</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupPartitionMigration.html" title="class in io.atomix.group">GroupPartitionMigration</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/group/GroupPartitions.html#toString--">toString()</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupPartitions.html" title="class in io.atomix.group">GroupPartitions</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/group/GroupProperties.html#toString--">toString()</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupProperties.html" title="class in io.atomix.group">GroupProperties</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/group/GroupScheduler.html#toString--">toString()</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupScheduler.html" title="class in io.atomix.group">GroupScheduler</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/group/GroupTask.html#toString--">toString()</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/GroupTask.html" title="class in io.atomix.group">GroupTask</a></dt>
 <dd>&nbsp;</dd>
@@ -1683,7 +1690,9 @@
 <dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#type-java.lang.Class-">type(Class&lt;? extends Resource&lt;?&gt;&gt;)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#type--">type()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Returns the resource type.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#type--">type()</a></span> - Method in interface io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dt>
 <dd>
 <div class="block">Returns the resource type.</div>
@@ -1766,9 +1775,13 @@ the order they are declared.</div>
 <h2 class="title">W</h2>
 <dl>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#with-io.atomix.resource.WriteConsistency-">with(WriteConsistency)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Sets the write consistency level.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#with-io.atomix.resource.ReadConsistency-">with(ReadConsistency)</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Sets the read consistency level.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#with-io.atomix.resource.WriteConsistency-">with(WriteConsistency)</a></span> - Method in interface io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dt>
 <dd>
 <div class="block">Sets the write consistency level.</div>
@@ -1890,7 +1903,9 @@ the order they are declared.</div>
 <div class="block">Sets the number of virtual nodes per group member in the consistent hash ring.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#writeConsistency--">writeConsistency()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Returns the configured write consistency level.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/Resource.html#writeConsistency--">writeConsistency()</a></span> - Method in interface io.atomix.resource.<a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></dt>
 <dd>
 <div class="block">Returns the configured write consistency level.</div>

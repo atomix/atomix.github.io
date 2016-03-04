@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -123,22 +123,11 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 <div class="block">Generic group abstraction for managing group membership, service discovery, leader election, and remote
  scheduling and execution.
  <p>
- The distributed group resource facilitates managing group membership within an Atomix cluster. Membership is
- managed by nodes <a href="../../../io/atomix/group/DistributedGroup.html#join--"><code>joining</code></a> and <a href="../../../io/atomix/group/LocalGroupMember.html#leave--"><code>leaving</code></a> the group, and instances
- of the group throughout the cluster are notified on changes to the structure of the group. Groups can elect a
- leader, and members can communicate directly with one another or through persistent queues.
-
  The distributed membership group resource facilitates managing group membership within the Atomix cluster.
  Each instance of a <code>DistributedGroup</code> resource represents a single <a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group"><code>GroupMember</code></a>.
  Members can <a href="../../../io/atomix/group/DistributedGroup.html#join--"><code>join()</code></a> and <a href="../../../io/atomix/group/LocalGroupMember.html#leave--"><code>LocalGroupMember.leave()</code></a> the group and be notified of other members
  <a href="../../../io/atomix/group/DistributedGroup.html#onJoin-java.util.function.Consumer-"><code>joining</code></a> and <a href="../../../io/atomix/group/DistributedGroup.html#onLeave-java.util.function.Consumer-"><code>leaving</code></a> the group. Members may leave the group
  either voluntarily or due to a failure or other disconnection from the cluster.
- <p>
- Groups membership is managed in a replicated state machine. When a member joins the group, the join request
- is replicated, the member is added to the group, and the state machine notifies instances of the
- <code>DistributedGroup</code> of the membership change. In the event that a group instance becomes disconnected from
- the cluster and its session times out, the replicated state machine will automatically remove the member
- from the group and notify the remaining instances of the group of the membership change.
  <p>
  To create a membership group resource, use the <code>DistributedGroup</code> class or constructor:
  <pre>
@@ -146,40 +135,6 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
    atomix.getGroup("my-group").thenAccept(group -&gt; {
      ...
    });
-   </code>
- </pre>
- <h2>Configuration</h2>
- <code>DistributedGroup</code> instances can be configured to control <a href="../../../io/atomix/group/GroupMember.html#connection--"><code>communication</code></a>
- between members of the group and to define the behavior of how groups are <a href="../../../io/atomix/group/DistributedGroup.html#partitions--"><code>partitioned</code></a>.
- To configure groups, a <a href="../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group"><code>DistributedGroup.Config</code></a> and/or <a href="../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group"><code>DistributedGroup.Options</code></a> must be provided
- when constructing the initial group instance.
- <p>
- The <a href="../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group"><code>DistributedGroup.Config</code></a> controls the cluster-wide resource configuration. Only the configuration
- of the first instance of a group created <em>on any node in the cluster</em> will be applied to the group.
- If a group instance is created with <code>32</code> <a href="../../../io/atomix/group/DistributedGroup.Config.html#withPartitions-int-"><code>partitions</code></a>
- and later an instance is created with <code>16</code> partitions on another node, the latter instance will inherit
- the <code>32</code> partitions from the original instance.
- <pre>
-   <code>
-   DistributedGroup.Config config = new DistributedGroup.Config()
-     .withPartitioner(RoundRobinPartitioner.class)
-     .withPartitions(32);
-   DistributedGroup group = atomix.getGroup("partitioned-group", config).get();
-   </code>
- </pre>
- The <a href="../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group"><code>DistributedGroup.Options</code></a> define the configuration of the local <code>DistributedGroup</code> instance
- only. The group options will <em>not</em> be replicated to or applied on any other node in the cluster. However,
- group instances accessed via the <code>Atomix</code> API are static, so the options provided on the first instantiation
- of a group will be used for the local instance until the resource is deleted.
- <p>
- The primary role of <a href="../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group"><code>DistributedGroup.Options</code></a> is configuring the group's method of communication with
- other group instances around the cluster. In order to support direct messaging between members, the group
- must be configured with an <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> to which to bind the server for communication.
- <pre>
-   <code>
-   DistributedGroup.Options options = new DistributedGroup.Options()
-     .withAddress(new Address("localhost", 6000));
-   DistributedGroup group = atomix.getGroup("message-group", options).get();
    </code>
  </pre>
  <h2>Joining the group</h2>
@@ -218,58 +173,6 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
  Once the group instance has been created, the group membership will be automatically updated each time the structure
  of the group changes. However, in the event that the client becomes disconnected from the cluster, it may not receive
  notifications of changes in the group structure.
- <h2>Member properties</h2>
- A group and each member of the group can be assigned arbitrary <a href="../../../io/atomix/group/GroupProperties.html" title="class in io.atomix.group"><code>properties</code></a>. Properties can
- be useful for associating various types of metadata with a group member. For instance, users might assign an
- <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> as a property of a group member to indicate the address to which clients can connect to communicate
- with that member. Indeed, this is how direct messaging between group members is managed internally.
- <p>
- Properties are simple maps with non-null <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> keys and arbitrary serializable values. Properties
- can be set on the group or on a specific member of the group, and any node can assign and read properties for
- any member of a group.
- <pre>
-   <code>
-   DistributedGroup group = atomix.getGroup("properties-group").get();
-
-   // Assign a name to the group and wait for the assignment to complete
-   group.properties().set("name", "properties-group").join();
-
-   // When a member joins the group, read the member's Address and connect to the member
-   group.onJoin(member -&gt; {
-     Address address = member.properties().get("address").get();
-     client.connect(address).thenAccept(connection -&gt; {
-       ...
-     });
-   });
-   </code>
- </pre>
- Properties are guaranteed to be linearizable for all operations, meaning once a property of a group or member
- has been changed, all nodes are guaranteed to see that change when reading the property.
- <h2>Persistent members</h2>
- <code>DistributedGroup</code> supports a concept of persistent members that requires members to <em>explicitly</em>
- <a href="../../../io/atomix/group/LocalGroupMember.html#leave--"><code>leave</code></a> the group to be removed from it. Persistent member <a href="../../../io/atomix/group/GroupProperties.html" title="class in io.atomix.group"><code>properties</code></a>
- persist through failures, and enqueued <a href="../../../io/atomix/group/GroupTask.html" title="class in io.atomix.group"><code>tasks</code></a> will remain in a failed member's queue until the
- member recovers.
- <p>
- In order to support recovery, persistent members must be configured with a user-provided <a href="../../../io/atomix/group/GroupMember.html#id--"><code>member ID</code></a>.
- The member ID is provided when the member <a href="../../../io/atomix/group/DistributedGroup.html#join-java.lang.String-"><code>joins</code></a> the group, and providing a member ID is
- all that's required to create a persistent member.
- <pre>
-   <code>
-   DistributedGroup group = atomix.getGroup("persistent-members").get();
-   LocalGroupMember memberA = group.join("a").get();
-   LocalGroupMember memberB = group.join("b").get();
-   </code>
- </pre>
- Persistent members are not limited to a single node. If a node crashes, any persistent members that existed
- on that node may rejoin the group on any other node. Persistent members rejoin simply by calling <a href="../../../io/atomix/group/DistributedGroup.html#join-java.lang.String-"><code>join(String)</code></a>
- with the unique member ID. Once a persistent member has rejoined the group, its session will be updated and any
- tasks remaining in the member's <a href="../../../io/atomix/group/GroupTaskQueue.html" title="class in io.atomix.group"><code>GroupTaskQueue</code></a> will be published to the member.
- <p>
- Persistent member state is retained <em>only</em> inside the group's replicated state machine and not on clients.
- From the perspective of <code>DistributedGroup</code> instances in a cluster, in the event that the node on which
- a persistent member is running fails, the member will <a href="../../../io/atomix/group/DistributedGroup.html#onLeave-java.util.function.Consumer-"><code>leave</code></a> the group. Once the persistent
- member rejoins the group, <a href="../../../io/atomix/group/DistributedGroup.html#onJoin-java.util.function.Consumer-"><code>onJoin(Consumer)</code></a> will be called again on each group instance in the cluster.
  <h2>Leader election</h2>
  The <code>DistributedGroup</code> resource facilitates leader election which can be used to coordinate a group by
  ensuring only a single member of the group performs some set of operations at any given time. Leader election
@@ -306,140 +209,7 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
  <p>
  To guard against inconsistencies resulting from arbitrary process pauses, clients can use the monotonically
  increasing term for coordination and managing optimistic access to external resources.
- <h2>Direct messaging</h2>
- Members of a group and group instances can communicate with one another through the direct messaging API,
- <a href="../../../io/atomix/group/GroupConnection.html" title="class in io.atomix.group"><code>GroupConnection</code></a>. Direct messaging between group members is considered <em>unreliable</em> and is
- done over the local node's configured <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a>. Messages between members
- of a group are ordered according only to the transport and are not guaranteed to be delivered. While request-reply
- can be used to achieve some level of assurance that messages are delivered to specific members of the group,
- direct message consumers should be idempotent and commutative.
- <p>
- In order to enable direct messaging for a group instance, the instance must be initialized with
- <a href="../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group"><code>DistributedGroup.Options</code></a> that define the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> to which to bind a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Server.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Server</code></a> for messaging.
- <pre>
-   <code>
-   DistributedGroup.Options options = new DistributedGroup.Options()
-     .withAddress(new Address("localhost", 6000));
-   DistributedGroup group = atomix.getGroup("message-group", options).get();
-   </code>
- </pre>
- Once a group instance has been configured with an address for direct messaging, messages can be sent between
- group members using the <a href="../../../io/atomix/group/GroupConnection.html" title="class in io.atomix.group"><code>GroupConnection</code></a> for any member of the group. Messages sent between members must
- be associated with a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang"><code>String</code></a> topic, and messages can be any value that is serializable by the group instance's
- <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a>.
- <pre>
-   <code>
-   group.member("foo").connection().send("hello", "World!").thenAccept(reply -&gt; {
-     ...
-   });
-   </code>
- </pre>
- Direct messages can only be <em>received</em> by a <a href="../../../io/atomix/group/LocalGroupMember.html" title="class in io.atomix.group"><code>LocalGroupMember</code></a> which must be created by
- <a href="../../../io/atomix/group/DistributedGroup.html#join--"><code>joining</code></a> the group. Local members register a listener for a link topic on the joined member's
- <a href="../../../io/atomix/group/LocalGroupConnection.html" title="class in io.atomix.group"><code>LocalGroupConnection</code></a>. Message listeners are asynchronous. When a <a href="../../../io/atomix/group/GroupMessage.html" title="class in io.atomix.group"><code>GroupMessage</code></a> is received
- by a local member, the member can perform any processing it wishes and <a href="../../../io/atomix/group/GroupMessage.html#reply-java.lang.Object-"><code>reply</code></a>
- to the message or <a href="../../../io/atomix/group/GroupMessage.html#ack--"><code>acknowledge</code></a> completion of handling the message to send a response
- back to the sender.
- <pre>
-   <code>
-   // Join the group and run the given callback once successful
-   group.join().thenAccept(member -&gt; {
-
-     // Register a listener for the "hello" topic
-     member.connection().onMessage("hello", message -&gt; {
-       // Handle the message and reply
-       handleMessage(message);
-       message.reply("Hello world!");
-     });
-
-   });
-   </code>
- </pre>
- It's critical that message listeners reply to messages, otherwise futures will be held in memory on the
- sending side of the <a href="../../../io/atomix/group/GroupConnection.html" title="class in io.atomix.group"><code>connection</code></a> until the sender or receiver is removed from the
- group.
- <h2>Task queues</h2>
- In addition to supporting direct messaging between members of the group, <code>DistributedGroup</code> provides
- mechanisms for reliable, persistent messaging. Tasks are arbitrary objects that can be sent between members
- of the group or to all members of a group by any node. In contrast to direct messaging, tasks are uni-directional
- in that <a href="../../../io/atomix/group/GroupTaskQueue.html" title="class in io.atomix.group"><code>task queues</code></a> only support sending a task but not receiving a reply. Tasks are
- submitted directly to the replicated state machine and once task submissions are complete are guaranteed to
- be persisted either until received and acknowledged by their target member or until that member leaves the
- cluster.
- <p>
- Task processing is event-driven and requires no polling on the receiving side of a task queue. When a task
- is received and persisted by the replicated state machine, if the member to which the task is sent is available
- for processing, the task will be pushed to that member through its open session. If the member is already
- processing another task, the task will be queued until all preceding tasks have been acked by the receiving
- member.
- <p>
- Tasks can be submitted to all members of a group or to a specific member through the object's associated
- <a href="../../../io/atomix/group/GroupTaskQueue.html" title="class in io.atomix.group"><code>GroupTaskQueue</code></a>. Once a task has completed processing, the task acknowledgement will be sent back
- to the sender. In the event a task fails processing, an exception will be thrown on the sender.
- <pre>
-   <code>
-   DistributedGroup group = atomix.getGroup("task-group").get();
-
-   // Submit a task to all members of the group
-   group.tasks().submit("doIt").whenComplete((result, error) -&gt; {
-     if (error == null) {
-       // All available members succeeded
-     } else {
-       // At least one member failed
-     }
-   });
-
-   // Submit a task to a specific member of the group when it joins
-   group.onJoin(member -&gt; {
-     member.tasks().submit("doSetupTasks").whenComplete((result, error) -&gt; {
-       if (error == null) {
-         // The member received and processed the task
-       } else {
-         // The member did not receive the task or failed it
-       }
-     });
-   });
-   </code>
- </pre>
- When submitting a task to all members of the group via the group's <a href="../../../io/atomix/group/DistributedGroup.html#tasks--"><code>task queue</code></a>, the task will
- be enqueued for processing by all current members of the group. However, in the event an ephemeral member
- leaves the group (or crashes) during the processing of the task, the task will simply be skipped for that member.
- To ensure a member receives a task through a failure, use persistent members.
- <p>
- Tasks sent directly to specific members behave a bit differently. In the event that an ephemeral member leaves
- the group during the execution of a task, the task will be explicitly failed and an error will be returned
- to the task submitter.
- <p>
- Tasks are processed by <a href="../../../io/atomix/group/LocalGroupMember.html" title="class in io.atomix.group"><code>LocalGroupMember</code></a>s by registering a <a href="../../../io/atomix/group/LocalGroupTaskQueue.html#onTask-java.util.function.Consumer-"><code>task listener</code></a>
- on the member's queue. Once a member is done processing a task, it must <a href="../../../io/atomix/group/GroupTask.html#ack--"><code>ack</code></a> the task to
- fetch the next one from the cluster.
- <pre>
-   <code>
-   LocalGroupMember member = group.join("member-a").get();
-   member.tasks().onTask(task -&gt; {
-     doSetup();
-     task.ack();
-   });
-   </code>
- </pre>
- Task receivers are free to take as long as is necessary to process a task. Task callbacks may be asynchronous.
- Members need only call <a href="../../../io/atomix/group/GroupTask.html#ack--"><code>GroupTask.ack()</code></a> once processing is complete. Tasks can also be explicitly
- <a href="../../../io/atomix/group/GroupTask.html#fail--"><code>fail</code></a>ed by receivers. Task failures will be sent back to the sender in the form of
- a <a href="../../../io/atomix/group/TaskFailedException.html" title="class in io.atomix.group"><code>TaskFailedException</code></a>.
- <pre>
-   <code>
-   member.tasks().onTask(task -&gt; {
-     doSetupAsync().whenComplete((result, error) -&gt; {
-       if (error == null) {
-         task.ack();
-       } else {
-         task.fail();
-       }
-     });
-   });
-   </code>
- </pre>
- <h2>Partitioning</h2>
+ <h2>Consistent hashing</h2>
  Membership groups also provide features to aid in supporting replication via consistent hashing and partitioning.
  When a group is created, users can configure the group to support a particular number of partitions and replication
  factor. Partitioning can aid in hashing resources to specific members of the group, and the replication factor builds
@@ -468,6 +238,13 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
    group.partitions().partition(1).members().forEach(m -&gt; ...);
    </code>
  </pre>
+ Partitions change over time while members are added to or removed from the group. Each time a member is added or
+ removed, the group state machine will reassign the minimal number of partitions necessary to balance the cluster,
+ and <code>DistributedGroup</code> instances will be notified and updated automatically. Atomix guarantees that when a
+ new member <a href="../../../io/atomix/group/DistributedGroup.html#join--"><code>joins</code></a> a group, all partition information on all connected group instances will be updated
+ before the join completes. Similarly, when a member <a href="../../../io/atomix/group/LocalGroupMember.html#leave--"><code>leaves</code></a> the group, all partition
+ information on all connected group instances are guaranteed to be updated before the operation completes.
+ <p>
  Groups also aid in hashing objects to specific partitions and thus replicas within the group. Users can provide a
  <a href="../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group"><code>GroupPartitioner</code></a> class in the <a href="../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group"><code>DistributedGroup.Options</code></a> when a group instance is first created on a node.
  The partitioner will be used to determine the partition to which an object maps within the current set of partitions
@@ -477,69 +254,19 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
    group.partitions().partition("foo").members().forEach(m -&gt; m.send("foo"));
    </code>
  </pre>
- <h3>Partition migration</h3>
- Partitions change over time while members are added to or removed from the group. Each time a member is added or
- removed, the group state machine will reassign the minimal number of partitions necessary to balance the cluster,
- and <code>DistributedGroup</code> instances will be notified and updated automatically. Atomix guarantees that when a
- new member <a href="../../../io/atomix/group/DistributedGroup.html#join--"><code>joins</code></a> a group, all partition information on all connected group instances will be updated
- before the join completes. Similarly, when a member <a href="../../../io/atomix/group/LocalGroupMember.html#leave--"><code>leaves</code></a> the group, all partition
- information on all connected group instances are guaranteed to be updated before the operation completes.
- <p>
- Users can detect when partitions change membership to repartition data and update replicas. To listen for changes
- in a partition's membership, register a <a href="../../../io/atomix/group/GroupPartition.html#onMigration-java.util.function.Consumer-"><code>GroupPartition.onMigration(Consumer)</code></a> listener. The migration listener
- will be called any time a replica within the partition is moved to a new member, which can happen when nodes are
- added to or removed from the group. A <a href="../../../io/atomix/group/GroupPartitionMigration.html" title="class in io.atomix.group"><code>GroupPartitionMigration</code></a> will be provided to the migration callback
- indicating the source and destination of the partition migration.
+ <h2>Remote execution</h2>
+ Once members of the group, any member can <a href="../../../io/atomix/group/GroupScheduler.html#execute-java.lang.Runnable-"><code>execute</code></a> immediate callbacks or
+ <a href="../../../io/atomix/group/GroupScheduler.html#schedule-java.time.Duration-java.lang.Runnable-"><code>schedule</code></a> delayed callbacks to be run on any other member of the
+ group. Submitting a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang"><code>Runnable</code></a> callback to a member will cause it to be serialized and sent to that node
+ to be executed.
  <pre>
    <code>
-   group.partitions().partition(1).onMigration(migration -&gt; {
-     // Send a message to the source replica and tell it to migrate its state to the target replica
-     migration.source().connection().send("migrate", migration.target().id());
+   group.onJoin(member -&gt; {
+     String memberId = member.id();
+     member.execute((Serializable &amp; Runnable) () -&gt; System.out.println("Executing on " + memberId));
    });
    </code>
  </pre>
- The <a href="../../../io/atomix/group/GroupPartitions.html" title="class in io.atomix.group"><code>GroupPartitions</code></a> also provides a similar listener interface for listening for migrations of
- <em>all</em> partitions.
- <pre>
-   <code>
-   group.partitions().onMigration(migration -&gt; {
-     // Send a message to the source replica and tell it to migrate its state to the target replica
-     migration.source().connection().send("migrate-" + migration.partition().id(), migration.target().id());
-   });
-   </code>
- </pre>
- In some cases, a partition can be migrated from a non-existent replica to an existing member or vice-versa.
- For instance, if the <a href="../../../io/atomix/group/DistributedGroup.Config.html#withReplicationFactor-int-"><code>replication factor</code></a> is <code>3</code>
- and there are only two members in the group, when a third member is added all partitions will be migrated from
- a <code>null</code> third member to the new concrete third member. Group partitioners provide the maximum number
- of replicas possible given the current group configuration.
- <h3>Serialization</h3>
- Users are responsible for ensuring the serializability of tasks, messages, and properties set on the group
- and members of the group. Serialization is controlled by the group's <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a>
- which can be access via <a href="../../../io/atomix/resource/AbstractResource.html#serializer--"><code>AbstractResource.serializer()</code></a> or on the parent <code>Atomix</code> instance. Because objects are
- typically replicated throughout the cluster, <em>it's critical that any object sent from any node should be
- serializable by all other nodes</em>.
- <p>
- Users should register serializable types before performing any operations on the group.
- <pre>
-   <code>
-   DistributedGroup group = atomix.getGroup("group").get();
-   group.serializer().register(User.class, UserSerializer.class);
-   </code>
- </pre>
- For the best performance from serialization, it is recommended that serializable types be registered with
- unique type IDs. This allows the Catalyst <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> to identify the
- type by its serialization ID rather than its class name. It's essential that the ID for a given type is
- the same all all nodes in the cluster.
- <pre>
-   <code>
-   group.serializer().register(User.class, 1, UserSerializer.class);
-   </code>
- </pre>
- Users can also serialize <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io"><code>Serializable</code></a> types by simply registering the class without any
- other serializer. Catalyst will attempt to use the optimal serializer based on the interfaces implemented
- by the class. Alternatively, type registration can be disabled altogether via <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true#disableWhitelist--" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer.disableWhitelist()</code></a>,
- however this is not recommended as arbitrary deserialization of class names is slow and is a security risk.
  <h3>Implementation</h3>
  Group state is managed in a Copycat replicated <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/StateMachine.html?is-external=true" title="class or interface in io.atomix.copycat.server"><code>StateMachine</code></a>. When a
  <code>DistributedGroup</code> is created, an instance of the group state machine is created on each replica in
@@ -725,6 +452,12 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 </td>
 </tr>
 <tr id="i11" class="rowColor">
+<td class="colFirst"><code><a href="../../../io/atomix/group/GroupScheduler.html" title="class in io.atomix.group">GroupScheduler</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/DistributedGroup.html#scheduler--">scheduler</a></span>()</code>
+<div class="block">Returns the group scheduler.</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/group/GroupTaskQueue.html" title="class in io.atomix.group">GroupTaskQueue</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/DistributedGroup.html#tasks--">tasks</a></span>()</code>
 <div class="block">Returns the group task queue.</div>
@@ -736,7 +469,7 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></h3>
-<code><a href="../../../io/atomix/resource/AbstractResource.html#close--">close</a>, <a href="../../../io/atomix/resource/AbstractResource.html#config--">config</a>, <a href="../../../io/atomix/resource/AbstractResource.html#context--">context</a>, <a href="../../../io/atomix/resource/AbstractResource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/AbstractResource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/AbstractResource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/AbstractResource.html#isClosed--">isClosed</a>, <a href="../../../io/atomix/resource/AbstractResource.html#isOpen--">isOpen</a>, <a href="../../../io/atomix/resource/AbstractResource.html#onStateChange-java.util.function.Consumer-">onStateChange</a>, <a href="../../../io/atomix/resource/AbstractResource.html#readConsistency--">readConsistency</a>, <a href="../../../io/atomix/resource/AbstractResource.html#serializer--">serializer</a>, <a href="../../../io/atomix/resource/AbstractResource.html#state--">state</a>, <a href="../../../io/atomix/resource/AbstractResource.html#toString--">toString</a>, <a href="../../../io/atomix/resource/AbstractResource.html#type--">type</a>, <a href="../../../io/atomix/resource/AbstractResource.html#with-io.atomix.resource.ReadConsistency-">with</a>, <a href="../../../io/atomix/resource/AbstractResource.html#with-io.atomix.resource.WriteConsistency-">with</a>, <a href="../../../io/atomix/resource/AbstractResource.html#writeConsistency--">writeConsistency</a></code></li>
+<code><a href="../../../io/atomix/resource/AbstractResource.html#close--">close</a>, <a href="../../../io/atomix/resource/AbstractResource.html#config--">config</a>, <a href="../../../io/atomix/resource/AbstractResource.html#context--">context</a>, <a href="../../../io/atomix/resource/AbstractResource.html#delete--">delete</a>, <a href="../../../io/atomix/resource/AbstractResource.html#equals-java.lang.Object-">equals</a>, <a href="../../../io/atomix/resource/AbstractResource.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/resource/AbstractResource.html#isClosed--">isClosed</a>, <a href="../../../io/atomix/resource/AbstractResource.html#isOpen--">isOpen</a>, <a href="../../../io/atomix/resource/AbstractResource.html#onStateChange-java.util.function.Consumer-">onStateChange</a>, <a href="../../../io/atomix/resource/AbstractResource.html#readConsistency--">readConsistency</a>, <a href="../../../io/atomix/resource/AbstractResource.html#state--">state</a>, <a href="../../../io/atomix/resource/AbstractResource.html#toString--">toString</a>, <a href="../../../io/atomix/resource/AbstractResource.html#type--">type</a>, <a href="../../../io/atomix/resource/AbstractResource.html#with-io.atomix.resource.ReadConsistency-">with</a>, <a href="../../../io/atomix/resource/AbstractResource.html#with-io.atomix.resource.WriteConsistency-">with</a>, <a href="../../../io/atomix/resource/AbstractResource.html#writeConsistency--">writeConsistency</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -784,7 +517,7 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 <li class="blockList">
 <h4>options</h4>
 <pre>public&nbsp;<a href="../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group">DistributedGroup.Options</a>&nbsp;options()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#options--">Resource</a></code></span></div>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/resource/AbstractResource.html#options--">AbstractResource</a></code></span></div>
 <div class="block">Returns the resource options.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
@@ -835,6 +568,20 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The group task queue.</dd>
+</dl>
+</li>
+</ul>
+<a name="scheduler--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>scheduler</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/group/GroupScheduler.html" title="class in io.atomix.group">GroupScheduler</a>&nbsp;scheduler()</pre>
+<div class="block">Returns the group scheduler.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The group scheduler.</dd>
 </dl>
 </li>
 </ul>
@@ -1033,10 +780,10 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 <li class="blockList">
 <h4>open</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group">DistributedGroup</a>&gt;&nbsp;open()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/resource/Resource.html#open--">Resource</a></code></span></div>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/resource/AbstractResource.html#open--">AbstractResource</a></code></span></div>
 <div class="block">Opens the resource.
  <p>
- Once the resource is opened, the resource will be transitioned to the <a href="../../../io/atomix/resource/Resource.State.html#CONNECTED"><code>Resource.State.CONNECTED</code></a> state
+ Once the resource is opened, the resource will be transitioned to the <code>State#CONNECTED</code> state
  and the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
