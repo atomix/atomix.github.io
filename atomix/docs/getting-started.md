@@ -13,7 +13,7 @@ Atomix is an easy to use, zero-dependency, embeddable library that provides stro
 
 * Distributed [variables]
 * Distributed [collections] such as maps, multi-maps, sets, and queues
-* Distributed [group] tools such as group membership, leader election, and remote execution
+* Distributed [group][groups] tools such as group membership, leader election, and remote execution
 * Distributed [concurrency] tools such as locks
 * Distributed [messaging] tools such as a message bus, topics, and task queues
 

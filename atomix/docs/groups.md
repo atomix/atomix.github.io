@@ -2,7 +2,7 @@
 layout: docs
 project: atomix
 menu: docs
-title: Distributed Group
+title: Distributed Groups
 pitch: Primitives for distributed group operations
 ---
 
