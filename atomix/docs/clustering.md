@@ -2,11 +2,10 @@
 layout: docs
 project: atomix
 menu: docs
-title: Clusters
-pitch: Working with clients and replicas
-first-section: cluster
+title: Clustering
 ---
 
+{:.no-margin-top}
 Atomix clusters consist of at least one (but usually 3 or 5) [replica][replicas] and any number of [clients]. *Replicas* are stateful nodes that actively participate in the Raft consensus protocol, and *clients* are stateless nodes that modify system state remotely. When a cluster is started, the replicas in the cluster coordinate with one another to elect a leader.
 
 ![Atomix cluster](/assets/img/docs/cluster.png)

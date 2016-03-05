@@ -51,12 +51,17 @@ The [catalyst-local][catalyst-local-mvn] artifact provides a [Transport] impleme
 
 ## Standalone Usage
 
-In addition to being embedded, Atomix replicas and servers can also be run as standalone processes.
+In addition to being embedded, Atomix can run as a standalone server. To run as a standalone server, create a [configuration file](https://github.com/atomix/atomix/blob/standalone/standalone/standalone-server/conf/example.properties) to describe your cluster, storage, and serialization settings. To run the server:
+
+```
+java -jar atomix-standalone-server.jar <conf_file>
+```
+
 
 [atomix-all-mvn]: http://search.maven.org/#artifactdetails%7Cio.atomix%7Catomix-all%7C{{ site.atomix-version }}%7Cjar
 [atomix-mvn]: http://search.maven.org/#artifactdetails%7Cio.atomix%7Catomix%7C{{ site.atomix-version }}%7Cjar
 [resource-manager-mvn]: http://search.maven.org/#artifactdetails%7Cio.atomix%7Catomix-resource-manager%7C{{ site.atomix-version }}%7Cjar
 [catalyst-netty-mvn]: http://search.maven.org/#artifactdetails%7Cio.atomix.catalyst%7Ccatalyst-netty%7C{{ site.catalyst-version }}%7Cjar
-[catalyst-local-mvn]: http://search.maven.org/#artifactdetails%7Cio.atomix%7Ccatalyst-local%7C{{ site.catalyst-version }}%7Cjar
+[catalyst-local-mvn]: http://search.maven.org/#artifactdetails%7Cio.atomix.catalyst%7Ccatalyst-local%7C{{ site.catalyst-version }}%7Cjar
 
 {% include common-links.html %}

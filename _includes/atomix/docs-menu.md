@@ -9,6 +9,9 @@
 * [Installation](installation)
   * [Embedded Usage](#embedded-usage)
   * [Standalone Usage](#standalone-usage)
+* [Clustering](clustering)
+  * [Replicas](#replicas)
+  * [Clients](#clients)
 * [Comparisons](comparisons)
   * [Something Unique](#something-unique)
   * [ZooKeeper](#zookeeper)
@@ -20,9 +23,6 @@
   * [CAP Theorem](#cap-theorem)
   * [Consistency Model](#consistency-model)
 * [Fault Tolerance](fault-tolerance)
-* [Clusters](clusters)
-  * [Replicas](#replicas)
-  * [Clients](#clients)
 * [Threading Model](threading-model)
   * [Asynchronous API Usage](#asynchronous-api-usage)
   * [Synchronous API Usage](#synchronous-api-usage)
@@ -55,8 +55,9 @@
   * [DistributedTopic](#distributedtopic)
 * [Custom Resources](custom-resources)
 
-<span class="doc-menu-header"><img src="/assets/img/icons/operations.svg" class="operations"> Operations</span>
+<span class="doc-menu-header"><img src="/assets/img/icons/operations.svg" class="operations"> Operation</span>
 
+* [Configuration](configuration)
 * [Scaling and Deployment](deployment)
 
 <span class="doc-menu-header"><img src="/assets/img/icons/architecture.svg" class="architecture"> Architecture</span>
