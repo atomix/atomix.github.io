@@ -12,7 +12,7 @@ title: Configuration
 |---|---|---|
 |server.address||This is the address to which to bind the local server. This address may or may not be present in the cluster.seed list below. If the address is present in the seed list, this node will start as a full member of the cluster. If the address is not present in the seed list, this node will join the cluster defined by the seeds.|
 |server.transport|io.atomix.catalyst.transport.NettyTransport|This is the transport to use to communicate between replicas. The transport must be the same class on all replicas.|
-|server.transport.connectTimeout|500|Milliseconds|
+|server.transport.connectTimeout|500|(in milliseconds)|
 |server.transport.sendBufferSize|||
 |server.transport.receiveBufferSize|||
 |server.transport.reuseAddress|||
@@ -38,10 +38,10 @@ cluster.seed.3=XXX.XXX.XXX.XXX:5749
 |Name|Default|Description|
 |---|---|---|
 |cluster.quorumHint|-1|This property indicates the desired size of the quorum. The quorum consists of some set of nodes that participate in the Raft consensus algorithm. Writes to the cluster are synchronously replicated to a majority of the members in the quorum. Atomix guarantees that at least cluster.quorumHint replicas will be in the quorum so long as cluster.quorumHint members have joined the cluster. The default value of -1 indicates that the cluster.seed list represents the desired quorum size. This is typically a good default since clusters are normally started with the desired number of nodes as seed nodes.|
-|cluster.backupCount||This property indicates the desired number of backup replicas for each active member of the quorum. When a quorum member is partitioned or crashes, Atomix will attempt to replace that member with a backup server. The process of replacing nodes can be shortened by replicating to more backup nodes. Members of the quorum replicate to backup nodes asynchronously, so the number of backups does not significantly impact latency.|
-|cluster.electionTimeout||The frequency of election communiation between servers.|
-|cluster.heartbeatInterval||The frequency of heartbeat communiation between servers.|
-|cluster.sessionTimeout||The frequency of keep-alive requests from clients. Note that decreasing the sessionTimeout can result in e.g. a lock held by a crashed node being released sooner, but decreasing the sessionTimeout also implies more overhead for frequent keep-aive requests.|
+|cluster.backupCount|0|This property indicates the desired number of backup replicas for each active member of the quorum. When a quorum member is partitioned or crashes, Atomix will attempt to replace that member with a backup server. The process of replacing nodes can be shortened by replicating to more backup nodes. Members of the quorum replicate to backup nodes asynchronously, so the number of backups does not significantly impact latency.|
+|cluster.electionTimeout|500|The frequency of election communiation between servers (in milliseconds).|
+|cluster.heartbeatInterval|250|The frequency of heartbeat communiation between servers (in milliseconds).|
+|cluster.sessionTimeout|5|The frequency of keep-alive requests from clients. Note that decreasing the sessionTimeout can result in e.g. a lock held by a crashed node being released sooner, but decreasing the sessionTimeout also implies more overhead for frequent keep-aive requests (in seconds).|
 
 ## Storage Configuration
 
