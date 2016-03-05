@@ -168,4 +168,10 @@ DistributedValue<String> value = client.getValue("value").get();
 value.set("Hello world!");
 ```
 
+## Freeing Resources
+
+To discontinue the usage of a resource, call `close()`. The resource's state will still remain in tact and the resource can be re-opened by calling `open()`.
+
+To delete a resource's state permanently, call `delete()`.
+
 {% include common-links.html %}
