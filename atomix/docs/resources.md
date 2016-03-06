@@ -17,11 +17,8 @@ DistributedMap<String, String> map = atomix.getMap("my-map").get();
 
 Atomix create a replicated [StateMachine][StateMachine] on each replica in the cluster. Operations performed on the resource are submitted as state changes to the cluster where they're replicated and persisted before being applied to the replicated state machine.
 
-Atomix provides a number of resource implementations for common distributed systems problems. Currently, the provided resources are divided into three subsets that are represented as Maven submodules:
+Atomix provides a number of resource implementations for common distributed systems problems. The resources include:
 
-* [Distributed collections](#distributed-collections) - `DistributedSet`, `DistributedMap`, `DistributedMultiMap`, `DistributedQueue`
-* [Distributed atomic variables](#distributed-variables) - `DistributedValue`, `DistributedLong`
-* [Distributed coordination tools](#distributed-coordination) - `DistributedLock`, `DistributedGroup`
-* [Distributed messaging](#distributed-messaging) - `DistributedTopic`, `DistributedMessageBus`
+{% include resources.md %}
 
 {% include common-links.html %}
