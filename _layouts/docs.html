@@ -101,6 +101,13 @@
       $(this).attr('data-target', childHref);
     });
   });
+
+  // Add link to heading tags
+  $(".docs h1, .docs h2, .docs h3, .docs h4, .docs h5").each(function () {
+    var id = $(this).attr('id');
+    if ($(this).attr('class') != "pitch")
+      $(this).append('<a class="header-anchor" href="#' + id + '"></a>');
+  });
 </script>
 
 	</body>

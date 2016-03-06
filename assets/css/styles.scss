@@ -503,6 +503,33 @@ pre {
 
   h1, h2, h3, h4, h5 {
     margin-top: 20px;
+
+    a.header-anchor {
+      padding-left: 15px;
+    }
+
+    a.header-anchor:after {
+      content: "\F0C1";
+      font-family: FontAwesome;
+      font-weight: normal;
+      font-size: .7em;
+    }
+
+    a.header-anchor:link, a.header-anchor:visited {
+      visibility: hidden;
+    }
+  }
+
+  h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
+    a.header-anchor {
+      color: #999;
+      visibility: visible;
+    }
+
+    a.header-anchor:hover {
+      color: $text-color;
+      text-decoration: none;
+    }
   }
 
   h1, h2, h3 {
