@@ -21,7 +21,7 @@ Atomix also provides a high-level API for creating and managing [custom user-def
 
 ## Setup
 
-To get started, add the `atomix-all` Maven artifact to your project:
+To get started, add the [atomix-all][atomix-all-mvn] Maven artifact to your project:
 
 ```xml
 <dependency>

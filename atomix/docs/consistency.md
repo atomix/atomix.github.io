@@ -6,13 +6,13 @@ title: Consistency
 ---
 
 {:.no-margin-top}
-Consistency and how it is achieved is a fundamental concept in Atomix. This page describe's Atomix's consistency model, how it compares to other systems, and how it is used.
+Consistency and how it is achieved is a fundamental concept in Atomix. This page describes Atomix's consistency model, how it compares to other systems, and how it is used.
 
 ## CAP Theorem
 
-The [CAP theorem][CAP] is frequently cited in discussion of distributed systems as a way of classifying the behavior of a system according to how it deals with **C**onsistency, **A**vailability, and **P**artition tolerance. Since the CAP theorem states that only 2 out of 3 can be achieved, and since partition tolerance is usually a necessity, systems are left to choose between consistency and availability, or some degree of each, in the event of a partition.
+The [CAP theorem][CAP] is frequently cited in discussion of distributed systems as a way of classifying the behavior of a system according to how it deals with ***C**onsistency*, ***A**vailability*, and ***P**artition-tolerance*. Since the CAP theorem states that only 2 out of 3 can be achieved, and since partition tolerance is usually a necessity, systems are left to choose between consistency and availability, or some degree of each, in the event of a partition.
 
-High-throughput, high-availability distributed databases like [Hazelcast], [Cassandra] and other Dynamo-based systems fall under the *A* and *P* in the CAP theorem. That is, these systems generally sacrifice consistency in favor of availability during network partitions. In AP systems, a network partition can result in temporary or even permanent loss of writes. Additionally, AP systems may allow conflicting data values to be written. These systems are generally designed to store and query large amounts of data quickly.
+High-throughput, high-availability distributed databases like [Hazelcast], [Cassandra] and other [Dynamo] based systems fall under the *A* and *P* in the CAP theorem. That is, these systems generally sacrifice consistency in favor of availability during network partitions. In AP systems, a network partition can result in temporary or even permanent loss of writes. Additionally, AP systems may allow conflicting data values to be written. These systems are generally designed to store and query large amounts of data quickly.
 
 Alternatively, systems like [ZooKeeper] and Atomix, which fall under the *C* and *P* in the CAP theorem, are generally designed to store small amounts of mission critical data. CP systems provide strong consistency guarantees like [linearizability][Linearizability] and [sequential consistency][SequentialConsistency] even in the face of failures. But that level of consistency comes at a cost: availability. CP systems like ZooKeeper and Atomix are consensus-based and require a quorum to operate, so they can only tolerate the loss of a minority of servers. 
 

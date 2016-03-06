@@ -10,7 +10,7 @@ Atomix supports various configuration that can be specified via the builder APIs
 
 ## Server Configuration
 
-Aside from the `server.address`, server configuration is generally the same across all replicas and servers.
+Aside from `server.address`, server configuration is generally the same across all replicas and servers.
 
 |Name|Default|Description|
 |---|---|---|

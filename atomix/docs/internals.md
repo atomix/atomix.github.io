@@ -7,6 +7,8 @@ first-section: internals
 ---
 
 {:.no-margin-top}
-Resources are implemented by multiplexing multiple Copycat [state machines][state-machines] onto a single Raft replicated log. See the [Copycat internals][copycat-internals] page for more details.
+Atomix resources are implemented by multiplexing multiple [Copycat][copycat] [state machines][state-machines] onto a single [Raft] replicated log. 
+
+To learn more about how Copycat works in depth, see the [Copycat internals][copycat-internals] page.
 
 {% include common-links.html %}
