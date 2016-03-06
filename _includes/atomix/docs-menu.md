@@ -22,6 +22,7 @@
 * [Consistency](consistency)
   * [CAP Theorem](#cap-theorem)
   * [Consistency Model](#consistency-model)
+  * [Consistency Levels](#consistency-levels)
 * [Fault Tolerance](fault-tolerance)
 * [Threading Model](threading-model)
   * [Asynchronous API Usage](#asynchronous-api-usage)
@@ -30,7 +31,6 @@
 <span class="doc-menu-header"><img src="/assets/img/icons/resources.svg" class="resources"> Resources</span>
 
 * [What Are Resources?](resources)
-  * [Consistency Levels](#consistency-levels)
 * [Distributed Variables](variables)
   * [DistributedValue](#distributedvalue)
   * [DistributedLong](#distributedlong)

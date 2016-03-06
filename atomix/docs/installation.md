@@ -35,7 +35,13 @@ If you're planning to use a different [Transport] implementation than the Netty 
 
 The [atomix-resource-manager][resource-manager-mvn] Maven artifact provides APIs for creating custom, user-defined resources via the [ResourceClient] class.
 
-If you're planning to write a custom resource and do not need to use any of the core atomix resources, you can use the `atomix-resource-manager` artifact directly along with a [Transport] implementation of your choosing.
+If you're planning to write a custom resource and do not need to use any of the core atomix resources, or if you only want to use a select few resources, you can use the `atomix-resource-manager` artifact directly along with the [Transport] and resource implementations of your choosing.
+
+### Resources
+
+Groups of Atomix resources are available for use individually. The Maven artifacts for individual resources include:
+
+{% include modules.md %}
 
 ### Transports
 

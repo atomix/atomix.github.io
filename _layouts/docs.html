@@ -60,6 +60,32 @@
 {% include scripts.html %}
 
 <script type="text/javascript">
+  // scrollspy
+  $('body').scrollspy({ target: '#sidebar-col' })
+
+  // lightbox
+  $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox();
+  });
+
+  // make sidebar sticky when it hits the top of the viewport
+  var $sideBar = $("#sidebar");
+  $sideBar.affix({
+    offset: {
+      top: function () {
+        var offsetTop      = $sideBar.offset().top
+        var sideBarMargin  = parseInt($sideBar.children(0).css('margin-top'), 10)
+        var navOuterHeight = $('.navbar-fixed-top').height()
+        return (this.top = offsetTop - navOuterHeight - sideBarMargin - 20)
+      },
+      bottom: function () {
+        footerHeightOffset = 200 // Adjust for footer height
+        return (this.bottom = $('#footer').outerHeight(true) + footerHeightOffset)
+      }
+    }
+  })
+
   var currentPath = window.location.pathname
 
   function adjustHref(href) {
