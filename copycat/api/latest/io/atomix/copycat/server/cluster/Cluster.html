@@ -122,7 +122,7 @@ var activeTableTab = "activeTableTab";
  membership list is on the <a href="../../../../../io/atomix/copycat/server/cluster/Cluster.html#leader--"><code>leader</code></a> node.
  <h2>Cluster management</h2>
  Users can use the <code>Cluster</code> to manage the Copycat cluster membership. Typically, servers join the
- cluster by calling <a href="../../../../../io/atomix/copycat/server/CopycatServer.html#open--"><code>CopycatServer.open()</code></a> or <a href="../../../../../io/atomix/copycat/server/cluster/Cluster.html#join--"><code>join()</code></a>, but in the event that a server fails
+ cluster by calling <code>CopycatServer#open()</code> or <a href="../../../../../io/atomix/copycat/server/cluster/Cluster.html#join--"><code>join()</code></a>, but in the event that a server fails
  permanently and thus cannot remove itself, other nodes can remove arbitrary servers.
  <p>
  <pre>
@@ -399,7 +399,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">Joins the cluster.
  <p>
  Invocations of this method will cause the local <a href="../../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><code>CopycatServer</code></a> to join the cluster.
- <em>This method is for advanced usage only.</em> Typically, users should use <a href="../../../../../io/atomix/copycat/server/CopycatServer.html#open--"><code>CopycatServer.open()</code></a>
+ <em>This method is for advanced usage only.</em> Typically, users should use <code>CopycatServer#open()</code>
  to open a new server and join the cluster in order to ensure all associated resources are property opened.
  <p>
  When a server joins the cluster, the server will connect to arbitrary <a href="../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster"><code>Member</code></a>s, attempting to locate
@@ -428,7 +428,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">Leaves the cluster.
  <p>
  Invocations of this method will cause the local <a href="../../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><code>CopycatServer</code></a> to leave the cluster.
- <em>This method is for advanced usage only.</em> Typically, users should use <a href="../../../../../io/atomix/copycat/server/CopycatServer.html#close--"><code>CopycatServer.close()</code></a>
+ <em>This method is for advanced usage only.</em> Typically, users should use <code>CopycatServer#close()</code>
  to leave the cluster and close a server in order to ensure all associated resources are properly closed.
  <p>
  When a server leaves the cluster, the server submits a <code>LeaveRequest</code>
