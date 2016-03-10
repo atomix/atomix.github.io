@@ -16,13 +16,6 @@ Because the Atomix cluster is dependent on a majority of the cluster being reach
 
 Distributed resources are managed by a cluster of [replicas] and can be created and operated via an [Atomix] instance which is shared by both [clients] and [replicas]. This allows Atomix clients and servers to be embedded in applications that don't care about the context. Resources can be created and operated on by any `Atomix` instance.
 
-## Forming a Cluster
-
-
-## Joining an Existing Cluster
-
-
-
 ## Replicas
 
 The [AtomixReplica] is an [Atomix] implementation that is responsible for receiving creating and managing resources on behalf of other clients and replicas and receiving, persisting, and replicating state changes for existing resources. Users should think of replicas as stateful nodes. Since replicas are responsible for persisting and replicating resource state changes, they require more configuration than [clients].
