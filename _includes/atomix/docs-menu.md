@@ -15,6 +15,10 @@
 * [Clustering](clustering)
   * [Replicas](#replicas)
   * [Clients](#clients)
+* [Scaling](scaling)
+  * [Active Nodes](#active-nodes)
+  * [Passive Nodes](#passive-nodes)
+  * [Reserve Nodes](#reserve-nodes)
 * [Comparisons](comparisons)
   * [Something Unique](#something-unique)
   * [ZooKeeper](#zookeeper)
@@ -67,7 +71,6 @@
 <span class="doc-menu-header"><img src="/assets/img/icons/operations.svg" class="operations"> Operation</span>
 
 * [Configuration](configuration)
-* [Scaling and Deployment](deployment)
 
 <span class="doc-menu-header"><img src="/assets/img/icons/architecture.svg" class="architecture"> Architecture</span>
 
