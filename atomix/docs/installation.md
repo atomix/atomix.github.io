@@ -44,7 +44,23 @@ Atomix requires a [Transport] implementation in order for clients and servers to
 
 ## Standalone Usage
 
-In addition to being embedded, Atomix can run as a standalone server. To run as a standalone server, create a [configuration] file to describe your cluster, storage, and serialization settings. To run the server:
+In addition to being embedded, Atomix can run as a standalone server. Currently the standalone server binaries are not hosted, but can be built very quickly.
+
+To build the standalone server, `git clone` and `mvn package` Atomix:
+
+```
+git clone https://github.com/atomix/atomix.git
+cd atomix
+mvn package -DskipTests=true
+```
+
+This will create a single binary with a self-contained Atomix server located at:
+
+```
+standalone/standalone-server/target/atomix-standalone-server.jar
+```
+
+To run the standalone server, create a [configuration] file to describe your cluster, storage, and serialization settings, and pass it into the jar:
 
 ```
 java -jar atomix-standalone-server.jar <conf_file>
