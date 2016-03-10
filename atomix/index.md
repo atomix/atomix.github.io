@@ -36,7 +36,7 @@ Atomix is an embeddable library that provides strong, fault-tolerant consistency
     <div class="row">
     
 <div class="col-sm-7" markdown="1">
-{% include sync-tabs-params.html active="#distributed-value:Value" inactive="#distributed-long:Long,#distributed-map:Map,#distributed-multimap:MultiMap,#distributed-set:Set,#distributed-queue:Queue,#distributed-lock:Lock,#distributed-group:Group,#distributed-leader:Leader Election,#distributed-bus:Message Bus,#distributed-topic:Topic,#distributed-task-queue:Task Queue,#remote-execution:Remote Execution" %}
+{% include sync-tabs-params.html active="#distributed-value:Value" inactive="#distributed-long:Long,#distributed-map:Map,#distributed-multimap:MultiMap,#distributed-set:Set,#distributed-queue:Queue,#distributed-lock:Lock,#distributed-group:Group,#distributed-bus:Message Bus,#distributed-topic:Topic,#distributed-task-queue:Task Queue,#distributed-leader:Leader Election,#consistent-hashing:Consistent Hashing,#remote-execution:Remote Execution" %}
 <div class="tab-content" markdown="1">
 <div class="tab-pane active" id="distributed-value" markdown="1">
 ```java
@@ -121,21 +121,32 @@ lock.lock().thenRun(() -> {
 ```java
 DistributedGroup group = atomix.getGroup("group").get();
 
-group.join().thenRun(() -> System.out.println("Join successful"));
+group.join().thenAccept(member -> {
+  System.out.println("Joined with member ID: " + member.id());
+});
 
-group.onJoin(member -> System.out.println(member + " joined the group"));
+group.onJoin(member -> {
+  System.out.println(member + " joined the group");
+});
 ```
 </div>
 <div class="tab-pane" id="distributed-leader" markdown="1">
 ```java
-DistributedGroup group = atomix.getGroup("election").get();
+DistributedGroup group = atomix.getGroup("group").get();
 
-LocalGroupMember member = group.join().get();
-
-member.onElection(term -> {
-  System.out.println("Elected leader!");
-  member.resign();
+group.election().onElection(leader -> {
+  System.out.println("Elected leader: " + leader);
 });
+```
+</div>
+<div class="tab-pane" id="consistent-hashing" markdown="1">
+```java
+DistributedGroup.Config config = DistributedGroup.config()
+  .withPartitions(32)
+  .withVirtualNodes(200)
+  .withReplicationFactor(3);
+
+DistributedGroup group = atomix.getGroup("group", config);
 ```
 </div>
 <div class="tab-pane" id="distributed-bus" markdown="1">
