@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -100,7 +100,12 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
+<li><a href="../../../io/atomix/group/SubGroup.html" title="class in io.atomix.group">io.atomix.group.SubGroup</a></li>
+<li>
+<ul class="inheritance">
 <li>io.atomix.group.GroupPartition</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -109,13 +114,12 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</dd>
+<dd><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a>&gt;, <a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a>, <a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;<a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a>&gt;</dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">GroupPartition</span>
-extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</pre>
+extends <a href="../../../io/atomix/group/SubGroup.html" title="class in io.atomix.group">SubGroup</a></pre>
 <div class="block">Group partition.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -127,6 +131,28 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a name="nested.classes.inherited.from.class.io.atomix.group.DistributedGroup">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from interface&nbsp;io.atomix.group.<a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a></h3>
+<code><a href="../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a>, <a href="../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group">DistributedGroup.Options</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="nested.classes.inherited.from.class.io.atomix.resource.Resource">
+<!--   -->
+</a>
+<h3>Nested classes/interfaces inherited from interface&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></h3>
+<code><a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a></code></li>
+</ul>
+</li>
+</ul>
 <!-- ========== METHOD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="method.summary">
@@ -146,39 +172,59 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupPartition.html#iterator--">iterator</a></span>()</code>&nbsp;</td>
-</tr>
-<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupPartition.html#member-int-">member</a></span>(int&nbsp;index)</code>
 <div class="block">Returns the member for the given index.</div>
 </td>
 </tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupPartition.html#member-java.lang.String-">member</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</code>
+<div class="block">Gets a group member by ID.</div>
+</td>
+</tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupPartition.html#members--">members</a></span>()</code>
-<div class="block">Returns a collection of members for the partition.</div>
+<div class="block">Gets the collection of all members in the group.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupPartition.html#onJoin-java.util.function.Consumer-">onJoin</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>
+<div class="block">Adds a listener for members joining the group.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupPartition.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>
+<div class="block">Adds a listener for members leaving the group.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/group/GroupPartitionMigration.html" title="class in io.atomix.group">GroupPartitionMigration</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupPartition.html#onMigration-java.util.function.Consumer-">onMigration</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/group/GroupPartitionMigration.html" title="class in io.atomix.group">GroupPartitionMigration</a>&gt;&nbsp;callback)</code>
+<div class="block">Registers a partition migration listener.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupPartition.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.group.SubGroup">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;io.atomix.group.<a href="../../../io/atomix/group/SubGroup.html" title="class in io.atomix.group">SubGroup</a></h3>
+<code><a href="../../../io/atomix/group/SubGroup.html#close--">close</a>, <a href="../../../io/atomix/group/SubGroup.html#config--">config</a>, <a href="../../../io/atomix/group/SubGroup.html#context--">context</a>, <a href="../../../io/atomix/group/SubGroup.html#delete--">delete</a>, <a href="../../../io/atomix/group/SubGroup.html#election--">election</a>, <a href="../../../io/atomix/group/SubGroup.html#hash--">hash</a>, <a href="../../../io/atomix/group/SubGroup.html#hash-io.atomix.catalyst.util.hash.Hasher-">hash</a>, <a href="../../../io/atomix/group/SubGroup.html#hash-io.atomix.catalyst.util.hash.Hasher-int-">hash</a>, <a href="../../../io/atomix/group/SubGroup.html#hash-int-">hash</a>, <a href="../../../io/atomix/group/SubGroup.html#hashCode--">hashCode</a>, <a href="../../../io/atomix/group/SubGroup.html#isClosed--">isClosed</a>, <a href="../../../io/atomix/group/SubGroup.html#isOpen--">isOpen</a>, <a href="../../../io/atomix/group/SubGroup.html#join--">join</a>, <a href="../../../io/atomix/group/SubGroup.html#join-java.lang.String-">join</a>, <a href="../../../io/atomix/group/SubGroup.html#onStateChange-java.util.function.Consumer-">onStateChange</a>, <a href="../../../io/atomix/group/SubGroup.html#open--">open</a>, <a href="../../../io/atomix/group/SubGroup.html#options--">options</a>, <a href="../../../io/atomix/group/SubGroup.html#partition-int-">partition</a>, <a href="../../../io/atomix/group/SubGroup.html#partition-int-io.atomix.group.GroupPartitioner-">partition</a>, <a href="../../../io/atomix/group/SubGroup.html#partition-int-int-">partition</a>, <a href="../../../io/atomix/group/SubGroup.html#partition-int-int-io.atomix.group.GroupPartitioner-">partition</a>, <a href="../../../io/atomix/group/SubGroup.html#properties--">properties</a>, <a href="../../../io/atomix/group/SubGroup.html#readConsistency--">readConsistency</a>, <a href="../../../io/atomix/group/SubGroup.html#serializer--">serializer</a>, <a href="../../../io/atomix/group/SubGroup.html#state--">state</a>, <a href="../../../io/atomix/group/SubGroup.html#tasks--">tasks</a>, <a href="../../../io/atomix/group/SubGroup.html#type--">type</a>, <a href="../../../io/atomix/group/SubGroup.html#with-io.atomix.resource.ReadConsistency-">with</a>, <a href="../../../io/atomix/group/SubGroup.html#with-io.atomix.resource.WriteConsistency-">with</a>, <a href="../../../io/atomix/group/SubGroup.html#writeConsistency--">writeConsistency</a></code></li>
+</ul>
+<ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
-</ul>
-<ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.java.lang.Iterable">
-<!--   -->
-</a>
-<h3>Methods inherited from interface&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a></h3>
-<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true#forEach-java.util.function.Consumer-" title="class or interface in java.lang">forEach</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true#spliterator--" title="class or interface in java.lang">spliterator</a></code></li>
+<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -224,6 +270,26 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.
 </dl>
 </li>
 </ul>
+<a name="member-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>member</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&nbsp;member(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/group/DistributedGroup.html#member-java.lang.String-">DistributedGroup</a></code></span></div>
+<div class="block">Gets a group member by ID.
+ <p>
+ If the member with the given ID has not <a href="../../../io/atomix/group/DistributedGroup.html#join--"><code>joined</code></a> the membership group, the resulting
+ <a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group"><code>GroupMember</code></a> will be <code>null</code>.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>memberId</code> - The member ID for which to return a <a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group"><code>GroupMember</code></a>.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The member with the given <code>memberId</code> or <code>null</code> if it is not a known member of the group.</dd>
+</dl>
+</li>
+</ul>
 <a name="members--">
 <!--   -->
 </a>
@@ -231,23 +297,98 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.
 <li class="blockList">
 <h4>members</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;members()</pre>
-<div class="block">Returns a collection of members for the partition.</div>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/group/DistributedGroup.html#members--">DistributedGroup</a></code></span></div>
+<div class="block">Gets the collection of all members in the group.
+ <p>
+ The group members are fetched from the cluster. If any <a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group"><code>GroupMember</code></a> instances have been referenced
+ by this membership group instance, the same object will be returned for that member.
+ <p>
+ This method returns a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> which can be used to block until the operation completes
+ or to be notified in a separate thread once the operation completes. To block until the operation completes,
+ use the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true#join--" title="class or interface in java.util.concurrent"><code>CompletableFuture.join()</code></a> method to block the calling thread:
+ <pre>
+   <code>
+   Collection&lt;GroupMember&gt; members = group.members().get();
+   </code>
+ </pre>
+ Alternatively, to execute the operation asynchronous and be notified once the lock is acquired in a different
+ thread, use one of the many completable future callbacks:
+ <pre>
+   <code>
+   group.members().thenAccept(members -&gt; {
+     members.forEach(member -&gt; {
+       member.send("test", "Hello world!");
+     });
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>A collection of members for the partition.</dd>
+<dd>The collection of all members in the group.</dd>
 </dl>
 </li>
 </ul>
-<a name="iterator--">
+<a name="onMigration-java.util.function.Consumer-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>iterator</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;iterator()</pre>
+<h4>onMigration</h4>
+<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/group/GroupPartitionMigration.html" title="class in io.atomix.group">GroupPartitionMigration</a>&gt;&nbsp;onMigration(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/group/GroupPartitionMigration.html" title="class in io.atomix.group">GroupPartitionMigration</a>&gt;&nbsp;callback)</pre>
+<div class="block">Registers a partition migration listener.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true#iterator--" title="class or interface in java.lang">iterator</a></code>&nbsp;in interface&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>callback</code> - The callback to be called when a partition is migrated.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The partition migration listener.</dd>
+</dl>
+</li>
+</ul>
+<a name="onJoin-java.util.function.Consumer-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onJoin</h4>
+<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;onJoin(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/group/DistributedGroup.html#onJoin-java.util.function.Consumer-">DistributedGroup</a></code></span></div>
+<div class="block">Adds a listener for members joining the group.
+ <p>
+ The provided <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function"><code>Consumer</code></a> will be called each time a member joins the group. Note that
+ the join consumer will be called before the joining member's <a href="../../../io/atomix/group/DistributedGroup.html#join--"><code>DistributedGroup.join()</code></a> completes.
+ <p>
+ The returned <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util"><code>Listener</code></a> can be used to <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.util"><code>unregister</code></a> the listener
+ when its use if finished.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>listener</code> - The join listener.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The listener context.</dd>
+</dl>
+</li>
+</ul>
+<a name="onLeave-java.util.function.Consumer-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onLeave</h4>
+<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;onLeave(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/group/DistributedGroup.html#onLeave-java.util.function.Consumer-">DistributedGroup</a></code></span></div>
+<div class="block">Adds a listener for members leaving the group.
+ <p>
+ The provided <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function"><code>Consumer</code></a> will be called each time a member leaves the group. Members can
+ leave the group either voluntarily or by crashing or otherwise becoming disconnected from the
+ cluster for longer than their session timeout. Note that the leave consumer will be called before
+ the leaving member's <a href="../../../io/atomix/group/LocalGroupMember.html#leave--"><code>LocalGroupMember.leave()</code></a> completes.
+ <p>
+ The returned <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util"><code>Listener</code></a> can be used to <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.util"><code>unregister</code></a> the listener
+ when its use if finished.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>listener</code> - The leave listener.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The listener context.</dd>
 </dl>
 </li>
 </ul>
@@ -260,7 +401,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dd><code><a href="../../../io/atomix/group/SubGroup.html#toString--">toString</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/group/SubGroup.html" title="class in io.atomix.group">SubGroup</a></code></dd>
 </dl>
 </li>
 </ul>

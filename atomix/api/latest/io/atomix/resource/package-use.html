@@ -106,11 +106,17 @@
 <tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.group">io.atomix.group</a></td>
 <td class="colLast">
-<div class="block">Provides distributed group operations tools via <a href="../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group"><code>DistributedGroup</code></a> including leader election,
+<div class="block">Provides distributed group operations tools via <a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> including leader election,
  direct messaging, tasks queues, partitioning, and remote execution.</div>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.manager">io.atomix.manager</a></td>
+<td class="colLast">
+<div class="block">Provides APIs for creating custom resources via <code>ResourceClient</code>.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.messaging">io.atomix.messaging</a></td>
 <td class="colLast">
 <div class="block">Provides distributed messaging resources such as <a href="../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging"><code>DistributedMessageBus</code></a> for unreliable
@@ -118,13 +124,13 @@
  <a href="../../../io/atomix/messaging/DistributedTaskQueue.html" title="class in io.atomix.messaging"><code>DistributedTaskQueue</code></a> for asynchronous processing.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.resource">io.atomix.resource</a></td>
 <td class="colLast">
 <div class="block">Base classes and interfaces for creating and operating on replicated state machines in Atomix.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.variables">io.atomix.variables</a></td>
 <td class="colLast">
 <div class="block">Provides distributed variables such as <a href="../../../io/atomix/variables/DistributedValue.html" title="class in io.atomix.variables"><code>DistributedValue</code></a>
@@ -245,18 +251,28 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/ReadConsistency.html#io.atomix.group">ReadConsistency</a>
+<div class="block">Constants for controlling read consistency constraints on a per-request basis.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.html#io.atomix.group">Resource</a>
 <div class="block">Base class for fault-tolerant stateful distributed objects.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Config.html#io.atomix.group">Resource.Config</a>
 <div class="block">Base class for cluster-wide resource configurations.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Options.html#io.atomix.group">Resource.Options</a>
 <div class="block">Base class for local resource options.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.State.html#io.atomix.group">Resource.State</a>
+<div class="block">Resource session state constants.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -265,8 +281,50 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceType.html#io.atomix.group">ResourceType</a>
+<div class="block">Identifier for resource metadata and <a href="../../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource"><code>state machine</code></a> information.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceTypeInfo.html#io.atomix.group">ResourceTypeInfo</a>
 <div class="block">Annotation for specifying resource state and serialization information.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/WriteConsistency.html#io.atomix.group">WriteConsistency</a>
+<div class="block">Constants for controlling write consistency constraints on a per-request basis.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.manager">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../io/atomix/resource/package-summary.html">io.atomix.resource</a> used by <a href="../../../io/atomix/manager/package-summary.html">io.atomix.manager</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.html#io.atomix.manager">Resource</a>
+<div class="block">Base class for fault-tolerant stateful distributed objects.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Config.html#io.atomix.manager">Resource.Config</a>
+<div class="block">Base class for cluster-wide resource configurations.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/Resource.Options.html#io.atomix.manager">Resource.Options</a>
+<div class="block">Base class for local resource options.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../io/atomix/resource/class-use/ResourceType.html#io.atomix.manager">ResourceType</a>
+<div class="block">Identifier for resource metadata and <a href="../../../io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource"><code>state machine</code></a> information.</div>
 </td>
 </tr>
 </tbody>

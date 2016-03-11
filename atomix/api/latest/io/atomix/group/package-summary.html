@@ -44,7 +44,7 @@
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../io/atomix/concurrent/package-summary.html">Prev&nbsp;Package</a></li>
-<li><a href="../../../io/atomix/messaging/package-summary.html">Next&nbsp;Package</a></li>
+<li><a href="../../../io/atomix/manager/package-summary.html">Next&nbsp;Package</a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/group/package-summary.html" target="_top">Frames</a></li>
@@ -72,7 +72,7 @@
 <div class="header">
 <h1 title="Package" class="title">Package&nbsp;io.atomix.group</h1>
 <div class="docSummary">
-<div class="block">Provides distributed group operations tools via <a href="../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group"><code>DistributedGroup</code></a> including leader election,
+<div class="block">Provides distributed group operations tools via <a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> including leader election,
  direct messaging, tasks queues, partitioning, and remote execution.</div>
 </div>
 <p>See:&nbsp;<a href="#package.description">Description</a></p>
@@ -88,6 +88,13 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a></td>
+<td class="colLast">
+<div class="block">Generic group abstraction for managing group membership, service discovery, leader election, and remote
+ scheduling and execution.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group">GroupPartitioner</a></td>
 <td class="colLast">
 <div class="block">Group partitioner.</div>
@@ -105,10 +112,9 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group">DistributedGroup</a></td>
+<td class="colFirst"><a href="../../../io/atomix/group/ConsistentHashGroup.html" title="class in io.atomix.group">ConsistentHashGroup</a></td>
 <td class="colLast">
-<div class="block">Generic group abstraction for managing group membership, service discovery, leader election, and remote
- scheduling and execution.</div>
+<div class="block"><a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> that consistently maps values to members on a ring.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -124,40 +130,40 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../io/atomix/group/GroupConnection.html" title="class in io.atomix.group">GroupConnection</a></td>
+<td class="colFirst"><a href="../../../io/atomix/group/GroupElection.html" title="class in io.atomix.group">GroupElection</a></td>
 <td class="colLast">
-<div class="block">Facilitates direct communication between group members.</div>
+<div class="block">Manages an election among <a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> members.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../io/atomix/group/GroupElection.html" title="class in io.atomix.group">GroupElection</a></td>
-<td class="colLast">
-<div class="block">Group election.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><a href="../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a></td>
 <td class="colLast">
-<div class="block">A <a href="../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group"><code>DistributedGroup</code></a> member representing a member of the group controlled by a local
+<div class="block">A <a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> member representing a member of the group controlled by a local
  or remote process.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../io/atomix/group/GroupMemberInfo.html" title="class in io.atomix.group">GroupMemberInfo</a></td>
 <td class="colLast">
 <div class="block">Group member info.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../../io/atomix/group/GroupMessage.html" title="class in io.atomix.group">GroupMessage</a>&lt;T&gt;</td>
 <td class="colLast">
 <div class="block">Group member message.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../io/atomix/group/GroupPartition.html" title="class in io.atomix.group">GroupPartition</a></td>
 <td class="colLast">
 <div class="block">Group partition.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../io/atomix/group/GroupPartitionMigration.html" title="class in io.atomix.group">GroupPartitionMigration</a></td>
+<td class="colLast">
+<div class="block">Group partition migration.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -173,21 +179,21 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../io/atomix/group/GroupScheduler.html" title="class in io.atomix.group">GroupScheduler</a></td>
+<td class="colFirst"><a href="../../../io/atomix/group/GroupTask.html" title="class in io.atomix.group">GroupTask</a>&lt;T&gt;</td>
 <td class="colLast">
-<div class="block">Group scheduler.</div>
+<div class="block">Represents a reliable task received by a member to be processed and acknowledged.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../io/atomix/group/GroupTask.html" title="class in io.atomix.group">GroupTask</a>&lt;T&gt;</td>
-<td class="colLast">
-<div class="block">Group task.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><a href="../../../io/atomix/group/GroupTaskQueue.html" title="class in io.atomix.group">GroupTaskQueue</a></td>
 <td class="colLast">
 <div class="block">Group task queue.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../io/atomix/group/GroupTerm.html" title="class in io.atomix.group">GroupTerm</a></td>
+<td class="colLast">
+<div class="block">Group election term.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -197,28 +203,65 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../io/atomix/group/LocalGroupConnection.html" title="class in io.atomix.group">LocalGroupConnection</a></td>
+<td class="colFirst"><a href="../../../io/atomix/group/LocalGroupMember.html" title="class in io.atomix.group">LocalGroupMember</a></td>
+<td class="colLast">
+<div class="block">A <a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> member representing a member of the group controlled by the
+ local process.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../io/atomix/group/LocalMemberConnection.html" title="class in io.atomix.group">LocalMemberConnection</a></td>
 <td class="colLast">
 <div class="block">Local group connection.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../io/atomix/group/LocalGroupMember.html" title="class in io.atomix.group">LocalGroupMember</a></td>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../io/atomix/group/LocalMemberTaskQueue.html" title="class in io.atomix.group">LocalMemberTaskQueue</a></td>
 <td class="colLast">
-<div class="block">A <a href="../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group"><code>DistributedGroup</code></a> member representing a member of the group controlled by the
- local process.</div>
+<div class="block">Local member task queue.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../io/atomix/group/MemberConnection.html" title="class in io.atomix.group">MemberConnection</a></td>
+<td class="colLast">
+<div class="block">Facilitates direct communication between group members.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../io/atomix/group/LocalGroupTaskQueue.html" title="class in io.atomix.group">LocalGroupTaskQueue</a></td>
+<td class="colFirst"><a href="../../../io/atomix/group/MembershipGroup.html" title="class in io.atomix.group">MembershipGroup</a></td>
 <td class="colLast">
-<div class="block">Local group task queue.</div>
+<div class="block">Base <a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> implementation which manages a membership set for the group
+ and all <a href="../../../io/atomix/group/SubGroup.html" title="class in io.atomix.group"><code>SubGroup</code></a>s.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../io/atomix/group/MemberTaskQueue.html" title="class in io.atomix.group">MemberTaskQueue</a></td>
+<td class="colLast">
+<div class="block">Member task queue.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../io/atomix/group/PartitionGroup.html" title="class in io.atomix.group">PartitionGroup</a></td>
+<td class="colLast">
+<div class="block">Group partitions.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="../../../io/atomix/group/RoundRobinPartitioner.html" title="class in io.atomix.group">RoundRobinPartitioner</a></td>
 <td class="colLast">
 <div class="block">Round-robin partitioner.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../io/atomix/group/SubGroup.html" title="class in io.atomix.group">SubGroup</a></td>
+<td class="colLast">
+<div class="block">Base class for subgroups of <a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a>.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../io/atomix/group/SubGroupTaskQueue.html" title="class in io.atomix.group">SubGroupTaskQueue</a></td>
+<td class="colLast">
+<div class="block">Membership group task queue.</div>
 </td>
 </tr>
 </tbody>
@@ -246,7 +289,7 @@
 <!--   -->
 </a>
 <h2 title="Package io.atomix.group Description">Package io.atomix.group Description</h2>
-<div class="block">Provides distributed group operations tools via <a href="../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group"><code>DistributedGroup</code></a> including leader election,
+<div class="block">Provides distributed group operations tools via <a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> including leader election,
  direct messaging, tasks queues, partitioning, and remote execution.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -275,7 +318,7 @@
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../io/atomix/concurrent/package-summary.html">Prev&nbsp;Package</a></li>
-<li><a href="../../../io/atomix/messaging/package-summary.html">Next&nbsp;Package</a></li>
+<li><a href="../../../io/atomix/manager/package-summary.html">Next&nbsp;Package</a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/group/package-summary.html" target="_top">Frames</a></li>

@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/group/GroupPartitionMigration.html" title="class in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../io/atomix/group/GroupProperties.html" title="class in io.atomix.group"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -140,25 +140,25 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../../io/atomix/group/GroupPartition.html" title="class in io.atomix.group">GroupPartition</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupPartitions.html#iterator--">iterator</a></span>()</code>&nbsp;</td>
-</tr>
-<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/group/GroupPartition.html" title="class in io.atomix.group">GroupPartition</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupPartitions.html#partition-int-">partition</a></span>(int&nbsp;partitionId)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupPartitions.html#get-int-">get</a></span>(int&nbsp;partitionId)</code>
 <div class="block">Returns a partition by ID.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/group/GroupPartition.html" title="class in io.atomix.group">GroupPartition</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupPartitions.html#partition-java.lang.Object-">partition</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupPartitions.html#get-java.lang.Object-">get</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</code>
 <div class="block">Returns a partition for the given value.</div>
 </td>
 </tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../../io/atomix/group/GroupPartition.html" title="class in io.atomix.group">GroupPartition</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupPartitions.html#iterator--">iterator</a></span>()</code>&nbsp;</td>
+</tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../io/atomix/group/GroupPartition.html" title="class in io.atomix.group">GroupPartition</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupPartitions.html#partitions--">partitions</a></span>()</code>
-<div class="block">Returns an ordered list of partitions in the group.</div>
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupPartitions.html#size--">size</a></span>()</code>
+<div class="block">Returns the partitions size.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
@@ -194,13 +194,13 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="partition-int-">
+<a name="get-int-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>partition</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/group/GroupPartition.html" title="class in io.atomix.group">GroupPartition</a>&nbsp;partition(int&nbsp;partitionId)</pre>
+<h4>get</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/group/GroupPartition.html" title="class in io.atomix.group">GroupPartition</a>&nbsp;get(int&nbsp;partitionId)</pre>
 <div class="block">Returns a partition by ID.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -212,13 +212,13 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.
 </dl>
 </li>
 </ul>
-<a name="partition-java.lang.Object-">
+<a name="get-java.lang.Object-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>partition</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/group/GroupPartition.html" title="class in io.atomix.group">GroupPartition</a>&nbsp;partition(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</pre>
+<h4>get</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/group/GroupPartition.html" title="class in io.atomix.group">GroupPartition</a>&nbsp;get(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</pre>
 <div class="block">Returns a partition for the given value.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -228,17 +228,17 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.
 </dl>
 </li>
 </ul>
-<a name="partitions--">
+<a name="size--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>partitions</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../io/atomix/group/GroupPartition.html" title="class in io.atomix.group">GroupPartition</a>&gt;&nbsp;partitions()</pre>
-<div class="block">Returns an ordered list of partitions in the group.</div>
+<h4>size</h4>
+<pre>public&nbsp;int&nbsp;size()</pre>
+<div class="block">Returns the partitions size.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>A list of partitions in the group. The position of each partition in the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util"><code>List</code></a> is the partition's unique ID.</dd>
+<dd>The partitions size.</dd>
 </dl>
 </li>
 </ul>
@@ -296,7 +296,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/group/GroupPartitionMigration.html" title="class in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../io/atomix/group/GroupProperties.html" title="class in io.atomix.group"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

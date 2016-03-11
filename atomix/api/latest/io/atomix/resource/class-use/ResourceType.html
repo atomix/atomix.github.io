@@ -89,6 +89,19 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.group">io.atomix.group</a></td>
+<td class="colLast">
+<div class="block">Provides distributed group operations tools via <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> including leader election,
+ direct messaging, tasks queues, partitioning, and remote execution.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.manager">io.atomix.manager</a></td>
+<td class="colLast">
+<div class="block">Provides APIs for creating custom resources via <code>ResourceClient</code>.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.resource">io.atomix.resource</a></td>
 <td class="colLast">
 <div class="block">Base classes and interfaces for creating and operating on replicated state machines in Atomix.</div>
@@ -124,15 +137,15 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">AtomixClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixClient.Builder.html#addResourceType-io.atomix.resource.ResourceType-">addResourceType</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>
-<div class="block">Adds a resource type to the client.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">AtomixReplica.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixReplica.Builder.html#addResourceType-io.atomix.resource.ResourceType-">addResourceType</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>
 <div class="block">Adds a resource type to the replica.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AtomixClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixClient.Builder.html#addResourceType-io.atomix.resource.ResourceType-">addResourceType</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>
+<div class="block">Adds a resource type to the client.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -164,14 +177,14 @@
 <td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#keys-io.atomix.resource.ResourceType-">keys</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">AtomixClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixClient.Builder.html#withResourceTypes-io.atomix.resource.ResourceType...-">withResourceTypes</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>...&nbsp;types)</code>
+<td class="colFirst"><code><a href="../../../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AtomixReplica.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixReplica.Builder.html#withResourceTypes-io.atomix.resource.ResourceType...-">withResourceTypes</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>...&nbsp;types)</code>
 <div class="block">Sets the available resource types.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">AtomixReplica.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixReplica.Builder.html#withResourceTypes-io.atomix.resource.ResourceType...-">withResourceTypes</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>...&nbsp;types)</code>
+<td class="colFirst"><code><a href="../../../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AtomixClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixClient.Builder.html#withResourceTypes-io.atomix.resource.ResourceType...-">withResourceTypes</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>...&nbsp;types)</code>
 <div class="block">Sets the available resource types.</div>
 </td>
 </tr>
@@ -185,14 +198,176 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AtomixReplica.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixReplica.Builder.html#withResourceTypes-java.util.Collection-">withResourceTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&gt;&nbsp;types)</code>
+<div class="block">Sets the available resource types.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">AtomixClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixClient.Builder.html#withResourceTypes-java.util.Collection-">withResourceTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&gt;&nbsp;types)</code>
 <div class="block">Sets the available resource types.</div>
 </td>
 </tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.group">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a> in <a href="../../../../io/atomix/group/package-summary.html">io.atomix.group</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../io/atomix/group/package-summary.html">io.atomix.group</a> that return <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SubGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/SubGroup.html#type--">type</a></span>()</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.manager">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a> in <a href="../../../../io/atomix/manager/package-summary.html">io.atomix.manager</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../io/atomix/manager/package-summary.html">io.atomix.manager</a> that return <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceManager.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceManager.html#type-java.lang.Class-">type</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;?&gt;&gt;&nbsp;type)</code>
+<div class="block">Returns the resource type for the given resource class.</div>
+</td>
+</tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">AtomixReplica.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixReplica.Builder.html#withResourceTypes-java.util.Collection-">withResourceTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&gt;&nbsp;types)</code>
+<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceClient.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceClient.html#type-java.lang.Class-">type</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;?&gt;&gt;&nbsp;type)</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../io/atomix/manager/package-summary.html">io.atomix.manager</a> with parameters of type <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/manager/ResourceServer.Builder.html" title="class in io.atomix.manager">ResourceServer.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceServer.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceServer.Builder.html#addResourceType-io.atomix.resource.ResourceType-">addResourceType</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>
+<div class="block">Adds a resource type to the server.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/manager/ResourceClient.Builder.html" title="class in io.atomix.manager">ResourceClient.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceClient.Builder.html#addResourceType-io.atomix.resource.ResourceType-">addResourceType</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>
+<div class="block">Adds a resource type to the server.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceManager.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceManager.html#getResource-java.lang.String-io.atomix.resource.ResourceType-">getResource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceClient.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceClient.html#getResource-java.lang.String-io.atomix.resource.ResourceType-">getResource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceManager.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceManager.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-">getResource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
+           <a href="../../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</code>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceClient.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceClient.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-">getResource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
+           <a href="../../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceManager.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceManager.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getResource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
+           <a href="../../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
+           <a href="../../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceClient.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceClient.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getResource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
+           <a href="../../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>&nbsp;config,
+           <a href="../../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceManager.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceManager.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Options-">getResource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
+           <a href="../../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>
+<div class="block">Gets or creates the given resource and acquires a singleton reference to it.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceClient.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceClient.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Options-">getResource</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type,
+           <a href="../../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>&nbsp;options)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceManager.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceManager.html#keys-io.atomix.resource.ResourceType-">keys</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>
+<div class="block">Returns the keys of existing resources belonging to a resource type.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceClient.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceClient.html#keys-io.atomix.resource.ResourceType-">keys</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/manager/ResourceServer.Builder.html" title="class in io.atomix.manager">ResourceServer.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceServer.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceServer.Builder.html#withResourceTypes-io.atomix.resource.ResourceType...-">withResourceTypes</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>...&nbsp;types)</code>
+<div class="block">Sets the available resource types.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/manager/ResourceClient.Builder.html" title="class in io.atomix.manager">ResourceClient.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceClient.Builder.html#withResourceTypes-io.atomix.resource.ResourceType...-">withResourceTypes</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>...&nbsp;types)</code>
+<div class="block">Sets the available resource types.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Method parameters in <a href="../../../../io/atomix/manager/package-summary.html">io.atomix.manager</a> with type arguments of type <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/manager/ResourceServer.Builder.html" title="class in io.atomix.manager">ResourceServer.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceServer.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceServer.Builder.html#withResourceTypes-java.util.Collection-">withResourceTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&gt;&nbsp;types)</code>
+<div class="block">Sets the available resource types.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/manager/ResourceClient.Builder.html" title="class in io.atomix.manager">ResourceClient.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ResourceClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceClient.Builder.html#withResourceTypes-java.util.Collection-">withResourceTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&gt;&nbsp;types)</code>
 <div class="block">Sets the available resource types.</div>
 </td>
 </tr>
@@ -212,15 +387,13 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
-<td class="colLast"><span class="typeNameLabel">AbstractResource.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/AbstractResource.html#type--">type</a></span>()</code>
+<td class="colLast"><span class="typeNameLabel">Resource.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/Resource.html#type--">type</a></span>()</code>
 <div class="block">Returns the resource type.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Resource.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/Resource.html#type--">type</a></span>()</code>
-<div class="block">Returns the resource type.</div>
-</td>
+<td class="colLast"><span class="typeNameLabel">AbstractResource.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/AbstractResource.html#type--">type</a></span>()</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

@@ -85,7 +85,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.group">io.atomix.group</a></td>
 <td class="colLast">
-<div class="block">Provides distributed group operations tools via <a href="../../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group"><code>DistributedGroup</code></a> including leader election,
+<div class="block">Provides distributed group operations tools via <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> including leader election,
  direct messaging, tasks queues, partitioning, and remote execution.</div>
 </td>
 </tr>
@@ -108,7 +108,7 @@
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/LocalGroupMember.html" title="class in io.atomix.group">LocalGroupMember</a></span></code>
-<div class="block">A <a href="../../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group"><code>DistributedGroup</code></a> member representing a member of the group controlled by the
+<div class="block">A <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> member representing a member of the group controlled by the
  local process.</div>
 </td>
 </tr>
@@ -123,8 +123,8 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a></code></td>
-<td class="colLast"><span class="typeNameLabel">GroupElection.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/GroupElection.html#leader--">leader</a></span>()</code>
-<div class="block">Returns the current group leader.</div>
+<td class="colLast"><span class="typeNameLabel">GroupTerm.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/GroupTerm.html#leader--">leader</a></span>()</code>
+<div class="block">Returns the group leader.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -135,8 +135,42 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConsistentHashGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/ConsistentHashGroup.html#member-java.lang.Object-">member</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;value)</code>
+<div class="block">Returns the member associated with the given value.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PartitionGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/PartitionGroup.html#member-java.lang.String-">member</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a></code></td>
+<td class="colLast"><span class="typeNameLabel">MembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/MembershipGroup.html#member-java.lang.String-">member</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a></code></td>
+<td class="colLast"><span class="typeNameLabel">GroupPartition.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/GroupPartition.html#member-java.lang.String-">member</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a></code></td>
 <td class="colLast"><span class="typeNameLabel">DistributedGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/DistributedGroup.html#member-java.lang.String-">member</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</code>
 <div class="block">Gets a group member by ID.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ConsistentHashGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/ConsistentHashGroup.html#member-java.lang.String-">member</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a></code></td>
+<td class="colLast"><span class="typeNameLabel">GroupPartitionMigration.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/GroupPartitionMigration.html#source--">source</a></span>()</code>
+<div class="block">Returns the migration source.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a></code></td>
+<td class="colLast"><span class="typeNameLabel">GroupPartitionMigration.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/GroupPartitionMigration.html#target--">target</a></span>()</code>
+<div class="block">Returns the migration target.</div>
 </td>
 </tr>
 </tbody>
@@ -149,26 +183,38 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html?is-external=true" title="class or interface in java.util">Iterator</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">GroupPartition.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/GroupPartition.html#iterator--">iterator</a></span>()</code>&nbsp;</td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">PartitionGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/PartitionGroup.html#members--">members</a></span>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">GroupPartition.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/GroupPartition.html#members--">members</a></span>()</code>
-<div class="block">Returns a collection of members for the partition.</div>
-</td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">MembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/MembershipGroup.html#members--">members</a></span>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">GroupPartition.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/GroupPartition.html#members--">members</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">DistributedGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/DistributedGroup.html#members--">members</a></span>()</code>
 <div class="block">Gets the collection of all members in the group.</div>
 </td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ConsistentHashGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/ConsistentHashGroup.html#members--">members</a></span>()</code>&nbsp;</td>
+</tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">GroupElection.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/GroupElection.html#onElection-java.util.function.Consumer-">onElection</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;callback)</code>
-<div class="block">Registers a callback to be called when a member of the group is elected leader.</div>
-</td>
+<td class="colLast"><span class="typeNameLabel">PartitionGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/PartitionGroup.html#onJoin-java.util.function.Consumer-">onJoin</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">MembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/MembershipGroup.html#onJoin-java.util.function.Consumer-">onJoin</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">GroupPartition.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/GroupPartition.html#onJoin-java.util.function.Consumer-">onJoin</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
@@ -178,9 +224,29 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ConsistentHashGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/ConsistentHashGroup.html#onJoin-java.util.function.Consumer-">onJoin</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">PartitionGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/PartitionGroup.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">MembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/MembershipGroup.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">GroupPartition.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/GroupPartition.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">DistributedGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/DistributedGroup.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>
 <div class="block">Adds a listener for members leaving the group.</div>
 </td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ConsistentHashGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/ConsistentHashGroup.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -193,9 +259,15 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">GroupElection.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/GroupElection.html#onElection-java.util.function.Consumer-">onElection</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;callback)</code>
-<div class="block">Registers a callback to be called when a member of the group is elected leader.</div>
-</td>
+<td class="colLast"><span class="typeNameLabel">PartitionGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/PartitionGroup.html#onJoin-java.util.function.Consumer-">onJoin</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">MembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/MembershipGroup.html#onJoin-java.util.function.Consumer-">onJoin</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">GroupPartition.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/GroupPartition.html#onJoin-java.util.function.Consumer-">onJoin</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
@@ -205,9 +277,29 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ConsistentHashGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/ConsistentHashGroup.html#onJoin-java.util.function.Consumer-">onJoin</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">PartitionGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/PartitionGroup.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">MembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/MembershipGroup.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">GroupPartition.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/GroupPartition.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">DistributedGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/DistributedGroup.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>
 <div class="block">Adds a listener for members leaving the group.</div>
 </td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">ConsistentHashGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/ConsistentHashGroup.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/GroupMember.html" title="class in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

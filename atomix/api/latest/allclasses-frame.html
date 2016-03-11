@@ -18,9 +18,12 @@
 <li><a href="io/atomix/AtomixClient.html" title="class in io.atomix" target="classFrame">AtomixClient</a></li>
 <li><a href="io/atomix/AtomixClient.Builder.html" title="class in io.atomix" target="classFrame">AtomixClient.Builder</a></li>
 <li><a href="io/atomix/AtomixException.html" title="class in io.atomix" target="classFrame">AtomixException</a></li>
+<li><a href="io/atomix/manager/options/AtomixOptions.html" title="class in io.atomix.manager.options" target="classFrame">AtomixOptions</a></li>
 <li><a href="io/atomix/AtomixReplica.html" title="class in io.atomix" target="classFrame">AtomixReplica</a></li>
 <li><a href="io/atomix/AtomixReplica.Builder.html" title="class in io.atomix" target="classFrame">AtomixReplica.Builder</a></li>
-<li><a href="io/atomix/group/DistributedGroup.html" title="class in io.atomix.group" target="classFrame">DistributedGroup</a></li>
+<li><a href="io/atomix/manager/options/ClientOptions.html" title="class in io.atomix.manager.options" target="classFrame">ClientOptions</a></li>
+<li><a href="io/atomix/group/ConsistentHashGroup.html" title="class in io.atomix.group" target="classFrame">ConsistentHashGroup</a></li>
+<li><a href="io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group" target="classFrame"><span class="interfaceName">DistributedGroup</span></a></li>
 <li><a href="io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group" target="classFrame">DistributedGroup.Config</a></li>
 <li><a href="io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group" target="classFrame">DistributedGroup.Options</a></li>
 <li><a href="io/atomix/concurrent/DistributedLock.html" title="class in io.atomix.concurrent" target="classFrame">DistributedLock</a></li>
@@ -36,38 +39,51 @@
 <li><a href="io/atomix/messaging/DistributedTaskQueue.html" title="class in io.atomix.messaging" target="classFrame">DistributedTaskQueue</a></li>
 <li><a href="io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging" target="classFrame">DistributedTopic</a></li>
 <li><a href="io/atomix/variables/DistributedValue.html" title="class in io.atomix.variables" target="classFrame">DistributedValue</a></li>
-<li><a href="io/atomix/group/GroupConnection.html" title="class in io.atomix.group" target="classFrame">GroupConnection</a></li>
 <li><a href="io/atomix/group/GroupElection.html" title="class in io.atomix.group" target="classFrame">GroupElection</a></li>
 <li><a href="io/atomix/group/GroupMember.html" title="class in io.atomix.group" target="classFrame">GroupMember</a></li>
 <li><a href="io/atomix/group/GroupMemberInfo.html" title="class in io.atomix.group" target="classFrame">GroupMemberInfo</a></li>
 <li><a href="io/atomix/group/GroupMessage.html" title="class in io.atomix.group" target="classFrame">GroupMessage</a></li>
 <li><a href="io/atomix/group/GroupPartition.html" title="class in io.atomix.group" target="classFrame">GroupPartition</a></li>
 <li><a href="io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group" target="classFrame"><span class="interfaceName">GroupPartitioner</span></a></li>
+<li><a href="io/atomix/group/GroupPartitionMigration.html" title="class in io.atomix.group" target="classFrame">GroupPartitionMigration</a></li>
 <li><a href="io/atomix/group/GroupPartitions.html" title="class in io.atomix.group" target="classFrame">GroupPartitions</a></li>
 <li><a href="io/atomix/group/GroupProperties.html" title="class in io.atomix.group" target="classFrame">GroupProperties</a></li>
-<li><a href="io/atomix/group/GroupScheduler.html" title="class in io.atomix.group" target="classFrame">GroupScheduler</a></li>
 <li><a href="io/atomix/group/GroupTask.html" title="class in io.atomix.group" target="classFrame">GroupTask</a></li>
 <li><a href="io/atomix/group/GroupTaskQueue.html" title="class in io.atomix.group" target="classFrame">GroupTaskQueue</a></li>
+<li><a href="io/atomix/group/GroupTerm.html" title="class in io.atomix.group" target="classFrame">GroupTerm</a></li>
 <li><a href="io/atomix/group/HashPartitioner.html" title="class in io.atomix.group" target="classFrame">HashPartitioner</a></li>
-<li><a href="io/atomix/group/LocalGroupConnection.html" title="class in io.atomix.group" target="classFrame">LocalGroupConnection</a></li>
 <li><a href="io/atomix/group/LocalGroupMember.html" title="class in io.atomix.group" target="classFrame">LocalGroupMember</a></li>
-<li><a href="io/atomix/group/LocalGroupTaskQueue.html" title="class in io.atomix.group" target="classFrame">LocalGroupTaskQueue</a></li>
+<li><a href="io/atomix/group/LocalMemberConnection.html" title="class in io.atomix.group" target="classFrame">LocalMemberConnection</a></li>
+<li><a href="io/atomix/group/LocalMemberTaskQueue.html" title="class in io.atomix.group" target="classFrame">LocalMemberTaskQueue</a></li>
+<li><a href="io/atomix/group/MemberConnection.html" title="class in io.atomix.group" target="classFrame">MemberConnection</a></li>
+<li><a href="io/atomix/group/MembershipGroup.html" title="class in io.atomix.group" target="classFrame">MembershipGroup</a></li>
+<li><a href="io/atomix/group/MemberTaskQueue.html" title="class in io.atomix.group" target="classFrame">MemberTaskQueue</a></li>
 <li><a href="io/atomix/messaging/Message.html" title="class in io.atomix.messaging" target="classFrame">Message</a></li>
 <li><a href="io/atomix/messaging/MessageConsumer.html" title="interface in io.atomix.messaging" target="classFrame"><span class="interfaceName">MessageConsumer</span></a></li>
 <li><a href="io/atomix/messaging/MessageProducer.html" title="interface in io.atomix.messaging" target="classFrame"><span class="interfaceName">MessageProducer</span></a></li>
+<li><a href="io/atomix/group/PartitionGroup.html" title="class in io.atomix.group" target="classFrame">PartitionGroup</a></li>
 <li><a href="io/atomix/Quorum.html" title="enum in io.atomix" target="classFrame">Quorum</a></li>
 <li><a href="io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource" target="classFrame">ReadConsistency</a></li>
 <li><a href="io/atomix/resource/Resource.html" title="interface in io.atomix.resource" target="classFrame"><span class="interfaceName">Resource</span></a></li>
 <li><a href="io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource" target="classFrame">Resource.Config</a></li>
 <li><a href="io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource" target="classFrame">Resource.Options</a></li>
 <li><a href="io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource" target="classFrame">Resource.State</a></li>
+<li><a href="io/atomix/manager/ResourceClient.html" title="class in io.atomix.manager" target="classFrame">ResourceClient</a></li>
+<li><a href="io/atomix/manager/ResourceClient.Builder.html" title="class in io.atomix.manager" target="classFrame">ResourceClient.Builder</a></li>
 <li><a href="io/atomix/resource/ResourceException.html" title="class in io.atomix.resource" target="classFrame">ResourceException</a></li>
 <li><a href="io/atomix/resource/ResourceFactory.html" title="interface in io.atomix.resource" target="classFrame"><span class="interfaceName">ResourceFactory</span></a></li>
+<li><a href="io/atomix/manager/ResourceManager.html" title="interface in io.atomix.manager" target="classFrame"><span class="interfaceName">ResourceManager</span></a></li>
+<li><a href="io/atomix/manager/ResourceServer.html" title="class in io.atomix.manager" target="classFrame">ResourceServer</a></li>
+<li><a href="io/atomix/manager/ResourceServer.Builder.html" title="class in io.atomix.manager" target="classFrame">ResourceServer.Builder</a></li>
 <li><a href="io/atomix/resource/ResourceStateMachine.html" title="class in io.atomix.resource" target="classFrame">ResourceStateMachine</a></li>
 <li><a href="io/atomix/resource/ResourceStateMachineExecutor.html" title="class in io.atomix.resource" target="classFrame">ResourceStateMachineExecutor</a></li>
 <li><a href="io/atomix/resource/ResourceType.html" title="class in io.atomix.resource" target="classFrame">ResourceType</a></li>
 <li><a href="io/atomix/resource/ResourceTypeInfo.html" title="annotation in io.atomix.resource" target="classFrame">ResourceTypeInfo</a></li>
 <li><a href="io/atomix/group/RoundRobinPartitioner.html" title="class in io.atomix.group" target="classFrame">RoundRobinPartitioner</a></li>
+<li><a href="io/atomix/manager/options/ServerOptions.html" title="class in io.atomix.manager.options" target="classFrame">ServerOptions</a></li>
+<li><a href="io/atomix/standalone/server/StandaloneServer.html" title="class in io.atomix.standalone.server" target="classFrame">StandaloneServer</a></li>
+<li><a href="io/atomix/group/SubGroup.html" title="class in io.atomix.group" target="classFrame">SubGroup</a></li>
+<li><a href="io/atomix/group/SubGroupTaskQueue.html" title="class in io.atomix.group" target="classFrame">SubGroupTaskQueue</a></li>
 <li><a href="io/atomix/group/TaskFailedException.html" title="class in io.atomix.group" target="classFrame">TaskFailedException</a></li>
 <li><a href="io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource" target="classFrame">WriteConsistency</a></li>
 </ul>

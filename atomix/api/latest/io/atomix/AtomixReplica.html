@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":10,"i7":10};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -114,7 +114,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;, io.atomix.manager.ResourceManager&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</dd>
+<dd><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;, <a href="../../io/atomix/manager/ResourceManager.html" title="interface in io.atomix.manager">ResourceManager</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</dd>
 </dl>
 <hr>
 <br>
@@ -360,8 +360,28 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#close--">close</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i7" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#isClosed--">isClosed</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#isOpen--">isOpen</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#open--">open</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#start--">start</a></span>()</code>
+<div class="block">Starts the replica.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#stop--">stop</a></span>()</code>
+<div class="block">Stops the replica.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -369,7 +389,7 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;io.atomix.<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></h3>
-<code><a href="../../io/atomix/Atomix.html#context--">context</a>, <a href="../../io/atomix/Atomix.html#exists-java.lang.String-">exists</a>, <a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-">getGroup</a>, <a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Config-">getGroup</a>, <a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Config-io.atomix.group.DistributedGroup.Options-">getGroup</a>, <a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Options-">getGroup</a>, <a href="../../io/atomix/Atomix.html#getLock-java.lang.String-">getLock</a>, <a href="../../io/atomix/Atomix.html#getLock-java.lang.String-io.atomix.resource.Resource.Config-">getLock</a>, <a href="../../io/atomix/Atomix.html#getLock-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getLock</a>, <a href="../../io/atomix/Atomix.html#getLock-java.lang.String-io.atomix.resource.Resource.Options-">getLock</a>, <a href="../../io/atomix/Atomix.html#getLong-java.lang.String-">getLong</a>, <a href="../../io/atomix/Atomix.html#getLong-java.lang.String-io.atomix.resource.Resource.Config-">getLong</a>, <a href="../../io/atomix/Atomix.html#getLong-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getLong</a>, <a href="../../io/atomix/Atomix.html#getLong-java.lang.String-io.atomix.resource.Resource.Options-">getLong</a>, <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-">getMap</a>, <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Config-">getMap</a>, <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getMap</a>, <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Options-">getMap</a>, <a href="../../io/atomix/Atomix.html#getMessageBus-java.lang.String-">getMessageBus</a>, <a href="../../io/atomix/Atomix.html#getMessageBus-java.lang.String-io.atomix.messaging.DistributedMessageBus.Options-">getMessageBus</a>, <a href="../../io/atomix/Atomix.html#getMessageBus-java.lang.String-io.atomix.resource.Resource.Config-">getMessageBus</a>, <a href="../../io/atomix/Atomix.html#getMessageBus-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.messaging.DistributedMessageBus.Options-">getMessageBus</a>, <a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-">getMultiMap</a>, <a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-io.atomix.collections.DistributedMultiMap.Config-">getMultiMap</a>, <a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-io.atomix.collections.DistributedMultiMap.Config-io.atomix.resource.Resource.Options-">getMultiMap</a>, <a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-io.atomix.resource.Resource.Options-">getMultiMap</a>, <a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-">getQueue</a>, <a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-io.atomix.resource.Resource.Config-">getQueue</a>, <a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getQueue</a>, <a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-io.atomix.resource.Resource.Options-">getQueue</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Config-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Options-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Options-">getResource</a>, <a href="../../io/atomix/Atomix.html#getSet-java.lang.String-">getSet</a>, <a href="../../io/atomix/Atomix.html#getSet-java.lang.String-io.atomix.resource.Resource.Config-">getSet</a>, <a href="../../io/atomix/Atomix.html#getSet-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getSet</a>, <a href="../../io/atomix/Atomix.html#getSet-java.lang.String-io.atomix.resource.Resource.Options-">getSet</a>, <a href="../../io/atomix/Atomix.html#getTaskQueue-java.lang.String-">getTaskQueue</a>, <a href="../../io/atomix/Atomix.html#getTaskQueue-java.lang.String-io.atomix.resource.Resource.Config-">getTaskQueue</a>, <a href="../../io/atomix/Atomix.html#getTaskQueue-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getTaskQueue</a>, <a href="../../io/atomix/Atomix.html#getTaskQueue-java.lang.String-io.atomix.resource.Resource.Options-">getTaskQueue</a>, <a href="../../io/atomix/Atomix.html#getTopic-java.lang.String-">getTopic</a>, <a href="../../io/atomix/Atomix.html#getTopic-java.lang.String-io.atomix.resource.Resource.Config-">getTopic</a>, <a href="../../io/atomix/Atomix.html#getTopic-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getTopic</a>, <a href="../../io/atomix/Atomix.html#getTopic-java.lang.String-io.atomix.resource.Resource.Options-">getTopic</a>, <a href="../../io/atomix/Atomix.html#getValue-java.lang.String-">getValue</a>, <a href="../../io/atomix/Atomix.html#getValue-java.lang.String-io.atomix.resource.Resource.Config-">getValue</a>, <a href="../../io/atomix/Atomix.html#getValue-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getValue</a>, <a href="../../io/atomix/Atomix.html#getValue-java.lang.String-io.atomix.resource.Resource.Options-">getValue</a>, <a href="../../io/atomix/Atomix.html#isClosed--">isClosed</a>, <a href="../../io/atomix/Atomix.html#isOpen--">isOpen</a>, <a href="../../io/atomix/Atomix.html#keys--">keys</a>, <a href="../../io/atomix/Atomix.html#keys-java.lang.Class-">keys</a>, <a href="../../io/atomix/Atomix.html#keys-io.atomix.resource.ResourceType-">keys</a>, <a href="../../io/atomix/Atomix.html#serializer--">serializer</a>, <a href="../../io/atomix/Atomix.html#toString--">toString</a>, <a href="../../io/atomix/Atomix.html#type-java.lang.Class-">type</a></code></li>
+<code><a href="../../io/atomix/Atomix.html#context--">context</a>, <a href="../../io/atomix/Atomix.html#exists-java.lang.String-">exists</a>, <a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-">getGroup</a>, <a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Config-">getGroup</a>, <a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Config-io.atomix.group.DistributedGroup.Options-">getGroup</a>, <a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Options-">getGroup</a>, <a href="../../io/atomix/Atomix.html#getLock-java.lang.String-">getLock</a>, <a href="../../io/atomix/Atomix.html#getLock-java.lang.String-io.atomix.resource.Resource.Config-">getLock</a>, <a href="../../io/atomix/Atomix.html#getLock-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getLock</a>, <a href="../../io/atomix/Atomix.html#getLock-java.lang.String-io.atomix.resource.Resource.Options-">getLock</a>, <a href="../../io/atomix/Atomix.html#getLong-java.lang.String-">getLong</a>, <a href="../../io/atomix/Atomix.html#getLong-java.lang.String-io.atomix.resource.Resource.Config-">getLong</a>, <a href="../../io/atomix/Atomix.html#getLong-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getLong</a>, <a href="../../io/atomix/Atomix.html#getLong-java.lang.String-io.atomix.resource.Resource.Options-">getLong</a>, <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-">getMap</a>, <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Config-">getMap</a>, <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getMap</a>, <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Options-">getMap</a>, <a href="../../io/atomix/Atomix.html#getMessageBus-java.lang.String-">getMessageBus</a>, <a href="../../io/atomix/Atomix.html#getMessageBus-java.lang.String-io.atomix.messaging.DistributedMessageBus.Options-">getMessageBus</a>, <a href="../../io/atomix/Atomix.html#getMessageBus-java.lang.String-io.atomix.resource.Resource.Config-">getMessageBus</a>, <a href="../../io/atomix/Atomix.html#getMessageBus-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.messaging.DistributedMessageBus.Options-">getMessageBus</a>, <a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-">getMultiMap</a>, <a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-io.atomix.collections.DistributedMultiMap.Config-">getMultiMap</a>, <a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-io.atomix.collections.DistributedMultiMap.Config-io.atomix.resource.Resource.Options-">getMultiMap</a>, <a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-io.atomix.resource.Resource.Options-">getMultiMap</a>, <a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-">getQueue</a>, <a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-io.atomix.resource.Resource.Config-">getQueue</a>, <a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getQueue</a>, <a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-io.atomix.resource.Resource.Options-">getQueue</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Config-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Options-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Options-">getResource</a>, <a href="../../io/atomix/Atomix.html#getSet-java.lang.String-">getSet</a>, <a href="../../io/atomix/Atomix.html#getSet-java.lang.String-io.atomix.resource.Resource.Config-">getSet</a>, <a href="../../io/atomix/Atomix.html#getSet-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getSet</a>, <a href="../../io/atomix/Atomix.html#getSet-java.lang.String-io.atomix.resource.Resource.Options-">getSet</a>, <a href="../../io/atomix/Atomix.html#getTaskQueue-java.lang.String-">getTaskQueue</a>, <a href="../../io/atomix/Atomix.html#getTaskQueue-java.lang.String-io.atomix.resource.Resource.Config-">getTaskQueue</a>, <a href="../../io/atomix/Atomix.html#getTaskQueue-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getTaskQueue</a>, <a href="../../io/atomix/Atomix.html#getTaskQueue-java.lang.String-io.atomix.resource.Resource.Options-">getTaskQueue</a>, <a href="../../io/atomix/Atomix.html#getTopic-java.lang.String-">getTopic</a>, <a href="../../io/atomix/Atomix.html#getTopic-java.lang.String-io.atomix.resource.Resource.Config-">getTopic</a>, <a href="../../io/atomix/Atomix.html#getTopic-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getTopic</a>, <a href="../../io/atomix/Atomix.html#getTopic-java.lang.String-io.atomix.resource.Resource.Options-">getTopic</a>, <a href="../../io/atomix/Atomix.html#getValue-java.lang.String-">getValue</a>, <a href="../../io/atomix/Atomix.html#getValue-java.lang.String-io.atomix.resource.Resource.Config-">getValue</a>, <a href="../../io/atomix/Atomix.html#getValue-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getValue</a>, <a href="../../io/atomix/Atomix.html#getValue-java.lang.String-io.atomix.resource.Resource.Options-">getValue</a>, <a href="../../io/atomix/Atomix.html#keys--">keys</a>, <a href="../../io/atomix/Atomix.html#keys-java.lang.Class-">keys</a>, <a href="../../io/atomix/Atomix.html#keys-io.atomix.resource.ResourceType-">keys</a>, <a href="../../io/atomix/Atomix.html#serializer--">serializer</a>, <a href="../../io/atomix/Atomix.html#toString--">toString</a>, <a href="../../io/atomix/Atomix.html#type-java.lang.Class-">type</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -599,6 +619,34 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
 </dl>
 </li>
 </ul>
+<a name="start--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>start</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;&nbsp;start()</pre>
+<div class="block">Starts the replica.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the replica has been started.</dd>
+</dl>
+</li>
+</ul>
+<a name="stop--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>stop</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;stop()</pre>
+<div class="block">Stops the replica.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the replica has been stopped.</dd>
+</dl>
+</li>
+</ul>
 <a name="open--">
 <!--   -->
 </a>
@@ -606,27 +654,33 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
 <li class="blockList">
 <h4>open</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;&nbsp;open()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#open--" title="class or interface in io.atomix.catalyst.util">open</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../io/atomix/Atomix.html#open--">open</a></code>&nbsp;in class&nbsp;<code><a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></code></dd>
-</dl>
+</li>
+</ul>
+<a name="isOpen--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isOpen</h4>
+<pre>public&nbsp;boolean&nbsp;isOpen()</pre>
 </li>
 </ul>
 <a name="close--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>close</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;close()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.util">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></dd>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="../../io/atomix/Atomix.html#close--">close</a></code>&nbsp;in class&nbsp;<code><a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></code></dd>
-</dl>
+</li>
+</ul>
+<a name="isClosed--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>isClosed</h4>
+<pre>public&nbsp;boolean&nbsp;isClosed()</pre>
 </li>
 </ul>
 </li>

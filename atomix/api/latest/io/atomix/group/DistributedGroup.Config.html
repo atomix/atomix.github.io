@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var methods = {"i0":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -132,8 +132,8 @@ var activeTableTab = "activeTableTab";
 <dd><a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io">Serializable</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Cloneable.html?is-external=true" title="class or interface in java.lang">Cloneable</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>,<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&gt;</dd>
 </dl>
 <dl>
-<dt>Enclosing class:</dt>
-<dd><a href="../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group">DistributedGroup</a></dd>
+<dt>Enclosing interface:</dt>
+<dd><a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a></dd>
 </dl>
 <hr>
 <br>
@@ -184,32 +184,8 @@ extends <a href="../../../io/atomix/resource/Resource.Config.html" title="class 
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/DistributedGroup.Config.html#withHasher-java.lang.Class-">withHasher</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/hash/Hasher.html?is-external=true" title="class or interface in io.atomix.catalyst.util.hash">Hasher</a>&gt;&nbsp;hasherClass)</code>
-<div class="block">Sets the hash function with which to hash keys.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/DistributedGroup.Config.html#withPartitioner-java.lang.Class-">withPartitioner</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group">GroupPartitioner</a>&gt;&nbsp;partitionerClass)</code>
-<div class="block">Sets the group partitioner class.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/DistributedGroup.Config.html#withPartitions-int-">withPartitions</a></span>(int&nbsp;partitions)</code>
-<div class="block">Sets the number of partitions.</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/DistributedGroup.Config.html#withReplicationFactor-int-">withReplicationFactor</a></span>(int&nbsp;replicationFactor)</code>
-<div class="block">Sets the group replication factor.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/DistributedGroup.Config.html#withVirtualNodes-int-">withVirtualNodes</a></span>(int&nbsp;virtualNodes)</code>
-<div class="block">Sets the number of virtual nodes per group member in the consistent hash ring.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/DistributedGroup.Config.html#withMemberExpiration-java.time.Duration-">withMemberExpiration</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;expiration)</code>
+<div class="block">Sets the duration after which to remove persistent members from the group.</div>
 </td>
 </tr>
 </table>
@@ -274,83 +250,21 @@ extends <a href="../../../io/atomix/resource/Resource.Config.html" title="class 
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="withHasher-java.lang.Class-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>withHasher</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a>&nbsp;withHasher(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/hash/Hasher.html?is-external=true" title="class or interface in io.atomix.catalyst.util.hash">Hasher</a>&gt;&nbsp;hasherClass)</pre>
-<div class="block">Sets the hash function with which to hash keys.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>hasherClass</code> - The hasher function class.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The group configuration.</dd>
-</dl>
-</li>
-</ul>
-<a name="withPartitioner-java.lang.Class-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>withPartitioner</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a>&nbsp;withPartitioner(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group">GroupPartitioner</a>&gt;&nbsp;partitionerClass)</pre>
-<div class="block">Sets the group partitioner class.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>partitionerClass</code> - The group partitioner class.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The group configuration.</dd>
-</dl>
-</li>
-</ul>
-<a name="withPartitions-int-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>withPartitions</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a>&nbsp;withPartitions(int&nbsp;partitions)</pre>
-<div class="block">Sets the number of partitions.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>partitions</code> - The number of partitions.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The group configuration.</dd>
-</dl>
-</li>
-</ul>
-<a name="withVirtualNodes-int-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>withVirtualNodes</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a>&nbsp;withVirtualNodes(int&nbsp;virtualNodes)</pre>
-<div class="block">Sets the number of virtual nodes per group member in the consistent hash ring.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>virtualNodes</code> - The number of virtual members per group member.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The group configuration.</dd>
-</dl>
-</li>
-</ul>
-<a name="withReplicationFactor-int-">
+<a name="withMemberExpiration-java.time.Duration-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>withReplicationFactor</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a>&nbsp;withReplicationFactor(int&nbsp;replicationFactor)</pre>
-<div class="block">Sets the group replication factor.</div>
+<h4>withMemberExpiration</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a>&nbsp;withMemberExpiration(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;expiration)</pre>
+<div class="block">Sets the duration after which to remove persistent members from the group.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>replicationFactor</code> - The group replication factor.</dd>
+<dd><code>expiration</code> - The duration after which to remove persistent members from the group.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The group configuration.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the expiration is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -382,7 +296,7 @@ extends <a href="../../../io/atomix/resource/Resource.Config.html" title="class 
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

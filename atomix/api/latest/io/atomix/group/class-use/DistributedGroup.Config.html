@@ -91,7 +91,7 @@
 <tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.group">io.atomix.group</a></td>
 <td class="colLast">
-<div class="block">Provides distributed group operations tools via <a href="../../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group"><code>DistributedGroup</code></a> including leader election,
+<div class="block">Provides distributed group operations tools via <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> including leader election,
  direct messaging, tasks queues, partitioning, and remote execution.</div>
 </td>
 </tr>
@@ -112,14 +112,14 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group">DistributedGroup</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Config-">getGroup</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
         <a href="../../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a>&nbsp;config)</code>
 <div class="block">Gets or creates a distributed group for managing group membership and leader elections.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group">DistributedGroup</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Config-io.atomix.group.DistributedGroup.Options-">getGroup</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
         <a href="../../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a>&nbsp;config,
         <a href="../../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group">DistributedGroup.Options</a>&nbsp;options)</code>
@@ -142,32 +142,20 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedGroup.Config.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/DistributedGroup.Config.html#withHasher-java.lang.Class-">withHasher</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/hash/Hasher.html?is-external=true" title="class or interface in io.atomix.catalyst.util.hash">Hasher</a>&gt;&nbsp;hasherClass)</code>
-<div class="block">Sets the hash function with which to hash keys.</div>
-</td>
+<td class="colLast"><span class="typeNameLabel">SubGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/SubGroup.html#config--">config</a></span>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedGroup.Config.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/DistributedGroup.Config.html#withPartitioner-java.lang.Class-">withPartitioner</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group">GroupPartitioner</a>&gt;&nbsp;partitionerClass)</code>
-<div class="block">Sets the group partitioner class.</div>
-</td>
+<td class="colLast"><span class="typeNameLabel">MembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/MembershipGroup.html#config--">config</a></span>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedGroup.Config.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/DistributedGroup.Config.html#withPartitions-int-">withPartitions</a></span>(int&nbsp;partitions)</code>
-<div class="block">Sets the number of partitions.</div>
-</td>
+<td class="colLast"><span class="typeNameLabel">DistributedGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/DistributedGroup.html#config--">config</a></span>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedGroup.Config.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/DistributedGroup.Config.html#withReplicationFactor-int-">withReplicationFactor</a></span>(int&nbsp;replicationFactor)</code>
-<div class="block">Sets the group replication factor.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedGroup.Config.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/DistributedGroup.Config.html#withVirtualNodes-int-">withVirtualNodes</a></span>(int&nbsp;virtualNodes)</code>
-<div class="block">Sets the number of virtual nodes per group member in the consistent hash ring.</div>
+<td class="colLast"><span class="typeNameLabel">DistributedGroup.Config.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/DistributedGroup.Config.html#withMemberExpiration-java.time.Duration-">withMemberExpiration</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;expiration)</code>
+<div class="block">Sets the duration after which to remove persistent members from the group.</div>
 </td>
 </tr>
 </tbody>

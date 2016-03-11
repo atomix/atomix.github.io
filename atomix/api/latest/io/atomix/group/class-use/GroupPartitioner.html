@@ -85,7 +85,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.group">io.atomix.group</a></td>
 <td class="colLast">
-<div class="block">Provides distributed group operations tools via <a href="../../../../io/atomix/group/DistributedGroup.html" title="class in io.atomix.group"><code>DistributedGroup</code></a> including leader election,
+<div class="block">Provides distributed group operations tools via <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> including leader election,
  direct messaging, tasks queues, partitioning, and remote execution.</div>
 </td>
 </tr>
@@ -120,16 +120,47 @@
 </tbody>
 </table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Method parameters in <a href="../../../../io/atomix/group/package-summary.html">io.atomix.group</a> with type arguments of type <a href="../../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group">GroupPartitioner</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Methods in <a href="../../../../io/atomix/group/package-summary.html">io.atomix.group</a> with parameters of type <a href="../../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group">GroupPartitioner</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedGroup.Config.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/DistributedGroup.Config.html#withPartitioner-java.lang.Class-">withPartitioner</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group">GroupPartitioner</a>&gt;&nbsp;partitionerClass)</code>
-<div class="block">Sets the group partitioner class.</div>
+<td class="colFirst"><code><a href="../../../../io/atomix/group/PartitionGroup.html" title="class in io.atomix.group">PartitionGroup</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SubGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/SubGroup.html#partition-int-io.atomix.group.GroupPartitioner-">partition</a></span>(int&nbsp;partitions,
+         <a href="../../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group">GroupPartitioner</a>&nbsp;partitioner)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/group/PartitionGroup.html" title="class in io.atomix.group">PartitionGroup</a></code></td>
+<td class="colLast"><span class="typeNameLabel">MembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/MembershipGroup.html#partition-int-io.atomix.group.GroupPartitioner-">partition</a></span>(int&nbsp;partitions,
+         <a href="../../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group">GroupPartitioner</a>&nbsp;partitioner)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/group/PartitionGroup.html" title="class in io.atomix.group">PartitionGroup</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DistributedGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/DistributedGroup.html#partition-int-io.atomix.group.GroupPartitioner-">partition</a></span>(int&nbsp;partitions,
+         <a href="../../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group">GroupPartitioner</a>&nbsp;partitioner)</code>
+<div class="block">Returns a partition group.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/group/PartitionGroup.html" title="class in io.atomix.group">PartitionGroup</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SubGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/SubGroup.html#partition-int-int-io.atomix.group.GroupPartitioner-">partition</a></span>(int&nbsp;partitions,
+         int&nbsp;replicationFactor,
+         <a href="../../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group">GroupPartitioner</a>&nbsp;partitioner)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/group/PartitionGroup.html" title="class in io.atomix.group">PartitionGroup</a></code></td>
+<td class="colLast"><span class="typeNameLabel">MembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/MembershipGroup.html#partition-int-int-io.atomix.group.GroupPartitioner-">partition</a></span>(int&nbsp;partitions,
+         int&nbsp;replicationFactor,
+         <a href="../../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group">GroupPartitioner</a>&nbsp;partitioner)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/group/PartitionGroup.html" title="class in io.atomix.group">PartitionGroup</a></code></td>
+<td class="colLast"><span class="typeNameLabel">DistributedGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/DistributedGroup.html#partition-int-int-io.atomix.group.GroupPartitioner-">partition</a></span>(int&nbsp;partitions,
+         int&nbsp;replicationFactor,
+         <a href="../../../../io/atomix/group/GroupPartitioner.html" title="interface in io.atomix.group">GroupPartitioner</a>&nbsp;partitioner)</code>
+<div class="block">Returns a partition group.</div>
 </td>
 </tr>
 </tbody>
