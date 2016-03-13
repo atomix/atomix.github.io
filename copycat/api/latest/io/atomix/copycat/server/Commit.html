@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":18,"i2":6,"i3":6,"i4":18,"i5":6,"i6":6,"i7":6};
+var methods = {"i0":6,"i1":6,"i2":18,"i3":6,"i4":6,"i5":18,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -101,12 +101,12 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Superinterfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></dd>
+<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;T&gt;&gt;</dd>
 </dl>
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">Commit&lt;T extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&gt;</span>
-extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></pre>
+extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;T&gt;&gt;</pre>
 <div class="block">Represents the committed state and metadata of a Raft state machine operation.
  <p>
  Commits are representative of a log <code>Entry</code> that has been replicated
@@ -147,48 +147,66 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#close--">close</a></span>()</code>
-<div class="block">Closes the commit.</div>
+<td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#acquire--">acquire</a></span>()</code>
+<div class="block">Acquires a reference to the commit.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#close--">close</a></span>()</code>
+<div class="block">Closes the commit, releasing all references.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>default <a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#command--">command</a></span>()</code>
 <div class="block">Returns the command submitted by the client.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#index--">index</a></span>()</code>
 <div class="block">Returns the commit index.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#operation--">operation</a></span>()</code>
 <div class="block">Returns the operation submitted by the client.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>default <a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#query--">query</a></span>()</code>
 <div class="block">Returns the query submitted by the client.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#references--">references</a></span>()</code>
+<div class="block">Returns the number of open references to the commit.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#release--">release</a></span>()</code>
+<div class="block">Releases a reference to the commit.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session">ServerSession</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#session--">session</a></span>()</code>
 <div class="block">Returns the session that submitted the operation.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/time/Instant.html?is-external=true" title="class or interface in java.time">Instant</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#time--">time</a></span>()</code>
 <div class="block">Returns the time at which the operation was committed.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/Commit.html#type--">type</a></span>()</code>
 <div class="block">Returns the commit type.</div>
@@ -351,6 +369,65 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 </dl>
 </li>
 </ul>
+<a name="acquire--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>acquire</h4>
+<pre><a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a>&gt;&nbsp;acquire()</pre>
+<div class="block">Acquires a reference to the commit.
+ <p>
+ Initially, all open commits have a single reference. Acquiring new references to a commit will
+ increase the commit's <a href="../../../../io/atomix/copycat/server/Commit.html#references--"><code>reference count</code></a> which is used to determine when it's
+ safe to recycle the <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a> object and compact the underlying entry from the log. Acquired
+ references must be <a href="../../../../io/atomix/copycat/server/Commit.html#release--"><code>released</code></a> once the commit is no longer needed to free up
+ memory and disk space.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true#acquire--" title="class or interface in io.atomix.catalyst.util">acquire</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a> extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&gt;&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The referenced commit.</dd>
+</dl>
+</li>
+</ul>
+<a name="release--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>release</h4>
+<pre>boolean&nbsp;release()</pre>
+<div class="block">Releases a reference to the commit.
+ <p>
+ If releasing the commit results in the <a href="../../../../io/atomix/copycat/server/Commit.html#references--"><code>reference count</code></a> decreasing to
+ <code>0</code> then the commit will be released back to a pool and the log entry underlying the commit
+ may be compacted from the log. Once all references to the commit have been released it should
+ no longer be accessed.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true#release--" title="class or interface in io.atomix.catalyst.util">release</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a> extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&gt;&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Indicates whether all references to the commit have been released.</dd>
+</dl>
+</li>
+</ul>
+<a name="references--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>references</h4>
+<pre>int&nbsp;references()</pre>
+<div class="block">Returns the number of open references to the commit.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true#references--" title="class or interface in io.atomix.catalyst.util">references</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a> extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&gt;&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The number of open references to the commit.</dd>
+</dl>
+</li>
+</ul>
 <a name="close--">
 <!--   -->
 </a>
@@ -358,13 +435,15 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <li class="blockList">
 <h4>close</h4>
 <pre>void&nbsp;close()</pre>
-<div class="block">Closes the commit.
+<div class="block">Closes the commit, releasing all references.
  <p>
- Closing a commit will make it available for compaction from the replicated log.
+ Closing a commit will make it immediately available for compaction from the replicated log.
  Once the commit is closed, it may be recycled and should no longer be accessed by the closer.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true#close--" title="class or interface in java.lang">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></code></dd>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.util">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a> extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&gt;&gt;</code></dd>
 </dl>
 </li>
 </ul>

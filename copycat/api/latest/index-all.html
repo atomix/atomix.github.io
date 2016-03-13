@@ -74,6 +74,10 @@
 </a>
 <h2 class="title">A</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/Commit.html#acquire--">acquire()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a></dt>
+<dd>
+<div class="block">Acquires a reference to the commit.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/session/Session.State.html#active--">active()</a></span> - Method in enum io.atomix.copycat.session.<a href="io/atomix/copycat/session/Session.State.html" title="enum in io.atomix.copycat.session">Session.State</a></dt>
 <dd>
 <div class="block">Returns a boolean value indicating whether the state is an active state.</div>
@@ -252,7 +256,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/Commit.html#close--">close()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a></dt>
 <dd>
-<div class="block">Closes the commit.</div>
+<div class="block">Closes the commit, releasing all references.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/session/SessionListener.html#close-io.atomix.copycat.server.session.ServerSession-">close(ServerSession)</a></span> - Method in interface io.atomix.copycat.server.session.<a href="io/atomix/copycat/server/session/SessionListener.html" title="interface in io.atomix.copycat.server.session">SessionListener</a></dt>
 <dd>
@@ -1387,6 +1391,10 @@
 <dd>
 <div class="block">Strategy for recovering client sessions on failures.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/Commit.html#references--">references()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a></dt>
+<dd>
+<div class="block">Returns the number of open references to the commit.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/session/SessionListener.html#register-io.atomix.copycat.server.session.ServerSession-">register(ServerSession)</a></span> - Method in interface io.atomix.copycat.server.session.<a href="io/atomix/copycat/server/session/SessionListener.html" title="interface in io.atomix.copycat.server.session">SessionListener</a></dt>
 <dd>
 <div class="block">Called when a new session is registered.</div>
@@ -1398,6 +1406,10 @@
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/StateMachineExecutor.html#register-java.lang.Class-java.util.function.Function-">register(Class&lt;T&gt;, Function&lt;Commit&lt;T&gt;, U&gt;)</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a></dt>
 <dd>
 <div class="block">Registers an operation callback.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/Commit.html#release--">release()</a></span> - Method in interface io.atomix.copycat.server.<a href="io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a></dt>
+<dd>
+<div class="block">Releases a reference to the commit.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Log.html#release-long-">release(long)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></dt>
 <dd>
