@@ -8,25 +8,24 @@ project: copycat
     <div class="row">
       <div class="col-sm-12">
         <p>
-Copycat enables you to turn simple application logic into a consistent, fault tolerant distributed system. Build a custom distributed key-value store, distributed lock, distributed queue, or message bus. You supply the state machine and Copycat takes care of the rest, making it easy to build robust, safe distributed systems.
+Copycat is a fault-tolerant state machine replication framework. Built on the Raft consensus algorithm, it handles replication and persistence and enforces strict ordering of inputs and outputs, allowing developers to focus on single-threaded application logic. Its event-driven model allows for efficient client communication with replicated state machines, from simple key-value stores to wait-free locks and leader elections. You supply the state machine and Copycat takes care of the rest, making it easy to build robust, safe distributed systems.
         </p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Reliable -->
+<!--Simple -->
 <div class="feature gray-background">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
-        <h2>Reliable</h2>
+        <h2>Simple</h2>
         <p>
-          Copycat provides reliable data consistency guarantees that are maintained even when machine or network failures occur.
-        </p>
+          Copycat's simple but powerful programming model allows single-threaded state machines to be transparently scaled across a cluster.<br /><a href="/copycat/docs/state-machine">Build your state machine</a></p>
       </div>
       <div class="col-sm-5 text-right">
-        <img class="svg" src="/assets/img/icons/reliable.svg">
+        <img class="svg" src="/assets/img/icons/scalable.svg">
       </div>
     </div>
   </div>
@@ -39,9 +38,40 @@ Copycat enables you to turn simple application logic into a consistent, fault to
         <img class="svg" src="/assets/img/icons/consensus.svg">
       </div>
       <div class="col-sm-6 text-right">
-        <h2>Raft Consensus</h2>
+        <h2>Sophisticated</h2>
         <p>
-          Copycat features a sophisticated implementation of the Raft consensus algorithm with support for cluster membership changes, log compaction, and bi-directional client sessions.
+          Copycat is built on one of the most advanced implementations of the Raft consensus algorithm, supporting membership changes, incremental compaction, snapshots, session-based client communication, state machine events, and more.<br /><a href="/copycat/docs/internals">Read more</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Scalable -->
+<div class="feature gray-background">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h2>Scalable</h2>
+        <p>Copycat clusters are resilient to failure and can be scaled to virtually any size, and read capacity can be scaled independently of write capacity.<br /><a href="/copycat/docs/cluster">Read more</a></p>
+      </div>
+      <div class="col-sm-5 text-right">
+        <img class="svg" src="/assets/img/icons/scalable.svg">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="feature white-background">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5 col-sm-offset-1">
+        <img class="svg" src="/assets/img/icons/consensus.svg">
+      </div>
+      <div class="col-sm-6 text-right">
+        <h2>Reactive</h2>
+        <p>
+          Copycat's event framework allows for efficient, wait-free interaction with replicated state machines while maintaining the same fault-tolerance and consistency guarantees.<br /><a href="/copycat/docs/events">Read more</a>
         </p>
       </div>
     </div>
@@ -85,36 +115,6 @@ public class MapStateMachine extends StateMachine {
     </div>
   </div>
 </div> -->
-
-<!--Scalable -->
-<div class="feature gray-background">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-6">
-        <h2>Scalable</h2>
-        <p>Copycat scales along with the rest of your system, providing high read throughput while maintaining strong write consistency.</p>
-      </div>
-      <div class="col-sm-5 text-right">
-        <img class="svg" src="/assets/img/icons/scalable.svg">
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--Resilient -->
-<div class="feature white-background">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-5 col-sm-offset-1">
-        <img class="svg" src="/assets/img/icons/resilient.svg">
-      </div>
-      <div class="col-sm-6 text-right">
-        <h2>Resilient</h2>
-        <p>Copycat clusters are resilient to failure, automatically replacing cluster members as needed without any data loss.</p>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!--Learn more -->
 <div class="feature get-started colored-background">

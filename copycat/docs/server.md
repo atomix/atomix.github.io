@@ -7,47 +7,102 @@ first-section: server
 ---
 
 {:.no-margin-top}
-The [CopycatServer] class is a feature complete implementation of the [Raft consensus algorithm][Raft]. `CopycatServer` underlies all distributed resources supported by Copycat's high-level APIs.
+The [CopycatServer] class is a feature complete implementation of the [Raft consensus algorithm][Raft]. Multiple servers communicate with each other to form a cluster and manage a replicated [state machine][StateMachine]. Server state machines are user-defined.
 
 Each `CopycatServer` consists of three essential components:
 
-* [Transport] - Used to communicate with clients and other Raft servers
+* [Transport] - Used to communicate with clients and other servers
 * [Storage] - Used to persist [commands] to memory or disk
 * [StateMachine][state-machines] - Represents state resulting from [commands] logged and replicated via Raft
 
-To create a Raft server, use the server [Builder][builders]:
+To create a new server, use the server `Builder`. Servers require cluster membership information in order to perform communication. Each server must be provided a local `Address` to which to bind the internal `Server` and a set of addresses for other members in the cluster.
+
+### State machines
+Underlying each server is a [StateMachine][StateMachine]. The state machine is responsible for maintaining the state with relation to [commands][Command] and [queries][Query] submitted to the server by a client. State machines are provided in a factory to allow servers to transition between stateful and stateless states.
 
 ```java
+Address address = new Address("123.456.789.0", 5000);
+Collection<Address> members = Arrays.asList(
+  new Address("123.456.789.1", 5000),
+  new Address("123.456.789.2", 5000),
+  new Address("123.456.789.3", 5000),
+);
+
 CopycatServer server = CopycatServer.builder(address, members)
-  .withTransport(new NettyTransport())
-  .withStorage(new Storage("logs"))
   .withStateMachine(MyStateMachine::new)
   .build();
 ```
 
-The only two required arguments are those required by the `CopycatServer.builder` static factory method. The `address` passed into the builder factory is the `Address` of the server within the provided list of `Address`es.
+Server state machines are responsible for registering [commands][Command] which can be submitted to the cluster. Raft relies upon determinism to ensure consistency throughout the cluster, so *it is imperative that each server in a cluster have the same state machine with the same commands.* State machines are provided to the server as a factory to allow servers to transition between stateful and stateless states.
 
-Users can optionally configure the [Catalyst] transport to use and configure the Raft storage (log) module. To manage state in the Raft cluster, users must provide a `StateMachine` implementation to the server. The state machine should *always* be consistent and deterministic across all servers in the cluster.
+### Transports
+By default, the server will use the [NettyTransport][NettyTransport] for communication. You can configure the transport via `withTransport`. To use the Netty transport, ensure you have the `io.atomix.catalyst:catalyst-netty` jar on your classpath.
 
-Once the server has been created, call `open()` to start the server:
-
-{% include sync-tabs.html target1="#async-server-open" desc1="Async" target2="#sync-server-open" desc2="Sync" %}
-{::options parse_block_html="true" /}
-<div class="tab-content">
-<div class="tab-pane active" id="async-server-open">
 ```java
-server.open().thenRun(() -> System.out.println("Server started successfully!"));
+CopycatServer server = CopycatServer.builder(address, members)
+  .withStateMachine(MyStateMachine::new)
+  .withTransport(NettyTransport.builder()
+    .withThreads(4)
+    .build())
+  .build();
 ```
-</div>
 
-<div class="tab-pane" id="sync-server-open">
+### Storage
+
+As commands are received by the server, they're written to the Raft [Log][Log] and replicated to other members of the cluster. By default, the log is stored on disk, but users can override the default [Storage][Storage] configuration via `withStorage`. Most notably, to configure the storage module to store entries in memory instead of disk, configure the [StorageLevel][StorageLevel].
+
 ```java
-server.open().join();
+CopycatServer server = CopycatServer.builder(address, members)
+  .withStateMachine(MyStateMachine::new)
+  .withStorage(Storage.builder()
+    .withDirectory(new File("logs"))
+    .withStorageLevel(StorageLevel.DISK)
+    .build())
+  .build();
 ```
-</div>
-</div>
 
-The returned `CompletableFuture` will be completed once the server has connected to other members of the cluster and, critically, discovered the cluster leader. See the [server lifecycle](#server-lifecycle) for more information on how the server joins the cluster.
+Servers use the `Storage` object to manage the storage of cluster configurations, voting information, and state machine snapshots in addition to logs. See the [Storage][Storage] documentation for more information.
+
+### Serialization
+
+All serialization is performed with a Catalyst [Serializer][Serializer]. The serializer is shared across all components of the server. Users are responsible for ensuring that {@link Command commands} and {@link Query queries} submitted to the cluster can be serialized by the server serializer by registering serializable types as necessary.
+
+By default, the server serializer does not allow arbitrary classes to be serialized due to security concerns. However, users can enable arbitrary class serialization by disabling the whitelisting feature on the Catalyst `Serializer`:
+
+```java
+server.serializer().disableWhitelist();
+```
+
+However, for more efficient serialization, users should explicitly register serializable classes and binary [serializers][serialization]. Explicit registration of serializable typs allows types to be serialized using more compact 8- 16- 24- and 32-bit serialization IDs rather than serializing complete class names. Thus, serializable type registration is strongly recommended for production systems.
+
+```java
+server.serializer().register(MySerializable.class, 123, MySerializableSerializer.class);
+```
+
+### Running the server
+
+Once the server has been created, to connect to a cluster simply `start` the server. The server API is
+fully asynchronous and relies on `CompletableFuture` to provide promises:
+
+```java
+server.open().thenRun(() -> {
+  System.out.println("Server started successfully!");
+});
+```
+
+When the server is started, it will attempt to connect to an existing cluster. If the server cannot find any
+existing members, it will attempt to form its own cluster.
+
+Once the server is started, it will communicate with the rest of the nodes in the cluster, periodically
+transitioning between states. Users can listen for state transitions via `onStateChange`:
+
+```java
+server.onStateChange(state -> {
+  if (state == CopycatServer.State.LEADER) {
+    System.out.println("Server elected leader!");
+  }
+});
+```
 
 ### Server Lifecycle
 
