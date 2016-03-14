@@ -45,11 +45,11 @@ client.open().join();
 </div>
 </div>
 
-### Client lifecycle
+## Client Lifecycle
 
 When the client is opened, it will connect to a random server and attempt to register its session. If session registration fails, the client will continue to attempt registration via random servers until all servers have been tried. If the session cannot be registered, the `CompletableFuture` returned by `open()` will fail.
 
-### Submitting state machine operations
+## Submitting State Machine Operations
 
 Commands and queries can be submitted to the server-side replicated `StateMachine` using the `submit` method:
 
@@ -71,7 +71,7 @@ Object result = client.submit(new PutCommand("foo", "Hello world!")).get();
 </div>
 </div>
 
-### Client sessions
+## Client Sessions
 
 Once the client's session has been registered, the `Session` object can be accessed via `CopycatClient.session()`.
 

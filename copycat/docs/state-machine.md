@@ -27,7 +27,7 @@ public class MyStateMachine extends StateMachine {
 
 Internally, state machines are backed by a series of entries in an underlying log. In the event of a crash and recovery, state machine commands in the log will be replayed to the state machine. This is why it's so critical that state machines be deterministic.
 
-#### Registering operations
+#### Registering Operations
 
 The `StateMachineExecutor` is a special [Context][contexts] that is responsible for applying [commands](#commands) and [queries](#queries) to the state machine. As operations are committed on each server in the cluster, the `StateMachineExecutor` will execute appropriate state machine callbacks according to the registered operations. Operations are handled by registering callbacks on the provided `StateMachineExecutor` in the `configure` method:
 
@@ -80,7 +80,7 @@ public class Set<T> implements Command<T> {
 
 The [Command][Command] interface extends [Operation][Operation] which is `Serializable` and can be sent over the wire with no additional configuration. However, for the best performance users should implement [CopycatSerializable][CopycatSerializable] or register a [TypeSerializer][TypeSerializer] for the type. This will reduce the size of the serialized object and allow Copycat's [Serializer](#serializer) to optimize class loading internally during deserialization.
 
-### Command consistency
+### Command Consistency
 
 By default, [commands](#commands) submitted to the Copycat cluster are guaranteed to be linearizable. Linearizable commands are sequenced to the Raft log in the order in which they were executed on the client (program order) and are guaranteed to occur some time between invocation and response. However, sequencing commands may be unnecessary overhead for clients that don't submit concurrent writes, so Copycat allows [Command][Command] implementations to specify a `ConsistencyLevel` to control how commands are handled by the cluster.
 
@@ -144,7 +144,7 @@ Copycat provides four consistency levels for queries:
 * `Query.ConsistencyLevel.SEQUENTIAL` - Provides sequential consistency by allowing clients to read from followers and ensuring that clients see state progress monotonically
 * `Query.ConsistencyLevel.CAUSAL` - Provides causal consistency which ensures that clients will always see state progress monotonically for non-overlapping queries
 
-### Commits
+## Commits
 
 As [commands](#commands) and [queries](#queries) are logged and replicated through the Raft cluster, they gain some metadata that is not present in the original operation. By the time operations are applied to the state machine, they've gained valuable information that is exposed in the [Commit][Commit] wrapper class:
 
@@ -159,7 +159,7 @@ protected Object get(Commit<GetQuery> commit) {
 }
 ```
 
-### Sessions
+<h2 id="sessions-1">Sessions</h2>
 
 Sessions are representative of a single client's connection to the cluster. For each `Commit` applied to the state machine, an associated `Session` is provided. State machines can use sessions to associate clients with state changes or even send events back to the client through the session:
 
@@ -180,7 +180,7 @@ for (Session session : context().sessions()) {
 }
 ```
 
-### Listening for changes in sessions
+### Listening for Changes in Sessions
 
 State machines can listen for clients opening new sessions with the cluster or for existing sessions being expired by the cluster or closed by the client. All state changes in server `Session`s happen deterministically - they occur at the same *logical* time on each server in the cluster, so it's safe to rely on session state changes to change the state of the state machine.
 
@@ -208,7 +208,7 @@ public class MyStateMachine extends StateMachine implements SessionListener {
 }
 ```
 
-### Commit cleaning
+## Commit Cleaning
 
 As commands are submitted to the cluster and applied to the Raft state machine, the underlying log grows. Without some mechanism to reduce the size of the log, the log would grow without bound and ultimately servers would run out of disk space. Raft suggests a few different approaches of handling log compaction. Copycat uses the log cleaning approach.
 
@@ -231,7 +231,7 @@ As commits are released from the state machine, entries in the underlying log wi
 
 Once the underlying `Log` has grown large enough, and once enough commits have been cleaned from the log, a pool of background threads will carry out their task to rewrite segments of the log to remove commits (entries) for which `close()` has been called:
 
-#### Deterministic scheduling
+<h2 id="deterministic-scheduling-1">Deterministic Scheduling</h2>
 
 In addition to registering operation callbacks, the `StateMachineExecutor` also facilitates deterministic scheduling based on the Raft replicated log.
 

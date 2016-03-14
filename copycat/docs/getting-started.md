@@ -3,10 +3,10 @@ layout: docs
 project: copycat
 menu: docs
 title: Getting Started
-pitch: Copycat in five minutes
 first-section: getting-started
 ---
 
+{:.no-margin-top}
 ## Installation
 
 Copycat consists of two core modules. To use the Raft server library, add the `copycat-server` jar
@@ -40,7 +40,7 @@ In addition to client and server libraries, typically you must include a `transp
 </dependency>
 ```
 
-### Creating a state machine
+### Creating a State Machine
 
 Copycat's primary role is as a framework for building highly consistent, fault-tolerant replicated state machines. Copycat servers receive state machine operations from clients, log and replicate the operations as necessary, and apply them to a state machine on each server. State machine operations are guaranteed to be applied in the same order on all servers, and Copycat handles the persistence and replication of the state machine state internally.
 
@@ -53,7 +53,7 @@ public class MapStateMachine extends StateMachine {
 
 Copycat servers will create an instance of the state machine class and manage method calls to the state machine.
 
-### Defining state machine operations
+### Defining State Machine Operations
 
 Copycat replicated state machines are modified and queried by defining operations through which a client and state machine can communicate. Operations are replicated by the Copycat cluster and are translated into arguments to methods on the replicated state machine. Users must define the interface between the client and the cluster by implementing `Operation` classes that clients will submit to the replicated state machine.
 
@@ -97,7 +97,7 @@ public class GetQuery implements Query<Object> {
 
 It's critical that command and query operations be correctly implemented based on how they operate on the state machine's state. Implementing commands that simply read the system's state will result in a significant loss of performance by unnecessarily writing reads to disk and replicating them to a majority of the cluster. Implementing a query that modifies the state machine state can result in lost writes and inconsistent state across servers.
 
-### Implementing state machine operations
+### Implementing State Machine Operations
 
 State machine operations are implemented as `public` methods on the state machine class which accept a single `Commit` parameter where the generic argument for the commit is the operation accepted by the method. Copycat automatically detects the command or query that applies to a given state machine methods based on the generic argument to the `Commit` parameter.
 
@@ -125,7 +125,7 @@ public class MapStateMachine extends StateMachine {
 
 In each operation method, once the commit has been applied to the state machine, the `Commit` must be `close`d. This releases the `Commit` object back to a pool. In certain types of state machines, commits can be held open across method calls. This is explained in more detail in the [state machine][state-machines] documentation.
 
-### Implementing snapshot support
+### Implementing Snapshot Support
 
 State machine operations are replicated and written to a log on disk on each server in the cluster. As commands are submitted to the cluster over time, the disk capacity will eventually be consumed. Copycat must periodically remove unneeded commands from the replicated log to conserve disk space. This is known as log compaction.
 
@@ -152,7 +152,7 @@ public class MapStateMachine extends StateMachine implements Snapshottable {
 
 For snapshottable state machines, Copycat will periodically request a binary snapshot of the state machine's state and write the snapshot to disk. If the server is restarted, the state machine's state will be recovered from the on-disk snapshot. When a new server joins the cluster, the snapshot of the state machine will be replicated to the joining server to catch up its state. This allows Copycat to remove commits that contributed to the snapshot from the replicated log, thus conserving disk space.
 
-### Starting a Copycat server
+### Starting a Copycat Server
 
 Once a state machine and its operations have been defined, we can start a cluster of `CopycatServer`s to replicate and query the state machine. Copycat uses the builder pattern for configuring and constructing servers. Each Copycat server must be initialized with a local `Address` and a list of remote `Address`es of all the other members of the cluster. This is known as the *cluster configuration*.
 
@@ -228,7 +228,7 @@ future.join();
 
 Remember that a majority of the cluster must be available for a server to be started. If the cluster configuration specifies three servers then two must be started and join each other for a leader to be elected and for the cluster to begin accepting state machine operations.
 
-### Submitting operations via the client
+### Submitting Operations Via the Client
 
 Clients are built in a manner very similar to servers. To construct a client, create a `CopycatClient.Builder` by providing a list of initial servers to which to connect.
 

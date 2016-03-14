@@ -15,7 +15,7 @@ It's important to note that wherever Copycat diverges from standards and recomme
 
 The following documentation details Copycat's implementation of the Raft consensus algorithm and in particular the areas in which the implementation diverges from the recommendations in Raft literature and the reasoning behind various decisions.
 
-<h2 id="raft-basics">1 Raft basics</h2>
+<h2 id="raft-basics">1 Raft Basics</h2>
 
 In order to understand the context within which Copycat was developed, it's important to understand the core concepts of the Raft consensus algorithm. This section provides a brief overview of the core concepts of the algorithm, including leader election, log replication, and membership changes. Of course, the best place to read about the basics of the Raft algorithm is in the original [Raft paper][raft-paper].
 
@@ -29,25 +29,25 @@ A Raft cluster consists of three different types of nodes: *followers*, *candida
 
 Raft is typically used to model replicated state machines. Leaders receive state machine commands and write them to a local log which is then replicated to followers in batch. Once a command submitted to a leader has been logged and replicated to a majority of the cluster, the command is considered *committed* and the leader applies the command to its own state machine and responds to the client. In the event of a server restart, the server replays the committed entries in its logs to rebuild the state of the server state machine.
 
-<h3 id="leader-election-basics">1.1 Leader election</h3>
+<h3 id="leader-election-basics">1.1 Leader Election</h3>
 
 Raft clusters use a logical concept of time referred as a term, also known as an epoch in some other algorithms. For each term, Raft may or may not elect a leader, and only one leader may exist for any given term. Servers use a variety of timers and consistency checks to elect a leader. Once a leader is elected, all writes to the cluster go through the leader and are replicated to a majority of the cluster.
 
 Raft's leader election algorithm is heavily dependent on the log. When a follower fails to receive a heartbeat from an existing leader for some configurable time period (the *election timeout*), the follower transitions to the candidate state and starts a new election. Raft allows any server to become a candidate and start a new election. Upon transitioning, a candidate increments the term and requests votes from all other members of the cluster. Servers vote for candidates based on simple consistency checks comparing the candidate's log with the voter's log. If a candidate requests a vote from a server whose log is more up-to-date than the candidate's or which has already voted for another candidate, the vote request is rejected, otherwise it's accepted. Once a candidate receives votes from a majority of the cluster (including itself), it transitions to leader and begins replicating entries. The integration of the Raft log directly into the election protocol ensure that only candidates whose logs contain all committed entries can be elected leader.
 
-<h3 id="log-replication-basics">1.2 Log replication</h3>
+<h3 id="log-replication-basics">1.2 Log Replication</h3>
 
 Logs are replicated from leaders to followers. When a command is submitted to the cluster, the leader appends the command as an entry in its log. Leaders periodically sends entries to each available follower in batches. Each batch of entries is sent with the index and term of the previous entry in the leader's log, and followers use that information to perform consistency checks against their own logs. If a follower's log is inconsistent with the leader's log, the follower will truncate entries from its log and the leader will resend missing entries to the follower. Once a majority of the servers have acknowledged receipt of a given entry, it is considered committed and is applied to the leader's state machine. Eventually, followers are notified of the commitment of the command and apply it to their own logs as well.
 
-<h3 id="membership-changes-basics">1.3 Membership changes</h3>
+<h3 id="membership-changes-basics">1.3 Membership Changes</h3>
 
 Raft supports the concept of cluster membership changes through special configuration entries in the Raft log. Configuration changes are logged and replicated like any other state change. However, in order to prevent "split brain", Raft only allows a single member to be added to or removed from the cluster at any given time, and no two configuration changes may overlap in commitment.
 
-<h3 id="log-compaction-basics">1.4 Log compaction</h3>
+<h3 id="log-compaction-basics">1.4 Log Compaction</h3>
 
 As commands are submitted to a Raft cluster and logged and replicated, the replicated log grows unbounded. In order to prevent servers from eventually running out of disk space, Raft provides a mechanism for servers to compact their logs independently of one another. The canonical form of log compaction in Raft is snapshots. Snapshots work by storing the state of the state machine at a specific point in logical time for recovery from disk. By storing the complete state of the server on disk, servers can safely remove all applied entries from their logs. In the event of a server restart, the server first installs the snapshot from disk before replaying its log to the state machine.
 
-<h2 id="the-copycat-cluster">2 The Copycat cluster</h2>
+<h2 id="the-copycat-cluster">2 The Copycat Cluster</h2>
 
 The structure of Copycat clusters differs significantly from typical Raft clusters primarily due to the need to support greater flexibility in systems in which Copycat is embedded. High-availability systems cannot be constrained by the strict quorum-based requirements of consensus algorithms, so Copycat provides several node types to address scalability issues.
 
@@ -63,7 +63,7 @@ All cluster membership and member state changes are committed as configuration c
 
 Each stateful server in a cluster maintains two logical state machines. An internal state machine on each server is responsible for managing sessions, connections, and scheduling within the user state machine, and the user state machine contains application logic. Commands submitted by clients are forwarded to the Raft leader where they're logged, replicated, and applied to the user state machine on each server. Queries submitted by clients are handled either by the server to which the client is connected or forwarded to the Raft leader depending on [consistency constraints](#client-queries).
 
-<h2 id="client-interaction">3 Client interaction</h2>
+<h2 id="client-interaction">3 Client Interaction</h2>
 
 The basic Raft consensus algorithm dictates that clients should communicate directly with the leader to submit reads and writes to the cluster. The leader services writes by committing commands to the Raft log, and in linearizable systems the leader services reads by synchronously verifying its leadership with a majority of the cluster before applying them to the state machine. But practical systems can benefit from relaxed consistency models, and indeed the Raft literature does describe some ways to achieve this. Clients can submit read-only queries to followers without losing sequential consistency. In fact, there are even ways to make reads on followers linearizable, albeit at significant cost.
 
@@ -75,7 +75,7 @@ Clients interact with the cluster within the context of a session. Sessions prov
 
 Clients' sessions are managed through the Raft log and state machine, affording servers a deterministic view of the active sessions in the cluster. Sessions are registered by committing an entry to the Raft log and kept alive over time with periodic commits. In the event that a client fails to keep its session alive, each server will expire the client's session deterministically.
 
-<h3 id="session-lifecycle-management">3.2 Session life-cycle management</h3>
+<h3 id="session-lifecycle-management">3.2 Session Life-Cycle Management</h3>
 
 Client sessions are managed through entries committed to the Raft log and applied to internal server state machines. When a client first connects to a cluster, the client connects to a random server and attempts to register a new session. If the registration fails, the client attempts to connect to another random server and register a new session again. In the event that the client fails to register a session with any server, the client fails and must be restarted. Alternatively, once the client successfully registers a session through a server, the client continues to submit commands and queries through that server until a failure or shutdown event.
 
@@ -89,7 +89,7 @@ Copycat's Raft implementation separates the concept of writes from reads in orde
 
 When the leader receives a command, it writes the command to the log along with a client provided sequence number, the session ID of the session which submitted the command, and an approximate timestamp. Notably, the timestamp is used to provide a deterministic approximation of time with which state machines can support time-based command handling like TTLs or other timeouts.
 
-<h4 id="preserving-program-order">3.3.1 Preserving program order</h4>
+<h4 id="preserving-program-order">3.3.1 Preserving Program Order</h4>
 
 There are certain scenarios where sequential consistency can be broken by clients submitting concurrent commands via disparate followers. If a client submits a command to server `A` which forwards it to server `B` (the leader), and then before receiving a reply switches servers and submits a command to server `C` which also forwards it to server `B`, it is conceivable that the command submitted to server `C` could reach the leader prior to the command submitted via server `A`. If those commands are committed to the Raft log in the order in which they're received by the leader, that will violate sequential consistency since state changes will no longer reflect the client's program order.
 
@@ -101,7 +101,7 @@ When the leader receives a command, it sequences the command based on the curren
 * Otherwise, write the command to the log and commit it (no need to log again)
 * Once the command has been written to the log, handle any queued commands for `sequence + 1`
 
-<h4 id="linearizable-semantics">3.3.2 Linearizable semantics</h4>
+<h4 id="linearizable-semantics">3.3.2 Linearizable Semantics</h4>
 
 Sequence numbers are also used to provide linearizability for commands submitted to the cluster by clients by storing command output by sequence number and deduplicating commands as they're applied to the state machine. If a client submits a command to a server but disconnects from the server before receiving a response, or if the server to which the client submitted the command itself fails, the client doesn't necessarily know whether or not the command succeeded. Indeed, the command could have been replicated to a majority of the cluster prior to the server failure. In that case, the command would ultimately be committed and applied to the state machine, but the client may never receive the command output. Session-based linearizability ensures that clients can still read output for commands resubmitted to the cluster. Servers simply log and commit all commands submitted to the cluster, and in the event a command from the same client with the same sequence number is applied to the state machine more than once, the state machine returns the result from the original application of the command, thus preventing it from being applied multiple times. Effectively, state machines in Copycat are idempotent.
 
@@ -113,7 +113,7 @@ When a query is submitted to the Raft cluster, as with all other requests the qu
 
 Queries are optionally allowed to read stale state from followers. In order to do so in a manner that maintains sequential consistency (clients see state progress monotonically) when the client switches between servers, the client needs to have a view of the most recent state for which it has received output. When commands are committed and applied to the user-provided state machine, command output is cached in memory for linearizability and the command output returned to the client along with the index of the command. Thereafter, when the client submits a query to a follower, it will ensure that it does not see state go back in time by indicating to the follower the highest index for which it has seen state.
 
-<h4 id="processing-queries-on-followers">3.4.1 Processing queries on followers</h4>
+<h4 id="processing-queries-on-followers">3.4.1 Processing Queries on Followers</h4>
 
 When queries are submitted to the cluster, the client specifies the highest `index` for which it has received a response. Awaiting that index when servicing queries on followers ensures that state does not go back in time if a client switches servers. Once the server's state machine has caught up to the client's `index`, the server applies the query to its state machine and responds with the state machine output.
 
@@ -121,39 +121,39 @@ Clients' indexes are based on feedback received from the cluster when submitting
 
 Log consistency for inconsistent queries is determined by checking whether the server's log's `lastIndex` is greater than or equal to the `commitIndex`. That is, if the last *AppendEntries* RPC received by the server did not contain a `commitIndex` less than or equal to the log's `lastIndex` after applying entries, the server is considered out-of-sync and queries are forwarded to the leader.
 
-<h4 id="ensuring-state-progresses-monotonically">3.4.2 Ensuring state progresses monotonically</h4>
+<h4 id="ensuring-state-progresses-monotonically">3.4.2 Ensuring State Progresses Monotonically</h4>
 
 While Copycat allows clients' queries to be processed on followers and ensures sequential consistency even when switching servers, in some cases this can still result in significant delay. If a client switches to a server that is far behind its previous server, it can block the client's queries for some indeterminate amount of time. Clients should place an upper-bound on the amount of time within which a query must be handled by a server. If a query request times out, the client should switch to a new server and resubmit the query. All operations submitted to the cluster are idempotent and guaranteed to be sequentially consistent, so there's no risk of loss of consistency using this approach. But servers also have a mechanism to reject queries from clients if their state is too far behind. When a follower receives a query from a client, it checks to determine whether the last known `commitIndex` is present in its log. If the follower's last log index is less than the `commitIndex`, it forwards the query to the leader.
 
-<h3 id="session-expiration">3.5 Session expiration</h3>
+<h3 id="session-expiration">3.5 Session Expiration</h3>
 
 When a new session is [registered](#session-lifecycle-management), the session is assigned a timeout. The session timeout is the time after which the session may be expired by the cluster. Clients are responsible for submitting keep alive requests to the cluster at intervals less than the session timeout. State machines determine when sessions time out based on the state machine time elapsed since the last keep-alive for a given session. Note that this depends on the existence of some mechanism for managing a deterministic representation of time in the state machine. In Copycat, this is done by writing the leader's timestamp to a variety of log entries.
 
-<h3 id="replicating-server-configurations">3.6 Replicating server configurations</h3>
+<h3 id="replicating-server-configurations">3.6 Replicating Server Configurations</h3>
 
 When a session is [registered](#session-lifecycle-management) with Copycat cluster, the client begins submitting periodic keep-alive requests to the cluster according to the configured session timeout. However, session timeouts may be configured differently on each server. In order to account for inconsistencies in session configurations in the cluster, we append the leader's configured session timeout to the log entry registering the session. When a session registration is applied to internal state machines, the state machines set the session timeout based on the timeout in the log rather than their local server configuration. This ensures that all servers have a consistent view of timeouts for each individual session and can therefore expire sessions deterministically. Once a `RegisterEntry` is committed and a new session is registered, the leader sends the logged timeout back to the client.
 
 Alternatively, servers could replicate their session timeouts in special configuration change entries. This could allow servers' session timeouts to be reconfigured without impacting existing sessions. Servers would still have to provide a session timeout in keep-alive responses. When a leader logged and committed a keep-alive entry, it would respond with the next keep-alive interval based on the last committed session timeout.
 
-<h3 id="ensuring-time-progresses-monotonically">3.7 Ensuring time progresses monotonically</h3>
+<h3 id="ensuring-time-progresses-monotonically">3.7 Ensuring Time Progresses Monotonically</h3>
 
 Sessions are expired in the internal state machine on each server based on log times. In Copycat, all session-related entries are written to the log with the leader's timestamp. The timestamp is used as an approximation of wall-clock time in the state machine. We assume that a leader change can result in log time decreasing; a new leader may log an entry with a timestamp prior to the last timestamp logged by the previous leader. Thus, in order to ensure that state machine time progresses monotonically, when a session entry is applied to the internal state machine the state machine time is updated. Because we assume time can differ on different servers, state machine time could potentially decrease after a leader change. To prevent such a scenario, state machine time is always updated with max(oldTime, newTime). When the state machine time is updated by a session-related entry (register, keep-alive, or unregister), all existing sessions are checked for expiration.
 
-<h3 id="preventing-disruptions-due-to-leader-changes">3.8 Preventing disruptions due to leader changes</h3>
+<h3 id="preventing-disruptions-due-to-leader-changes">3.8 Preventing Disruptions Due to Leader Changes</h3>
 
 In the event of a network partition or other loss of quorum, Raft can require an arbitrary number of election rounds to elect a new leader. In practice, the number of election rounds is normally low, particularly with the pre-vote protocol. Nevertheless, clients cannot keep their sessions alive during election periods since they can't write to the leader. In order to ensure client sessions don't expire during elections, Copycat expands upon the Raft election protocol to reset all session timeouts when a new leader is elected as part of the process for committing commands from prior terms. When a new leader is elected, the leader's first action is to commit a no-op entry. The no-op entry contains a timestamp to which all session timeouts will be reset when the entry is committed and applied to the internal state machine on each server. This ensures that even if a client cannot communicate with the cluster for more than a session timeout during an election, the client can still maintain its session as long as it commits a keep alive request within a session timeout after the new leader is elected.
 
-<h2 id="state-machines">4 State machines</h2>
+<h2 id="state-machines">4 State Machines</h2>
 
 Each server is configured with a state machine to which it applies committed commands and queries. State machine operations are executed in a separate state machine thread to ensure that blocking state machine operations do not block the internal server event loop.
 
 Servers maintain both an internal state machine and a user state machine. The internal state machine is responsible for maintaining internal system state such as sessions and membership and applying commands and queries to the user-provided `StateMachine`.
 
-<h3 id="deterministic-scheduling">4.1 Deterministic scheduling</h3>
+<h3 id="deterministic-scheduling">4.1 Deterministic Scheduling</h3>
 
 Because of the complexities of coordinating distributed systems, time does not advance at the same rate on all servers in the cluster. What is essential, though, is that time-based callbacks be executed at the same point in the Raft log on all nodes. In order to accomplish this, the leader writes an approximate Instant to the replicated log for each command. When a command is applied to the state machine, the command's timestamp is used to invoke any outstanding scheduled callbacks. This means the granularity of scheduled callbacks is limited by the minimum time between commands submitted to the cluster, including session register and keep-alive requests.
 
-<h2 id="session-events">5 Session events</h2>
+<h2 id="session-events">5 Session Events</h2>
 
 Typical implementations of the Raft consensus algorithm expose an API to allow users to alter state in the state machine. But more complex coordination may often require that clients learn about changes in the state machine as well. A naive implementation of this is polling. Polling requires that clients periodically request any state changes from the cluster, but it also implies greater latency and load on the cluster. In order for a client to learn about a state change event, the client must first make a request to the cluster, and all clients must poll the cluster regardless of whether there are any notifications waiting. Long polling can reduce the number latency of receiving events from the cluster, but it precludes pipelining events to the client. Alternatively, systems can push state change notifications to clients. Copycat servers use this approach to push state machine events to clients.
 
@@ -161,7 +161,7 @@ In many cases, clients can essentially behave as extensions of the replicated st
 
 For these reasons, session event notifications cannot be implemented as simple messages to the client. Networks are unreliable, and we must assume that messages may be arbitrarily lost or reordered. Fortunately, Raft provides the primitives on which events can be pushed to clients in a fault-tolerant manner. In order to do so, we simply extended Raft's sessions to encapsulate the framework for guaranteeing order in session events.
 
-<h3 id="publishing-events-from-the-state-machine">5.1 Publishing events from the state machine</h3>
+<h3 id="publishing-events-from-the-state-machine">5.1 Publishing Events from the State Machine</h3>
 
 State machines push event messages to clients as part of their normal operation. Referred to as session events, messages are published to clients during the application of normal operations to the state machine. For instance, while a lock is held by one session, a lock state machine might queue additional sessions waiting for the lock to be released. Once the lock is released, the state machine could push a release notification to the next session in the queue. By publishing session events in response to commands being applied to the state machine, we can infer order among the events across the different servers in the cluster.
 
@@ -185,7 +185,7 @@ The simplest and most efficient approach to ensuring order among event messages 
 
 However, in cases where the number of event messages for a single index may exceed a reasonable batch size, messages must be explicitly ordered within indexes. To order many messages within a single index, Publish RPCs to the client must include a starting offset and `prevOffset` which denote the offset of the first message within the index in the RPC and the offset of the end of the previous message. The latter is necessary because there is no fixed number of event messages per batch. Thus, when a batch crosses indexes, the `prevOffset` effectively indicates the number of messages in the batch for the previous index.
 
-<h3 id="sequencing-events-on-the-client">5.2 Sequencing events on the client</h3>
+<h3 id="sequencing-events-on-the-client">5.2 Sequencing Events on the Client</h3>
 
 While event messages are in transit between the server and client, we assume messages can be arbitrarily lost or reordered. Individual requests can take several paths to the client depending on the cluster and client configurations, and different messages from the same server can travel different routes to the client. But as with other areas of the system, our goal was to implement sequential consistency for session events. Strict ordering simplifies reasoning about a system and allows the client to essentially act as an extension of the replicated state machine.
 
@@ -207,7 +207,7 @@ The client initializes its `eventIndex` to `0`. When the client receives a batch
 
 Requirements for responding to session event messages is dependent upon the event consistency model. Clients can safely respond to session event messages before processing them, but in some cases linearizability for session events is desired. For instance, when a lock is released, it may be important that the next lock holder is notified before the lock release is complete. If linearizability is a requirement, clients must fully process all messages in a batch prior to responding to the *Publish* RPC. Responding to a *Publish* RPC prior to processing the messages therein can result in the triggering command being completed before event message handlers are completed.
 
-<h3 id="managing-server-memory">5.3 Managing server memory</h3>
+<h3 id="managing-server-memory">5.3 Managing Server Memory</h3>
 
 As commands are committed to the Raft log and applied to server state machines, servers may push an arbitrary number of event messages to any session in response to any given command. In order to maintain fault-tolerance, each server must hold session events in memory even if the client to which an event was published is not connected to that server. This ensures that in the event of the failure of the server to which a client is connected, the client can reconnect to another server and continue to receive events for its session.
 
@@ -217,7 +217,7 @@ Clients only ever have direct communication with a single server. The client exc
 
 In order to ensure all servers clear acknowledged events from memory, each client must include in its periodic *KeepAlive* RPCs the highest index for which it has received events in sequential order. When the leader logs and commits a *KeepAlive* entry, state machines on each server can remove events up to the provided `eventIndex`.
 
-<h3 id="linearizable-session-events">5.4 Linearizable session events</h3>
+<h3 id="linearizable-session-events">5.4 Linearizable Session Events</h3>
 
 Clients are designed to favor connections to specific servers. Many implementations of the Raft consensus algorithm tend to favor communicating directly with the leader, but Copycat's clients are designed to spread the load across the cluster. This means clients requests are often proxied through a follower to the leader. However, this poses a particularly daunting challenge for pushing event messages from servers to the client.
 
@@ -229,11 +229,11 @@ In order to provide linearizable semantics for session event messages while reta
 
 Given the association of sessions to servers, we can implement linearizable session events by proxying event messages through the server to which the client is connected. When an event is published by the leader's state machine, the leader attempts to proxy the event batch through the appropriate follower based on the last known connection for the session. If the client is no longer connected to that follower, it will eventually establish a new connection, and the leader can resend the lost event messages.
 
-<h3 id="recovering-messages-after-a-server-failure">5.5 Recovering messages after a server failure</h3>
+<h3 id="recovering-messages-after-a-server-failure">5.5 Recovering Messages After a Server Failure</h3>
 
 Many implementations of the Raft consensus algorithm allow certain operations to be executed on a single node in the cluster. Read-only operations can safely be evaluated on a follower without losing sequential consistency by tracking the index of the last entry seen by the client. But because session events rely on replication of commands through the Raft log for fault tolerance, state machines must publish events only in response to operations that have been written and committed to the Raft log. This ensures that events are published by a majority of the cluster and will not be lost in the event of a failure because, once committed, commands themselves are guaranteed to be stored on a majority of servers.
 
-<h3 id="managing-log-compaction">5.6 Managing log compaction</h3>
+<h3 id="managing-log-compaction">5.6 Managing Log Compaction</h3>
 
 Session event messages are retained in server state machines until the client acknowledges receipt or the client's session times out. In the event of a server crash, servers must be able to recover session events to retain fault tolerance. For this reasons, state machines must ensure that commands which create session event messages are retained in the log until those events are received by their respective clients. If servers remove commands from their logs before related event messages have been acknowledged by clients, this can result in a liveness (good things will eventually happen) violation. Session events are ordered on the client based on the index of the previous event sent to the client. But servers lose contextual information when compacting their logs.
 
@@ -256,7 +256,7 @@ For systems that do snapshot-based log compaction, servers could persist pending
 
 The drawback to this approach to log compaction is that commands for which no events were published or for which events were already acknowledged by clients often cannot be removed from the log because earlier events may still be pending. However, we feel the liveness properties of sessions make this an acceptable trade-off. Still, we have conceived an optimized approach for incremental log compaction that does not require waiting for events for unrelated commands to be received by clients. By checking each entry against in-memory session events, commands for which no events were published or for which published events were acknowledged by receiving clients can be safely removed from the log. We suspect this algorithm would work well with incremental log compaction since entries are evaluated and removed on an individual basis, but unfortunately it cannot be applied to snapshot-based approaches since a snapshot implies a fixed point in time and operates only on chunks of entries in the log.
 
-<h2 id="membership-changes">6 Membership changes</h2>
+<h2 id="membership-changes">6 Membership Changes</h2>
 
 The Raft consensus algorithm is designed explicitly with the goal of supporting cluster membership changes without downtime. However, because of the restrictions on commitment of state changes to a Raft cluster, configuration changes are nevertheless an expensive operation. When new servers join the cluster, their logs must be caught up to the leader before they can begin actively participating in the commitment of entries to the Raft log. This implicit overhead in replacing voting Raft members makes systems that dynamically replace failed Raft servers impractical. Nevertheless, we sought an approach that could quickly replace failed voting members. This section proposes an algorithm wherein Raft voting members can be quickly replaced by maintaining standby servers.
 
@@ -266,11 +266,11 @@ But even with the advancements in configuration change processes in the Raft con
 
 The time it takes for a new server to join the cluster and catch up to the leader makes dynamically replacing failed servers impractical. Thus, we propose reducing the latency of catching up new servers by maintaining a hierarchical network of servers wherein standby servers are always available to become active voting members. The network contains three different types of servers — active, passive, and reserve members — each of which play some role in supporting rapid replacement of failed servers.
 
-<h3 id="active-members">6.1 Active members</h3>
+<h3 id="active-members">6.1 Active Members</h3>
 
 Active members are full voting members which participate in all aspects of the Raft consensus algorithm. Active servers are always in one of the Raft states — follower, candidate, or leader — at any given time.
 
-<h3 id="passive-members">6.2 Passive members</h3>
+<h3 id="passive-members">6.2 Passive Members</h3>
 
 When a new server is added to a Raft cluster, the server typically must be caught up to within some bound of the leader before it can become a full voting member of the cluster. Adding a new server without first warming up its log will result in some period of decreased availability. Still, even in implementations that avoid availability problems by catching up servers before they join, the process of catching up a new server is not insignificant. The leader must send its entire log to the joining server, and for systems that take snapshots, the snapshot must be installed on the new server as well. Thus, there is significant overhead in terms of time and load to dynamically replacing a failed server.
 
@@ -278,7 +278,7 @@ However, systems can maintain servers that are virtually kept in sync with the r
 
 Passive servers can also be useful in other contexts. For instance, our implementation optionally allows reads to be executed on passive servers with relaxed consistency requirements. Systems can still maintain sequential consistency on passive servers with the same mechanisms as those used for [querying followers](#processing-queries-on-followers).
 
-<h3 id="reserve-members">6.3 Reserve members</h3>
+<h3 id="reserve-members">6.3 Reserve Members</h3>
 
 Thus far, we've described active voting members and the process of replacing them with passive members. This provides a mechanism for rapidly recovering the full cluster of voting members so long as a majority of the voting members is not lost at the same time. For large clusters, though, the overhead of maintaining passive servers can by itself become a drain on the cluster's resources. Each additional passive server imposes the overhead of replicating all committed log entries, and this is significant even if done by followers. Thus, to ease the load on large clusters, we introduce the reserve member type.
 
@@ -286,7 +286,7 @@ Reserve members serve as standbys to passive members. When an active server fail
 
 Reserve servers do not maintain state machines and need not known about committed entries. However, because reserve servers can be promoted to passive, they do need to have some mechanism for learning about configuration changes.
 
-<h3 id="passive-replication">6.4 Passive replication</h3>
+<h3 id="passive-replication">6.4 Passive Replication</h3>
 
 The process of replicating to passive servers parallels that of the process of catching up new servers during configuration changes. However, the implication of catching up new servers is that practically speaking it doesn't place any additional load on the cluster. Once the server is caught up, it will become a full voting member so will continue to receive *AppendEntries* RPCs from the leader at normal intervals anyways. Thus, it makes sense for the leader to  include new servers in *AppendEntries* RPCs. Conversely, passive servers persist for significantly longer than the time it takes to catch up a new server and the replication of entries to passive servers represents additional load on the cluster. Additionally, little is gained from the leader replicating entries to passive servers directly. Thus, we propose moving responsibility for replicating entries to passive servers from the leader to followers.
 
@@ -297,17 +297,17 @@ Each follower is responsible for sending *AppendEntries* RPCs to a subset of pas
 
 In order to spread the load across the cluster and prevent conflicts in passive replication, each follower is responsible for replicating entries to a subset of the available passive members. This seems to imply that followers must have some sense of the availability of both active and passive servers in the cluster so that they can determine the relationship between followers and passive members. However, because the algorithm is designed to promote passive servers when an active server is unavailable, followers need not have any mechanism for determining the state of active members.
 
-<h3 id="promoting-passive-members">6.5 Promoting passive members</h3>
+<h3 id="promoting-passive-members">6.5 Promoting Passive Members</h3>
 
 Any server can promote any other server. Passive servers are promoted by simply committing a single-server configuration change adding the passive server to the quorum. As with all configuration changes, the updated configuration is applied on each server as soon as it's written to the log to prevent so-called "split brain."
 
 Because passive servers receive configuration changes as part of normal replication of entries via *AppendEntries* RPCs, passive servers that are promoted in a given configuration must be able to continue receiving entries. However, the failure of a follower can result in the halting of *AppendEntries* RPCs to a passive server. If that passive server is then promoted, it will never receive the configuration change and thus will never actually transition to the active member state. For this reason, leaders must take over responsibilities for sending *AppendEntries* RPCs to any server promoted from passive to active immediately after the configuration change is written to the leader's log. Indeed, this is the expected behavior as configuration changes are immediately applied when written to the log. However, note that if the follower responsible for sending *AppendEntries* RPCs to the promoted server for cold is alive, for some period of time both the leader and the follower will send *AppendEntries* RPCs to the server being promoted. This, however, should not pose safety issues as the *AppendEntries* protocol ensures entries will not be duplicated in the promoted server's logs.
 
-<h3 id="demoting-active-members">6.6 Demoting active members</h3>
+<h3 id="demoting-active-members">6.6 Demoting Active Members</h3>
 
 The ultimate goal of the dynamic configuration change process is to replace an unavailable voting member with an available voting member. However, in order to ensure a further loss of availability is not incurred, it's critical that the failed active server not be demoted until it has been fully replaced by the promotion of a passive server. This ensures that the quorum size is not decreased in the event of a failure to commit the initial configuration change promoting the passive server. Once the promotion of the passive server has been committed, the unavailable active server can be demoted from the quorum.
 
-<h3 id="determining-availability">6.7 Determining availability</h3>
+<h3 id="determining-availability">6.7 Determining Availability</h3>
 
 The dynamic membership change algorithm as described thus far replaces unreachable active members with arbitrary passive members and passive members with reserve members. However, this algorithm does not account for cases where passive or reserve servers are themselves reachable. Thus, some extension needs to be made to provide a consistent view of the availability of each server in the cluster.
 
@@ -317,7 +317,7 @@ In order to facilitate promoting available members and demoting unavailable memb
 
 As is the case with [session expiration](#session-expiration), no-op entries committed at the beginning of a new leader's term effectively reset the timeout for all members. This ensures that members do not appear unavailable due to leadership changes.
 
-<h2 id="the-copycat-log">7 The Copycat log</h2>
+<h2 id="the-copycat-log">7 The Copycat Log</h2>
 
 At the core of the Raft consensus algorithm is the log. As commands are submitted to the cluster, entries representing state changes are written to an ordered log on disk. Logs provide the mechanism through which persistence and consistency is achieved in Raft.
 
@@ -325,7 +325,7 @@ But logs pose particular challenges in managing disk consumption. As commands ar
 
 Typical implementations of the Raft consensus algorithm use a snapshot-based approach to compacting server logs. But in search of more consistent performance and because of the unique needs of Copycat's session event algorithms, we opted to implement an incremental log compaction algorithm that facilitates a variety of methodologies for managing on-disk state within state machines.
 
-<h3 id="log-structure">7.1 Structure of the log</h3>
+<h3 id="log-structure">7.1 Structure of the Log</h3>
 
 Copycat logs are broken into segments. Each segment of a log is backed by a single file on disk (or block of memory) and represents a sequence of entries in the log. Once a segment becomes full - either determined by its size or the number of entries - the log rolls over to a new segment. Each segment has a 64-byte header that describes the segment's starting index, timestamp, version, and other information relevant to log compaction and recovery.
 
@@ -335,7 +335,7 @@ Copycat logs are broken into segments. Each segment of a log is backed by a sing
 
 Each entry in the log is written with a 16-bit unsigned length, a 32-bit unsigned `offset`, and an optional 64-bit `term`. Because Raft guarantees that terms in the log are monotonically increasing, the term is written only to the first entry in a segment for a given term, and all later entries inherit the term. When an entry with a new term is appended, that entry is written with the new term and subsequent entries inherit the term.
 
-<h3 id="log-indexes">7.2 Log indexes</h3>
+<h3 id="log-indexes">7.2 Log Indexes</h3>
 
 Copycat reads entries from its log from a dense in-memory index of all entries in each segment. An index is associated with each segment and thus each file on disk, and each entry in the index points to the position of a specific offset in the segment. Offsets are zero-based sequence numbers used to represent the offset of an index relative to the *starting* index within a segment. For instance, if the index of an entry at offset `0` in a segment is `10` then offset `9` is index `20`. Making offsets relative to the starting index of a segment allows Copycat to use more compact 32-bit unsigned integers to represent indexes in the log.
 
@@ -345,17 +345,17 @@ Because the index is used to index offsets in the log, and because offsets and l
 
 But once a segment has been [compacted](#log-compaction), or if a server is being caught up by a leader whose log has been compacted, some entries may be missing from a segment. Copycat's log compaction algorithm rewrites segments with arbitrary entries removed, and existing entries retain their indexes after a segment is compacted. When a segment is rewritten, the segment's index skips compacted entries rather than indexing them to conserve memory. As such, a binary search algorithm must be used to do index lookups for segments with skipped entries. This is determined simply by tracking whether any offsets have been skipped in the index. We feel binary search is an acceptable trade-off for compacted segments considering the [access patterns of the Raft algorithm](#optimizing-log-indexes). In the majority of cases, servers read and write their logs before they're ever compacted, and only when server is recovering from its log or a leader is catching up a joining server does binary search become a necessity.
 
-<h3 id="optimizing-log-indexes">7.3 Optimizing indexes for Raft log access patterns</h3>
+<h3 id="optimizing-log-indexes">7.3 Optimizing Indexes for Raft Log Access Patterns</h3>
 
 Copycat's log is optimized to perform well under the most common conditions of the Raft consensus algorithm. Under normal operation, followers append entries to their log and read entries from the head of the log, and leaders tend to read sequentially through the log to send entries to each follower. Log segments can only be compacted once all entries in a segment have been committed, so if all servers are operating primarily on uncommitted entries then servers ultimately only read uncompacted segments. In these cases, constant lookup time for segment index lookups significantly improves performance.
 
 Segment read performance suffers most significantly when a lookup requires binary search to locate an entry. Binary search of a segment's index is necessary once a segment has been compacted and entries have been removed. Fortunately, even in the case of reading a compacted segment, read performance can be significantly improved via the segment index by again taking advantage of Raft's log access patterns. In particular, if a server is reading from a compacted segment of the log it's normally either replaying the log to itself or to another server (if the server is the leader). Because entries always maintain their position and index in the log and offset within a segment even after compaction, iterating entries in compacted segments of the log still only requires a single binary search. Once the starting position of a scan of the log is located, the index stores the position and offset of the last entry read from the index. On subsequent index lookups, the index first checks the next offset in the segment and only performs a binary search if the segment is not being read sequentially.
 
-<h2 id="log-compaction">8 Log compaction</h2>
+<h2 id="log-compaction">8 Log Compaction</h2>
 
 One of the most essential components of the Raft consensus algorithm is log compaction. Log compaction is the process of reducing the size of the log such that servers can continue to service writes over long periods of time while maintaining their full state on disk.
 
-<h3 id="log-compaction-strategies">8.1 Log compaction strategies</h3>
+<h3 id="log-compaction-strategies">8.1 Log Compaction Strategies</h3>
 
 The Raft literature suggests several approaches to log compaction in Raft, and we carefully considered each of them. We ultimately implemented a custom incremental log compaction algorithm in Copycat. The following sections describe the advantages and drawbacks of each of the recommended approaches to log compaction as well as an in-depth description of Copycat's custom log compaction algorithm.
 
@@ -363,7 +363,7 @@ The Raft literature suggests several approaches to log compaction in Raft, and w
 
 The canonical form of log compaction in Raft is snapshotting. Snapshotting compacts the Raft log by storing a snapshot of the state machine state and removing all commands applied to create that state. As simple as this sounds, though, there are some nuances to implementing snapshot in practice. Servers have to ensure that snapshots are reflective of a specific point in the log even while continuing to service commands from clients. This may require that the process be forked for snapshotting or leaders step down prior to taking a snapshot. Additionally, if a follower falls too far behind the leader (the follower's log's last index is less than the leader's snapshot index), additional mechanisms are required to replicate snapshots from the leader to the follower.
 
-<h4 id="log-cleaning">8.1.2 Log cleaning</h4>
+<h4 id="log-cleaning">8.1.2 Log Cleaning</h4>
 
 Alternatively, Raft literature proposes log cleaning as a viable approach to log compaction. Log cleaning is the process of removing individual entries from the log once they no longer contribute to the state of the system. Diego Ongaro provides a concise description of [how log cleaning would be implemented in Raft][raft-dissertation]:
 
@@ -381,7 +381,7 @@ Because Raft is so heavily integrated with the log and its order, the prospect o
 
 Additionally, there are some subtle complexities with log cleaning. It is the responsibility of the state machine to determine when an entry no longer contributes to the state machine's state, however doing so for entries that represent the removal of state from the state machine (i.e. tombstones) is more complex. An entry that removes state contributes to the system's state as long as any prior entries that contributed that state are retained in the log. This means log compaction processes must determine when it's safe to remove a tombstone from the log based on prior compaction processes.
 
-<h4 id="log-structured-merge-trees">8.1.3 Log-structured merge trees</h4>
+<h4 id="log-structured-merge-trees">8.1.3 Log-structured Merge Trees</h4>
 
 Raft literature also suggests the use of log-structured merge trees (LSM trees) for log compaction in Raft.
 
@@ -391,7 +391,7 @@ LSM trees initially keep keys in a small log on disk, and once that log fills up
 
 The patterns with which LSM trees access and compact logs were certainly intriguing to us. However, considering that Copycat is not a key-value store and does not need random access to keys, significant value is lost for this application. Copycat's state machines are exclusively in-memory and are generated from replays of an ordered log, so the ability to iterate through the log in sorted order is critical to the performance of the system. If we were to use log indexes as keys in LSM trees that would largely defeat the purpose of the sorting algorithm as entries in the Raft log are inherently sorted. More notable, however, is the method with which LSM trees select runs for compaction. Runs are compacted using a generational strategy wherein more recent runs are compacted more often than older runs under the assumption that more recent writes are more likely to be duplicates.
 
-<h3 id="log-compaction-algorithm">8.2 Log compaction algorithm</h3>
+<h3 id="log-compaction-algorithm">8.2 Log Compaction Algorithm</h3>
 
 Each of these compaction models provide significant advantages and drawbacks. Snapshots provide the obvious benefit of simplicity from the perspective of the state machine. With snapshots, the full state machine state is simply written to disk and applied entries are removed from the log. However, snapshots can result in relatively inconsistent performance, and to some extent snapshots add complexity to the management of session events in Copycat. Log cleaning resolves potential performance issues with more incremental approach to compaction using efficient sequential reads and writes, but the added complexity of tracking liveness in the state machine can significantly reduce usability for an abstract framework like Copycat. Log cleaning also makes certain types of state machines impractical. Log-structured merge trees use interesting patterns to compact and combine runs, but the use case seems heavily geared towards random access reads from disk.
 
@@ -411,7 +411,7 @@ Typically, a Raft log contains entries from the point of the last compaction thr
 
 This compaction model implies that state machines must contribute to the compaction process by indicating when a command no longer contributes to the state machine's state. In practice, this can significantly increase the complexity of state machine and, as mentioned, makes certain types of state machines all but impossible to implement. However, the flexibility of the algorithm ultimately allowed us to [implement optional snapshots](#snapshots-via-log-compaction) to support a wider array of use cases while retaining the efficiency of the underlying algorithm.
 
-<h4 id="releasing-entries">8.2.1 Releasing entries from the log</h4>
+<h4 id="releasing-entries">8.2.1 Releasing Entries from the Log</h4>
 
 State machines are responsible for specifying which entries can safely be removed from the log. As entries are committed and commands are applied to the state machine, the state machine must indicate when prior commands no longer contribute to its state by *releasing* the command for compaction. All commands are retained in the log and are replicated until released by the state machine. Once released, commands may be replicated or compacted according to a configurable per-entry *compaction mode*.
 
@@ -421,7 +421,7 @@ Conversely, if the command `x←nil` is later applied and released, the resultin
 
 To track entries that no longer contribute to the state machine's state, when a state machine releases a command, the index of the associated entry is set in a memory-compact bit array used during log compaction to determine the liveness of each individual entry. That bit array is used during both [minor](#minor-compaction) and [major](#major-compaction) compaction to determine liveness for each entry in the log. Thus, the overhead of log compaction in terms of memory grows linearly with the number of entries stored on disk.
 
-<h4 id="minor-compaction">8.2.1 Basics of log compaction</h4>
+<h4 id="minor-compaction">8.2.1 Basics of Log Compaction</h4>
 
 In order to ensure the log does not grow unbounded, a series of background tasks periodically select and rewrite segments of the log. The basic algorithm is as follows:
 
@@ -437,13 +437,13 @@ The criteria by which segments are selected for compaction can have significant 
 
 Because segments are immutable and each committed segment represents a fixed range of indexes in the log, segments can be compacted in parallel during minor compaction. At the beginning of the minor compaction process, a compaction manager selects groups of segments and assigns each group to a background thread. All compaction tasks for a given compaction run must complete before the next compaction run can begin.
 
-<h4 id="log-segment-compaction">8.2.3 Combining log segments</h4>
+<h4 id="log-segment-compaction">8.2.3 Combining Log Segments</h4>
 
 As the cluster progresses and entries are written to and removed from the log, each segment will shrink and the overall number of segments will increase. Eventually, the number of open resources can cause performance and fault tolerance issue. Therefore, in addition to reducing the size of individual segments, some mechanism is required to reduce the number of overall segments as well.
 
 During log compaction, multiple neighboring segments are rewritten into a single segment to reduce the number of files on disk. When segments are selected for compaction, segments that are parallel to one another — such that the head of one segment flows into the tail of another segment — are given priority over disjointed segments. In Copycat, we use a generational strategy to select and combine neighboring segments within the same generation iff the resulting compact segment will be smaller than the configured maximum segment size.
 
-<h4 id="major-compaction">8.2.4 Removing tombstones from the log</h4>
+<h4 id="major-compaction">8.2.4 Removing Tombstones from the Log</h4>
 
 The minor compaction process generally is safe and efficient for removing commands that *modify* a system's state once they are no longer needed by the state machine. However, this approach does not correctly account for entries that remove state (called tombstones) from the state machine. Tombstones are essentially marker entries that indicate some set of prior entries no longer contribute to the state machine's state, including the tombstone entry itself. For instance, a command that deletes a key in a map is a tombstone. Once the delete is applied to the state machine and the key is deleted, neither the tombstone nor any prior command writing to that key contributes to the state machine's state thereafter. However, because state machine state can be rebuilt from the log, it is critical that tombstones are retained in the log as long as any prior associated entries. If a tombstone is removed from the log before the entries it invalidates, rebuilding a state machine from the log will result in an inconsistent state.
 
@@ -455,7 +455,7 @@ Tombstones are removed from the log exclusively during a separate compaction pro
 
 In contrast to minor compaction, the major compaction process cannot run concurrently with any other compaction process. Because the major compaction process requires a full rewrite of live entries in the log, it must acquire a lock on all segments. We assume that the log consists of far fewer tombstones than non-tombstone entries, so the process is run on a fixed schedule much less frequently than minor compaction. However, tracking the total number of active tombstones and non-tombstone entries in the log could aid in determining when to perform major compaction, though Copycat doesn't do this currently. We contend that the overhead of periodically rewriting the entire Raft log is acceptable and indeed safer than the alternative, perhaps more common, approach of retaining tombstones for a predetermine amount of time.
 
-<h4 id="log-tombstone-safety">8.2.5 Ensuring tombstones are applied on all servers</h4>
+<h4 id="log-tombstone-safety">8.2.5 Ensuring Tombstones are Applied on All Servers</h4>
 
 The log compaction algorithm as described thus far assumes that commands can be safely removed from the log once they no longer contribute to the state machine's state. However, this is not always the case. A particular nuance in the handling of tombstones necessitates that they be applied on all servers prior to being removed from the log. If a tombstone is compacted from any server's log before it has been applied by all servers, state machines can become inconsistent. For instance, if a command deleting a particular key is submitted to a three-node cluster and committed via servers `A` and `B`, but server `C` is partitioned from the other nodes, compacting the delete from servers `A` and `B`'s logs can result in a failure to ever apply the delete on server `C` once the partition heals, thus resulting in a system where the key may or may not appear deleted based on the current leader. For example, if server `A` is the leader then the key has been deleted, but if server `C` is elected leader once the partition heals, the key will reappear.
 
@@ -469,7 +469,7 @@ Fortunately, Raft servers tend to have a more consistent and reliable view of th
 
 Just as with the `commitIndex`, the leader is responsible for tracking the `globalIndex` and sharing that information with followers through *AppendEntries* RPCs. The `globalIndex` is determined by the leader by simply calculating the minimum `matchIndex` for all servers in the cluster. Servers only perform major compaction to remove tombstones for segments for which all indexes are less than the `globalIndex`. This ensures that tombstones are not removed from the log until they have been stored on all servers, and once stored each server will not remove any tombstone until it has been applied to and released by the state machine.
 
-<h4 id="major-compaction-safety">8.2.6 Preventing race conditions in major compaction</h4>
+<h4 id="major-compaction-safety">8.2.6 Preventing Race Conditions in Major Compaction</h4>
 
 Copycat's log compaction algorithm makes no assumptions about the context within which a state machine will release an entry for compaction. Entries may be released when a session expires or once a certain amount of time has passed. This means we cannot assume once a tombstone is applied to the state machine it will be immediately released. For instance, a command that sets a time-to-live (TTL) on a key is actually a tombstone since it ultimately results in the absence of state, but it won't be released from the state machine until the amount of time specified by the TTL has expired. Because segments of the log are compacted sequentially, if the state machine continues to release entries from the log during major compaction, inconsistencies can result.
 
@@ -494,7 +494,7 @@ Copycat resolves this issue by taking immutable snapshots of the state of releas
 
 After the immutable copy of the bit array is taken, state machines still continue to update the state of entries in the live, uncompacted segment throughout the compaction process. In order to ensure the state of entries released *after* the initial snapshot is preserved in compacted segments, the final step of the major compaction process is to copy the state of remaining entries in the uncompacted segment to the compacted segment simply by iterating through the live bit array and copying release flags for entries still present in the compacted segment. Once entry states have been copied to compacted segments, the log is updated to point to the compacted segments, and the storage space for uncompacted versions of the segments is freed.
 
-<h4 id="major-compaction-liveness">8.2.7 Liveness in major compaction</h4>
+<h4 id="major-compaction-liveness">8.2.7 Liveness in Major Compaction</h4>
 
 In order to ensure tombstones are applied on all servers, servers perform major compaction only on entries that have been replicated to all servers in the cluster. But because the progression of major compaction is dependent on replicating to the entire cluster, the failure of any single server can halt major compaction on all servers. While tombstones typically represent only a small portion of the log, we still believe it is critical that all log compaction processes be able to progress as long as a majority of the cluster is available and accepting writes.
 
@@ -508,7 +508,7 @@ One obvious concern with this algorithm is that is can potentially result in a l
 
 Copycat provides an alternative approach to managing unreachable servers in a manner that allows major compaction to progress *and* preserves availability for the Raft cluster. The availability statuses - *available* and *unavailable* - tracked by the leader are exposed to users via an API. In the event that a server becomes unavailable, Copycat allows passive servers (which already contain the majority of the logs present in active Raft members) to be quickly promoted to replace unavailable Raft members. Then, when the leader is able to reestablish communication with an unreachable server, that server will be caught up *asynchronously* by followers while the server that replaced it participates in the Raft algorithm, thus reducing the loss of availability. The section on [membership changes](#membership-changes) goes more in-depth on the implications of membership changes and asynchronous replication.
 
-<h4 id="log-compaction-time">8.2.8 Managing time and timeouts in a compacted log</h4>
+<h4 id="log-compaction-time">8.2.8 Managing Time and Timeouts in a Compacted Log</h4>
 
 Many Raft implementations use the replicated Raft log to provide a consistent view of time. To do so, implementations typically append the leader's timestamp to certain entries in the log. When an entry is applied to the state machine, the entry's timestamp is used to increment a monotonically increasing logical clock. This approach can be used to expire keys or sessions. Indeed, sessions as described in the Raft literature use leader timestamps to remove expired session information from memory when a client fails to send a keep-alive request to the cluster in a timely manner.
 
@@ -518,7 +518,7 @@ In order to handle time based expirations in conjunction with log compaction, we
 
 Nevertheless, it's clear to us that managing time and expirations through the Raft log poses significant challenges for systems that rely on log compaction. Thus, we recommend that compaction for time-based commands be managed through [snapshots](#snapshots).
 
-<h4 id="log-compaction-membership-changes">8.2.9 Handling membership changes</h4>
+<h4 id="log-compaction-membership-changes">8.2.9 Handling Membership Changes</h4>
 
 A key component of the Raft consensus algorithm is cluster membership changes. When a new server joins the cluster, Copycat commits a configuration change adding the node to the cluster. Once the configuration change is complete, the server begins to replicate existing log entries to catch the joining server up with the rest of the cluster. But the addition of servers to the cluster poses a unique challenge for Copycat's [major compaction](#log-tombstones) process. Servers must take care to replicate globally committed entries to joining servers in a manner that ensures the resulting state of those entries is consistent.
 
@@ -538,7 +538,7 @@ The inconsistencies that result from leader changes while catching up a new serv
 
 Considering that Copycat prevents released entries from being replicated to joining servers, we examined whether the loss of context in the log could cause consistency issues for joining servers. In particular, we wondered if the same [race condition](#major-compaction-safety) we see in major compaction could be duplicated in this scenario. Because there are no rules for when state machines can release entries - except that the processes for releasing entries must be deterministic - it is conceivable that a leader could replicate a live entry that is later made obsolete by a tombstone and the server could crash before replicating that associated tombstone. However, because Raft ensures that any new leader will be elected with all committed log entries, and because all newly committed tombstones will always be present and replicated to the joining server, that ensures that a new leader's globally replicated log will be based on the same post-join state as the original leader. If a new tombstone is committed to the leader and releases a globally replicated entry, a joining server will still receive that tombstone.
 
-<h4 id="replication-performance">8.2.10 Replication performance and log compaction</h4>
+<h4 id="replication-performance">8.2.10 Replication Performance and Log Compaction</h4>
 
 The implementation of [safety fixes for membership changes](#log-compaction-membership-changes) in log compaction led to the realization that Copycat's log compaction algorithm could be used to significantly improve performance in replication by excluding entries that don't need to be replicated to certain servers. Because a command can be applied to the state machine once stored on a majority of servers, there is some opportunity for a leader's state machine to release an entry from the log prior to replication to a minority of the nodes in the cluster. Often, that minority may represent the slowest group of servers, so there may be significant benefit to reducing the total number of entries that need to be replicated to those servers.
 
@@ -546,17 +546,17 @@ Because Raft ensures that any server that's elected leader will have all committ
 
 Copycat controls which entries need to be replicated on a per-entry based on the state of the entry and the entry's *compaction mode*. Once an entry has been marked for removal, it's not necessarily the case that the entry can be excluded from all replication. [Tombstones](#log-tombstones) and entries that are otherwise required to be stored on all servers and where the `index` of the entry is greater than the `globalIndex` are always included in replication. [Snapshottable](#log-compaction-snapshots) entries are replicated until a snapshot with an `index` greater than the entry index has been taken and persisted. All other entries are excluded from replication once released by the state machine.
 
-<h3 id="snapshots-via-log-compaction">8.3 Implementing snapshots via log compaction</h3>
+<h3 id="snapshots-via-log-compaction">8.3 Implementing Snapshots Via Log Compaction</h3>
 
 Snapshots are the canonical form of log compaction in Raft. They work by periodically writing the complete state machine state to a snapshot file on disk and then removing all entries up to the last index applied to the state machine. While snapshots can impact performance, they do provide a significantly simpler approach for managing system state with respect to log compaction. Indeed, many types of state machines necessitate snapshotting. For instance, a Raft log with entries representing *increments* and *decrements* in a counter cannot be compacted using Copycat's normal compaction algorithm because ultimately the state of the counter is the sum of all increments minus all decrements. We could compact *some* of the entries from the log based on the difference of increments and decrements, but if the counter is ever only incremented then the log will still effectively grow unbounded. Snapshots significantly reduce the complexity of state machines by removing the need to track the *liveness* of commands applied to the state machine, and in the case of counters they provide a significantly more efficient alternative to storing state changes. State machines simply write the counter value to disk, and in the event of a replay of the log that snapshot is used to recover the system's state prior to the first entry in the log.
 
 There are clear advantages to snapshotting, so we wanted to explore ways to integrate them into Copycat's existing log compaction algorithm. Fortunately, Copycat's log compaction algorithm does not prohibit the use of snapshots. To implement support for snapshots, we simply built on top of the existing algorithm to abstract the process of releasing entries from a snapshottable state machine. When a segment fills up on disk, Copycat requests a snapshot from the state machine. Once the snapshot is written to disk, all prior entries in the log are automatically marked for removal during log compaction.
 
-<h4 id="log-compaction-snapshots">8.3.1 Combining snapshots and log compaction</h4>
+<h4 id="log-compaction-snapshots">8.3.1 Combining Snapshots and Log Compaction</h4>
 
 Out of necessity, Copycat's log handles compaction on a per-entry basis. Compaction processes remove certain entries based on several factors including the type of entry and whether the entry has been released by the state machine. *Snapshottable* entries are similarly handled in a unique manner. When a snapshot of the state machine's state is taken and persisted, snapshottable commands are automatically marked for removal from the log. Because of the level of granularity - state machines can snapshot specific entries - state machines can use a mixture of snapshotting and log compaction to manage their state on disk. For instance, a keyed state machine might use the standard log compaction approach to mark overwritten commands for removal from the log, while a counting state machine might use snapshots to persist the counter state at specific points in the log. A state machine that does both can simultaneously take advantage of the performance of incremental log compaction for a large number of keys and avoid the complexity inherent in tracking liveness for certain types of commands.
 
-<h4 id="snapshot-session-events">8.3.2 Managing session events for snapshotted logs</h4>
+<h4 id="snapshot-session-events">8.3.2 Managing Session Events for Snapshotted Logs</h4>
 
 Commands that are written to the Copycat log and applied to the state machine can trigger [event messages](#session-events) which are sent by the state machine to clients. Event messages are stored in memory on each server for fault-tolerance, and in the event of a replay of the log unacknowledged events must be regenerated from entries on disk. This particularly affects the process of snapshotting. If a snapshot is taken of the state machine state and snapshotted entries are immediately removed from disk before being received by clients, a failure of the server can result in a loss of the event messages. Entries that generate session events must must be retained in the log at least until associated session events have been received by all clients.
 
