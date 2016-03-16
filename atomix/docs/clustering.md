@@ -6,102 +6,89 @@ title: Clustering
 ---
 
 {:.no-margin-top}
-Atomix clusters consist of at least one (but usually 3 or 5) [replica][replicas] and any number of [clients]. *Replicas* are stateful nodes that actively participate in the Raft consensus protocol, and *clients* are stateless nodes that modify system state remotely. When a cluster is started, the replicas in the cluster coordinate with one another to elect a leader.
+As we saw in the [Getting Started][atomix-getting-started] guide, Atomix clusters consist of one or more [replicas] and any number of [clients]. *Replicas* manage the state of distributed resources in the cluster while *clients* allow resources to be created remotely.
+
+## Anatomy of a Cluster
+
+When a cluster is started, the replicas in the cluster coordinate with one another to elect a *leader* while the remaining replicas become *followers*. 
 
 ![Atomix cluster](/assets/img/docs/cluster.png)
 
-Once a leader has been elected, clients can connect to a random server in the cluster, create resources (e.g. maps, sets, locks, etc) and submit commands (writes) and queries (reads). All commands are proxied to the cluster leader. When the leader receives a command, it persists the write to disk and replicates it to the rest of the cluster. Once a command has been received and persisted on a majority of replicas, the state change is committed and guaranteed not to be lost.
+While the leader is not publicly distinguished, it carries the important responsibility of processing all write operations for the resources in the cluster. Write operations, such as [`DistributedMap.put`][dmap-put], will be proxied to the leader from clients and other replicas while read operations, such as [`DistributedMap.get`][dmap-get], may be processed by a *follower* according to the configured [consistency level][consistency-levels]. Each write operation is replicated by the leader to the rest of the cluster and must be successfully stored on a majority of nodes before it is committed.
 
-Because the Atomix cluster is dependent on a majority of the cluster being reachable to commit writes, the cluster can tolerate a minority of the nodes failing. For this reason, it is recommended that each Atomix cluster have at least 3 or 5 replicas, and the number of replicas should always be odd in order to achieve the greatest level of fault-tolerance. The number of replicas should be calculated as `2f + 1` where `f` is the number of failures to tolerate.
+As nodes come and go from the cluster, new leaders are automatically elected as needed to carry on the responsibility of processing write operations.
 
-Distributed resources are managed by a cluster of [replicas] and can be created and operated via an [Atomix] instance which is shared by both [clients] and [replicas]. This allows Atomix clients and servers to be embedded in applications that don't care about the context. Resources can be created and operated on by any `Atomix` instance.
+## Cluster Sizing
 
-## Replicas
+Since Atomix requires a majority quorum to process write operations, clusters typically consist of 3 or 5 [active nodes](#active-nodes) which allows a quorum to be reached even if a node failure occurs. Smaller clusters can be used but may lose write availability if a node fails. Larger clusters can also be used, but are usually unnecessary in terms of fault tolerance, and they come at the cost of slower write throughput since the quorum size for processing writes is larger.
 
-The [AtomixReplica] is an [Atomix] implementation that is responsible for receiving creating and managing resources on behalf of other clients and replicas and receiving, persisting, and replicating state changes for existing resources. Users should think of replicas as stateful nodes. Since replicas are responsible for persisting and replicating resource state changes, they require more configuration than [clients].
+{:.callout .callout-info}
+The ideal number of replicas should be calculated as `2f + 1` where `f` is the number of failures to tolerate.
 
-To create an `AtomixReplica`, first you must create a [Transport] via which the replica will communicate with other clients and replicas:
+<h2 id="creating-a-cluster-">Creating a Cluster</h2>
 
-```java
-Transport transport = new NettyTransport();
-```
-
-The [Transport] provides the mechanism through which replicas communicate with one another and with clients. It is essential that all clients and replicas configure the same transport.
-
-Once the transport is configured, the replica must be provided with a list of members to which to connect. Cluster membership information is provided by configuring a collection of addresses.
+An Atomix cluster is created by starting one replica for each member of the cluster. Each replica must specify the local address to listen on along with the list of cluster member addresses. One replica is typically started in each process or machine that Atomix is deployed on:
 
 ```java
-List<Address> members = Arrays.asList(
-  new Address("123.456.789.0", 5000),
-  new Address("123.456.789.1", 5000),
-  new Address("123.456.789.2", 5000)
+List<Address> cluster = Arrays.asList(
+  new Address("10.0.0.1", 5000),
+  new Address("10.0.0.2", 5000),
+  new Address("10.0.0.3", 5000)
 );
 ```
 
-The members in the `Address` list must be representative of at least one reachable member of the cluster. If the replica can reach a member that can communicate with the leader, it can join the cluster.
-
-Finally, the `AtomixReplica` is responsible for persisting resource state changes. To do so, the underlying Raft server writes state changes to a consistent replicated commit log. Users must provide a [Storage] object which specifies how the underlying `Log` should be created and managed.
-
-To create a `Storage` object, use the storage [Builder][builders] or for simpler configurations simply pass the log directory into the `Storage` constructor:
-
 ```java
-Storage storage = new Storage("logs");
-```
-
-The [Storage] object can optionally be configured with a custom `StorageLevel` which dictates how logs should be stored. The storage module supports the following storage levels:
-
-* `StorageLevel.MEMORY` - Stores log entries in an off-heap memory buffer
-* `StorageLevel.MAPPED` - Stores log entries in a memory mapped file buffer
-* `StorageLevel.DISK` - Stores log entries in a `RandomAccessFile` backed buffer
-
-Finally, with the `Transport`, `Storage`, and an `Address` list configured, create the [AtomixReplica][AtomixReplica] with the replica [Builder][builders] and `open()` the replica:
-
-```java
-Address address = new Address("123.456.789.0", 5000);
-
-List<Address> members = Arrays.asList(
-  new Address("123.456.789.0", 5000),
-  new Address("123.456.789.1", 5000),
-  new Address("123.456.789.2", 5000)
-);
-
-Atomix atomix = AtomixReplica.builder(address, members)
-  .withTransport(transport)
-  .withStorage(storage)
+AtomixReplica replica1 = AtomixReplica.builder(cluster.get(0), cluster)
+  ...
   .build();
-
-atomix.open().thenRun(() -> {
-  System.out.println("Replica started!");
-});
+replica1.start();
 ```
 
-Once created, the replica can be used as any `Atomix` instance to create and operate on [resources].
-
-## Clients
-
-The [AtomixClient][AtomixClient] is an [Atomix][Atomix] implementation that manages and operates on resources by communicating with a remote cluster of *servers* or *replicas*. Users should think of clients as stateless members of the Atomix cluster.
-
-To create a `AtomixClient`, use the client [Builder][builders] and provide a [Transport][Transport] and a list of `Members` to which to connect:
-
 ```java
-Atomix atomix = AtomixClient.builder()
-  .withTransport(new NettyTransport())
-  .withMembers(Members.builder()
-    .addMember(new Member(1, "123.456.789.1", 5555))
-    .addMember(new Member(2, "123.456.789.2", 5555))
-    .addMember(new Member(3, "123.456.789.3", 5555))
-    .build())
+AtomixReplica replica2 = AtomixReplica.builder(cluster.get(1), cluster)
+  ...
   .build();
+replica2.start();
 ```
-
-The provided `Members` list does not have to be representative of the full list of active servers. Users must simply provide enough `Member`s to be able to successfully connect to at least one correct server.
-
-Once the client has been created, open a new session to the Atomix cluster by calling the `open()` method:
 
 ```java
-atomix.open().thenRun(() -> {
-  System.out.println("Client connected!");
-});
+AtomixReplica replica3 = AtomixReplica.builder(cluster.get(2), cluster)
+  ...
+  .build();
+replica3.start();
 ```
+
+## Joining an Existing Cluster
+
+Additional Atomix replicas can be joined to an existing cluster by simply pointing at any of the existing cluster members:
+
+```java
+AtomixReplica replica4 = AtomixReplica.builder(new Address("10.0.0.4", 5000), existingCluster)
+  ...
+  .build();
+replica4.start();
+```
+
+## Node Types
+
+In an embedded installation, the size of an Atomix cluster may not necessarily match the size of your application's cluster. Atomix handles this by allowing any number of replicas to be added to a cluster without impacting the performance of the cluster. This is achieved by automatically dividing the replicas into active, passive and reserve nodes, based on the provided [configuration].
+
+### Active Nodes
+
+*Active* nodes participate in the processing of operations, perform leader elections, and maintain complete replicas of all resource state within the cluster. The number of active nodes is effected by the [quorum hint][quorum-hint] specified when constructing an [AtomixReplica]. As nodes come and go from the cluster, Atomix will automatically manage the number of active nodes in the cluster according to the quorum hint.
+
+### Passive Nodes
+
+*Passive* nodes maintain complete replicas of all resource state in the cluster but do not participate in the processing of operations or in leader elections. Replication from active to passive nodes is done asynchronously using a gossip protocol, so as to not effect operation latency. The number of passive nodes is effected by the [backup count][backup-count] specified when constructing an [AtomixReplica]. As nodes come and go from the cluster, Atomix will automatically promote and demote nodes from active to passive as needed.
+
+### Reserve Nodes
+
+*Reserve* nodes are simply additional nodes that are available to takeover as passive or active nodes as needed, but do not participate in the Atomix cluster and do not store any resource data. Any nodes that are joined to the cluster in addition to the required active as passive nodes, as determined by Atomix, will be made reserve. As with active and passive, Atomix will automatically promote and demote nodes from passive to reserve as needed.
 
 {% include common-links.html %}
+
+[quorum-hint]: http://atomix.io/atomix/api/latest/io/atomix/AtomixReplica.Builder.html#withQuorumHint-int-
+[backup-count]: http://atomix.io/atomix/api/latest/io/atomix/AtomixReplica.Builder.html#withBackupCount-int-
+[cluster-seed]: /atomix/docs/configuration/#cluster-seed-config
+[dmap-put]: http://atomix.io/atomix/api/latest/io/atomix/collections/DistributedMap.html#put-K-V-
+[dmap-get]: http://atomix.io/atomix/api/latest/io/atomix/collections/DistributedMap.html#get-java.lang.Object-

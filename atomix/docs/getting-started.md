@@ -40,7 +40,7 @@ The first step with Atomix is to create a cluster. An atomix cluster consists of
 Clusters can contain both *active* and *passive* replicas. Active replicas take part in the processing of state changes while passive replicas are kept in sync in order to replace active replicas when a fault occurs. Typically, an Atomix cluster consists of 3 or 5 active replicas. While Atomix embeds inside your clustered application, the number of nodes participating in the Atomix cluster does not need to match that of your application, allowing your application to scale independant of Atomix.
 
 {:.callout .callout-info}
-For more information on node types see the [cluster documentation][clustering].
+For more information on node types see the [clustering documentation][node-types].
 
 To create a cluster, first define the `Address` of the local server along with a list of addressess for all the active members of the cluster:
 
@@ -60,7 +60,7 @@ Next, define [Storage] for your resource data. Supported [StorageLevel]s include
 Storage storage = new Storage(StorageLevel.MEMORY);
 ```
 
-Finally, define the [Transport] that your replicas will use to communicate with each other. The [NettyTransport] is a fast, reliable Transport implementation:
+Finally, define the [Transport] that your replicas will use to communicate with each other and with clients. The [NettyTransport] is a fast, reliable Transport implementation:
 
 ```java
 Transport transport = new NettyTransport();
@@ -75,13 +75,13 @@ AtomixReplica replica = AtomixReplica.builder(address, members)
   .build();
 ```
 
-We'll start the replica by calling the `open` method which attempts to establish communication with the other members of the cluster.
+We'll start the replica by calling the `start` method which attempts to establish communication with the other members of the cluster:
 
 ```java
-CompletableFuture<Atomix> future = replica.open();
+CompletableFuture<Atomix> future = replica.start();
 ```
 
-`open()` returns a [CompletableFuture] which we can use to wait for the replica to successfully start:
+`start()` returns a [CompletableFuture] which we can use to wait for the replica to successfully start:
 
 ```java
 future.join();
@@ -118,50 +118,46 @@ Each resource in the cluster must be assigned a unique `String` name. If multipl
 
 ## Creating a Client
 
-In addition to creating and acessing resources directly through an [AtomixReplica], Atomix also supports [clients] which can be used to remotely access resources stored in a cluster.
+In addition to creating and acessing resources directly through an [`AtomixReplica`][AtomixReplica], Atomix also supports [clients] which can be used to remotely access and operate on resources stored in a cluster. The [`AtomixClient`][AtomixClient] API is very similar to [`AtomixReplica`][AtomixReplica], but contains no storage since clients are stateless.
 
 Creating a client is similar to creating a replica:
+
+```java
+List<Address> members = Arrays.asList(
+  new Address("123.456.789.0", 5000),
+  new Address("123.456.789.1", 5000),
+  new Address("123.456.789.2", 5000)
+);
+
+AtomixClient client = AtomixClient.builder(members)
+  .withTransport(new NettyTransport())
+  .build();
+```
+
+The provided `Members` list does not have to be representative of the full list of active replicas. Users must simply provide enough `Member`s to be able to successfully connect to at least one replica.
+
+Once the client is created, call `open()` to establish a connection to the cluster:
 
 {% include sync-tabs.html target1="#async-client" desc1="Async" target2="#sync-client" desc2="Sync" %}
 {::options parse_block_html="true" /}
 <div class="tab-content">
 <div class="tab-pane active" id="async-client">
 ```java
-List<Address> members = Arrays.asList(
-  new Address("123.456.789.0", 5000),
-  new Address("123.456.789.1", 5000),
-  new Address("123.456.789.2", 5000)
-);
-
-AtomixClient client = AtomixClient.builder(members)
-  .withTransport(new NettyTransport())
-  .build();
-
 client.open().thenRun(() -> {
-  System.out.println("Client started!");
+  System.out.println("Client connected!");
 });
 ```
 </div>
 <div class="tab-pane" id="sync-client">
 ```java
-List<Address> members = Arrays.asList(
-  new Address("123.456.789.0", 5000),
-  new Address("123.456.789.1", 5000),
-  new Address("123.456.789.2", 5000)
-);
+client.open.join();
 
-AtomixClient client = AtomixClient.builder(members)
-  .withTransport(new NettyTransport())
-  .build();
-
-client.open().join();
-
-System.out.println("Client started!");
+System.out.println("Client connected!");
 ```
 </div>
 </div>
 
-With our [AtomixClient] open, we can get or create distributed resources in the same way as with a replica:
+Once `open()` is complete, we can get or create distributed resources in the same way as with a replica:
 
 ```java
 DistributedValue<String> value = client.getValue("value").get();

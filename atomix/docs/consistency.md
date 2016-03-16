@@ -17,7 +17,7 @@ High-throughput, high-availability distributed databases like [Hazelcast], [Cass
 Alternatively, systems like [ZooKeeper] and Atomix, which fall under the *C* and *P* in the CAP theorem, are generally designed to store small amounts of mission critical data. CP systems provide strong consistency guarantees like [linearizability][Linearizability] and [sequential consistency][SequentialConsistency] even in the face of failures. But that level of consistency comes at a cost: availability. CP systems like ZooKeeper and Atomix are consensus-based and require a quorum to operate, so they can only tolerate the loss of a minority of servers. 
 
 {:.callout .callout-info}
-Fortunately, Atomix provides support for passive and standby replicas to minimize the risk  of losing availability in the case of a node loss.
+Fortunately, Atomix provides support for [passive and standby][node-types] replicas to minimize the risk  of losing availability in the case of a node loss.
 
 ## Consistency Model
 

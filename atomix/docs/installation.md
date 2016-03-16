@@ -13,7 +13,7 @@ The most common way of using Atomix is as an embedded library via the Atomix Mav
 
 #### atomix-all
 
-The simplest way to get up and running with Atomix, which we saw in the [Getting started][getting-started] guide, is to use the [atomix-all][atomix-all-mvn] artifact. It [bundles](https://github.com/atomix/atomix/blob/master/all/pom.xml#L29-L38) the core `atomix` dependency with a Netty based [Transport] implementation, `catalyst-netty`.
+The simplest way to get up and running with Atomix, which we saw in the [Getting Started][atomix-getting-started] guide, is to use the [atomix-all][atomix-all-mvn] artifact. It [bundles](https://github.com/atomix/atomix/blob/master/all/pom.xml#L29-L38) the core `atomix` dependency with a Netty based [Transport] implementation, `catalyst-netty`.
 
 For most users, `atomix-all` is the only dependency you will need.
 
