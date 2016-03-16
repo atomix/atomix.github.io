@@ -9,6 +9,12 @@ first-section: client
 {:.no-margin-top}
 The [CopycatClient][CopycatClient] provides an interface for submitting [commands](#commands) and [queries](#queries) to a cluster of [Raft servers](#copycatserver).
 
+## Client Lifecycle
+
+When the client is opened, it will connect to a random server and attempt to register its session. If session registration fails, the client will continue to attempt registration via random servers until all servers have been tried. If the session cannot be registered, the `CompletableFuture` returned by `connect()` will fail.
+
+### Configuring the client
+
 To create a client, you must supply the client [Builder][builders] with a set of `Address`es to which to connect.
 
 ```java
@@ -27,27 +33,23 @@ CopycatClient client = CopycatClient.builder(members)
   .build();
 ```
 
-Once a `CopycatClient` has been created, connect to the cluster by calling `open()` on the client:
+Once a `CopycatClient` has been created, connect to the cluster by calling `connect()` on the client:
 
 {% include sync-tabs.html target1="#async-open" desc1="Async" target2="#sync-open" desc2="Sync" %}
 {::options parse_block_html="true" /}
 <div class="tab-content">
 <div class="tab-pane active" id="async-open">
 ```java
-client.open().thenRun(() -> System.out.println("Successfully connected to the cluster!"));
+client.connect().thenRun(() -> System.out.println("Successfully connected to the cluster!"));
 ```
 </div>
 
 <div class="tab-pane" id="sync-open">
 ```java
-client.open().join();
+client.connect().join();
 ```
 </div>
 </div>
-
-## Client Lifecycle
-
-When the client is opened, it will connect to a random server and attempt to register its session. If session registration fails, the client will continue to attempt registration via random servers until all servers have been tried. If the session cannot be registered, the `CompletableFuture` returned by `open()` will fail.
 
 ## Submitting State Machine Operations
 
@@ -71,16 +73,14 @@ Object result = client.submit(new PutCommand("foo", "Hello world!")).get();
 </div>
 </div>
 
-## Client Sessions
-
-Once the client's session has been registered, the `Session` object can be accessed via `CopycatClient.session()`.
+## Listening for session events
 
 The client will remain connected to the server through which the session was registered for as long as possible. If the server fails, the client can reconnect to another random server and maintain its open session.
 
-The `Session` object can be used to receive events `publish`ed by the server's `StateMachine`. To register a session event listener, use the `onEvent` method:
+The client's session can be used to receive events `publish`ed by the server's `StateMachine`. To register a session event listener, use the `onEvent` method:
 
 ```java
-client.session().onEvent("event", message -> System.out.println("Received " + message));
+client.onEvent("event", message -> System.out.println("Received " + message));
 ```
 
 When events are sent from a server state machine to a client via the `Session` object, only the server to which the client is connected will send the event. Copycat servers guarantee that state machine events will be received by the client session in the order in which they're sent even if the client switches servers.

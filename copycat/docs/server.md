@@ -9,6 +9,20 @@ first-section: server
 {:.no-margin-top}
 The [CopycatServer] class is a feature complete implementation of the [Raft consensus algorithm][Raft]. Multiple servers communicate with each other to form a cluster and manage a replicated [state machine][StateMachine]. Server state machines are user-defined.
 
+### Server Lifecycle
+
+Copycat's Raft implementation supports dynamic membership changes designed to allow servers to arbitrarily join and leave the cluster. When a `CopycatServer` is configured, the `Address` list provided in the server configuration specifies some number of servers to join to form a cluster. When the server is started, the server begins a series of steps to either join an existing Raft cluster or start a new cluster:
+
+* When the server starts, transition to a *join* state and attempt to join the cluster by sending a *join* request to each known member of the cluster
+* If, after an election timeout, the server has failed to receive a response to a *join* requests from any member of the cluster, assume that the cluster doesn't exist and transition into the *follower* state
+* Once a leader has been elected or otherwise discovered, complete the startup
+
+When a member *joins* the cluster, a *join* request will ultimately be received by the cluster's leader. The leader will log and replicate the joining member's configuration. Once the joined member's configuration has been persisted on a majority of the cluster, the joining member will be notified of the membership change and transition to the *passive* state. While in the *passive* state, the joining member cannot participate in votes but does receive *append* requests from the cluster leader. Once the leader has determined that the joining member's log has caught up to its own (the joining node's log has the last committed entry at any given point in time), the member is promoted to a full member via another replicated configuration change.
+
+Once a node has fully joined the Raft cluster, in the event of a failure the quorum size will not change. To leave the cluster, the `close()` method must be called on a [CopycatServer] instance. When `close()` is called, the member will submit a *leave* request to the leader. Once the leaving member's configuration has been removed from the cluster and the new configuration replicated and committed, the server will complete the close.
+
+### Configuring the server
+
 Each `CopycatServer` consists of three essential components:
 
 * [Transport] - Used to communicate with clients and other servers
@@ -17,7 +31,24 @@ Each `CopycatServer` consists of three essential components:
 
 To create a new server, use the server `Builder`. Servers require cluster membership information in order to perform communication. Each server must be provided a local `Address` to which to bind the internal `Server` and a set of addresses for other members in the cluster.
 
-### State machines
+```java
+Address address = new Address("123.456.789.0", 5000);
+Collection<Address> members = Arrays.asList(
+  new Address("123.456.789.1", 5000),
+  new Address("123.456.789.2", 5000),
+  new Address("123.456.789.3", 5000),
+);
+
+CopycatServer.Builder builder = CopycatServer.builder(address, members);
+
+// Configure the server
+
+CopycatServer server = builder.build();
+```
+
+When the cluster is first started, the provided set of member addresses typically represents the set of active members in the cluster. Each server in a cluster defines the same set of members. In the event that a cluster already exists when a server is started, the server will join the existing cluster.
+
+### Configuring the state machine
 Underlying each server is a [StateMachine][StateMachine]. The state machine is responsible for maintaining the state with relation to [commands][Command] and [queries][Query] submitted to the server by a client. State machines are provided in a factory to allow servers to transition between stateful and stateless states.
 
 ```java
@@ -35,7 +66,7 @@ CopycatServer server = CopycatServer.builder(address, members)
 
 Server state machines are responsible for registering [commands][Command] which can be submitted to the cluster. Raft relies upon determinism to ensure consistency throughout the cluster, so *it is imperative that each server in a cluster have the same state machine with the same commands.* State machines are provided to the server as a factory to allow servers to transition between stateful and stateless states.
 
-### Transports
+### Configuring the transport
 By default, the server will use the [NettyTransport][NettyTransport] for communication. You can configure the transport via `withTransport`. To use the Netty transport, ensure you have the `io.atomix.catalyst:catalyst-netty` jar on your classpath.
 
 ```java
@@ -47,7 +78,7 @@ CopycatServer server = CopycatServer.builder(address, members)
   .build();
 ```
 
-### Storage
+### Configuring the storage
 
 As commands are received by the server, they're written to the Raft [Log][Log] and replicated to other members of the cluster. By default, the log is stored on disk, but users can override the default [Storage][Storage] configuration via `withStorage`. Most notably, to configure the storage module to store entries in memory instead of disk, configure the [StorageLevel][StorageLevel].
 
@@ -79,13 +110,13 @@ However, for more efficient serialization, users should explicitly register seri
 server.serializer().register(MySerializable.class, 123, MySerializableSerializer.class);
 ```
 
-### Running the server
+### Starting the server
 
 Once the server has been created, to connect to a cluster simply `start` the server. The server API is
 fully asynchronous and relies on `CompletableFuture` to provide promises:
 
 ```java
-server.open().thenRun(() -> {
+server.start().thenRun(() -> {
   System.out.println("Server started successfully!");
 });
 ```
@@ -103,17 +134,5 @@ server.onStateChange(state -> {
   }
 });
 ```
-
-### Server Lifecycle
-
-Copycat's Raft implementation supports dynamic membership changes designed to allow servers to arbitrarily join and leave the cluster. When a `CopycatServer` is configured, the `Address` list provided in the server configuration specifies some number of servers to join to form a cluster. When the server is started, the server begins a series of steps to either join an existing Raft cluster or start a new cluster:
-
-* When the server starts, transition to a *join* state and attempt to join the cluster by sending a *join* request to each known member of the cluster
-* If, after an election timeout, the server has failed to receive a response to a *join* requests from any member of the cluster, assume that the cluster doesn't exist and transition into the *follower* state
-* Once a leader has been elected or otherwise discovered, complete the startup
-
-When a member *joins* the cluster, a *join* request will ultimately be received by the cluster's leader. The leader will log and replicate the joining member's configuration. Once the joined member's configuration has been persisted on a majority of the cluster, the joining member will be notified of the membership change and transition to the *passive* state. While in the *passive* state, the joining member cannot participate in votes but does receive *append* requests from the cluster leader. Once the leader has determined that the joining member's log has caught up to its own (the joining node's log has the last committed entry at any given point in time), the member is promoted to a full member via another replicated configuration change.
-
-Once a node has fully joined the Raft cluster, in the event of a failure the quorum size will not change. To leave the cluster, the `close()` method must be called on a [CopycatServer] instance. When `close()` is called, the member will submit a *leave* request to the leader. Once the leaving member's configuration has been removed from the cluster and the new configuration replicated and committed, the server will complete the close.
 
 {% include common-links.html %}
