@@ -197,24 +197,30 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 </td>
 </tr>
 <tr class="altColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/copycat/Command.CompactionMode.html#RELEASE">RELEASE</a></span></code>
+<div class="block">The <code>RELEASE</code> compaction mode retains the command in the log until it has been stored on a majority
+ of servers in the cluster and has been released by the state machine.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/copycat/Command.CompactionMode.html#SEQUENTIAL">SEQUENTIAL</a></span></code>
 <div class="block">The sequential compaction mode retains the command in the log until it has been stored and applied on
  all servers and until all prior commands have been compacted from the log.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/copycat/Command.CompactionMode.html#SNAPSHOT">SNAPSHOT</a></span></code>
 <div class="block">The <code>SNAPSHOT</code> compaction mode indicates commands for which resulting state is stored in state machine
  snapshots.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/copycat/Command.CompactionMode.html#TOMBSTONE">TOMBSTONE</a></span></code>
 <div class="block">The tombstone compaction mode is an alias for the <a href="../../../io/atomix/copycat/Command.CompactionMode.html#SEQUENTIAL"><code>SEQUENTIAL</code></a> compaction mode that is specifically intended
  for tombstone commands.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/copycat/Command.CompactionMode.html#UNKNOWN">UNKNOWN</a></span></code>
 <div class="block">The <code>UNKNOWN</code> compaction mode is a special compaction mode that behaves consistently for all
  system types.</div>
@@ -330,6 +336,24 @@ the order they are declared.</div>
  all associated events have been received by clients. That is, commands will never be replaced by a snapshot prior to
  events being received by clients. In the event of a failure and replay of the log, the state machine will always
  see commands for which events have not been acknowledged.</div>
+</li>
+</ul>
+<a name="RELEASE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RELEASE</h4>
+<pre>public static final&nbsp;<a href="../../../io/atomix/copycat/Command.CompactionMode.html" title="enum in io.atomix.copycat">Command.CompactionMode</a> RELEASE</pre>
+<div class="block">The <code>RELEASE</code> compaction mode retains the command in the log until it has been stored on a majority
+ of servers in the cluster and has been released by the state machine.
+ <p>
+ This compaction mode typically represents normal writes to a state machine. Once a <code>RELEASE</code> command
+ has been applied on a majority of state machines and have been released from memory, the command may be
+ safely removed from the log. It is the state machine's responsibility to indicate when it's safe for a
+ <code>RELEASE</code> command to be removed from the log by explicitly releasing the command once it no longer
+ contributes to the state machine's state. For instance, when one write overwrites the state that resulted
+ from a previous write, the previous write can be safely released and removed from the log during compaction.</div>
 </li>
 </ul>
 <a name="QUORUM">
