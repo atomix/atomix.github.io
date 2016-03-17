@@ -8,28 +8,53 @@ title: Custom Resources
 {:.no-margin-top}
 The Atomix API is designed to facilitate operating on arbitrary user-defined resources. When a custom resource is created via `Atomix.create`, an associated state machine will be created on each Atomix replica, and operations submitted by the resource instance will be applied to the replicated state machine. In that sense, think of a `Resource` instance as a client-side object and a `StateMachine` instance as the server-side representation of that object.
 
-To define a new resource, simply extend the base `Resource` class:
+To define a new resource, simply extend the base `AbstractResource` class:
 
 ```java
-@ResourceTypeInfo(id=1, stateMachine=ValueStateMachine.class)
-public class Value extends Resource<Value> {
-  public Value(CopycatClient client) {
-    super(client);
+@ResourceTypeInfo(id=1, factory=DistributedValueFactory.class)
+public class DistributedValue<T> extends AbstractResource<DistributedValue<T>> {
+  public Value(CopycatClient client, Options options) {
+    super(client, options);
   }
 }
 ```
 
-The resource class must be annotated with the `@ResourceTypeInfo` annotation. This annotation is used to aid replicas in constructing resource state machines. The resource type `id` is can be any positive integer but must be unique, and the `stateMachine` indicates the state machine class to instantiate on each replica.
+The resource class must be annotated with the `@ResourceTypeInfo` annotation. This annotation is used to aid replicas in constructing resource state machines. The resource type `id` is can be any positive integer but must be unique. Atomix uses this to identify resource types.
 
-Additionally, resources must be registered via the Java `ServiceLoader` by identifying the class in a `META-INF/services/io.atomix.resource.Resource` file:
-```
-com.mycompany.Value
-```
-
-Custom resources can be instantiated on any `Atomix` instance using the `get` method and passing the resource class:
+The resource `factory` is a `ResourceFactory` implementation that manages creation of resource instances, the resource `StateMachine`, and registering serializable types required by resource clients and servers.
 
 ```java
-atomix.get(Value.class).thenAccept(value -> {
+public class DistributedValueFactory implements ResourceFactory<DistributedValue<T>> {
+  @Override
+  public SerializableTypeResolver createSerializableTypeResolver() {
+    return new ValueTypeResolver();
+  }
+
+  @Override
+  public ResourceStateMachine createStateMachine(Properties config) {
+    return new ValueStateMachine(config);
+  }
+
+  @Override
+  public DistributedValue createInstance(CopycatClient client, Properties options) {
+    return new DistributedValue(client, options);
+  }
+}
+```
+
+When accessing custom resources, the resource must first be registered with the Atomix instance when building the instance:
+
+```java
+AtomixReplica replica = AtomixReplica.builder(address, cluster)
+  .withTransport(new NettyTransport())
+  .withResources(DistributedValue.class)
+  .build();
+```
+
+Once the resource type has been registered, custom resources can be created via the `getResource` method:
+
+```java
+atomix.getResource(Value.class).thenAccept(value -> {
   System.out.println("Value resource created!");
 });
 ```
@@ -65,8 +90,8 @@ Resource state changes are submitted to the Atomix cluster as [Command][Command]
 To submit an operation to the Atomix cluster on behalf of the resource, expose a method that forwards a `Command` or `Query` to the cluster:
 
 ```java
-@ResourceTypeInfo(id=1, stateMachine=ValueStateMachine.class)
-public class Value<T> extends Resource {
+@ResourceTypeInfo(id=1, factory=DistributedValueFactory.class)
+public class DistributedValue<T> extends Resource {
 
   /**
    * Returns the value.
@@ -110,7 +135,7 @@ public class Value<T> extends Resource {
   /**
    * Value state machine.
    */
-  public static class ValueStateMachine extends ResourceStateMachine {
+  public static class ValueStateMachine extends ResourceStateMachine implements Snapshottable {
     private Object value;
 
     /**
@@ -130,11 +155,21 @@ public class Value<T> extends Resource {
     public void set(Commit<Set> commit) {
       this.value = commit.operation().value;
     }
+
+    @Override
+    public void snapshot(SnapshotWriter writer) {
+      writer.writeObject(value);
+    }
+
+    @Override
+    public void install(SnapshotReader reader) {
+      value = reader.readObject();
+    }
   }
 }
 ```
 
 {:.callout .callout-danger}
-Important: See [Raft state machine documentation][state-machines] for details on log compaction
+Important: See [Raft state machine documentation][state-machines] for details on implementing state machines.
 
 {% include common-links.html %}
