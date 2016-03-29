@@ -266,3 +266,49 @@ AtomixReplica replica = AtomixReplica.builder(address, members)
     </div>
   </div>
 </div>
+
+<script type='text/javascript'>
+// Format tabs
+$(function(){
+  var $container = $('#sync-tabs');
+  
+  updateTabs($container);
+  $(window).resize(function(){
+    updateTabs($container);
+  })
+  
+  function updateTabs($tabsContainer){
+      var $containerWidth = $tabsContainer.width();
+      var tabWidths = [];
+      var $tabs = $tabsContainer.find('li');
+      $tabs.each(function(index, tab){
+        tabWidths.push($(tab).width());
+      });
+
+      var formattedTabs = [];
+      var maxWidth = $containerWidth;
+      var maxWidthSet = false;
+      var rowWidth = 0;
+      for(var i = tabWidths.length - 1; i >= 0; i--){
+          var tabWidth = tabWidths[i];
+          if(rowWidth + tabWidth > maxWidth){
+            if(!maxWidthSet){
+              maxWidth = rowWidth;
+              maxWidthSet = true;
+            }
+            rowWidth = tabWidth;
+            formattedTabs.unshift($('<div class="spacer"></div>'));
+          }else{
+            rowWidth += tabWidth;
+          }
+          formattedTabs.unshift($tabs.get(i));
+      }
+
+      var $tempContainer = $('<div></div>');
+      formattedTabs.forEach(function(tab, index){
+        $tempContainer.append(tab);
+      });
+      $tabsContainer.html($tempContainer.html());
+  }
+});
+</script>
