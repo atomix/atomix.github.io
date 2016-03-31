@@ -14,7 +14,7 @@ To create a distributed group, use the `DistributedGroup` class or constructor:
 DistributedGroup group = atomix.getGroup("my-group").get();
 ```
 
-Each instance of `DistributedGroup` resource represents a single [GroupMember]. 
+Each instance of `DistributedGroup` resource represents a single [GroupMember].
 
 ## Joining the Group
 
@@ -28,16 +28,11 @@ group.join().thenAccept(member -> {
 
 After joining a group, all existing members of the group may be notified via the [onJoin(Consumer)][on-join] event handlers:
 
-```java 
+```java
 group.onJoin(member -> {
   System.out.println(member.id() + " joined the group!");
 });
 ```
-
-
-
-
-
 
 When new members [join](#joining-the-group) a membership group, all existing members of the group may be [notified](#listening-for-membership-changes). Typically, in fault tolerant systems members remain in the group until they fail. When a member's session is disconnected from the cluster, remaining members of the group will again be notified that the member has left the cluster.
 
@@ -51,7 +46,7 @@ group.leave();
 
 The [onLeave(Consumer)][on-leave] event handler can be used to learn when members leave the group:
 
-```java 
+```java
 group.onLeave(member -> {
   System.out.println(member.id() + " left the group!");
 });
@@ -63,14 +58,14 @@ If a group member loses its session connection or otherwise fails, it will autom
 
 The [members()][members] list provides an up-to-date view of the group which will be automatically updated as members [join] and [leave] the group:
 
-```java 
+```java
 DistributedGroup group = atomix.getGroup("my-group").get();
 for (GroupMember member : group.members()) {
   System.out.println("Member: " + member);
 }
 ```
 
-Users of the distributed group do not have to join the group to interact with it. For instance, while a server may participate in the group by joining it, a client may interact with the group just to get a list of available members. 
+Users of the distributed group do not have to join the group to interact with it. For instance, while a server may participate in the group by joining it, a client may interact with the group just to get a list of available members.
 
 Once the group instance has been created, the group membership will be automatically updated each time the structure of the group changes. However, in the event that the client becomes disconnected from the cluster, it may not receive notifications of changes in the group structure.
 
@@ -80,7 +75,7 @@ The [DistributedGroup] resource facilitates leader election which can be used to
 
 Leaders are elected using a fair policy. The first member to [join] a group will always become the initial group [leader]. Each unique leader in a group is associated with a [term]. The term is a globally unique, monotonically increasing token that can be used for fencing. Users can listen for changes in group terms and leaders with event listeners:
 
-```java 
+```java
 DistributedGroup group = atomix.getGroup("my-group").get();
 group.election().onTerm(term -> {
   System.out.println("New term: " + term);
@@ -97,58 +92,134 @@ While terms and leaders are guaranteed to progress in the same order from the pe
 
 To guard against inconsistencies resulting from arbitrary process pauses, clients can use the monotonically increasing term for coordination and managing optimistic access to external resources.
 
-## Consistent hashing
+## Task queues
 
-Membership groups also provide features to aid in supporting replication via consistent hashing and partitioning. When a group is created, users can configure the group to support a particular number of partitions and replication factor. Partitioning can aid in hashing resources to specific members of the group, and the replication factor builds on partitions to aid in identifying multiple members per partition.
+### Task queue producers
 
-By default, groups are created with a single partition and replication factor of 1. To configure the group for more partitions, provide a [DistributedGroup.Config][dgroup-config] when creating the resource.
+Tasks are arbitrary serializable values that are submitted to a queue via a [`TaskProducer`][TaskProducer]. Producers are created via a factory method on a [`TaskClient`][TaskClient].
 
 ```java
-DistributedGroup.Config config = DistributedGroup.config()
-  .withPartitions(32)
-  .withVirtualNodes(200)
-  .withReplicationFactor(3);
-DistributedGroup group = atomix.getGroup("foo", config);
+TaskProducer<String> producer = group.tasks().producer("foo");
 ```
 
-Partitions are managed within a consistent hash ring. For each member of the cluster, `100` virtual nodes are created on the ring by default. This helps spread reduce hotspotting within the ring. For each partition, the partition is mapped to a set of members of the group by hashing the partition to a point on the ring. Once hashed to a point on the ring, the `n` members following that point are the replicas for that partition.
+Each producer is associated with a queue name. The producer for a given queue can be uniquely configured by passing a `TaskProducer.Options` instance when creating the producer. Once a producer has been referenced, future calls to the `producer` method will return the same [`TaskProducer`][TaskProducer] instance.
 
-Partition features are accessed via the group's [GroupPartitions] instance, which can be fetched via partitions().
-
-```java
-group.partitions().partition(1).members().forEach(m -> ...);
-```
-
-Partitions change over time while members are added to or removed from the group. Each time a member is added or removed, the group state machine will reassign the minimal number of partitions necessary to balance the cluster, and DistributedGroup instances will be notified and updated automatically. Atomix guarantees that when a new member [joins][join] a group, all partition information on all connected group instances will be updated before the join completes. Similarly, when a member [leaves][leave] the group, all partition information on all connected group instances are guaranteed to be updated before the operation completes.
-
-Groups also aid in hashing objects to specific partitions and thus replicas within the group. Users can provide a [GroupPartitioner] class in the [DistributedGroup.Options][dgroup-options] when a group instance is first created on a node. The partitioner will be used to determine the partition to which an object maps within the current set of partitions when [GroupPartitions.partition(Object)][partition] is called.
+Once a producer has been created, tasks are submitted to the named queue via the `submit` method:
 
 ```java
-group.partitions().partition("foo").members().forEach(m -> m.send("foo"));
-```
-
-## Remote execution
-
-Once members of the group, any member can [execute] immediate callbacks or [schedule] delayed callbacks to be run on any other member of the group. Submitting a [Runnable] callback to a member will cause it to be serialized and sent to that node to be executed.
-   
-```java
-group.onJoin(member -> {
-  String memberId = member.id();
-  member.execute((Serializable & Runnable) () -> System.out.println("Executing on " + memberId));
+producer.submit("Hello world!").thenRun(() -> {
+  System.out.println("Task complete!");
 });
 ```
 
+The returned [`CompletableFuture`][CompletableFuture] will be completed once the task has been processed. The criteria for determining when a task has been processed is dependent on the producer configuration.
+
+### Task queue consumers
+
+Tasks are consumed from a task queue via a [`TaskConsumer`][TaskConsumer]. Consumers are created in a manner similar to producers with a factory `consumer` method on a [`TaskService`][TaskService].
+
+```java
+TaskConsumer<String> consumer = group.tasks().consumer("foo");
+```
+
+Each consumer is associated with a unique queue name. As with producers, the consumer for a given queue can be configured by passing a `TaskConsumer.Options` instance when creating the consumer. Once a consumer has been referenced, future calls to the `consumer` method will return the same [`TaskConsumer`][TaskConsumer] instance.
+
+Once a consumer has been created, a callback must be registered for receiving tasks on the queue via the `onTask` method:
+
+```java
+consumer.onTask(task -> {
+  ...
+});
+```
+
+When a task is received by the consumer, the task callback will be called with the [`Task`][Task] instance as the argument. [`Task`][Task] is a wrapper object that provides context for the task and facilitates acks. Task consumer callbacks may be asynchronous. Once a callback is finished processing a task, it must call `ack()` on the [`Task`][Task] object to acknowledge completion of the task.
+
+```java
+consumer.onTask(task -> {
+  ...
+  task.ack();
+});
+```
+
+When a task is acknowledged, the acknowledgement will be sent back to the process that produced the task and the task future will be completed. However, Atomix cannot guarantee that once a task has been acknowledged by a consumer it will be completed on the producer. In order to acknowledge a task, the acknowledgement must be submitted back to the Atomix cluster. The `ack()` method returns a [`CompletableFuture`][CompletableFuture] that will be completed once the task acknowledgement is complete.
+
+```java
+consumer.onTask(task -> {
+  ...
+  task.ack().thenRun(() -> System.out.println("Task acknowledged"));
+});
+```
+
+Alternatively, consumers can explicitly fail processing of a task by calling the `fail()` method:
+
+```java
+consumer.onTask(task -> {
+  // Task failed
+  task.fail();
+});
+```
+
+Failing a task will result in the task future being completed exceptionally on the producer.
+
+## Direct messaging
+
+### Message producers
+
+Messages are arbitrary serializable values that are submitted to a destination via a [`MessageProducer`][MessageProducer]. Producers are created via a factory method on a [`MessageClient`][MessageClient].
+
+```java
+MessageProducer<String> producer = member.messages().producer("foo");
+```
+
+Each producer is associated with a connection name. The producer for a given connection can be uniquely configured by passing a `MessageProducer.Options` instance when creating the producer. Once a producer has been referenced, future calls to the `producer` method will return the same [`MessageProducer`][MessageProducer] instance.
+
+Once a producer has been created, tasks are submitted to the named queue via the `send` method:
+
+```java
+producer.send("Hello world!").thenAccept(reply -> {
+  System.out.println("Reply is " + reply);
+});
+```
+
+The returned [`CompletableFuture`][CompletableFuture] will be completed once the destination responds to the message.
+
+### Message consumers
+
+Messages are consumed from the messaging service via a [`TaskConsumer`][TaskConsumer]. Consumers are created in a manner similar to producers with a factory `consumer` method on a [`MessageService`][MessageService].
+
+```java
+TaskConsumer<String> consumer = group.messages().consumer("foo");
+```
+
+Each consumer is associated with a unique connection name. As with producers, the consumer for a given connection can be configured by passing a `MessageConsumer.Options` instance when creating the consumer. Once a consumer has been referenced, future calls to the `consumer` method will return the same [`MessageConsumer`][MessageConsumer] instance.
+
+Once a consumer has been created, a callback must be registered for receiving messages on the connection via the `onMessage` method:
+
+```java
+consumer.onMessage(message -> {
+  ...
+});
+```
+
+When a message is received by the consumer, the message callback will be called with the [`Message`][Message] instance as the argument. [`Message`][Message] is a wrapper object that provides context for the message and facilitates acks. Task consumer callbacks may be asynchronous. Once a callback is finished processing a message, it must call `reply(Object)` or `ack()` on the [`Message`][Message] object to send a response or acknowledge reception of the message respectively.
+
+```java
+consumer.onMessage(message -> {
+  ...
+  message.reply("Back at you!");
+});
+```
+
+When a reply to a message is sent, the reply will be sent directly back to the sender. As with request messages, replies must be serializable by the Catalyst serializer.
+
 {% include common-links.html %}
 
-[leader]: http://atomix.io/atomix/api/latest/io/atomix/group/GroupElection.html#leader--
+[leader]: http://atomix.io/atomix/api/latest/io/atomix/group/election/Election.html#leader--
 [join]: http://atomix.io/atomix/api/latest/io/atomix/group/DistributedGroup.html#join--
 [leave]: http://atomix.io/atomix/api/latest/io/atomix/group/LocalGroupMember.html#leave--
 [members]: http://atomix.io/atomix/api/latest/io/atomix/group/DistributedGroup.html#members--
 [on-join]: http://atomix.io/atomix/api/latest/io/atomix/group/DistributedGroup.html#onJoin-java.util.function.Consumer-
 [on-leave]: http://atomix.io/atomix/api/latest/io/atomix/group/DistributedGroup.html#onLeave-java.util.function.Consumer-
 [term]: http://atomix.io/atomix/api/latest/io/atomix/group/GroupElection.html#term--
-[partition]: http://atomix.io/atomix/api/latest/io/atomix/group/GroupPartitions.html#partition-java.lang.Object-
 [dgroup-config]: http://atomix.io/atomix/api/latest/io/atomix/group/DistributedGroup.Config.html
 [dgroup-options]: http://atomix.io/atomix/api/latest/io/atomix/group/DistributedGroup.Options.html
-[execute]: http://atomix.io/atomix/api/latest/io/atomix/group/GroupScheduler.html#execute-java.lang.Runnable-
-[schedule]: http://atomix.io/atomix/api/latest/io/atomix/group/GroupScheduler.html#schedule-java.time.Duration-java.lang.Runnable-

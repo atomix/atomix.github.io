@@ -22,7 +22,7 @@ Copycat is a fault-tolerant state machine replication framework. Built on the Ra
       <div class="col-sm-6">
         <h2>Simple</h2>
         <p>
-          Copycat's simple but powerful programming model allows single-threaded state machines to be transparently scaled across a cluster.<br /><a href="/copycat/docs/state-machine">Build your state machine</a></p>
+          Copycat's simple but powerful programming model allows single-threaded state machines to be transparently scaled across a cluster.</p>
       </div>
       <div class="col-sm-5 text-right">
         <img class="svg" src="/assets/img/icons/scalable.svg">
@@ -40,7 +40,7 @@ Copycat is a fault-tolerant state machine replication framework. Built on the Ra
       <div class="col-sm-6 text-right">
         <h2>Sophisticated</h2>
         <p>
-          Copycat is built on one of the most advanced implementations of the Raft consensus algorithm, supporting membership changes, incremental compaction, snapshots, session-based client communication, state machine events, and more.<br /><a href="/copycat/docs/internals">Read more</a>
+          Copycat is built on one of the most advanced implementations of the Raft consensus algorithm, supporting membership changes, incremental compaction, snapshots, session-based client communication, state machine events, and more.
         </p>
       </div>
     </div>
@@ -53,7 +53,7 @@ Copycat is a fault-tolerant state machine replication framework. Built on the Ra
     <div class="row">
       <div class="col-sm-6">
         <h2>Scalable</h2>
-        <p>Copycat clusters are resilient to failure and can be scaled to virtually any size, and read capacity can be scaled independently of write capacity.<br /><a href="/copycat/docs/cluster">Read more</a></p>
+        <p>Copycat clusters are resilient to failure and can be scaled to virtually any size, and read capacity can be scaled independently of write capacity.</p>
       </div>
       <div class="col-sm-5 text-right">
         <img class="svg" src="/assets/img/icons/scalable.svg">
@@ -71,7 +71,7 @@ Copycat is a fault-tolerant state machine replication framework. Built on the Ra
       <div class="col-sm-6 text-right">
         <h2>Reactive</h2>
         <p>
-          Copycat's event framework allows for efficient, wait-free interaction with replicated state machines while maintaining the same fault-tolerance and consistency guarantees.<br /><a href="/copycat/docs/events">Read more</a>
+          Copycat's event framework allows for efficient, wait-free interaction with replicated state machines while maintaining the same fault-tolerance and consistency guarantees.
         </p>
       </div>
     </div>
