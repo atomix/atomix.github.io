@@ -21,8 +21,77 @@ Atomix is an event-driven framework for coordinating fault-tolerant distributed 
     <div class="row">
 
 <div class="col-sm-7" markdown="1">
-{% include sync-tabs-params.html active="#distributed-lock:Lock" inactive="#distributed-group:Group Membership,#task-queue:Task Queue,#direct-messaging:Direct Messaging,#distributed-leader:Leader Election,#distributed-long:Long,#distributed-map:Map,#distributed-multimap:MultiMap,#distributed-set:Set,#distributed-queue:Queue" %}
+{% include sync-tabs-params.html active="#distributed-value:Value" inactive="#distributed-long:Long,#distributed-map:Map,#distributed-multimap:MultiMap,#distributed-set:Set,#distributed-queue:Queue,#distributed-lock:Lock,#distributed-group:Group Membership,#task-queue:Task Queue,#direct-messaging:Direct Messaging,#distributed-leader:Leader Election" %}
 <div class="tab-content" markdown="1">
+<div class="tab-pane active" id="distributed-value" markdown="1">
+```java
+DistributedValue<String> value = atomix.getValue("value").get();
+
+value.set("Hello world!").thenRun(() -> {
+  value.get().thenAccept(result -> {
+    assert result.equals("Hello world!");
+  });
+});
+```
+</div>
+<div class="tab-pane" id="distributed-long" markdown="1">
+```java
+DistributedLong value = atomix.getLong("long").get();
+
+value.incrementAndGet().thenAccept(result -> {
+  assert result == 1;
+});
+```
+</div>
+<div class="tab-pane" id="distributed-map" markdown="1">
+```java
+DistributedMap<String, String> map = atomix.getMap("map").get();
+
+map.put("bar", "Hello world!").thenRun(() -> {
+  map.get("bar").thenAccept(result -> {
+    assert result.equals("Hello world!");
+  });
+});
+```
+</div>
+<div class="tab-pane" id="distributed-multimap" markdown="1">
+```java
+DistributedMultiMap<String, String> multimap = atomix.getMultiMap("multimap").get();
+
+multimap.put("bar", "Hello world!").thenRun(() -> {
+  multimap.put("bar", "Hello world again!").thenRun(() -> {
+    multimap.get("bar").thenAccept(values -> {
+      values.forEach(value -> System.out.println(value));
+    });
+  });
+});
+```
+</div>
+<div class="tab-pane" id="distributed-set" markdown="1">
+```java
+DistributedSet<String> set = atomix.getSet("set").get();
+
+set.add("foo").thenRun(() -> {
+  set.contains("foo").thenAccept(result -> {
+    if (result) {
+      System.out.println("set contains 'foo'");
+    }
+  });
+});
+```
+</div>
+<div class="tab-pane" id="distributed-queue" markdown="1">
+```java
+DistributedQueue<Integer> queue = atomix.getQueue("queue").get();
+
+queue.offer(1).join();
+queue.offer(2).join();
+
+queue.poll().thenAccept(value -> {
+  System.out.println("retrieved " + value);
+});
+```
+</div>
 <div class="tab-pane" id="distributed-lock" markdown="1">
 ```java
 DistributedLock lock = atomix.getLock("foo").get();
@@ -97,75 +166,6 @@ consumer.onMessage(message -> {
   if (message.body().equals("Hello world!")) {
     messages.reply("Hello world back!");
   }
-});
-```
-</div>
-<div class="tab-pane active" id="distributed-value" markdown="1">
-```java
-DistributedValue<String> value = atomix.getValue("value").get();
-
-value.set("Hello world!").thenRun(() -> {
-  value.get().thenAccept(result -> {
-    assert result.equals("Hello world!");
-  });
-});
-```
-</div>
-<div class="tab-pane" id="distributed-long" markdown="1">
-```java
-DistributedLong value = atomix.getLong("long").get();
-
-value.incrementAndGet().thenAccept(result -> {
-  assert result == 1;
-});
-```
-</div>
-<div class="tab-pane" id="distributed-map" markdown="1">
-```java
-DistributedMap<String, String> map = atomix.getMap("map").get();
-
-map.put("bar", "Hello world!").thenRun(() -> {
-  map.get("bar").thenAccept(result -> {
-    assert result.equals("Hello world!");
-  });
-});
-```
-</div>
-<div class="tab-pane" id="distributed-multimap" markdown="1">
-```java
-DistributedMultiMap<String, String> multimap = atomix.getMultiMap("multimap").get();
-
-multimap.put("bar", "Hello world!").thenRun(() -> {
-  multimap.put("bar", "Hello world again!").thenRun(() -> {
-    multimap.get("bar").thenAccept(values -> {
-      values.forEach(value -> System.out.println(value));
-    });
-  });
-});
-```
-</div>
-<div class="tab-pane" id="distributed-set" markdown="1">
-```java
-DistributedSet<String> set = atomix.getSet("set").get();
-
-set.add("foo").thenRun(() -> {
-  set.contains("foo").thenAccept(result -> {
-    if (result) {
-      System.out.println("set contains 'foo'");
-    }
-  });
-});
-```
-</div>
-<div class="tab-pane" id="distributed-queue" markdown="1">
-```java
-DistributedQueue<Integer> queue = atomix.getQueue("queue").get();
-
-queue.offer(1).join();
-queue.offer(2).join();
-
-queue.poll().thenAccept(value -> {
-  System.out.println("retrieved " + value);
 });
 ```
 </div>
