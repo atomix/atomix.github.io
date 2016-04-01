@@ -66,7 +66,7 @@ Copycat is a fault-tolerant state machine replication framework. Built on the Ra
   <div class="container">
     <div class="row">
       <div class="col-sm-5 col-sm-offset-1">
-        <img class="svg" src="/assets/img/icons/consensus.svg">
+        <img class="svg" src="/assets/img/icons/reactive.svg">
       </div>
       <div class="col-sm-6 text-right">
         <h2>Reactive</h2>
