@@ -16,7 +16,7 @@ Atomix is an event-driven framework for coordinating fault-tolerant distributed 
 </div>
 
 <!-- Simple -->
-<div class="feature white-background">
+<div class="feature gray-background">
   <div class="container">
     <div class="row">
 
@@ -180,7 +180,7 @@ consumer.onMessage(message -> {
 </div>
 
 <!-- Reliable -->
-<div class="feature gray-background">
+<div class="feature white-background">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
@@ -195,7 +195,7 @@ consumer.onMessage(message -> {
 </div>
 
 <!--Resilient -->
-<div class="feature white-background">
+<div class="feature gray-background">
   <div class="container">
     <div class="row">
       <div class="col-sm-5 col-sm-offset-1">
@@ -210,7 +210,7 @@ consumer.onMessage(message -> {
 </div>
 
 <!--Scalable -->
-<div class="feature gray-background">
+<div class="feature white-background">
   <div class="container">
     <div class="row">
       <div class="col-sm-6">
