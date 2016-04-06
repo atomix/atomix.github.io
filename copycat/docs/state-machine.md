@@ -89,9 +89,9 @@ public class MapStateMachine extends StateMachine {
 
   public Object put(Commit<Put> commit) {
     try {
-      return map.put(commit.command().key, commit.commnad().value;
+      return map.put(commit.command().key, commit.command().value);
     } finally {
-      commit.release();
+      commit.close();
     }
   }
 }
@@ -110,9 +110,9 @@ public class MapStateMachine extends StateMachine {
 
   public Object get(Commit<Get> commit) {
     try {
-      return map.get(commit.query().key;
+      return map.get(commit.query().key);
     } finally {
-      commit.release();
+      commit.close();
     }
   }
 }
@@ -159,7 +159,7 @@ public class MapStateMachine extends StateMachine {
     map.put(commit.command().key, commit);
     executor.schedule(Duration.ofMillis(commit.command().ttl, () -> {
       map.remove(commit.command().key;
-      commit.release();
+      commit.close();
     });
   }
 }
@@ -218,8 +218,8 @@ public class MapStateMachine extends StateMachine {
   private Set<ServerSession> listeners = new HashSet<>();
 
   public void listen(Commit<Listen> commit) {
-    listeners.add(commit);
-    commit.release();
+    listeners.add(commit.session());
+    commit.close();
   }
 
   public Object put(Commit<Put> commit) {
@@ -230,7 +230,7 @@ public class MapStateMachine extends StateMachine {
       });
       return oldValue;
     } finally {
-      commit.release();
+      commit.close();
     }
   }
 }
@@ -320,7 +320,7 @@ public class MapStateMachine extends StateMachine implements Snapshottable {
     try {
       return map.get(commit.query().key);
     } finally {
-      commit.release();
+      commit.close();
     }
   }
 }
@@ -358,7 +358,7 @@ public class MapStateMachine extends StateMachine implements Snapshottable {
     try {
       return map.get(commit.query().key);
     } finally {
-      commit.release();
+      commit.close();
     }
   }
 
@@ -367,12 +367,12 @@ public class MapStateMachine extends StateMachine implements Snapshottable {
       Commit<Put> removed = map.remove(commit.operation().key);
       if (removed != null) {
         Object result = removed.command().value;
-        removed.release();
+        removed.close();
         return result;
       }
       return null;
     } finally {
-      commit.release();
+      commit.close();
     }
   }
 }
