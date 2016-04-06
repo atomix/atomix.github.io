@@ -213,8 +213,8 @@ server.serializer().disableWhitelist();
 But better yet, we can whitelist the state machine operations by registering them with the server serializer.
 
 ```java
-client.serializer().register(PutCommand.class);
-client.serializer().register(GetQuery.class);
+server.serializer().register(PutCommand.class);
+server.serializer().register(GetQuery.class);
 ```
 
 This approach is slightly more efficient, but even more efficient means of serialization are described in the [Catalyst documentation][io-serialization].
