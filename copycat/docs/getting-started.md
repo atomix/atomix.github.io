@@ -161,8 +161,8 @@ Address address = new Address("123.456.789.0", 5000);
 
 Collection<Address> members = Arrays.asList(
   new Address("123.456.789.0", 5000),
-  new Address("123.456.789.0", 5000),
-  new Address("123.456.789.0", 5000)
+  new Address("123.456.789.1", 5000),
+  new Address("123.456.789.2", 5000)
 );
 
 CopycatServer.Builder builder = CopycatServer.builder(address, members);
@@ -235,8 +235,8 @@ Clients are built in a manner very similar to servers. To construct a client, cr
 ```java
 Collection<Address> members = Arrays.asList(
   new Address("123.456.789.0", 5000),
-  new Address("123.456.789.0", 5000),
-  new Address("123.456.789.0", 5000)
+  new Address("123.456.789.1", 5000),
+  new Address("123.456.789.2", 5000)
 );
 
 CopycatClient.Builder builder = CopycatClient.builder(members);
