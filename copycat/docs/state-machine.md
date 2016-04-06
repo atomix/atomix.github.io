@@ -89,7 +89,7 @@ public class MapStateMachine extends StateMachine {
 
   public Object put(Commit<Put> commit) {
     try {
-      return map.put(commit.command().key, commit.commnad().value;
+      return map.put(commit.operation().key, commit.operation().value);
     } finally {
       commit.release();
     }
@@ -110,7 +110,7 @@ public class MapStateMachine extends StateMachine {
 
   public Object get(Commit<Get> commit) {
     try {
-      return map.get(commit.query().key;
+      return map.get(commit.operation().key);
     } finally {
       commit.release();
     }
@@ -156,9 +156,9 @@ public class MapStateMachine extends StateMachine {
   private Map<Object, Object> map = new HashMap<>();
 
   public Object putWithTtl(Commit<PutWithTtl> commit) {
-    map.put(commit.command().key, commit);
-    executor.schedule(Duration.ofMillis(commit.command().ttl, () -> {
-      map.remove(commit.command().key;
+    map.put(commit.operation().key, commit);
+    executor.schedule(Duration.ofMillis(commit.operation().ttl, () -> {
+      map.remove(commit.operation().key);
       commit.release();
     });
   }
@@ -218,15 +218,15 @@ public class MapStateMachine extends StateMachine {
   private Set<ServerSession> listeners = new HashSet<>();
 
   public void listen(Commit<Listen> commit) {
-    listeners.add(commit);
+    listeners.add(commit.session());
     commit.release();
   }
 
   public Object put(Commit<Put> commit) {
     try {
-      Object oldValue = map.put(commit.command().key, commit.command().value);
+      Object oldValue = map.put(commit.operation().key, commit.operation().value);
       listeners.forEach(session -> {
-        session.publish("change", new MapEntryEvent(commit.command().key, oldValue, commit.command().value));
+        session.publish("change", new MapEntryEvent(commit.operation().key, oldValue, commit.operation().value));
       });
       return oldValue;
     } finally {
@@ -313,12 +313,12 @@ public class MapStateMachine extends StateMachine implements Snapshottable {
   private Map<Object, Commit<Put>> map = new HashMap<>();
 
   public Object put(Commit<Put> commit) {
-    return map.put(commit.command().key, commit);
+    return map.put(commit.operation().key, commit);
   }
 
   public Object get(Commit<Get> commit) {
     try {
-      return map.get(commit.query().key);
+      return map.get(commit.operation().key);
     } finally {
       commit.release();
     }
@@ -351,12 +351,12 @@ public class MapStateMachine extends StateMachine implements Snapshottable {
   private Map<Object, Commit<Put>> map = new HashMap<>();
 
   public Object put(Commit<Put> commit) {
-    return map.put(commit.command().key, commit);
+    return map.put(commit.operation().key, commit);
   }
 
   public Object get(Commit<Get> commit) {
     try {
-      return map.get(commit.query().key);
+      return map.get(commit.operation().key);
     } finally {
       commit.release();
     }
