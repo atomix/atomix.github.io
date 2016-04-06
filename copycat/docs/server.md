@@ -34,9 +34,9 @@ To create a new server, use the server `Builder`. Servers require cluster member
 ```java
 Address address = new Address("123.456.789.0", 5000);
 Collection<Address> members = Arrays.asList(
+  new Address("123.456.789.0", 5000),
   new Address("123.456.789.1", 5000),
   new Address("123.456.789.2", 5000),
-  new Address("123.456.789.3", 5000),
 );
 
 CopycatServer.Builder builder = CopycatServer.builder(address, members);
@@ -54,9 +54,9 @@ Underlying each server is a [StateMachine][StateMachine]. The state machine is r
 ```java
 Address address = new Address("123.456.789.0", 5000);
 Collection<Address> members = Arrays.asList(
+  new Address("123.456.789.0", 5000),
   new Address("123.456.789.1", 5000),
   new Address("123.456.789.2", 5000),
-  new Address("123.456.789.3", 5000),
 );
 
 CopycatServer server = CopycatServer.builder(address, members)
