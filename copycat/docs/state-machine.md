@@ -123,6 +123,7 @@ As with all other operation implementations, query `Commit`s must be `release`d 
 ### The Commit object
 
 As demonstrated above, operations submitted to the cluster are applied to state machines wrapped in a `Commit` object. The commit object provides some useful information that can be used to associate operations with clients or approximate the progression of real-time and logical time in the cluster. The `Commit` object exposes the following properties:
+
 * `index()` - The index of the commit in the underlying Raft replicated log. This index is guaranteed to be unique and monotonically increasing, and all state machines are guaranteed to see the same operation for the same commit index.
 * `time()` - The approximate wall-clock time at which the operation was committed. This time is written to the underlying log by the leader when the operation is first logged. Commit times are guaranteed to be monotonically increasing.
 * `session()` - The [`Session`][Session] that submitted the operation. This can be used to [send session event messages](#publishing-session-events) to the client.
