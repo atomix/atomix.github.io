@@ -18,7 +18,7 @@ While the leader is not publicly distinguished, it carries the important respons
 
 As nodes come and go from the cluster, new leaders are automatically elected as needed to carry on the responsibility of processing write operations.
 
-## Sizing Your Cluster
+## Determining the Size of a Cluster
 
 Since Atomix requires a majority quorum to process write operations, clusters typically consist of 3 or 5 [active nodes](#active-nodes) which allows a quorum to be reached even if a node failure occurs. Smaller clusters can be used but may lose write availability if a node fails. Larger clusters can also be used, but are usually unnecessary in terms of fault tolerance, and they come at the cost of slower write throughput since the quorum size for processing writes is larger.
 
@@ -71,7 +71,7 @@ AtomixReplica replica3 = AtomixReplica.builder(cluster.get(2)).build();
 replica3.bootstrap(cluster).join();
 ```
 
-## Joining an Existing Cluster
+## Joining a Cluster
 
 Additional replicas can be added to any existing Atomix cluster via the same method described above. To join a replica to an existing cluster, pass a list of addresses to which to join the replica to the `join` method:
 
