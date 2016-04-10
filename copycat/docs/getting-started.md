@@ -146,7 +146,6 @@ public class MapStateMachine extends StateMachine implements Snapshottable {
   public void install(SnapshotReader reader) {
     map = reader.readObject();
   }
-
 }
 ```
 

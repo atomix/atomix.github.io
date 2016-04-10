@@ -33,7 +33,7 @@ To get started, add the [atomix-all][atomix-all-mvn] Maven artifact to your proj
 
 This dependency provides you with all of the Atomix resources along with a [Netty] based transport that Atomix nodes can use to communicate with each other.
 
-## Bootstrapping a Cluster
+## Bootstrapping a new Cluster
 
 The first step with Atomix is to bootstrap a cluster. An atomix cluster consists of stateful distributed resources such as maps, queues, and groups, and a set of [replicas] through which resources are created and operated on. Each replica maintains a copy of the state of each resource created in the cluster. State is stored according to a configurable [StorageLevel] and state changes are replicated according to a given [ConsistencyLevel][CommandConsistencyLevel].
 
@@ -71,6 +71,8 @@ future.join();
 
 {:.callout .callout-info}
 All of the Atomix APIs are [fully asynchronous](/atomix/docs/threading-model/#asynchronous-api-usage), allowing users to perform multiple operations concurrently. The [CompletableFuture] API can still be used in a synchronous manner by using the blocking on the `get` or `join` methods, such as above.
+
+## Joining an existing cluster
 
 Once a single replica has been bootstrapped, additional replicas can be added to the cluster via the `join()` method:
 
@@ -170,11 +172,5 @@ Once `connect()` is complete, we can get or create distributed resources in the 
 DistributedValue<String> value = client.getValue("value").join();
 value.set("Hello world!");
 ```
-
-## Freeing Resources
-
-To discontinue the usage of a resource, call `close()`. The resource's state will still remain intact and the resource can be re-opened by calling `open()`.
-
-To delete a resource's state permanently, call `delete()`.
 
 {% include common-links.html %}
