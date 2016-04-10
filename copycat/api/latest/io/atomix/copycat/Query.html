@@ -116,11 +116,10 @@ extends <a href="../../../io/atomix/copycat/Operation.html" title="interface in 
  All queries must specify a <a href="../../../io/atomix/copycat/Query.html#consistency--"><code>consistency()</code></a> with which to execute the query. The provided consistency level
  dictates how queries are submitted to the Raft cluster. When a query is submitted to the cluster, the query is
  sent in a message to the server to which the client is currently connected. The server handles the query requests
- based on the configured <a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat"><code>Query.ConsistencyLevel</code></a>. For lower consistency levels
- like <a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html#CAUSAL"><code>Query.ConsistencyLevel.CAUSAL</code></a> or <a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html#SEQUENTIAL"><code>Query.ConsistencyLevel.SEQUENTIAL</code></a>, followers are allowed to execute
- queries with certain constraints for faster reads. For higher consistency levels like <a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html#LINEARIZABLE"><code>Query.ConsistencyLevel.LINEARIZABLE</code></a>
- and <a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html#BOUNDED_LINEARIZABLE"><code>Query.ConsistencyLevel.BOUNDED_LINEARIZABLE</code></a>, queries are forwarded to the cluster leader. See the
- <a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat"><code>Query.ConsistencyLevel</code></a> documentation for more info.
+ based on the configured <a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat"><code>Query.ConsistencyLevel</code></a>. For <a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html#SEQUENTIAL"><code>Query.ConsistencyLevel.SEQUENTIAL</code></a> consistency, followers
+ are allowed to execute queries with certain constraints for faster reads. For higher consistency levels like
+ <a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html#LINEARIZABLE"><code>Query.ConsistencyLevel.LINEARIZABLE</code></a> and <a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html#LINEARIZABLE_LEASE"><code>Query.ConsistencyLevel.LINEARIZABLE_LEASE</code></a>, queries are forwarded to the
+ cluster leader. See the <a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat"><code>Query.ConsistencyLevel</code></a> documentation for more info.
  <p>
  By default, all queries should use the strongest consistency level, <a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html#LINEARIZABLE"><code>Query.ConsistencyLevel.LINEARIZABLE</code></a>.
  It is essential that users understand the trade-offs in the various consistency levels before using them.

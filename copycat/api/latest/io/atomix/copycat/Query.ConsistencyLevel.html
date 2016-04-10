@@ -153,21 +153,16 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 <th class="colOne" scope="col">Enum Constant and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html#BOUNDED_LINEARIZABLE">BOUNDED_LINEARIZABLE</a></span></code>
-<div class="block">Enforces bounded linearizable query consistency based on leader lease.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html#CAUSAL">CAUSAL</a></span></code>
-<div class="block">Enforces causal query consistency.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html#LINEARIZABLE">LINEARIZABLE</a></span></code>
 <div class="block">Enforces linearizable query consistency.</div>
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html#LINEARIZABLE_LEASE">LINEARIZABLE_LEASE</a></span></code>
+<div class="block">Enforces linearizable query consistency based on leader lease.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html#SEQUENTIAL">SEQUENTIAL</a></span></code>
 <div class="block">Enforces sequential query consistency.</div>
 </td>
@@ -229,22 +224,6 @@ the order they are declared.</div>
 <!--   -->
 </a>
 <h3>Enum Constant Detail</h3>
-<a name="CAUSAL">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>CAUSAL</h4>
-<pre>public static final&nbsp;<a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat">Query.ConsistencyLevel</a> CAUSAL</pre>
-<div class="block">Enforces causal query consistency.
- <p>
- Causal consistency requires that clients always see non-overlapping state progress monotonically. This constraint allows
- reads from followers. When a causally consistent <a href="../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>Query</code></a> is submitted to the cluster, the first server that
- receives the query will attempt to handle it. If the server that receives the query is more than a heartbeat behind the
- leader, the query will be forwarded to the leader. If the server that receives the query has not advanced past the
- client's last write, the read will be queued until it can be satisfied.</div>
-</li>
-</ul>
 <a name="SEQUENTIAL">
 <!--   -->
 </a>
@@ -261,14 +240,14 @@ the order they are declared.</div>
  past the provided client index, it will queue the query and await more entries from the leader.</div>
 </li>
 </ul>
-<a name="BOUNDED_LINEARIZABLE">
+<a name="LINEARIZABLE_LEASE">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>BOUNDED_LINEARIZABLE</h4>
-<pre>public static final&nbsp;<a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat">Query.ConsistencyLevel</a> BOUNDED_LINEARIZABLE</pre>
-<div class="block">Enforces bounded linearizable query consistency based on leader lease.
+<h4>LINEARIZABLE_LEASE</h4>
+<pre>public static final&nbsp;<a href="../../../io/atomix/copycat/Query.ConsistencyLevel.html" title="enum in io.atomix.copycat">Query.ConsistencyLevel</a> LINEARIZABLE_LEASE</pre>
+<div class="block">Enforces linearizable query consistency based on leader lease.
  <p>
  Bounded linearizability is a special implementation of linearizable reads that relies on the semantics of Raft's
  election timers to determine whether it is safe to immediately apply a query to the Raft state machine. When a

@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -109,26 +109,25 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a>&gt;, <a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a></dd>
+<dd><a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">ClientSession</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a>&gt;</pre>
+implements <a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a></pre>
 <div class="block">Handles submitting state machine <a href="../../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>commands</code></a> and <a href="../../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>queries</code></a> to the Copycat cluster.
  <p>
  The client session is responsible for maintaining a client's connection to a Copycat cluster and coordinating
  the submission of <a href="../../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>commands</code></a> and <a href="../../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>queries</code></a> to various nodes in the cluster. Client
  sessions are single-use objects that represent the context within which a cluster can guarantee linearizable
- semantics for state machine operations. When a session is <a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#open--"><code>opened</code></a>, the session will register
+ semantics for state machine operations. When a session is <a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#register--"><code>opened</code></a>, the session will register
  itself with the cluster by attempting to contact each of the known servers. Once the session has been successfully
  registered, kee-alive requests will be periodically sent to keep the session alive.
  <p>
  Sessions are responsible for sequencing concurrent operations to ensure they're applied to the system state
  in the order in which they were submitted by the client. To do so, the session coordinates with its server-side
- counterpart using unique per-operation sequence numbers. The session relies upon the client's various configured
- <a href="../../../../../io/atomix/copycat/client/RetryStrategies.html" title="enum in io.atomix.copycat.client"><code>strategies</code></a> to ensure fault-tolerance of state machine operations.
+ counterpart using unique per-operation sequence numbers.
  <p>
  In the event that the client session expires, clients are responsible for opening a new session by creating and
  opening a new session object.</div>
@@ -169,19 +168,17 @@ implements <a href="../../../../../io/atomix/copycat/session/Session.html" title
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#ClientSession-io.atomix.catalyst.transport.Client-io.atomix.copycat.client.util.AddressSelector-io.atomix.catalyst.util.concurrent.ThreadContext-io.atomix.copycat.client.ConnectionStrategy-io.atomix.copycat.client.RetryStrategy-">ClientSession</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Client.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Client</a>&nbsp;client,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#ClientSession-io.atomix.catalyst.transport.Client-io.atomix.copycat.client.util.AddressSelector-io.atomix.catalyst.util.concurrent.ThreadContext-io.atomix.copycat.client.ConnectionStrategy-">ClientSession</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Client.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Client</a>&nbsp;client,
              io.atomix.copycat.client.util.AddressSelector&nbsp;selector,
              <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">ThreadContext</a>&nbsp;context,
-             <a href="../../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client">ConnectionStrategy</a>&nbsp;connectionStrategy,
-             <a href="../../../../../io/atomix/copycat/client/RetryStrategy.html" title="interface in io.atomix.copycat.client">RetryStrategy</a>&nbsp;retryStrategy)</code>&nbsp;</td>
+             <a href="../../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client">ConnectionStrategy</a>&nbsp;connectionStrategy)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#ClientSession-java.util.UUID-io.atomix.catalyst.transport.Client-io.atomix.copycat.client.util.AddressSelector-io.atomix.catalyst.util.concurrent.ThreadContext-io.atomix.copycat.client.ConnectionStrategy-io.atomix.copycat.client.RetryStrategy-">ClientSession</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;id,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#ClientSession-java.util.UUID-io.atomix.catalyst.transport.Client-io.atomix.copycat.client.util.AddressSelector-io.atomix.catalyst.util.concurrent.ThreadContext-io.atomix.copycat.client.ConnectionStrategy-">ClientSession</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/UUID.html?is-external=true" title="class or interface in java.util">UUID</a>&nbsp;id,
              <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Client.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Client</a>&nbsp;client,
              io.atomix.copycat.client.util.AddressSelector&nbsp;selector,
              <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">ThreadContext</a>&nbsp;context,
-             <a href="../../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client">ConnectionStrategy</a>&nbsp;connectionStrategy,
-             <a href="../../../../../io/atomix/copycat/client/RetryStrategy.html" title="interface in io.atomix.copycat.client">RetryStrategy</a>&nbsp;retryStrategy)</code>&nbsp;</td>
+             <a href="../../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client">ConnectionStrategy</a>&nbsp;connectionStrategy)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -219,70 +216,62 @@ implements <a href="../../../../../io/atomix/copycat/session/Session.html" title
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#isClosed--">isClosed</a></span>()</code>&nbsp;</td>
-</tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#isOpen--">isOpen</a></span>()</code>&nbsp;</td>
-</tr>
-<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#kill--">kill</a></span>()</code>
 <div class="block">Kills the session.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#onEvent-java.lang.String-java.util.function.Consumer-">onEvent</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;event,
        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;T&gt;&nbsp;callback)</code>
 <div class="block">Registers an event listener.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#onEvent-java.lang.String-java.lang.Runnable-">onEvent</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;event,
        <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a>&nbsp;callback)</code>
 <div class="block">Registers a void event listener.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../../io/atomix/copycat/session/Session.State.html" title="enum in io.atomix.copycat.session">Session.State</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#onStateChange-java.util.function.Consumer-">onStateChange</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/copycat/session/Session.State.html" title="enum in io.atomix.copycat.session">Session.State</a>&gt;&nbsp;callback)</code>
 <div class="block">Registers a callback to be called when the session state changes.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#open--">open</a></span>()</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#register--">register</a></span>()</code>
 <div class="block">Opens the session.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/session/Session.State.html" title="enum in io.atomix.copycat.session">Session.State</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#state--">state</a></span>()</code>
 <div class="block">Returns the current session state.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#submit-io.atomix.copycat.Command-">submit</a></span>(<a href="../../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat">Command</a>&lt;T&gt;&nbsp;command)</code>
 <div class="block">Submits a command to the session.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#submit-io.atomix.copycat.Operation-">submit</a></span>(<a href="../../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&lt;T&gt;&nbsp;operation)</code>
 <div class="block">Submits an operation to the session.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#submit-io.atomix.copycat.Query-">submit</a></span>(<a href="../../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat">Query</a>&lt;T&gt;&nbsp;query)</code>
 <div class="block">Submits a query to the session.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
@@ -308,7 +297,7 @@ implements <a href="../../../../../io/atomix/copycat/session/Session.html" title
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="ClientSession-io.atomix.catalyst.transport.Client-io.atomix.copycat.client.util.AddressSelector-io.atomix.catalyst.util.concurrent.ThreadContext-io.atomix.copycat.client.ConnectionStrategy-io.atomix.copycat.client.RetryStrategy-">
+<a name="ClientSession-io.atomix.catalyst.transport.Client-io.atomix.copycat.client.util.AddressSelector-io.atomix.catalyst.util.concurrent.ThreadContext-io.atomix.copycat.client.ConnectionStrategy-">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -317,11 +306,10 @@ implements <a href="../../../../../io/atomix/copycat/session/Session.html" title
 <pre>public&nbsp;ClientSession(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Client.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Client</a>&nbsp;client,
                      io.atomix.copycat.client.util.AddressSelector&nbsp;selector,
                      <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">ThreadContext</a>&nbsp;context,
-                     <a href="../../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client">ConnectionStrategy</a>&nbsp;connectionStrategy,
-                     <a href="../../../../../io/atomix/copycat/client/RetryStrategy.html" title="interface in io.atomix.copycat.client">RetryStrategy</a>&nbsp;retryStrategy)</pre>
+                     <a href="../../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client">ConnectionStrategy</a>&nbsp;connectionStrategy)</pre>
 </li>
 </ul>
-<a name="ClientSession-java.util.UUID-io.atomix.catalyst.transport.Client-io.atomix.copycat.client.util.AddressSelector-io.atomix.catalyst.util.concurrent.ThreadContext-io.atomix.copycat.client.ConnectionStrategy-io.atomix.copycat.client.RetryStrategy-">
+<a name="ClientSession-java.util.UUID-io.atomix.catalyst.transport.Client-io.atomix.copycat.client.util.AddressSelector-io.atomix.catalyst.util.concurrent.ThreadContext-io.atomix.copycat.client.ConnectionStrategy-">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -331,8 +319,7 @@ implements <a href="../../../../../io/atomix/copycat/session/Session.html" title
                      <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Client.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Client</a>&nbsp;client,
                      io.atomix.copycat.client.util.AddressSelector&nbsp;selector,
                      <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">ThreadContext</a>&nbsp;context,
-                     <a href="../../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client">ConnectionStrategy</a>&nbsp;connectionStrategy,
-                     <a href="../../../../../io/atomix/copycat/client/RetryStrategy.html" title="interface in io.atomix.copycat.client">RetryStrategy</a>&nbsp;retryStrategy)</pre>
+                     <a href="../../../../../io/atomix/copycat/client/ConnectionStrategy.html" title="interface in io.atomix.copycat.client">ConnectionStrategy</a>&nbsp;connectionStrategy)</pre>
 </li>
 </ul>
 </li>
@@ -453,32 +440,17 @@ implements <a href="../../../../../io/atomix/copycat/session/Session.html" title
 </dl>
 </li>
 </ul>
-<a name="open--">
+<a name="register--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>open</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a>&gt;&nbsp;open()</pre>
+<h4>register</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a>&gt;&nbsp;register()</pre>
 <div class="block">Opens the session.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#open--" title="class or interface in io.atomix.catalyst.util">open</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the session is opened.</dd>
-</dl>
-</li>
-</ul>
-<a name="isOpen--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>isOpen</h4>
-<pre>public&nbsp;boolean&nbsp;isOpen()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#isOpen--" title="class or interface in io.atomix.catalyst.util">isOpen</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>
@@ -545,8 +517,6 @@ implements <a href="../../../../../io/atomix/copycat/session/Session.html" title
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;close()</pre>
 <div class="block">Closes the session.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.util">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the session is closed.</dd>
 </dl>
@@ -563,19 +533,6 @@ implements <a href="../../../../../io/atomix/copycat/session/Session.html" title
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the session has been killed.</dd>
-</dl>
-</li>
-</ul>
-<a name="isClosed--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>isClosed</h4>
-<pre>public&nbsp;boolean&nbsp;isClosed()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true#isClosed--" title="class or interface in io.atomix.catalyst.util">isClosed</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>

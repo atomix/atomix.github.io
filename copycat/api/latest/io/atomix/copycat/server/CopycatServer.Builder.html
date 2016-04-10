@@ -125,16 +125,16 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  This builder should be used to programmatically configure and construct a new <a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><code>CopycatServer</code></a> instance.
  The builder provides methods for configuring all aspects of a Copycat server. The <code>CopycatServer.Builder</code>
  class cannot be instantiated directly. To create a new builder, use one of the
- <a href="../../../../io/atomix/copycat/server/CopycatServer.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-"><code>server builder factory</code></a> methods.
+ <a href="../../../../io/atomix/copycat/server/CopycatServer.html#builder-io.atomix.catalyst.transport.Address-"><code>server builder factory</code></a> methods.
  <pre>
    <code>
-   CopycatServer.Builder builder = CopycatServer.builder(address, members);
+   CopycatServer.Builder builder = CopycatServer.builder(address);
    </code>
  </pre>
  Once the server has been configured, use the <a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#build--"><code>build()</code></a> method to build the server instance:
  <pre>
    <code>
-   CopycatServer server = CopycatServer.builder(address, members)
+   CopycatServer server = CopycatServer.builder(address)
      ...
      .build();
    </code>
@@ -145,7 +145,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  its state when necessary.
  <pre>
    <code>
-   CopycatServer server = CopycatServer.builder(address, members)
+   CopycatServer server = CopycatServer.builder(address)
      .withStateMachine(MyStateMachine::new)
      .build();
    </code>

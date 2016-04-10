@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -122,7 +122,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a>&gt;</pre>
 <div class="block">Builds a new Copycat client.
  <p>
- New client builders should be constructed using the static <a href="../../../../io/atomix/copycat/client/CopycatClient.html#builder-io.atomix.catalyst.transport.Address...-"><code>CopycatClient.builder(Address...)</code></a> factory method.
+ New client builders should be constructed using the static <a href="../../../../io/atomix/copycat/client/CopycatClient.html#builder--"><code>CopycatClient.builder()</code></a> factory method.
  <pre>
    <code>
      CopycatClient client = CopycatClient.builder(new Address("123.456.789.0", 5000), new Address("123.456.789.1", 5000)
@@ -166,35 +166,17 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client">CopycatClient.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html#withRetryStrategy-io.atomix.copycat.client.RetryStrategy-">withRetryStrategy</a></span>(<a href="../../../../io/atomix/copycat/client/RetryStrategy.html" title="interface in io.atomix.copycat.client">RetryStrategy</a>&nbsp;retryStrategy)</code>
-<div class="block">Sets the operation retry strategy.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client">CopycatClient.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-">withSerializer</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
 <div class="block">Sets the client serializer.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client">CopycatClient.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html#withServerSelectionStrategy-io.atomix.copycat.client.ServerSelectionStrategy-">withServerSelectionStrategy</a></span>(<a href="../../../../io/atomix/copycat/client/ServerSelectionStrategy.html" title="interface in io.atomix.copycat.client">ServerSelectionStrategy</a>&nbsp;serverSelectionStrategy)</code>
 <div class="block">Sets the server selection strategy.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client">CopycatClient.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html#withThreadContext-io.atomix.catalyst.util.concurrent.ThreadContext-">withThreadContext</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">ThreadContext</a>&nbsp;context)</code>
-<div class="block">Sets the client thread context.</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client">CopycatClient.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html#withThreadFactory-io.atomix.catalyst.util.concurrent.CatalystThreadFactory-">withThreadFactory</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/CatalystThreadFactory.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">CatalystThreadFactory</a>&nbsp;factory)</code>
-<div class="block">Sets the client thread factory.</div>
-</td>
-</tr>
-<tr id="i8" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client">CopycatClient.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html#withTransport-io.atomix.catalyst.transport.Transport-">withTransport</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</code>
 <div class="block">Sets the client transport.</div>
@@ -261,40 +243,6 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 </dl>
 </li>
 </ul>
-<a name="withThreadFactory-io.atomix.catalyst.util.concurrent.CatalystThreadFactory-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>withThreadFactory</h4>
-<pre>public&nbsp;<a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client">CopycatClient.Builder</a>&nbsp;withThreadFactory(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/CatalystThreadFactory.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">CatalystThreadFactory</a>&nbsp;factory)</pre>
-<div class="block">Sets the client thread factory.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>factory</code> - The client thread factory.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The client builder.</dd>
-</dl>
-</li>
-</ul>
-<a name="withThreadContext-io.atomix.catalyst.util.concurrent.ThreadContext-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>withThreadContext</h4>
-<pre>public&nbsp;<a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client">CopycatClient.Builder</a>&nbsp;withThreadContext(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">ThreadContext</a>&nbsp;context)</pre>
-<div class="block">Sets the client thread context.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>context</code> - The client thread context.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The client builder.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the thread context is <code>null</code></dd>
-</dl>
-</li>
-</ul>
 <a name="withConnectionStrategy-io.atomix.copycat.client.ConnectionStrategy-">
 <!--   -->
 </a>
@@ -324,22 +272,6 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>serverSelectionStrategy</code> - The server selection strategy.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The client builder.</dd>
-</dl>
-</li>
-</ul>
-<a name="withRetryStrategy-io.atomix.copycat.client.RetryStrategy-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>withRetryStrategy</h4>
-<pre>public&nbsp;<a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client">CopycatClient.Builder</a>&nbsp;withRetryStrategy(<a href="../../../../io/atomix/copycat/client/RetryStrategy.html" title="interface in io.atomix.copycat.client">RetryStrategy</a>&nbsp;retryStrategy)</pre>
-<div class="block">Sets the operation retry strategy.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>retryStrategy</code> - The operation retry strategy.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The client builder.</dd>
 </dl>

@@ -162,8 +162,8 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/DefaultCopycatClient.html#connect--">connect</a></span>()</code>
-<div class="block">Connects the client to the Copycat cluster.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/DefaultCopycatClient.html#connect-java.util.Collection-">connect</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;cluster)</code>
+<div class="block">Connects the client to Copycat cluster via the provided server addresses.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -265,7 +265,7 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;io.atomix.copycat.client.<a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></h3>
-<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#builder-io.atomix.catalyst.transport.Address...-">builder</a>, <a href="../../../../io/atomix/copycat/client/CopycatClient.html#builder-java.util.Collection-">builder</a>, <a href="../../../../io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.Operation-">submit</a></code></li>
+<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#builder--">builder</a>, <a href="../../../../io/atomix/copycat/client/CopycatClient.html#builder-io.atomix.catalyst.transport.Address...-">builder</a>, <a href="../../../../io/atomix/copycat/client/CopycatClient.html#builder-java.util.Collection-">builder</a>, <a href="../../../../io/atomix/copycat/client/CopycatClient.html#connect--">connect</a>, <a href="../../../../io/atomix/copycat/client/CopycatClient.html#connect-io.atomix.catalyst.transport.Address...-">connect</a>, <a href="../../../../io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.Operation-">submit</a></code></li>
 </ul>
 </li>
 </ul>
@@ -386,7 +386,7 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#session--">session</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The client session or <code>null</code> if no session is open.</dd>
+<dd>The client session or <code>null</code> if no session is register.</dd>
 </dl>
 </li>
 </ul>
@@ -414,21 +414,21 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
 </dl>
 </li>
 </ul>
-<a name="connect--">
+<a name="connect-java.util.Collection-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>connect</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a>&gt;&nbsp;connect()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#connect--">CopycatClient</a></code></span></div>
-<div class="block">Connects the client to the Copycat cluster.
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a>&gt;&nbsp;connect(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;cluster)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#connect-java.util.Collection-">CopycatClient</a></code></span></div>
+<div class="block">Connects the client to Copycat cluster via the provided server addresses.
  <p>
- When the client is opened, it will attempt to connect to and register a session with each unique configured server
- <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a>. Once the session is open, the client will transition to the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#CONNECTED"><code>CopycatClient.State.CONNECTED</code></a> state and the
+ When the client is connected, it will attempt to connect to and register a session with each unique configured server
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a>. Once the session is registered, the client will transition to the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#CONNECTED"><code>CopycatClient.State.CONNECTED</code></a> state and the
  returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed.
  <p>
- The client will connect to servers in the cluster according to the pattern specified by theconfigured
+ The client will connect to servers in the cluster according to the pattern specified by the configured
  <a href="../../../../io/atomix/copycat/client/ServerSelectionStrategy.html" title="interface in io.atomix.copycat.client"><code>ServerSelectionStrategy</code></a>.
  <p>
  In the event that the client is unable to register a session through any of the servers listed in the provided
@@ -436,9 +436,11 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
  to retry the registration attempt.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#connect--">connect</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></code></dd>
+<dd><code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#connect-java.util.Collection-">connect</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>cluster</code> - A set of server addresses to which to connect.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>A completable future to be completed once the client's <a href="../../../../io/atomix/copycat/client/CopycatClient.html#session--"><code>CopycatClient.session()</code></a> is open.</dd>
+<dd>A completable future to be completed once the client's <a href="../../../../io/atomix/copycat/client/CopycatClient.html#session--"><code>CopycatClient.session()</code></a> is registered.</dd>
 </dl>
 </li>
 </ul>
@@ -462,7 +464,7 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
  <p>
  Note that all client submissions are guaranteed to be completed in the same order in which they were sent (program order)
  and on the same thread. This does not, however, mean that they'll be applied to the server-side replicated state machine
- in that order. State machine order is dependent on the configured <code>Command.ConsistencyLevel</code>.</div>
+ in that order.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#submit-io.atomix.copycat.Command-">submit</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html" title="interface in io.atomix.copycat.client">CopycatClient</a></code></dd>
@@ -488,7 +490,7 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
  <p>
  Queries are used to read state machine state. The behavior of query submissions is primarily dependent on the
  query's <code>Query.ConsistencyLevel</code>. For <code>Query.ConsistencyLevel#LINEARIZABLE</code>
- and <code>Query.ConsistencyLevel#BOUNDED_LINEARIZABLE</code> consistency levels, queries will be forwarded
+ and <code>Query.ConsistencyLevel#LINEARIZABLE_LEASE</code> consistency levels, queries will be forwarded
  to the cluster leader. For lower consistency levels, queries are allowed to read from followers. All queries are executed
  by applying queries to an internal server state machine.
  <p>
@@ -595,7 +597,7 @@ implements <a href="../../../../io/atomix/copycat/client/CopycatClient.html" tit
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/copycat/client/CopycatClient.html#close--">CopycatClient</a></code></span></div>
 <div class="block">Closes the client.
  <p>
- Closing the client will cause the client to unregister its current <a href="../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>Session</code></a> if open. Once the
+ Closing the client will cause the client to unregister its current <a href="../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>Session</code></a> if registered. Once the
  client's session is unregistered, the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed. If the client
  is unable to unregister its session, the client will transition to the <a href="../../../../io/atomix/copycat/client/CopycatClient.State.html#SUSPENDED"><code>CopycatClient.State.SUSPENDED</code></a> state and
  continue to attempt to reconnect and unregister its session until it is able to unregister its session or

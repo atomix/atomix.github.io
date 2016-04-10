@@ -136,7 +136,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
    <code>
    client.onStateChange(state -&gt; {
      switch (state) {
-       case OPEN:
+       case CONNECTED:
          // The client is healthy
          break;
        case SUSPENDED:
@@ -252,7 +252,7 @@ the order they are declared.</div>
  <p>
  The <code>CONNECTED</code> state indicates that the client is healthy and operating normally. <a href="../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>commands</code></a>
  and <a href="../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>queries</code></a> submitted and completed while the client is in this state are guaranteed to adhere to
- the respective <code>consistency</code>
+ consistency guarantees.
  <code>levels</code>.</div>
 </li>
 </ul>
