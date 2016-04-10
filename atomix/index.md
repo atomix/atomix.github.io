@@ -21,23 +21,28 @@ Atomix is an event-driven framework for coordinating fault-tolerant distributed 
     <div class="row">
 
 <div class="col-sm-7" markdown="1">
-{% include sync-tabs-params.html active="#distributed-value:Value" inactive="#distributed-long:Long,#distributed-map:Map,#distributed-multimap:MultiMap,#distributed-set:Set,#distributed-queue:Queue,#distributed-lock:Lock,#distributed-group:Group Membership,#task-queue:Task Queue,#direct-messaging:Direct Messaging,#distributed-leader:Leader Election" %}
+{% include sync-tabs-params.html active="#distributed-value:Value" inactive="#distributed-long:Long,#distributed-map:Map,#distributed-multimap:MultiMap,#distributed-set:Set,#distributed-queue:Queue,#distributed-lock:Lock,#distributed-group:Group Membership,#direct-messaging:Direct Messaging,#publish-subscribe:Publish-Subscribe,#request-reply:Request-Reply,#distributed-leader:Leader Election" %}
 <div class="tab-content" markdown="1">
 <div class="tab-pane active" id="distributed-value" markdown="1">
 ```java
-DistributedValue<String> value = atomix.getValue("value").get();
+// Get or create a DistributedValue and block until the resource is created
+DistributedValue<String> value = atomix.getValue("value").join();
 
-value.set("Hello world!").thenRun(() -> {
-  value.get().thenAccept(result -> {
-    assert result.equals("Hello world!");
-  });
+// Set the value and wait for completion of the operation
+value.set("Hello world!").join();
+
+// Read the value and call the provided callback on response
+value.get().thenAccept(result -> {
+  System.out.println("The value is " + result);
 });
 ```
 </div>
 <div class="tab-pane" id="distributed-long" markdown="1">
 ```java
-DistributedLong value = atomix.getLong("long").get();
+// Get or create a DistributedLong and block until the resource is created
+DistributedLong value = atomix.getLong("long").join();
 
+// Increment the value and call the provided callback on response
 value.incrementAndGet().thenAccept(result -> {
   assert result == 1;
 });
@@ -45,48 +50,54 @@ value.incrementAndGet().thenAccept(result -> {
 </div>
 <div class="tab-pane" id="distributed-map" markdown="1">
 ```java
-DistributedMap<String, String> map = atomix.getMap("map").get();
+// Get or create a DistributedMap and block until the resource is created
+DistributedMap<String, String> map = atomix.getMap("map").join();
 
+// Put a value in the map and call the completion callback on response
 map.put("bar", "Hello world!").thenRun(() -> {
-  map.get("bar").thenAccept(result -> {
-    assert result.equals("Hello world!");
-  });
+  // Get the value of the map and block until it's received
+  String value = map.get("bar").join();
 });
 ```
 </div>
 <div class="tab-pane" id="distributed-multimap" markdown="1">
 ```java
-DistributedMultiMap<String, String> multimap = atomix.getMultiMap("multimap").get();
+// Get or create a DistributedMultiMap and block until the resource is created
+DistributedMultiMap<String, String> multimap = atomix.getMultiMap("multimap").join();
 
+// Put a value in the map and call the completion callback on response
 multimap.put("bar", "Hello world!").thenRun(() -> {
+  // Put another value in the map and call the completion callback on response
   multimap.put("bar", "Hello world again!").thenRun(() -> {
-    multimap.get("bar").thenAccept(values -> {
-      values.forEach(value -> System.out.println(value));
-    });
+    // Get the values for the "bar" key and block until received
+    Collection<String> values = multimap.get("bar").join();
   });
 });
 ```
 </div>
 <div class="tab-pane" id="distributed-set" markdown="1">
 ```java
-DistributedSet<String> set = atomix.getSet("set").get();
+// Get or create a DistributedSet and block until the resource is created
+DistributedSet<String> set = atomix.getSet("set").join();
 
+// Add a value to the set and call the completion callback on response
 set.add("foo").thenRun(() -> {
-  set.contains("foo").thenAccept(result -> {
-    if (result) {
-      System.out.println("set contains 'foo'");
-    }
-  });
+  // Check whether the set contains the added value and block until the response is received
+  if (set.contains("foo").join()) {
+    // The set contains "foo"
+  }
 });
 ```
 </div>
 <div class="tab-pane" id="distributed-queue" markdown="1">
 ```java
-DistributedQueue<Integer> queue = atomix.getQueue("queue").get();
+// Get or create a DistributedQueue and block until the resource is created
+DistributedQueue<Integer> queue = atomix.getQueue("queue").join();
 
-queue.offer(1).join();
-queue.offer(2).join();
+// Add two values to the queue and block until both are added
+CompletableFuture.allOf(queue.offer(1), queue.offer(2)).join();
 
+// Pull the first item off the queue and call the completion callback once it's received
 queue.poll().thenAccept(value -> {
   System.out.println("retrieved " + value);
 });
@@ -94,74 +105,132 @@ queue.poll().thenAccept(value -> {
 </div>
 <div class="tab-pane" id="distributed-lock" markdown="1">
 ```java
-DistributedLock lock = atomix.getLock("foo").get();
+// Get or create a DistributedLock and block until the resource is created
+DistributedLock lock = atomix.getLock("foo").join();
 
+// Acquire the lock and call the completion callback once the lock is acquired
 lock.lock().thenRun(() -> {
   System.out.println("Acquired a lock!");
-  lock.unlock();
+
+  // Release the lock and block until complete
+  lock.unlock().join();
 });
 ```
 </div>
 <div class="tab-pane" id="distributed-group" markdown="1">
 ```java
-DistributedGroup group = atomix.getGroup("group").get();
+// Get or create a DistributedGroup and block until the resource is created
+DistributedGroup group = atomix.getGroup("group").join();
 
-group.join().thenAccept(member -> {
-  System.out.println("Joined with member ID: " + member.id());
-});
+// Join the group and block until the join is complete
+LocalMember member = group.join().join();
 
+// When a member joins the group, print a message
 group.onJoin(member -> {
   System.out.println(member + " joined the group");
+});
+
+// Iterate over the set of members in the group
+group.members().forEach(member -> {
+  // ...
 });
 ```
 </div>
 <div class="tab-pane" id="distributed-leader" markdown="1">
 ```java
-DistributedGroup group = atomix.getGroup("group").get();
+// Get or create a DistributedGroup and block until the resource is created
+DistributedGroup group = atomix.getGroup("group").join();
 
+// Register an election listener
 group.election().onElection(term -> {
   System.out.println(term.leader() + " elected leader for term " + term.term());
 });
-```
-</div>
-<div class="tab-pane" id="task-queue" markdown="1">
-```java
-DistributedGroup group = atomix.getGroup("group").get();
 
-Member member = group.member("foo");
-
-TaskProducer<String> producer = member.tasks().producer("work");
-producer.submit("doIt").thenRun(() -> {
-  System.out.println("Task complete!");
-});
-
-LocalMember localMember = group.join().get();
-
-TaskConsumer<String> consumer = localMember.tasks().consumer("work");
-consumer.onTask(task -> {
-  try {
-    doWork();
-    task.ack();
-  } catch (Exception e) {
-    task.fail();
-  }
-});
+// Join the group to get elected leader
+LocalMember member = group.join().join();
 ```
 </div>
 <div class="tab-pane" id="direct-messaging" markdown="1">
 ```java
-DistributedGroup group = atomix.getGroup("group").get();
+// Get or create a DistributedGroup and block until the resource is created
+DistributedGroup group = atomix.getGroup("group").join();
 
+// Get a member of the group by name
 Member member = group.member("foo");
 
-MessageProducer<String> producer = member.messages().producer("hello");
+// Create a direct synchronous message producer
+MessageProducer.Options options = new MessageProducer.Options()
+  .withExecution(Execution.SYNC)
+  .withDelivery(Delivery.DIRECT);
+MessageProducer<String> producer = member.messaging().producer("hello");
+
+// Send a direct message to the member and await acknowledgement
 producer.send("Hello world!").thenAccept(reply -> {
   System.out.println(reply);
 });
 
-LocalMember localMember = group.join().get();
+// Join the group and block until the join is complete
+LocalMember localMember = group.join().join();
 
-MessageConsumer<String> consumer = localMember.messages().consumer("hello");
+// Create a message consumer and ack messages when received for this member
+MessageConsumer<String> consumer = localMember.messaging().consumer("hello");
+consumer.onMessage(message -> {
+  // ...
+  message.ack();
+});
+```
+</div>
+<div class="tab-pane" id="publish-subscribe" markdown="1">
+```java
+// Get or create a DistributedGroup and block until the resource is created
+DistributedGroup group = atomix.getGroup("group").join();
+
+// Create an asynchroous broadcast message producer
+MessageProducer.Options options = new MessageProducer.Options()
+  .withExecution(Execution.ASYNC)
+  .withDelivery(Delivery.BROADCAST);
+MessageProducer<String> producer = group.messaging().producer("events", options);
+
+// Publish a message to all members of the group
+producer.send("change").thenRun(() -> {
+  // Change event has been published
+});
+
+// Join the group and block until the join is complete
+LocalMember localMember = group.join().join();
+
+// Create a message consumer and ack messages when received for this member
+MessageConsumer<String> consumer = localMember.messaging().consumer("events");
+consumer.onMessage(message -> {
+  if (message.body().equals("change")) {
+    message.ack();
+  }
+});
+```
+</div>
+<div class="tab-pane" id="request-reply" markdown="1">
+```java
+// Get or create a DistributedGroup and block until the resource is created
+DistributedGroup group = atomix.getGroup("group").join();
+
+// Get a member of the group by name
+Member member = group.member("foo");
+
+// Create a direct request-reply message producer
+MessageProducer.Options options = new MessageProducer.Options()
+  .withExecution(Execution.REQUEST_REPLY);
+MessageProducer<String> producer = member.messaging().producer("hello");
+
+// Send a message to the member and await a reply
+producer.send("Hello world!").thenAccept(reply -> {
+  System.out.println(reply);
+});
+
+// Join the group and block until the join is complete
+LocalMember localMember = group.join().join();
+
+// Create a message consumer for messages sent to this member
+MessageConsumer<String> consumer = localMember.messaging().consumer("hello");
 consumer.onMessage(message -> {
   if (message.body().equals("Hello world!")) {
     messages.reply("Hello world back!");
@@ -235,7 +304,7 @@ AtomixReplica replica = AtomixReplica.builder(address, members)
   .withStorage(new Storage(StorageLevel.DISK))
   .build()
   .open()
-  .get();
+  .join();
 ```
 </div>
       <div class="col-sm-6 text-right">
@@ -264,12 +333,12 @@ AtomixReplica replica = AtomixReplica.builder(address, members)
 // Format tabs
 $(function(){
   var $container = $('#sync-tabs');
-  
+
   updateTabs($container);
   $(window).resize(function(){
     updateTabs($container);
   })
-  
+
   function updateTabs($tabsContainer){
       var $containerWidth = $tabsContainer.width();
       var tabWidths = [];
