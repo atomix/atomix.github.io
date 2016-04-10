@@ -8,9 +8,9 @@ pitch: Primitives for distributed concurrency
 
 ## DistributedLock
 
-The [DistributedLock] resources provides an asynchronous API similar to that of the JDK's [Lock][JdkLock].
+The [`DistributedLock`][DistributedLock] resources provides an asynchronous API similar to that of the JDK's [`Lock`][JdkLock].
 
-To create a `DistributedLock`, use the `Atomix.getLock` method:
+To create a [`DistributedLock`][DistributedLock], use the `Atomix.getLock` method:
 
 ```java
 atomix.getLock("foo").thenAccept(lock -> {
@@ -18,7 +18,7 @@ atomix.getLock("foo").thenAccept(lock -> {
 });
 ```
 
-The `DistributedLock` API is asynchronous and returns `CompletableFuture` for all methods:
+The [`DistributedLock`][DistributedLock] API is asynchronous and returns [`CompletableFuture`][CompletableFuture] for all methods:
 
 ```java
 lock.lock().thenRun(() -> {
@@ -27,7 +27,7 @@ lock.lock().thenRun(() -> {
 });
 ```
 
-To block and wait for the lock to be acquired instead, call `join()` or `get()` on the returned `CompletableFuture`s:
+To block and wait for the lock to be acquired instead, call `join()` or `get()` on the returned [`CompletableFuture`][CompletableFuture]s:
 
 ```java
 lock.lock().join();

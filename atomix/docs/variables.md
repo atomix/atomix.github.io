@@ -7,13 +7,13 @@ first-section: distributed-variables
 ---
 
 {:.no-margin-top}
-The `atomix-variables` module provides a set of distributed atomic variables modeled on Java's [java.util.concurrent.atomic][JdkAtomic] package. The resources provided by the variables module do not implement JDK atomic interfaces because Atomix's APIs are asynchronous, but their methods are equivalent to their blocking counterparts and can easily be wrapped in blocking interfaces.
+The `atomix-variables` module provides a set of distributed atomic variables modeled on Java's [`java.util.concurrent.atomic`][JdkAtomic] package. The resources provided by the variables module do not implement JDK atomic interfaces because Atomix's APIs are asynchronous, but their methods are equivalent to their blocking counterparts and can easily be wrapped in blocking interfaces.
 
 ### DistributedValue
 
-The [DistributedValue] resource provides an asynchronous API similar to that of the JDK's [AtomicReference].
+The [`DistributedValue`][DistributedValue] resource provides an asynchronous API similar to that of the JDK's [AtomicReference].
 
-To create a `DistributedValue`, use the `Atomix.getValue` method:
+To create a [`DistributedValue`][DistributedValue], use the `Atomix.getValue` method:
 
 ```java
 atomix.<String>getValue("test-value").thenAccept(value -> {
@@ -21,7 +21,7 @@ atomix.<String>getValue("test-value").thenAccept(value -> {
 });
 ```
 
-The `DistributedValue` API is asynchronous and returns `CompletableFuture` for all methods:
+The [`DistributedValue`][DistributedValue] API is asynchronous and returns [`CompletableFuture`][CompletableFuture] for all methods:
 
 ```java
 value.set("Hello world!").thenRun(() -> {
@@ -33,7 +33,7 @@ value.set("Hello world!").thenRun(() -> {
 
 #### Expiring Value
 
-`DistributedValue` supports configurable TTLs for values. To set a TTL on the value, simply pass a `Duration` when setting the value:
+[`DistributedValue`][DistributedValue] supports configurable TTLs for values. To set a TTL on the value, simply pass a `Duration` when setting the value:
 
 ```java
 value.set("Hello world!", Duration.ofSeconds(1)).thenRun(() -> {
@@ -45,9 +45,9 @@ Note that TTL timers are deterministically controlled by the cluster leader and 
 
 ### DistributedLong
 
-The [DistributedLong] resource extends [DistributedValue] to provide atomic methods for incrementing and decrementing a 64-bit number. The `DistributedLong` interface closely mimics that of Java's [AtomicLong].
+The [`DistributedLong`][DistributedLong] resource extends [`DistributedValue`][DistributedValue] to provide atomic methods for incrementing and decrementing a 64-bit number. The [`DistributedLong`][DistributedLong] interface closely mimics that of Java's [`AtomicLong`][AtomicLong].
 
-To create a `DistributedLong`, use the `getLong` method:
+To create a [`DistributedLong`][DistributedLong], use the `getLong` method:
 
 ```java
 atomix.getLong("test-long").thenAccept(value -> {
@@ -55,7 +55,7 @@ atomix.getLong("test-long").thenAccept(value -> {
 });
 ```
 
-`DistributedLong` returns `CompletableFuture` for all methods:
+[`DistributedLong`][DistributedLong] returns [`CompletableFuture`][CompletableFuture] for all methods:
 
 ```java
 value.incrementAndGet().thenAccept(result1 -> {

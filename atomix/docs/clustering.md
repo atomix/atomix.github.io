@@ -27,7 +27,7 @@ The ideal number of replicas should be calculated as `2f + 1` where `f` is the n
 
 The typical size of an Atomix cluster is dependent on your use case. For write-heavy workloads, smaller `3` node clusters can be more efficient since writes only need to be replicated to one additional node. For read-heavy workloads, `5` node clusters can allow sequential reads to be scaled significantly.
 
-<h2 id="bootstrapping-a-cluster-">Bootstrapping a Cluster</h2>
+## Bootstrapping a Cluster
 
 When a new Atomix cluster is created, the first nodes in the cluster must be *bootstrapped* to define the initial members of the cluster. Atomix provides two methods for bootstrapping a cluster. First, a cluster can be formed by bootstrapping a single replica and joining additional replicas to the bootstrapped node.
 

@@ -11,9 +11,9 @@ The `atomix-collections` module provides a set of asynchronous, distributed coll
 
 ### DistributedMap
 
-The [DistributedMap] resources provides an asynchronous API similar to that of `java.util.Map`.
+The [`DistributedMap`][DistributedMap] resources provides an asynchronous API similar to that of `java.util.Map`.
 
-To create a `DistributedMap`, use the `Atomix.getMap` method:
+To create a [`DistributedMap`][DistributedMap], use the `Atomix.getMap` method:
 
 ```java
 atomix.<String, String>getMap("foo-map").thenAccept(map -> {
@@ -21,7 +21,7 @@ atomix.<String, String>getMap("foo-map").thenAccept(map -> {
 });
 ```
 
-Once the map has been created, the methods closely mimic those of `java.util.Map`. `DistributedMap` returns `CompletableFuture` for all methods:
+Once the map has been created, the methods closely mimic those of `java.util.Map`. [`DistributedMap`][DistributedMap] returns [`CompletableFuture`][CompletableFuture] for all methods:
 
 ```java
 map.put("foo", "Hello world!").thenRun(() -> {
@@ -31,7 +31,7 @@ map.put("foo", "Hello world!").thenRun(() -> {
 });
 ```
 
-To block and wait for results instead, call `join()` or `get()` on the returned `CompletableFuture`s:
+To block and wait for results instead, call `join()` or `get()` on the returned [`CompletableFuture`][CompletableFuture]s:
 
 ```java
 map.put("foo", "Hello world!").join();
@@ -40,7 +40,7 @@ assert map.get("foo").get().equals("Hello world!");
 
 #### Expiring Keys
 
-`DistributedMap` supports configurable TTLs for map keys. To set a TTL on a key, simply pass a `Duration` when adding a key to the map:
+[`DistributedMap`][DistributedMap] supports configurable TTLs for map keys. To set a TTL on a key, simply pass a `Duration` when adding a key to the map:
 
 ```java
 map.put("foo", "Hello world!", Duration.ofSeconds(1)).thenRun(() -> {
@@ -52,9 +52,9 @@ Note that TTL timers are deterministically controlled by the cluster leader and 
 
 ### DistributedMultiMap
 
-The [DistributedMultiMap][DistributedMultiMap] resources provides a map-like API for storing multiple values for each key in a map.
+The [`DistributedMultiMap`][DistributedMultiMap] resources provides a map-like API for storing multiple values for each key in a map.
 
-To create a `DistributedMultiMap`, use the `Atomix.getMultiMap` method:
+To create a [`DistributedMultiMap`][DistributedMultiMap], use the `Atomix.getMultiMap` method:
 
 ```java
 atomix.<String, String>getMultiMap("foo-map").thenAccept(map -> {
@@ -75,9 +75,9 @@ assert values.contains("Hello world again!");
 
 ### DistributedSet
 
-The [DistributedSet][DistributedSet] resources provides an asynchronous API similar to that of `java.util.Set`.
+The [`DistributedSet`][DistributedSet] resources provides an asynchronous API similar to that of `java.util.Set`.
 
-To create a `DistributedSet`, use the `Atomix.getSet` method:
+To create a [`DistributedSet`][DistributedSet], use the `Atomix.getSet` method:
 
 ```java
 atomix.<String>getSet("foo-set").thenAccept(set -> {
@@ -85,7 +85,7 @@ atomix.<String>getSet("foo-set").thenAccept(set -> {
 });
 ```
 
-Once the set has been created, the methods closely mimic those of `java.util.Set`. `DistributedSet` returns `CompletableFuture` for all methods:
+Once the set has been created, the methods closely mimic those of `java.util.Set`. [`DistributedSet`][DistributedSet] returns [`CompletableFuture`][CompletableFuture] for all methods:
 
 ```java
 set.add("Hello world!").thenRun(() -> {
@@ -97,7 +97,7 @@ set.add("Hello world!").thenRun(() -> {
 
 #### Expiring Values
 
-`DistributedSet` supports configurable TTLs for set values. To set a TTL on a value, simply pass a `Duration` when adding a value to the set:
+[`DistributedSet`][DistributedSet] supports configurable TTLs for set values. To set a TTL on a value, simply pass a `Duration` when adding a value to the set:
 
 ```java
 set.add("Hello world!", Duration.ofSeconds(1)).thenAccept(succeeded -> {
@@ -114,9 +114,9 @@ Note that TTL timers are deterministically controlled by the cluster leader and 
 
 ### DistributedQueue
 
-The [DistributedQueue] resources provides an asynchronous API similar to that of `java.util.Queue`.
+The [`DistributedQueue`][DistributedQueue] resources provides an asynchronous API similar to that of `java.util.Queue`.
 
-To create a `DistributedQueue`, use the `Atomix.getQueue` method:
+To create a [`DistributedQueue`][DistributedQueue], use the `Atomix.getQueue` method:
 
 ```java
 atomix.<String>getQueue("foo-queue").thenAccept(queue -> {
@@ -124,7 +124,7 @@ atomix.<String>getQueue("foo-queue").thenAccept(queue -> {
 });
 ```
 
-Once the set has been created, the methods closely mimic those of `java.util.Queue`. `DistributedQueue` returns `CompletableFuture` for all methods:
+Once the set has been created, the methods closely mimic those of `java.util.Queue`. [`DistributedQueue`][DistributedQueue] returns [`CompletableFuture`][CompletableFuture] for all methods:
 
 ```java
 queue.add("Hello world!").thenRun(() -> {

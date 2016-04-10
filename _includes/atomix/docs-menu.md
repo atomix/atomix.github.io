@@ -42,9 +42,9 @@
   * [Event Consistency](#event-consistency)
   * [Cross-resource Consistency](#cross-resource-consistency)
 * [Fault Tolerance](fault-tolerance)
-  * [Node Failures](fault-tolerance#node-failures)
-  * [Leader Failures](fault-tolerance#leader-failures)
-  * [Network Partitions](fault-tolerance#network-partitions)
+  * [Node Failures](#node-failures)
+  * [Leader Failures](#leader-failures)
+  * [Network Partitions](#network-partitions)
 * [Threading Model](threading-model)
 
 <span class="doc-menu-header"><img src="/assets/img/icons/resources.svg" class="resources"> Resources</span>
