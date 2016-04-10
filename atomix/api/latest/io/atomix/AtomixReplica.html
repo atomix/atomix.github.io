@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":9,"i5":9,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":9,"i4":9,"i5":9,"i6":9,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -76,13 +76,13 @@ var activeTableTab = "activeTableTab";
 <li>Summary:&nbsp;</li>
 <li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
@@ -114,7 +114,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Managed.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Managed</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;, <a href="../../io/atomix/manager/ResourceManager.html" title="interface in io.atomix.manager">ResourceManager</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</dd>
+<dd><a href="../../io/atomix/manager/ResourceManager.html" title="interface in io.atomix.manager">ResourceManager</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</dd>
 </dl>
 <hr>
 <br>
@@ -128,7 +128,7 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
  consensus algorithm. From the perspective of resources, replicas behave like <a href="../../io/atomix/AtomixClient.html" title="class in io.atomix"><code>AtomixClient</code></a>s in that
  they may themselves create and modify distributed resources.
  <p>
- To create a replica, use the <a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-"><code>builder(Address, Address...)</code></a> builder factory. Each replica must
+ To create a replica, use the <a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-"><code>builder(Address)</code></a> builder factory. Each replica must
  be initially configured with a replica <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> and a list of addresses for other members of the
  core cluster. Note that the list of member addresses does not have to include the local replica nor does
  it have to include all the replicas in the cluster. As long as the replica can reach one live member of
@@ -146,69 +146,6 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
  configured, the <code>NettyTransport</code> will be used and will thus be expected to be available on the classpath.
  Similarly, if no storage module is configured, replicated commit logs will be written to
  <code>System.getProperty("user.dir")</code> with a default log name.
- <h2>Cluster management</h2>
- Atomix clusters are managed by a custom implementation of the <a href="https://raft.github.io/">Raft consensus algorithm</a>.
- Raft is a leader-based system that requires a quorum of nodes to synchronously acknowledge a write. Typically,
- Raft clusters consist of <code>3</code> or <code>5</code> nodes.
- <p>
- But Atomix is designed to be embedded and scale in clusters much larger than the typical <code>3</code> or <code>5</code>
- node consensus based cluster. To do so, Atomix assigns a portion of the cluster to participate in the Raft
- algorithm, and the remainder of the replicas participate in asynchronous replication or await failures as standby
- nodes. A typical Atomix cluster may consist of <code>3</code> active Raft-voting replicas, <code>2</code> backup replicas,
- and any number of reserve nodes. As replicas are added to or removed from the cluster, Atomix transparently
- balances the cluster to ensure it maintains the desired number of active and backup replicas.
- <p>
- Users are responsible for configuring the desired number of Raft participants in the cluster by setting the
- <a href="../../io/atomix/AtomixReplica.Builder.html#withQuorumHint-int-"><code>quorumHint</code></a>. The quorum hint indicates the desired minimum number of active
- Raft participants in the cluster. If the cluster consists of enough replicas, Atomix will guarantee that the
- cluster always has <em>at least</em> <code>quorumHint</code> replicas.
- <p>
- The size of the quorum is relevant both to performance and fault-tolerance. When resources are
- created or deleted or resource state changes are submitted to the cluster, Atomix will synchronously
- replicate changes to a majority of the cluster before they can be committed and update state. For
- example, in a cluster where the <code>quorumHint</code> is <code>3</code>, a
- <a href="../../io/atomix/collections/DistributedMap.html#put-K-V-"><code>DistributedMap.put(Object, Object)</code></a> command must be sent to the leader
- and then synchronously replicated to one other replica before it can be committed and applied to the
- map state machine. This also means that a cluster with <code>quorumHint</code> equal to <code>3</code> can tolerate
- at most one failure.
- <p>
- Users should set the <code>quorumHint</code> to an odd number of replicas or use one of the <a href="../../io/atomix/Quorum.html" title="enum in io.atomix"><code>Quorum</code></a>
- magic constants for the greatest level of fault tolerance. By default, the quorum hint is set to
- <a href="../../io/atomix/Quorum.html#SEED"><code>Quorum.SEED</code></a> which is based on the number of member nodes provided to the replica builder
- <a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-"><code>factory</code></a>. Typically, in write-heavy workloads, the most
- performant configuration will be a <code>quorumHint</code> of <code>3</code>. In read-heavy workloads, quorum hints
- of <code>3</code> or <code>5</code> can be used depending on the size of the cluster and desired level of fault tolerance.
- Additional active replicas may or may not improve read performance depending on usage and in particular
- <a href="../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource"><code>read consistency</code></a> levels.
- <p>
- In addition to the <code>quorumHint</code>, users can also configure the <code>backupCount</code> to specify the
- desired number of backup replicas to maintain per active replica. The <code>backupCount</code> specifies the
- maximum number of replicas per <a href="../../io/atomix/AtomixReplica.Builder.html#withQuorumHint-int-"><code>active</code></a> replica to participate in
- asynchronous replication of state. Backup replicas allow quorum-member replicas to be more quickly replaced
- in the event of a failure or an active replica leaving the cluster. Additionally, backup replicas may
- service <a href="../../io/atomix/resource/ReadConsistency.html#SEQUENTIAL"><code>SEQUENTIAL</code></a> and
- <a href="../../io/atomix/resource/ReadConsistency.html#CAUSAL"><code>CAUSAL</code></a> reads to allow read operations to be further
- spread across the cluster.
- <pre>
-   <code>
-   Atomix atomix = AtomixReplica.builder(address, members)
-     .withTransport(new NettyTransport())
-     .withStorage(new Storage(StorageLevel.MEMORY))
-     .withQuorumHint(3)
-     .withBackupCount(1)
-     .build();
-   </code>
- </pre>
- The backup count is used to calculate the number of backup replicas per non-leader active member. The
- number of actual backups is calculated by <code>(quorumHint - 1) * backupCount</code>. If the
- <code>backupCount</code> is <code>1</code> and the <code>quorumHint</code> is <code>3</code>, the number of backup replicas
- will be <code>2</code>.
- <p>
- By default, the backup count is <code>0</code>, indicating no backups should be maintained. However, it is
- recommended that each cluster have at least a backup count of <code>1</code> to ensure active replicas can
- be quickly replaced in the event of a network partition or other failure. Quick replacement of active
- member nodes improves fault tolerance in cases where a majority of the active members in the cluster are
- not lost simultaneously.
  <h2>Storage</h2>
  Replicas manage resource and replicate and store resource state changes on disk. In order to do so, users
  must configure the replica's <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage"><code>Storage</code></a> configuration via the <a href="../../io/atomix/AtomixReplica.Builder.html#withStorage-io.atomix.copycat.server.storage.Storage-"><code>AtomixReplica.Builder.withStorage(Storage)</code></a> method.
@@ -235,7 +172,7 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
  based logs. If a majority of the active replicas in the cluster are lost or partitioned, writes can be overwritten.
  Using memory-based storage amounts to recreating the entire replica each time it's started.
  <h2>Replica lifecycle</h2>
- When the replica is <a href="../../io/atomix/AtomixReplica.html#open--"><code>started</code></a>, the replica will attempt to contact members in the configured
+ When the replica is <a href="../../io/atomix/AtomixReplica.html#bootstrap--"><code>started</code></a>, the replica will attempt to contact members in the configured
  startup <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> list. If any of the members are already in an active state, the replica will request
  to join the cluster. During the process of joining the cluster, the replica will notify the current cluster
  leader of its existence. If the leader already knows about the joining replica, the replica will immediately
@@ -248,7 +185,7 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
  Once the replica has joined the cluster, it will persist the updated cluster configuration to disk via
  the replica's configured <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/Storage.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage"><code>Storage</code></a> module. This is important to note as in the event that the replica
  crashes, <em>the replica will recover from its last known configuration</em> rather than the configuration
- provided to the <a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-"><code>builder factory</code></a>. This allows Atomix cluster structures
+ provided to the <a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-"><code>builder factory</code></a>. This allows Atomix cluster structures
  to change transparently and independently of the code that configures any given replica. If a persistent
  <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/StorageLevel.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage"><code>StorageLevel</code></a> is used, user code should simply configure the replica
  consistently based on the <em>initial</em> replica configuration, and the replica will recover from the last
@@ -281,22 +218,11 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
 <div class="block">Builder for programmatically constructing an <a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix"><code>AtomixReplica</code></a>.</div>
 </td>
 </tr>
-</table>
-</li>
-</ul>
-<!-- ======== CONSTRUCTOR SUMMARY ======== -->
-<ul class="blockList">
-<li class="blockList"><a name="constructor.summary">
-<!--   -->
-</a>
-<h3>Constructor Summary</h3>
-<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
-<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Constructor and Description</th>
-</tr>
-<tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#AtomixReplica-java.util.Properties-">AtomixReplica</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;properties)</code>&nbsp;</td>
+<tr class="rowColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.Type.html" title="enum in io.atomix">AtomixReplica.Type</a></span></code>
+<div class="block">Defines the behavior of a replica within the Atomix cluster.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -314,73 +240,79 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>static <a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-">builder</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address,
-       <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>...&nbsp;members)</code>
-<div class="block">Returns a new Atomix replica builder.</div>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#bootstrap--">bootstrap</a></span>()</code>
+<div class="block">Bootstraps a single-node cluster.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>static <a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-">builder</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;clientAddress,
-       <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;serverAddress,
-       <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>...&nbsp;members)</code>
-<div class="block">Returns a new Atomix replica builder.</div>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#bootstrap-io.atomix.catalyst.transport.Address...-">bootstrap</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>...&nbsp;cluster)</code>
+<div class="block">Bootstraps the cluster using the provided cluster configuration.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code>static <a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address-java.util.Collection-">builder</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;clientAddress,
-       <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;serverAddress,
-       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;members)</code>
-<div class="block">Returns a new Atomix replica builder.</div>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#bootstrap-java.util.Collection-">bootstrap</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;cluster)</code>
+<div class="block">Bootstraps the cluster using the provided cluster configuration.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>static <a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-java.util.Collection-">builder</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address,
-       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;members)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-">builder</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address)</code>
 <div class="block">Returns a new Atomix replica builder.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>static <a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#builder-java.util.Properties-">builder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;properties)</code>
-<div class="block">Returns a new Atomix replica builder from the given properties.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address-">builder</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;clientAddress,
+       <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;serverAddress)</code>
+<div class="block">Returns a new Atomix replica builder.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>static <a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#builder-java.lang.String-">builder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;properties)</code>
-<div class="block">Returns a new Atomix replica builder from the given configuration file.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address-java.util.Properties-">builder</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;clientAddress,
+       <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;serverAddress,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;properties)</code>
+<div class="block">Returns a new Atomix replica builder.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#close--">close</a></span>()</code>&nbsp;</td>
+<td class="colFirst"><code>static <a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#builder-io.atomix.catalyst.transport.Address-java.util.Properties-">builder</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;properties)</code>
+<div class="block">Returns a new Atomix replica builder.</div>
+</td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#isClosed--">isClosed</a></span>()</code>&nbsp;</td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#join-io.atomix.catalyst.transport.Address...-">join</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>...&nbsp;cluster)</code>
+<div class="block">Joins the cluster.</div>
+</td>
 </tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#isOpen--">isOpen</a></span>()</code>&nbsp;</td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#join-java.util.Collection-">join</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;cluster)</code>
+<div class="block">Joins the cluster.</div>
+</td>
 </tr>
 <tr id="i9" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#open--">open</a></span>()</code>&nbsp;</td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#leave--">leave</a></span>()</code>
+<div class="block">Leaves the Copycat cluster.</div>
+</td>
 </tr>
 <tr id="i10" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#start--">start</a></span>()</code>
-<div class="block">Starts the replica.</div>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#shutdown--">shutdown</a></span>()</code>
+<div class="block">Shuts down the server without leaving the Copycat cluster.</div>
 </td>
 </tr>
 <tr id="i11" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#stop--">stop</a></span>()</code>
-<div class="block">Stops the replica.</div>
+<td class="colFirst"><code><a href="../../io/atomix/AtomixReplica.Type.html" title="enum in io.atomix">AtomixReplica.Type</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixReplica.html#type--">type</a></span>()</code>
+<div class="block">Returns the replica type.</div>
 </td>
 </tr>
 </table>
@@ -389,7 +321,7 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;io.atomix.<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></h3>
-<code><a href="../../io/atomix/Atomix.html#context--">context</a>, <a href="../../io/atomix/Atomix.html#exists-java.lang.String-">exists</a>, <a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-">getGroup</a>, <a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Config-">getGroup</a>, <a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Config-io.atomix.group.DistributedGroup.Options-">getGroup</a>, <a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Options-">getGroup</a>, <a href="../../io/atomix/Atomix.html#getLock-java.lang.String-">getLock</a>, <a href="../../io/atomix/Atomix.html#getLock-java.lang.String-io.atomix.resource.Resource.Config-">getLock</a>, <a href="../../io/atomix/Atomix.html#getLock-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getLock</a>, <a href="../../io/atomix/Atomix.html#getLock-java.lang.String-io.atomix.resource.Resource.Options-">getLock</a>, <a href="../../io/atomix/Atomix.html#getLong-java.lang.String-">getLong</a>, <a href="../../io/atomix/Atomix.html#getLong-java.lang.String-io.atomix.resource.Resource.Config-">getLong</a>, <a href="../../io/atomix/Atomix.html#getLong-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getLong</a>, <a href="../../io/atomix/Atomix.html#getLong-java.lang.String-io.atomix.resource.Resource.Options-">getLong</a>, <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-">getMap</a>, <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Config-">getMap</a>, <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getMap</a>, <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Options-">getMap</a>, <a href="../../io/atomix/Atomix.html#getMessageBus-java.lang.String-">getMessageBus</a>, <a href="../../io/atomix/Atomix.html#getMessageBus-java.lang.String-io.atomix.messaging.DistributedMessageBus.Options-">getMessageBus</a>, <a href="../../io/atomix/Atomix.html#getMessageBus-java.lang.String-io.atomix.resource.Resource.Config-">getMessageBus</a>, <a href="../../io/atomix/Atomix.html#getMessageBus-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.messaging.DistributedMessageBus.Options-">getMessageBus</a>, <a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-">getMultiMap</a>, <a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-io.atomix.collections.DistributedMultiMap.Config-">getMultiMap</a>, <a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-io.atomix.collections.DistributedMultiMap.Config-io.atomix.resource.Resource.Options-">getMultiMap</a>, <a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-io.atomix.resource.Resource.Options-">getMultiMap</a>, <a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-">getQueue</a>, <a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-io.atomix.resource.Resource.Config-">getQueue</a>, <a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getQueue</a>, <a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-io.atomix.resource.Resource.Options-">getQueue</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Config-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Options-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Options-">getResource</a>, <a href="../../io/atomix/Atomix.html#getSet-java.lang.String-">getSet</a>, <a href="../../io/atomix/Atomix.html#getSet-java.lang.String-io.atomix.resource.Resource.Config-">getSet</a>, <a href="../../io/atomix/Atomix.html#getSet-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getSet</a>, <a href="../../io/atomix/Atomix.html#getSet-java.lang.String-io.atomix.resource.Resource.Options-">getSet</a>, <a href="../../io/atomix/Atomix.html#getTaskQueue-java.lang.String-">getTaskQueue</a>, <a href="../../io/atomix/Atomix.html#getTaskQueue-java.lang.String-io.atomix.resource.Resource.Config-">getTaskQueue</a>, <a href="../../io/atomix/Atomix.html#getTaskQueue-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getTaskQueue</a>, <a href="../../io/atomix/Atomix.html#getTaskQueue-java.lang.String-io.atomix.resource.Resource.Options-">getTaskQueue</a>, <a href="../../io/atomix/Atomix.html#getTopic-java.lang.String-">getTopic</a>, <a href="../../io/atomix/Atomix.html#getTopic-java.lang.String-io.atomix.resource.Resource.Config-">getTopic</a>, <a href="../../io/atomix/Atomix.html#getTopic-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getTopic</a>, <a href="../../io/atomix/Atomix.html#getTopic-java.lang.String-io.atomix.resource.Resource.Options-">getTopic</a>, <a href="../../io/atomix/Atomix.html#getValue-java.lang.String-">getValue</a>, <a href="../../io/atomix/Atomix.html#getValue-java.lang.String-io.atomix.resource.Resource.Config-">getValue</a>, <a href="../../io/atomix/Atomix.html#getValue-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getValue</a>, <a href="../../io/atomix/Atomix.html#getValue-java.lang.String-io.atomix.resource.Resource.Options-">getValue</a>, <a href="../../io/atomix/Atomix.html#keys--">keys</a>, <a href="../../io/atomix/Atomix.html#keys-java.lang.Class-">keys</a>, <a href="../../io/atomix/Atomix.html#keys-io.atomix.resource.ResourceType-">keys</a>, <a href="../../io/atomix/Atomix.html#serializer--">serializer</a>, <a href="../../io/atomix/Atomix.html#toString--">toString</a>, <a href="../../io/atomix/Atomix.html#type-java.lang.Class-">type</a></code></li>
+<code><a href="../../io/atomix/Atomix.html#context--">context</a>, <a href="../../io/atomix/Atomix.html#exists-java.lang.String-">exists</a>, <a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-">getGroup</a>, <a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Config-">getGroup</a>, <a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Config-io.atomix.group.DistributedGroup.Options-">getGroup</a>, <a href="../../io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Options-">getGroup</a>, <a href="../../io/atomix/Atomix.html#getLock-java.lang.String-">getLock</a>, <a href="../../io/atomix/Atomix.html#getLock-java.lang.String-io.atomix.resource.Resource.Config-">getLock</a>, <a href="../../io/atomix/Atomix.html#getLock-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getLock</a>, <a href="../../io/atomix/Atomix.html#getLock-java.lang.String-io.atomix.resource.Resource.Options-">getLock</a>, <a href="../../io/atomix/Atomix.html#getLong-java.lang.String-">getLong</a>, <a href="../../io/atomix/Atomix.html#getLong-java.lang.String-io.atomix.resource.Resource.Config-">getLong</a>, <a href="../../io/atomix/Atomix.html#getLong-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getLong</a>, <a href="../../io/atomix/Atomix.html#getLong-java.lang.String-io.atomix.resource.Resource.Options-">getLong</a>, <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-">getMap</a>, <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Config-">getMap</a>, <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getMap</a>, <a href="../../io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Options-">getMap</a>, <a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-">getMultiMap</a>, <a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-io.atomix.collections.DistributedMultiMap.Config-">getMultiMap</a>, <a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-io.atomix.collections.DistributedMultiMap.Config-io.atomix.resource.Resource.Options-">getMultiMap</a>, <a href="../../io/atomix/Atomix.html#getMultiMap-java.lang.String-io.atomix.resource.Resource.Options-">getMultiMap</a>, <a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-">getQueue</a>, <a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-io.atomix.resource.Resource.Config-">getQueue</a>, <a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getQueue</a>, <a href="../../io/atomix/Atomix.html#getQueue-java.lang.String-io.atomix.resource.Resource.Options-">getQueue</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Config-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-java.lang.Class-io.atomix.resource.Resource.Options-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getResource</a>, <a href="../../io/atomix/Atomix.html#getResource-java.lang.String-io.atomix.resource.ResourceType-io.atomix.resource.Resource.Options-">getResource</a>, <a href="../../io/atomix/Atomix.html#getSet-java.lang.String-">getSet</a>, <a href="../../io/atomix/Atomix.html#getSet-java.lang.String-io.atomix.resource.Resource.Config-">getSet</a>, <a href="../../io/atomix/Atomix.html#getSet-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getSet</a>, <a href="../../io/atomix/Atomix.html#getSet-java.lang.String-io.atomix.resource.Resource.Options-">getSet</a>, <a href="../../io/atomix/Atomix.html#getValue-java.lang.String-">getValue</a>, <a href="../../io/atomix/Atomix.html#getValue-java.lang.String-io.atomix.resource.Resource.Config-">getValue</a>, <a href="../../io/atomix/Atomix.html#getValue-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getValue</a>, <a href="../../io/atomix/Atomix.html#getValue-java.lang.String-io.atomix.resource.Resource.Options-">getValue</a>, <a href="../../io/atomix/Atomix.html#keys--">keys</a>, <a href="../../io/atomix/Atomix.html#keys-java.lang.Class-">keys</a>, <a href="../../io/atomix/Atomix.html#keys-io.atomix.resource.ResourceType-">keys</a>, <a href="../../io/atomix/Atomix.html#serializer--">serializer</a>, <a href="../../io/atomix/Atomix.html#toString--">toString</a>, <a href="../../io/atomix/Atomix.html#type-java.lang.Class-">type</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -406,69 +338,19 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
-<!-- ========= CONSTRUCTOR DETAIL ======== -->
-<ul class="blockList">
-<li class="blockList"><a name="constructor.detail">
-<!--   -->
-</a>
-<h3>Constructor Detail</h3>
-<a name="AtomixReplica-java.util.Properties-">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>AtomixReplica</h4>
-<pre>public&nbsp;AtomixReplica(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;properties)</pre>
-</li>
-</ul>
-</li>
-</ul>
 <!-- ============ METHOD DETAIL ========== -->
 <ul class="blockList">
 <li class="blockList"><a name="method.detail">
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="builder-java.lang.String-">
+<a name="builder-io.atomix.catalyst.transport.Address-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>builder</h4>
-<pre>public static&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;builder(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;properties)</pre>
-<div class="block">Returns a new Atomix replica builder from the given configuration file.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>properties</code> - The properties file from which to load the replica builder.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The replica builder.</dd>
-</dl>
-</li>
-</ul>
-<a name="builder-java.util.Properties-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>builder</h4>
-<pre>public static&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;builder(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;properties)</pre>
-<div class="block">Returns a new Atomix replica builder from the given properties.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>properties</code> - The properties from which to load the replica builder.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The replica builder.</dd>
-</dl>
-</li>
-</ul>
-<a name="builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>builder</h4>
-<pre>public static&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;builder(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address,
-                                            <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>...&nbsp;members)</pre>
+<pre>public static&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;builder(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address)</pre>
 <div class="block">Returns a new Atomix replica builder.
  <p>
  The replica <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> is the address to which the replica will bind to communicate with both
@@ -492,58 +374,19 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>address</code> - The address through which clients and replicas connect to the replica.</dd>
-<dd><code>members</code> - The cluster members to which to connect.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The replica builder.</dd>
 </dl>
 </li>
 </ul>
-<a name="builder-io.atomix.catalyst.transport.Address-java.util.Collection-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>builder</h4>
-<pre>public static&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;builder(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address,
-                                            <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;members)</pre>
-<div class="block">Returns a new Atomix replica builder.
- <p>
- The replica <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> is the address to which the replica will bind to communicate with both
- clients and other replicas and through which clients and replicas will connect to the constructed replica.
- <p>
- The provided set of members will be used to connect to the other members in the Raft cluster. The members
- do not have to be representative of the full cluster membership.
- <p>
- When starting a new cluster, the cluster should be formed by providing the <code>members</code> list of the
- replicas that make up the initial members of the cluster. If the replica being built is included in the
- initial membership list, its <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> should be listed in the <code>members</code> list. Otherwise,
- if the replica is joining an existing cluster, its <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> should not be listed in the membership
- list.
- <p>
- If the replica uses a persistent <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/StorageLevel.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage"><code>StorageLevel</code></a> like
- <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/StorageLevel.html?is-external=true#DISK" title="class or interface in io.atomix.copycat.server.storage"><code>DISK</code></a> or <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/StorageLevel.html?is-external=true#MAPPED" title="class or interface in io.atomix.copycat.server.storage"><code>MAPPED</code></a>
- then the provided membership list only applies to the first time the replica is started. Once the replica
- has been started and joined with other members of the cluster, the updated cluster configuration will be
- stored on disk, and if the replica crashes and is restarted it will use the persisted configuration rather
- than the user-provided configuration. This behavior cannot be overridden.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>address</code> - The address through which clients and replicas connect to the replica.</dd>
-<dd><code>members</code> - The cluster members to which to connect.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The replica builder.</dd>
-</dl>
-</li>
-</ul>
-<a name="builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-">
+<a name="builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>builder</h4>
 <pre>public static&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;builder(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;clientAddress,
-                                            <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;serverAddress,
-                                            <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>...&nbsp;members)</pre>
+                                            <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;serverAddress)</pre>
 <div class="block">Returns a new Atomix replica builder.
  <p>
  The provided server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> is the address to which the replica will bind for communication with
@@ -571,13 +414,49 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>clientAddress</code> - The address through which clients connect to the replica.</dd>
 <dd><code>serverAddress</code> - The address through which other replicas connect to the replica.</dd>
-<dd><code>members</code> - The cluster members to which to connect.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The replica builder.</dd>
 </dl>
 </li>
 </ul>
-<a name="builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address-java.util.Collection-">
+<a name="builder-io.atomix.catalyst.transport.Address-java.util.Properties-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>builder</h4>
+<pre>public static&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;builder(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address,
+                                            <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;properties)</pre>
+<div class="block">Returns a new Atomix replica builder.
+ <p>
+ The replica <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> is the address to which the replica will bind to communicate with both
+ clients and other replicas and through which clients and replicas will connect to the constructed replica.
+ <p>
+ The provided set of members will be used to connect to the other members in the Raft cluster. The members
+ do not have to be representative of the full cluster membership.
+ <p>
+ When starting a new cluster, the cluster should be formed by providing the <code>members</code> list of the
+ replicas that make up the initial members of the cluster. If the replica being built is included in the
+ initial membership list, its <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> should be listed in the <code>members</code> list. Otherwise,
+ if the replica is joining an existing cluster, its <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> should not be listed in the membership
+ list.
+ <p>
+ If the replica uses a persistent <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/StorageLevel.html?is-external=true" title="class or interface in io.atomix.copycat.server.storage"><code>StorageLevel</code></a> like
+ <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/StorageLevel.html?is-external=true#DISK" title="class or interface in io.atomix.copycat.server.storage"><code>DISK</code></a> or <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/storage/StorageLevel.html?is-external=true#MAPPED" title="class or interface in io.atomix.copycat.server.storage"><code>MAPPED</code></a>
+ then the provided membership list only applies to the first time the replica is started. Once the replica
+ has been started and joined with other members of the cluster, the updated cluster configuration will be
+ stored on disk, and if the replica crashes and is restarted it will use the persisted configuration rather
+ than the user-provided configuration. This behavior cannot be overridden.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>address</code> - The address through which clients and replicas connect to the replica.</dd>
+<dd><code>properties</code> - The replica properties.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The replica builder.</dd>
+</dl>
+</li>
+</ul>
+<a name="builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address-java.util.Properties-">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -585,7 +464,7 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
 <h4>builder</h4>
 <pre>public static&nbsp;<a href="../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a>&nbsp;builder(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;clientAddress,
                                             <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;serverAddress,
-                                            <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;members)</pre>
+                                            <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;properties)</pre>
 <div class="block">Returns a new Atomix replica builder.
  <p>
  The provided server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> is the address to which the replica will bind for communication with
@@ -611,76 +490,239 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
  than the user-provided configuration. This behavior cannot be overridden.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>clientAddress</code> - The address through which clients connect to the server.</dd>
-<dd><code>serverAddress</code> - The local server member address.</dd>
-<dd><code>members</code> - The cluster members to which to connect.</dd>
+<dd><code>clientAddress</code> - The address through which clients connect to the replica.</dd>
+<dd><code>serverAddress</code> - The address through which other replicas connect to the replica.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The replica builder.</dd>
 </dl>
 </li>
 </ul>
-<a name="start--">
+<a name="type--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>start</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;&nbsp;start()</pre>
-<div class="block">Starts the replica.</div>
+<h4>type</h4>
+<pre>public&nbsp;<a href="../../io/atomix/AtomixReplica.Type.html" title="enum in io.atomix">AtomixReplica.Type</a>&nbsp;type()</pre>
+<div class="block">Returns the replica type.
+ <p>
+ The replica type defines how the replica behaves within the Atomix cluster. <a href="../../io/atomix/AtomixReplica.Type.html#ACTIVE"><code>AtomixReplica.Type.ACTIVE</code></a> and
+ <a href="../../io/atomix/AtomixReplica.Type.html#PASSIVE"><code>AtomixReplica.Type.PASSIVE</code></a> replicas are stateful and participate in replication of state changes within the
+ cluster at different levels. <a href="../../io/atomix/AtomixReplica.Type.html#RESERVE"><code>AtomixReplica.Type.RESERVE</code></a> replicas are stateless.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>A completable future to be completed once the replica has been started.</dd>
+<dd>The replica type.</dd>
 </dl>
 </li>
 </ul>
-<a name="stop--">
+<a name="bootstrap--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>stop</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;stop()</pre>
-<div class="block">Stops the replica.</div>
+<h4>bootstrap</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a>&gt;&nbsp;bootstrap()</pre>
+<div class="block">Bootstraps a single-node cluster.
+ <p>
+ Bootstrapping a single-node cluster results in the server forming a new cluster to which additional servers
+ can be joined.
+ <p>
+ Only <code>Member.Type#ACTIVE</code> members can be included in a bootstrap configuration. If the local server is
+ not initialized as an active member, it cannot be part of the bootstrap configuration for the cluster.
+ <p>
+ When the cluster is bootstrapped, the local server will be transitioned into the active state and begin
+ participating in the Raft consensus algorithm. When the cluster is first bootstrapped, no leader will exist.
+ The bootstrapped members will elect a leader amongst themselves. Once a cluster has been bootstrapped, additional
+ members may be <a href="../../io/atomix/AtomixReplica.html#join-io.atomix.catalyst.transport.Address...-"><code>joined</code></a> to the cluster. In the event that the bootstrapped members cannot
+ reach a quorum to elect a leader, bootstrap will continue until successful.
+ <p>
+ It is critical that all servers in a bootstrap configuration be started with the same exact set of members.
+ Bootstrapping multiple servers with different configurations may result in split brain.
+ <p>
+ The <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> returned by this method will be completed once the cluster has been bootstrapped,
+ a leader has been elected, and the leader has been notified of the local server's client configurations.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>A completable future to be completed once the replica has been stopped.</dd>
+<dd>A completable future to be completed once the cluster has been bootstrapped.</dd>
 </dl>
 </li>
 </ul>
-<a name="open--">
+<a name="bootstrap-io.atomix.catalyst.transport.Address...-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>open</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix</a>&gt;&nbsp;open()</pre>
+<h4>bootstrap</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a>&gt;&nbsp;bootstrap(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>...&nbsp;cluster)</pre>
+<div class="block">Bootstraps the cluster using the provided cluster configuration.
+ <p>
+ Bootstrapping the cluster results in a new cluster being formed with the provided configuration. The initial
+ nodes in a cluster must always be bootstrapped. This is necessary to prevent split brain. If the provided
+ configuration is empty, the local server will form a single-node cluster.
+ <p>
+ Only <code>Member.Type#ACTIVE</code> members can be included in a bootstrap configuration. If the local server is
+ not initialized as an active member, it cannot be part of the bootstrap configuration for the cluster.
+ <p>
+ When the cluster is bootstrapped, the local server will be transitioned into the active state and begin
+ participating in the Raft consensus algorithm. When the cluster is first bootstrapped, no leader will exist.
+ The bootstrapped members will elect a leader amongst themselves. Once a cluster has been bootstrapped, additional
+ members may be <a href="../../io/atomix/AtomixReplica.html#join-io.atomix.catalyst.transport.Address...-"><code>joined</code></a> to the cluster. In the event that the bootstrapped members cannot
+ reach a quorum to elect a leader, bootstrap will continue until successful.
+ <p>
+ It is critical that all servers in a bootstrap configuration be started with the same exact set of members.
+ Bootstrapping multiple servers with different configurations may result in split brain.
+ <p>
+ The <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> returned by this method will be completed once the cluster has been bootstrapped,
+ a leader has been elected, and the leader has been notified of the local server's client configurations.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>cluster</code> - The bootstrap cluster configuration.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the cluster has been bootstrapped.</dd>
+</dl>
 </li>
 </ul>
-<a name="isOpen--">
+<a name="bootstrap-java.util.Collection-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>isOpen</h4>
-<pre>public&nbsp;boolean&nbsp;isOpen()</pre>
+<h4>bootstrap</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a>&gt;&nbsp;bootstrap(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;cluster)</pre>
+<div class="block">Bootstraps the cluster using the provided cluster configuration.
+ <p>
+ Bootstrapping the cluster results in a new cluster being formed with the provided configuration. The initial
+ nodes in a cluster must always be bootstrapped. This is necessary to prevent split brain. If the provided
+ configuration is empty, the local server will form a single-node cluster.
+ <p>
+ Only <code>Member.Type#ACTIVE</code> members can be included in a bootstrap configuration. If the local server is
+ not initialized as an active member, it cannot be part of the bootstrap configuration for the cluster.
+ <p>
+ When the cluster is bootstrapped, the local server will be transitioned into the active state and begin
+ participating in the Raft consensus algorithm. When the cluster is first bootstrapped, no leader will exist.
+ The bootstrapped members will elect a leader amongst themselves. Once a cluster has been bootstrapped, additional
+ members may be <a href="../../io/atomix/AtomixReplica.html#join-io.atomix.catalyst.transport.Address...-"><code>joined</code></a> to the cluster. In the event that the bootstrapped members cannot
+ reach a quorum to elect a leader, bootstrap will continue until successful.
+ <p>
+ It is critical that all servers in a bootstrap configuration be started with the same exact set of members.
+ Bootstrapping multiple servers with different configurations may result in split brain.
+ <p>
+ The <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> returned by this method will be completed once the cluster has been bootstrapped,
+ a leader has been elected, and the leader has been notified of the local server's client configurations.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>cluster</code> - The bootstrap cluster configuration.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the cluster has been bootstrapped.</dd>
+</dl>
 </li>
 </ul>
-<a name="close--">
+<a name="join-io.atomix.catalyst.transport.Address...-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>close</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;close()</pre>
+<h4>join</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a>&gt;&nbsp;join(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>...&nbsp;cluster)</pre>
+<div class="block">Joins the cluster.
+ <p>
+ Joining the cluster results in the local server being added to an existing cluster that has already been
+ bootstrapped. The provided configuration will be used to connect to the existing cluster and submit a join
+ request. Once the server has been added to the existing cluster's configuration, the join operation is complete.
+ <p>
+ Any <code>type</code> of server may join a cluster. In order to join a cluster, the provided list of
+ bootstrapped members must be non-empty and must include at least one active member of the cluster. If no member
+ in the configuration is reachable, the server will continue to attempt to join the cluster until successful. If
+ the provided cluster configuration is empty, the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed exceptionally.
+ <p>
+ When the server joins the cluster, the local server will be transitioned into its initial state as defined by
+ the configured <code>Member.Type</code>. Once the server has joined, it will immediately begin participating in
+ Raft and asynchronous replication according to its configuration.
+ <p>
+ It's important to note that the provided cluster configuration will only be used the first time the server attempts
+ to join the cluster. Thereafter, in the event that the server crashes and is restarted by <code>join</code>ing the cluster
+ again, the last known configuration will be used assuming the server is configured with persistent storage. Only when
+ the server leaves the cluster will its configuration and log be reset.
+ <p>
+ In order to preserve safety during configuration changes, Copycat leaders do not allow concurrent configuration
+ changes. In the event that an existing configuration change (a server joining or leaving the cluster or a
+ member being <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/cluster/Member.html?is-external=true#promote--" title="class or interface in io.atomix.copycat.server.cluster"><code>promoted</code></a> or <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/cluster/Member.html?is-external=true#demote--" title="class or interface in io.atomix.copycat.server.cluster"><code>demoted</code></a>) is under way, the local
+ server will retry attempts to join the cluster until successful. If the server fails to reach the leader,
+ the join will be retried until successful.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>cluster</code> - A collection of cluster member addresses to join.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the local server has joined the cluster.</dd>
+</dl>
 </li>
 </ul>
-<a name="isClosed--">
+<a name="join-java.util.Collection-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>join</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../io/atomix/AtomixReplica.html" title="class in io.atomix">AtomixReplica</a>&gt;&nbsp;join(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;cluster)</pre>
+<div class="block">Joins the cluster.
+ <p>
+ Joining the cluster results in the local server being added to an existing cluster that has already been
+ bootstrapped. The provided configuration will be used to connect to the existing cluster and submit a join
+ request. Once the server has been added to the existing cluster's configuration, the join operation is complete.
+ <p>
+ Any <code>type</code> of server may join a cluster. In order to join a cluster, the provided list of
+ bootstrapped members must be non-empty and must include at least one active member of the cluster. If no member
+ in the configuration is reachable, the server will continue to attempt to join the cluster until successful. If
+ the provided cluster configuration is empty, the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed exceptionally.
+ <p>
+ When the server joins the cluster, the local server will be transitioned into its initial state as defined by
+ the configured <code>Member.Type</code>. Once the server has joined, it will immediately begin participating in
+ Raft and asynchronous replication according to its configuration.
+ <p>
+ It's important to note that the provided cluster configuration will only be used the first time the server attempts
+ to join the cluster. Thereafter, in the event that the server crashes and is restarted by <code>join</code>ing the cluster
+ again, the last known configuration will be used assuming the server is configured with persistent storage. Only when
+ the server leaves the cluster will its configuration and log be reset.
+ <p>
+ In order to preserve safety during configuration changes, Copycat leaders do not allow concurrent configuration
+ changes. In the event that an existing configuration change (a server joining or leaving the cluster or a
+ member being <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/cluster/Member.html?is-external=true#promote--" title="class or interface in io.atomix.copycat.server.cluster"><code>promoted</code></a> or <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/server/cluster/Member.html?is-external=true#demote--" title="class or interface in io.atomix.copycat.server.cluster"><code>demoted</code></a>) is under way, the local
+ server will retry attempts to join the cluster until successful. If the server fails to reach the leader,
+ the join will be retried until successful.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>cluster</code> - A collection of cluster member addresses to join.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the local server has joined the cluster.</dd>
+</dl>
+</li>
+</ul>
+<a name="shutdown--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>shutdown</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;shutdown()</pre>
+<div class="block">Shuts down the server without leaving the Copycat cluster.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the server has been shutdown.</dd>
+</dl>
+</li>
+</ul>
+<a name="leave--">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>isClosed</h4>
-<pre>public&nbsp;boolean&nbsp;isClosed()</pre>
+<h4>leave</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;leave()</pre>
+<div class="block">Leaves the Copycat cluster.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the server has left the cluster.</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -738,13 +780,13 @@ extends <a href="../../io/atomix/Atomix.html" title="class in io.atomix">Atomix<
 <li>Summary:&nbsp;</li>
 <li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>

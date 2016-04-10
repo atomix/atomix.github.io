@@ -117,20 +117,12 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.messaging">io.atomix.messaging</a></td>
-<td class="colLast">
-<div class="block">Provides distributed messaging resources such as <a href="../../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging"><code>DistributedMessageBus</code></a> for unreliable
- messaging, <a href="../../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging"><code>DistributedTopic</code></a> for publish-subscribe messaging, and
- <a href="../../../../io/atomix/messaging/DistributedTaskQueue.html" title="class in io.atomix.messaging"><code>DistributedTaskQueue</code></a> for asynchronous processing.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.resource">io.atomix.resource</a></td>
 <td class="colLast">
 <div class="block">Base classes and interfaces for creating and operating on replicated state machines in Atomix.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.variables">io.atomix.variables</a></td>
 <td class="colLast">
 <div class="block">Provides distributed variables such as <a href="../../../../io/atomix/variables/DistributedValue.html" title="class in io.atomix.variables"><code>DistributedValue</code></a>
@@ -215,15 +207,15 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">AtomixClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixClient.Builder.html#addResourceType-java.lang.Class-">addResourceType</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;?&gt;&gt;&nbsp;type)</code>
-<div class="block">Adds a resource type to the client.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">AtomixReplica.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixReplica.Builder.html#addResourceType-java.lang.Class-">addResourceType</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;?&gt;&gt;&nbsp;type)</code>
 <div class="block">Adds a resource type to the replica.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AtomixClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixClient.Builder.html#addResourceType-java.lang.Class-">addResourceType</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;?&gt;&gt;&nbsp;type)</code>
+<div class="block">Adds a resource type to the client.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -307,46 +299,6 @@
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a></span></code>
 <div class="block">Generic group abstraction for managing group membership, service discovery, leader election, and remote
  scheduling and execution.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../io/atomix/group/package-summary.html">io.atomix.group</a> that implement <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Class and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/ConsistentHashGroup.html" title="class in io.atomix.group">ConsistentHashGroup</a></span></code>
-<div class="block"><a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> that consistently maps values to members on a ring.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/GroupPartition.html" title="class in io.atomix.group">GroupPartition</a></span></code>
-<div class="block">Group partition.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/MembershipGroup.html" title="class in io.atomix.group">MembershipGroup</a></span></code>
-<div class="block">Base <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> implementation which manages a membership set for the group
- and all <a href="../../../../io/atomix/group/SubGroup.html" title="class in io.atomix.group"><code>SubGroup</code></a>s.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/PartitionGroup.html" title="class in io.atomix.group">PartitionGroup</a></span></code>
-<div class="block">Group partitions.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/SubGroup.html" title="class in io.atomix.group">SubGroup</a></span></code>
-<div class="block">Base class for subgroups of <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a>.</div>
 </td>
 </tr>
 </tbody>
@@ -515,38 +467,6 @@
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
 <td class="colLast"><span class="typeNameLabel">ResourceClient.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/ResourceClient.html#type-java.lang.Class-">type</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;?&gt;&gt;&nbsp;type)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.messaging">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a> in <a href="../../../../io/atomix/messaging/package-summary.html">io.atomix.messaging</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../io/atomix/messaging/package-summary.html">io.atomix.messaging</a> that implement <a href="../../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Class and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/messaging/DistributedMessageBus.html" title="class in io.atomix.messaging">DistributedMessageBus</a></span></code>
-<div class="block">Provides a light-weight asynchronous messaging layer over Atomix's <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a>.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/messaging/DistributedTaskQueue.html" title="class in io.atomix.messaging">DistributedTaskQueue</a>&lt;T&gt;</span></code>
-<div class="block">Distributed task queue.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/messaging/DistributedTopic.html" title="class in io.atomix.messaging">DistributedTopic</a>&lt;T&gt;</span></code>
-<div class="block">Facilitates persistent publish-subscribe messaging in the cluster.</div>
-</td>
 </tr>
 </tbody>
 </table>

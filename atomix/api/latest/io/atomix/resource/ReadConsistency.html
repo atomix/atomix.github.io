@@ -158,11 +158,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ReadConsistency.html#CAUSAL">CAUSAL</a></span></code>
-<div class="block">Guarantees causal consistency for read operations.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ReadConsistency.html#SEQUENTIAL">SEQUENTIAL</a></span></code>
 <div class="block">Guarantees sequential consistency for read operations.</div>
 </td>
@@ -268,7 +263,7 @@ the order they are declared.</div>
 <a name="SEQUENTIAL">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>SEQUENTIAL</h4>
 <pre>public static final&nbsp;<a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a> SEQUENTIAL</pre>
@@ -279,22 +274,6 @@ the order they are declared.</div>
  server that receives the query will handle it. However, in order to ensure that state does not go back in time, the
  client must submit its last known index with the query as well. If the server that receives the query has not advanced
  past the provided client index, it will queue the query and await more entries from the leader.</div>
-</li>
-</ul>
-<a name="CAUSAL">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>CAUSAL</h4>
-<pre>public static final&nbsp;<a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a> CAUSAL</pre>
-<div class="block">Guarantees causal consistency for read operations.
- <p>
- Causal consistency requires that clients always see non-overlapping state progress monotonically. This constraint allows
- reads from followers. When a causally consistent <a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/Query.html?is-external=true" title="class or interface in io.atomix.copycat"><code>Query</code></a> is submitted to the cluster, the first server that
- receives the query will attempt to handle it. If the server that receives the query is more than a heartbeat behind the
- leader, the query will be forwarded to the leader. If the server that receives the query has not advanced past the
- client's last write, the read will be queued until it can be satisfied.</div>
 </li>
 </ul>
 </li>

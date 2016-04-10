@@ -89,19 +89,12 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.group">io.atomix.group</a></td>
-<td class="colLast">
-<div class="block">Provides distributed group operations tools via <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> including leader election,
- direct messaging, tasks queues, partitioning, and remote execution.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.manager">io.atomix.manager</a></td>
 <td class="colLast">
 <div class="block">Provides APIs for creating custom resources via <code>ResourceClient</code>.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.resource">io.atomix.resource</a></td>
 <td class="colLast">
 <div class="block">Base classes and interfaces for creating and operating on replicated state machines in Atomix.</div>
@@ -137,15 +130,15 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">AtomixClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixClient.Builder.html#addResourceType-io.atomix.resource.ResourceType-">addResourceType</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>
-<div class="block">Adds a resource type to the client.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">AtomixReplica.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixReplica.Builder.html#addResourceType-io.atomix.resource.ResourceType-">addResourceType</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>
 <div class="block">Adds a resource type to the replica.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AtomixClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixClient.Builder.html#addResourceType-io.atomix.resource.ResourceType-">addResourceType</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>
+<div class="block">Adds a resource type to the client.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -177,14 +170,14 @@
 <td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/Atomix.html#keys-io.atomix.resource.ResourceType-">keys</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&nbsp;type)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">AtomixClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixClient.Builder.html#withResourceTypes-io.atomix.resource.ResourceType...-">withResourceTypes</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>...&nbsp;types)</code>
+<td class="colFirst"><code><a href="../../../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AtomixReplica.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixReplica.Builder.html#withResourceTypes-io.atomix.resource.ResourceType...-">withResourceTypes</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>...&nbsp;types)</code>
 <div class="block">Sets the available resource types.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">AtomixReplica.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixReplica.Builder.html#withResourceTypes-io.atomix.resource.ResourceType...-">withResourceTypes</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>...&nbsp;types)</code>
+<td class="colFirst"><code><a href="../../../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AtomixClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixClient.Builder.html#withResourceTypes-io.atomix.resource.ResourceType...-">withResourceTypes</a></span>(<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>...&nbsp;types)</code>
 <div class="block">Sets the available resource types.</div>
 </td>
 </tr>
@@ -198,34 +191,16 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">AtomixClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixClient.Builder.html#withResourceTypes-java.util.Collection-">withResourceTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&gt;&nbsp;types)</code>
-<div class="block">Sets the available resource types.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/AtomixReplica.Builder.html" title="class in io.atomix">AtomixReplica.Builder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">AtomixReplica.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixReplica.Builder.html#withResourceTypes-java.util.Collection-">withResourceTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&gt;&nbsp;types)</code>
 <div class="block">Sets the available resource types.</div>
 </td>
 </tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.group">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a> in <a href="../../../../io/atomix/group/package-summary.html">io.atomix.group</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../io/atomix/group/package-summary.html">io.atomix.group</a> that return <a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
-<td class="colLast"><span class="typeNameLabel">SubGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/SubGroup.html#type--">type</a></span>()</code>&nbsp;</td>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AtomixClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/AtomixClient.Builder.html#withResourceTypes-java.util.Collection-">withResourceTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&gt;&nbsp;types)</code>
+<div class="block">Sets the available resource types.</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -387,13 +362,13 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
-<td class="colLast"><span class="typeNameLabel">AbstractResource.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/AbstractResource.html#type--">type</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Resource.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/Resource.html#type--">type</a></span>()</code>
 <div class="block">Returns the resource type.</div>
 </td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AbstractResource.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/resource/AbstractResource.html#type--">type</a></span>()</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

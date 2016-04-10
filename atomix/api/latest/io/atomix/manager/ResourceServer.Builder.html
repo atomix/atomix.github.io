@@ -124,7 +124,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  <p>
  The server builder configures an <a href="../../../io/atomix/manager/ResourceServer.html" title="class in io.atomix.manager"><code>ResourceServer</code></a> to listen for connections from clients and other
  servers, connect to other servers in a cluster, and manage a replicated log. To create a server builder,
- use the <a href="../../../io/atomix/manager/ResourceServer.html#builder-io.atomix.catalyst.transport.Address-io.atomix.catalyst.transport.Address...-"><code>ResourceServer.builder(Address, Address...)</code></a> method:
+ use the <a href="../../../io/atomix/manager/ResourceServer.html#builder-io.atomix.catalyst.transport.Address-"><code>ResourceServer.builder(Address)</code></a> method:
  <pre>
    <code>
    AtomixServer server = AtomixServer.builder(address, servers)
@@ -552,7 +552,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
  on the classpath, a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ConfigurationException.html?is-external=true" title="class or interface in io.atomix.catalyst.util"><code>ConfigurationException</code></a> will be thrown.
  <p>
  Once the server is built, it is not yet connected to the cluster. To connect the server to the cluster,
- call the asynchronous <code>#open()</code> method.</div>
+ call the asynchronous <a href="../../../io/atomix/manager/ResourceServer.html#bootstrap--"><code>ResourceServer.bootstrap()</code></a> or <a href="../../../io/atomix/manager/ResourceServer.html#join-io.atomix.catalyst.transport.Address...-"><code>ResourceServer.join(Address...)</code></a> method.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true#build--" title="class or interface in io.atomix.catalyst.util">build</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../../io/atomix/manager/ResourceServer.html" title="class in io.atomix.manager">ResourceServer</a>&gt;</code></dd>

@@ -88,13 +88,6 @@
 <div class="block">Core Atomix APIs for creating and operating on distributed objects.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.group">io.atomix.group</a></td>
-<td class="colLast">
-<div class="block">Provides distributed group operations tools via <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> including leader election,
- direct messaging, tasks queues, partitioning, and remote execution.</div>
-</td>
-</tr>
 </tbody>
 </table>
 </li>
@@ -138,85 +131,6 @@
         <a href="../../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group">DistributedGroup.Options</a>&nbsp;options)</code>
 <div class="block">Gets or creates a distributed group for managing group membership and leader elections.</div>
 </td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.group">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a> in <a href="../../../../io/atomix/group/package-summary.html">io.atomix.group</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../io/atomix/group/package-summary.html">io.atomix.group</a> that implement <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Class and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/ConsistentHashGroup.html" title="class in io.atomix.group">ConsistentHashGroup</a></span></code>
-<div class="block"><a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> that consistently maps values to members on a ring.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/GroupPartition.html" title="class in io.atomix.group">GroupPartition</a></span></code>
-<div class="block">Group partition.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/MembershipGroup.html" title="class in io.atomix.group">MembershipGroup</a></span></code>
-<div class="block">Base <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> implementation which manages a membership set for the group
- and all <a href="../../../../io/atomix/group/SubGroup.html" title="class in io.atomix.group"><code>SubGroup</code></a>s.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/PartitionGroup.html" title="class in io.atomix.group">PartitionGroup</a></span></code>
-<div class="block">Group partitions.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/SubGroup.html" title="class in io.atomix.group">SubGroup</a></span></code>
-<div class="block">Base class for subgroups of <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a>.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../io/atomix/group/package-summary.html">io.atomix.group</a> that return <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a></code></td>
-<td class="colLast"><span class="typeNameLabel">SubGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/SubGroup.html#with-io.atomix.resource.ReadConsistency-">with</a></span>(<a href="../../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a>&nbsp;consistency)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a></code></td>
-<td class="colLast"><span class="typeNameLabel">SubGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/SubGroup.html#with-io.atomix.resource.WriteConsistency-">with</a></span>(<a href="../../../../io/atomix/resource/WriteConsistency.html" title="enum in io.atomix.resource">WriteConsistency</a>&nbsp;consistency)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../io/atomix/group/package-summary.html">io.atomix.group</a> that return types with arguments of type <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">MembershipGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/MembershipGroup.html#open--">open</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group">DistributedGroup</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">SubGroup.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/group/SubGroup.html#open--">open</a></span>()</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

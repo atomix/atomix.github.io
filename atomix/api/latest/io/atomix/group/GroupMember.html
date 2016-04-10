@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var methods = {"i0":6,"i1":6};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -49,8 +49,8 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/group/GroupElection.html" title="class in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../io/atomix/group/GroupMemberInfo.html" title="class in io.atomix.group"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/group/LocalMember.html" title="interface in io.atomix.group"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/group/GroupMember.html" target="_top">Frames</a></li>
@@ -93,28 +93,19 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">io.atomix.group</div>
-<h2 title="Class GroupMember" class="title">Class GroupMember</h2>
+<h2 title="Interface GroupMember" class="title">Interface GroupMember</h2>
 </div>
 <div class="contentContainer">
-<ul class="inheritance">
-<li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
-<li>
-<ul class="inheritance">
-<li>io.atomix.group.GroupMember</li>
-</ul>
-</li>
-</ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
 <dl>
-<dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../io/atomix/group/LocalGroupMember.html" title="class in io.atomix.group">LocalGroupMember</a></dd>
+<dt>All Known Subinterfaces:</dt>
+<dd><a href="../../../io/atomix/group/LocalMember.html" title="interface in io.atomix.group">LocalMember</a></dd>
 </dl>
 <hr>
 <br>
-<pre>public class <span class="typeNameLabel">GroupMember</span>
-extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
+<pre>public interface <span class="typeNameLabel">GroupMember</span></pre>
 <div class="block">A <a href="../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> member representing a member of the group controlled by a local
  or remote process.</div>
 <dl>
@@ -134,57 +125,24 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupMember.html#address--">address</a></span>()</code>
-<div class="block">Returns the member address.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/group/MemberConnection.html" title="class in io.atomix.group">MemberConnection</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupMember.html#connection--">connection</a></span>()</code>
-<div class="block">Returns a direct connection to the member.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupMember.html#equals-java.lang.Object-">equals</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;object)</code>&nbsp;</td>
-</tr>
-<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupMember.html#id--">id</a></span>()</code>
 <div class="block">Returns the member ID.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/group/GroupProperties.html" title="class in io.atomix.group">GroupProperties</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupMember.html#properties--">properties</a></span>()</code>
-<div class="block">Returns the member properties.</div>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="../../../io/atomix/group/messaging/MessageClient.html" title="interface in io.atomix.group.messaging">MessageClient</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupMember.html#messaging--">messaging</a></span>()</code>
+<div class="block">Returns the member message client.</div>
 </td>
-</tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/group/MemberTaskQueue.html" title="class in io.atomix.group">MemberTaskQueue</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupMember.html#tasks--">tasks</a></span>()</code>
-<div class="block">Returns the member's task queue.</div>
-</td>
-</tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupMember.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
 </table>
-<ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
-<!--   -->
-</a>
-<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
-</ul>
 </li>
 </ul>
 </li>
@@ -205,7 +163,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>id</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;id()</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;id()</pre>
 <div class="block">Returns the member ID.
  <p>
  The member ID is guaranteed to be unique across the cluster. Depending on how the member was
@@ -216,85 +174,17 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="address--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>address</h4>
-<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address()</pre>
-<div class="block">Returns the member address.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The member address.</dd>
-</dl>
-</li>
-</ul>
-<a name="properties--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>properties</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/group/GroupProperties.html" title="class in io.atomix.group">GroupProperties</a>&nbsp;properties()</pre>
-<div class="block">Returns the member properties.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The member properties.</dd>
-</dl>
-</li>
-</ul>
-<a name="connection--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>connection</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/group/MemberConnection.html" title="class in io.atomix.group">MemberConnection</a>&nbsp;connection()</pre>
-<div class="block">Returns a direct connection to the member.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>A direct connection to the member.</dd>
-</dl>
-</li>
-</ul>
-<a name="tasks--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>tasks</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/group/MemberTaskQueue.html" title="class in io.atomix.group">MemberTaskQueue</a>&nbsp;tasks()</pre>
-<div class="block">Returns the member's task queue.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The member's task queue.</dd>
-</dl>
-</li>
-</ul>
-<a name="equals-java.lang.Object-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>equals</h4>
-<pre>public&nbsp;boolean&nbsp;equals(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;object)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
-</dl>
-</li>
-</ul>
-<a name="toString--">
+<a name="messaging--">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>toString</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
+<h4>messaging</h4>
+<pre><a href="../../../io/atomix/group/messaging/MessageClient.html" title="interface in io.atomix.group.messaging">MessageClient</a>&nbsp;messaging()</pre>
+<div class="block">Returns the member message client.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The member message client.</dd>
 </dl>
 </li>
 </ul>
@@ -326,8 +216,8 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/group/GroupElection.html" title="class in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../io/atomix/group/GroupMemberInfo.html" title="class in io.atomix.group"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/group/LocalMember.html" title="interface in io.atomix.group"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/group/GroupMember.html" target="_top">Frames</a></li>
