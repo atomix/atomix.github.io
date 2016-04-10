@@ -152,20 +152,13 @@ public class MapStateMachine extends StateMachine implements Snapshottable {
 
 For snapshottable state machines, Copycat will periodically request a binary snapshot of the state machine's state and write the snapshot to disk. If the server is restarted, the state machine's state will be recovered from the on-disk snapshot. When a new server joins the cluster, the snapshot of the state machine will be replicated to the joining server to catch up its state. This allows Copycat to remove commits that contributed to the snapshot from the replicated log, thus conserving disk space.
 
-### Starting a Copycat Server
+### Creating a server
 
-Once a state machine and its operations have been defined, we can start a cluster of `CopycatServer`s to replicate and query the state machine. Copycat uses the builder pattern for configuring and constructing servers. Each Copycat server must be initialized with a local `Address` and a list of remote `Address`es of all the other members of the cluster. This is known as the *cluster configuration*.
+Once a state machine and its operations have been defined, we can create a `CopycatServer` to manage the state machine. Copycat uses the builder pattern for configuring and constructing servers. Each Copycat server must be initialized with a local server `Address`.
 
 ```java
 Address address = new Address("123.456.789.0", 5000);
-
-Collection<Address> members = Arrays.asList(
-  new Address("123.456.789.0", 5000),
-  new Address("123.456.789.1", 5000),
-  new Address("123.456.789.2", 5000)
-);
-
-CopycatServer.Builder builder = CopycatServer.builder(address, members);
+CopycatServer.Builder builder = CopycatServer.builder(address);
 ```
 
 Each server must be configured with the same state machine, in this case our `MapStateMachine`:
@@ -182,17 +175,20 @@ builder.withTransport(NettyTransport.builder()
   .build());
 
 builder.withStorage(Storage.builder()
-    .withDirectory(new File("logs"))
-    .withStorageLevel(StorageLevel.DISK)
-    .build());
+  .withDirectory(new File("logs"))
+  .withStorageLevel(StorageLevel.DISK)
+  .build());
 
 CopycatServer server = builder.build();
 ```
 
+{:.callout .callout-danger}
+The server's `Storage` directory *must* be unique to the server.
+
 The server builder methods can then be chained for a more concise representation of the server configuration:
 
 ```java
-CopycatServer server = CopycatServer.builder(address, members)
+CopycatServer server = CopycatServer.builder(address)
   .withStateMachine(MapStateMachine::new)
   .withTransport(NettyTransport.builder()
     .withThreads(4)
@@ -204,45 +200,40 @@ CopycatServer server = CopycatServer.builder(address, members)
   .build();
 ```
 
-One final task is necessary to complete the configuration of the server. We've created two state machine operations - `PutCommand` and `GetQuery` - which are `Serializable`. However, Copycat's serialization framework (Catalyst) does not allow arbitrary classes to be serialized and deserialized due to known security risks. By default, the Catalyst serialization framework requires specific classes to be whitelisted. Whitelisting can be disabled altogether on the server serializer:
-
-```java
-server.serializer().disableWhitelist();
-```
-
-But better yet, we can whitelist the state machine operations by registering them with the server serializer.
+One final task is necessary to complete the configuration of the server. We've created two state machine operations - `PutCommand` and `GetQuery` - which are `Serializable`. By default, Copycat's serialization framework will serialize these operations using Java's serialization. However, users can explicitly register serializable classes and implement custom binary serializers for more efficient serialization.
 
 ```java
 server.serializer().register(PutCommand.class);
 server.serializer().register(GetQuery.class);
 ```
 
-This approach is slightly more efficient, but even more efficient means of serialization are described in the [Catalyst documentation][io-serialization].
+## Bootstrapping the cluster
 
-Once the server has been built, start the server by calling `open`:
+Once the server has been built, we can bootstrap a new cluster by calling the `bootstrap()` method:
 
 ```java
-CompletableFuture<CopycatServer> future = server.open();
+CompletableFuture<CopycatServer> future = server.bootstrap();
 future.join();
 ```
 
-Remember that a majority of the cluster must be available for a server to be started. If the cluster configuration specifies three servers then two must be started and join each other for a leader to be elected and for the cluster to begin accepting state machine operations.
+When a server is bootstrapped, it forms a *new* cluster single node cluster to which additional servers can be joined.
 
-### Submitting Operations Via the Client
+## Joining an existing cluster
 
-Clients are built in a manner very similar to servers. To construct a client, create a `CopycatClient.Builder` by providing a list of initial servers to which to connect.
+Once an initial cluster has been bootstrapped, additional servers can be added to the cluster via the `join()` method. When joining an existing cluster, the existing cluster configuration must be provided to the `join` method:
 
 ```java
-Collection<Address> members = Arrays.asList(
-  new Address("123.456.789.0", 5000),
-  new Address("123.456.789.1", 5000),
-  new Address("123.456.789.2", 5000)
-);
-
-CopycatClient.Builder builder = CopycatClient.builder(members);
+Collection<Address> cluster = Collections.singleton(new Address(""))
+server.join(cluster).join();
 ```
 
-The initial server list does not have to include all the servers in the cluster. If only a subset of server addresses is provided, once the client is able to connect to one of the known servers it will receive an updated list of servers automatically.
+### Submitting operations
+
+Clients are built in a manner very similar to servers. To construct a client, create a `CopycatClient.Builder`:
+
+```java
+CopycatClient.Builder builder = CopycatClient.builder();
+```
 
 To configure the client to connect to the cluster, we must set the same `Transport` as was used in the cluster of servers:
 
@@ -271,11 +262,19 @@ client.serializer().register(PutCommand.class);
 client.serializer().register(GetQuery.class);
 ```
 
-Finally, we can build the client and `open` it to connect to the cluster.
+Finally, we can build the client and `connect` to the cluster. When connecting to a cluster, a collection of server addresses must be passed to the `connect` method. The address list does not have to be representative of the entire cluster, but the client must be able to reach at least one server to establish a new session.
 
 ```java
 CopycatClient client = builder.build();
-CompletableFuture<CopycatClient> future = client.open();
+
+
+Collection<Address> cluster = Arrays.asList(
+  new Address("123.456.789.0", 8700),
+  new Address("123.456.789.1", 8700),
+  new Address("123.456.789.2", 8700)
+);
+
+CompletableFuture<CopycatClient> future = client.connect(cluster);
 future.join();
 ```
 
@@ -285,17 +284,17 @@ Once a client has been started, we can submit state machine commands and queries
 
 ```java
 CompletableFuture<Object> future = client.submit(new PutCommand("foo", "Hello world!"));
-Object result = future.get();
+Object result = future.join();
 ```
 
-For synchronous operation of the Copycat API, the `Future` API provides blocking methods like `get` and `join`. However, all Copycat APIs are asynchronous and rely upon Java 8's `CompletableFuture` as a promises API. So, instead of blocking on a single operation, a client can submit multiple operations and either await the result or react to the result once it has been received:
+For synchronous operation of the Copycat API, the `Future` API provides the blocking method `get`. However, all Copycat APIs are asynchronous and rely upon Java 8's `CompletableFuture` as a promises API. So, instead of blocking on a single operation, a client can submit multiple operations and either await the result or react to the result once it has been received:
 
 ```java
 // Submit three PutCommands to the replicated state machine
 CompletableFuture[] futures = new CompletableFuture[3];
 futures[0] = client.submit(new PutCommand("foo", "Hello world!"));
-futures[1] future = client.submit(new PutCommand("bar", "Hello world!"));
-futures[2] future = client.submit(new PutCommand("baz", "Hello world!"));
+futures[1] = client.submit(new PutCommand("bar", "Hello world!"));
+futures[2] = client.submit(new PutCommand("baz", "Hello world!"));
 
 // Print a message once all three commands have completed
 CompletableFuture.allOf(futures).thenRun(() -> System.out.println("Commands completed!"));
