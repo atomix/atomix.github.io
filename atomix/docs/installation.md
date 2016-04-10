@@ -60,7 +60,7 @@ This will create a single binary with a self-contained Atomix server located at:
 standalone/standalone-server/target/atomix-standalone-server.jar
 ```
 
-### Bootstrapping a Standlone Cluster
+### Bootstrapping a Standalone Cluster
 
 To bootstrap a standalone cluster, pass the `-bootstrap` flag when running the standalone server jar. Bootstrapping the standalone server without any additional arguments will bootstrap a single node cluster to which additional nodes can be added.
 
@@ -74,7 +74,7 @@ Alternatively, to bootstrap a multi-node cluster, pass a list of server addresse
 java -jar atomix-standalone-server.jar 123.456.789.0:8700 -bootstrap 123.456.789.0:8700 123.456.789.1:8700 123.456.789.2:8700
 ```
 
-### Adding a Node to a Standlone Cluster
+### Adding a Node to a Standalone Cluster
 
 To add a node to an existing bootstrapped standalone cluster, use the `-join` flag when running the standalone server jar, passing a list of servers to which to join the node.
 
