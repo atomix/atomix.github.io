@@ -85,7 +85,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server">io.atomix.copycat.server</a></td>
 <td class="colLast">
-<div class="block">Provides a standalone, feature-complete implementation of the <a href="https://raft.github.io/">Raft consensus algorithm</a>.</div>
+<div class="block">Standalone, feature-complete implementation of the <a href="https://raft.github.io/">Raft consensus algorithm</a>.</div>
 </td>
 </tr>
 </tbody>
@@ -98,6 +98,21 @@
 </a>
 <h3>Uses of <a href="../../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a> in <a href="../../../../../io/atomix/copycat/server/package-summary.html">io.atomix.copycat.server</a></h3>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/copycat/server/package-summary.html">io.atomix.copycat.server</a> that return <a href="../../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;<a href="../../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">Commit.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/Commit.html#acquire--">acquire</a></span>()</code>
+<div class="block">Acquires a reference to the commit.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
 <caption><span>Method parameters in <a href="../../../../../io/atomix/copycat/server/package-summary.html">io.atomix.copycat.server</a> with type arguments of type <a href="../../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
@@ -105,14 +120,14 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client">Operation</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&gt;<br><a href="../../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a></code></td>
+<td class="colFirst"><code>&lt;T extends <a href="../../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&gt;<br><a href="../../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a></code></td>
 <td class="colLast"><span class="typeNameLabel">StateMachineExecutor.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/StateMachineExecutor.html#register-java.lang.Class-java.util.function.Consumer-">register</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;T&gt;&gt;&nbsp;callback)</code>
 <div class="block">Registers a void operation callback.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>&lt;T extends <a href="../../../../../io/atomix/copycat/client/Operation.html" title="interface in io.atomix.copycat.client">Operation</a>&lt;U&gt;,U&gt;<br><a href="../../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a></code></td>
+<td class="colFirst"><code>&lt;T extends <a href="../../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&lt;U&gt;,U&gt;<br><a href="../../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a></code></td>
 <td class="colLast"><span class="typeNameLabel">StateMachineExecutor.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/StateMachineExecutor.html#register-java.lang.Class-java.util.function.Function-">register</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;T&gt;,U&gt;&nbsp;callback)</code>
 <div class="block">Registers an operation callback.</div>

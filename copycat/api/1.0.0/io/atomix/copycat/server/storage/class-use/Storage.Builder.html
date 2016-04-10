@@ -85,7 +85,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server.storage">io.atomix.copycat.server.storage</a></td>
 <td class="colLast">
-<div class="block">Provides a standalone segmented log for Copycat's <a href="https://raftconsensus.github.io/">Raft</a> implementation.</div>
+<div class="block">Standalone segmented log for Copycat's <a href="https://raftconsensus.github.io/">Raft</a> implementation.</div>
 </td>
 </tr>
 </tbody>
@@ -119,7 +119,7 @@
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Storage.Builder.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/Storage.Builder.html#withCompactionThreshold-double-">withCompactionThreshold</a></span>(double&nbsp;threshold)</code>
-<div class="block">Sets the percentage of entries in the segment that must be cleaned before a segment can be compacted,
+<div class="block">Sets the percentage of entries in the segment that must be released before a segment can be compacted,
  returning the builder for method chaining.</div>
 </td>
 </tr>
@@ -178,12 +178,6 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Storage.Builder.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/Storage.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-">withSerializer</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
-<div class="block">Sets the log entry <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a>, returning the builder for method chaining.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Storage.Builder.</span><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/Storage.Builder.html#withStorageLevel-io.atomix.copycat.server.storage.StorageLevel-">withStorageLevel</a></span>(<a href="../../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a>&nbsp;storageLevel)</code>
 <div class="block">Sets the log storage level, returning the builder for method chaining.</div>

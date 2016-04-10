@@ -43,8 +43,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../io/atomix/copycat/client/response/package-summary.html">Prev&nbsp;Package</a></li>
-<li><a href="../../../../../io/atomix/copycat/server/package-summary.html">Next&nbsp;Package</a></li>
+<li><a href="../../../../../io/atomix/copycat/client/package-summary.html">Prev&nbsp;Package</a></li>
+<li><a href="../../../../../io/atomix/copycat/error/package-summary.html">Next&nbsp;Package</a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?io/atomix/copycat/client/session/package-summary.html" target="_top">Frames</a></li>
@@ -72,29 +72,12 @@
 <div class="header">
 <h1 title="Package" class="title">Package&nbsp;io.atomix.copycat.client.session</h1>
 <div class="docSummary">
-<div class="block">Classes and interfaces for managing client sessions.</div>
+<div class="block">Facilitates communication with the Copycat cluster within the context of a session.</div>
 </div>
 <p>See:&nbsp;<a href="#package.description">Description</a></p>
 </div>
 <div class="contentContainer">
 <ul class="blockList">
-<li class="blockList">
-<table class="typeSummary" border="0" cellpadding="3" cellspacing="0" summary="Interface Summary table, listing interfaces, and an explanation">
-<caption><span>Interface Summary</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Interface</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a></td>
-<td class="colLast">
-<div class="block">Provides event-based methods for monitoring Raft sessions and communicating between Raft clients and servers.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
 <li class="blockList">
 <table class="typeSummary" border="0" cellpadding="3" cellspacing="0" summary="Class Summary table, listing classes, and an explanation">
 <caption><span>Class Summary</span><span class="tabEnd">&nbsp;</span></caption>
@@ -106,47 +89,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html" title="class in io.atomix.copycat.client.session">ClientSession</a></td>
 <td class="colLast">
-<div class="block">Client session.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../../io/atomix/copycat/client/session/Event.html" title="class in io.atomix.copycat.client.session">Event</a>&lt;T&gt;</td>
-<td class="colLast">
-<div class="block">Transports a named event from a server to a client <a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session"><code>Session</code></a>.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList">
-<table class="typeSummary" border="0" cellpadding="3" cellspacing="0" summary="Enum Summary table, listing enums, and an explanation">
-<caption><span>Enum Summary</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Enum</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../../io/atomix/copycat/client/session/Session.State.html" title="enum in io.atomix.copycat.client.session">Session.State</a></td>
-<td class="colLast">
-<div class="block">Represents the state of a session.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList">
-<table class="typeSummary" border="0" cellpadding="3" cellspacing="0" summary="Exception Summary table, listing exceptions, and an explanation">
-<caption><span>Exception Summary</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Exception</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../../io/atomix/copycat/client/session/ClosedSessionException.html" title="class in io.atomix.copycat.client.session">ClosedSessionException</a></td>
-<td class="colLast">
-<div class="block">Closed session exception.</div>
+<div class="block">Handles submitting state machine <a href="../../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>commands</code></a> and <a href="../../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>queries</code></a> to the Copycat cluster.</div>
 </td>
 </tr>
 </tbody>
@@ -157,12 +100,15 @@
 <!--   -->
 </a>
 <h2 title="Package io.atomix.copycat.client.session Description">Package io.atomix.copycat.client.session Description</h2>
-<div class="block">Classes and interfaces for managing client sessions.
+<div class="block">Facilitates communication with the Copycat cluster within the context of a session.
  <p>
- Sessions represent the context in which clients communicate with a Raft cluster. Sessions allow clusters
- to process requests according to client state. For instance, sessions are responsible for ensuring operations
- are executed in the order specified by the client (sequential consistency) and operations are only applied
- to the replicated state machine once (linearizability).</div>
+ Clients communicate with the Copycat cluster within the context of a session. Sessions are used to
+ acheive linearizable semantics and first-in-first-out ordering of client operations by coordinating
+ <a href="../../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat"><code>commands</code></a> and <a href="../../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat"><code>queries</code></a> submitted by
+ the client to the cluster. Additionally, sessions facilitate listening for event notifications from
+ the cluster. When state changes occur in the server-side replicated state machine, state machines
+ can publish messages notifying the client of events. The session aids in guaranteeing sequential
+ and linearizable consistency for server-to-client communication.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -189,8 +135,8 @@
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../io/atomix/copycat/client/response/package-summary.html">Prev&nbsp;Package</a></li>
-<li><a href="../../../../../io/atomix/copycat/server/package-summary.html">Next&nbsp;Package</a></li>
+<li><a href="../../../../../io/atomix/copycat/client/package-summary.html">Prev&nbsp;Package</a></li>
+<li><a href="../../../../../io/atomix/copycat/error/package-summary.html">Next&nbsp;Package</a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?io/atomix/copycat/client/session/package-summary.html" target="_top">Frames</a></li>

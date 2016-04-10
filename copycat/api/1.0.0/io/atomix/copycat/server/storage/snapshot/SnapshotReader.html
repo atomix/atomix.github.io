@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotDescriptor.Builder.html" title="class in io.atomix.copycat.server.storage.snapshot"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotFile.html" title="class in io.atomix.copycat.server.storage.snapshot"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -122,9 +122,9 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buff
  Snapshot bytes are read from an underlying <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a> which is backed by either memory
  or disk based on the configured <a href="../../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage"><code>StorageLevel</code></a>.
  <p>
- In addition to standard <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/BufferInput.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>BufferInput</code></a> methods, snapshot readers support reading
- <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io"><code>Serializable</code></a> and <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a> objects
- from the snapshot via the <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotReader.html#readObject--"><code>readObject()</code></a>} method.</div>
+ In addition to standard <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/BufferInput.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>BufferInput</code></a> methods, snapshot readers support reading serializable objects
+ from the snapshot via the <a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotReader.html#readObject--"><code>readObject()</code></a> method. Serializable types must be registered on the
+ <a href="../../../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><code>CopycatServer</code></a> serializer to be supported in snapshots.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -637,7 +637,7 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buff
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotDescriptor.Builder.html" title="class in io.atomix.copycat.server.storage.snapshot"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotFile.html" title="class in io.atomix.copycat.server.storage.snapshot"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

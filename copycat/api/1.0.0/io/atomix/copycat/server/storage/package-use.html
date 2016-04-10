@@ -85,31 +85,31 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server">io.atomix.copycat.server</a></td>
 <td class="colLast">
-<div class="block">Provides a standalone, feature-complete implementation of the <a href="https://raft.github.io/">Raft consensus algorithm</a>.</div>
+<div class="block">Standalone, feature-complete implementation of the <a href="https://raft.github.io/">Raft consensus algorithm</a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server.storage">io.atomix.copycat.server.storage</a></td>
 <td class="colLast">
-<div class="block">Provides a standalone segmented log for Copycat's <a href="https://raftconsensus.github.io/">Raft</a> implementation.</div>
+<div class="block">Standalone segmented log for Copycat's <a href="https://raftconsensus.github.io/">Raft</a> implementation.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server.storage.compaction">io.atomix.copycat.server.storage.compaction</a></td>
 <td class="colLast">
-<div class="block">Classes and interfaces that support efficient Raft <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>log</code></a> compaction.</div>
+<div class="block">Classes and interfaces that facilitate compaction of the Copycat <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>log</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server.storage.snapshot">io.atomix.copycat.server.storage.snapshot</a></td>
 <td class="colLast">
-<div class="block">Utilities for storing and loading on-disk state machine snapshots.</div>
+<div class="block">Classes and interfaces that aid in storing, loading, and installing on-disk state machine snapshots.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server.storage.system">io.atomix.copycat.server.storage.system</a></td>
 <td class="colLast">
-<div class="block">Utilities for storing and loading persistent cluster and server configurations.</div>
+<div class="block">Classes and interfaces that aid in storing and loading persistent cluster and server configurations.</div>
 </td>
 </tr>
 </tbody>
@@ -148,7 +148,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colOne"><a href="../../../../../io/atomix/copycat/server/storage/class-use/Segment.html#io.atomix.copycat.server.storage">Segment</a>
-<div class="block">Stores a set of sequential entries in a single file or memory <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a>.</div>
+<div class="block">Stores a sequence of entries with monotonically increasing indexes in a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a>.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -162,21 +162,26 @@
 </td>
 </tr>
 <tr class="altColor">
+<td class="colOne"><a href="../../../../../io/atomix/copycat/server/storage/class-use/SegmentFile.html#io.atomix.copycat.server.storage">SegmentFile</a>
+<div class="block">Segment file utility.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colOne"><a href="../../../../../io/atomix/copycat/server/storage/class-use/Storage.html#io.atomix.copycat.server.storage">Storage</a>
 <div class="block">Immutable log configuration and <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> factory.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><a href="../../../../../io/atomix/copycat/server/storage/class-use/Storage.Builder.html#io.atomix.copycat.server.storage">Storage.Builder</a>
 <div class="block">Builds a <a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> configuration.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><a href="../../../../../io/atomix/copycat/server/storage/class-use/StorageException.html#io.atomix.copycat.server.storage">StorageException</a>
 <div class="block">Log exception.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><a href="../../../../../io/atomix/copycat/server/storage/class-use/StorageLevel.html#io.atomix.copycat.server.storage">StorageLevel</a>
 <div class="block"><a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> storage level configuration values which control how logs are stored on disk or in memory.</div>
 </td>
@@ -195,7 +200,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colOne"><a href="../../../../../io/atomix/copycat/server/storage/class-use/Segment.html#io.atomix.copycat.server.storage.compaction">Segment</a>
-<div class="block">Stores a set of sequential entries in a single file or memory <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a>.</div>
+<div class="block">Stores a sequence of entries with monotonically increasing indexes in a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/buffer/Buffer.html?is-external=true" title="class or interface in io.atomix.catalyst.buffer"><code>Buffer</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">

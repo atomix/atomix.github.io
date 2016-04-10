@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -252,6 +252,12 @@ var activeTableTab = "activeTableTab";
 <div class="block">Returns the member type.</div>
 </td>
 </tr>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/time/Instant.html?is-external=true" title="class or interface in java.time">Instant</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/cluster/Member.html#updated--">updated</a></span>()</code>
+<div class="block">Returns the time at which the member was updated.</div>
+</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -274,7 +280,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>id</h4>
 <pre>int&nbsp;id()</pre>
-<div class="block">Returns the member ID.</div>
+<div class="block">Returns the member ID.
+ <p>
+ The member ID is calculated as the hash of the member's server <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Address</code></a> and is therefore
+ equivalent to the return value of <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true#hashCode--" title="class or interface in io.atomix.catalyst.transport"><code>Address.hashCode()</code></a>. The member ID simply provides a more
+ compact identifier to send on the wire when communicating between servers.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The member ID.</dd>
@@ -288,10 +298,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>address</h4>
 <pre><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;address()</pre>
-<div class="block">Returns the member server address.</div>
+<div class="block">Returns the member server address.
+ <p>
+ This is the primary address through which servers in the cluster identify and communicate with one another.
+ The server address is guaranteed to be unique to each member in the cluster.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The member server address.</dd>
+<dd>The member server address. This is the same address as <a href="../../../../../io/atomix/copycat/server/cluster/Member.html#serverAddress--"><code>serverAddress()</code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -302,10 +315,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>clientAddress</h4>
 <pre><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;clientAddress()</pre>
-<div class="block">Returns the member client address.</div>
+<div class="block">Returns the member client address.
+ <p>
+ THis is the address through which clients communicate with the member. Depending on the member's configuration,
+ the client address may or may not be the same as the <a href="../../../../../io/atomix/copycat/server/cluster/Member.html#serverAddress--"><code>serverAddress()</code></a>, but it will always be non-null.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The member client address.</dd>
+<dd>The address to which the member binds for client communication.</dd>
 </dl>
 </li>
 </ul>
@@ -316,10 +332,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>serverAddress</h4>
 <pre><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&nbsp;serverAddress()</pre>
-<div class="block">Returns the member server address.</div>
+<div class="block">Returns the member server address.
+ <p>
+ The server address is the primary address through which servers in the cluster communicate with one another.
+ The server address is guaranteed to be unique to each member in the cluster.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The member server address.</dd>
+<dd>The address to which the member binds for server communication.</dd>
 </dl>
 </li>
 </ul>
@@ -330,7 +349,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>type</h4>
 <pre><a href="../../../../../io/atomix/copycat/server/cluster/Member.Type.html" title="enum in io.atomix.copycat.server.cluster">Member.Type</a>&nbsp;type()</pre>
-<div class="block">Returns the member type.</div>
+<div class="block">Returns the member type.
+ <p>
+ The member type is indicative of the member's level of participation in the Raft consensus algorithm and
+ asynchronous replication within the cluster. Member types may change throughout the lifetime of the cluster.
+ Types can be changed by <a href="../../../../../io/atomix/copycat/server/cluster/Member.html#promote-io.atomix.copycat.server.cluster.Member.Type-"><code>promoting</code></a> or <a href="../../../../../io/atomix/copycat/server/cluster/Member.html#demote-io.atomix.copycat.server.cluster.Member.Type-"><code>demoting</code></a> the member. Member
+ types for a given member are guaranteed to change in the same order on all nodes, but the type of a member
+ may be different from the perspective of different nodes at any given time.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The member type.</dd>
@@ -344,7 +369,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>onTypeChange</h4>
 <pre><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../../io/atomix/copycat/server/cluster/Member.Type.html" title="enum in io.atomix.copycat.server.cluster">Member.Type</a>&gt;&nbsp;onTypeChange(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/copycat/server/cluster/Member.Type.html" title="enum in io.atomix.copycat.server.cluster">Member.Type</a>&gt;&nbsp;callback)</pre>
-<div class="block">Registers a callback to be called when the member's type changes.</div>
+<div class="block">Registers a callback to be called when the member's type changes.
+ <p>
+ The type change callback will be called when the local server receives notification of the change in type
+ to this member. Type changes may occur at different times from the perspective of different servers but are
+ guaranteed to occur in the same order on all servers.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>callback</code> - The callback to be called when the member's type changes.</dd>
@@ -360,10 +389,33 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>status</h4>
 <pre><a href="../../../../../io/atomix/copycat/server/cluster/Member.Status.html" title="enum in io.atomix.copycat.server.cluster">Member.Status</a>&nbsp;status()</pre>
-<div class="block">Returns the member status.</div>
+<div class="block">Returns the member status.
+ <p>
+ The status is indicative of the leader's ability to communicate with this member. If this member is a local
+ member, the member's status will be <a href="../../../../../io/atomix/copycat/server/cluster/Member.Status.html#AVAILABLE"><code>Member.Status.AVAILABLE</code></a> while the server is alive and will not change
+ regardless of the leader's ability to communicate with the local member. Similarly, if the local server is
+ partitioned from the leader then changes in statuses seen on other nodes may not be visible to this node.
+ Status changes are guaranteed to occur in the same order on all nodes but without a real-time constraint.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The member status.</dd>
+</dl>
+</li>
+</ul>
+<a name="updated--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>updated</h4>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/time/Instant.html?is-external=true" title="class or interface in java.time">Instant</a>&nbsp;updated()</pre>
+<div class="block">Returns the time at which the member was updated.
+ <p>
+ The member update time is not guaranteed to be consistent across servers or consistent across server
+ restarts. The update time is guaranteed to be monotonically increasing.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The time at which the member was updated.</dd>
 </dl>
 </li>
 </ul>
@@ -374,7 +426,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>onStatusChange</h4>
 <pre><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../../io/atomix/copycat/server/cluster/Member.Status.html" title="enum in io.atomix.copycat.server.cluster">Member.Status</a>&gt;&nbsp;onStatusChange(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/copycat/server/cluster/Member.Status.html" title="enum in io.atomix.copycat.server.cluster">Member.Status</a>&gt;&nbsp;callback)</pre>
-<div class="block">Registers a callback to be called when the member's status changes.</div>
+<div class="block">Registers a callback to be called when the member's status changes.
+ <p>
+ The status change callback will be called when the local server receives notification of the change in status
+ to this member. Status changes may occur at different times from the perspective of different servers but are
+ guaranteed to occur in the same order on all servers.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>callback</code> - The callback to be called when the member's status changes.</dd>

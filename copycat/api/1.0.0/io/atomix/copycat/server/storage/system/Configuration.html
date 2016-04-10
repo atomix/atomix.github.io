@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -138,7 +138,9 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/system/Configuration.html#Configuration-long-java.util.Collection-">Configuration</a></span>(long&nbsp;index,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/system/Configuration.html#Configuration-long-long-long-java.util.Collection-">Configuration</a></span>(long&nbsp;index,
+             long&nbsp;term,
+             long&nbsp;time,
              <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a>&gt;&nbsp;members)</code>&nbsp;</td>
 </tr>
 </table>
@@ -169,6 +171,18 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/system/Configuration.html#term--">term</a></span>()</code>
+<div class="block">Returns the configuration term.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>long</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/system/Configuration.html#time--">time</a></span>()</code>
+<div class="block">Returns the configuration time.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/system/Configuration.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
@@ -194,13 +208,15 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="Configuration-long-java.util.Collection-">
+<a name="Configuration-long-long-long-java.util.Collection-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>Configuration</h4>
 <pre>public&nbsp;Configuration(long&nbsp;index,
+                     long&nbsp;term,
+                     long&nbsp;time,
                      <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../../io/atomix/copycat/server/cluster/Member.html" title="interface in io.atomix.copycat.server.cluster">Member</a>&gt;&nbsp;members)</pre>
 </li>
 </ul>
@@ -221,11 +237,41 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <pre>public&nbsp;long&nbsp;index()</pre>
 <div class="block">Returns the configuration index.
  <p>
- The index is the index of the <a href="../../../../../../io/atomix/copycat/server/storage/entry/ConfigurationEntry.html" title="class in io.atomix.copycat.server.storage.entry"><code>ConfigurationEntry</code></a>
+ The index is the index of the <code>ConfigurationEntry</code>
  which resulted in this configuration.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The configuration index.</dd>
+</dl>
+</li>
+</ul>
+<a name="term--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>term</h4>
+<pre>public&nbsp;long&nbsp;term()</pre>
+<div class="block">Returns the configuration term.
+ <p>
+ The term is the term of the leader at the time the configuration change was committed.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The configuration term.</dd>
+</dl>
+</li>
+</ul>
+<a name="time--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>time</h4>
+<pre>public&nbsp;long&nbsp;time()</pre>
+<div class="block">Returns the configuration time.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The time at which the configuration was committed.</dd>
 </dl>
 </li>
 </ul>

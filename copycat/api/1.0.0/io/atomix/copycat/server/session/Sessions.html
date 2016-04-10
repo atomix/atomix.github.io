@@ -101,19 +101,19 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Superinterfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>&gt;</dd>
+<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session">ServerSession</a>&gt;</dd>
 </dl>
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">Sessions</span>
-extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>&gt;</pre>
+extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session">ServerSession</a>&gt;</pre>
 <div class="block">Provides a set of active server sessions.
  <p>
  Server state machines can use the <code>Sessions</code> object to access the list of sessions currently open to the
  state machine. Session sets are guaranteed to be deterministic. All state machines will see the same set of
  open sessions at the same point in the log except in cases where a session has already been closed and removed.
  If a session has already been closed on another server, the session is guaranteed to have been expired on all
- servers and thus operations like <a href="../../../../../io/atomix/copycat/client/session/Session.html#publish-java.lang.String-java.lang.Object-"><code>Session.publish(String, Object)</code></a> are effectively no-ops.</div>
+ servers and thus operations like <a href="../../../../../io/atomix/copycat/server/session/ServerSession.html#publish-java.lang.String-java.lang.Object-"><code>ServerSession.publish(String, Object)</code></a> are effectively no-ops.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -149,7 +149,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.htm
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a></code></td>
+<td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session">ServerSession</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/session/Sessions.html#session-long-">session</a></span>(long&nbsp;sessionId)</code>
 <div class="block">Returns a session by session ID.</div>
 </td>
@@ -182,7 +182,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.htm
 <ul class="blockList">
 <li class="blockList">
 <h4>session</h4>
-<pre><a href="../../../../../io/atomix/copycat/client/session/Session.html" title="interface in io.atomix.copycat.client.session">Session</a>&nbsp;session(long&nbsp;sessionId)</pre>
+<pre><a href="../../../../../io/atomix/copycat/server/session/ServerSession.html" title="interface in io.atomix.copycat.server.session">ServerSession</a>&nbsp;session(long&nbsp;sessionId)</pre>
 <div class="block">Returns a session by session ID.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>

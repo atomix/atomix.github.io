@@ -152,7 +152,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  a snapshot may actually only represent a subset of the state machine's state. Indeed, internal Copycat
  server state machines use log cleaning and store no state in snapshots. When a snapshot is taken of
  the state machine state, only prior entries that contributed to the state stored in the snapshot -
- commands marked with the <a href="../../../../../../io/atomix/copycat/client/Command.CompactionMode.html#SNAPSHOT"><code>SNAPSHOT</code></a>
+ commands marked with the <code>SNAPSHOT</code>
  compaction mode - are removed from the log prior to the snapshot.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -176,8 +176,9 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html#SnapshotStore-java.lang.String-io.atomix.copycat.server.storage.Storage-">SnapshotStore</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-             <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage)</code>&nbsp;</td>
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html#SnapshotStore-java.lang.String-io.atomix.copycat.server.storage.Storage-io.atomix.catalyst.serializer.Serializer-">SnapshotStore</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+             <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage,
+             <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -211,9 +212,9 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html#delete--">delete</a></span>()</code>
-<div class="block">Deletes the metastore.</div>
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html#serializer--">serializer</a></span>()</code>
+<div class="block">Returns the snapshot store serializer.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
@@ -254,14 +255,15 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="SnapshotStore-java.lang.String-io.atomix.copycat.server.storage.Storage-">
+<a name="SnapshotStore-java.lang.String-io.atomix.copycat.server.storage.Storage-io.atomix.catalyst.serializer.Serializer-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>SnapshotStore</h4>
 <pre>public&nbsp;SnapshotStore(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-                     <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage)</pre>
+                     <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage,
+                     <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
 </li>
 </ul>
 </li>
@@ -272,6 +274,20 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="serializer--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>serializer</h4>
+<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer()</pre>
+<div class="block">Returns the snapshot store serializer.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The snapshot store serializer.</dd>
+</dl>
+</li>
+</ul>
 <a name="currentSnapshot--">
 <!--   -->
 </a>
@@ -351,16 +367,6 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true#close--" title="class or interface in java.lang">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></code></dd>
 </dl>
-</li>
-</ul>
-<a name="delete--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>delete</h4>
-<pre>public&nbsp;void&nbsp;delete()</pre>
-<div class="block">Deletes the metastore.</div>
 </li>
 </ul>
 <a name="toString--">

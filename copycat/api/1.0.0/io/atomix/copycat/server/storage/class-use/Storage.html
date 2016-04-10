@@ -85,31 +85,31 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server">io.atomix.copycat.server</a></td>
 <td class="colLast">
-<div class="block">Provides a standalone, feature-complete implementation of the <a href="https://raft.github.io/">Raft consensus algorithm</a>.</div>
+<div class="block">Standalone, feature-complete implementation of the <a href="https://raft.github.io/">Raft consensus algorithm</a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server.storage">io.atomix.copycat.server.storage</a></td>
 <td class="colLast">
-<div class="block">Provides a standalone segmented log for Copycat's <a href="https://raftconsensus.github.io/">Raft</a> implementation.</div>
+<div class="block">Standalone segmented log for Copycat's <a href="https://raftconsensus.github.io/">Raft</a> implementation.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server.storage.compaction">io.atomix.copycat.server.storage.compaction</a></td>
 <td class="colLast">
-<div class="block">Classes and interfaces that support efficient Raft <a href="../../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>log</code></a> compaction.</div>
+<div class="block">Classes and interfaces that facilitate compaction of the Copycat <a href="../../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>log</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server.storage.snapshot">io.atomix.copycat.server.storage.snapshot</a></td>
 <td class="colLast">
-<div class="block">Utilities for storing and loading on-disk state machine snapshots.</div>
+<div class="block">Classes and interfaces that aid in storing, loading, and installing on-disk state machine snapshots.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server.storage.system">io.atomix.copycat.server.storage.system</a></td>
 <td class="colLast">
-<div class="block">Utilities for storing and loading persistent cluster and server configurations.</div>
+<div class="block">Classes and interfaces that aid in storing and loading persistent cluster and server configurations.</div>
 </td>
 </tr>
 </tbody>
@@ -178,8 +178,12 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html#SegmentManager-java.lang.String-io.atomix.copycat.server.storage.Storage-">SegmentManager</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-              <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/SegmentManager.html#SegmentManager-java.lang.String-io.atomix.copycat.server.storage.Storage-io.atomix.catalyst.serializer.Serializer-">SegmentManager</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+              <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage,
+              <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/StorageCleaner.html#StorageCleaner-io.atomix.copycat.server.storage.Storage-">StorageCleaner</a></span>(<a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -247,8 +251,9 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html#SnapshotStore-java.lang.String-io.atomix.copycat.server.storage.Storage-">SnapshotStore</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-             <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html#SnapshotStore-java.lang.String-io.atomix.copycat.server.storage.Storage-io.atomix.catalyst.serializer.Serializer-">SnapshotStore</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+             <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage,
+             <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -264,8 +269,9 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/system/MetaStore.html#MetaStore-java.lang.String-io.atomix.copycat.server.storage.Storage-">MetaStore</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-         <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/system/MetaStore.html#MetaStore-java.lang.String-io.atomix.copycat.server.storage.Storage-io.atomix.catalyst.serializer.Serializer-">MetaStore</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+         <a href="../../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage,
+         <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

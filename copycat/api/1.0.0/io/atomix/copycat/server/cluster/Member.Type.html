@@ -165,12 +165,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/cluster/Member.Type.html#PROMOTABLE">PROMOTABLE</a></span></code>
-<div class="block">Represents a member that is being caught up by the leader to be <a href="../../../../../io/atomix/copycat/server/cluster/Member.html#promote--"><code>promoted</code></a> to
- a full <a href="../../../../../io/atomix/copycat/server/cluster/Member.Type.html#ACTIVE"><code>ACTIVE</code></a> voting member.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/cluster/Member.Type.html#RESERVE">RESERVE</a></span></code>
 <div class="block">Represents a member which does not participate in replication.</div>
 </td>
@@ -277,24 +271,6 @@ the order they are declared.</div>
  passive members to maintain nearly up-to-date state with minimal impact on the performance of the
  Raft algorithm itself, and allows passive members to be quickly promoted to <a href="../../../../../io/atomix/copycat/server/cluster/Member.Type.html#ACTIVE"><code>ACTIVE</code></a> voting
  members if necessary.</div>
-</li>
-</ul>
-<a name="PROMOTABLE">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>PROMOTABLE</h4>
-<pre>public static final&nbsp;<a href="../../../../../io/atomix/copycat/server/cluster/Member.Type.html" title="enum in io.atomix.copycat.server.cluster">Member.Type</a> PROMOTABLE</pre>
-<div class="block">Represents a member that is being caught up by the leader to be <a href="../../../../../io/atomix/copycat/server/cluster/Member.html#promote--"><code>promoted</code></a> to
- a full <a href="../../../../../io/atomix/copycat/server/cluster/Member.Type.html#ACTIVE"><code>ACTIVE</code></a> voting member.
- <p>
- The <code>PROMOTABLE</code> member type is a transitive member type that is a prerequisite to becoming
- a full <a href="../../../../../io/atomix/copycat/server/cluster/Member.Type.html#ACTIVE"><code>ACTIVE</code></a> voting member. While in this state, promotable nodes receive replicated
- log entries from leaders via normal Raft replication mechanisms, but promotable members do not
- participate in the Raft voting algorithm. This allows leaders to catch up promotable members without
- negatively impacting availability. Once a promotable member has caught up with the leader, the leader
- will promote the promotable member to <a href="../../../../../io/atomix/copycat/server/cluster/Member.Type.html#ACTIVE"><code>ACTIVE</code></a>.</div>
 </li>
 </ul>
 <a name="ACTIVE">

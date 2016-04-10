@@ -153,15 +153,26 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#EXPIRING">EXPIRING</a></span></code>
+<div class="block">The <code>EXPIRING</code> compaction mode is an alias of the <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#SEQUENTIAL"><code>SEQUENTIAL</code></a> mode.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#FULL">FULL</a></span></code>
 <div class="block">The <code>FULL</code> compaction mode retains the command in the log until it has been stored and applied
  on all servers in the cluster.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#QUORUM">QUORUM</a></span></code>
 <div class="block">The <code>QUORUM</code> compaction mode retains the command in the log until it has been stored and applied
  on a majority of servers in the cluster.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#RELEASE">RELEASE</a></span></code>
+<div class="block">The <code>RELEASE</code> compaction mode retains the command in the log until it has been stored and applied
+ on a majority of servers in the cluster and is released.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -177,6 +188,11 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#TOMBSTONE">TOMBSTONE</a></span></code>
+<div class="block">The <code>TOMBSTONE</code> compaction mode is an alias of the <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#SEQUENTIAL"><code>SEQUENTIAL</code></a> mode.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#UNKNOWN">UNKNOWN</a></span></code>
 <div class="block">The <code>UNKNOWN</code> compaction mode is a special compaction mode which retains entries beyond the
  snapshot index, requires that entries be stored on all servers, and removes entries from the log sequentially.</div>
@@ -275,6 +291,17 @@ the order they are declared.</div>
  related events have been received by all clients even if a snapshot of the state machine has since been stored.</div>
 </li>
 </ul>
+<a name="RELEASE">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>RELEASE</h4>
+<pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction.Mode</a> RELEASE</pre>
+<div class="block">The <code>RELEASE</code> compaction mode retains the command in the log until it has been stored and applied
+ on a majority of servers in the cluster and is released.</div>
+</li>
+</ul>
 <a name="QUORUM">
 <!--   -->
 </a>
@@ -284,7 +311,7 @@ the order they are declared.</div>
 <pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction.Mode</a> QUORUM</pre>
 <div class="block">The <code>QUORUM</code> compaction mode retains the command in the log until it has been stored and applied
  on a majority of servers in the cluster. Once the commit has been applied to the state machine and
- closed, it may be removed during minor or major compaction.</div>
+ released, it may be removed during minor or major compaction.</div>
 </li>
 </ul>
 <a name="FULL">
@@ -302,14 +329,40 @@ the order they are declared.</div>
 <a name="SEQUENTIAL">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>SEQUENTIAL</h4>
 <pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction.Mode</a> SEQUENTIAL</pre>
 <div class="block">The <code>SEQUENTIAL</code> compaction mode retains the command in the log until it has been stored and
- applied on all servers in the cluster. Once the commit has been appleid to a state machine and closed,
+ applied on all servers in the cluster. Once the commit has been applied to a state machine and closed,
  it may be removed from the log <em>only during major compaction</em> to ensure that all prior completed
  commits are removed first.</div>
+</li>
+</ul>
+<a name="EXPIRING">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>EXPIRING</h4>
+<pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction.Mode</a> EXPIRING</pre>
+<div class="block">The <code>EXPIRING</code> compaction mode is an alias of the <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#SEQUENTIAL"><code>SEQUENTIAL</code></a> mode. Expiring entries are
+ retained in the log until stored and applied on all servers. Once the commit has been applied to a state
+ machine and closed, it may be removed from the log <em>only during major compaction</em> to ensure that
+ all prior completed commits are removed first.</div>
+</li>
+</ul>
+<a name="TOMBSTONE">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>TOMBSTONE</h4>
+<pre>public static final&nbsp;<a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html" title="enum in io.atomix.copycat.server.storage.compaction">Compaction.Mode</a> TOMBSTONE</pre>
+<div class="block">The <code>TOMBSTONE</code> compaction mode is an alias of the <a href="../../../../../../io/atomix/copycat/server/storage/compaction/Compaction.Mode.html#SEQUENTIAL"><code>SEQUENTIAL</code></a> mode. Tombstone entries are
+ retained in the log until stored and applied on all servers. Once the commit has been applied to a state
+ machine and closed, it may be removed from the log <em>only during major compaction</em> to ensure that
+ all prior completed commits are removed first.</div>
 </li>
 </ul>
 </li>

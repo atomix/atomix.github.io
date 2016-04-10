@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10};
+var methods = {"i0":9,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -120,13 +120,13 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
    <code>
      Storage storage = Storage.builder()
        .withDirectory(new File("logs"))
-       .withPersistenceLevel(PersistenceLevel.DISK)
+       .withStorageLevel(StorageLevel.DISK)
        .build();
    </code>
  </pre>
  Users can also configure a number of options related to how <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>logs</code></a> are constructed and managed.
  Most notable of the configuration options is the number of <a href="../../../../../io/atomix/copycat/server/storage/Storage.html#compactionThreads--"><code>compactionThreads()</code></a>, which specifies the
- number of background threads to use to clean log <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>segments</code></a>. The parallelism of the log
+ number of background threads to use to compact log <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>segments</code></a>. The parallelism of the log
  compaction algorithm will be limited by the number of <a href="../../../../../io/atomix/copycat/server/storage/Storage.html#compactionThreads--"><code>compactionThreads()</code></a>.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
@@ -179,43 +179,18 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#Storage-java.io.File-">Storage</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a>&nbsp;directory)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#Storage-java.io.File-io.atomix.catalyst.serializer.Serializer-">Storage</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a>&nbsp;directory,
-       <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#Storage-java.io.File-io.atomix.copycat.server.storage.StorageLevel-">Storage</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a>&nbsp;directory,
        <a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a>&nbsp;storageLevel)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#Storage-java.io.File-io.atomix.copycat.server.storage.StorageLevel-io.atomix.catalyst.serializer.Serializer-">Storage</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a>&nbsp;directory,
-       <a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a>&nbsp;storageLevel,
-       <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#Storage-io.atomix.catalyst.serializer.Serializer-">Storage</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#Storage-io.atomix.copycat.server.storage.StorageLevel-">Storage</a></span>(<a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a>&nbsp;storageLevel)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#Storage-io.atomix.copycat.server.storage.StorageLevel-io.atomix.catalyst.serializer.Serializer-">Storage</a></span>(<a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a>&nbsp;storageLevel,
-       <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#Storage-java.lang.String-">Storage</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;directory)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#Storage-java.lang.String-io.atomix.catalyst.serializer.Serializer-">Storage</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;directory,
-       <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#Storage-java.lang.String-io.atomix.copycat.server.storage.StorageLevel-">Storage</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;directory,
        <a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a>&nbsp;storageLevel)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#Storage-java.lang.String-io.atomix.copycat.server.storage.StorageLevel-io.atomix.catalyst.serializer.Serializer-">Storage</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;directory,
-       <a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a>&nbsp;storageLevel,
-       <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -251,78 +226,90 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#deleteLog-java.lang.String-">deleteLog</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
+<div class="block">Deletes a <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> from disk.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#deleteMetaStore-java.lang.String-">deleteMetaStore</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
+<div class="block">Deletes a <a href="../../../../../io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system"><code>MetaStore</code></a> from disk.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#deleteSnapshotStore-java.lang.String-">deleteSnapshotStore</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
+<div class="block">Deletes a <a href="../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotStore</code></a> from disk.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#directory--">directory</a></span>()</code>
 <div class="block">Returns the storage directory.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#level--">level</a></span>()</code>
 <div class="block">Returns the storage level.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#majorCompactionInterval--">majorCompactionInterval</a></span>()</code>
 <div class="block">Returns the major compaction interval.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#maxEntriesPerSegment--">maxEntriesPerSegment</a></span>()</code>
 <div class="block">Returns the maximum number of entries per segment.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#maxSegmentSize--">maxSegmentSize</a></span>()</code>
 <div class="block">Returns the maximum log segment size.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#maxSnapshotSize--">maxSnapshotSize</a></span>()</code>
 <div class="block">Returns the maximum snapshot size.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#minorCompactionInterval--">minorCompactionInterval</a></span>()</code>
 <div class="block">Returns the minor compaction interval.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#openLog-java.lang.String-">openLog</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
-<div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.</div>
+<div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>, recovering the log from disk if it exists.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system">MetaStore</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#openMetaStore-java.lang.String-">openMetaStore</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
-<div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system"><code>MetaStore</code></a>.</div>
+<div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system"><code>MetaStore</code></a>, recovering metadata from disk if it exists.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotStore</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#openSnapshotStore-java.lang.String-">openSnapshotStore</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
-<div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotStore</code></a>.</div>
+<div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotStore</code></a>, recovering snapshots from disk if they exist.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#retainStaleSnapshots--">retainStaleSnapshots</a></span>()</code>
 <div class="block">Returns a boolean value indicating whether to retain stale snapshots on disk.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
-<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#serializer--">serializer</a></span>()</code>
-<div class="block">Returns the storage serializer.</div>
-</td>
-</tr>
-<tr id="i15" class="rowColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
@@ -392,47 +379,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="Storage-io.atomix.catalyst.serializer.Serializer-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>Storage</h4>
-<pre>public&nbsp;Storage(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>directory</code> is null</dd>
-</dl>
-</li>
-</ul>
-<a name="Storage-java.lang.String-io.atomix.catalyst.serializer.Serializer-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>Storage</h4>
-<pre>public&nbsp;Storage(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;directory,
-               <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>directory</code> or <code>serializer</code> are null</dd>
-</dl>
-</li>
-</ul>
-<a name="Storage-java.io.File-io.atomix.catalyst.serializer.Serializer-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>Storage</h4>
-<pre>public&nbsp;Storage(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a>&nbsp;directory,
-               <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>directory</code> or <code>serializer</code> are null</dd>
-</dl>
-</li>
-</ul>
 <a name="Storage-java.lang.String-io.atomix.copycat.server.storage.StorageLevel-">
 <!--   -->
 </a>
@@ -450,7 +396,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <a name="Storage-java.io.File-io.atomix.copycat.server.storage.StorageLevel-">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>Storage</h4>
 <pre>public&nbsp;Storage(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a>&nbsp;directory,
@@ -458,50 +404,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>directory</code> is null</dd>
-</dl>
-</li>
-</ul>
-<a name="Storage-io.atomix.copycat.server.storage.StorageLevel-io.atomix.catalyst.serializer.Serializer-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>Storage</h4>
-<pre>public&nbsp;Storage(<a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a>&nbsp;storageLevel,
-               <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>directory</code> is null</dd>
-</dl>
-</li>
-</ul>
-<a name="Storage-java.lang.String-io.atomix.copycat.server.storage.StorageLevel-io.atomix.catalyst.serializer.Serializer-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>Storage</h4>
-<pre>public&nbsp;Storage(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;directory,
-               <a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a>&nbsp;storageLevel,
-               <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>directory</code> or <code>serializer</code> are null</dd>
-</dl>
-</li>
-</ul>
-<a name="Storage-java.io.File-io.atomix.copycat.server.storage.StorageLevel-io.atomix.catalyst.serializer.Serializer-">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>Storage</h4>
-<pre>public&nbsp;Storage(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a>&nbsp;directory,
-               <a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a>&nbsp;storageLevel,
-               <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
-<dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>directory</code> or <code>serializer</code> are null</dd>
 </dl>
 </li>
 </ul>
@@ -524,25 +426,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A new storage builder.</dd>
-</dl>
-</li>
-</ul>
-<a name="serializer--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>serializer</h4>
-<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer()</pre>
-<div class="block">Returns the storage serializer.
- <p>
- The serializer is be used to serialize and deserialize entries written to the log. Entries written
- to the log must be recognized by the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> either by implementing <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io"><code>Serializable</code></a>
- or <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a> or by registering a custom
- <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/TypeSerializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>TypeSerializer</code></a> with the serializer.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The storage serializer.</dd>
 </dl>
 </li>
 </ul>
@@ -606,7 +489,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <pre>public&nbsp;int&nbsp;maxEntriesPerSegment()</pre>
 <div class="block">Returns the maximum number of entries per segment.
  <p>
- The maximum entries per segment dictates the maximum number of <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>entries</code></a>
+ The maximum entries per segment dictates the maximum number of <code>entries</code>
  that are allowed to be stored in any <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a> in a <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -726,12 +609,32 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>openMetaStore</h4>
 <pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system">MetaStore</a>&nbsp;openMetaStore(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
-<div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system"><code>MetaStore</code></a>.</div>
+<div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system"><code>MetaStore</code></a>, recovering metadata from disk if it exists.
+ <p>
+ The meta store will be loaded using based on the configured <a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage"><code>StorageLevel</code></a>. If the storage level is persistent
+ then the meta store will be loaded from disk, otherwise a new meta store will be created.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>name</code> - The metastore name.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The metastore.</dd>
+</dl>
+</li>
+</ul>
+<a name="deleteMetaStore-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>deleteMetaStore</h4>
+<pre>public&nbsp;void&nbsp;deleteMetaStore(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
+<div class="block">Deletes a <a href="../../../../../io/atomix/copycat/server/storage/system/MetaStore.html" title="class in io.atomix.copycat.server.storage.system"><code>MetaStore</code></a> from disk.
+ <p>
+ The meta store will be deleted by simply reading <code>meta</code> file names from disk and deleting metadata
+ files directly. Deleting the meta store does not involve reading any metadata files into memory.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - The metastore name.</dd>
 </dl>
 </li>
 </ul>
@@ -742,12 +645,32 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>openSnapshotStore</h4>
 <pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotStore</a>&nbsp;openSnapshotStore(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
-<div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotStore</code></a>.</div>
+<div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotStore</code></a>, recovering snapshots from disk if they exist.
+ <p>
+ The snapshot store will be loaded using based on the configured <a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage"><code>StorageLevel</code></a>. If the storage level is persistent
+ then the snapshot store will be loaded from disk, otherwise a new snapshot store will be created.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>name</code> - The snapshot store name.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The snapshot store.</dd>
+</dl>
+</li>
+</ul>
+<a name="deleteSnapshotStore-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>deleteSnapshotStore</h4>
+<pre>public&nbsp;void&nbsp;deleteSnapshotStore(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
+<div class="block">Deletes a <a href="../../../../../io/atomix/copycat/server/storage/snapshot/SnapshotStore.html" title="class in io.atomix.copycat.server.storage.snapshot"><code>SnapshotStore</code></a> from disk.
+ <p>
+ The snapshot store will be deleted by simply reading <code>snapshot</code> file names from disk and deleting snapshot
+ files directly. Deleting the snapshot store does not involve reading any snapshot files into memory.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - The snapshot store name.</dd>
 </dl>
 </li>
 </ul>
@@ -758,14 +681,35 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <li class="blockList">
 <h4>openLog</h4>
 <pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage">Log</a>&nbsp;openLog(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
-<div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>.
+<div class="block">Opens a new <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a>, recovering the log from disk if it exists.
  <p>
  When a log is opened, the log will attempt to load <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a>s from the storage <a href="../../../../../io/atomix/copycat/server/storage/Storage.html#directory--"><code>directory()</code></a>
  according to the provided log <code>name</code>. If segments for the given log name are present on disk, segments
- will be loaded and indexes will be rebuilt from disk. If no segments are found, an empty log will be created.</div>
+ will be loaded and indexes will be rebuilt from disk. If no segments are found, an empty log will be created.
+ <p>
+ When log files are loaded from disk, the file names are expected to be based on the provided log <code>name</code>.</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - The log name.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The opened log.</dd>
+</dl>
+</li>
+</ul>
+<a name="deleteLog-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>deleteLog</h4>
+<pre>public&nbsp;void&nbsp;deleteLog(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
+<div class="block">Deletes a <a href="../../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> from disk.
+ <p>
+ The log will be deleted by simply reading <code>log</code> file names from disk and deleting log files directly.
+ Deleting log files does not involve rebuilding indexes or reading any logs into memory.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - The log name.</dd>
 </dl>
 </li>
 </ul>

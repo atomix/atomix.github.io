@@ -85,7 +85,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.copycat.server">io.atomix.copycat.server</a></td>
 <td class="colLast">
-<div class="block">Provides a standalone, feature-complete implementation of the <a href="https://raft.github.io/">Raft consensus algorithm</a>.</div>
+<div class="block">Standalone, feature-complete implementation of the <a href="https://raft.github.io/">Raft consensus algorithm</a>.</div>
 </td>
 </tr>
 </tbody>
@@ -119,8 +119,32 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">CopycatServer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/CopycatServer.html#open--">open</a></span>()</code>
-<div class="block">Starts the Raft server asynchronously.</div>
+<td class="colLast"><span class="typeNameLabel">CopycatServer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/CopycatServer.html#bootstrap--">bootstrap</a></span>()</code>
+<div class="block">Bootstraps a single-node cluster.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">CopycatServer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/CopycatServer.html#bootstrap-io.atomix.catalyst.transport.Address...-">bootstrap</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>...&nbsp;cluster)</code>
+<div class="block">Bootstraps the cluster using the provided cluster configuration.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">CopycatServer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/CopycatServer.html#bootstrap-java.util.Collection-">bootstrap</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;cluster)</code>
+<div class="block">Bootstraps the cluster using the provided cluster configuration.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">CopycatServer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/CopycatServer.html#join-io.atomix.catalyst.transport.Address...-">join</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>...&nbsp;cluster)</code>
+<div class="block">Joins the cluster.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">CopycatServer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/CopycatServer.html#join-java.util.Collection-">join</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Address.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Address</a>&gt;&nbsp;cluster)</code>
+<div class="block">Joins the cluster.</div>
 </td>
 </tr>
 </tbody>

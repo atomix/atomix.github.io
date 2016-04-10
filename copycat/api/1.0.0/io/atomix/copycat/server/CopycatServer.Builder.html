@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -100,12 +100,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">io.atomix.catalyst.util.Builder</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</li>
-<li>
-<ul class="inheritance">
 <li>io.atomix.copycat.server.CopycatServer.Builder</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -113,14 +108,51 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</dd>
+</dl>
+<dl>
 <dt>Enclosing class:</dt>
 <dd><a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public static class <span class="typeNameLabel">CopycatServer.Builder</span>
-extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</pre>
-<div class="block">Raft server builder.</div>
+extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
+implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</pre>
+<div class="block">Builds a single-use Copycat server.
+ <p>
+ This builder should be used to programmatically configure and construct a new <a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server"><code>CopycatServer</code></a> instance.
+ The builder provides methods for configuring all aspects of a Copycat server. The <code>CopycatServer.Builder</code>
+ class cannot be instantiated directly. To create a new builder, use one of the
+ <a href="../../../../io/atomix/copycat/server/CopycatServer.html#builder-io.atomix.catalyst.transport.Address-"><code>server builder factory</code></a> methods.
+ <pre>
+   <code>
+   CopycatServer.Builder builder = CopycatServer.builder(address);
+   </code>
+ </pre>
+ Once the server has been configured, use the <a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#build--"><code>build()</code></a> method to build the server instance:
+ <pre>
+   <code>
+   CopycatServer server = CopycatServer.builder(address)
+     ...
+     .build();
+   </code>
+ </pre>
+ Each server <em>must</em> be configured with a <a href="../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server"><code>StateMachine</code></a>. The state machine is the component of the
+ server that stores state and reacts to commands and queries submitted by clients to the cluster. State machines
+ are provided to the server in the form of a state machine <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function"><code>factory</code></a> to allow the server to reconstruct
+ its state when necessary.
+ <pre>
+   <code>
+   CopycatServer server = CopycatServer.builder(address)
+     .withStateMachine(MyStateMachine::new)
+     .build();
+   </code>
+ </pre>
+ Similarly critical to the operation of the server are the <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport"><code>Transport</code></a> and <a href="../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> layers. By default,
+ servers are configured with the <code>io.atomix.catalyst.transport.NettyTransport</code> transport if it's available on
+ the classpath. Users should provide a <a href="../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> instance to specify how the server stores state changes.</div>
 </li>
 </ul>
 </div>
@@ -157,53 +189,60 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#withGlobalSuspendTimeout-java.time.Duration-">withGlobalSuspendTimeout</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;globalSuspendTimeout)</code>
+<div class="block">Sets the timeout after which suspended global replication will resume and force a partitioned follower
+ to truncate its log once the partition heals.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#withHeartbeatInterval-java.time.Duration-">withHeartbeatInterval</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;heartbeatInterval)</code>
 <div class="block">Sets the Raft heartbeat interval, returning the Raft configuration for method chaining.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#withName-java.lang.String-">withName</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Sets the server name.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-">withSerializer</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
 <div class="block">Sets the Raft serializer.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#withServerTransport-io.atomix.catalyst.transport.Transport-">withServerTransport</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</code>
 <div class="block">Sets the server transport.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#withSessionTimeout-java.time.Duration-">withSessionTimeout</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;sessionTimeout)</code>
 <div class="block">Sets the Raft session timeout, returning the Raft configuration for method chaining.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#withStateMachine-io.atomix.copycat.server.StateMachine-">withStateMachine</a></span>(<a href="../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server">StateMachine</a>&nbsp;stateMachine)</code>
-<div class="block">Sets the Raft state machine.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#withStateMachine-java.util.function.Supplier-">withStateMachine</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function">Supplier</a>&lt;<a href="../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server">StateMachine</a>&gt;&nbsp;factory)</code>
+<div class="block">Sets the Raft state machine factory.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#withStorage-io.atomix.copycat.server.storage.Storage-">withStorage</a></span>(<a href="../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&nbsp;storage)</code>
 <div class="block">Sets the storage module.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#withTransport-io.atomix.catalyst.transport.Transport-">withTransport</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</code>
 <div class="block">Sets the client and server transport.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html#withType-io.atomix.copycat.server.cluster.Member.Type-">withType</a></span>(<a href="../../../../io/atomix/copycat/server/cluster/Member.Type.html" title="enum in io.atomix.copycat.server.cluster">Member.Type</a>&nbsp;type)</code>
 <div class="block">Sets the initial server member type.</div>
@@ -355,21 +394,21 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 </dl>
 </li>
 </ul>
-<a name="withStateMachine-io.atomix.copycat.server.StateMachine-">
+<a name="withStateMachine-java.util.function.Supplier-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>withStateMachine</h4>
-<pre>public&nbsp;<a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a>&nbsp;withStateMachine(<a href="../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server">StateMachine</a>&nbsp;stateMachine)</pre>
-<div class="block">Sets the Raft state machine.</div>
+<pre>public&nbsp;<a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a>&nbsp;withStateMachine(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function">Supplier</a>&lt;<a href="../../../../io/atomix/copycat/server/StateMachine.html" title="class in io.atomix.copycat.server">StateMachine</a>&gt;&nbsp;factory)</pre>
+<div class="block">Sets the Raft state machine factory.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>stateMachine</code> - The Raft state machine.</dd>
+<dd><code>factory</code> - The Raft state machine factory.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The Raft builder.</dd>
+<dd>The server builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>stateMachine</code> is null</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the <code>factory</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -423,10 +462,27 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>sessionTimeout</code> - The Raft session timeout duration.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The Raft configuration.</dd>
+<dd>The server builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If the session timeout is not positive</dd>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>sessionTimeout</code> is null</dd>
+</dl>
+</li>
+</ul>
+<a name="withGlobalSuspendTimeout-java.time.Duration-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withGlobalSuspendTimeout</h4>
+<pre>public&nbsp;<a href="../../../../io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a>&nbsp;withGlobalSuspendTimeout(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;globalSuspendTimeout)</pre>
+<div class="block">Sets the timeout after which suspended global replication will resume and force a partitioned follower
+ to truncate its log once the partition heals.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>globalSuspendTimeout</code> - The timeout after which to resume global replication.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The server builder.</dd>
 </dl>
 </li>
 </ul>
@@ -439,7 +495,7 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <pre>public&nbsp;<a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&nbsp;build()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true#build--" title="class or interface in io.atomix.catalyst.util">build</a></code>&nbsp;in class&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</code></dd>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true#build--" title="class or interface in io.atomix.catalyst.util">build</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.html" title="class in io.atomix.copycat.server">CopycatServer</a>&gt;</code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ConfigurationException.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ConfigurationException</a></code> - if a state machine, members or transport are not configured</dd>
 </dl>

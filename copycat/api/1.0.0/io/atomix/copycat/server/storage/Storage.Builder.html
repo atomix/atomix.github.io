@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../io/atomix/copycat/server/storage/StorageException.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../io/atomix/copycat/server/storage/StorageCleaner.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?io/atomix/copycat/server/storage/Storage.Builder.html" target="_top">Frames</a></li>
@@ -100,12 +100,7 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">io.atomix.catalyst.util.Builder</a>&lt;<a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&gt;</li>
-<li>
-<ul class="inheritance">
 <li>io.atomix.copycat.server.storage.Storage.Builder</li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -113,13 +108,18 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&gt;</dd>
+</dl>
+<dl>
 <dt>Enclosing class:</dt>
 <dd><a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public static class <span class="typeNameLabel">Storage.Builder</span>
-extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&gt;</pre>
+extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
+implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&gt;</pre>
 <div class="block">Builds a <a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> configuration.
  <p>
  The storage builder provides simplifies building more complex <a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> configurations. To
@@ -167,7 +167,7 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html#withCompactionThreshold-double-">withCompactionThreshold</a></span>(double&nbsp;threshold)</code>
-<div class="block">Sets the percentage of entries in the segment that must be cleaned before a segment can be compacted,
+<div class="block">Sets the percentage of entries in the segment that must be released before a segment can be compacted,
  returning the builder for method chaining.</div>
 </td>
 </tr>
@@ -227,12 +227,6 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-">withSerializer</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
-<div class="block">Sets the log entry <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a>, returning the builder for method chaining.</div>
-</td>
-</tr>
-<tr id="i13" class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html#withStorageLevel-io.atomix.copycat.server.storage.StorageLevel-">withStorageLevel</a></span>(<a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a>&nbsp;storageLevel)</code>
 <div class="block">Sets the log storage level, returning the builder for method chaining.</div>
 </td>
@@ -268,36 +262,13 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a>&nbsp;withStorageLevel(<a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a>&nbsp;storageLevel)</pre>
 <div class="block">Sets the log storage level, returning the builder for method chaining.
  <p>
- The storage level indicates how individual <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>entries</code></a>
+ The storage level indicates how individual <code>entries</code>
  should be persisted in the log.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>storageLevel</code> - The log storage level.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The storage builder.</dd>
-</dl>
-</li>
-</ul>
-<a name="withSerializer-io.atomix.catalyst.serializer.Serializer-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>withSerializer</h4>
-<pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a>&nbsp;withSerializer(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</pre>
-<div class="block">Sets the log entry <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a>, returning the builder for method chaining.
- <p>
- The serializer will be used to serialize and deserialize entries written to the log. Entries written
- to the log must be recognized by the provided <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>Serializer</code></a> either by implementing <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io"><code>Serializable</code></a>
- or <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a> or by registering a custom
- <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/TypeSerializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>TypeSerializer</code></a> with the serializer.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>serializer</code> - The log entry serializer.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The storage builder.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - If the serializer is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -467,7 +438,7 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <div class="block">Sets the number of log compaction threads, returning the builder for method chaining.
  <p>
  The compaction thread count dictates the parallelism with which the log
- <a href="../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction"><code>Compactor</code></a> can rewrite segments in the log. By default,
+ <a href="../../../../../io/atomix/copycat/server/storage/compaction/Compactor.html" title="class in io.atomix.copycat.server.storage.compaction"><code>Compactor</code></a> can rewrite segments of the log. By default,
  the log uses <code>Runtime.getRuntime().availableProcessors() / 2</code> compaction threads.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -497,6 +468,8 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <dd><code>interval</code> - The minor compaction interval.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The storage builder.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the interval is null</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionManager</code></a>, 
 <a href="../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionTask</code></a></dd>
@@ -521,6 +494,8 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <dd><code>interval</code> - The major compaction interval.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The storage builder.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the interval is null</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../../io/atomix/copycat/server/storage/compaction/MajorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MajorCompactionManager</code></a>, 
 <a href="../../../../../io/atomix/copycat/server/storage/compaction/MajorCompactionTask.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MajorCompactionTask</code></a></dd>
@@ -534,13 +509,13 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <li class="blockList">
 <h4>withCompactionThreshold</h4>
 <pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a>&nbsp;withCompactionThreshold(double&nbsp;threshold)</pre>
-<div class="block">Sets the percentage of entries in the segment that must be cleaned before a segment can be compacted,
+<div class="block">Sets the percentage of entries in the segment that must be released before a segment can be compacted,
  returning the builder for method chaining.
  <p>
  The compaction threshold is used during <a href="../../../../../io/atomix/copycat/server/storage/compaction/Compaction.html#MINOR"><code>minor compaction</code></a>
  to determine the set of segments to compact. By default, the compaction threshold is <code>0.5</code>. Increasing the
- compaction threshold will increase the number of <a href="../../../../../io/atomix/copycat/server/storage/entry/Entry.html" title="class in io.atomix.copycat.server.storage.entry"><code>entries</code></a> that
- must be cleaned from the segment before compaction and thus decrease the likelihood that a segment will be compacted.
+ compaction threshold will increase the number of <code>entries</code> that
+ must be released from the segment before compaction and thus decrease the likelihood that a segment will be compacted.
  Conversely, decreasing the compaction threshold will increase the frequency of compaction at the cost of unnecessary
  I/O.</div>
 <dl>
@@ -548,6 +523,8 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <dd><code>threshold</code> - The segment compact threshold.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The storage builder.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if the threashold is not positive</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../../io/atomix/copycat/server/storage/compaction/MinorCompactionManager.html" title="class in io.atomix.copycat.server.storage.compaction"><code>MinorCompactionManager</code></a></dd>
 </dl>
@@ -563,7 +540,7 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <div class="block">Builds the <a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><code>Storage</code></a> object.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true#build--" title="class or interface in io.atomix.catalyst.util">build</a></code>&nbsp;in class&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&gt;</code></dd>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true#build--" title="class or interface in io.atomix.catalyst.util">build</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Builder.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Builder</a>&lt;<a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The built storage configuration.</dd>
 </dl>
@@ -598,7 +575,7 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Bu
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../io/atomix/copycat/server/storage/StorageException.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../io/atomix/copycat/server/storage/StorageCleaner.html" title="class in io.atomix.copycat.server.storage"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?io/atomix/copycat/server/storage/Storage.Builder.html" target="_top">Frames</a></li>
