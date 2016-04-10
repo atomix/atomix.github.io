@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -203,29 +203,23 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html#withMaxSnapshotSize-int-">withMaxSnapshotSize</a></span>(int&nbsp;maxSnapshotSize)</code>
-<div class="block">Sets the maximum size of snapshot files on disk, returning the builder for method chaining.</div>
-</td>
-</tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html#withMinorCompactionInterval-java.time.Duration-">withMinorCompactionInterval</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;interval)</code>
 <div class="block">Sets the minor compaction interval, returning the builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html#withRetainStaleSnapshots--">withRetainStaleSnapshots</a></span>()</code>
 <div class="block">Sets whether to retain stale snapshots on disk, returning the builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html#withRetainStaleSnapshots-boolean-">withRetainStaleSnapshots</a></span>(boolean&nbsp;retainStaleSnapshots)</code>
 <div class="block">Sets whether to retain stale snapshots on disk, returning the builder for method chaining.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html#withStorageLevel-io.atomix.copycat.server.storage.StorageLevel-">withStorageLevel</a></span>(<a href="../../../../../io/atomix/copycat/server/storage/StorageLevel.html" title="enum in io.atomix.copycat.server.storage">StorageLevel</a>&nbsp;storageLevel)</code>
 <div class="block">Sets the log storage level, returning the builder for method chaining.</div>
@@ -360,29 +354,6 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If the <code>maxEntriesPerSegment</code> not greater than the default max entries per
  segment</dd>
-</dl>
-</li>
-</ul>
-<a name="withMaxSnapshotSize-int-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>withMaxSnapshotSize</h4>
-<pre>public&nbsp;<a href="../../../../../io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a>&nbsp;withMaxSnapshotSize(int&nbsp;maxSnapshotSize)</pre>
-<div class="block">Sets the maximum size of snapshot files on disk, returning the builder for method chaining.
- <p>
- The maximum snapshot size dictates the size in bytes of a single snapshot file on disk. Reducing the
- maximum snapshot file size can help ensure that the system is not bogged down with storing and replicating
- snapshots. By default, snapshots are practically unlimited with a 2GB limit, but in practice they should be
- fairly small.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>maxSnapshotSize</code> - The maximum snapshot size in bytes.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The storage builder.</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if the <code>maxSnapshotSize</code> is not positive or is less than <code>64</code></dd>
 </dl>
 </li>
 </ul>
