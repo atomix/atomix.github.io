@@ -36,14 +36,13 @@
   * [Consistency Levels](#consistency-levels)
     * [Write Consistency Levels](#write-consistency-levels)
     * [Read Consistency Levels](#read-consistency-levels)
-  * [Configuring Consistency](#configuring-consistency)
+  * [Event Consistency](#event-consistency)
+  * [Cross-resource Consistency](#cross-resource-consistency)
 * [Fault Tolerance](fault-tolerance)
   * [Node Failures](fault-tolerance#node-failures)
   * [Leader Failures](fault-tolerance#leader-failures)
   * [Network Partitions](fault-tolerance#network-partitions)
 * [Threading Model](threading-model)
-  * [Asynchronous API Usage](#asynchronous-api-usage)
-  * [Synchronous API Usage](#synchronous-api-usage)
 
 <span class="doc-menu-header"><img src="/assets/img/icons/resources.svg" class="resources"> Resources</span>
 
