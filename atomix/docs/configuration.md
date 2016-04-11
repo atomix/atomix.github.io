@@ -66,7 +66,7 @@ This configuration dictates the behavior of the serializer. When building [custo
 
 Example:
 
-```properties
+```
 serializer.types.1 = com.mycompany.FooClass
 serializer.types.2 = com.mycompany.AbstractFooClass
 
@@ -75,6 +75,21 @@ serializer.abstractSerializers.2 = com.mycompany.AbstractFooClassSerializer
 
 serializer.types.3=com.mycompany.MyCompanySerializable
 serializer.defaultSerializers.3 = com.mycompany.MyCompanySerializableSerializer
+```
+
+## Custom Resources
+
+Custom resources can be added to a replica configuration via the `resource.*` property.
+
+|Name|Default|Description|
+|resource.{id}||The fully qualified class name for a custom resource.|
+
+Example:
+
+```
+resource.lock = io.atomix.concurrent.DistributedLock
+resource.map = io.atomix.collections.DistributedMap
+resource.group = io.atomix.group.DistributedGroup
 ```
 
 {% include common-links.html %}
