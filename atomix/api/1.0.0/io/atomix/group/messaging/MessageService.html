@@ -107,7 +107,36 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public interface <span class="typeNameLabel">MessageService</span>
 extends <a href="../../../../io/atomix/group/messaging/MessageClient.html" title="interface in io.atomix.group.messaging">MessageClient</a></pre>
-<div class="block">Task queue service.</div>
+<div class="block">Provides an interface for consuming messages sent either directly or indirectly to a group member.
+ <p>
+ Each <a href="../../../../io/atomix/group/LocalMember.html" title="interface in io.atomix.group"><code>member</code></a> of a group has a reference to a message service through
+ which the member can receive messages from other nodes in the cluster. Messages can be sent to a member
+ of a group either directly through the <a href="../../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group"><code>GroupMember</code></a> API or indirectly via the
+ group-wide <a href="../../../../io/atomix/group/messaging/MessageClient.html" title="interface in io.atomix.group.messaging"><code>MessageClient</code></a>.
+ <p>
+ When messages are received by a <a href="../../../../io/atomix/group/messaging/MessageService.html" title="interface in io.atomix.group.messaging"><code>MessageService</code></a> instance, the consumer(s) listeners for the
+ associated message queue will be called. Clients can register multiple consumers for a single queue. If
+ multiple consumers are registered, a single consumer will be called for each message using a round-robin
+ pattern.
+ <pre>
+   <code>
+   LocalMember localMember = group.join("foo").join();
+   MessageConsumer&lt;String&gt; consumer = localMember.messaging().consumer("bar");
+   consumer.onMessage(message -&gt; {
+     message.ack();
+   });
+   </code>
+ </pre>
+ Messages can be handled by consumers in several ways. The message service can be used to receive
+ and acknowledge tasks or to receive messages for which the producer is awaiting a reply. The behavior
+ expected of a consumer is dependent on the producer configuration. For example, if the producer expects
+ a reply then consumers should reply. Consumers must always call either <a href="../../../../io/atomix/group/messaging/Message.html#ack--"><code>Message.ack()</code></a> or
+ <a href="../../../../io/atomix/group/messaging/Message.html#reply-java.lang.Object-"><code>Message.reply(Object)</code></a> on each message to complete the processing of the message.
+ <pre>
+   localMember.messaging().consumer("foo").onMessage(message -> {
+     message.reply("Hello world!");
+   });
+ </pre></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -132,12 +161,16 @@ extends <a href="../../../../io/atomix/group/messaging/MessageClient.html" title
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>default &lt;T&gt;&nbsp;<a href="../../../../io/atomix/group/messaging/MessageConsumer.html" title="interface in io.atomix.group.messaging">MessageConsumer</a>&lt;T&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageService.html#consumer-java.lang.String-">consumer</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageService.html#consumer-java.lang.String-">consumer</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
+<div class="block">Creates a new named message consumer.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../io/atomix/group/messaging/MessageConsumer.html" title="interface in io.atomix.group.messaging">MessageConsumer</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageService.html#consumer-java.lang.String-io.atomix.group.messaging.MessageConsumer.Options-">consumer</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-        <a href="../../../../io/atomix/group/messaging/MessageConsumer.Options.html" title="class in io.atomix.group.messaging">MessageConsumer.Options</a>&nbsp;options)</code>&nbsp;</td>
+        <a href="../../../../io/atomix/group/messaging/MessageConsumer.Options.html" title="class in io.atomix.group.messaging">MessageConsumer.Options</a>&nbsp;options)</code>
+<div class="block">Creates a new named message consumer.</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -168,6 +201,36 @@ extends <a href="../../../../io/atomix/group/messaging/MessageClient.html" title
 <li class="blockList">
 <h4>consumer</h4>
 <pre>default&nbsp;&lt;T&gt;&nbsp;<a href="../../../../io/atomix/group/messaging/MessageConsumer.html" title="interface in io.atomix.group.messaging">MessageConsumer</a>&lt;T&gt;&nbsp;consumer(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
+<div class="block">Creates a new named message consumer.
+ <p>
+ The returned consumer will consume messages sent to the service using a producer of the same name.
+ When a message is received by the member that owns this service, a single <a href="../../../../io/atomix/group/messaging/MessageConsumer.html" title="interface in io.atomix.group.messaging"><code>MessageConsumer</code></a>
+ instance for the message will be called. If multiple consumers were created for the same queue on
+ the same <a href="../../../../io/atomix/group/messaging/MessageService.html" title="interface in io.atomix.group.messaging"><code>MessageService</code></a> instance, consumers will be called using a round-robin pattern.
+ <pre>
+   <code>
+   LocalMember localMember = group.join("foo").join();
+   MessageConsumer&lt;String&gt; consumer = localMember.messaging().consumer("bar");
+   consumer.onMessage(message -&gt; {
+     message.ack();
+   });
+   </code>
+ </pre>
+ Messages can be handled by consumers in several ways. The message service can be used to receive
+ and acknowledge tasks or to receive messages for which the producer is awaiting a reply. The behavior
+ expected of a consumer is dependent on the producer configuration. For example, if the producer expects
+ a reply then consumers should reply. Consumers must always call either <a href="../../../../io/atomix/group/messaging/Message.html#ack--"><code>Message.ack()</code></a> or
+ <a href="../../../../io/atomix/group/messaging/Message.html#reply-java.lang.Object-"><code>Message.reply(Object)</code></a> on each message to complete the processing of the message.</div>
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The message type.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - The consumer name.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A new message consumer.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the consumer <code>name</code> is <code>null</code></dd>
+</dl>
 </li>
 </ul>
 <a name="consumer-java.lang.String-io.atomix.group.messaging.MessageConsumer.Options-">
@@ -178,6 +241,37 @@ extends <a href="../../../../io/atomix/group/messaging/MessageClient.html" title
 <h4>consumer</h4>
 <pre>&lt;T&gt;&nbsp;<a href="../../../../io/atomix/group/messaging/MessageConsumer.html" title="interface in io.atomix.group.messaging">MessageConsumer</a>&lt;T&gt;&nbsp;consumer(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                                 <a href="../../../../io/atomix/group/messaging/MessageConsumer.Options.html" title="class in io.atomix.group.messaging">MessageConsumer.Options</a>&nbsp;options)</pre>
+<div class="block">Creates a new named message consumer.
+ <p>
+ The returned consumer will consume messages sent to the service using a producer of the same name.
+ When a message is received by the member that owns this service, a single <a href="../../../../io/atomix/group/messaging/MessageConsumer.html" title="interface in io.atomix.group.messaging"><code>MessageConsumer</code></a>
+ instance for the message will be called. If multiple consumers were created for the same queue on
+ the same <a href="../../../../io/atomix/group/messaging/MessageService.html" title="interface in io.atomix.group.messaging"><code>MessageService</code></a> instance, consumers will be called using a round-robin pattern.
+ <pre>
+   <code>
+   LocalMember localMember = group.join("foo").join();
+   MessageConsumer&lt;String&gt; consumer = localMember.messaging().consumer("bar");
+   consumer.onMessage(message -&gt; {
+     message.ack();
+   });
+   </code>
+ </pre>
+ Messages can be handled by consumers in several ways. The message service can be used to receive
+ and acknowledge tasks or to receive messages for which the producer is awaiting a reply. The behavior
+ expected of a consumer is dependent on the producer configuration. For example, if the producer expects
+ a reply then consumers should reply. Consumers must always call either <a href="../../../../io/atomix/group/messaging/Message.html#ack--"><code>Message.ack()</code></a> or
+ <a href="../../../../io/atomix/group/messaging/Message.html#reply-java.lang.Object-"><code>Message.reply(Object)</code></a> on each message to complete the processing of the message.</div>
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The message type.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - The consumer name.</dd>
+<dd><code>options</code> - The consumer options.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A new message consumer.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the consumer <code>name</code> is <code>null</code></dd>
+</dl>
 </li>
 </ul>
 </li>

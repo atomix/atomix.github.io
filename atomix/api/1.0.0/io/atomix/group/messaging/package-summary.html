@@ -91,25 +91,25 @@
 <tr class="rowColor">
 <td class="colFirst"><a href="../../../../io/atomix/group/messaging/MessageClient.html" title="interface in io.atomix.group.messaging">MessageClient</a></td>
 <td class="colLast">
-<div class="block">Task client.</div>
+<div class="block">Provides an interface for producing messages to a group or a member of a group.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../io/atomix/group/messaging/MessageConsumer.html" title="interface in io.atomix.group.messaging">MessageConsumer</a>&lt;T&gt;</td>
 <td class="colLast">
-<div class="block">Message consumer.</div>
+<div class="block">Consumes messages from a named message queue.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="../../../../io/atomix/group/messaging/MessageProducer.html" title="interface in io.atomix.group.messaging">MessageProducer</a>&lt;T&gt;</td>
 <td class="colLast">
-<div class="block">Message producer.</div>
+<div class="block">Produces messages to a remote <a href="../../../../io/atomix/group/messaging/MessageService.html" title="interface in io.atomix.group.messaging"><code>MessageService</code></a> queue.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../io/atomix/group/messaging/MessageService.html" title="interface in io.atomix.group.messaging">MessageService</a></td>
 <td class="colLast">
-<div class="block">Task queue service.</div>
+<div class="block">Provides an interface for consuming messages sent either directly or indirectly to a group member.</div>
 </td>
 </tr>
 </tbody>
@@ -132,7 +132,7 @@
 <tr class="rowColor">
 <td class="colFirst"><a href="../../../../io/atomix/group/messaging/MessageProducer.Options.html" title="class in io.atomix.group.messaging">MessageProducer.Options</a></td>
 <td class="colLast">
-<div class="block">Task producer options.</div>
+<div class="block">Message producer options.</div>
 </td>
 </tr>
 </tbody>
@@ -149,13 +149,14 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html" title="enum in io.atomix.group.messaging">MessageProducer.Delivery</a></td>
 <td class="colLast">
-<div class="block">Delivery policy.</div>
+<div class="block">Delivery policy for defining how messages are delivered to consumers, particularly when producing messages to
+ a group.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html" title="enum in io.atomix.group.messaging">MessageProducer.Execution</a></td>
 <td class="colLast">
-<div class="block">Execution policy.</div>
+<div class="block">Execution policy for defining the criteria for completion of a message produced by a producer.</div>
 </td>
 </tr>
 </tbody>
@@ -172,7 +173,8 @@
 <tr class="altColor">
 <td class="colFirst"><a href="../../../../io/atomix/group/messaging/MessageFailedException.html" title="class in io.atomix.group.messaging">MessageFailedException</a></td>
 <td class="colLast">
-<div class="block">Group message failed exception.</div>
+<div class="block">Exception thrown when a <a href="../../../../io/atomix/group/messaging/Message.html" title="interface in io.atomix.group.messaging"><code>Message</code></a> fails to be delivered or is explicitly <a href="../../../../io/atomix/group/messaging/Message.html#fail--"><code>failed</code></a>
+ by a consumer.</div>
 </td>
 </tr>
 </tbody>

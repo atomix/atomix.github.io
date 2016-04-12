@@ -102,7 +102,31 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">Election</span></pre>
-<div class="block">Election client.</div>
+<div class="block">Election context for <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a>.
+ <p>
+ Elections are performed automatically within each <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a>. As members
+ are added to or removed from the group, the group will automatically elect group leaders. Each unique
+ leader election is represented by a <a href="../../../../io/atomix/group/election/Term.html" title="interface in io.atomix.group.election"><code>Term</code></a>. The <a href="../../../../io/atomix/group/election/Term.html#term--"><code>Term.term()</code></a> is guaranteed to be unique
+ and monotonically increasing throughout the lifetime of a group. When a leader disconnects from the
+ cluster or leaves the group, the term will be increased and a new leader elected. Leaders are elected
+ using a semi-random algorithm. Each instance of a group is guaranteed to see the same leader and term
+ at the same <em>logical</em> time (not real time).
+ <p>
+ To access the current group term, use the <a href="../../../../io/atomix/group/election/Election.html#term--"><code>term()</code></a>} getter.
+ <pre>
+   <code>
+   Term currentTerm = group.election().term();
+   </code>
+ </pre>
+ Clients can listen for changes in group leadership by registering an election listener via
+ <a href="../../../../io/atomix/group/election/Election.html#onElection-java.util.function.Consumer-"><code>onElection(Consumer)</code></a>.
+ <pre>
+   <code>
+   group.election().onElection(term -&gt; {
+     GroupMember leader = term.leader();
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -127,11 +151,15 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/election/Term.html" title="interface in io.atomix.group.election">Term</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/election/Election.html#onElection-java.util.function.Consumer-">onElection</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/election/Term.html" title="interface in io.atomix.group.election">Term</a>&gt;&nbsp;callback)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/election/Election.html#onElection-java.util.function.Consumer-">onElection</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/election/Term.html" title="interface in io.atomix.group.election">Term</a>&gt;&nbsp;callback)</code>
+<div class="block">Registers an election listener callback.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/group/election/Term.html" title="interface in io.atomix.group.election">Term</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/election/Election.html#term--">term</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/election/Election.html#term--">term</a></span>()</code>
+<div class="block">Returns the current group term.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -155,6 +183,15 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>term</h4>
 <pre><a href="../../../../io/atomix/group/election/Term.html" title="interface in io.atomix.group.election">Term</a>&nbsp;term()</pre>
+<div class="block">Returns the current group term.
+ <p>
+ If the group is undergoing a new election, the returned <a href="../../../../io/atomix/group/election/Term.html" title="interface in io.atomix.group.election"><code>Term</code></a> can potentially have a
+ null <a href="../../../../io/atomix/group/election/Term.html#leader--"><code>Term.leader()</code></a>. To ensure the term has a leader, either check the value or use
+ an <a href="../../../../io/atomix/group/election/Election.html#onElection-java.util.function.Consumer-"><code>election listener</code></a> to listen for new leaders.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The current group term.</dd>
+</dl>
 </li>
 </ul>
 <a name="onElection-java.util.function.Consumer-">
@@ -164,6 +201,28 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>onElection</h4>
 <pre><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/election/Term.html" title="interface in io.atomix.group.election">Term</a>&gt;&nbsp;onElection(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/election/Term.html" title="interface in io.atomix.group.election">Term</a>&gt;&nbsp;callback)</pre>
+<div class="block">Registers an election listener callback.
+ <p>
+ The provided callback will be called each time the election is changed to a new term and a leader
+ is elected. The <a href="../../../../io/atomix/group/election/Term.html" title="interface in io.atomix.group.election"><code>Term</code></a> provided to the election callback is guaranteed to have a monotonically
+ increasing <a href="../../../../io/atomix/group/election/Term.html#term--"><code>term number</code></a> and a non-null <a href="../../../../io/atomix/group/election/Term.html#leader--"><code>Term.leader()</code></a>.
+ <pre>
+   <code>
+   group.election().onElection(term -&gt; {
+     GroupMember leader = term.leader();
+   });
+   </code>
+ </pre>
+ If a leader was already elected for the current term when the callback is registered, the callback will
+ be immediately called <em>before the completion of the registration</em>. Aside from this initial notification,
+ all election listeners are guaranteed to see elections at the same logical time and in the same order on all
+ nodes.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>callback</code> - The callback to be called when a new leader is elected.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The election listener.</dd>
+</dl>
 </li>
 </ul>
 </li>

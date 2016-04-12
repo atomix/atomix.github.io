@@ -169,29 +169,25 @@ extends <a href="../../../../io/atomix/manager/options/AtomixOptions.html" title
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/options/ServerOptions.html#MAX_SNAPSHOT_SIZE">MAX_SNAPSHOT_SIZE</a></span></code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/options/ServerOptions.html#MINOR_COMPACTION_INTERVAL">MINOR_COMPACTION_INTERVAL</a></span></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/options/ServerOptions.html#RETAIN_STALE_SNAPSHOTS">RETAIN_STALE_SNAPSHOTS</a></span></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/options/ServerOptions.html#SESSION_TIMEOUT">SESSION_TIMEOUT</a></span></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/options/ServerOptions.html#STORAGE_DIRECTORY">STORAGE_DIRECTORY</a></span></code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/options/ServerOptions.html#STORAGE_LEVEL">STORAGE_LEVEL</a></span></code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/options/ServerOptions.html#TRANSPORT">TRANSPORT</a></span></code>&nbsp;</td>
 </tr>
@@ -277,15 +273,15 @@ extends <a href="../../../../io/atomix/manager/options/AtomixOptions.html" title
 </td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/options/ServerOptions.html#maxSnapshotSize--">maxSnapshotSize</a></span>()</code>
-<div class="block">Returns the maximum snapshot size in bytes.</div>
-</td>
-</tr>
-<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/options/ServerOptions.html#minorCompactionInterval--">minorCompactionInterval</a></span>()</code>
 <div class="block">Returns the minor compaction interval.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/manager/options/ServerOptions.html#resourceTypes--">resourceTypes</a></span>()</code>
+<div class="block">Returns a collection of resource types to register.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
@@ -451,19 +447,6 @@ extends <a href="../../../../io/atomix/manager/options/AtomixOptions.html" title
 </dl>
 </li>
 </ul>
-<a name="MAX_SNAPSHOT_SIZE">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>MAX_SNAPSHOT_SIZE</h4>
-<pre>public static final&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a> MAX_SNAPSHOT_SIZE</pre>
-<dl>
-<dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../constant-values.html#io.atomix.manager.options.ServerOptions.MAX_SNAPSHOT_SIZE">Constant Field Values</a></dd>
-</dl>
-</li>
-</ul>
 <a name="RETAIN_STALE_SNAPSHOTS">
 <!--   -->
 </a>
@@ -568,6 +551,20 @@ extends <a href="../../../../io/atomix/manager/options/AtomixOptions.html" title
 </dl>
 </li>
 </ul>
+<a name="resourceTypes--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>resourceTypes</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&gt;&nbsp;resourceTypes()</pre>
+<div class="block">Returns a collection of resource types to register.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A collection of resource types to register.</dd>
+</dl>
+</li>
+</ul>
 <a name="electionTimeout--">
 <!--   -->
 </a>
@@ -663,20 +660,6 @@ extends <a href="../../../../io/atomix/manager/options/AtomixOptions.html" title
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The maximum number of entries per segment.</dd>
-</dl>
-</li>
-</ul>
-<a name="maxSnapshotSize--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>maxSnapshotSize</h4>
-<pre>public&nbsp;int&nbsp;maxSnapshotSize()</pre>
-<div class="block">Returns the maximum snapshot size in bytes.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The maximum snapshot size in bytes.</dd>
 </dl>
 </li>
 </ul>

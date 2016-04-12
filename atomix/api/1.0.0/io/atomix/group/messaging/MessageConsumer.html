@@ -107,7 +107,26 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public interface <span class="typeNameLabel">MessageConsumer&lt;T&gt;</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></pre>
-<div class="block">Message consumer.</div>
+<div class="block">Consumes messages from a named message queue.
+ <p>
+ Consumers receive messages sent by <a href="../../../../io/atomix/group/messaging/MessageProducer.html" title="interface in io.atomix.group.messaging"><code>MessageProducer</code></a>s to specific named queues. Messages are
+ <em>pushed</em> to consumers through Copycat's session event protocol.
+ <p>
+ To listen for messages received by a consumer, register a message listener via the <a href="../../../../io/atomix/group/messaging/MessageConsumer.html#onMessage-java.util.function.Consumer-"><code>onMessage(Consumer)</code></a>
+ method:
+ <pre>
+   <code>
+   MessageConsumer&lt;String&gt; consumer = localMember.messaging().consumer("foo");
+   consumer.onMessage(message -&gt; {
+     // ...
+     message.ack();
+   });
+   </code>
+ </pre>
+ Consumer callbacks will be called with a unique <a href="../../../../io/atomix/group/messaging/Message.html" title="interface in io.atomix.group.messaging"><code>Message</code></a> object. Each message consumed by a consumer
+ is guaranteed to have a unique <a href="../../../../io/atomix/group/messaging/Message.html#id--"><code>Message.id()</code></a>. It is the responsibility of every consumer to either
+ <a href="../../../../io/atomix/group/messaging/Message.html#ack--"><code>ack</code></a> or <a href="../../../../io/atomix/group/messaging/Message.html#reply-java.lang.Object-"><code>reply</code></a> to every message. Failure to ack or reply
+ to a message will result in a memory leak and the failure to publish messages to a member.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -153,12 +172,14 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>default void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageConsumer.html#close--">close</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageConsumer.html#close--">close</a></span>()</code>
+<div class="block">Closes the consumer.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/messaging/Message.html" title="interface in io.atomix.group.messaging">Message</a>&lt;<a href="../../../../io/atomix/group/messaging/MessageConsumer.html" title="type parameter in MessageConsumer">T</a>&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageConsumer.html#onMessage-java.util.function.Consumer-">onMessage</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/messaging/Message.html" title="interface in io.atomix.group.messaging">Message</a>&lt;<a href="../../../../io/atomix/group/messaging/MessageConsumer.html" title="type parameter in MessageConsumer">T</a>&gt;&gt;&nbsp;callback)</code>
-<div class="block">Registers a callback for handling message messages.</div>
+<div class="block">Registers a listener for messages received by the consumer.</div>
 </td>
 </tr>
 </table>
@@ -183,12 +204,20 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <li class="blockList">
 <h4>onMessage</h4>
 <pre><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/group/messaging/Message.html" title="interface in io.atomix.group.messaging">Message</a>&lt;<a href="../../../../io/atomix/group/messaging/MessageConsumer.html" title="type parameter in MessageConsumer">T</a>&gt;&gt;&nbsp;onMessage(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/group/messaging/Message.html" title="interface in io.atomix.group.messaging">Message</a>&lt;<a href="../../../../io/atomix/group/messaging/MessageConsumer.html" title="type parameter in MessageConsumer">T</a>&gt;&gt;&nbsp;callback)</pre>
-<div class="block">Registers a callback for handling message messages.</div>
+<div class="block">Registers a listener for messages received by the consumer.
+ <p>
+ Messages are received by consumers through Copycat's session event protocol. Each message is guaranteed
+ to be received by the consumer on the same thread, and consumed <a href="../../../../io/atomix/group/messaging/Message.html" title="interface in io.atomix.group.messaging"><code>Message</code></a>s are guaranteed to have
+ unique <a href="../../../../io/atomix/group/messaging/Message.html#id--"><code>ids</code></a>. It is the responsibility of every consumer to either <a href="../../../../io/atomix/group/messaging/Message.html#ack--"><code>ack</code></a>
+ or <a href="../../../../io/atomix/group/messaging/Message.html#reply-java.lang.Object-"><code>reply</code></a> to every message. Failure to ack or reply to a message will result
+ in a memory leak and the failure to publish messages to a member.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>callback</code> - The message listener callback.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The message listener.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the listener callback is <code>null</code></dd>
 </dl>
 </li>
 </ul>
@@ -199,6 +228,10 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <li class="blockList">
 <h4>close</h4>
 <pre>default&nbsp;void&nbsp;close()</pre>
+<div class="block">Closes the consumer.
+ <p>
+ When the consumer is closed, the consumer will be removed from the list of consumers for the parent
+ <a href="../../../../io/atomix/group/messaging/MessageService.html" title="interface in io.atomix.group.messaging"><code>MessageService</code></a> and messages will no longer be delivered to this consumer.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true#close--" title="class or interface in java.lang">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></code></dd>

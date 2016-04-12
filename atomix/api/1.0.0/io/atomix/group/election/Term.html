@@ -102,7 +102,10 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">Term</span></pre>
-<div class="block">Group election term.</div>
+<div class="block">Represents a unique leader election term.
+ <p>
+ Each time a leader is elected in a group, it's elected for a unique, monotonically increasing <a href="../../../../io/atomix/group/election/Term.html#term--"><code>term</code></a>.
+ The elected leader will persist until it becomes disconnected from the cluster or explicitly leaves the group.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -128,13 +131,13 @@ var activeTableTab = "activeTableTab";
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/election/Term.html#leader--">leader</a></span>()</code>
-<div class="block">Returns the group leader.</div>
+<div class="block">Returns the leader for the term.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/election/Term.html#term--">term</a></span>()</code>
-<div class="block">Returns the group term.</div>
+<div class="block">Returns the term number.</div>
 </td>
 </tr>
 </table>
@@ -159,10 +162,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>term</h4>
 <pre>long&nbsp;term()</pre>
-<div class="block">Returns the group term.</div>
+<div class="block">Returns the term number.
+ <p>
+ The returned term number is guaranteed to be unique to this instance throughout the lifetime of the group
+ and is guaranteed to be greater than all prior terms (monotonically increasing).</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The group term.</dd>
+<dd>The election term number.</dd>
 </dl>
 </li>
 </ul>
@@ -173,10 +179,14 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>leader</h4>
 <pre><a href="../../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a>&nbsp;leader()</pre>
-<div class="block">Returns the group leader.</div>
+<div class="block">Returns the leader for the term.
+ <p>
+ If no leader has been elected for the term, the returned leader will be <code>null</code>. Once a leader has been
+ elected, the leader is guaranteed to persist for the remainder of this term until the leader either leaves the
+ group or becomes disconnected from the cluster.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The group leader.</dd>
+<dd>The leader for this term or <code>null</code> if no leader has been elected yet.</dd>
 </dl>
 </li>
 </ul>

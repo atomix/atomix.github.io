@@ -186,7 +186,19 @@ extends <a href="../../../io/atomix/group/GroupMember.html" title="interface in 
 <li class="blockList">
 <h4>messaging</h4>
 <pre><a href="../../../io/atomix/group/messaging/MessageService.html" title="interface in io.atomix.group.messaging">MessageService</a>&nbsp;messaging()</pre>
-<div class="block">Returns the local member message service.</div>
+<div class="block">Returns the local member message service.
+ <p>
+ The message service can be used to receive messages sent either directly or indirectly to this
+ member by creating a <a href="../../../io/atomix/group/messaging/MessageConsumer.html" title="interface in io.atomix.group.messaging"><code>MessageConsumer</code></a>.
+ <pre>
+   <code>
+   LocalMember localMember = group.join("foo").join();
+   MessageConsumer&lt;String&gt; consumer = localMember.messaging().consumer("bar");
+   consumer.onMessage(message -&gt; {
+     message.ack();
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../io/atomix/group/GroupMember.html#messaging--">messaging</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a></code></dd>
