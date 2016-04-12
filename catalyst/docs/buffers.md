@@ -11,14 +11,14 @@ Catalyst provides a custom I/O and serialization framework that it uses for all 
 
 ## Buffers
 
-Catalyst provides a [Buffer][Buffer] abstraction that provides a common interface to both memory and disk. Currently, four buffer types are provided:
+Catalyst provides a [`Buffer`][Buffer] abstraction that provides a common interface to both memory and disk. Currently, four buffer types are provided:
 
 * `HeapBuffer` - on-heap `byte[]` backed buffer
 * `DirectBuffer` - off-heap `sun.misc.Unsafe` based buffer
 * `MemoryMappedBuffer` - `MappedByteBuffer` backed buffer
 * `FileBuffer` - `RandomAccessFile` backed buffer
 
-The [Buffer][Buffer] interface implements `BufferInput` and `BufferOutput` which are functionally similar to Java's `DataInput` and `DataOutput` respectively. Additionally, features of how bytes are managed are intentionally similar to [ByteBuffer][ByteBuffer]. Catalyst's buffers expose many of the same methods such as `position`, `limit`, `flip`, and others. Additionally, buffers are allocated via a static `allocate` method similar to `ByteBuffer`:
+The [Buffer][Buffer] interface implements [`BufferInput`][BufferInput] and [`BufferOutput`][BufferOutput] which are functionally similar to Java's `DataInput` and `DataOutput` respectively. Additionally, features of how bytes are managed are intentionally similar to [`ByteBuffer`][ByteBuffer]. Catalyst's buffers expose many of the same methods such as `position`, `limit`, `flip`, and others. Additionally, buffers are allocated via a static `allocate` method similar to [`ByteBuffer`][ByteBuffer]:
 
 ```java
 Buffer buffer = DirectBuffer.allocate(1024);
@@ -26,7 +26,7 @@ Buffer buffer = DirectBuffer.allocate(1024);
 
 Buffers are dynamically allocated and allowed to grow over time, so users don't need to know the number of bytes they're expecting to use when the buffer is created.
 
-The `Buffer` API exposes a set of `read*` and `write*` methods for reading and writing bytes respectively:
+The [`Buffer`][Buffer] API exposes a set of `read*` and `write*` methods for reading and writing bytes respectively:
 
 ```java
 Buffer buffer = HeapBuffer.allocate(1024);
@@ -44,9 +44,9 @@ See the [Buffer API documentation][Buffer] for more detailed usage information.
 
 ### Bytes
 
-All `Buffer` instances are backed by a `Bytes` instance which is a low-level API over a fixed number of bytes. In contrast to `Buffer`, `Bytes` do not maintain internal pointers and are not dynamically resizeable.
+All `Buffer` instances are backed by a [`Bytes`][Bytes] instance which is a low-level API over a fixed number of bytes. In contrast to [`Buffer`][Buffer], [`Bytes`][Bytes] do not maintain internal pointers and are not dynamically resizeable.
 
-`Bytes` can be allocated in the same way as buffers, using the respective `allocate` method:
+[`Bytes`][Bytes] can be allocated in the same way as buffers, using the respective `allocate` method:
 
 ```java
 FileBytes bytes = FileBytes.allocate(new File("path/to/file"), 1024);
@@ -77,7 +77,7 @@ Catalyst tracks buffer references by implementing the `ReferenceCounted` interfa
 buffer.release();
 ```
 
-Alternatively, `Buffer` extends `AutoCloseable`, and buffers can be released back to the pool regardless of their reference count by calling `Buffer.close`:
+Alternatively, [`Buffer`][Buffer] extends `AutoCloseable`, and buffers can be released back to the pool regardless of their reference count by calling `Buffer.close`:
 
 ```java
 // Release the buffer back to the pool
