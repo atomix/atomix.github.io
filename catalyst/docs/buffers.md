@@ -18,7 +18,7 @@ Catalyst provides a [`Buffer`][Buffer] abstraction that provides a common interf
 * `MemoryMappedBuffer` - `MappedByteBuffer` backed buffer
 * `FileBuffer` - `RandomAccessFile` backed buffer
 
-The [Buffer][Buffer] interface implements [`BufferInput`][BufferInput] and [`BufferOutput`][BufferOutput] which are functionally similar to Java's `DataInput` and `DataOutput` respectively. Additionally, features of how bytes are managed are intentionally similar to [`ByteBuffer`][ByteBuffer]. Catalyst's buffers expose many of the same methods such as `position`, `limit`, `flip`, and others. Additionally, buffers are allocated via a static `allocate` method similar to [`ByteBuffer`][ByteBuffer]:
+The [`Buffer`][Buffer] interface implements [`BufferInput`][BufferInput] and [`BufferOutput`][BufferOutput] which are functionally similar to Java's `DataInput` and `DataOutput` respectively. Additionally, features of how bytes are managed are intentionally similar to [`ByteBuffer`][ByteBuffer]. Catalyst's buffers expose many of the same methods such as `position`, `limit`, `flip`, and others. Additionally, buffers are allocated via a static `allocate` method similar to [`ByteBuffer`][ByteBuffer]:
 
 ```java
 Buffer buffer = DirectBuffer.allocate(1024);

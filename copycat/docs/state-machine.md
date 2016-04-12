@@ -32,7 +32,7 @@ State machines may accept two types of operations: commands and queries. Command
 
 Commands are state machine operations that modify the system's state. When submitted to a Copycat cluster, commands are always proxied to the cluster leader where they're logged and replicated to a majority of the cluster before being committed and applied to the state machine.
 
-Commands are defined by implementing the [`Command`][Command] interface. `Command` takes a single generic argument that defines the output (return value) of the command implementation.
+Commands are defined by implementing the [`Command`][Command] interface. [`Command`][Command] takes a single generic argument that defines the output (return value) of the command implementation.
 
 ```java
 public class Put implements Command<Object> {
@@ -51,7 +51,7 @@ public class Put implements Command<Object> {
 
 In this case, the `PutCommand` outputs an `Object` (the previous value).
 
-The base `Operation` interface implements Java's `Serializable`, so all operations can be serialized without any custom serialization logic. However, Java serialization is slow and innefficient and is therefore not recommended for production. Users should implement `CatalystSerializable`, provide a custom `TypeSerializer`, or use one of the generic serialization framework plugins like Kryo or Jackson for the best performance.
+The base [`Operation`][Operation] interface implements Java's [`Serializable`][Serializable], so all operations can be serialized without any custom serialization logic. However, Java serialization is slow and innefficient and is therefore not recommended for production. Users should implement [`CatalystSerializable`][CatalystSerializable], provide a custom [`TypeSerializer`][TypeSerializer], or use one of the generic serialization framework plugins like Kryo or Jackson for the best performance.
 
 ### State machine queries
 
@@ -75,13 +75,13 @@ public class Get implements Query<Object> {
 {:.callout .callout-danger}
 Important: Queries should *never* modify the state of a state machine. Copycat cannot guarantee consistency for improperly implemented state machine operations.
 
-The base `Operation` interface implements Java's `Serializable`, so all operations can be serialized without any custom serialization logic. However, Java serialization is slow and innefficient and is therefore not recommended for production. Users should implement `CatalystSerializable`, provide a custom `TypeSerializer`, or use one of the generic serialization framework plugins like Kryo or Jackson for the best performance.
+The base [`Operation`][Operation] interface implements Java's [`Serializable`][Serializable], so all operations can be serialized without any custom serialization logic. However, Java serialization is slow and innefficient and is therefore not recommended for production. Users should implement [`CatalystSerializable`][CatalystSerializable], provide a custom [`TypeSerializer`][TypeSerializer], or use one of the generic serialization framework plugins like Kryo or Jackson for the best performance.
 
 ## Implementing state machine operations
 
-Commands and queries define the interface between a client and the state machine, and methods on the state machine define the behavior and output of an operation submitted to the cluster. Operations are single-argument `public` methods on the `StateMachine` implementation that take a single `Commit` argument. The generic argument to the `Commit` defines the operation expected by the method. Copycat will infer operation methods based on the generic argument.
+Commands and queries define the interface between a client and the state machine, and methods on the state machine define the behavior and output of an operation submitted to the cluster. Operations are single-argument `public` methods on the [`StateMachine`][StateMachine] implementation that take a single [`Commit`][Commit] argument. The generic argument to the [`Commit`][Commit] defines the operation expected by the method. Copycat will infer operation methods based on the generic argument.
 
-Remember, `Command`s are operations that modify the state of the state machine. In the case of the `MapStateMachine`, the `Put` operation is a command since it writes an entry in the map:
+Remember, [`Command`][Command]s are operations that modify the state of the state machine. In the case of the `MapStateMachine`, the `Put` operation is a command since it writes an entry in the map:
 
 ```java
 public class MapStateMachine extends StateMachine {
@@ -100,9 +100,9 @@ public class MapStateMachine extends StateMachine {
 The return value of the operation method is the response that will be sent back to the client. In the case of the `Put` command, we send the previous value returned by the `Map` interface. Once the `Commit` is no longer needed, we `release` the commit to allow Copycat to recycle the object and compact the commit from the underlying log if necessary.
 
 {:.callout .callout-warning}
-Important: `Commit`s must be `release`d once no longer needed by the state machine. Failure to release a commit will result in the replicated log growing unbounded.
+Important: [`Commit`][Commit]s must be `release`d once no longer needed by the state machine. Failure to release a commit will result in the replicated log growing unbounded.
 
-`Query` operations are implemented in the same way as `Command`s. To implement a query operation, add a `public` method to the `StateMachine` class taking a single `Commit` object.
+`Query` operations are implemented in the same way as [`Command`][Command]s. To implement a query operation, add a `public` method to the [`StateMachine`][StateMachine] class taking a single [`Commit`][Commit] object.
 
 ```java
 public class MapStateMachine extends StateMachine {
@@ -118,11 +118,11 @@ public class MapStateMachine extends StateMachine {
 }
 ```
 
-As with all other operation implementations, query `Commit`s must be `release`d once the operation is complete.
+As with all other operation implementations, query [`Commit`][Commit]s must be `release`d once the operation is complete.
 
 ### The Commit object
 
-As demonstrated above, operations submitted to the cluster are applied to state machines wrapped in a `Commit` object. The commit object provides some useful information that can be used to associate operations with clients or approximate the progression of real-time and logical time in the cluster. The `Commit` object exposes the following properties:
+As demonstrated above, operations submitted to the cluster are applied to state machines wrapped in a [`Commit`][Commit] object. The commit object provides some useful information that can be used to associate operations with clients or approximate the progression of real-time and logical time in the cluster. The [`Commit`][Commit] object exposes the following properties:
 
 * `index()` - The index of the commit in the underlying Raft replicated log. This index is guaranteed to be unique and monotonically increasing, and all state machines are guaranteed to see the same operation for the same commit index.
 * `time()` - The approximate wall-clock time at which the operation was committed. This time is written to the underlying log by the leader when the operation is first logged. Commit times are guaranteed to be monotonically increasing.
@@ -297,7 +297,7 @@ public class Put implements Command<Object> {
 
 ### Compaction modes
 
-* `DEFAULT` - Based on the interface of the `StateMachine` implementation. If the state machine implements `Snapshottable`, the compaction mode is `SNAPSHOT`, else it is `SEQUENTIAL`.
+* `DEFAULT` - Based on the interface of the [`StateMachine`][StateMachine] implementation. If the state machine implements [`Snapshottable`][Snapshottable], the compaction mode is `SNAPSHOT`, else it is `SEQUENTIAL`.
 * `SNAPSHOT` - Indicates that the operation is stored in a snapshot.
 * `RELEASE` - Indicates that the operation can be compacted once `release`d by the state machine.
 * `QUORUM` - Indicates that the operation can be compacted once stored on a majority of servers and `release`d by the state machine.
