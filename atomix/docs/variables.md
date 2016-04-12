@@ -13,7 +13,7 @@ The `atomix-variables` module provides a set of distributed atomic variables mod
 
 The [`DistributedValue`][DistributedValue] resource provides an asynchronous API similar to that of the JDK's [AtomicReference].
 
-To create a [`DistributedValue`][DistributedValue], use the `Atomix.getValue` method:
+To create a [`DistributedValue`][DistributedValue], use the [`Atomix.getValue`][Atomix.getValue] method:
 
 ```java
 atomix.<String>getValue("test-value").thenAccept(value -> {
@@ -47,7 +47,7 @@ Note that TTL timers are deterministically controlled by the cluster leader and 
 
 The [`DistributedLong`][DistributedLong] resource extends [`DistributedValue`][DistributedValue] to provide atomic methods for incrementing and decrementing a 64-bit number. The [`DistributedLong`][DistributedLong] interface closely mimics that of Java's [`AtomicLong`][AtomicLong].
 
-To create a [`DistributedLong`][DistributedLong], use the `getLong` method:
+To create a [`DistributedLong`][DistributedLong], use the [`Atomix.getLong`][Atomix.getLong] method:
 
 ```java
 atomix.getLong("test-long").thenAccept(value -> {

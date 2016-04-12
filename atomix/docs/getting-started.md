@@ -41,7 +41,7 @@ Clusters can contain both *active* and *passive* replicas. Active replicas take 
 {:.callout .callout-info}
 For more information on node types see the [clustering documentation][node-types].
 
-[`AtomixReplica`][AtomixReplica]s are created using a builder pattern. To create a new replica, create a builder via the `AtomixReplica.builder()` static method, passing the replica address to the builder factory:
+[`AtomixReplica`][AtomixReplica]s are created using a builder pattern. To create a new replica, create a replica [`Builder`][AtomixReplica.Builder] via the `AtomixReplica.builder()` static factory method, passing the replica address to the builder factory:
 
 ```java
 AtomixReplica.Builder builder = AtomixReplica.builder(new Address("localhost", 8700));
@@ -62,7 +62,7 @@ Once we've constructed a replica, we can bootstrap a single node cluster by simp
 CompletableFuture<Atomix> future = replica.bootstrap();
 ```
 
-The `bootstrap()` method returns a [`CompletableFuture`][CompletableFuture] that can be used to block until the replica is bootstrapped or call a completion callback once complete.
+The [`bootstrap`][AtomixReplica.bootstrap] method returns a [`CompletableFuture`][CompletableFuture] that can be used to block until the replica is bootstrapped or call a completion callback once complete.
 
 ```java
 future.join();
@@ -73,7 +73,7 @@ All of the Atomix APIs are [fully asynchronous](/atomix/docs/threading-model/#as
 
 ## Joining an existing cluster
 
-Once a single replica has been bootstrapped, additional replicas can be added to the cluster via the `join()` method:
+Once a single replica has been bootstrapped, additional replicas can be added to the cluster via the [`join`][AtomixReplica.join] method:
 
 ```java
 AtomixReplica replica2 = AtomixReplica.builder(new Address("localhost", 8701))
@@ -92,11 +92,11 @@ replica2.join(new Address("localhost", 8700), new Address("localhost", 8701)).jo
 ```
 
 {:.callout .callout-info}
-Multiple replicas can `bootstrap()` a full cluster by providing the complete bootstrap cluster configuration to the `bootstrap()` method. See the [clustering][clustering] documentation for more info.
+Multiple replicas can [`bootstrap`][AtomixReplica.bootstrap] a full cluster by providing the complete bootstrap cluster configuration to the [`bootstrap`][AtomixReplica.bootstrap] method. See the [clustering][clustering] documentation for more info.
 
 ## Creating Distributed Resources
 
-With our [AtomixReplica] cluster bootstrapped, we can create some distributed resources. To get or create a distributed resource, use one of the [Atomix] `get*` methods. Let's create and acquire a [DistributedLock]:
+With our [`AtomixReplica`][AtomixReplica] cluster bootstrapped, we can create some distributed resources. To get or create a distributed resource, use one of the [`Atomix`][Atomix] `get*` methods. Let's create and acquire a [`DistributedLock`][DistributedLock]:
 
 {% include sync-tabs.html target1="#async-create" desc1="Async" target2="#sync-create" desc2="Sync" %}
 {::options parse_block_html="true" /}
@@ -116,7 +116,7 @@ System.out.println("Acquired a lock!");
 </div>
 </div>
 
-Each resource in the cluster must be assigned a unique `String` name. If multiple [Atomix] instances `get` the same resource type with the same name, they will all reference the same resource stored in the cluster.
+Each resource in the cluster must be assigned a unique `String` name. If multiple [`Atomix`][Atomix] instances `get` the same resource type with the same name, they will all reference the same resource stored in the cluster.
 
 ## Creating a Client
 
@@ -130,9 +130,9 @@ AtomixClient client = AtomixClient.builder()
   .build();
 ```
 
-The provided `Members` list does not have to be representative of the full list of active replicas. Users must simply provide enough `Member`s to be able to successfully connect to at least one replica.
+The provided [`Address`][Address] list does not have to be representative of the full list of active replicas. Users must simply provide enough [`Address`][Address]es to be able to successfully connect to at least one replica.
 
-Once the client is created, call `connect()` to establish a connection to the cluster:
+Once the client is created, call [`connect`][AtomixClient.connect] to establish a connection to the cluster:
 
 {% include sync-tabs.html target1="#async-client" desc1="Async" target2="#sync-client" desc2="Sync" %}
 {::options parse_block_html="true" /}
@@ -165,7 +165,7 @@ System.out.println("Client connected!");
 </div>
 </div>
 
-Once `connect()` is complete, we can get or create distributed resources in the same way as with a replica:
+Once [`connect`][AtomixClient.connect] is complete, we can get or create distributed resources in the same way as with a replica:
 
 ```java
 DistributedValue<String> value = client.getValue("value").join();

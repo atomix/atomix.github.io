@@ -6,7 +6,7 @@ title: Custom Resources
 ---
 
 {:.no-margin-top}
-The Atomix API is designed to facilitate operating on arbitrary user-defined resources. When a custom resource is created via `Atomix.create`, an associated state machine will be created on each Atomix replica, and operations submitted by the resource instance will be applied to the replicated state machine. In that sense, think of a `Resource` instance as a client-side object and a [`StateMachine`][StateMachine] instance as the server-side representation of that object.
+The Atomix API is designed to facilitate operating on arbitrary user-defined resources. When a custom resource is created via [`Atomix.getResource`][Atomix.getResource], an associated state machine will be created on each Atomix replica, and operations submitted by the resource instance will be applied to the replicated state machine. In that sense, think of a [`Resource`][Resource] instance as a client-side object and a [`StateMachine`][StateMachine] instance as the server-side representation of that object.
 
 To define a new resource, simply extend the base [`AbstractResource`][AbstractResource] class:
 
@@ -61,7 +61,7 @@ atomix.getResource(Value.class).thenAccept(value -> {
 
 When a resource is created for the first time, the resource [`StateMachine`][StateMachine] will be created on each replica in the cluster. In order for the resource to be successfully created all replicas must have the resource class on their classpath. Once a state machine has been created on a majority of the active replicas, the resource will be constructed and the returned [`CompletableFuture`][CompletableFuture] completed.
 
-Resource state machines must extend the base `ResourceStateMachine` class:
+Resource state machines must extend the base [`ResourceStateMachine`][ResourceStateMachine] class:
 
 ```java
 public class ValueStateMachine extends ResourceStateMachine {

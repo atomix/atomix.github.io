@@ -20,9 +20,9 @@ atomix.getGroup("my-group").thenAccept(group -> {
 
 ### Joining the group
 
-When a new instance of the resource is created, it is initialized with an empty `members()` list
+When a new instance of the resource is created, it is initialized with an empty [`members()`][DistributedGroup.members] list
 as it is not yet a member of the group. Once the instance has been created, the user must join the group
-via `join()`:
+via the [`join`][DistributedGroup.join] method:
 
 ```java
 group.join().thenAccept(member -> {
@@ -34,7 +34,7 @@ Once the group has been joined, a [`LocalMember`][LocalMember] instance will be 
 
 ### Leaving the group
 
-Once a member has joined a group, the [`LocalMember`][LocalMember] can be used to remove the member from the group by calling the `leave()` method:
+Once a member has joined a group, the [`LocalMember`][LocalMember] can be used to remove the member from the group by calling the [`leave`][LocalMember.leave] method:
 
 ```java
 LocalMember localMember = group.join().join();
@@ -45,7 +45,7 @@ Even without explicitly leaving the group, it's important to note that when the 
 
 ### Listening for members joining the group
 
-Clients can listen for members joining the group by registering event listeners through the `onJoin` method.
+Clients can listen for members joining the group by registering event listeners through the [`onJoin`][DistributedGroup.onJoin] method.
 
 ```java
 group.onJoin(member -> {
@@ -57,7 +57,7 @@ When a member joins the group, all open instances of the [`DistributedGroup`][Di
 
 ### Listening for members leaving the group
 
-As with listening for members joining the group, clients can also listen for members leaving the group by registering a listener through the `onLeave` method:
+As with listening for members joining the group, clients can also listen for members leaving the group by registering a listener through the [`onLeave`][DistributedGroup.onLeave] method:
 
 ```java
 group.onLeave(member -> {
@@ -65,11 +65,11 @@ group.onLeave(member -> {
 });
 ```
 
-Leave events may occur when a member explicitly `leave`s the group or when the node to which a member belongs crashes or is otherwise disconnected from the cluster. When a client's session expires, the group state machine automatically removes members associated with that session from the group.
+Leave events may occur when a member explicitly [`leave`][LocalMember.leave]s the group or when the node to which a member belongs crashes or is otherwise disconnected from the cluster. When a client's session expires, the group state machine automatically removes members associated with that session from the group.
 
 ### Listing the members in the group
 
-Users of the distributed group do not have to join the group to interact with it. For instance, while a server may participate in the group by joining it, a client may interact with the group just to get a list of available members. To access the list of group members, use the `members()` getter:
+Users of the distributed group do not have to join the group to interact with it. For instance, while a server may participate in the group by joining it, a client may interact with the group just to get a list of available members. To access the list of group members, use the [`members()`][DistributedGroup.members] getter:
 
 ```java
 DistributedGroup group = atomix.getGroup("foo").join();
@@ -84,7 +84,7 @@ Once the group instance has been created, the group membership will be automatic
 
 [`DistributedGroup`][DistributedGroup] supports a concept of persistent members that requires members to *explicitly* `leave` the group to be removed from it. Persistent member messages will remain in a failed member's queue until the member recovers.
 
-In order to support recovery, persistent members must be configured with a user-provided member ID. The member ID is provided when the member `join`s the group, and providing a member ID is all that's required to create a persistent member.
+In order to support recovery, persistent members must be configured with a user-provided member ID. The member ID is provided when the member [`join`][DistributedGroup.join]s the group, and providing a member ID is all that's required to create a persistent member.
 
 ```java
 DistributedGroup group = atomix.getGroup("persistent-members").join();
@@ -92,7 +92,7 @@ LocalGroupMember memberA = group.join("a").join();
 LocalGroupMember memberB = group.join("b").join();
 ```
 
-Persistent members are not limited to a single node. If a node crashes, any persistent members that existed on that node may rejoin the group on any other node. Persistent members rejoin simply by calling `join(String)` with the unique member ID. Once a persistent member has rejoined the group, its session will be updated and any tasks remaining in the member's [`MessageService`][MessageService] will be published to the member.
+Persistent members are not limited to a single node. If a node crashes, any persistent members that existed on that node may rejoin the group on any other node. Persistent members rejoin simply by calling [`join(String)`][DistributedGroup.join] with the unique member ID. Once a persistent member has rejoined the group, its session will be updated and any tasks remaining in the member's [`MessageService`][MessageService] will be published to the member.
 
 Persistent member state is retained *only* inside the group's replicated state machine and not on clients. From the perspective of [`DistributedGroup`][DistributedGroup] instances in a cluster, in the event that the node on which a persistent member is running fails, the member will `leave` the group. Once the persistent member rejoins the group, join listeners will be called again on each group instance in the cluster.
 
@@ -100,7 +100,7 @@ Persistent member state is retained *only* inside the group's replicated state m
 
 The [`DistributedGroup`][DistributedGroup] resource facilitates leader election which can be used to coordinate a group by ensuring only a single member of the group performs some set of operations at any given time. Leader election is a core concept of membership groups, and because leader election is a low-overhead process, leaders are elected for each group automatically.
 
-Leaders are elected using a fair policy. The first member to `join()` a group will always become the initial group leader. Each unique leader in a group is associated with a `term()`. The term represents a globally unique, monotonically increasing token that can be used for fencing. Users can listen for changes in group terms and leaders with event listeners:
+Leaders are elected using a fair policy. The first member to [`join()`][DistributedGroup.join] a group will always become the initial group leader. Each unique leader in a group is associated with a [`term()`][Term.term]. The term represents a globally unique, monotonically increasing token that can be used for fencing. Users can listen for changes in group terms and leaders with event listeners:
 
 ```java
 DistributedGroup group = atomix.getGroup("election-group").get();
@@ -109,7 +109,7 @@ group.election().onElection(term -> {
 });
 ```
 
-The `term()` is guaranteed to be unique for each `leader()` and is guaranteed to be monotonically increasing. Each instance of a group is guaranteed to see the same leader for the same term, and no two leaders can ever exist in the same term. In that sense, the terminology and constraints of leader election in Atomix borrow heavily from the Raft consensus algorithm that underlies it.
+The `term()` is guaranteed to be unique for each [`leader()`][Term.leader] and is guaranteed to be monotonically increasing. Each instance of a group is guaranteed to see the same leader for the same term, and no two leaders can ever exist in the same term. In that sense, the terminology and constraints of leader election in Atomix borrow heavily from the Raft consensus algorithm that underlies it.
 
 ## Messaging
 
@@ -221,7 +221,7 @@ Users can also serialize `Serializable` types by simply registering the class wi
 
 ## Group architecture
 
-Group state is managed in a Copycat replicated [`StateMachine`][StateMachine]. When a [`DistributedGroup`][DistributedGroup] is created, an instance of the group state machine is created on each replica in the cluster. The state machine instance manages state for the specific membership group. When a member `join`s the group, a join request is sent to the cluster and logged and replicated before being applied to the group state machine. Once the join request has been committed and applied to the state machine, the group state is updated and existing group members are notified by `publish`ing state change notifications to open instances of the group. Membership change event notifications are received by all open instances of the resource.
+Group state is managed in a Copycat replicated [`StateMachine`][StateMachine]. When a [`DistributedGroup`][DistributedGroup] is created, an instance of the group state machine is created on each replica in the cluster. The state machine instance manages state for the specific membership group. When a member [`join`][DistributedGroup.join]s the group, a join request is sent to the cluster and logged and replicated before being applied to the group state machine. Once the join request has been committed and applied to the state machine, the group state is updated and existing group members are notified by `publish`ing state change notifications to open instances of the group. Membership change event notifications are received by all open instances of the resource.
 
 Leader election is performed by the group state machine. When the first member joins the group, that member will automatically be assigned as the group member. Each time an additional member joins the group, the new member will be placed in a leader queue. In the event that the current group leader's [`Session`][Session] expires or is closed, the group state machine will assign a new leader by pulling from the leader queue and will publish an `elect` event to all remaining group members. Additionally, for each new leader of the group, the state machine will publish a `term` change event, providing a globally unique, monotonically increasing token uniquely associated with the new leader.
 

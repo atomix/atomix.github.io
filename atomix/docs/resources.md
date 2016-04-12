@@ -9,7 +9,7 @@ first-section: what-are-resources
 
 The true power of Atomix comes from [`Resource`][Resource] implementations. Resources are named distributed objects that are replicated and persisted in the Atomix cluster. Each name can be associated with a single resource, and each resource is backed by a replicated state machine managed by Atomix's underlying [implementation of the Raft consensus protocol](/copycat/docs).
 
-Resources are created by simply using one of `Atomix`'s `get*` methods or passing a custom `Resource` class to `getResource`:
+Resources are created by simply using one of [`Atomix`][Atomix]'s `get*` methods or passing a custom [`Resource`][Resource] class to [`getResource`][Atomix.getResource]:
 
 ```java
 DistributedMap<String, String> map = atomix.getMap("my-map").join();

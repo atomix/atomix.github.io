@@ -84,81 +84,10 @@ java -jar atomix-standalone-server.jar 123.456.789.1:8700 -join 123.456.789.0:87
 
 ### Configuring a standalone server
 
-Replicas support a number of configuration options that are typically configurable via the `AtomixReplica.Builder` API. WHen running a standalone Atomix server, the same properties can be configured by passing a properties file as the `-config` to the server.
+Replicas support a number of configuration options that are typically configurable via the [`AtomixReplica.Builder`][AtomixReplica.Builder] API. WHen running a standalone Atomix server, the same properties can be configured by passing a properties file as the `-config` to the server.
 
 ```
 java -jar atomix-standalone-server.jar 123.456.789.1:8700 -bootstrap -config atomix.properties
-```
-
-Following is an example replica properties file:
-
-```
-# This is the transport to use to communicate between replicas. The transport must
-# be the same class on all replicas.
-replica.transport=io.atomix.catalyst.transport.NettyTransport
-
-# These are standard TCP configuration options.
-replica.transport.connectTimeout=5000
-replica.transport.sendBufferSize=-1
-replica.transport.receiveBufferSize=-1
-replica.transport.reuseAddress=true
-replica.transport.tcpKeepAlive=true
-replica.transport.tcpNoDelay=false
-replica.transport.acceptBacklog=1024
-
-# This property indicates whether SSL should be enabled for the transport.
-replica.transport.ssl.enabled=false
-
-# These properties are Raft-specific configurations that define the intervals at which
-# Raft servers and clients communicate with one another. The electionTimeout and heartbeatInterval
-# control the frequency of communication between servers. The sessionTimeout controls the
-# frequency of keep-alive requests from clients. Note that decreasing the sessionTimeout can
-# result in e.g. a lock held by a crashed node being released sooner, but decreasing the sessionTimeout
-# also implies more overhead for frequent keep-aive requests.
-raft.electionTimeout=1000
-raft.heartbeatInterval=500
-raft.sessionTimeout=10000
-
-# These properties dictate how Raft logs are stored for this replica. By default, Atomix stores
-# logs on disk. Alternatively, the MAPPED and MEMORY storage.level can be used for greater efficiency
-# at the potential expense of more memory consumption and loss of safety. In order for writes to be
-# lost in a cluster of replicas using storage.level=MEMORY, a majority of the cluster would have
-# to crash and lose their logs from memory.
-storage.level=DISK
-storage.directory=logs
-storage.maxSegmentSize=33554432
-storage.maxEntriesPerSegment=1048576
-
-# These properties dictate the behavior of log compaction in Atomix. Log compaction includes a
-# combination of incremental rewrites of the log and storage of snapshots of the system's state.
-# Snapshots inherit the storage.level, so snapshots stored with storage.level=MEMORY will not
-# be stored on disk but can be replicated to other servers.
-storage.compaction.retainSnapshots=false
-storage.compaction.threads=2
-storage.compaction.minor=60000
-storage.compaction.major=600000
-storage.compaction.threshold=0.5
-
-# These properties dictate the behavior of the serializer. Serializable types can be registered
-# along with serializable type IDs for more efficient serialization.
-
-# This property indicates whether serializable types must be whitelisted. If types must be whitelisted
-# for serialization, serializable types must be registered in the serializer.types.* properties.
-# If whitelisting is disabled, unregistered types may be serialized with their class name.
-serializer.whitelist=false
-serializer.allocator=io.atomix.catalyst.buffer.PooledHeapAllocator
-
-# This is an example of a serializable type and custom serializer.
-serializer.types.1=com.mycompany.FooClass
-serializer.serializers.1=com.mycompany.FooClassSerializer
-
-# This is an example of a serializable abstract type and a custom abstract type serializer.
-serializer.types.2=com.mycompany.AbstractFooClass
-serializer.abstractSerializers.2=com.mycompany.AbstractFooClassSerializer
-
-# This is an example of a serialization framework interface and the default framework serializer.
-serializer.types.3=com.mycompany.MyCompanySerializable
-serializer.defaultSerializers.3=com.mycompany.MyCompanySerializableSerializer
 ```
 
 {% include common-links.html %}

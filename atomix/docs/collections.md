@@ -13,7 +13,7 @@ The `atomix-collections` module provides a set of asynchronous, distributed coll
 
 The [`DistributedMap`][DistributedMap] resources provides an asynchronous API similar to that of `java.util.Map`.
 
-To create a [`DistributedMap`][DistributedMap], use the `Atomix.getMap` method:
+To create a [`DistributedMap`][DistributedMap], use the [`Atomix.getMap`][Atomix.getMap] method:
 
 ```java
 atomix.<String, String>getMap("foo-map").thenAccept(map -> {
@@ -54,7 +54,7 @@ Note that TTL timers are deterministically controlled by the cluster leader and 
 
 The [`DistributedMultiMap`][DistributedMultiMap] resources provides a map-like API for storing multiple values for each key in a map.
 
-To create a [`DistributedMultiMap`][DistributedMultiMap], use the `Atomix.getMultiMap` method:
+To create a [`DistributedMultiMap`][DistributedMultiMap], use the [`Atomix.getMultiMap`][Atomix.getMultiMap] method:
 
 ```java
 atomix.<String, String>getMultiMap("foo-map").thenAccept(map -> {
@@ -77,7 +77,7 @@ assert values.contains("Hello world again!");
 
 The [`DistributedSet`][DistributedSet] resources provides an asynchronous API similar to that of `java.util.Set`.
 
-To create a [`DistributedSet`][DistributedSet], use the `Atomix.getSet` method:
+To create a [`DistributedSet`][DistributedSet], use the [`Atomix.getSet`][Atomix.getSet] method:
 
 ```java
 atomix.<String>getSet("foo-set").thenAccept(set -> {
@@ -116,7 +116,7 @@ Note that TTL timers are deterministically controlled by the cluster leader and 
 
 The [`DistributedQueue`][DistributedQueue] resources provides an asynchronous API similar to that of `java.util.Queue`.
 
-To create a [`DistributedQueue`][DistributedQueue], use the `Atomix.getQueue` method:
+To create a [`DistributedQueue`][DistributedQueue], use the [`Atomix.getQueue`][Atomix.getQueue] method:
 
 ```java
 atomix.<String>getQueue("foo-queue").thenAccept(queue -> {
