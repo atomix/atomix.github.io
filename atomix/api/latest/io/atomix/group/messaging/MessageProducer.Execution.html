@@ -124,7 +124,22 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public static enum <span class="typeNameLabel">MessageProducer.Execution</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;<a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html" title="enum in io.atomix.group.messaging">MessageProducer.Execution</a>&gt;</pre>
-<div class="block">Execution policy.</div>
+<div class="block">Execution policy for defining the criteria for completion of a message produced by a producer.
+ <p>
+ Execution policies define how a producer interacts with the cluster and the type of feedback a producer
+ expects from consumers. Producers send messages through the Atomix cluster, and send operations may be
+ completed when committed to the cluster or when acknowledged by consumers depending on the configured
+ execution policy.
+ <ul>
+   <li><a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html#SYNC"><code>SYNC</code></a> producers send messages to consumers
+   and await acknowledgement from the consumer side of the queue. If a producer is producing to an entire group,
+   synchronous producers will await acknowledgement from all members of the group.</li>
+   <li><a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html#ASYNC"><code>ASYNC</code></a> producers await acknowledgement of
+   persistence in the cluster but not acknowledgement that messages have been received and processed by consumers.</li>
+   <li><a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html#REQUEST_REPLY"><code>REQUEST_REPLY</code></a> producers await
+   arbitrary responses from all consumers to which a message is sent. If a message is sent to a group of consumers,
+   message reply futures will be completed with a list of reply values.</li>
+ </ul></div>
 </li>
 </ul>
 </div>
@@ -144,17 +159,18 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html#ASYNC">ASYNC</a></span></code>
-<div class="block">Asynchronous execution policy.</div>
+<div class="block">Awaits acknowledgement of persistence in the cluster but not acknowledgement that messages have been received
+ and processed by consumers.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html#REQUEST_REPLY">REQUEST_REPLY</a></span></code>
-<div class="block">Request-reply execution policy.</div>
+<div class="block">Awaits arbitrary responses from all consumers to which a message is sent.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html#SYNC">SYNC</a></span></code>
-<div class="block">Synchronous execution policy.</div>
+<div class="block">Sends messages to consumers and awaits acknowledgement from the consumer side of the queue.</div>
 </td>
 </tr>
 </table>
@@ -221,7 +237,8 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>SYNC</h4>
 <pre>public static final&nbsp;<a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html" title="enum in io.atomix.group.messaging">MessageProducer.Execution</a> SYNC</pre>
-<div class="block">Synchronous execution policy.</div>
+<div class="block">Sends messages to consumers and awaits acknowledgement from the consumer side of the queue. If a producer
+ is producing to an entire group, synchronous producers will await acknowledgement from all members of the group.</div>
 </li>
 </ul>
 <a name="ASYNC">
@@ -231,7 +248,9 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>ASYNC</h4>
 <pre>public static final&nbsp;<a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html" title="enum in io.atomix.group.messaging">MessageProducer.Execution</a> ASYNC</pre>
-<div class="block">Asynchronous execution policy.</div>
+<div class="block">Awaits acknowledgement of persistence in the cluster but not acknowledgement that messages have been received
+ and processed by consumers. Once a message is completed by a asynchronous producer, the message is guaranteed to
+ be persisted on a majority of the cluster and will eventually be delivered to consumers.</div>
 </li>
 </ul>
 <a name="REQUEST_REPLY">
@@ -241,7 +260,8 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>REQUEST_REPLY</h4>
 <pre>public static final&nbsp;<a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html" title="enum in io.atomix.group.messaging">MessageProducer.Execution</a> REQUEST_REPLY</pre>
-<div class="block">Request-reply execution policy.</div>
+<div class="block">Awaits arbitrary responses from all consumers to which a message is sent. If a message is sent to a group of
+ consumers, message reply futures will be completed with a list of reply values.</div>
 </li>
 </ul>
 </li>

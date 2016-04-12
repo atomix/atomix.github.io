@@ -107,7 +107,55 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public interface <span class="typeNameLabel">MessageProducer&lt;T&gt;</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></pre>
-<div class="block">Message producer.</div>
+<div class="block">Produces messages to a remote <a href="../../../../io/atomix/group/messaging/MessageService.html" title="interface in io.atomix.group.messaging"><code>MessageService</code></a> queue.
+ <p>
+ Producers facilitate sending messages to remote queues through the Atomix cluster. Producers can be used
+ to broadcast messages to entire groups or send direct messages to random or specific members of a group.
+ Messages can be sent synchronously or asynchronously, or producers can await replies from consumers.
+ <p>
+ When messages are sent by a producer to consumers, they're sent through the Atomix cluster as writes to
+ the group's replicated state machine. Messages are enqueued in memory on each stateful server in the cluster
+ until received and acknowledged by the appropriate consumers.
+ <p>
+ To configure a message producer, the producer must be constructed with
+ <a href="../../../../io/atomix/group/messaging/MessageProducer.Options.html" title="class in io.atomix.group.messaging"><code>Options</code></a>.
+ <pre>
+   <code>
+   MessageProducer.Options options = new MessageProducer.Options()
+     .withExecution(MessageProducer.Execution.ASYNC)
+     .withDelivery(MessageProducer.Delivery.RANDOM);
+   MessageProducer&lt;String&gt; producer = group.messaging().producer("foo");
+   producer.send("Hello world!").thenRun(() -&gt; {
+     // Message was stored to the cluster
+   });
+   </code>
+ </pre>
+ The configured <a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html" title="enum in io.atomix.group.messaging"><code>Execution</code></a> defines the criteria for
+ completion of messages sent by a producer.
+ <ul>
+   <li><a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html#SYNC"><code>SYNC</code></a> producers send messages to consumers
+   and await acknowledgement from the consumer side of the queue. If a producer is producing to an entire group,
+   synchronous producers will await acknowledgement from all members of the group.</li>
+   <li><a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html#ASYNC"><code>ASYNC</code></a> producers await acknowledgement of
+   persistence in the cluster but not acknowledgement that messages have been received and processed by consumers.</li>
+   <li><a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html#REQUEST_REPLY"><code>REQUEST_REPLY</code></a> producers await
+   arbitrary responses from all consumers to which a message is sent. If a message is sent to a group of consumers,
+   message reply futures will be completed with a list of reply values.</li>
+ </ul>
+ The configured <a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html" title="enum in io.atomix.group.messaging"><code>Delivery</code></a> defines how messages are delivered
+ to consumers, particularly when the producer is sending messages to a group.
+ <ul>
+   <li><a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html#DIRECT"><code>DIRECT</code></a> producers send messages directly to
+   specific group members. This option applies only to producers constructed from <a href="../../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group"><code>GroupMember</code></a>
+   messaging clients.</li>
+   <li><a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html#RANDOM"><code>MessageProducer.Delivery.RANDOM</code></a> producers send each message to a random
+   member of the group. In the event that a message is not successfully <a href="../../../../io/atomix/group/messaging/Message.html#ack--"><code>acknowledged</code></a> by a
+   member and that member fails or leaves the group, random messages will be redelivered to remaining members
+   of the group.</li>
+   <li><a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html#BROADCAST"><code>MessageProducer.Delivery.BROADCAST</code></a> producers send messages to all available
+   members of a group. This option applies only to producers constructed from <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a>
+   messaging clients.</li>
+ </ul></div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -133,19 +181,20 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html" title="enum in io.atomix.group.messaging">MessageProducer.Delivery</a></span></code>
-<div class="block">Delivery policy.</div>
+<div class="block">Delivery policy for defining how messages are delivered to consumers, particularly when producing messages to
+ a group.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html" title="enum in io.atomix.group.messaging">MessageProducer.Execution</a></span></code>
-<div class="block">Execution policy.</div>
+<div class="block">Execution policy for defining the criteria for completion of a message produced by a producer.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageProducer.Options.html" title="class in io.atomix.group.messaging">MessageProducer.Options</a></span></code>
-<div class="block">Task producer options.</div>
+<div class="block">Message producer options.</div>
 </td>
 </tr>
 </table>
@@ -165,7 +214,9 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>default void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageProducer.html#close--">close</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageProducer.html#close--">close</a></span>()</code>
+<div class="block">Closes the producer.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>&lt;U&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;U&gt;</code></td>
@@ -197,7 +248,23 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <li class="blockList">
 <h4>send</h4>
 <pre>&lt;U&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;U&gt;&nbsp;send(<a href="../../../../io/atomix/group/messaging/MessageProducer.html" title="type parameter in MessageProducer">T</a>&nbsp;message)</pre>
-<div class="block">Sends a message.</div>
+<div class="block">Sends a message.
+ <p>
+ The behavior of the queue when sending a message is defined by the configured producer
+ <a href="../../../../io/atomix/group/messaging/MessageProducer.Options.html" title="class in io.atomix.group.messaging"><code>Options</code></a>. All messages when sent by a producer are
+ committed as writes to the Atomix cluster, but the returned <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> will be completed based
+ on the configured <a href="../../../../io/atomix/group/messaging/MessageProducer.Execution.html" title="enum in io.atomix.group.messaging"><code>Execution</code></a> and
+ <a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html" title="enum in io.atomix.group.messaging"><code>Delivery</code></a> policies.
+ <pre>
+   <code>
+   MessageProducer.Options options = new MessageProducer.Options()
+     .withExecution(Execution.SYNC);
+   MessageProducer&lt;String&gt; producer = member.messaging().producer("foo");
+   producer.send("Hello world!").thenRun(() -&gt; {
+     // Consumer acknowledged the message
+   });
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>message</code> - The message to send.</dd>
@@ -213,6 +280,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseabl
 <li class="blockList">
 <h4>close</h4>
 <pre>default&nbsp;void&nbsp;close()</pre>
+<div class="block">Closes the producer.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true#close--" title="class or interface in java.lang">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></code></dd>

@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../io/atomix/group/LocalMember.html" title="interface in io.atomix.group"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -139,7 +139,7 @@ var activeTableTab = "activeTableTab";
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/group/messaging/MessageClient.html" title="interface in io.atomix.group.messaging">MessageClient</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupMember.html#messaging--">messaging</a></span>()</code>
-<div class="block">Returns the member message client.</div>
+<div class="block">Returns the direct message client for this member.</div>
 </td>
 </tr>
 </table>
@@ -181,10 +181,20 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>messaging</h4>
 <pre><a href="../../../io/atomix/group/messaging/MessageClient.html" title="interface in io.atomix.group.messaging">MessageClient</a>&nbsp;messaging()</pre>
-<div class="block">Returns the member message client.</div>
+<div class="block">Returns the direct message client for this member.
+ <p>
+ The message client can be used to send direct messages to this member. To send a direct message, create
+ a producer via the returned <a href="../../../io/atomix/group/messaging/MessageClient.html" title="interface in io.atomix.group.messaging"><code>MessageClient</code></a>.
+ <pre>
+   <code>
+   GroupMember member = group.member("foo");
+   MessageProducer&lt;String&gt; producer = member.messaging().producer("bar");
+   producer.send("baz");
+   </code>
+ </pre></div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The member message client.</dd>
+<dd>The direct message client for this member.</dd>
 </dl>
 </li>
 </ul>
@@ -216,7 +226,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../io/atomix/group/LocalMember.html" title="interface in io.atomix.group"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

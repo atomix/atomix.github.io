@@ -124,7 +124,25 @@ var activeTableTab = "activeTableTab";
 <br>
 <pre>public static enum <span class="typeNameLabel">MessageProducer.Delivery</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;<a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html" title="enum in io.atomix.group.messaging">MessageProducer.Delivery</a>&gt;</pre>
-<div class="block">Delivery policy.</div>
+<div class="block">Delivery policy for defining how messages are delivered to consumers, particularly when producing messages to
+ a group.
+ <p>
+ Delivery policies define how messages are delivered to consumers once persisted in the Atomix cluster. When sending
+ messages directly to a specific member of a group, delivery policies typically do not apply. However, for producers
+ created via the group-wide <a href="../../../../io/atomix/group/messaging/MessageClient.html" title="interface in io.atomix.group.messaging"><code>MessageClient</code></a>, delivery policies allow producers to control how the cluster
+ delivers messages to producers.
+ <ul>
+   <li><a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html#DIRECT"><code>DIRECT</code></a> producers send messages directly to
+   specific group members. This option applies only to producers constructed from <a href="../../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group"><code>GroupMember</code></a>
+   messaging clients.</li>
+   <li><a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html#RANDOM"><code>RANDOM</code></a> producers send each message to a random
+   member of the group. In the event that a message is not successfully <a href="../../../../io/atomix/group/messaging/Message.html#ack--"><code>acknowledged</code></a> by a
+   member and that member fails or leaves the group, random messages will be redelivered to remaining members
+   of the group.</li>
+   <li><a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html#BROADCAST"><code>BROADCAST</code></a> producers send messages to all available
+   members of a group. This option applies only to producers constructed from <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a>
+   messaging clients.</li>
+ </ul></div>
 </li>
 </ul>
 </div>
@@ -144,17 +162,17 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html#BROADCAST">BROADCAST</a></span></code>
-<div class="block">Delivers a message to all members of a group.</div>
+<div class="block">Sends messages to all available members of a group.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html#DIRECT">DIRECT</a></span></code>
-<div class="block">Delivers a message directly to a specific member.</div>
+<div class="block">Sends messages directly to specific group members.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html#RANDOM">RANDOM</a></span></code>
-<div class="block">Delivers a message to a random member.</div>
+<div class="block">Sends each message to a random member of the group.</div>
 </td>
 </tr>
 </table>
@@ -221,7 +239,8 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>DIRECT</h4>
 <pre>public static final&nbsp;<a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html" title="enum in io.atomix.group.messaging">MessageProducer.Delivery</a> DIRECT</pre>
-<div class="block">Delivers a message directly to a specific member.</div>
+<div class="block">Sends messages directly to specific group members. This option applies only to producers constructed from
+ <a href="../../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group"><code>GroupMember</code></a> messaging clients.</div>
 </li>
 </ul>
 <a name="RANDOM">
@@ -231,7 +250,9 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>RANDOM</h4>
 <pre>public static final&nbsp;<a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html" title="enum in io.atomix.group.messaging">MessageProducer.Delivery</a> RANDOM</pre>
-<div class="block">Delivers a message to a random member.</div>
+<div class="block">Sends each message to a random member of the group. In the event that a message is not successfully
+ <a href="../../../../io/atomix/group/messaging/Message.html#ack--"><code>acknowledged</code></a> by a member and that member fails or leaves the group, random messages
+ will be redelivered to remaining members of the group.</div>
 </li>
 </ul>
 <a name="BROADCAST">
@@ -241,7 +262,8 @@ the order they are declared.</div>
 <li class="blockList">
 <h4>BROADCAST</h4>
 <pre>public static final&nbsp;<a href="../../../../io/atomix/group/messaging/MessageProducer.Delivery.html" title="enum in io.atomix.group.messaging">MessageProducer.Delivery</a> BROADCAST</pre>
-<div class="block">Delivers a message to all members of a group.</div>
+<div class="block">Sends messages to all available members of a group. This option applies only to producers constructed from
+ <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> messaging clients.</div>
 </li>
 </ul>
 </li>

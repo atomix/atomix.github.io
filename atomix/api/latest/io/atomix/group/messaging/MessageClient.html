@@ -106,7 +106,25 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">MessageClient</span></pre>
-<div class="block">Task client.</div>
+<div class="block">Provides an interface for producing messages to a group or a member of a group.
+ <p>
+ <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> facilitates messaging between instances and members of a group through
+ the message client. Message clients can be used to send publish-subscribe style messages to all members of a group
+ or direct messages to specific members of a group. Producers define how the cluster sends messages to consumers
+ through configurable <a href="../../../../io/atomix/group/messaging/MessageProducer.Options.html" title="class in io.atomix.group.messaging"><code>MessageProducer.Options</code></a>.
+ <p>
+ To create a producer, use one of the <a href="../../../../io/atomix/group/messaging/MessageClient.html#producer-java.lang.String-"><code>producer</code></a> factory methods, passing the name of
+ a queue to which to produce messages. Message clients send messages to <a href="../../../../io/atomix/group/messaging/MessageService.html" title="interface in io.atomix.group.messaging"><code>MessageService</code></a>s, and queues are
+ local to each <code>MessageService</code> instance. Each member has a unique <a href="../../../../io/atomix/group/messaging/MessageService.html" title="interface in io.atomix.group.messaging"><code>MessageService</code></a> with a unique set
+ of queues.
+ <pre>
+   <code>
+   MessageProducer&lt;String&gt; producer = group.messaging().producer("foo");
+   producer.send("Hello world!");
+   </code>
+ </pre>
+ When a producer is created, a new instance of the producer is returned. A reference to the <a href="../../../../io/atomix/group/messaging/MessageProducer.html" title="interface in io.atomix.group.messaging"><code>MessageProducer</code></a>
+ instance must be retained for receiving responses and acks from the cluster.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo>Jordan Halterman</a></dd>
@@ -131,12 +149,16 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>default &lt;T&gt;&nbsp;<a href="../../../../io/atomix/group/messaging/MessageProducer.html" title="interface in io.atomix.group.messaging">MessageProducer</a>&lt;T&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageClient.html#producer-java.lang.String-">producer</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageClient.html#producer-java.lang.String-">producer</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
+<div class="block">Returns a new named message producer.</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../../io/atomix/group/messaging/MessageProducer.html" title="interface in io.atomix.group.messaging">MessageProducer</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/group/messaging/MessageClient.html#producer-java.lang.String-io.atomix.group.messaging.MessageProducer.Options-">producer</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-        <a href="../../../../io/atomix/group/messaging/MessageProducer.Options.html" title="class in io.atomix.group.messaging">MessageProducer.Options</a>&nbsp;options)</code>&nbsp;</td>
+        <a href="../../../../io/atomix/group/messaging/MessageProducer.Options.html" title="class in io.atomix.group.messaging">MessageProducer.Options</a>&nbsp;options)</code>
+<div class="block">Returns a new named message producer.</div>
+</td>
 </tr>
 </table>
 </li>
@@ -160,6 +182,32 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>producer</h4>
 <pre>default&nbsp;&lt;T&gt;&nbsp;<a href="../../../../io/atomix/group/messaging/MessageProducer.html" title="interface in io.atomix.group.messaging">MessageProducer</a>&lt;T&gt;&nbsp;producer(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
+<div class="block">Returns a new named message producer.
+ <p>
+ The returned <a href="../../../../io/atomix/group/messaging/MessageProducer.html" title="interface in io.atomix.group.messaging"><code>MessageProducer</code></a> can be used to send messages to a queue of the provided <code>name</code>.
+ Named queues are local to the <a href="../../../../io/atomix/group/messaging/MessageService.html" title="interface in io.atomix.group.messaging"><code>MessageService</code></a> to which this client is connected. For example, if this
+ client belongs to a <a href="../../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group"><code>GroupMember</code></a> then sending messages through the client will be sent
+ directly to the associated member and never to any other member. If the client belongs to a
+ <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> then messages can be sent to one or all members of the group depending
+ on the provided <a href="../../../../io/atomix/group/messaging/MessageProducer.Options.html" title="class in io.atomix.group.messaging"><code>MessageProducer.Options</code></a>.
+ <p>
+ The returned producer will be configured with default <a href="../../../../io/atomix/group/messaging/MessageProducer.Options.html" title="class in io.atomix.group.messaging"><code>Options</code></a>.
+ <pre>
+   <code>
+   MessageProducer&lt;String&gt; producer = member.messaging().producer("foo");
+   producer.send("Hello world!");
+   </code>
+ </pre></div>
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The message type.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - The producer name.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A new named message producer.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the producer <code>name</code> is <code>null</code></dd>
+</dl>
 </li>
 </ul>
 <a name="producer-java.lang.String-io.atomix.group.messaging.MessageProducer.Options-">
@@ -170,6 +218,38 @@ var activeTableTab = "activeTableTab";
 <h4>producer</h4>
 <pre>&lt;T&gt;&nbsp;<a href="../../../../io/atomix/group/messaging/MessageProducer.html" title="interface in io.atomix.group.messaging">MessageProducer</a>&lt;T&gt;&nbsp;producer(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                                 <a href="../../../../io/atomix/group/messaging/MessageProducer.Options.html" title="class in io.atomix.group.messaging">MessageProducer.Options</a>&nbsp;options)</pre>
+<div class="block">Returns a new named message producer.
+ <p>
+ The returned <a href="../../../../io/atomix/group/messaging/MessageProducer.html" title="interface in io.atomix.group.messaging"><code>MessageProducer</code></a> can be used to send messages to a queue of the provided <code>name</code>.
+ Named queues are local to the <a href="../../../../io/atomix/group/messaging/MessageService.html" title="interface in io.atomix.group.messaging"><code>MessageService</code></a> to which this client is connected. For example, if this
+ client belongs to a <a href="../../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group"><code>GroupMember</code></a> then sending messages through the client will be sent
+ directly to the associated member and never to any other member. If the client belongs to a
+ <a href="../../../../io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> then messages can be sent to one or all members of the group depending
+ on the provided <a href="../../../../io/atomix/group/messaging/MessageProducer.Options.html" title="class in io.atomix.group.messaging"><code>MessageProducer.Options</code></a>.
+ <pre>
+   <code>
+   MessageProducer.Options options = new MessageProducer.Options()
+     .withExecution(MessageProducer.Execution.ASYNC)
+     .withDelivery(MessageProducer.Delivery.RANDOM);
+   MessageProducer&lt;String&gt; producer = group.messaging().producer("foo");
+   producer.send("Hello world!").thenRun(() -&gt; {
+     // Message was stored to the cluster
+   });
+   </code>
+ </pre></div>
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The message type.</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>name</code> - The producer name.</dd>
+<dd><code>options</code> - The producer options.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A new named message producer.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the producer <code>name</code> is <code>null</code></dd>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../io/atomix/group/messaging/MessageProducer.Options.html" title="class in io.atomix.group.messaging"><code>MessageProducer.Options</code></a></dd>
+</dl>
 </li>
 </ul>
 </li>
