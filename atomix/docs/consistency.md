@@ -38,7 +38,7 @@ Atomix supports per-operation configurable read consistency levels. This allows 
 Overloaded methods with consistency parameters are provided throughout Atomix's resources wherever it makes sense. In many cases, resources dictate the strongest consistency levels - e.g. [concurrent][concurrency] - and so weaker consistency levels are not allowed.
 
 ```java
-map.get("foo", ReadConsistency.SEQUENTIAL).get();
+map.get("foo", ReadConsistency.SEQUENTIAL).join();
 ```
 
 ## Event Consistency

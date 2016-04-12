@@ -10,7 +10,7 @@ The [`DistributedGroup`][DistributedGroup] resource facilitates managing group m
 
 Groups membership is managed in a replicated state machine. When a member joins the group, the join request is replicated, the member is added to the group, and the state machine notifies instances of the [`DistributedGroup`][DistributedGroup] of the membership change. In the event that a group instance becomes disconnected from the cluster and its session times out, the replicated state machine will automatically remove the member from the group and notify the remaining instances of the group of the membership change.
 
-To create a membership group resource, use the [`DistributedGroup`][DistributedGroup] class or constructor:
+To create a membership group resource, use the [`Atomix#getGroup(String)`][Atomix.getGroup] method:
 
 ```java
 atomix.getGroup("my-group").thenAccept(group -> {
@@ -18,11 +18,19 @@ atomix.getGroup("my-group").thenAccept(group -> {
 });
 ```
 
+An optional group configuration can be passed as a second argument when creating a group. The configuration is cluster-wide and will only apply to the group the first time the resource is created by any node:
+
+```java
+DistributedGroup.Config config = new DistributedGroup.Config()
+  .withMemberExpiration(Duration.ofMinutes(10));
+DistributedGroup group = atomix.getGroup("my-group").join();
+```
+
 ### Joining the group
 
 When a new instance of the resource is created, it is initialized with an empty [`members()`][DistributedGroup.members] list
 as it is not yet a member of the group. Once the instance has been created, the user must join the group
-via the [`join`][DistributedGroup.join] method:
+via the [`join()`][DistributedGroup.join] method:
 
 ```java
 group.join().thenAccept(member -> {
@@ -34,7 +42,7 @@ Once the group has been joined, a [`LocalMember`][LocalMember] instance will be 
 
 ### Leaving the group
 
-Once a member has joined a group, the [`LocalMember`][LocalMember] can be used to remove the member from the group by calling the [`leave`][LocalMember.leave] method:
+Once a member has joined a group, the [`LocalMember`][LocalMember] can be used to remove the member from the group by calling the [`leave()`][LocalMember.leave] method:
 
 ```java
 LocalMember localMember = group.join().join();
@@ -45,7 +53,7 @@ Even without explicitly leaving the group, it's important to note that when the 
 
 ### Listening for members joining the group
 
-Clients can listen for members joining the group by registering event listeners through the [`onJoin`][DistributedGroup.onJoin] method.
+Clients can listen for members joining the group by registering event listeners through the [`onJoin(Consumer)`][DistributedGroup.onJoin] method.
 
 ```java
 group.onJoin(member -> {
@@ -57,7 +65,7 @@ When a member joins the group, all open instances of the [`DistributedGroup`][Di
 
 ### Listening for members leaving the group
 
-As with listening for members joining the group, clients can also listen for members leaving the group by registering a listener through the [`onLeave`][DistributedGroup.onLeave] method:
+As with listening for members joining the group, clients can also listen for members leaving the group by registering a listener through the [`onLeave(Consumer)`][DistributedGroup.onLeave] method:
 
 ```java
 group.onLeave(member -> {
@@ -65,7 +73,7 @@ group.onLeave(member -> {
 });
 ```
 
-Leave events may occur when a member explicitly [`leave`][LocalMember.leave]s the group or when the node to which a member belongs crashes or is otherwise disconnected from the cluster. When a client's session expires, the group state machine automatically removes members associated with that session from the group.
+Leave events may occur when a member explicitly leaves the group or when the node to which a member belongs crashes or is otherwise disconnected from the cluster. When a client's session expires, the group state machine automatically removes members associated with that session from the group.
 
 ### Listing the members in the group
 
@@ -82,9 +90,9 @@ Once the group instance has been created, the group membership will be automatic
 
 ### Persistent members
 
-[`DistributedGroup`][DistributedGroup] supports a concept of persistent members that requires members to *explicitly* `leave` the group to be removed from it. Persistent member messages will remain in a failed member's queue until the member recovers.
+[`DistributedGroup`][DistributedGroup] supports a concept of persistent members that requires members to *explicitly* leave the group to be removed from it. Persistent member messages will remain in a failed member's queue until the member recovers.
 
-In order to support recovery, persistent members must be configured with a user-provided member ID. The member ID is provided when the member [`join`][DistributedGroup.join]s the group, and providing a member ID is all that's required to create a persistent member.
+In order to support recovery, persistent members must be configured with a user-provided member ID. The member ID is provided when the member joins the group, and providing a member ID is all that's required to create a persistent member via the [`join(String)`][DistributedGroup.join] method.
 
 ```java
 DistributedGroup group = atomix.getGroup("persistent-members").join();
@@ -94,13 +102,13 @@ LocalGroupMember memberB = group.join("b").join();
 
 Persistent members are not limited to a single node. If a node crashes, any persistent members that existed on that node may rejoin the group on any other node. Persistent members rejoin simply by calling [`join(String)`][DistributedGroup.join] with the unique member ID. Once a persistent member has rejoined the group, its session will be updated and any tasks remaining in the member's [`MessageService`][MessageService] will be published to the member.
 
-Persistent member state is retained *only* inside the group's replicated state machine and not on clients. From the perspective of [`DistributedGroup`][DistributedGroup] instances in a cluster, in the event that the node on which a persistent member is running fails, the member will `leave` the group. Once the persistent member rejoins the group, join listeners will be called again on each group instance in the cluster.
+Persistent member state is retained *only* inside the group's replicated state machine and not on clients. From the perspective of [`DistributedGroup`][DistributedGroup] instances in a cluster, in the event that the node on which a persistent member is running fails, the member will leave the group. Once the persistent member rejoins the group, join listeners will be called again on each group instance in the cluster.
 
 ## Leader election
 
 The [`DistributedGroup`][DistributedGroup] resource facilitates leader election which can be used to coordinate a group by ensuring only a single member of the group performs some set of operations at any given time. Leader election is a core concept of membership groups, and because leader election is a low-overhead process, leaders are elected for each group automatically.
 
-Leaders are elected using a fair policy. The first member to [`join()`][DistributedGroup.join] a group will always become the initial group leader. Each unique leader in a group is associated with a [`term()`][Term.term]. The term represents a globally unique, monotonically increasing token that can be used for fencing. Users can listen for changes in group terms and leaders with event listeners:
+Leaders are elected using a fair policy. The first member to join a group will always become the initial group leader. Thereafter, for each election the cluster will elect a random member of the group. Each unique leader in a group is associated with a [`term()`][Term.term]. The term represents a globally unique, monotonically increasing token that can be used for fencing. Users can listen for changes in group terms and leaders with event listeners:
 
 ```java
 DistributedGroup group = atomix.getGroup("election-group").get();
@@ -141,7 +149,7 @@ Producers can be configured to send messages using three execution policies:
 * `ASYNC` awaits acknowledgement of persistence in the cluster but not acknowledgement that messages have been received and processed by consumers.
 * `REQUEST_REPLY` awaits arbitrary responses from all consumers to which a message is sent. If a message is sent to a group of consumers, message reply futures will be completed with a list of reply values.
 
-When the [`MessageProducer`][MessageProducer] is configured with the `ASYNC` execution policy, the [`CompletableFuture`][CompletableFuture] returned by the `send` method will be completed as soon as the message is persisted in the cluster.
+When the [`MessageProducer`][MessageProducer] is configured with the `ASYNC` execution policy, the [`CompletableFuture`][CompletableFuture] returned by the [`send(Object)`][MessageProducer.send] method will be completed as soon as the message is persisted in the cluster.
 
 ### Broadcast messaging
 
@@ -172,7 +180,7 @@ Delivery policies work in tandem with [`MessageProducer.Execution`][MessageProdu
 ### Message consumers
 
 Messages delivered to a group member must be received by listeners registered on the [`LocalMember`][LocalMember]'s
-[`MessageService`][MessageService]. Only the node to which a member belongs can listen for messages sent to that member. Thus, to listen for messages, join a group and create a [`MessageConsumer`][MessageConsumer].
+[`MessageService`][MessageService]. Only the node to which a member belongs can listen for messages sent to that member. Thus, to listen for messages, join a group and create a [`MessageConsumer`][MessageConsumer]. To listen for messages on a consumer, register a consumer callback via the [`onMessage(Consumer)`][MessageConsumer.onMessage] method:
 
 ```java
 LocalMember localMember = group.join().join();
@@ -182,7 +190,7 @@ consumer.onMessage(message -> {
 });
 ```
 
-When a message is received, consumers must always `ack` or `reply` to the message. Failure to ack or reply to a message will result in a memory leak in the cluster and failure to deliver any additional messages to the consumer. When a consumer acknowledges a message, the message will be removed from memory in the cluster and the producer that sent the message will be notified according to its configuration.
+When a [`Message`][Message] is received, consumers must always call [`ack()`][Message.ack], [`fail()`][Message.fail], or [`reply(Object)`][Message.reply]. Failure to complete handling of a message will result in a memory leak in the cluster and failure to deliver any additional messages to the consumer. When a consumer acknowledges a message, the message will be removed from memory in the cluster and the producer that sent the message will be notified according to its configuration.
 
 ### Persistent messaging
 
@@ -198,7 +206,7 @@ consumer.onMessage(message -> {
 
 When a message is sent to a persistent member, the message will be persisted in the cluster until it can be delivered to that member regardless of whether the member is actively connected to the cluster. If the persistent member crashes, once the member rejoins the group pending messages will be delivered. Persistent members are also free to switch nodes to rejoin the group on live nodes, and pending messages will still be redelivered.
 
-Users must take care, however, when using persistent members. `BROADCAST` messages sent to groups with persistent members that are not connected to the cluster will be persisted in memory in the cluster until they can be delivered. If the producer that broadcasts the message is configured to await acknowledgement or replies from members, producer `send` operations cannot be completed until dead members rejoin the group.
+Users must take care, however, when using persistent members. `BROADCAST` messages sent to groups with persistent members that are not connected to the cluster will be persisted in memory in the cluster until they can be delivered. If the producer that broadcasts the message is configured to await acknowledgement or replies from members, producer [`send(Object)`][MessageProducer.send] operations cannot be completed until dead members rejoin the group.
 
 ## Serialization
 

@@ -21,9 +21,9 @@ Once a node has fully joined the Raft cluster, in the event of a failure the quo
 
 Each [`CopycatServer`][CopycatServer] consists of three essential components:
 
-* [Transport] - Used to communicate with clients and other servers
-* [Storage] - Used to persist [commands] to memory or disk
-* [StateMachine][state-machines] - Represents state resulting from [commands] logged and replicated via Raft
+* [`Transport`][Transport] - Used to communicate with clients and other servers
+* [`Storage`][Storage] - Used to persist [`Command`][Command]s to memory or disk
+* [`StateMachine`][StateMachine] - Represents state resulting from [`Command`][Command]s logged and replicated via Raft
 
 To create a new server, use the server [`Builder`][CopycatServer.Builder]. Servers require cluster membership information in order to perform communication. Each server must be provided a local [`Address`][Address] to which to bind the internal [`Server`][Server] and a set of addresses for other members in the cluster.
 
@@ -45,7 +45,7 @@ CopycatServer server = builder.build();
 When the cluster is first started, the provided set of member addresses typically represents the set of active members in the cluster. Each server in a cluster defines the same set of members. In the event that a cluster already exists when a server is started, the server will join the existing cluster.
 
 ### Configuring the state machine
-Underlying each server is a [`StateMachine`][StateMachine]. The state machine is responsible for maintaining the state with relation to [commands][Command] and [queries][Query] submitted to the server by a client. State machines are provided in a factory to allow servers to transition between stateful and stateless states.
+Underlying each server is a [`StateMachine`][StateMachine]. The state machine is responsible for maintaining the state with relation to [`Command`][Command] and [`Query`][Query] operations submitted to the server by a client. State machines are provided in a factory to allow servers to transition between stateful and stateless states.
 
 ```java
 Address address = new Address("123.456.789.0", 5000);
@@ -60,7 +60,7 @@ CopycatServer server = CopycatServer.builder(address, members)
   .build();
 ```
 
-Server state machines are responsible for registering [commands][Command] which can be submitted to the cluster. Raft relies upon determinism to ensure consistency throughout the cluster, so *it is imperative that each server in a cluster have the same state machine with the same commands.* State machines are provided to the server as a factory to allow servers to transition between stateful and stateless states.
+Server state machines are responsible for registering [`Command`][Command]s which can be submitted to the cluster. Raft relies upon determinism to ensure consistency throughout the cluster, so *it is imperative that each server in a cluster have the same state machine with the same commands.* State machines are provided to the server as a factory to allow servers to transition between stateful and stateless states.
 
 ### Configuring the transport
 By default, the server will use the [`NettyTransport`][NettyTransport] for communication. You can configure the transport via `withTransport`. To use the Netty transport, ensure you have the `io.atomix.catalyst:catalyst-netty` jar on your classpath.
@@ -94,13 +94,13 @@ Servers use the [`Storage`][Storage] object to manage the storage of cluster con
 
 All serialization is performed with a Catalyst [`Serializer`][Serializer]. The serializer is shared across all components of the server. Users are responsible for ensuring that [`Command`][Command] and [`Query`][Query] operations submitted to the cluster can be serialized by the server serializer by registering serializable types as necessary.
 
-By default, the server serializer does not allow arbitrary classes to be serialized due to security concerns. However, users can enable arbitrary class serialization by disabling the whitelisting feature on the Catalyst [`Serializer`][Serializer:
+By default, the server serializer does not allow arbitrary classes to be serialized due to security concerns. However, users can enable arbitrary class serialization by disabling the whitelisting feature on the Catalyst [`Serializer`][Serializer]:
 
 ```java
 server.serializer().disableWhitelist();
 ```
 
-However, for more efficient serialization, users should explicitly register serializable classes and binary [serializers][serialization]. Explicit registration of serializable typs allows types to be serialized using more compact 8- 16- 24- and 32-bit serialization IDs rather than serializing complete class names. Thus, serializable type registration is strongly recommended for production systems.
+However, for more efficient serialization, users should explicitly register serializable classes and binary serializers. Explicit registration of serializable typs allows types to be serialized using more compact 8- 16- 24- and 32-bit serialization IDs rather than serializing complete class names. Thus, serializable type registration is strongly recommended for production systems.
 
 ```java
 server.serializer().register(MySerializable.class, 123, MySerializableSerializer.class);
@@ -134,7 +134,7 @@ future.join();
 
 ## Joining an existing cluster
 
-Once an initial cluster has been bootstrapped, additional servers can be added to the cluster via the [`join(Address...)`][CopycatServer.join] method. When joining an existing cluster, the existing cluster configuration must be provided to the [`join`][CopycatServer.join] method:
+Once an initial cluster has been bootstrapped, additional servers can be added to the cluster via the [`join(Address...)`][CopycatServer.join] method. When joining an existing cluster, the existing cluster configuration must be provided to the join method:
 
 ```java
 Collection<Addres> cluster = Arrays.asList(

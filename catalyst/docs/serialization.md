@@ -53,7 +53,7 @@ Person copy = serializer.copy(person);
 
 Custom type serializers can be registered on a [`Serializer`][Serializer] instance by either passing a [`SerializableTypeResolver`][SerializableTypeResolver] to the [`Serializer`][Serializer] constructor or using the [`register`][Serializer.register] method.
 
-By default, Catalyst registers serializable types provided by [PrimitiveTypeResolver][PrimitiveTypeResolver] and [JdkTypeResolver][JdkTypeResolver], including the following types:
+By default, Catalyst registers serializable types provided by [`PrimitiveTypeResolver`][PrimitiveTypeResolver] and [`JdkTypeResolver`][JdkTypeResolver], including the following types:
 
 * Primitive types
 * Primitive wrappers
@@ -203,7 +203,7 @@ serializer.registerDefault(KryoSerializable.class, GenericKryoSerializer.class);
 
 ### CatalystSerializable
 
-Instead of writing a custom [`TypeSerializer`][TypeSerializer], serializable types can also implement the [`CatalystSerializable`][CatalystSerializable] interface. The [`CatalystSerializable`][CatalystSerializable] interface is synonymous with Java's native `Serializable` interface. As with the [`TypeSerializer`][TypeSerializer] interface, [`CatalystSerializable`][CatalystSerializable] exposes two methods which receive both a [`Buffer`](#buffers) and a [`Serializer`][Serializer[:
+Instead of writing a custom [`TypeSerializer`][TypeSerializer], serializable types can also implement the [`CatalystSerializable`][CatalystSerializable] interface. The [`CatalystSerializable`][CatalystSerializable] interface is synonymous with Java's native `Serializable` interface. As with the [`TypeSerializer`][TypeSerializer] interface, [`CatalystSerializable`][CatalystSerializable] exposes two methods which receive both a [`Buffer`](#buffers) and a [`Serializer`][Serializer]:
 
 ```java
 public class Foo implements CatalystSerializable {

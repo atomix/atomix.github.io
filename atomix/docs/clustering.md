@@ -14,7 +14,7 @@ When a cluster is started, the replicas in the cluster coordinate with one anoth
 
 ![Atomix cluster](/assets/img/docs/cluster.png)
 
-While the leader is not publicly distinguished, it carries the important responsibility of processing all write operations for the resources in the cluster. Write operations, such as [`DistributedMap.put`][dmap-put], will be proxied to the leader from clients and other replicas while read operations, such as [`DistributedMap.get`][dmap-get], may be processed by a *follower* according to the configured [consistency level][consistency-levels]. Each write operation is replicated by the leader to the rest of the cluster and must be successfully stored on a majority of nodes before it is committed.
+While the leader is not publicly distinguished, it carries the important responsibility of processing all write operations for the resources in the cluster. Write operations, such as `DistributedMap.put`, will be proxied to the leader from clients and other replicas while read operations, such as `DistributedMap.get`, may be processed by a *follower* according to the configured [consistency level][consistency-levels]. Each write operation is replicated by the leader to the rest of the cluster and must be successfully stored on a majority of nodes before it is committed.
 
 As nodes come and go from the cluster, new leaders are automatically elected as needed to carry on the responsibility of processing write operations.
 
@@ -29,14 +29,14 @@ The typical size of an Atomix cluster is dependent on your use case. For write-h
 
 ## Bootstrapping a Cluster
 
-When a new Atomix cluster is created, the first nodes in the cluster must be *bootstrapped* to define the initial members of the cluster. Atomix provides two methods for bootstrapping a cluster. First, a cluster can be formed by bootstrapping a single replica and joining additional replicas to the bootstrapped node. To bootstrap a single-node cluster, call the [`bootstrap`][AtomixReplica.bootstrap] method with no arguments.
+When a new Atomix cluster is created, the first nodes in the cluster must be *bootstrapped* to define the initial members of the cluster. Atomix provides two methods for bootstrapping a cluster. First, a cluster can be formed by bootstrapping a single replica and joining additional replicas to the bootstrapped node. To bootstrap a single-node cluster, call the [`bootstrap()`][AtomixReplica.bootstrap] method with no arguments.
 
 ```java
 AtomixReplica replica = AtomixReplica.builder(new Address("123.456.788.0", 8700)).build();
 replica.bootstrap().join();
 ```
 
-Additional replicas are added to the bootstrapped node by [`join`][AtomixReplica.join]ing the initial replica:
+Additional replicas are added to the bootstrapped node by joining the initial replica via [`join(Address...)`][AtomixReplica.join]:
 
 ```java
 AtomixReplica replica2 = AtomixReplica.builder(new Address("123.456.788.1", 8700)).build();
@@ -46,7 +46,7 @@ AtomixReplica replica3 = AtomixReplica.builder(new Address("123.456.788.2", 8700
 replica3.join(new Address("123.456.789.0", 8700)).join();
 ```
 
-Alternatively, multiple replicas can be simultaneously bootstrapped to form a complete cluster by specifying the full cluster configuration in the [`bootstrap`][AtomixReplica.bootstrap] method:
+Alternatively, multiple replicas can be simultaneously bootstrapped to form a complete cluster by specifying the full cluster configuration in the [`bootstrap(Address...)`][AtomixReplica.bootstrap] method:
 
 ```java
 List<Address> cluster = Arrays.asList(
@@ -73,7 +73,7 @@ replica3.bootstrap(cluster).join();
 
 ## Joining a Cluster
 
-Additional replicas can be added to any existing Atomix cluster via the same method described above. To join a replica to an existing cluster, pass a list of addresses to which to join the replica to the [`join`][AtomixReplica.join] method:
+Additional replicas can be added to any existing Atomix cluster via the same method described above. To join a replica to an existing cluster, pass a list of addresses to which to join the replica to the [`join(Address...)`][AtomixReplica.join] method:
 
 ```java
 List<Address> cluster = Arrays.asList(
@@ -92,7 +92,7 @@ Atomix cluster can scale to sizes much larger than the typical Raft cluster. To 
 
 ### Active Replicas
 
-*Active* replicas participate in the processing of operations, perform leader elections, and maintain complete replicas of all resource state within the cluster. The number of active nodes is effected by the [quorum hint][quorum-hint] specified when constructing an [AtomixReplica]. As nodes come and go from the cluster, Atomix will automatically manage the number of active nodes in the cluster according to the quorum hint.
+*Active* replicas participate in the processing of operations, perform leader elections, and maintain complete replicas of all resource state within the cluster. When the `BalancingClusterManager` is used, the number of active nodes is effected by the quorum hint specified when constructing an [`AtomixReplica`][AtomixReplica]. As nodes come and go from the cluster, Atomix will automatically manage the number of active nodes in the cluster according to the quorum hint.
 
 By default, all replicas are active replicas unless otherwise specified. Active replicas may be used to bootstrap a new cluster or join an existing cluster. To explicitly configure an active replica, use the `AtomixReplica.Type.ACTIVE` constant:
 
@@ -106,9 +106,9 @@ replica.bootstrap().join();
 
 ### Passive Replicas
 
-*Passive* nodes maintain complete replicas of all resource state in the cluster but do not participate in the processing of operations or in leader elections. Replication from active to passive nodes is done asynchronously using a gossip protocol, so as to not effect operation latency. The number of passive nodes is effected by the [backup count][backup-count] specified when constructing an [AtomixReplica]. As nodes come and go from the cluster, Atomix will automatically promote and demote nodes from active to passive as needed.
+*Passive* nodes maintain complete replicas of all resource state in the cluster but do not participate in the processing of operations or in leader elections. Replication from active to passive nodes is done asynchronously using a gossip protocol, so as to not effect operation latency. When the `BalancingClusterManager` is used, the number of passive nodes is effected by the backup count specified when constructing an [`AtomixReplica`][AtomixReplica]. As nodes come and go from the cluster, Atomix will automatically promote and demote nodes from active to passive as needed.
 
-Passive replicas may only be [`join`][AtomixReplica.join]ed to an existing cluster and cannot be used to [`bootstrap`][AtomixReplica.bootstrap] a new cluster. To configure a passive replica, use the `AtomixReplica.Type.PASSIVE` constant:
+Passive replicas may only be joined to an existing cluster and cannot be used to bootstrap a new cluster. To configure a passive replica, use the `AtomixReplica.Type.PASSIVE` constant:
 
 ```java
 AtomixReplica replica = AtomixReplica.builder(new Address("123.456.789.0", 8700))
@@ -120,9 +120,9 @@ replica.join(new Address("123.456.789.1", 8700), new Address("123.456.789.1", 87
 
 ### Reserve Replicas
 
-*Reserve* nodes are simply additional nodes that are available to takeover as passive or active nodes as needed, but do not participate in the Atomix cluster and do not store any resource data. Any nodes that are joined to the cluster in addition to the required active as passive nodes, as determined by Atomix, will be made reserve. As with active and passive, Atomix will automatically promote and demote nodes from passive to reserve as needed.
+*Reserve* nodes are simply additional nodes that are available to takeover as passive or active nodes as needed, but do not participate in the Atomix cluster and do not store any resource data. When the `BalancingClusterManager` is used, any nodes that are joined to the cluster in addition to the required active as passive nodes, as determined by Atomix, will be made reserve. As with active and passive, Atomix will automatically promote and demote nodes from passive to reserve as needed.
 
-Reserve replicas may only be [`join`][AtomixReplica.join]ed to an existing cluster and cannot be used to [`bootstrap`][AtomixReplica.bootstrap] a new cluster. To configure a reserve replica, use the `AtomixReplica.Type.RESERVE` constant:
+Reserve replicas may only be joined to an existing cluster and cannot be used to bootstrap a new cluster. To configure a reserve replica, use the `AtomixReplica.Type.RESERVE` constant:
 
 ```java
 AtomixReplica replica = AtomixReplica.builder(new Address("123.456.789.0", 8700))
@@ -151,6 +151,6 @@ The `quorumHint` defines the desired number of `ACTIVE` replicas in the cluster.
 
 ## Persistent Cluster Configurations
 
-It's important to note that while Atomix provides methods for bootstrapping and joining clusters or promoting and demoting replicas, once a cluster has been initialized, cluster configurations are typically persisted on disk via the replica's configured [`Storage`][Storage] object. This means after the first time a replica [`join`][AtomixReplica.join]s a cluster, in the event the replica crashes and is restarted, calling the [`join`][AtomixReplica.join] method again will have no effect since the replica is already a member of the cluster. This means users don't have to concern themselves with whether a replica has already joined a cluster. If a replica is being added to an existing cluster, simply always start the replica with the [`join`][AtomixReplica.join] method.
+It's important to note that while Atomix provides methods for bootstrapping and joining clusters or promoting and demoting replicas, once a cluster has been initialized, cluster configurations are typically persisted on disk via the replica's configured [`Storage`][Storage] object. This means after the first time a replica joins a cluster, in the event the replica crashes and is restarted, calling the [`join(Address...)`][AtomixReplica.join] method again will have no effect since the replica is already a member of the cluster. This means users don't have to concern themselves with whether a replica has already joined a cluster. If a replica is being added to an existing cluster, simply always start the replica with the [`join(Address...)`][AtomixReplica.join] method.
 
 {% include common-links.html %}

@@ -10,7 +10,7 @@ pitch: Primitives for distributed concurrency
 
 The [`DistributedLock`][DistributedLock] resources provides an asynchronous API similar to that of the JDK's [`Lock`][JdkLock].
 
-To create a [`DistributedLock`][DistributedLock], use the [`Atomix.getLock`][Atomix.getLock] method:
+To create a [`DistributedLock`][DistributedLock], use the [`Atomix#getLock(String)`][Atomix.getLock] method:
 
 ```java
 atomix.getLock("foo").thenAccept(lock -> {

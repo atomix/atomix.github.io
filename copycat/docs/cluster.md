@@ -11,7 +11,7 @@ Copycat servers interact with one another within the context of a Copycat [`Clus
 
 ## Cluster lifecycle
 
-Underlying each [`Cluster`][Cluster] instance is a persistent cluster configuration. The cluster configuration is managed through the underlying implementation of the [Raft consensus algorithm][Raft]. When a `CopycatServer` joins the cluster, a configuration change is submitted to the cluster leader which logs and replicates the configuration change. Similarly, when any other change to a member of the cluster is requested - a server is removed from the cluster or promoted or demoted - a configuration change is submitted to the cluster leader where it's logged and replicated. This ensures that the cluster API receives the same consistency guarantees as replicated state machines.
+Underlying each [`Cluster`][Cluster] instance is a persistent cluster configuration. The cluster configuration is managed through the underlying implementation of the [Raft consensus algorithm][Raft]. When a [`CopycatServer`][CopycatServer] joins the cluster, a configuration change is submitted to the cluster leader which logs and replicates the configuration change. Similarly, when any other change to a member of the cluster is requested - a server is removed from the cluster or promoted or demoted - a configuration change is submitted to the cluster leader where it's logged and replicated. This ensures that the cluster API receives the same consistency guarantees as replicated state machines.
 
 Cluster configurations are persisted via the configured [`Storage`][Storage] object on each Copycat server. When a configuration change is committed, servers will store the most recent configuration in a `meta` file on disk. When a server is started, if it detects an existing configuration on disk, the on-disk configuration will override any user-provided configuration. This allows clusters to evolve independently of initial configurations.
 
@@ -27,26 +27,26 @@ Cluster cluster = server.cluster();
 
 ### Cluster term and leader
 
-Clusters expose the current `leader()` and `term()` through the [`Cluster`][Cluster] API.
+Clusters expose the current [`leader()`][Cluster.leader] and [`term()`][Cluster.term] through the [`Cluster`][Cluster] API.
 
 ```java
 long term = server.cluster().term();
 Member leader = server.cluster().leader();
 ```
 
-The leader and term are representative of the local Copycat server's known leader and term. This is important to note as Copycat cannot guarantee that the leader or term is consistent. Copycat clusters are asynchronous, and two leaders may exist at any given time. Users should not rely upon the `leader` and `term` for consistency.
+The leader and term are representative of the local Copycat server's known leader and term. This is important to note as Copycat cannot guarantee that the leader or term is consistent. Copycat clusters are asynchronous, and two leaders may exist at any given time. Take care when accessing the leader. Leaders may be superseded at any time.
 
 ## Members
 
 Copycat clusters consist of a set of [`Member`][Member]s. Each member in a [`Cluster`][Cluster] represents a single instance of a [`CopycatServer`][CopycatServer]. Members can be accessed through various getters provided by the cluster API.
 
-To access the [`Member`][Member] representing the local [`CopycatServer`][CopycatServer], use the `member()` getter:
+To access the [`Member`][Member] representing the local [`CopycatServer`][CopycatServer], use the [`member()`][Cluster.member] getter:
 
 ```java
 Member localMember = server.cluster().member();
 ```
 
-To access all remote members, use the `members()` getter, or to access a specific remote member, pass an [`Address`][Address] or member ID to the `member` getter:
+To access all remote members, use the `members()` getter, or to access a specific remote member, pass an [`Address`][Address] or member ID to the [`member`][Cluster.member] getter:
 
 ```java
 server.cluster().members().forEach(member -> {
@@ -58,7 +58,7 @@ server.cluster().members().forEach(member -> {
 
 ### Listening for membership changes
 
-Users can listen for changes to the structure of the Copycat [`Cluster`][Cluster] by registering join and leave listeners. When new servers `join` the cluster, configuration changes will be propagated to all servers and `onJoin` callbacks will be triggered. Similarly, when servers `leave` or are `remove`d from the cluster, configuration changes will be propagated to all servers and `onLeave` callbacks will be triggered.
+Users can listen for changes to the structure of the Copycat [`Cluster`][Cluster] by registering join and leave listeners. When new servers `join` the cluster, configuration changes will be propagated to all servers and [`onJoin(Consumer)`][Cluster.onJoin] callbacks will be triggered. Similarly, when servers `leave` or are `remove`d from the cluster, configuration changes will be propagated to all servers and [`onLeave(Consumer)`][Cluster.onLeave] callbacks will be triggered.
 
 ```java
 server.cluster().onJoin(member -> {
@@ -144,11 +144,11 @@ server.cluster().member(address).remove().whenComplete((result, error) -> {
 });
 ```
 
-Once a member is removed from the cluster, the configuration change will be propagated to all other nodes in the cluster and `onLeave` event callbacks will be triggered.
+Once a member is removed from the cluster, the configuration change will be propagated to all other nodes in the cluster and [`onLeave(Consumer)`][Cluster.onLeave] event callbacks will be triggered.
 
 ### Listening for member type changes
 
-Users can listen for changes to the type of a server via the [`Member`][Member] object for a given server. To listen for type changes, register a listener via the `onTypeChange` method:
+Users can listen for changes to the type of a server via the [`Member`][Member] object for a given server. To listen for type changes, register a listener via the [`onTypeChange(Consumer)`][Member.onTypeChange] method:
 
 ```java
 Member member = server.cluster().member(address);
@@ -173,7 +173,7 @@ Once a leader fails to send several heartbeats to a server it will commit a conf
 Member.Status status = server.cluster().member(address).status();
 ```
 
-Users can listen for changes in the availability of a member by registering a status change listener via `onStatusChange`. The [`Member.Status`][Member.Status] will be passed to the status change listener callback:
+Users can listen for changes in the availability of a member by registering a status change listener via [`onStatusChange(Consumer)`][Member.onStatusChange]. The [`Member.Status`][Member.Status] will be passed to the status change listener callback:
 
 ```java
 member.onStatusChange(status -> {

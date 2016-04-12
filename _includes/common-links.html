@@ -84,6 +84,7 @@
 [JdkAtomic]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/package-summary.html
 [AtomicReference]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/AtomicReference.html
 [AtomicLong]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/atomic/AtomicLong.html
+[Duration]: https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html
 
 <!-- Atomix Javadoc -->
 [AtomixJavadoc]: http://atomix.io/atomix/api/latest/
@@ -140,8 +141,13 @@
 [MessageProducer.Options]: http://atomix.io/atomix/api/latest/io/atomix/group/messaging/MessageProducer.Options.html
 [MessageProducer.Execution]: http://atomix.io/atomix/api/latest/io/atomix/group/messaging/MessageProducer.Execution.html
 [MessageProducer.Delivery]: http://atomix.io/atomix/api/latest/io/atomix/group/messaging/MessageProducer.Delivery.html
+[MessageProducer.send]: http://atomix.io/atomix/api/latest/io/atomix/group/messaging/MessageProducer.html#send-T-
 [MessageConsumer]: http://atomix.io/atomix/api/latest/io/atomix/group/messaging/MessageConsumer.html
+[MessageConsumer.onMessage]: http://atomix.io/atomix/api/latest/io/atomix/group/messaging/MessageConsumer.html#onMessage-java.util.function.Consumer-
 [Message]: http://atomix.io/atomix/api/latest/io/atomix/group/messaging/Message.html
+[Message.ack]: http://atomix.io/atomix/api/latest/io/atomix/group/messaging/Message.html#ack--
+[Message.fail]: http://atomix.io/atomix/api/latest/io/atomix/group/messaging/Message.html#fail--
+[Message.reply]: http://atomix.io/atomix/api/latest/io/atomix/group/messaging/Message.html#reply-java.lang.Object-
 [GroupMember]: http://atomix.io/atomix/api/latest/io/atomix/group/GroupMember.html
 [LocalMember]: http://atomix.io/atomix/api/latest/io/atomix/group/LocalMember.html
 [ReadConsistency]: http://atomix.io/atomix/api/latest/io/atomix/resource/ReadConsistency.html
@@ -161,9 +167,16 @@
 [Snapshottable]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/Snapshottable.html
 [SessionListener]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/session/SessionListener.html
 [Cluster]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/cluster/Cluster.html
+[Cluster.leader]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/cluster/Cluster.html#leader--
+[Cluster.term]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/cluster/Cluster.html#term--
+[Cluster.member]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/cluster/Cluster.html#member--
+[Cluster.onJoin]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/cluster/Cluster.html#onJoin-java.util.function.Consumer-
+[Cluster.onLeave]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/cluster/Cluster.html#onLeave-java.util.function.Consumer-
 [Member]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/cluster/Member.html
 [Member.Type]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/cluster/Member.Type.html
 [Member.Status]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/cluster/Member.Status.html
+[Member.onTypeChange]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/cluster/Member.html#onTypeChange-java.util.function.Consumer-
+[Member.onStatusChange]: http://atomix.io/copycat/api/latest/io/atomix/copycat/server/cluster/Member.html#onStatusChange-java.util.function.Consumer-
 [CopycatClient]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html
 [CopycatClient.Builder]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.Builder.html
 [CopycatClient.connect]: http://atomix.io/copycat/api/latest/io/atomix/copycat/client/CopycatClient.html#connect--
@@ -207,8 +220,9 @@
 [Serializer.registerAbstract]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html#registerAbstract-java.lang.Class-java.lang.Class-
 [Serializer.registerDefault]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html#registerDefault-java.lang.Class-java.lang.Class-
 [Serializer.resolve]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html#resolve-java.util.Collection-
-[CopycatSerializable]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CopycatSerializable.html
+[CatalystSerializable]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/CatalystSerializable.html
 [TypeSerializer]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/TypeSerializer.html
+[TypeSerializerFactory]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/TypeSerializerFactory.html
 [SerializableTypeResolver]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/SerializableTypeResolver.html
 [PrimitiveTypeResolver]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/SerializableTypeResolver.html
 [JdkTypeResolver]: http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/SerializableTypeResolver.html

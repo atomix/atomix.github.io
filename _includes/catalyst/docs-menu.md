@@ -17,7 +17,3 @@
    * [Pooled Dbject Deserialization](#pooled-object-deserialization)
 * [Messaging](messaging)
    * [Netty Transport](#nettytransport)
-* [Utilities](utilities)
-   * [Working with builders](#builders)
-   * [Working with event listeners](#listeners)
-   * [Working with execution contexts](#contexts)
