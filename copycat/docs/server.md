@@ -25,24 +25,25 @@ Each [`CopycatServer`][CopycatServer] consists of three essential components:
 * [`Storage`][Storage] - Used to persist [`Command`][Command]s to memory or disk
 * [`StateMachine`][StateMachine] - Represents state resulting from [`Command`][Command]s logged and replicated via Raft
 
-To create a new server, use the server [`Builder`][CopycatServer.Builder]. Servers require cluster membership information in order to perform communication. Each server must be provided a local [`Address`][Address] to which to bind the internal [`Server`][Server] and a set of addresses for other members in the cluster.
+To create a new server, use the server [`Builder`][CopycatServer.Builder]. Servers require cluster membership information in order to perform communication. Each server must be provided a local [`Address`][Address] to which to bind the internal [`Server`][Server].
 
 ```java
-Address address = new Address("123.456.789.0", 5000);
-Collection<Address> members = Arrays.asList(
-  new Address("123.456.789.0", 5000),
-  new Address("123.456.789.1", 5000),
-  new Address("123.456.789.2", 5000),
-);
-
-CopycatServer.Builder builder = CopycatServer.builder(address, members);
+CopycatServer.Builder builder = CopycatServer.builder(new Address("123.456.789.0", 8700));
 
 // Configure the server
 
 CopycatServer server = builder.build();
 ```
 
-When the cluster is first started, the provided set of member addresses typically represents the set of active members in the cluster. Each server in a cluster defines the same set of members. In the event that a cluster already exists when a server is started, the server will join the existing cluster.
+The [`Address`][Address] provided to the server builder factory method is the address that will be used by the server to communicate both with servers and with clients. Alternatively, separate addresses for client and server communication can be provided to allow for more concurrently when communicating with clients and servers.
+
+```java
+Address serverAddress = new Address("123.456.789.0", 8700);
+Address clientAddress = new Address("123.456.789.0", 8701);
+CopycatServer server = CopycatServer.builder(clientAddress, serverAddress).build();
+```
+
+When providing both a client and server [`Address`][Address], the client address must be passed as the first argument to the `builder(Address, Address)` factory and the server address as the second.
 
 ## Configuring the State Machine
 
@@ -56,7 +57,7 @@ Collection<Address> members = Arrays.asList(
   new Address("123.456.789.2", 5000),
 );
 
-CopycatServer server = CopycatServer.builder(address, members)
+CopycatServer server = CopycatServer.builder(address)
   .withStateMachine(MyStateMachine::new)
   .build();
 ```
@@ -96,13 +97,7 @@ Servers use the [`Storage`][Storage] object to manage the storage of cluster con
 
 All serialization is performed with a Catalyst [`Serializer`][Serializer]. The serializer is shared across all components of the server. Users are responsible for ensuring that [`Command`][Command] and [`Query`][Query] operations submitted to the cluster can be serialized by the server serializer by registering serializable types as necessary.
 
-By default, the server serializer does not allow arbitrary classes to be serialized due to security concerns. However, users can enable arbitrary class serialization by disabling the whitelisting feature on the Catalyst [`Serializer`][Serializer]:
-
-```java
-server.serializer().disableWhitelist();
-```
-
-However, for more efficient serialization, users should explicitly register serializable classes and binary serializers. Explicit registration of serializable typs allows types to be serialized using more compact 8- 16- 24- and 32-bit serialization IDs rather than serializing complete class names. Thus, serializable type registration is strongly recommended for production systems.
+For the most efficient serialization, users should explicitly register serializable classes and binary serializers. Explicit registration of serializable typs allows types to be serialized using more compact 8- 16- 24- and 32-bit serialization IDs rather than serializing complete class names. Thus, serializable type registration is strongly recommended for production systems.
 
 ```java
 server.serializer().register(MySerializable.class, 123, MySerializableSerializer.class);
