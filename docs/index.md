@@ -55,6 +55,7 @@ title: Documentation
           <p>A cluster manager for <a href="http://vertx.io">Vert-x</a> powered by Atomix.</p>
           <ul>
             <li><a href="https://github.com/atomix/atomix-vertx/blob/master/README.md#atomix-vertx-cluster-manager">User Manual</a></li>
+            <li><a href="/atomix-vertx/api">Javadoc</a></li>
             <li><a href="https://github.com/atomix/atomix-vertx">Source</a></li>
           </ul>
         </div>
