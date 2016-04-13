@@ -17,11 +17,11 @@ But even with the advancements in configuration change processes in the Raft con
 
 The time it takes for a new server to join the cluster and catch up to the leader makes dynamically replacing failed servers impractical. Thus, we propose reducing the latency of catching up new servers by maintaining a hierarchical network of servers wherein standby servers are always available to become active voting members. The network contains three different types of servers — active, passive, and reserve members — each of which play some role in supporting rapid replacement of failed servers.
 
-<h3 id="active-members">6.1 Active Members</h3>
+<h3 id="active-members-">6.1 Active Members</h3>
 
 Active members are full voting members which participate in all aspects of the Raft consensus algorithm. Active servers are always in one of the Raft states — follower, candidate, or leader — at any given time.
 
-<h3 id="passive-members">6.2 Passive Members</h3>
+<h3 id="passive-members-">6.2 Passive Members</h3>
 
 When a new server is added to a Raft cluster, the server typically must be caught up to within some bound of the leader before it can become a full voting member of the cluster. Adding a new server without first warming up its log will result in some period of decreased availability. Still, even in implementations that avoid availability problems by catching up servers before they join, the process of catching up a new server is not insignificant. The leader must send its entire log to the joining server, and for systems that take snapshots, the snapshot must be installed on the new server as well. Thus, there is significant overhead in terms of time and load to dynamically replacing a failed server.
 
@@ -29,7 +29,7 @@ However, systems can maintain servers that are virtually kept in sync with the r
 
 Passive servers can also be useful in other contexts. For instance, our implementation optionally allows reads to be executed on passive servers with relaxed consistency requirements. Systems can still maintain sequential consistency on passive servers with the same mechanisms as those used for [querying followers](#processing-queries-on-followers).
 
-<h3 id="reserve-members">6.3 Reserve Members</h3>
+<h3 id="reserve-members-">6.3 Reserve Members</h3>
 
 Thus far, we've described active voting members and the process of replacing them with passive members. This provides a mechanism for rapidly recovering the full cluster of voting members so long as a majority of the voting members is not lost at the same time. For large clusters, though, the overhead of maintaining passive servers can by itself become a drain on the cluster's resources. Each additional passive server imposes the overhead of replicating all committed log entries, and this is significant even if done by followers. Thus, to ease the load on large clusters, we introduce the reserve member type.
 

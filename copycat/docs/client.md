@@ -13,7 +13,7 @@ The [`CopycatClient`][CopycatClient] provides an interface for submitting [comma
 
 When the client is opened, it will connect to a random server and attempt to register its session. If session registration fails, the client will continue to attempt registration via random servers until all servers have been tried. If the session cannot be registered, the connect operation will fail.
 
-### Configuring the client
+## Configuring the Client
 
 To create a client, you must supply the client [`Builder`][builders] with a set of [`Address`][Address]es to which to connect.
 
@@ -73,7 +73,7 @@ Object result = client.submit(new PutCommand("foo", "Hello world!")).get();
 </div>
 </div>
 
-## Listening for session events
+## Listening for Session Events
 
 The client will remain connected to the server through which the session was registered for as long as possible. If the server fails, the client can reconnect to another random server and maintain its open session.
 

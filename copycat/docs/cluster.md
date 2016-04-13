@@ -9,13 +9,13 @@ first-section: cluster
 
 Copycat servers interact with one another within the context of a Copycat [`Cluster`][Cluster]. Once started, each server is represented by a [`Member`][Member] within the cluster, and users of each server can access the [`Cluster`][Cluster] through the server API.
 
-## Cluster lifecycle
+## Cluster Lifecycle
 
 Underlying each [`Cluster`][Cluster] instance is a persistent cluster configuration. The cluster configuration is managed through the underlying implementation of the [Raft consensus algorithm][Raft]. When a [`CopycatServer`][CopycatServer] joins the cluster, a configuration change is submitted to the cluster leader which logs and replicates the configuration change. Similarly, when any other change to a member of the cluster is requested - a server is removed from the cluster or promoted or demoted - a configuration change is submitted to the cluster leader where it's logged and replicated. This ensures that the cluster API receives the same consistency guarantees as replicated state machines.
 
 Cluster configurations are persisted via the configured [`Storage`][Storage] object on each Copycat server. When a configuration change is committed, servers will store the most recent configuration in a `meta` file on disk. When a server is started, if it detects an existing configuration on disk, the on-disk configuration will override any user-provided configuration. This allows clusters to evolve independently of initial configurations.
 
-### Accessing the cluster
+## Accessing the Cluster
 
 The [`Cluster`][Cluster] can be accessed through any [`CopycatServer`][CopycatServer] instance via the `cluster` getter:
 
@@ -25,7 +25,7 @@ server.start().join();
 Cluster cluster = server.cluster();
 ```
 
-### Cluster term and leader
+## Cluster Term and Leader
 
 Clusters expose the current [`leader()`][Cluster.leader] and [`term()`][Cluster.term] through the [`Cluster`][Cluster] API.
 
@@ -56,7 +56,7 @@ server.cluster().members().forEach(member -> {
 });
 ```
 
-### Listening for membership changes
+### Listening for Membership Changes
 
 Users can listen for changes to the structure of the Copycat [`Cluster`][Cluster] by registering join and leave listeners. When new servers `join` the cluster, configuration changes will be propagated to all servers and [`onJoin(Consumer)`][Cluster.onJoin] callbacks will be triggered. Similarly, when servers `leave` or are `remove`d from the cluster, configuration changes will be propagated to all servers and [`onLeave(Consumer)`][Cluster.onLeave] callbacks will be triggered.
 
@@ -70,11 +70,11 @@ server.cluster().onLeave(member -> {
 });
 ```
 
-## Member types
+## Member Types
 
 Each [`Member`][Member] of a Copycat cluster has an associated [`Type`][Member.Type]. Member types define how a server interacts with the rest of the cluster. Some nodes in a Copycat cluster may participate in the Raft consensus algorithm, which other nodes may simply receive state changes controlled by the Raft nodes. Each member can only be assigned to a single type at any given time, and types can be changed via the [`Cluster`][Cluster] API. As with other cluster state changes, type changes are controlled by the cluster leader where they're logged and replicated.
 
-### Active members
+### Active Members
 
 Active members are servers that participate fully in the Raft consensus algorithm. Active members are represented by [`Member.Type.ACTIVE`][Member.Type]. Each cluster must necessarily consist of at least one active member. Active members participate in elections, can be elected leader, and can service reads and writes.
 
@@ -84,7 +84,7 @@ if (server.cluster().member().type() == Member.Type.ACTIVE) {
 }
 ```
 
-### Passive members
+### Passive Members
 
 Passive members are stateful servers that do not participate in the Raft consensus algorithm but instead receive state changes via a gossip protocol *after* they're committed through the consensus cluster. Passive members are represented by [`Member.Type.PASSIVE`][Member.Type] and can be used to scale reads across a larger number of nodes than the restricted number of `ACTIVE` members.
 
@@ -94,7 +94,7 @@ if (server.cluster().member().type() == Member.Type.PASSIVE) {
 }
 ```
 
-### Reserve members
+### Reserve Members
 
 Reserve members are stateless servers that neither participate in the Raft consensus algorithm nor replication of any kind. Reserve servers are represented by [`Member.Type.RESERVE`][Member.Type] and typically serve as backups to the stateful members of the cluster.
 
@@ -104,7 +104,7 @@ if (server.cluster().member().type() == Member.Type.RESERVE) {
 }
 ```
 
-### Promoting members
+### Promoting Members
 
 Members can be transitioned between types by any member of the cluster through the [`Cluster`][Cluster] API. Member types are hierarchical. The lowest member type is [`Member.Type.RESERVE`][Member.Type], and the highest member type is [`Member.Type.ACTIVE`][Member.Type]. To promote a member from a lower type to a higher type, use the [`Member`][Member]'s `promote()` method:
 
@@ -118,7 +118,7 @@ server.cluster().member(address).promote(Member.Type.ACTIVE).whenComplete((resul
 
 Keep in mind that promoting a member to `ACTIVE` will result in a change in the consensus cluster. This means increased fault tolerance since the consensus cluster can tolerate the failure of a minority of servers in the cluster, but it also may mean reduced write throughput.
 
-### Demoting members
+### Demoting Members
 
 As with promoting members from lower types to higher types, members can also be demoted from higher types to lower types. The lowest member type is [`Member.Type.RESERVE`][Member.Type], and the highest member type is [`Member.Type.ACTIVE`][Member.Type]. To demote a member from a higher type to a lower type, use the [`Member`][Member]'s `demote()` method:
 
@@ -132,7 +132,7 @@ server.cluster().member(address).demote(Member.Type.PASSIVE).whenComplete((resul
 
 Once a member is demoted, the demotion will be propagated to all other nodes in the cluster and `onTypeChange` callbacks will be triggered. Remember that demoting an `ACTIVE` member will result in the consensus cluster size shrinking. This can mean greater write performance but reduced fault tolerance.
 
-### Removing members
+### Removing Members
 
 The need to remove a failed server from a cluster is a common task in distributed systems. If servers can only remove themselves from a cluster then the permanent failure of a server could mean it must permanently reside in the cluster's configuration. Copycat provides a mechanism for any server to remove any other server from the cluster via the [`Cluster`][Cluster] API with the [`Member`][Member]'s `remove()` method:
 
@@ -146,7 +146,7 @@ server.cluster().member(address).remove().whenComplete((result, error) -> {
 
 Once a member is removed from the cluster, the configuration change will be propagated to all other nodes in the cluster and [`onLeave(Consumer)`][Cluster.onLeave] event callbacks will be triggered.
 
-### Listening for member type changes
+### Listening for Member Type Changes
 
 Users can listen for changes to the type of a server via the [`Member`][Member] object for a given server. To listen for type changes, register a listener via the [`onTypeChange(Consumer)`][Member.onTypeChange] method:
 
@@ -159,7 +159,7 @@ member.onTypeChange(type -> {
 
 The callback will be called with the [`Member.Type`][Member.Type] to which the member transitioned.
 
-## Member statuses
+## Member Statuses
 
 Copycat's replication algorithm is optimized based on the availability of servers. In the event that a server cannot be reached by the leader, the leader will cease attempts to replicate state to the server and instead only send empty heartbeats until it can re-establish communication. To do so, leaders track the availability of individual servers in the cluster configuration, and this information is exposed to users as the [`Member.Status`][Member.Status].
 
@@ -181,7 +181,8 @@ member.onStatusChange(status -> {
 });
 ```
 
-## Cluster consistency guarantees
+## Cluster Consistency Guarantees
+
 It's important to note the consistency guarantees when interacting with the [`Cluster`][Cluster] object. The state of the `Cluster` represents the state from the perspective of the local server, but not necessarily of the cluster as a whole. Different servers may perceive the state of the cluster to be different at any given time. But because of this, Copycat takes steps to ensure that changes to the structure of the cluster - adding, removing, promoting, or demoting members - can only be done on a consistent view of the cluster.
 
 To ensure consistency when operating on the cluster, Copycat does a version check when submitting configuration changes to the leader. Effectively, this amounts to an atomic check-and-set operation. When the leader receives a configuration change request from any node, if the request was made on an old version of the configuration, the configuration change will be rejected and the [`CompletableFuture`][CompletableFuture] will be completed with a `ConfigurationException`.
