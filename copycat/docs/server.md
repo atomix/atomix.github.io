@@ -9,7 +9,7 @@ first-section: server
 {:.no-margin-top}
 The [`CopycatServer`][CopycatServer] class is a feature complete implementation of the [Raft consensus algorithm][Raft]. Multiple servers communicate with each other to form a cluster and manage a replicated [state machine][StateMachine]. Server state machines are user-defined.
 
-### Server Lifecycle
+## Server Lifecycle
 
 Copycat's Raft implementation supports dynamic membership changes designed to allow servers to arbitrarily join and leave the cluster. The first time a cluster is started, the cluster must be [`bootstrap`][CopycatServer.bootstrap]ped with a single initial member or a cluster of initial members. The bootstrap servers make up the initial Raft cluster. Once the cluster is initialized, additional servers can be [`join`][CopycatServer.join]ed to the cluster.
 
@@ -17,7 +17,7 @@ When a member *joins* the cluster, a *join* request will ultimately be received 
 
 Once a node has fully joined the Raft cluster, in the event of a failure the quorum size will not change. To leave the cluster, the [`leave`][CopycatServer.leave] method must be called on a [`CopycatServer`][CopycatServer] instance. When [`leave`][CopycatServer.leave] is called, the member will submit a *leave* request to the leader. Once the leaving member's configuration has been removed from the cluster and the new configuration replicated and committed, the server will complete the close.
 
-### Configuring the server
+## Configuring the Server
 
 Each [`CopycatServer`][CopycatServer] consists of three essential components:
 
@@ -44,7 +44,8 @@ CopycatServer server = builder.build();
 
 When the cluster is first started, the provided set of member addresses typically represents the set of active members in the cluster. Each server in a cluster defines the same set of members. In the event that a cluster already exists when a server is started, the server will join the existing cluster.
 
-### Configuring the state machine
+## Configuring the State Machine
+
 Underlying each server is a [`StateMachine`][StateMachine]. The state machine is responsible for maintaining the state with relation to [`Command`][Command] and [`Query`][Query] operations submitted to the server by a client. State machines are provided in a factory to allow servers to transition between stateful and stateless states.
 
 ```java
@@ -62,7 +63,8 @@ CopycatServer server = CopycatServer.builder(address, members)
 
 Server state machines are responsible for registering [`Command`][Command]s which can be submitted to the cluster. Raft relies upon determinism to ensure consistency throughout the cluster, so *it is imperative that each server in a cluster have the same state machine with the same commands.* State machines are provided to the server as a factory to allow servers to transition between stateful and stateless states.
 
-### Configuring the transport
+## Configuring the Transport
+
 By default, the server will use the [`NettyTransport`][NettyTransport] for communication. You can configure the transport via `withTransport`. To use the Netty transport, ensure you have the `io.atomix.catalyst:catalyst-netty` jar on your classpath.
 
 ```java
@@ -74,7 +76,7 @@ CopycatServer server = CopycatServer.builder(address)
   .build();
 ```
 
-### Configuring the storage
+## Configuring the Storage
 
 As commands are received by the server, they're written to the Raft [`Log`][Log] and replicated to other members of the cluster. By default, the log is stored on disk, but users can override the default [`Storage`][Storage] configuration via `withStorage`. Most notably, to configure the storage module to store entries in memory instead of disk, configure the [`StorageLevel`][StorageLevel].
 
@@ -90,7 +92,7 @@ CopycatServer server = CopycatServer.builder(address)
 
 Servers use the [`Storage`][Storage] object to manage the storage of cluster configurations, voting information, and state machine snapshots in addition to logs. See the [`Storage`][Storage] documentation for more information.
 
-### Serialization
+## Serialization
 
 All serialization is performed with a Catalyst [`Serializer`][Serializer]. The serializer is shared across all components of the server. Users are responsible for ensuring that [`Command`][Command] and [`Query`][Query] operations submitted to the cluster can be serialized by the server serializer by registering serializable types as necessary.
 
@@ -106,7 +108,7 @@ However, for more efficient serialization, users should explicitly register seri
 server.serializer().register(MySerializable.class, 123, MySerializableSerializer.class);
 ```
 
-## Bootstrapping a server
+## Bootstrapping a Server
 
 Once the server has been built, we can bootstrap a new cluster by calling the [`bootstrap()`][CopycatServer.bootstrap] method:
 
@@ -117,7 +119,7 @@ future.join();
 
 When a server is bootstrapped, it forms a *new* cluster single node cluster to which additional servers can be joined.
 
-## Bootstrapping a cluster
+## Bootstrapping a Cluster
 
 Multiple servers can be bootstrapped to form a cluster by passing a list of server addresses to the [`bootstrap(Address...)`][CopycatServer.bootstrap] method:
 
@@ -132,7 +134,7 @@ CompletableFuture<CopycatServer> future = server.bootstrap(cluster);
 future.join();
 ```
 
-## Joining an existing cluster
+<h2 id="joining-a-cluster">Joining an Existing Cluster</h2>
 
 Once an initial cluster has been bootstrapped, additional servers can be added to the cluster via the [`join(Address...)`][CopycatServer.join] method. When joining an existing cluster, the existing cluster configuration must be provided to the join method:
 
