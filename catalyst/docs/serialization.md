@@ -2,18 +2,14 @@
 layout: docs
 project: catalyst
 menu: docs
-title: I/O & Serialization
+title: Serialization
 pitch: Custom binary serialization, built for the JVM
 first-section: serialization
 ---
 
-Catalyst provides a custom I/O and serialization framework that it uses for all disk and network I/O. The I/O framework is designed to provide an abstract API for reading and writing bytes on disk, in memory, and over a network in a way that is easily interchangeable and reduces garbage collection and unnecessary memory copies.
-
-## Serialization
-
 Catalyst provides an efficient custom serialization framework that's designed to operate on both disk and memory via a common [`Buffer`](#buffers) abstraction.
 
-### Serializer
+## Serializer
 
 Catalyst's serializer can be used by simply instantiating a [`Serializer`][Serializer] instance:
 
@@ -49,7 +45,7 @@ Additionally, Catalyst support copying objects by serializing and deserializing 
 Person copy = serializer.copy(person);
 ```
 
-### Type serializers
+## Type Serializers
 
 Custom type serializers can be registered on a [`Serializer`][Serializer] instance by either passing a [`SerializableTypeResolver`][SerializableTypeResolver] to the [`Serializer`][Serializer] constructor or using the [`register`][Serializer.register] method.
 
@@ -151,7 +147,7 @@ public class ArrayListSerializer implements TypeSerializer<ArrayList> {
 }
 ```
 
-### Serializable Type Identifiers
+## Serializable Type Identifiers
 
 Types explicitly registered with a [`Serializer`][Serializer] instance can provide a registration ID in lieu of serializing class names. If given a serialization ID, Catalyst will write the serializable type ID to the serialized [`Buffer`][Buffer] instance of the class name and use the ID to locate the serializable type upon deserializing the object. This means *it is critical that all processes that register a serializable type use consistent identifiers.*
 
@@ -165,7 +161,7 @@ serializer.register(Bar.class, 2);
 
 Valid serialization IDs are between `0` and `65535`. However, Catalyst reserves IDs `128` through `255` for internal use. Attempts to register serializable types within the reserved range will result in an `IllegalArgumentException`. If no serializable type ID is provided, Catalyst will hash the serializable type name to create a type ID. This means types explicitly registered on a [`Serializer`][Serializer] used to serialize an object must also be registered on any serializer that deserializes the same object.
 
-### Abstract Serializers
+## Abstract Serializers
 
 Because Java is an object oriented language, in many cases users may want to be able to deserialize an interface to a specific implementation. For example, a `List` object could be deserialized to a number of different implementations. Catalyst allows users to register serializers for abstract types like interfaces and abstract base classes. To register an abstract serializer, use the [`registerAbstract`][Serializer.registerAbstract] method:
 
@@ -181,7 +177,7 @@ serializer.register(TreeMap.class, 2, TreeMapSerializer.class);
 
 In the example above, if a `TreeMap` is serialized, Catalyst will use the `TreeMapSerializer`, but any other type of `Map` will be serialized and deserialized with the `HashMapSerializer`.
 
-### Default Serializers
+## Default Serializers
 
 Default serializers are used to serialize types for which no specific [`TypeSerializer`][TypeSerializer] is provided. When a serializable type is registered without a [`TypeSerializer`][TypeSerializer], the first default serializer found for the given type is assigned as the serializer for that type. Default serializers are evaluated against registered types in reverse insertion order, so default serializers registered more recently take precedence over default serializers registered earlier.
 
@@ -193,7 +189,7 @@ To register a default serializer, use the [`registerDefault`][Serializer.registe
 serializer.registerDefault(Serializable.class, JavaSerializableSerializer.class);
 ```
 
-### Serialization Frameworks
+## Serialization Frameworks
 
 In addition to support for Java serialization, Catalyst provides generic default serializers based on [Kryo](https://github.com/EsotericSoftware/kryo) and [Jackson](https://github.com/FasterXML/jackson). To use those serialization frameworks, add the appropriate Maven artifact to your project and register the default serializer:
 
@@ -201,7 +197,7 @@ In addition to support for Java serialization, Catalyst provides generic default
 serializer.registerDefault(KryoSerializable.class, GenericKryoSerializer.class);
 ```
 
-### CatalystSerializable
+## CatalystSerializable
 
 Instead of writing a custom [`TypeSerializer`][TypeSerializer], serializable types can also implement the [`CatalystSerializable`][CatalystSerializable] interface. The [`CatalystSerializable`][CatalystSerializable] interface is synonymous with Java's native `Serializable` interface. As with the [`TypeSerializer`][TypeSerializer] interface, [`CatalystSerializable`][CatalystSerializable] exposes two methods which receive both a [`Buffer`](#buffers) and a [`Serializer`][Serializer]:
 
@@ -232,7 +228,7 @@ public class Foo implements CatalystSerializable {
 }
 ```
 
-### Pooled object deserialization
+## Pooled Object Deserialization
 
 Catalyst's serialization framework integrates with [object pools](#buffer-pools) to support allocating pooled objects during deserialization. When a [`Serializer`][Serializer] instance is used to deserialize a type that implements `ReferenceCounted`, Catalyst will automatically create new objects from a `ReferencePool`:
 

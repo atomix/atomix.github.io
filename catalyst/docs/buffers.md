@@ -2,15 +2,11 @@
 layout: docs
 project: catalyst
 menu: docs
-title: I/O & Serialization
-pitch: Custom binary serialization, built for the JVM
+title: Buffers
 first-section: buffers
 ---
 
-Catalyst provides a custom I/O and serialization framework that it uses for all disk and network I/O. The I/O framework is designed to provide an abstract API for reading and writing bytes on disk, in memory, and over a network in a way that is easily interchangeable and reduces garbage collection and unnecessary memory copies.
-
-## Buffers
-
+{:.no-margin-top}
 Catalyst provides a [`Buffer`][Buffer] abstraction that provides a common interface to both memory and disk. Currently, four buffer types are provided:
 
 * `HeapBuffer` - on-heap `byte[]` backed buffer
@@ -42,7 +38,7 @@ assert buffer.readBoolean();
 
 See the [Buffer API documentation][Buffer] for more detailed usage information.
 
-### Bytes
+## Bytes
 
 All `Buffer` instances are backed by a [`Bytes`][Bytes] instance which is a low-level API over a fixed number of bytes. In contrast to [`Buffer`][Buffer], [`Bytes`][Bytes] do not maintain internal pointers and are not dynamically resizeable.
 
@@ -60,7 +56,7 @@ bytes.resize(2048);
 
 When in-memory bytes are resized, the memory will be copied to a larger memory space via `Unsafe.copyMemory`. When disk backed bytes are resized, disk space will be allocated by resizing the underlying file.
 
-### Buffer pools
+## Buffer Pools
 
 All buffers can optionally be pooled and reference counted. Pooled buffers can be allocated via a `PooledAllocator`:
 

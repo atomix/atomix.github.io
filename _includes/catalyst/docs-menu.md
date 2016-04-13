@@ -6,7 +6,7 @@
 
 * [Buffers](buffers)
    * [Bytes](#bytes)
-   * [Buffer pools](#buffer-pools)
+   * [Buffer Pools](#buffer-pools)
 * [Serialization](serialization)
    * [The Serializer API](#serializer)
    * [Type Serializers](#type-serializers)
@@ -14,6 +14,6 @@
    * [Abstract Serializers](#abstract-serializers)
    * [Default Serializers](#default-serializers)
    * [Serialization Frameworks](#serialization-frameworks)
-   * [Pooled Dbject Deserialization](#pooled-object-deserialization)
+   * [Pooled Object Deserialization](#pooled-object-deserialization)
 * [Messaging](messaging)
-   * [Netty Transport](#nettytransport)
+   * [Transports](#transports)
