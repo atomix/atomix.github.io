@@ -2,7 +2,7 @@
 layout: docs
 project: copycat
 menu: docs
-title: Raft Clients
+title: Working with Clients
 first-section: client
 ---
 

@@ -2,7 +2,7 @@
 layout: docs
 project: copycat
 menu: docs
-title: Raft Servers
+title: Working with Servers
 first-section: server
 ---
 
