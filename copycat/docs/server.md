@@ -11,11 +11,11 @@ The [`CopycatServer`][CopycatServer] class is a feature complete implementation 
 
 ## Server Lifecycle
 
-Copycat's Raft implementation supports dynamic membership changes designed to allow servers to arbitrarily join and leave the cluster. The first time a cluster is started, the cluster must be [`bootstrap`][CopycatServer.bootstrap]ped with a single initial member or a cluster of initial members. The bootstrap servers make up the initial Raft cluster. Once the cluster is initialized, additional servers can be [`join`][CopycatServer.join]ed to the cluster.
+Copycat's Raft implementation supports dynamic membership changes designed to allow servers to arbitrarily join and leave the cluster. The first time a cluster is started, the cluster must be bootstrapped with a single initial member or a cluster of initial members by calling the [`CopycatServer#bootstrap(Address...)`][CopycatServer.bootstrap] method. The bootstrap servers make up the initial Raft cluster. Once the cluster is initialized, additional servers can be addeded to the cluster via [`CopycatServer#join(Address...)`][CopycatServer.join].
 
 When a member *joins* the cluster, a *join* request will ultimately be received by the cluster's leader. The leader will log and replicate the joining member's configuration. Once the joined member's configuration has been persisted on a majority of the cluster, the joining member will be notified of the membership change and transition to the *passive* state. While in the *passive* state, the joining member cannot participate in votes but does receive *append* requests from the cluster leader. Once the leader has determined that the joining member's log has caught up to its own (the joining node's log has the last committed entry at any given point in time), the member is promoted to a full member via another replicated configuration change.
 
-Once a node has fully joined the Raft cluster, in the event of a failure the quorum size will not change. To leave the cluster, the [`leave`][CopycatServer.leave] method must be called on a [`CopycatServer`][CopycatServer] instance. When [`leave`][CopycatServer.leave] is called, the member will submit a *leave* request to the leader. Once the leaving member's configuration has been removed from the cluster and the new configuration replicated and committed, the server will complete the close.
+Once a node has fully joined the Raft cluster, in the event of a failure the quorum size will not change. To leave the cluster, the [`CopycatServer#leave()`][CopycatServer.leave] method must be called. When [`CopycatServer#leave()`][CopycatServer.leave] is called, the member will submit a *leave* request to the leader. Once the leaving member's configuration has been removed from the cluster and the new configuration replicated and committed, the server will complete the close.
 
 ## Configuring the Server
 
@@ -25,7 +25,7 @@ Each [`CopycatServer`][CopycatServer] consists of three essential components:
 * [`Storage`][Storage] - Used to persist [`Command`][Command]s to memory or disk
 * [`StateMachine`][StateMachine] - Represents state resulting from [`Command`][Command]s logged and replicated via Raft
 
-To create a new server, use the server [`Builder`][CopycatServer.Builder]. Servers require cluster membership information in order to perform communication. Each server must be provided a local [`Address`][Address] to which to bind the internal [`Server`][Server].
+To create a new server, use the [`CopycatServer.Builder`][CopycatServer.Builder]. Servers require cluster membership information in order to perform communication. Each server must be provided a local [`Address`][Address] to which to bind the internal [`Server`][Server].
 
 ```java
 CopycatServer.Builder builder = CopycatServer.builder(new Address("123.456.789.0", 8700));
@@ -43,7 +43,7 @@ Address clientAddress = new Address("123.456.789.0", 8701);
 CopycatServer server = CopycatServer.builder(clientAddress, serverAddress).build();
 ```
 
-When providing both a client and server [`Address`][Address], the client address must be passed as the first argument to the `builder(Address, Address)` factory and the server address as the second.
+When providing both a client and server [`Address`][Address], the client address must be passed as the first argument to the `CopycatServer.builder(Address, Address)` factory and the server address as the second.
 
 ## Configuring the State Machine
 
@@ -66,7 +66,7 @@ Server state machines are responsible for registering [`Command`][Command]s whic
 
 ## Configuring the Transport
 
-By default, the server will use the [`NettyTransport`][NettyTransport] for communication. You can configure the transport via `withTransport`. To use the Netty transport, ensure you have the `io.atomix.catalyst:catalyst-netty` jar on your classpath.
+By default, the server will use the [`NettyTransport`][NettyTransport] for communication. You can configure the transport via `CopycatServer.Builder#withTransport(Transport)`. To use the Netty transport, ensure you have the `io.atomix.catalyst:catalyst-netty` jar on your classpath.
 
 ```java
 CopycatServer server = CopycatServer.builder(address)
@@ -79,7 +79,7 @@ CopycatServer server = CopycatServer.builder(address)
 
 ## Configuring the Storage
 
-As commands are received by the server, they're written to the Raft [`Log`][Log] and replicated to other members of the cluster. By default, the log is stored on disk, but users can override the default [`Storage`][Storage] configuration via `withStorage`. Most notably, to configure the storage module to store entries in memory instead of disk, configure the [`StorageLevel`][StorageLevel].
+As commands are received by the server, they're written to the Raft [`Log`][Log] and replicated to other members of the cluster. By default, the log is stored on disk, but users can override the default [`Storage`][Storage] configuration via `CopycatServer.Builder#withStorage(Storage)`. Most notably, to configure the storage module to store entries in memory instead of disk, configure the [`StorageLevel`][StorageLevel].
 
 ```java
 CopycatServer server = CopycatServer.builder(address)
