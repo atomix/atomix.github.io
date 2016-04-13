@@ -74,7 +74,7 @@ title: Documentation
           <p>A Clojure API for Atomix.</p>
           <ul>
             <li><a href="https://github.com/atomix/trinity/blob/master/README.md#trinity">User Manual</a></li>
-            <li><a href="/trinity/docs/">API Docs</a></li>
+            <li><a href="/trinity/api/">API Docs</a></li>
             <li><a href="https://github.com/atomix/trinity">Source</a></li>
           </ul>
         </div>
