@@ -143,4 +143,40 @@ Collection<Addres> cluster = Arrays.asList(
 server.join(cluster).join();
 ```
 
+## Listening for Server State Changes
+
+Servers transition between various states throughout their lifetime. States are represented by the [`CopycatServer.State`][CopycatServer.State] enum, and each state represents a server's role in communicating with the other servers in the cluster and with the clients connected to them.
+
+To access a server's current state, use the [`CopycatServer#state()`][CopycatServer.state] getter:
+
+```java
+CopycatServer.State state = server.state();
+```
+
+The returned [`CopycatServer.State`][CopycatServer.State] is guaranteed to be consistent with the current state of the server. However, because the state is immutable, it may immediately become stale. To listen for *changes* to a server's state instead, register a state change listener via the [`CopycatServer#onStateChange(Consumer)`][CopycatServer.onStateChange] method:
+
+```java
+server.onStateChange(state -> {
+  if (state == CopycatServer.State.LEADER) {
+    ...
+  }
+});
+```
+
+Each time the server transitions state, all registered state change listeners will be called. The order in which listeners are called is unspecified.
+
+{:.callout .callout-info}
+To access the server's current term and determine when a server becomes the leader, use the [cluster API][copycat-cluster]
+
+When a server state change listener callback is registered, a [`Listener`][Listener] object will be returned. The [`Listener`][Listener] can be used to unregister the state change callback by calling the `close()` method:
+
+```java
+Listener<CopycatServer.State> stateChangeListener = server.onStateChange(state -> {
+  ...
+});
+
+// Unregister the state change listener
+stateChangeListener.close();
+```
+
 {% include common-links.html %}
