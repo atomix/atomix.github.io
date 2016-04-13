@@ -12,7 +12,7 @@ State machines are the application layer of a Copycat cluster. Clients submit st
 {:.callout .callout-danger}
 Important: State machines must be deterministic
 
-## Creating a state machine
+<h2 id="creating-state-machines">Creating a State Machine</h2>
 
 State machines are defined by simply extending the base [`StateMachine`][StateMachine] class.
 
@@ -22,7 +22,7 @@ public class MapStateMachine extends StateMachine {
 }
 ```
 
-## Defining state machine operations
+<h2 id="defining-state-machine-ops">Defining State Machine Operations</h2>
 
 State machine operations are instances of the [`Operation`][Operation] interface that are submitted to the cluster by clients where they're logged and replicated before being applied to the state machine. Once a state machine operation is committed, it is applied on the state machine on each server in the cluster.
 
@@ -77,7 +77,7 @@ Important: Queries should *never* modify the state of a state machine. Copycat c
 
 The base [`Operation`][Operation] interface implements Java's [`Serializable`][Serializable], so all operations can be serialized without any custom serialization logic. However, Java serialization is slow and innefficient and is therefore not recommended for production. Users should implement [`CatalystSerializable`][CatalystSerializable], provide a custom [`TypeSerializer`][TypeSerializer], or use one of the generic serialization framework plugins like Kryo or Jackson for the best performance.
 
-## Implementing state machine operations
+<h2 id="implementing-state-machine-ops">Implementing State Machine Operations</h2>
 
 Commands and queries define the interface between a client and the state machine, and methods on the state machine define the behavior and output of an operation submitted to the cluster. Operations are single-argument `public` methods on the [`StateMachine`][StateMachine] implementation that take a single [`Commit`][Commit] argument. The generic argument to the [`Commit`][Commit] defines the operation expected by the method. Copycat will infer operation methods based on the generic argument.
 

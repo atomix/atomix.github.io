@@ -40,7 +40,7 @@ In addition to client and server libraries, typically you must include a [`Trans
 </dependency>
 ```
 
-### Creating a State Machine
+## Creating a State Machine
 
 Copycat's primary role is as a framework for building highly consistent, fault-tolerant replicated state machines. Copycat servers receive state machine operations from clients, log and replicate the operations as necessary, and apply them to a state machine on each server. State machine operations are guaranteed to be applied in the same order on all servers, and Copycat handles the persistence and replication of the state machine state internally.
 
@@ -151,7 +151,7 @@ public class MapStateMachine extends StateMachine implements Snapshottable {
 
 For snapshottable state machines, Copycat will periodically request a binary snapshot of the state machine's state and write the snapshot to disk. If the server is restarted, the state machine's state will be recovered from the on-disk snapshot. When a new server joins the cluster, the snapshot of the state machine will be replicated to the joining server to catch up its state. This allows Copycat to remove commits that contributed to the snapshot from the replicated log, thus conserving disk space.
 
-### Creating a server
+## Creating a Server
 
 Once a state machine and its operations have been defined, we can create a [`CopycatServer`][CopycatServer] to manage the state machine. Copycat uses the builder pattern for configuring and constructing servers. Each Copycat server must be initialized with a local server [`Address`][Address].
 
@@ -206,7 +206,7 @@ server.serializer().register(PutCommand.class);
 server.serializer().register(GetQuery.class);
 ```
 
-## Bootstrapping the cluster
+## Bootstrapping the Cluster
 
 Once the server has been built, we can bootstrap a new cluster by calling the [`bootstrap()`][CopycatServer.bootstrap] method:
 
@@ -217,7 +217,7 @@ future.join();
 
 When a server is bootstrapped, it forms a *new* cluster single node cluster to which additional servers can be joined.
 
-## Joining an existing cluster
+## Joining an Existing Cluster
 
 Once an initial cluster has been bootstrapped, additional servers can be added to the cluster via the [`join()`][CopycatServer.join] method. When joining an existing cluster, the existing cluster configuration must be provided to the [`join`][CopycatServer.join] method:
 
@@ -226,7 +226,7 @@ Collection<Address> cluster = Collections.singleton(new Address("127.0.0.1", 870
 server.join(cluster).join();
 ```
 
-### Submitting operations
+## Submitting Operations
 
 Clients are built in a manner very similar to servers. To construct a client, create a [`CopycatClient.Builder`][CopycatClient.Builder]:
 
