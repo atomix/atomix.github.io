@@ -28,7 +28,7 @@ State machine operations are instances of the [`Operation`][Operation] interface
 
 State machines may accept two types of operations: commands and queries. Commands represent operations that modify the state of a state machine, and queries represent operations which read but do not modify the system's state. This distinction is necessary for performance operations.
 
-### State machine commands
+### State Machine Commands
 
 Commands are state machine operations that modify the system's state. When submitted to a Copycat cluster, commands are always proxied to the cluster leader where they're logged and replicated to a majority of the cluster before being committed and applied to the state machine.
 
@@ -53,7 +53,7 @@ In this case, the `PutCommand` outputs an `Object` (the previous value).
 
 The base [`Operation`][Operation] interface implements Java's [`Serializable`][Serializable], so all operations can be serialized without any custom serialization logic. However, Java serialization is slow and innefficient and is therefore not recommended for production. Users should implement [`CatalystSerializable`][CatalystSerializable], provide a custom [`TypeSerializer`][TypeSerializer], or use one of the generic serialization framework plugins like Kryo or Jackson for the best performance.
 
-### State machine queries
+### State Machine Queries
 
 Queries are state machine operations that read but *do not modify* system state. When submitted to a Copycat cluster, queries may be handled differently depending on the query's [`ConsistencyLevel`][Query.ConsistencyLevel]. Some queries may only be applied on the leader, and others may only be applied on followers. Queries will *never* be applied on all servers, and for that reason it's critical that queries never monofy the state of a state machine.
 
@@ -120,7 +120,7 @@ public class MapStateMachine extends StateMachine {
 
 As with all other operation implementations, query [`Commit`][Commit]s must be `release`d once the operation is complete.
 
-### The Commit object
+### The Commit Object
 
 As demonstrated above, operations submitted to the cluster are applied to state machines wrapped in a [`Commit`][Commit] object. The commit object provides some useful information that can be used to associate operations with clients or approximate the progression of real-time and logical time in the cluster. The [`Commit`][Commit] object exposes the following properties:
 
@@ -128,7 +128,7 @@ As demonstrated above, operations submitted to the cluster are applied to state 
 * `time()` - The approximate wall-clock time at which the operation was committed. This time is written to the underlying log by the leader when the operation is first logged. Commit times are guaranteed to be monotonically increasing.
 * `session()` - The [`Session`][Session] that submitted the operation. This can be used to [send session event messages](#publishing-session-events) to the client.
 
-### Scheduling callbacks
+### Scheduling Callbacks
 
 State machines support deterministic scheduling of time-based callbacks for altering the state of a state machine on a schedule. For example, a map state machine can implement expiring keys by through the state machine scheduler. To schedule callbacks within the state machine, use the [`StateMachineExecutor`][StateMachineExecutor]'s [`schedule(Duration)`][StateMachineExecutor.schedule] method:
 
@@ -151,11 +151,11 @@ When a state machine schedules a callback, the callback will be executed after *
 {:.callout .callout-danger}
 State machines should never schedule callbacks using Java's `Timer`. Only use the `StateMachineExecutor` for deterministic time-based scheduling.
 
-## Working with client sessions
+## Working with Client Sessions
 
 Each [`Command`][Command] and [`Query`][Query] submitted to the cluster is submitted by a client through its [`Session`][Session]. All operations applied to a state machine have contain a [`ServerSession`][ServerSession] which acts as a server-side reference to the client that submitted the operation. Furthermore, state machines can listen for changes in session states to react to clients connecting to and disconnecting from the cluster, and event messages can be sent to clients via a [`ServerSession`][ServerSession].
 
-### Listening for session state changes
+### Listening for Session State Changes
 
 To listen for changes in session states, implement the [`SessionListener`][SessionListener] interface. When the [`SessionListener`][SessionListener] interface is implemented by a [`StateMachine`][StateMachine], Copycat will automatically notify the state machine each time a session is created or destroyed.
 
@@ -193,7 +193,7 @@ public class MapStateMachine extends StateMachine implements SessionListener {
 
 As with normal state machine operations, session events are guaranteed to occur at the same logical time on all servers.
 
-### Publishing session events
+### Publishing Session Events
 
 Up until now, the documentation has described how state machines can react to command and query requests from clients. But for more complex use cases, state machines often may need to communicate directly with clients as well. For example, a lock state machine implemented purely through commands would require the client to periodically poll the cluster to determine if it has acquired a lock. A more optimal model is for the cluster to notify the client when the is acquires a lock. Copycat provides the ability for state machines to push arbitrary messages to clients via the [`ServerSession`][ServerSession] through its session events framework.
 
@@ -238,7 +238,7 @@ client.onEvent("change", event -> {
 
 Internally, Copycat servers and clients coordinate with one another to ensure events are received on the client in the order in which they were published by the state machine, and events are sequenced with responses. In the example above, the client that submits the `Put` operation will first see its request complete, and after the request completes it will receive the `MapEntryEvent`.
 
-## State machine snapshots
+## State Machine Snapshots
 
 One of the most critical aspects of implementing state machines in practice is supporting log compaction. As [`Command`][Command]s are written to the Raft log and applied to the state machine, the size of the underlying [`Log`][Log] on disk can grow without bound. In order to allow Copycat to reduce the size of the log, it is the responsibility of [`StateMachine`][StateMachine] implementations to facilitate the persistence of the state machine state outside of the context of the log. Typically, this is done by implementing snaphot support.
 
@@ -247,7 +247,7 @@ To implement support for snapshotting a state machine, implement the [`Snapshott
 * `snapshot(SnapshotWriter)` - writes a snapshot of the state machine state to disk
 * `install(SnapshotReader)` - reads a snapshot of the state machine state from disk
 
-### Storing snapshots
+### Storing Snapshots
 
 For [`Snapshottable`][Snapshottable] state machines, as the underlying [`Log`][Log] grows, Copycat will periodically call the [`snapshot(SnapshotWriter)`][Snapshottable.snapshot] to request a snapshot of the state machine's state. The provided [`SnapshotWriter`][SnapshotWriter] must be used by the state machine to write snapshottable state to disk.
 
@@ -266,7 +266,7 @@ The [`SnapshotWriter`][SnapshotWriter] supports serialization of objects within 
 
 *When* the [`snapshot(SnapshotWriter)`][Snapshottable.snapshot] method will be called is unspecified. Copycat determines when to take snapshots based on the size of the log and the size of individual segments within the log.
 
-### Installing snapshots
+### Installing Snapshots
 
 To support restoration of snapshots from disk or over the network, [`Snapshottable`][Snapshottable] state machines implement the [`install(SnapshotReader)`][Snapshottable.install] method. When called, state machines should restore all snapshottable state from the provided [`SnapshotReader`].
 
@@ -283,11 +283,11 @@ public class MapStateMachine extends StateMachine implements Snapshottable {
 
 The [`install(SnapshotReader)`][Snapshottable.install] will typically be called each time the server starts to recover the system's state. However, it can be called at other times as well. For example, if a server falls too far behind the leader, the leader may compact its [`Log`][Log] and replicate a snapshot in lieu of log entries. State machines should not make any assumptions about when snapshots will be installed.
 
-## Incremental compaction
+## Incremental Compaction
 
 Underlying Copycat's snapshot support is an incremental log compaction algorithm. Snapshots provide only an abstraction over the incremental compaction algorithm. But state machines may also use the incremental compaction process directly by explicitly managing the [`Commit`][Commit]s applied to the state machine.
 
-### Compaction modes
+### Compaction Modes
 
 To support incremental compaction, state machines must explicitly define how each [`Command`][Command] supported by the state machine should be compacted from the log by specifying the command's [`CompactionMode`][Command.CompactionMode]. Typically, compaction methods are indicated by command types. For example, commands applied to state machines that implement the [`Snapshottable`][Snapshottable] interface automatically default to the `SNAPSHOT` compaction mode, indicating that commands can be removed after a snapshot is taken.
 
@@ -325,7 +325,7 @@ public class Put implements Command<Object> {
 }
 ```
 
-### Tracking commit liveness
+### Tracking Commit Liveness
 
 Incremental compaction works by tracking the liveness of individual [`Commit`][Commit]s applied to a state machine. When incremental compaction is used, it is the responsibility of the [`StateMachine`][StateMachine] implementation to hold references to commits as long as they contribute to the state machine's state. Once a [`Commit`][Commit] is superseded or removed by another [`Commit`][Commit], the state machine releases it by calling the `release()` method, making it available for compaction.
 
@@ -347,7 +347,7 @@ public class MapStateMachine extends StateMachine implements Snapshottable {
 }
 ```
 
-### Handling tombstones
+### Handling Tombstones
 
 Tombstones are [`Command`][Command]s that *remove* state machine state. It's particularly critical that state machines that support incremental compaction appropriately mark tombstone commands as such with the `TOMBSTONE` [`CompactionMode`][Command.CompactionMode]:
 
