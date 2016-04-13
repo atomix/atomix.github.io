@@ -44,21 +44,7 @@ Atomix requires a [`Transport`][Transport] implementation in order for clients a
 
 ## Standalone Usage
 
-In addition to being embedded, Atomix can run as a standalone server. Currently the standalone server binaries are not hosted, but can be built very quickly.
-
-To build the standalone server, `git clone` and `mvn package` Atomix:
-
-```
-git clone https://github.com/atomix/atomix.git
-cd atomix
-mvn package -DskipTests=true
-```
-
-This will create a single binary with a self-contained Atomix server located at:
-
-```
-standalone/standalone-server/target/atomix-standalone-server.jar
-```
+In addition to being embedded, Atomix can run as a standalone server. The standalone server can be [downloaded][standalone-server-jar] from Maven central.
 
 ### Bootstrapping a Standalone Cluster
 
@@ -71,7 +57,10 @@ java -jar atomix-standalone-server.jar 123.456.789.0:8700 -bootstrap
 Alternatively, to bootstrap a multi-node cluster, pass a list of server addresses as arguments to the `-bootstrap` option:
 
 ```java
-java -jar atomix-standalone-server.jar 123.456.789.0:8700 -bootstrap 123.456.789.0:8700 123.456.789.1:8700 123.456.789.2:8700
+java -jar atomix-standalone-server.jar 123.456.789.0:8700 -bootstrap \
+    123.456.789.0:8700 \
+    123.456.789.1:8700 \
+    123.456.789.2:8700
 ```
 
 ### Adding a Node to a Standalone Cluster
@@ -82,12 +71,14 @@ To add a node to an existing bootstrapped standalone cluster, use the `-join` fl
 java -jar atomix-standalone-server.jar 123.456.789.1:8700 -join 123.456.789.0:8700
 ```
 
-### Configuring a standalone server
+### Configuring a Standalone Server
 
-Replicas support a number of configuration options that are typically configurable via the [`AtomixReplica.Builder`][AtomixReplica.Builder] API. WHen running a standalone Atomix server, the same properties can be configured by passing a properties file as the `-config` to the server.
+Replicas support a number of configuration options that are typically configurable via the [`AtomixReplica.Builder`][AtomixReplica.Builder] API. When running a standalone Atomix server, the same properties can be configured by passing a properties file as the `-config` to the server.
 
 ```
 java -jar atomix-standalone-server.jar 123.456.789.1:8700 -bootstrap -config atomix.properties
 ```
 
 {% include common-links.html %}
+
+[standalone-server-jar]: http://search.maven.org/remotecontent?filepath=io/atomix/atomix-standalone-server/{{ site.atomix-version }}/atomix-standalone-server-{{ site.atomix-version }}-shaded.jar
