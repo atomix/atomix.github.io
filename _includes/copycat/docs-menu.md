@@ -13,7 +13,7 @@
 
 <span class="doc-menu-header"><img src="/assets/img/icons/concepts.svg" class="concepts"> Concepts</span>
 
-* [Server](server)
+* [Working with Servers](server)
    * [Server Lifecycle](#server-lifecycle)
    * [Configuring the Server](#configuring-the-server)
    * [Configuring the State Machine](#configuring-the-state-machine)
@@ -23,7 +23,7 @@
    * [Bootstrapping a Server](#bootstrapping-a-server)
    * [Bootstrapping a Cluster](#bootstrapping-a-cluster)
    * [Joining an Existing Cluster](#joining-a-cluster)
-* [State Machine](state-machine)
+* [Custom State Machines](state-machine)
    * [Creating a State Machine](#creating-state-machines)
    * [Defining State Machine Operations](#defining-state-machine-ops)
       * [State Machine Commands](#state-machine-commands)
@@ -41,12 +41,13 @@
       * [Compaction Modes](#compaction-modes)
       * [Tracking Commit Liveness](#tracking-commit-liveness)
       * [Handling Tombstones](#handling-tombstones)
-* [Client](client)
+      * [Handling Time-to-live Commands](#handling-time-to-live-commands)
+* [Working with Clients](client)
    * [Client Lifecycle](#client-lifecycle)
    * [Configuring the Client](#configuring-the-client)
    * [Submitting State Machine Operations](#submitting-state-machine-operations)
    * [Listening for Session Events](#listening-for-session-events)
-* [Cluster](cluster)
+* [The Copycat Cluster](cluster)
    * [Cluster Lifecycle](#cluster-lifecycle)
    * [Accessing the Cluster](#accessing-the-cluster)
    * [Cluster Term and Leader](#cluster-term-and-leader)

@@ -9,8 +9,7 @@ first-section: getting-started
 {:.no-margin-top}
 ## Installation
 
-Copycat consists of two core modules. To use the Raft server library, add the `copycat-server` jar
-to your classpath:
+Copycat consists of two core modules. To use the Raft server library, add the `copycat-server` jar to your classpath:
 
 ```
 <dependency>
@@ -20,7 +19,7 @@ to your classpath:
 </dependency>
 ```
 
-To use the Raft client library, add the `copycat-client` jar to your classpath:
+To use the Copycat client library, add the `copycat-client` jar to your classpath:
 
 ```
 <dependency>

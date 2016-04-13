@@ -100,7 +100,7 @@ public class MapStateMachine extends StateMachine {
 The return value of the operation method is the response that will be sent back to the client. In the case of the `Put` command, we send the previous value returned by the `Map` interface. Once the [`Commit`][Commit] is no longer needed, we `release` the commit to allow Copycat to recycle the object and compact the commit from the underlying log if necessary.
 
 {:.callout .callout-warning}
-Important: [`Commit`][Commit]s must be `release`d once no longer needed by the state machine. Failure to release a commit will result in the replicated log growing unbounded.
+Important: [`Commit`][Commit]s must be released once no longer needed by the state machine. Failure to release a commit will result in the replicated log growing unbounded.
 
 [`Query`][Query] operations are implemented in the same way as [`Command`][Command]s. To implement a query operation, add a `public` method to the [`StateMachine`][StateMachine] class taking a single [`Commit`][Commit] object.
 
@@ -149,7 +149,7 @@ public class MapStateMachine extends StateMachine {
 When a state machine schedules a callback, the callback will be executed after *approximately* the given duration. Scheduled callbacks are dependent on writes to the underlying Raft log and therefore are not very precise, but they suffice for many use cases.
 
 {:.callout .callout-danger}
-State machines should never schedule callbacks using Java's `Timer`. Only use the `StateMachineExecutor` for deterministic time-based scheduling.
+State machines should never schedule callbacks using Java's `Timer`. Only use the [`StateMachineExecutor`][StateMachineExecutor] for deterministic time-based scheduling.
 
 ## Working with Client Sessions
 
@@ -240,7 +240,7 @@ Internally, Copycat servers and clients coordinate with one another to ensure ev
 
 ## State Machine Snapshots
 
-One of the most critical aspects of implementing state machines in practice is supporting log compaction. As [`Command`][Command]s are written to the Raft log and applied to the state machine, the size of the underlying [`Log`][Log] on disk can grow without bound. In order to allow Copycat to reduce the size of the log, it is the responsibility of [`StateMachine`][StateMachine] implementations to facilitate the persistence of the state machine state outside of the context of the log. Typically, this is done by implementing snaphot support.
+One of the most critical aspects of implementing state machines in practice is supporting log compaction. As [`Command`][Command]s are written to the Raft log and applied to the state machine, the size of the underlying log on disk can grow without bound. In order to allow Copycat to reduce the size of the log, it is the responsibility of [`StateMachine`][StateMachine] implementations to facilitate the persistence of the state machine state outside of the context of the log. Typically, this is done by implementing snaphot support.
 
 To implement support for snapshotting a state machine, implement the [`Snapshottable`][Snapshottable] interface. When implementing [`Snapshottable`][Snapshottable], state machines must implement two simple methods:
 
@@ -249,7 +249,7 @@ To implement support for snapshotting a state machine, implement the [`Snapshott
 
 ### Storing Snapshots
 
-For [`Snapshottable`][Snapshottable] state machines, as the underlying [`Log`][Log] grows, Copycat will periodically call the [`snapshot(SnapshotWriter)`][Snapshottable.snapshot] to request a snapshot of the state machine's state. The provided [`SnapshotWriter`][SnapshotWriter] must be used by the state machine to write snapshottable state to disk.
+For [`Snapshottable`][Snapshottable] state machines, as the underlying log grows, Copycat will periodically call the [`snapshot(SnapshotWriter)`][Snapshottable.snapshot] to request a snapshot of the state machine's state. The provided [`SnapshotWriter`][SnapshotWriter] must be used by the state machine to write snapshottable state to disk.
 
 ```java
 public class MapStateMachine extends StateMachine implements Snapshottable {
@@ -268,7 +268,7 @@ The [`SnapshotWriter`][SnapshotWriter] supports serialization of objects within 
 
 ### Installing Snapshots
 
-To support restoration of snapshots from disk or over the network, [`Snapshottable`][Snapshottable] state machines implement the [`install(SnapshotReader)`][Snapshottable.install] method. When called, state machines should restore all snapshottable state from the provided [`SnapshotReader`].
+To support restoration of snapshots from disk or over the network, [`Snapshottable`][Snapshottable] state machines implement the [`install(SnapshotReader)`][Snapshottable.install] method. When called, state machines should restore all snapshottable state from the provided [`SnapshotReader`][SnapshotReader].
 
 ```java
 public class MapStateMachine extends StateMachine implements Snapshottable {
@@ -281,11 +281,11 @@ public class MapStateMachine extends StateMachine implements Snapshottable {
 }
 ```
 
-The [`install(SnapshotReader)`][Snapshottable.install] will typically be called each time the server starts to recover the system's state. However, it can be called at other times as well. For example, if a server falls too far behind the leader, the leader may compact its [`Log`][Log] and replicate a snapshot in lieu of log entries. State machines should not make any assumptions about when snapshots will be installed.
+The [`install(SnapshotReader)`][Snapshottable.install] will typically be called each time the server starts to recover the system's state. However, it can be called at other times as well. For example, if a server falls too far behind the leader, the leader may compact its log and replicate a snapshot in lieu of log entries. State machines should not make any assumptions about when snapshots will be installed.
 
 ## Incremental Compaction
 
-Underlying Copycat's snapshot support is an incremental log compaction algorithm. Snapshots provide only an abstraction over the incremental compaction algorithm. But state machines may also use the incremental compaction process directly by explicitly managing the [`Commit`][Commit]s applied to the state machine.
+Underlying Copycat's snapshot support is an incremental log compaction algorithm. The incremental compaction algorithm compacts logs based on the *liveness* of individual [`Commit`][Commit]s in the state machine. When a commit no longer contributes to the state machine's state, Copycat will remove the command from the log during a periodic compaction process. This allows logs to be compacted incrementally at a relatively steady rate. State machines can use the incremental compaction API to acheive more consistent performance compared to snapshotting which can require writing large amounts of state to disk within a short period of time.
 
 ### Compaction Modes
 
@@ -301,9 +301,14 @@ To support incremental compaction, state machines must explicitly define how eac
 * `TOMBSTONE` - Indicates that the operation is a tombstone. Tombstones can only be compacted once stored on all servers and `release`d by the state machine, and the operation must be compacted sequentially.
 * `UNKNOWN` - Indicates that the operation compaction mode is unknown. Copycat will use the strictest (and most inefficient) compaction mode.
 
+The magic `DEFAULT` compaction mode is applied to all commands for all state machines by default. The default compaction mode alters its behavior based on the interface implemented by the [`StateMachine`][StateMachine]. If a state machine implements the [`Snapshottable`][Snapshottable] interface, the default compaction mode is equivalent to `SNAPSHOT`. Otherwise, the default compaction mode is equivalent to `SEQUENTIAL` compaction.
+
+{:.callout .callout-warning}
+State machines that do not implement [`Snapshottable`][Snapshottable] should *always* specify a [`CompactionMode`][CompactionMode] for each [`Command`][Command] supported by the state machine. Failure to provide explicit compaction modes will result in inefficient log compaction.
+
 For state machines that implement incremental compaction, commands typically fall into one of two types of compaction - `RELEASE` and `TOMBSTONE` - where commands that alter the state machine's state are marked with the `RELEASE` compaction mode and commands that delete state machine state are marked with the `TOMBSTONE` compaction mode. To read more about why compaction modes matter see the [log compaction documentation][log-compaction].
 
-To define the [`CompactionMode`][Command.CompactionMode] for a [`Command`][Command], override the `mode()` method in the [`Command`][Command] implementation:
+To define the [`CompactionMode`][Command.CompactionMode] for a [`Command`][Command], override the `compaction()` method in the [`Command`][Command] implementation:
 
 ```java
 public class Put implements Command<Object> {
@@ -319,7 +324,7 @@ public class Put implements Command<Object> {
   }
 
   @Override
-  public CompactionMode mode() {
+  public CompactionMode compaction() {
     return CompactionMode.RELEASE;
   }
 }
@@ -363,46 +368,76 @@ public class Remove implements Command<Object> {
   }
 
   @Override
-  public CompactionMode mode() {
+  public CompactionMode compaction() {
     return CompactionMode.TOMBSTONE;
   }
 }
 ```
 
-When a tombstone is applied to a state machine, *after* the state that the tombstone deletes has been removed and released, the tombstone [`Command`][Command] itself can be released:
+Marking tombstone commands appropriately will ensure that Copycat retains tombstone [`Commit`][Commit]s in the log as long as is necessary to ensure state is removed on all servers in the cluster. Failure to appropriately identify tombstones may result in inconsistent states across servers.
+
+When a `TOMBSTONE` command is applied to a state machine, the state machine should remove any state deleted by the tombstone and then `release()` the tombstone itself:
 
 ```java
-public class MapStateMachine extends StateMachine implements Snapshottable {
-  private Map<Object, Commit<Put>> map = new HashMap<>();
-
-  public Object put(Commit<Put> commit) {
-    return map.put(commit.operation().key, commit);
-  }
-
-  public Object get(Commit<Get> commit) {
-    try {
-      return map.get(commit.operation().key);
-    } finally {
-      commit.release();
+public Object remove(Commit<Remove> commit) {
+  try {
+    Commit<Put> removed = map.remove(commit.operation().key);
+    if (removed != null) {
+      Object result = removed.command().value;
+      removed.release();
+      return result;
     }
-  }
-
-  public Object remove(Commit<Remove> commit) {
-    try {
-      Commit<Put> removed = map.remove(commit.operation().key);
-      if (removed != null) {
-        Object result = removed.command().value;
-        removed.release();
-        return result;
-      }
-      return null;
-    } finally {
-      commit.release();
-    }
+    return null;
+  } finally {
+    commit.release();
   }
 }
 ```
 
-When a tombstone command is released by a state machine, Copycat will take care to ensure the command is retained in the [`Log`][Log] as long as is necessary to ensure it's applied on all servers.
+When a tombstone command is released by a state machine, Copycat will take care to ensure the command is retained in the log as long as is necessary to ensure it's applied on all servers.
+
+### Handling Time-to-live Commands
+
+One of the more complex cases when implementing incremental compaction is handling time-to-live operations. Time-to-live operations are commands that typically alter the state machine's state and then delete that state after a configurable amount of time. For example, when a time-to-live is set on a map key, any previous key will be overwritten when the command is applied, and if the command's time-to-live expires before being overwritten by a later operation, the expiration results in that key being removed from the map.
+
+Because time-to-live operations ultimately result in the *removal* of state from a state machine, they're considered tombstone commands. However, in the interest of clarity, Copycat provides the `EXPIRING` compaction mode as an alternative to `TOMBSTONE` specifically for time-to-live operations. Commands that resut in the removal of state after a configurable amount of time should be marked with the `EXPIRING` [`CompactionMode`][Command.CompactionMode]:
+
+```java
+public class PutWithTtl implements Command<Object> {
+  public Object key;
+  public Object value;
+  public long ttl;
+
+  public PutWithTtl() {
+  }
+
+  public PutWithTtl(Object key, Object value, long ttl) {
+    this.key = key;
+    this.value = value;
+    this.ttl = ttl;
+  }
+
+  @Override
+  public CompactionMode compaction() {
+    return CompactionMode.EXPIRING;
+  }
+}
+```
+
+State machines that support time-to-live operations should use the [`StateMachineExecutor`][StateMachineExecutor] for scheduling callbacks. The [`StateMachineExecutor`][StateMachineExecutor] is designed to ensure that delayed callbacks are executed deterministically, ensuring the TTL command expires at the same index on all servers.
+
+```java
+public class MapStateMachine extends StateMachine {
+  private Map<Object, Object> map = new HashMap<>();
+
+  public Object putWithTtl(Commit<PutWithTtl> commit) {
+    map.put(commit.operation().key, commit);
+    executor.schedule(Duration.ofMillis(commit.operation().ttl, () -> {
+      map.remove(commit.operation().key);
+      commit.release();
+    });
+  }
+}
+```
 
 {% include common-links.html %}
