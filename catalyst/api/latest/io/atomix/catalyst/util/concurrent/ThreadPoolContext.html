@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -165,23 +165,35 @@ implements <a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadCont
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadPoolContext.html#block--">block</a></span>()</code>
+<div class="block">Sets the context state to blocked.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadPoolContext.html#close--">close</a></span>()</code>
 <div class="block">Closes the context.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html?is-external=true" title="class or interface in java.util.concurrent">Executor</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadPoolContext.html#executor--">executor</a></span>()</code>
 <div class="block">Returns the underlying executor.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadPoolContext.html#isBlocked--">isBlocked</a></span>()</code>
+<div class="block">Returns a boolean indicating whether the context state is blocked.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>org.slf4j.Logger</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadPoolContext.html#logger--">logger</a></span>()</code>
 <div class="block">Returns the context logger.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/util/concurrent/Scheduled.html" title="interface in io.atomix.catalyst.util.concurrent">Scheduled</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadPoolContext.html#schedule-java.time.Duration-java.time.Duration-java.lang.Runnable-">schedule</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;delay,
         <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;interval,
@@ -189,17 +201,23 @@ implements <a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadCont
 <div class="block">Schedules a runnable at a fixed rate on the context.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/util/concurrent/Scheduled.html" title="interface in io.atomix.catalyst.util.concurrent">Scheduled</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadPoolContext.html#schedule-java.time.Duration-java.lang.Runnable-">schedule</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;delay,
         <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a>&nbsp;runnable)</code>
 <div class="block">Schedules a runnable on the context.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadPoolContext.html#serializer--">serializer</a></span>()</code>
 <div class="block">Returns the context serializer.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadPoolContext.html#unblock--">unblock</a></span>()</code>
+<div class="block">Sets the context state to unblocked.</div>
 </td>
 </tr>
 </table>
@@ -215,7 +233,7 @@ implements <a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadCont
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;io.atomix.catalyst.util.concurrent.<a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html" title="interface in io.atomix.catalyst.util.concurrent">ThreadContext</a></h3>
-<code><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#checkThread--">checkThread</a>, <a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#currentContext--">currentContext</a>, <a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#currentContextOrThrow--">currentContextOrThrow</a>, <a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#execute-java.lang.Runnable-">execute</a>, <a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#execute-java.util.function.Supplier-">execute</a></code></li>
+<code><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#checkThread--">checkThread</a>, <a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#currentContext--">currentContext</a>, <a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#currentContextOrThrow--">currentContextOrThrow</a>, <a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#execute-java.lang.Runnable-">execute</a>, <a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#execute-java.util.function.Supplier-">execute</a>, <a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#isCurrentContext--">isCurrentContext</a></code></li>
 </ul>
 </li>
 </ul>
@@ -286,6 +304,53 @@ implements <a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadCont
 <dd><code><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#serializer--">serializer</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html" title="interface in io.atomix.catalyst.util.concurrent">ThreadContext</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The context serializer.</dd>
+</dl>
+</li>
+</ul>
+<a name="isBlocked--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isBlocked</h4>
+<pre>public&nbsp;boolean&nbsp;isBlocked()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#isBlocked--">ThreadContext</a></code></span></div>
+<div class="block">Returns a boolean indicating whether the context state is blocked.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#isBlocked--">isBlocked</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html" title="interface in io.atomix.catalyst.util.concurrent">ThreadContext</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Indicates whether the context state is blocked.</dd>
+</dl>
+</li>
+</ul>
+<a name="block--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>block</h4>
+<pre>public&nbsp;void&nbsp;block()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#block--">ThreadContext</a></code></span></div>
+<div class="block">Sets the context state to blocked.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#block--">block</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html" title="interface in io.atomix.catalyst.util.concurrent">ThreadContext</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="unblock--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>unblock</h4>
+<pre>public&nbsp;void&nbsp;unblock()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#unblock--">ThreadContext</a></code></span></div>
+<div class="block">Sets the context state to unblocked.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#unblock--">unblock</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html" title="interface in io.atomix.catalyst.util.concurrent">ThreadContext</a></code></dd>
 </dl>
 </li>
 </ul>
