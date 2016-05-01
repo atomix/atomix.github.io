@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":18,"i1":6,"i2":6,"i3":6};
+var methods = {"i0":18,"i1":18,"i2":6,"i3":18,"i4":6,"i5":6,"i6":18};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -166,27 +166,39 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/co
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>default void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html#close--">close</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html#block--">block</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>default void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html#close--">close</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/copycat/server/StateMachineContext.html" title="interface in io.atomix.copycat.server">StateMachineContext</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html#context--">context</a></span>()</code>
 <div class="block">Returns the state machine context.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>default boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html#isBlocked--">isBlocked</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&gt;<br><a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html#register-java.lang.Class-java.util.function.Consumer-">register</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;T&gt;&gt;&nbsp;callback)</code>
 <div class="block">Registers a void operation callback.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>&lt;T extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&lt;U&gt;,U&gt;<br><a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html" title="interface in io.atomix.copycat.server">StateMachineExecutor</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html#register-java.lang.Class-java.util.function.Function-">register</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;T&gt;,U&gt;&nbsp;callback)</code>
 <div class="block">Registers an operation callback.</div>
 </td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>default void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/StateMachineExecutor.html#unblock--">unblock</a></span>()</code>&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -194,7 +206,7 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/co
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;io.atomix.catalyst.util.concurrent.<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">ThreadContext</a></h3>
-<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#checkThread--" title="class or interface in io.atomix.catalyst.util.concurrent">checkThread</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#currentContext--" title="class or interface in io.atomix.catalyst.util.concurrent">currentContext</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#currentContextOrThrow--" title="class or interface in io.atomix.catalyst.util.concurrent">currentContextOrThrow</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#execute-java.lang.Runnable-" title="class or interface in io.atomix.catalyst.util.concurrent">execute</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#execute-java.util.function.Supplier-" title="class or interface in io.atomix.catalyst.util.concurrent">execute</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#executor--" title="class or interface in io.atomix.catalyst.util.concurrent">executor</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#logger--" title="class or interface in io.atomix.catalyst.util.concurrent">logger</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#schedule-java.time.Duration-java.time.Duration-java.lang.Runnable-" title="class or interface in io.atomix.catalyst.util.concurrent">schedule</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#schedule-java.time.Duration-java.lang.Runnable-" title="class or interface in io.atomix.catalyst.util.concurrent">schedule</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#serializer--" title="class or interface in io.atomix.catalyst.util.concurrent">serializer</a></code></li>
+<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#checkThread--" title="class or interface in io.atomix.catalyst.util.concurrent">checkThread</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#currentContext--" title="class or interface in io.atomix.catalyst.util.concurrent">currentContext</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#currentContextOrThrow--" title="class or interface in io.atomix.catalyst.util.concurrent">currentContextOrThrow</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#execute-java.lang.Runnable-" title="class or interface in io.atomix.catalyst.util.concurrent">execute</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#execute-java.util.function.Supplier-" title="class or interface in io.atomix.catalyst.util.concurrent">execute</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#executor--" title="class or interface in io.atomix.catalyst.util.concurrent">executor</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#isCurrentContext--" title="class or interface in io.atomix.catalyst.util.concurrent">isCurrentContext</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#logger--" title="class or interface in io.atomix.catalyst.util.concurrent">logger</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#schedule-java.time.Duration-java.time.Duration-java.lang.Runnable-" title="class or interface in io.atomix.catalyst.util.concurrent">schedule</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#schedule-java.time.Duration-java.lang.Runnable-" title="class or interface in io.atomix.catalyst.util.concurrent">schedule</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#serializer--" title="class or interface in io.atomix.catalyst.util.concurrent">serializer</a></code></li>
 </ul>
 </li>
 </ul>
@@ -225,6 +237,45 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/co
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The state machine context.</dd>
+</dl>
+</li>
+</ul>
+<a name="isBlocked--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>isBlocked</h4>
+<pre>default&nbsp;boolean&nbsp;isBlocked()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#isBlocked--" title="class or interface in io.atomix.catalyst.util.concurrent">isBlocked</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">ThreadContext</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="block--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>block</h4>
+<pre>default&nbsp;void&nbsp;block()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#block--" title="class or interface in io.atomix.catalyst.util.concurrent">block</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">ThreadContext</a></code></dd>
+</dl>
+</li>
+</ul>
+<a name="unblock--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>unblock</h4>
+<pre>default&nbsp;void&nbsp;unblock()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#unblock--" title="class or interface in io.atomix.catalyst.util.concurrent">unblock</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">ThreadContext</a></code></dd>
 </dl>
 </li>
 </ul>
