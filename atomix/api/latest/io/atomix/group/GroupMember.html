@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6};
+var methods = {"i0":6,"i1":6,"i2":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -142,6 +142,12 @@ var activeTableTab = "activeTableTab";
 <div class="block">Returns the direct message client for this member.</div>
 </td>
 </tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;T&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupMember.html#metadata--">metadata</a></span>()</code>
+<div class="block">Returns the metadata associated with this member.</div>
+</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -177,7 +183,7 @@ var activeTableTab = "activeTableTab";
 <a name="messaging--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>messaging</h4>
 <pre><a href="../../../io/atomix/group/messaging/MessageClient.html" title="interface in io.atomix.group.messaging">MessageClient</a>&nbsp;messaging()</pre>
@@ -195,6 +201,26 @@ var activeTableTab = "activeTableTab";
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The direct message client for this member.</dd>
+</dl>
+</li>
+</ul>
+<a name="metadata--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>metadata</h4>
+<pre>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;T&gt;&nbsp;metadata()</pre>
+<div class="block">Returns the metadata associated with this member.
+ <p>
+ Metadata is provided when the member <a href="../../../io/atomix/group/DistributedGroup.html#join-java.lang.Object-"><code>join</code></a>s the group. If metadata was
+ provided by the member when it joined the group, it is guaranteed to be visible to all nodes once the member
+ has been added to the group.</div>
+<dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - The metadata type.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The member metadata.</dd>
 </dl>
 </li>
 </ul>

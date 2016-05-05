@@ -260,7 +260,7 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&gt;&nbsp;get()</pre>
 <div class="block">Gets the current value.
  <p>
- The value will be read using the configured <code>read consistency</code> level for
+ The value will be read using the configured <a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource"><code>read consistency</code></a> level for
  the resource. For <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic reads</code></a>, reads will be forwarded to the cluster
  leader. Weaker reads may be evaluated on non-leader nodes. However, consistency constraints guarantee
  that state will never go back in time.</div>
@@ -279,7 +279,7 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/variables/AbstractDistributedValue.html" title="type parameter in AbstractDistributedValue">U</a>&gt;&nbsp;get(<a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a>&nbsp;consistency)</pre>
 <div class="block">Gets the current value.
  <p>
- The value will be read using the provided <code>read consistency</code> level.
+ The value will be read using the provided <a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource"><code>read consistency</code></a> level.
  For <a href="../../../io/atomix/resource/ReadConsistency.html#ATOMIC"><code>atomic reads</code></a>, reads will be forwarded to the cluster leader.
  Weaker reads may be evaluated on non-leader nodes. However, consistency constraints guarantee
  that state will never go back in time.</div>

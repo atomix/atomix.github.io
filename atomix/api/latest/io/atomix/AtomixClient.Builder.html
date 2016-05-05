@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -167,29 +167,35 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixClient.Builder.html#withResourceTypes-java.lang.Class...-">withResourceTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;?&gt;&gt;...&nbsp;types)</code>
-<div class="block">Sets the available resource types.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixClient.Builder.html#withConnectionStrategy-io.atomix.copycat.client.ConnectionStrategy-">withConnectionStrategy</a></span>(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/ConnectionStrategy.html?is-external=true" title="class or interface in io.atomix.copycat.client">ConnectionStrategy</a>&nbsp;connectionStrategy)</code>
+<div class="block">Sets the Atomix connection strategy.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixClient.Builder.html#withResourceTypes-java.util.Collection-">withResourceTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&gt;&nbsp;types)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixClient.Builder.html#withResourceTypes-java.lang.Class...-">withResourceTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a>&lt;?&gt;&gt;...&nbsp;types)</code>
 <div class="block">Sets the available resource types.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixClient.Builder.html#withResourceTypes-io.atomix.resource.ResourceType...-">withResourceTypes</a></span>(<a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>...&nbsp;types)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixClient.Builder.html#withResourceTypes-java.util.Collection-">withResourceTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>&gt;&nbsp;types)</code>
 <div class="block">Sets the available resource types.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixClient.Builder.html#withResourceTypes-io.atomix.resource.ResourceType...-">withResourceTypes</a></span>(<a href="../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a>...&nbsp;types)</code>
+<div class="block">Sets the available resource types.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code><a href="../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixClient.Builder.html#withSerializer-io.atomix.catalyst.serializer.Serializer-">withSerializer</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
 <div class="block">Sets the Atomix serializer.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../io/atomix/AtomixClient.Builder.html#withTransport-io.atomix.catalyst.transport.Transport-">withTransport</a></span>(<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/transport/Transport.html?is-external=true" title="class or interface in io.atomix.catalyst.transport">Transport</a>&nbsp;transport)</code>
 <div class="block">Sets the Atomix transport.</div>
@@ -236,6 +242,24 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <dd>The Atomix builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>transport</code> is <code>null</code></dd>
+</dl>
+</li>
+</ul>
+<a name="withConnectionStrategy-io.atomix.copycat.client.ConnectionStrategy-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withConnectionStrategy</h4>
+<pre>public&nbsp;<a href="../../io/atomix/AtomixClient.Builder.html" title="class in io.atomix">AtomixClient.Builder</a>&nbsp;withConnectionStrategy(<a href="http://atomix.io/copycat/api/latest/io/atomix/copycat/client/ConnectionStrategy.html?is-external=true" title="class or interface in io.atomix.copycat.client">ConnectionStrategy</a>&nbsp;connectionStrategy)</pre>
+<div class="block">Sets the Atomix connection strategy.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>connectionStrategy</code> - The Atomix connection strategy.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The Atomix builder.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - If the <code>connection strategy</code> is <code>null</code></dd>
 </dl>
 </li>
 </ul>
