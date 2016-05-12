@@ -725,6 +725,10 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/snapshot/SnapshotWriter.html#flush--">flush()</a></span> - Method in class io.atomix.copycat.server.storage.snapshot.<a href="io/atomix/copycat/server/storage/snapshot/SnapshotWriter.html" title="class in io.atomix.copycat.server.storage.snapshot">SnapshotWriter</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.html#flushOnCommit--">flushOnCommit()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.html" title="class in io.atomix.copycat.server.storage">Storage</a></dt>
+<dd>
+<div class="block">Returns whether to flush buffers to disk when entries are committed.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/error/CopycatError.html#forId-int-">forId(int)</a></span> - Static method in interface io.atomix.copycat.error.<a href="io/atomix/copycat/error/CopycatError.html" title="interface in io.atomix.copycat.error">CopycatError</a></dt>
 <dd>
 <div class="block">Returns the Raft error for the given identifier.</div>
@@ -2212,6 +2216,16 @@ the order they are declared.</div>
 <dd>
 <div class="block">Sets the Raft election timeout, returning the Raft configuration for method chaining.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withFlushOnCommit--">withFlushOnCommit()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
+<dd>
+<div class="block">Enables flushing buffers to disk when entries are committed to a segment, returning the builder
+ for method chaining.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withFlushOnCommit-boolean-">withFlushOnCommit(boolean)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
+<dd>
+<div class="block">Sets whether to flush buffers to disk when entries are committed to a segment, returning the builder
+ for method chaining.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/CopycatServer.Builder.html#withGlobalSuspendTimeout-java.time.Duration-">withGlobalSuspendTimeout(Duration)</a></span> - Method in class io.atomix.copycat.server.<a href="io/atomix/copycat/server/CopycatServer.Builder.html" title="class in io.atomix.copycat.server">CopycatServer.Builder</a></dt>
 <dd>
 <div class="block">Sets the timeout after which suspended global replication will resume and force a partitioned follower
@@ -2267,7 +2281,7 @@ the order they are declared.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withRetainStaleSnapshots--">withRetainStaleSnapshots()</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
 <dd>
-<div class="block">Sets whether to retain stale snapshots on disk, returning the builder for method chaining.</div>
+<div class="block">Enables retaining stale snapshots on disk, returning the builder for method chaining.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/copycat/server/storage/Storage.Builder.html#withRetainStaleSnapshots-boolean-">withRetainStaleSnapshots(boolean)</a></span> - Method in class io.atomix.copycat.server.storage.<a href="io/atomix/copycat/server/storage/Storage.Builder.html" title="class in io.atomix.copycat.server.storage">Storage.Builder</a></dt>
 <dd>
