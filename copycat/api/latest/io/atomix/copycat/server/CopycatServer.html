@@ -359,7 +359,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">ThreadContext</a></code></td>
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">ThreadContext</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#context--">context</a></span>()</code>
 <div class="block">Returns the server execution context.</div>
 </td>
@@ -395,7 +395,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr id="i13" class="rowColor">
-<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/server/CopycatServer.html#onStateChange-java.util.function.Consumer-">onStateChange</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a>&gt;&nbsp;listener)</code>
 <div class="block">Registers a state change listener.</div>
 </td>
@@ -633,7 +633,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>onStateChange</h4>
-<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a>&gt;&nbsp;onStateChange(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a>&gt;&nbsp;listener)</pre>
+<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a>&gt;&nbsp;onStateChange(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server">CopycatServer.State</a>&gt;&nbsp;listener)</pre>
 <div class="block">Registers a state change listener.
  <p>
  Throughout the lifetime of the cluster, the server will periodically transition between various <a href="../../../../io/atomix/copycat/server/CopycatServer.State.html" title="enum in io.atomix.copycat.server"><code>states</code></a>.
@@ -653,7 +653,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <dd><code>listener</code> - The state change listener.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The listener context. This can be used to unregister the election listener via
- <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.util"><code>Listener.close()</code></a>.</dd>
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.concurrent"><code>Listener.close()</code></a>.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - If <code>listener</code> is <code>null</code></dd>
 </dl>
@@ -665,15 +665,15 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 <ul class="blockList">
 <li class="blockList">
 <h4>context</h4>
-<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent">ThreadContext</a>&nbsp;context()</pre>
+<pre>public&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">ThreadContext</a>&nbsp;context()</pre>
 <div class="block">Returns the server execution context.
  <p>
  The thread context is the event loop that this server uses to communicate other Raft servers.
  Implementations must guarantee that all asynchronous <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> callbacks are
- executed on a single thread via the returned <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent"><code>ThreadContext</code></a>.
+ executed on a single thread via the returned <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent.ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util"><code>concurrent.ThreadContext</code></a>.
  <p>
- The <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util.concurrent"><code>ThreadContext</code></a> can also be used to access the Raft server's internal
- <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>serializer</code></a> via <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent/ThreadContext.html?is-external=true#serializer--" title="class or interface in io.atomix.catalyst.util.concurrent"><code>ThreadContext.serializer()</code></a>. Catalyst serializers
+ The <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent.ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util"><code>concurrent.ThreadContext</code></a> can also be used to access the Raft server's internal
+ <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>serializer</code></a> via <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/ThreadContext.html?is-external=true#serializer--" title="class or interface in io.atomix.catalyst.concurrent"><code>ThreadContext.serializer()</code></a>. Catalyst serializers
  are not thread safe, so to use the context serializer, users should clone it:
  <pre>
    <code>

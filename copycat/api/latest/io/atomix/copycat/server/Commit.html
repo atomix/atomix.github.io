@@ -101,12 +101,12 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Superinterfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;T&gt;&gt;</dd>
+<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a>, <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/reference/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util.reference">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;T&gt;&gt;</dd>
 </dl>
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">Commit&lt;T extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&gt;</span>
-extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;T&gt;&gt;</pre>
+extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/reference/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util.reference">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;T&gt;&gt;</pre>
 <div class="block">Represents the committed state and metadata of a Raft state machine operation.
  <p>
  Commits are representative of a log <code>Entry</code> that has been replicated
@@ -385,7 +385,7 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Re
  memory and disk space.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true#acquire--" title="class or interface in io.atomix.catalyst.util">acquire</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a> extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&gt;&gt;</code></dd>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/reference/ReferenceCounted.html?is-external=true#acquire--" title="class or interface in io.atomix.catalyst.util.reference">acquire</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/reference/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util.reference">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a> extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&gt;&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The referenced commit.</dd>
 </dl>
@@ -406,7 +406,7 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Re
  no longer be accessed.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true#release--" title="class or interface in io.atomix.catalyst.util">release</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a> extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&gt;&gt;</code></dd>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/reference/ReferenceCounted.html?is-external=true#release--" title="class or interface in io.atomix.catalyst.util.reference">release</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/reference/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util.reference">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a> extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&gt;&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>Indicates whether all references to the commit have been released.</dd>
 </dl>
@@ -422,7 +422,7 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Re
 <div class="block">Returns the number of open references to the commit.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true#references--" title="class or interface in io.atomix.catalyst.util">references</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a> extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&gt;&gt;</code></dd>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/reference/ReferenceCounted.html?is-external=true#references--" title="class or interface in io.atomix.catalyst.util.reference">references</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/reference/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util.reference">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a> extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&gt;&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The number of open references to the commit.</dd>
 </dl>
@@ -443,7 +443,7 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Re
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true#close--" title="class or interface in java.lang">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.util">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a> extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&gt;&gt;</code></dd>
+<dd><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/reference/ReferenceCounted.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.util.reference">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/reference/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util.reference">ReferenceCounted</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server">Commit</a>&lt;<a href="../../../../io/atomix/copycat/server/Commit.html" title="type parameter in Commit">T</a> extends <a href="../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&gt;&gt;</code></dd>
 </dl>
 </li>
 </ul>
