@@ -88,6 +88,14 @@
 <div class="block">The Transport layer provides a low-level interface via which Catalyst clients and servers communicate.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.catalyst.transport.local">io.atomix.catalyst.transport.local</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.catalyst.transport.netty">io.atomix.catalyst.transport.netty</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -97,27 +105,6 @@
 <!--   -->
 </a>
 <h3>Uses of <a href="../../../../../io/atomix/catalyst/transport/Client.html" title="interface in io.atomix.catalyst.transport">Client</a> in <a href="../../../../../io/atomix/catalyst/transport/package-summary.html">io.atomix.catalyst.transport</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../../../io/atomix/catalyst/transport/package-summary.html">io.atomix.catalyst.transport</a> that implement <a href="../../../../../io/atomix/catalyst/transport/Client.html" title="interface in io.atomix.catalyst.transport">Client</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Class and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/LocalClient.html" title="class in io.atomix.catalyst.transport">LocalClient</a></span></code>
-<div class="block">Local client.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/NettyClient.html" title="class in io.atomix.catalyst.transport">NettyClient</a></span></code>
-<div class="block">Netty client.</div>
-</td>
-</tr>
-</tbody>
-</table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
 <caption><span>Methods in <a href="../../../../../io/atomix/catalyst/transport/package-summary.html">io.atomix.catalyst.transport</a> that return <a href="../../../../../io/atomix/catalyst/transport/Client.html" title="interface in io.atomix.catalyst.transport">Client</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
@@ -127,17 +114,75 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/transport/Client.html" title="interface in io.atomix.catalyst.transport">Client</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NettyTransport.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/NettyTransport.html#client--">client</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/transport/Client.html" title="interface in io.atomix.catalyst.transport">Client</a></code></td>
-<td class="colLast"><span class="typeNameLabel">LocalTransport.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/LocalTransport.html#client--">client</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/transport/Client.html" title="interface in io.atomix.catalyst.transport">Client</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Transport.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/Transport.html#client--">client</a></span>()</code>
 <div class="block">Creates a new transport client.</div>
 </td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.catalyst.transport.local">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/catalyst/transport/Client.html" title="interface in io.atomix.catalyst.transport">Client</a> in <a href="../../../../../io/atomix/catalyst/transport/local/package-summary.html">io.atomix.catalyst.transport.local</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../io/atomix/catalyst/transport/local/package-summary.html">io.atomix.catalyst.transport.local</a> that implement <a href="../../../../../io/atomix/catalyst/transport/Client.html" title="interface in io.atomix.catalyst.transport">Client</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/local/LocalClient.html" title="class in io.atomix.catalyst.transport.local">LocalClient</a></span></code>
+<div class="block">Local client.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/catalyst/transport/local/package-summary.html">io.atomix.catalyst.transport.local</a> that return <a href="../../../../../io/atomix/catalyst/transport/Client.html" title="interface in io.atomix.catalyst.transport">Client</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/transport/Client.html" title="interface in io.atomix.catalyst.transport">Client</a></code></td>
+<td class="colLast"><span class="typeNameLabel">LocalTransport.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/local/LocalTransport.html#client--">client</a></span>()</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.catalyst.transport.netty">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/catalyst/transport/Client.html" title="interface in io.atomix.catalyst.transport">Client</a> in <a href="../../../../../io/atomix/catalyst/transport/netty/package-summary.html">io.atomix.catalyst.transport.netty</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../io/atomix/catalyst/transport/netty/package-summary.html">io.atomix.catalyst.transport.netty</a> that implement <a href="../../../../../io/atomix/catalyst/transport/Client.html" title="interface in io.atomix.catalyst.transport">Client</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/netty/NettyClient.html" title="class in io.atomix.catalyst.transport.netty">NettyClient</a></span></code>
+<div class="block">Netty client.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/catalyst/transport/netty/package-summary.html">io.atomix.catalyst.transport.netty</a> that return <a href="../../../../../io/atomix/catalyst/transport/Client.html" title="interface in io.atomix.catalyst.transport">Client</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/transport/Client.html" title="interface in io.atomix.catalyst.transport">Client</a></code></td>
+<td class="colLast"><span class="typeNameLabel">NettyTransport.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/netty/NettyTransport.html#client--">client</a></span>()</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

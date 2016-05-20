@@ -119,9 +119,9 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
  16-bit identifier is used to construct a new object.
  <p>
  Serializable objects must either provide a <a href="../../../../io/atomix/catalyst/serializer/TypeSerializer.html" title="interface in io.atomix.catalyst.serializer"><code>TypeSerializer</code></a>. implement <a href="../../../../io/atomix/catalyst/serializer/CatalystSerializable.html" title="interface in io.atomix.catalyst.serializer"><code>CatalystSerializable</code></a>, or implement
- <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Externalizable.html?is-external=true" title="class or interface in java.io"><code>Externalizable</code></a>. For efficiency, serializable objects may implement <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html" title="interface in io.atomix.catalyst.util"><code>ReferenceCounted</code></a>
+ <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Externalizable.html?is-external=true" title="class or interface in java.io"><code>Externalizable</code></a>. For efficiency, serializable objects may implement <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html" title="interface in io.atomix.catalyst.util.reference"><code>ReferenceCounted</code></a>
  or provide a <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/util.PooledTypeSerializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>PooledTypeSerializer</code></a> that reuses objects during deserialization.
- Catalyst will automatically deserialize <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html" title="interface in io.atomix.catalyst.util"><code>ReferenceCounted</code></a> types using an object pool.
+ Catalyst will automatically deserialize <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html" title="interface in io.atomix.catalyst.util.reference"><code>ReferenceCounted</code></a> types using an object pool.
  <p>
  Serialization via this class is not thread safe.</div>
 <dl>
@@ -489,7 +489,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
  </pre>
  <p>
  If a <a href="../../../../io/atomix/catalyst/buffer/PooledAllocator.html" title="class in io.atomix.catalyst.buffer"><code>PooledAllocator</code></a> is used, users must be careful to release buffers back to the
- pool by calling <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html#release--"><code>ReferenceCounted.release()</code></a> or <a href="../../../../io/atomix/catalyst/buffer/Buffer.html#close--"><code>Buffer.close()</code></a>.</div>
+ pool by calling <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html#release--"><code>ReferenceCounted.release()</code></a> or <a href="../../../../io/atomix/catalyst/buffer/Buffer.html#close--"><code>Buffer.close()</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>allocator</code> - The serializer buffer allocator.</dd>
@@ -555,7 +555,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
  </pre>
  <p>
  If a <a href="../../../../io/atomix/catalyst/buffer/PooledAllocator.html" title="class in io.atomix.catalyst.buffer"><code>PooledAllocator</code></a> is used, users must be careful to release buffers back to the
- pool by calling <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html#release--"><code>ReferenceCounted.release()</code></a> or <a href="../../../../io/atomix/catalyst/buffer/Buffer.html#close--"><code>Buffer.close()</code></a>.
+ pool by calling <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html#release--"><code>ReferenceCounted.release()</code></a> or <a href="../../../../io/atomix/catalyst/buffer/Buffer.html#close--"><code>Buffer.close()</code></a>.
  <p>
  The given <a href="../../../../io/atomix/catalyst/serializer/SerializableTypeResolver.html" title="interface in io.atomix.catalyst.serializer"><code>SerializableTypeResolver</code></a>s will be used to locate serializable types on the
  classpath. By default, the <a href="../../../../io/atomix/catalyst/serializer/PrimitiveTypeResolver.html" title="class in io.atomix.catalyst.serializer"><code>PrimitiveTypeResolver</code></a> and <a href="../../../../io/atomix/catalyst/serializer/JdkTypeResolver.html" title="class in io.atomix.catalyst.serializer"><code>JdkTypeResolver</code></a>
@@ -589,7 +589,7 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
  </pre>
  <p>
  If a <a href="../../../../io/atomix/catalyst/buffer/PooledAllocator.html" title="class in io.atomix.catalyst.buffer"><code>PooledAllocator</code></a> is used, users must be careful to release buffers back to the
- pool by calling <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html#release--"><code>ReferenceCounted.release()</code></a> or <a href="../../../../io/atomix/catalyst/buffer/Buffer.html#close--"><code>Buffer.close()</code></a>.
+ pool by calling <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html#release--"><code>ReferenceCounted.release()</code></a> or <a href="../../../../io/atomix/catalyst/buffer/Buffer.html#close--"><code>Buffer.close()</code></a>.
  <p>
  The given <a href="../../../../io/atomix/catalyst/serializer/SerializableTypeResolver.html" title="interface in io.atomix.catalyst.serializer"><code>SerializableTypeResolver</code></a>s will be used to locate serializable types on the
  classpath. By default, the <a href="../../../../io/atomix/catalyst/serializer/PrimitiveTypeResolver.html" title="class in io.atomix.catalyst.serializer"><code>PrimitiveTypeResolver</code></a> and <a href="../../../../io/atomix/catalyst/serializer/JdkTypeResolver.html" title="class in io.atomix.catalyst.serializer"><code>JdkTypeResolver</code></a>
@@ -1457,10 +1457,10 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
  If the type is a <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io"><code>Serializable</code></a> type serialized with native Java serialization, it will be read from
  the buffer via <a href="http://docs.oracle.com/javase/8/docs/api/java/io/ObjectInputStream.html?is-external=true" title="class or interface in java.io"><code>ObjectInputStream</code></a>.
  <p>
- For types that implement <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html" title="interface in io.atomix.catalyst.util"><code>ReferenceCounted</code></a>, the serializer will use an internal object pool
+ For types that implement <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html" title="interface in io.atomix.catalyst.util.reference"><code>ReferenceCounted</code></a>, the serializer will use an internal object pool
  to automatically pool and reuse reference counted types for deserialization. This means that users must release
- <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html" title="interface in io.atomix.catalyst.util"><code>ReferenceCounted</code></a> types back to the object pool via
- <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html#release--"><code>ReferenceCounted.release()</code></a> or <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html#close--"><code>ReferenceCounted.close()</code></a>
+ <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html" title="interface in io.atomix.catalyst.util.reference"><code>ReferenceCounted</code></a> types back to the object pool via
+ <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html#release--"><code>ReferenceCounted.release()</code></a> or <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html#close--"><code>ReferenceCounted.close()</code></a>
  once complete.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
@@ -1501,10 +1501,10 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
  If the type is a <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io"><code>Serializable</code></a> type serialized with native Java serialization, it will be read from
  the buffer via <a href="http://docs.oracle.com/javase/8/docs/api/java/io/ObjectInputStream.html?is-external=true" title="class or interface in java.io"><code>ObjectInputStream</code></a>.
  <p>
- For types that implement <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html" title="interface in io.atomix.catalyst.util"><code>ReferenceCounted</code></a>, the serializer will use an internal object pool
+ For types that implement <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html" title="interface in io.atomix.catalyst.util.reference"><code>ReferenceCounted</code></a>, the serializer will use an internal object pool
  to automatically pool and reuse reference counted types for deserialization. This means that users must release
- <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html" title="interface in io.atomix.catalyst.util"><code>ReferenceCounted</code></a> types back to the object pool via
- <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html#release--"><code>ReferenceCounted.release()</code></a> or <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html#close--"><code>ReferenceCounted.close()</code></a>
+ <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html" title="interface in io.atomix.catalyst.util.reference"><code>ReferenceCounted</code></a> types back to the object pool via
+ <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html#release--"><code>ReferenceCounted.release()</code></a> or <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html#close--"><code>ReferenceCounted.close()</code></a>
  once complete.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
@@ -1545,10 +1545,10 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
  If the type is a <a href="http://docs.oracle.com/javase/8/docs/api/java/io/Serializable.html?is-external=true" title="class or interface in java.io"><code>Serializable</code></a> type serialized with native Java serialization, it will be read from
  the buffer via <a href="http://docs.oracle.com/javase/8/docs/api/java/io/ObjectInputStream.html?is-external=true" title="class or interface in java.io"><code>ObjectInputStream</code></a>.
  <p>
- For types that implement <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html" title="interface in io.atomix.catalyst.util"><code>ReferenceCounted</code></a>, the serializer will use an internal object pool
+ For types that implement <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html" title="interface in io.atomix.catalyst.util.reference"><code>ReferenceCounted</code></a>, the serializer will use an internal object pool
  to automatically pool and reuse reference counted types for deserialization. This means that users must release
- <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html" title="interface in io.atomix.catalyst.util"><code>ReferenceCounted</code></a> types back to the object pool via
- <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html#release--"><code>ReferenceCounted.release()</code></a> or <a href="../../../../io/atomix/catalyst/util/ReferenceCounted.html#close--"><code>ReferenceCounted.close()</code></a>
+ <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html" title="interface in io.atomix.catalyst.util.reference"><code>ReferenceCounted</code></a> types back to the object pool via
+ <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html#release--"><code>ReferenceCounted.release()</code></a> or <a href="../../../../io/atomix/catalyst/util/reference/ReferenceCounted.html#close--"><code>ReferenceCounted.close()</code></a>
  once complete.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>

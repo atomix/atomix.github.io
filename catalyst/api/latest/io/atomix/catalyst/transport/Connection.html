@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/atomix/catalyst/transport/Client.html" title="interface in io.atomix.catalyst.transport"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/catalyst/transport/LocalClient.html" title="class in io.atomix.catalyst.transport"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/catalyst/transport/MessageHandler.html" title="interface in io.atomix.catalyst.transport"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/catalyst/transport/Connection.html" target="_top">Frames</a></li>
@@ -101,7 +101,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../../io/atomix/catalyst/transport/LocalConnection.html" title="class in io.atomix.catalyst.transport">LocalConnection</a>, <a href="../../../../io/atomix/catalyst/transport/NettyConnection.html" title="class in io.atomix.catalyst.transport">NettyConnection</a></dd>
+<dd><a href="../../../../io/atomix/catalyst/transport/local/LocalConnection.html" title="class in io.atomix.catalyst.transport.local">LocalConnection</a>, <a href="../../../../io/atomix/catalyst/transport/netty/NettyConnection.html" title="class in io.atomix.catalyst.transport.netty">NettyConnection</a></dd>
 </dl>
 <hr>
 <br>
@@ -143,13 +143,13 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/catalyst/util/Listener.html" title="interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
+<td class="colFirst"><code><a href="../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/transport/Connection.html#closeListener-java.util.function.Consumer-">closeListener</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</code>
 <div class="block">Sets a close listener on the connection.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/catalyst/util/Listener.html" title="interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&gt;</code></td>
+<td class="colFirst"><code><a href="../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/transport/Connection.html#exceptionListener-java.util.function.Consumer-">exceptionListener</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&gt;&nbsp;listener)</code>
 <div class="block">Sets an exception listener on the connection.</div>
 </td>
@@ -204,7 +204,7 @@ var activeTableTab = "activeTableTab";
  <p>
  <a href="../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport"><code>Connection</code></a> implementations must guarantee that all reply
  <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>futures</code></a> will be completed in the same
- <a href="../../../../io/atomix/catalyst/util/concurrent/CatalystThread.html" title="class in io.atomix.catalyst.util.concurrent"><code>Catalyst thread</code></a>.</div>
+ <a href="../../../../io/atomix/catalyst/concurrent/CatalystThread.html" title="class in io.atomix.catalyst.concurrent"><code>Catalyst thread</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>T</code> - The message type.</dd>
@@ -257,12 +257,12 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>exceptionListener</h4>
-<pre><a href="../../../../io/atomix/catalyst/util/Listener.html" title="interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&gt;&nbsp;exceptionListener(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&gt;&nbsp;listener)</pre>
+<pre><a href="../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&gt;&nbsp;exceptionListener(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html?is-external=true" title="class or interface in java.lang">Throwable</a>&gt;&nbsp;listener)</pre>
 <div class="block">Sets an exception listener on the connection.
  <p>
  In the event of an exception in the connection, the provided listener's <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true#accept-T-" title="class or interface in java.util.function"><code>Consumer.accept(Object)</code></a> method will
- be invoked. To unregister the listener, simply <a href="../../../../io/atomix/catalyst/util/Listener.html#close--"><code>Listener.close()</code></a> the returned
- <a href="../../../../io/atomix/catalyst/util/Listener.html" title="interface in io.atomix.catalyst.util"><code>Listener</code></a>.</div>
+ be invoked. To unregister the listener, simply <a href="../../../../io/atomix/catalyst/concurrent/Listener.html#close--"><code>Listener.close()</code></a> the returned
+ <a href="../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent"><code>Listener</code></a>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>listener</code> - The exception listener.</dd>
@@ -279,7 +279,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>closeListener</h4>
-<pre><a href="../../../../io/atomix/catalyst/util/Listener.html" title="interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;closeListener(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</pre>
+<pre><a href="../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;closeListener(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</pre>
 <div class="block">Sets a close listener on the connection.
  <p>
  The provided listener's <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true#accept-T-" title="class or interface in java.util.function"><code>Consumer.accept(Object)</code></a> method will be invoked when the connection is closed. Note
@@ -344,7 +344,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/atomix/catalyst/transport/Client.html" title="interface in io.atomix.catalyst.transport"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/catalyst/transport/LocalClient.html" title="class in io.atomix.catalyst.transport"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/catalyst/transport/MessageHandler.html" title="interface in io.atomix.catalyst.transport"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/catalyst/transport/Connection.html" target="_top">Frames</a></li>

@@ -83,10 +83,9 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.catalyst.buffer">io.atomix.catalyst.buffer</a></td>
+<td class="colFirst"><a href="#io.atomix.catalyst.concurrent">io.atomix.catalyst.concurrent</a></td>
 <td class="colLast">
-<div class="block">Provides a low-level <a href="../../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer"><code>Buffer</code></a> abstraction backed by on- or off-heap memory, memory mapped
- files, or <a href="http://docs.oracle.com/javase/8/docs/api/java/io/RandomAccessFile.html?is-external=true" title="class or interface in java.io"><code>RandomAccessFile</code></a>.</div>
+<div class="block">Utilities for thread management and asynchronous workflows.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -101,34 +100,72 @@
 <div class="block">The Transport layer provides a low-level interface via which Catalyst clients and servers communicate.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.catalyst.util.concurrent">io.atomix.catalyst.util.concurrent</a></td>
-<td class="colLast">
-<div class="block">Utilities for thread management and asynchronous workflows.</div>
-</td>
-</tr>
 </tbody>
 </table>
 </li>
 <li class="blockList">
 <ul class="blockList">
-<li class="blockList"><a name="io.atomix.catalyst.buffer">
+<li class="blockList"><a name="io.atomix.catalyst.concurrent">
 <!--   -->
 </a>
-<h3>Uses of <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a> in <a href="../../../../../io/atomix/catalyst/buffer/package-summary.html">io.atomix.catalyst.buffer</a></h3>
+<h3>Uses of <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a> in <a href="../../../../../io/atomix/catalyst/concurrent/package-summary.html">io.atomix.catalyst.concurrent</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/catalyst/concurrent/package-summary.html">io.atomix.catalyst.concurrent</a> that return <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SingleThreadContext.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/concurrent/SingleThreadContext.html#serializer--">serializer</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ThreadContext.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/concurrent/ThreadContext.html#serializer--">serializer</a></span>()</code>
+<div class="block">Returns the context serializer.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ThreadPoolContext.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/concurrent/ThreadPoolContext.html#serializer--">serializer</a></span>()</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
-<caption><span>Constructors in <a href="../../../../../io/atomix/catalyst/buffer/package-summary.html">io.atomix.catalyst.buffer</a> with parameters of type <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Constructors in <a href="../../../../../io/atomix/catalyst/concurrent/package-summary.html">io.atomix.catalyst.concurrent</a> with parameters of type <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/BufferObjectInput.html#BufferObjectInput-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">BufferObjectInput</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/BufferInput.html" title="interface in io.atomix.catalyst.buffer">BufferInput</a>&lt;?&gt;&nbsp;buffer,
-                 <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/concurrent/SingleThreadContext.html#SingleThreadContext-io.atomix.catalyst.concurrent.CatalystThreadFactory-io.atomix.catalyst.serializer.Serializer-">SingleThreadContext</a></span>(<a href="../../../../../io/atomix/catalyst/concurrent/CatalystThreadFactory.html" title="class in io.atomix.catalyst.concurrent">CatalystThreadFactory</a>&nbsp;factory,
+                   <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
+<div class="block">Creates a new single thread context.</div>
+</td>
 </tr>
 <tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/BufferObjectOutput.html#BufferObjectOutput-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">BufferObjectOutput</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;&nbsp;buffer,
-                  <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/concurrent/SingleThreadContext.html#SingleThreadContext-java.util.concurrent.ScheduledExecutorService-io.atomix.catalyst.serializer.Serializer-">SingleThreadContext</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html?is-external=true" title="class or interface in java.util.concurrent">ScheduledExecutorService</a>&nbsp;executor,
+                   <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
+<div class="block">Creates a new single thread context.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/concurrent/SingleThreadContext.html#SingleThreadContext-java.lang.String-io.atomix.catalyst.serializer.Serializer-">SingleThreadContext</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;nameFormat,
+                   <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
+<div class="block">Creates a new single thread context.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/concurrent/SingleThreadContext.html#SingleThreadContext-java.lang.Thread-java.util.concurrent.ScheduledExecutorService-io.atomix.catalyst.serializer.Serializer-">SingleThreadContext</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html?is-external=true" title="class or interface in java.lang">Thread</a>&nbsp;thread,
+                   <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html?is-external=true" title="class or interface in java.util.concurrent">ScheduledExecutorService</a>&nbsp;executor,
+                   <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/concurrent/ThreadPoolContext.html#ThreadPoolContext-java.util.concurrent.ScheduledExecutorService-io.atomix.catalyst.serializer.Serializer-">ThreadPoolContext</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html?is-external=true" title="class or interface in java.util.concurrent">ScheduledExecutorService</a>&nbsp;parent,
+                 <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
+<div class="block">Creates a new thread pool context.</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -298,35 +335,11 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></td>
-<td class="colLast"><span class="typeNameLabel">GenericJacksonSerializer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/GenericJacksonSerializer.html#read-java.lang.Class-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">read</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&nbsp;type,
-    <a href="../../../../../io/atomix/catalyst/buffer/BufferInput.html" title="interface in io.atomix.catalyst.buffer">BufferInput</a>&nbsp;buffer,
-    <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></td>
-<td class="colLast"><span class="typeNameLabel">GenericKryoSerializer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/GenericKryoSerializer.html#read-java.lang.Class-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">read</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&nbsp;type,
-    <a href="../../../../../io/atomix/catalyst/buffer/BufferInput.html" title="interface in io.atomix.catalyst.buffer">BufferInput</a>&nbsp;buffer,
-    <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">CatalystSerializable.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/CatalystSerializable.html#readObject-io.atomix.catalyst.buffer.BufferInput-io.atomix.catalyst.serializer.Serializer-">readObject</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/BufferInput.html" title="interface in io.atomix.catalyst.buffer">BufferInput</a>&lt;?&gt;&nbsp;buffer,
           <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
 <div class="block">Reads the object from the given buffer.</div>
 </td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">GenericJacksonSerializer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/GenericJacksonSerializer.html#write-java.lang.Object-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">write</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;object,
-     <a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&nbsp;buffer,
-     <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">GenericKryoSerializer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/serializer/GenericKryoSerializer.html#write-java.lang.Object-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">write</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;object,
-     <a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&nbsp;buffer,
-     <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
@@ -366,71 +379,6 @@
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">Address.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/Address.html#writeObject-io.atomix.catalyst.buffer.BufferOutput-io.atomix.catalyst.serializer.Serializer-">writeObject</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;&nbsp;buffer,
            <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.catalyst.util.concurrent">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a> in <a href="../../../../../io/atomix/catalyst/util/concurrent/package-summary.html">io.atomix.catalyst.util.concurrent</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/catalyst/util/concurrent/package-summary.html">io.atomix.catalyst.util.concurrent</a> that return <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></code></td>
-<td class="colLast"><span class="typeNameLabel">SingleThreadContext.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/SingleThreadContext.html#serializer--">serializer</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ThreadPoolContext.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadPoolContext.html#serializer--">serializer</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ThreadContext.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadContext.html#serializer--">serializer</a></span>()</code>
-<div class="block">Returns the context serializer.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
-<caption><span>Constructors in <a href="../../../../../io/atomix/catalyst/util/concurrent/package-summary.html">io.atomix.catalyst.util.concurrent</a> with parameters of type <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Constructor and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/SingleThreadContext.html#SingleThreadContext-io.atomix.catalyst.util.concurrent.CatalystThreadFactory-io.atomix.catalyst.serializer.Serializer-">SingleThreadContext</a></span>(<a href="../../../../../io/atomix/catalyst/util/concurrent/CatalystThreadFactory.html" title="class in io.atomix.catalyst.util.concurrent">CatalystThreadFactory</a>&nbsp;factory,
-                   <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
-<div class="block">Creates a new single thread context.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/SingleThreadContext.html#SingleThreadContext-java.util.concurrent.ScheduledExecutorService-io.atomix.catalyst.serializer.Serializer-">SingleThreadContext</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html?is-external=true" title="class or interface in java.util.concurrent">ScheduledExecutorService</a>&nbsp;executor,
-                   <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
-<div class="block">Creates a new single thread context.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/SingleThreadContext.html#SingleThreadContext-java.lang.String-io.atomix.catalyst.serializer.Serializer-">SingleThreadContext</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;nameFormat,
-                   <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
-<div class="block">Creates a new single thread context.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/SingleThreadContext.html#SingleThreadContext-java.lang.Thread-java.util.concurrent.ScheduledExecutorService-io.atomix.catalyst.serializer.Serializer-">SingleThreadContext</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html?is-external=true" title="class or interface in java.lang">Thread</a>&nbsp;thread,
-                   <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html?is-external=true" title="class or interface in java.util.concurrent">ScheduledExecutorService</a>&nbsp;executor,
-                   <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/util/concurrent/ThreadPoolContext.html#ThreadPoolContext-java.util.concurrent.ScheduledExecutorService-io.atomix.catalyst.serializer.Serializer-">ThreadPoolContext</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ScheduledExecutorService.html?is-external=true" title="class or interface in java.util.concurrent">ScheduledExecutorService</a>&nbsp;parent,
-                 <a href="../../../../../io/atomix/catalyst/serializer/Serializer.html" title="class in io.atomix.catalyst.serializer">Serializer</a>&nbsp;serializer)</code>
-<div class="block">Creates a new thread pool context.</div>
-</td>
 </tr>
 </tbody>
 </table>
