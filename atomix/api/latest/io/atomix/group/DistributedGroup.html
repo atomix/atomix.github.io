@@ -506,13 +506,13 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="interface in 
 </td>
 </tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/DistributedGroup.html#onJoin-java.util.function.Consumer-">onJoin</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>
 <div class="block">Adds a listener for members joining the group.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
-<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/DistributedGroup.html#onLeave-java.util.function.Consumer-">onLeave</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</code>
 <div class="block">Adds a listener for members leaving the group.</div>
 </td>
@@ -814,13 +814,13 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="interface in 
 <ul class="blockList">
 <li class="blockList">
 <h4>onJoin</h4>
-<pre><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a>&gt;&nbsp;onJoin(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</pre>
+<pre><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a>&gt;&nbsp;onJoin(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</pre>
 <div class="block">Adds a listener for members joining the group.
  <p>
  The provided <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function"><code>Consumer</code></a> will be called each time a member joins the group. Note that
  the join consumer will be called before the joining member's <a href="../../../io/atomix/group/DistributedGroup.html#join--"><code>join()</code></a> completes.
  <p>
- The returned <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util"><code>Listener</code></a> can be used to <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.util"><code>unregister</code></a> the listener
+ The returned <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent"><code>Listener</code></a> can be used to <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.concurrent"><code>unregister</code></a> the listener
  when its use if finished.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -852,7 +852,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="interface in 
 <ul class="blockListLast">
 <li class="blockList">
 <h4>onLeave</h4>
-<pre><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util">Listener</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a>&gt;&nbsp;onLeave(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</pre>
+<pre><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a>&gt;&nbsp;onLeave(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a>&gt;&nbsp;listener)</pre>
 <div class="block">Adds a listener for members leaving the group.
  <p>
  The provided <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function"><code>Consumer</code></a> will be called each time a member leaves the group. Members can
@@ -860,7 +860,7 @@ extends <a href="../../../io/atomix/resource/Resource.html" title="interface in 
  cluster for longer than their session timeout. Note that the leave consumer will be called before
  the leaving member's <a href="../../../io/atomix/group/LocalMember.html#leave--"><code>LocalMember.leave()</code></a> completes.
  <p>
- The returned <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.util"><code>Listener</code></a> can be used to <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Listener.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.util"><code>unregister</code></a> the listener
+ The returned <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent"><code>Listener</code></a> can be used to <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true#close--" title="class or interface in io.atomix.catalyst.concurrent"><code>unregister</code></a> the listener
  when its use if finished.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
