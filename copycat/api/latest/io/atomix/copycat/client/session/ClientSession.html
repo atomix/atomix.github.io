@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -206,72 +206,78 @@ implements <a href="../../../../../io/atomix/copycat/session/Session.html" title
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#equals-java.lang.Object-">equals</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;object)</code>&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#expire--">expire</a></span>()</code>
+<div class="block">Expires the session.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#hashCode--">hashCode</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#id--">id</a></span>()</code>
 <div class="block">Returns the session ID.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#kill--">kill</a></span>()</code>
 <div class="block">Kills the session.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#onEvent-java.lang.String-java.util.function.Consumer-">onEvent</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;event,
        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;T&gt;&nbsp;callback)</code>
 <div class="block">Registers an event listener.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#onEvent-java.lang.String-java.lang.Runnable-">onEvent</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;event,
        <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a>&nbsp;callback)</code>
 <div class="block">Registers a void event listener.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../../io/atomix/copycat/session/Session.State.html" title="enum in io.atomix.copycat.session">Session.State</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#onStateChange-java.util.function.Consumer-">onStateChange</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/copycat/session/Session.State.html" title="enum in io.atomix.copycat.session">Session.State</a>&gt;&nbsp;callback)</code>
 <div class="block">Registers a callback to be called when the session state changes.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session">Session</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#register--">register</a></span>()</code>
 <div class="block">Opens the session.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/copycat/session/Session.State.html" title="enum in io.atomix.copycat.session">Session.State</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#state--">state</a></span>()</code>
 <div class="block">Returns the current session state.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#submit-io.atomix.copycat.Command-">submit</a></span>(<a href="../../../../../io/atomix/copycat/Command.html" title="interface in io.atomix.copycat">Command</a>&lt;T&gt;&nbsp;command)</code>
 <div class="block">Submits a command to the session.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#submit-io.atomix.copycat.Operation-">submit</a></span>(<a href="../../../../../io/atomix/copycat/Operation.html" title="interface in io.atomix.copycat">Operation</a>&lt;T&gt;&nbsp;operation)</code>
 <div class="block">Submits an operation to the session.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#submit-io.atomix.copycat.Query-">submit</a></span>(<a href="../../../../../io/atomix/copycat/Query.html" title="interface in io.atomix.copycat">Query</a>&lt;T&gt;&nbsp;query)</code>
 <div class="block">Submits a query to the session.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/client/session/ClientSession.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
@@ -519,6 +525,20 @@ implements <a href="../../../../../io/atomix/copycat/session/Session.html" title
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the session is closed.</dd>
+</dl>
+</li>
+</ul>
+<a name="expire--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>expire</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;expire()</pre>
+<div class="block">Expires the session.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the session has been expired.</dd>
 </dl>
 </li>
 </ul>
