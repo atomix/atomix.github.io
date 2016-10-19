@@ -11,7 +11,7 @@ The [`CopycatClient`][CopycatClient] provides an interface for submitting [comma
 
 ## Client Lifecycle
 
-Clients communicate with the cluster through sessions. When a client connects to the cluster, it registers a new session through which it can submit [`Command`][Command] and [`Query`][Query] operations and receive session events. Clients' consistency guarantees are preserved as long as a client's session remains open. In the event a client's session is expired by the cluster, all consistency guarantees for commands, queries, and events are lost.
+Clients communicate with the cluster through sessions. Sessions represent a connection between a single client and all servers in a Raft cluster. When a client connects to the cluster, it registers a new session through which it can submit [`Command`][Command] and [`Query`][Query] operations and receive session events. Clients' consistency guarantees are preserved as long as a client's session remains open. In the event a client's session is expired by the cluster, all consistency guarantees for commands, queries, and events are lost.
 
 ### Client States
 
@@ -66,9 +66,9 @@ client.connect(cluster).join();
 </div>
 
 {:.callout .callout-info}
-Clients only have to specify at least one live server's [`Address`][Address] through which the client can register its session. Once a client's session has been registered, the client will discover unknown servers and be notified any time a new server joins the cluster.
+Clients only have to specify at least one live server's [`Address`][Address] through which the client can register its session with the cluster. Once a client's session has been registered, the client will discover unknown servers and be notified any time a new server joins the cluster.
 
-When the client connects to the cluster, it will attempt to connect each server in the provided [`Address`][Address] list to register a new session. By default, if the client cannot register a new session through any of the provided servers, the [`CompletableFuture`][CompletableFuture] returned by [`connect(Address...)`][CopycatClient.connect] will be completed exceptionally.
+When the client connects to the cluster, it will attempt to connect to each server in the provided [`Address`][Address] list to register a new session. By default, if the client cannot register a new session through any of the provided servers, the [`CompletableFuture`][CompletableFuture] returned by [`connect(Address...)`][CopycatClient.connect] will be completed exceptionally.
 
 ### Connection Strategies
 

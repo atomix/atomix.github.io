@@ -130,7 +130,7 @@ As demonstrated above, operations submitted to the cluster are applied to state 
 
 ### Scheduling Callbacks
 
-State machines support deterministic scheduling of time-based callbacks for altering the state of a state machine on a schedule. For example, a map state machine can implement expiring keys by through the state machine scheduler. To schedule callbacks within the state machine, use the [`StateMachineExecutor`][StateMachineExecutor]'s [`schedule(Duration)`][StateMachineExecutor.schedule] method:
+State machines support deterministic scheduling of time-based callbacks for altering the state of a state machine on a schedule. For example, a map state machine can implement expiring keys through the state machine scheduler. To schedule callbacks within the state machine, use the [`StateMachineExecutor`][StateMachineExecutor]'s [`schedule(Duration)`][StateMachineExecutor.schedule] method:
 
 ```java
 public class MapStateMachine extends StateMachine {
@@ -153,7 +153,7 @@ State machines should never schedule callbacks using Java's `Timer`. Only use th
 
 ## Working with Client Sessions
 
-Each [`Command`][Command] and [`Query`][Query] submitted to the cluster is submitted by a client through its [`Session`][Session]. All operations applied to a state machine have contain a [`ServerSession`][ServerSession] which acts as a server-side reference to the client that submitted the operation. Furthermore, state machines can listen for changes in session states to react to clients connecting to and disconnecting from the cluster, and event messages can be sent to clients via a [`ServerSession`][ServerSession].
+Each [`Command`][Command] and [`Query`][Query] submitted to the cluster is submitted by a client through its [`Session`][Session]. All operations applied to a state machine contain a [`ServerSession`][ServerSession] which acts as a server-side reference to the client that submitted the operation. Furthermore, state machines can listen for changes in session states to react to clients connecting to and disconnecting from the cluster, and event messages can be sent to clients via a [`ServerSession`][ServerSession].
 
 ### Listening for Session State Changes
 
@@ -304,7 +304,7 @@ To support incremental compaction, state machines must explicitly define how eac
 The magic `DEFAULT` compaction mode is applied to all commands for all state machines by default. The default compaction mode alters its behavior based on the interface implemented by the [`StateMachine`][StateMachine]. If a state machine implements the [`Snapshottable`][Snapshottable] interface, the default compaction mode is equivalent to `SNAPSHOT`. Otherwise, the default compaction mode is equivalent to `SEQUENTIAL` compaction.
 
 {:.callout .callout-warning}
-State machines that do not implement [`Snapshottable`][Snapshottable] should *always* specify a [`CompactionMode`][CompactionMode] for each [`Command`][Command] supported by the state machine. Failure to provide explicit compaction modes will result in inefficient log compaction.
+State machines that do not implement [`Snapshottable`][Snapshottable] should *always* specify a [`CompactionMode`][Command.CompactionMode] for each [`Command`][Command] supported by the state machine. Failure to provide explicit compaction modes will result in inefficient log compaction.
 
 For state machines that implement incremental compaction, commands typically fall into one of two types of compaction - `RELEASE` and `TOMBSTONE` - where commands that alter the state machine's state are marked with the `RELEASE` compaction mode and commands that delete state machine state are marked with the `TOMBSTONE` compaction mode. To read more about why compaction modes matter see the [log compaction documentation][log-compaction].
 
