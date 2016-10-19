@@ -164,6 +164,7 @@ The callback will be called with the [`Member.Type`][Member.Type] to which the m
 Copycat's replication algorithm is optimized based on the availability of servers. In the event that a server cannot be reached by the leader, the leader will cease attempts to replicate state to the server and instead only send empty heartbeats until it can re-establish communication. To do so, leaders track the availability of individual servers in the cluster configuration, and this information is exposed to users as the [`Member.Status`][Member.Status].
 
 Each member of the cluster can be associated with one of two statuses at any given time:
+
 * `AVAILABLE` - indicates that the leader is able to heartbeat the member
 * `UNAVAILABLE` - indicates that the leader is unable to heartbeat the member
 

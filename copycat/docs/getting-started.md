@@ -214,7 +214,7 @@ CompletableFuture<CopycatServer> future = server.bootstrap();
 future.join();
 ```
 
-When a server is bootstrapped, it forms a *new* cluster single node cluster to which additional servers can be joined.
+When a server is bootstrapped, it forms a *new* single node cluster to which additional servers can be joined.
 
 ## Joining an Existing Cluster
 

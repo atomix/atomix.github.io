@@ -35,7 +35,7 @@ CopycatServer.Builder builder = CopycatServer.builder(new Address("123.456.789.0
 CopycatServer server = builder.build();
 ```
 
-The [`Address`][Address] provided to the server builder factory method is the address that will be used by the server to communicate both with servers and with clients. Alternatively, separate addresses for client and server communication can be provided to allow for more concurrently when communicating with clients and servers.
+The [`Address`][Address] provided to the server builder factory method is the address that will be used by the server to communicate both with servers and with clients. Alternatively, separate addresses for client and server communication can be provided to allow for more concurrency when communicating with clients and servers.
 
 ```java
 Address serverAddress = new Address("123.456.789.0", 8700);
@@ -112,7 +112,7 @@ CompletableFuture<CopycatServer> future = server.bootstrap();
 future.join();
 ```
 
-When a server is bootstrapped, it forms a *new* cluster single node cluster to which additional servers can be joined.
+When a server is [`bootstrap()`][CopycatServer.bootstrap]ed, it forms a *new* single node cluster to which additional servers can be joined.
 
 ## Bootstrapping a Cluster
 
