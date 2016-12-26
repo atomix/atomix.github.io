@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -214,36 +214,42 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Ma
 </td>
 </tr>
 <tr id="i4" class="altColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#onRecovery-java.util.function.Consumer-">onRecovery</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;callback)</code>
+<div class="block">Registers a listener which gets called after the resource recovery process</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#onStateChange-java.util.function.Consumer-">onStateChange</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a>&gt;&nbsp;callback)</code>
 <div class="block">Registers a resource state change listener.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/resource/Resource.html" title="type parameter in Resource">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#open--">open</a></span>()</code>
 <div class="block">Opens the resource.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#options--">options</a></span>()</code>
 <div class="block">Returns the resource options.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer">Serializer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#serializer--">serializer</a></span>()</code>
 <div class="block">Returns the resource serializer.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#state--">state</a></span>()</code>
 <div class="block">Returns the current resource state.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/resource/ResourceType.html" title="class in io.atomix.resource">ResourceType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/Resource.html#type--">type</a></span>()</code>
 <div class="block">Returns the resource type.</div>
@@ -359,6 +365,22 @@ extends <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/Ma
 <dd><code>callback</code> - The callback to call when the resource state changes.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The state change listener.</dd>
+</dl>
+</li>
+</ul>
+<a name="onRecovery-java.util.function.Consumer-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onRecovery</h4>
+<pre><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;onRecovery(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;callback)</pre>
+<div class="block">Registers a listener which gets called after the resource recovery process</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>callback</code> - The callback to call when the resource finishes recovery process.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The recovery listener.</dd>
 </dl>
 </li>
 </ul>
