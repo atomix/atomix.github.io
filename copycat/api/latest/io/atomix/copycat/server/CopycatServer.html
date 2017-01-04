@@ -670,9 +670,9 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
  <p>
  The thread context is the event loop that this server uses to communicate other Raft servers.
  Implementations must guarantee that all asynchronous <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>CompletableFuture</code></a> callbacks are
- executed on a single thread via the returned <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent.ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util"><code>concurrent.ThreadContext</code></a>.
+ executed on a single thread via the returned <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent"><code>ThreadContext</code></a>.
  <p>
- The <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/concurrent.ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.util"><code>concurrent.ThreadContext</code></a> can also be used to access the Raft server's internal
+ The <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/ThreadContext.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent"><code>ThreadContext</code></a> can also be used to access the Raft server's internal
  <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/serializer/Serializer.html?is-external=true" title="class or interface in io.atomix.catalyst.serializer"><code>serializer</code></a> via <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/ThreadContext.html?is-external=true#serializer--" title="class or interface in io.atomix.catalyst.concurrent"><code>ThreadContext.serializer()</code></a>. Catalyst serializers
  are not thread safe, so to use the context serializer, users should clone it:
  <pre>
