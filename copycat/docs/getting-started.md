@@ -34,7 +34,7 @@ In addition to client and server libraries, typically you must include a [`Trans
 ```
 <dependency>
   <groupId>io.atomix.catalyst</groupId>
-  </artifactId>catalyst-netty</artifactId>
+  <artifactId>catalyst-netty</artifactId>
   <version>{{ site.catalyst-version }}</version>
 </dependency>
 ```
