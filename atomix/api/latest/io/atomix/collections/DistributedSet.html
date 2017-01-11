@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -49,8 +49,8 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/collections/DistributedQueue.html" title="class in io.atomix.collections"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li>Next&nbsp;Class</li>
+<li><a href="../../../io/atomix/collections/DistributedQueue.ValueEvent.html" title="class in io.atomix.collections"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/collections/DistributedSet.Events.html" title="enum in io.atomix.collections"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/collections/DistributedSet.html" target="_top">Frames</a></li>
@@ -74,7 +74,7 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -159,12 +159,31 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 <!--   -->
 </a>
 <h3>Nested Class Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedSet.Events.html" title="enum in io.atomix.collections">DistributedSet.Events</a></span></code>
+<div class="block">Distributed set event types.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedSet.ValueEvent.html" title="class in io.atomix.collections">DistributedSet.ValueEvent</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.ValueEvent.html" title="type parameter in DistributedSet.ValueEvent">T</a>&gt;</span></code>
+<div class="block">Generic set value event.</div>
+</td>
+</tr>
+</table>
 <ul class="blockList">
 <li class="blockList"><a name="nested.classes.inherited.from.class.io.atomix.resource.Resource">
 <!--   -->
 </a>
 <h3>Nested classes/interfaces inherited from interface&nbsp;io.atomix.resource.<a href="../../../io/atomix/resource/Resource.html" title="interface in io.atomix.resource">Resource</a></h3>
-<code><a href="../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>, <a href="../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>, <a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a></code></li>
+<code><a href="../../../io/atomix/resource/Resource.Config.html" title="class in io.atomix.resource">Resource.Config</a>, <a href="../../../io/atomix/resource/Resource.Event.html" title="interface in io.atomix.resource">Resource.Event</a>, <a href="../../../io/atomix/resource/Resource.EventType.html" title="interface in io.atomix.resource">Resource.EventType</a>, <a href="../../../io/atomix/resource/Resource.Options.html" title="class in io.atomix.resource">Resource.Options</a>, <a href="../../../io/atomix/resource/Resource.State.html" title="enum in io.atomix.resource">Resource.State</a></code></li>
 </ul>
 </li>
 </ul>
@@ -249,18 +268,30 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 </td>
 </tr>
 <tr id="i8" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.ValueEvent.html" title="class in io.atomix.collections">DistributedSet.ValueEvent</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.html" title="type parameter in DistributedSet">T</a>&gt;&gt;&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedSet.html#onAdd-java.util.function.Consumer-">onAdd</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.ValueEvent.html" title="class in io.atomix.collections">DistributedSet.ValueEvent</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.html" title="type parameter in DistributedSet">T</a>&gt;&gt;&nbsp;callback)</code>
+<div class="block">Registers a queue item add event listener.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.ValueEvent.html" title="class in io.atomix.collections">DistributedSet.ValueEvent</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.html" title="type parameter in DistributedSet">T</a>&gt;&gt;&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedSet.html#onRemove-java.util.function.Consumer-">onRemove</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.ValueEvent.html" title="class in io.atomix.collections">DistributedSet.ValueEvent</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.html" title="type parameter in DistributedSet">T</a>&gt;&gt;&nbsp;callback)</code>
+<div class="block">Registers a queue item remove event listener.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedSet.html#remove-T-">remove</a></span>(<a href="../../../io/atomix/collections/DistributedSet.html" title="type parameter in DistributedSet">T</a>&nbsp;value)</code>
 <div class="block">Removes a value from the set.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedSet.html#size--">size</a></span>()</code>
 <div class="block">Gets the set count.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/collections/DistributedSet.html#size-io.atomix.resource.ReadConsistency-">size</a></span>(<a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a>&nbsp;consistency)</code>
 <div class="block">Gets the set count.</div>
@@ -480,7 +511,7 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 <a name="clear--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>clear</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;clear()</pre>
@@ -488,6 +519,38 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the operation is complete.</dd>
+</dl>
+</li>
+</ul>
+<a name="onAdd-java.util.function.Consumer-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onAdd</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.ValueEvent.html" title="class in io.atomix.collections">DistributedSet.ValueEvent</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.html" title="type parameter in DistributedSet">T</a>&gt;&gt;&gt;&nbsp;onAdd(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.ValueEvent.html" title="class in io.atomix.collections">DistributedSet.ValueEvent</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.html" title="type parameter in DistributedSet">T</a>&gt;&gt;&nbsp;callback)</pre>
+<div class="block">Registers a queue item add event listener.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>callback</code> - The event listener callback to be called when an item is added to the queue.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the listener has been registered with the cluster.</dd>
+</dl>
+</li>
+</ul>
+<a name="onRemove-java.util.function.Consumer-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>onRemove</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.ValueEvent.html" title="class in io.atomix.collections">DistributedSet.ValueEvent</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.html" title="type parameter in DistributedSet">T</a>&gt;&gt;&gt;&nbsp;onRemove(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.ValueEvent.html" title="class in io.atomix.collections">DistributedSet.ValueEvent</a>&lt;<a href="../../../io/atomix/collections/DistributedSet.html" title="type parameter in DistributedSet">T</a>&gt;&gt;&nbsp;callback)</pre>
+<div class="block">Registers a queue item remove event listener.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>callback</code> - The event listener callback to be called when an item is removed from the quue.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>A completable future to be completed once the listener has been registered with the cluster.</dd>
 </dl>
 </li>
 </ul>
@@ -519,8 +582,8 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/collections/DistributedQueue.html" title="class in io.atomix.collections"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li>Next&nbsp;Class</li>
+<li><a href="../../../io/atomix/collections/DistributedQueue.ValueEvent.html" title="class in io.atomix.collections"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/collections/DistributedSet.Events.html" title="enum in io.atomix.collections"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/collections/DistributedSet.html" target="_top">Frames</a></li>
@@ -544,7 +607,7 @@ extends <a href="../../../io/atomix/resource/AbstractResource.html" title="class
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
