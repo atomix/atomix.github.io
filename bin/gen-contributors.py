@@ -52,6 +52,11 @@ for committer in committers.values():
 # Remove committers from contributors
 delete_keys(contributors, committers.keys())
 
+# Remove contributoes without a name
+for login, contributor in contributors.items():
+  if 'name' not in contributor:
+    del contributors[login]
+
 committers = sorted(committers.values(), key=lambda k: k['contributions'], reverse = True)
 contributors = sorted(contributors.values(), key=lambda k: k['contributions'], reverse = True)
 
