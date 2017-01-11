@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../io/atomix/group/DistributedGroupFactory.html" title="class in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../io/atomix/group/LocalMember.html" title="interface in io.atomix.group"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/group/GroupMember.Status.html" title="enum in io.atomix.group"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/group/GroupMember.html" target="_top">Frames</a></li>
@@ -74,7 +74,7 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -118,6 +118,27 @@ var activeTableTab = "activeTableTab";
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Interface and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupMember.Status.html" title="enum in io.atomix.group">GroupMember.Status</a></span></code>
+<div class="block">Status constants for indicating whether a member is currently connected to the group.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
 <!-- ========== METHOD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="method.summary">
@@ -146,6 +167,18 @@ var activeTableTab = "activeTableTab";
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupMember.html#metadata--">metadata</a></span>()</code>
 <div class="block">Returns the metadata associated with this member.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../io/atomix/group/GroupMember.Status.html" title="enum in io.atomix.group">GroupMember.Status</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupMember.html#onStatusChange-java.util.function.Consumer-">onStatusChange</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/group/GroupMember.Status.html" title="enum in io.atomix.group">GroupMember.Status</a>&gt;&nbsp;callback)</code>
+<div class="block">Registers a member status change listener.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code><a href="../../../io/atomix/group/GroupMember.Status.html" title="enum in io.atomix.group">GroupMember.Status</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/group/GroupMember.html#status--">status</a></span>()</code>
+<div class="block">Returns the member's last known status.</div>
 </td>
 </tr>
 </table>
@@ -177,6 +210,52 @@ var activeTableTab = "activeTableTab";
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The member ID.</dd>
+</dl>
+</li>
+</ul>
+<a name="status--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>status</h4>
+<pre><a href="../../../io/atomix/group/GroupMember.Status.html" title="enum in io.atomix.group">GroupMember.Status</a>&nbsp;status()</pre>
+<div class="block">Returns the member's last known status.
+ <p>
+ The member's status indicates whether the member is <a href="../../../io/atomix/group/GroupMember.Status.html#ALIVE"><code>GroupMember.Status.ALIVE</code></a> or <a href="../../../io/atomix/group/GroupMember.Status.html#DEAD"><code>GroupMember.Status.DEAD</code></a> based
+ on whether the member's session is open. Note that the consistency of client-side events is
+ <code>SEQUENTIAL</code>, meaning all group instances will see status changes in the same order some time
+ after the event actually occurred (asynchronously). So, even if a member's status is <a href="../../../io/atomix/group/GroupMember.Status.html#DEAD"><code>GroupMember.Status.DEAD</code></a>
+ from the perspective of one node, it may be <a href="../../../io/atomix/group/GroupMember.Status.html#ALIVE"><code>GroupMember.Status.ALIVE</code></a> from the perspective of another.
+ Users should elect leaders to coordinate change in response to member status changes.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The member status.</dd>
+</dl>
+</li>
+</ul>
+<a name="onStatusChange-java.util.function.Consumer-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>onStatusChange</h4>
+<pre><a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/concurrent/Listener.html?is-external=true" title="class or interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../io/atomix/group/GroupMember.Status.html" title="enum in io.atomix.group">GroupMember.Status</a>&gt;&nbsp;onStatusChange(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../io/atomix/group/GroupMember.Status.html" title="enum in io.atomix.group">GroupMember.Status</a>&gt;&nbsp;callback)</pre>
+<div class="block">Registers a member status change listener.
+ <p>
+ The status change listener will be called when a member's session expires.
+ <p>
+ The member's status indicates whether the member is <a href="../../../io/atomix/group/GroupMember.Status.html#ALIVE"><code>GroupMember.Status.ALIVE</code></a> or <a href="../../../io/atomix/group/GroupMember.Status.html#DEAD"><code>GroupMember.Status.DEAD</code></a> based
+ on whether the member's session is open. Note that the consistency of client-side events is
+ <code>SEQUENTIAL</code>, meaning all group instances will see status changes in the same order some time
+ after the event actually occurred (asynchronously). So, even if a member's status is <a href="../../../io/atomix/group/GroupMember.Status.html#DEAD"><code>GroupMember.Status.DEAD</code></a>
+ from the perspective of one node, it may be <a href="../../../io/atomix/group/GroupMember.Status.html#ALIVE"><code>GroupMember.Status.ALIVE</code></a> from the perspective of another.
+ Users should elect leaders to coordinate change in response to member status changes.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>callback</code> - The callback to be called when the member's status changes.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The status listener context.</dd>
 </dl>
 </li>
 </ul>
@@ -253,7 +332,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../io/atomix/group/DistributedGroupFactory.html" title="class in io.atomix.group"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../io/atomix/group/LocalMember.html" title="interface in io.atomix.group"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/group/GroupMember.Status.html" title="enum in io.atomix.group"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/group/GroupMember.html" target="_top">Frames</a></li>
@@ -277,7 +356,7 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>

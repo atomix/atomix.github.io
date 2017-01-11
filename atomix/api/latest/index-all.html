@@ -614,6 +614,10 @@
 <dd>
 <div class="block">Configuration for cluster-wide <a href="io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a>s.</div>
 </dd>
+<dt><a href="io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group"><span class="typeNameLink">DistributedGroup.Options</span></a> - Class in <a href="io/atomix/group/package-summary.html">io.atomix.group</a></dt>
+<dd>
+<div class="block">Distributed group options.</div>
+</dd>
 <dt><a href="io/atomix/group/DistributedGroupFactory.html" title="class in io.atomix.group"><span class="typeNameLink">DistributedGroupFactory</span></a> - Class in <a href="io/atomix/group/package-summary.html">io.atomix.group</a></dt>
 <dd>
 <div class="block">Distributed group factory.</div>
@@ -870,11 +874,11 @@
 <dd>
 <div class="block">Gets or creates a distributed group for managing group membership and leader elections.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.resource.Resource.Options-">getGroup(String, Resource.Options)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Options-">getGroup(String, DistributedGroup.Options)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
 <dd>
 <div class="block">Gets or creates a distributed group for managing group membership and leader elections.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Config-io.atomix.resource.Resource.Options-">getGroup(String, DistributedGroup.Config, Resource.Options)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#getGroup-java.lang.String-io.atomix.group.DistributedGroup.Config-io.atomix.group.DistributedGroup.Options-">getGroup(String, DistributedGroup.Config, DistributedGroup.Options)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
 <dd>
 <div class="block">Gets or creates a distributed group for managing group membership and leader elections.</div>
 </dd>
@@ -1070,6 +1074,10 @@
 <dd>
 <div class="block">A <a href="io/atomix/group/DistributedGroup.html" title="interface in io.atomix.group"><code>DistributedGroup</code></a> member representing a member of the group controlled by a local
  or remote process.</div>
+</dd>
+<dt><a href="io/atomix/group/GroupMember.Status.html" title="enum in io.atomix.group"><span class="typeNameLink">GroupMember.Status</span></a> - Enum in <a href="io/atomix/group/package-summary.html">io.atomix.group</a></dt>
+<dd>
+<div class="block">Status constants for indicating whether a member is currently connected to the group.</div>
 </dd>
 </dl>
 <a name="I:H">
@@ -1533,6 +1541,10 @@
 <dd>
 <div class="block">Registers a resource state change listener.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/group/GroupMember.html#onStatusChange-java.util.function.Consumer-">onStatusChange(Consumer&lt;GroupMember.Status&gt;)</a></span> - Method in interface io.atomix.group.<a href="io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a></dt>
+<dd>
+<div class="block">Registers a member status change listener.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#onUpdate-java.util.function.Consumer-">onUpdate(Consumer&lt;DistributedMap.EntryEvent&lt;K, V&gt;&gt;)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
 <div class="block">Registers a <a href="io/atomix/collections/DistributedMap.html#put-K-V-"><code>DistributedMap.put(Object, Object)</code></a> event listener.</div>
@@ -1551,6 +1563,10 @@
 <dd>
 <div class="block">Opens the resource.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/group/DistributedGroup.Options.html#Options--">Options()</a></span> - Constructor for class io.atomix.group.<a href="io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group">DistributedGroup.Options</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/group/DistributedGroup.Options.html#Options-java.util.Properties-">Options(Properties)</a></span> - Constructor for class io.atomix.group.<a href="io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group">DistributedGroup.Options</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/group/messaging/MessageConsumer.Options.html#Options--">Options()</a></span> - Constructor for class io.atomix.group.messaging.<a href="io/atomix/group/messaging/MessageConsumer.Options.html" title="class in io.atomix.group.messaging">MessageConsumer.Options</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/group/messaging/MessageProducer.Options.html#Options--">Options()</a></span> - Constructor for class io.atomix.group.messaging.<a href="io/atomix/group/messaging/MessageProducer.Options.html" title="class in io.atomix.group.messaging">MessageProducer.Options</a></dt>
@@ -1971,6 +1987,10 @@
 <dd>
 <div class="block">Returns the current resource state.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/group/GroupMember.html#status--">status()</a></span> - Method in interface io.atomix.group.<a href="io/atomix/group/GroupMember.html" title="interface in io.atomix.group">GroupMember</a></dt>
+<dd>
+<div class="block">Returns the member's last known status.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/cluster/BalancingClusterManager.html#stop-io.atomix.copycat.server.cluster.Cluster-io.atomix.AtomixReplica-">stop(Cluster, AtomixReplica)</a></span> - Method in class io.atomix.cluster.<a href="io/atomix/cluster/BalancingClusterManager.html" title="class in io.atomix.cluster">BalancingClusterManager</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/cluster/ClusterManager.html#stop-io.atomix.copycat.server.cluster.Cluster-io.atomix.AtomixReplica-">stop(Cluster, AtomixReplica)</a></span> - Method in interface io.atomix.cluster.<a href="io/atomix/cluster/ClusterManager.html" title="interface in io.atomix.cluster">ClusterManager</a></dt>
@@ -2137,6 +2157,10 @@
 <dd>
 <div class="block">Returns the enum constant of this type with the specified name.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/group/GroupMember.Status.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum io.atomix.group.<a href="io/atomix/group/GroupMember.Status.html" title="enum in io.atomix.group">GroupMember.Status</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this type with the specified name.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/group/messaging/MessageProducer.Delivery.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum io.atomix.group.messaging.<a href="io/atomix/group/messaging/MessageProducer.Delivery.html" title="enum in io.atomix.group.messaging">MessageProducer.Delivery</a></dt>
 <dd>
 <div class="block">Returns the enum constant of this type with the specified name.</div>
@@ -2191,6 +2215,11 @@ the order they are declared.</div>
 <div class="block">Returns an array containing the constants of this enum type, in
 the order they are declared.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/group/GroupMember.Status.html#values--">values()</a></span> - Static method in enum io.atomix.group.<a href="io/atomix/group/GroupMember.Status.html" title="enum in io.atomix.group">GroupMember.Status</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum type, in
+the order they are declared.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/group/messaging/MessageProducer.Delivery.html#values--">values()</a></span> - Static method in enum io.atomix.group.messaging.<a href="io/atomix/group/messaging/MessageProducer.Delivery.html" title="enum in io.atomix.group.messaging">MessageProducer.Delivery</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum type, in
@@ -2222,6 +2251,10 @@ the order they are declared.</div>
 </a>
 <h2 class="title">W</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="io/atomix/group/DistributedGroup.Options.html#withAutoRecover-boolean-">withAutoRecover(boolean)</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group">DistributedGroup.Options</a></dt>
+<dd>
+<div class="block">Sets whether to automatically recover sessions and client-side state.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/cluster/BalancingClusterManager.Builder.html#withBackupCount-int-">withBackupCount(int)</a></span> - Method in class io.atomix.cluster.<a href="io/atomix/cluster/BalancingClusterManager.Builder.html" title="class in io.atomix.cluster">BalancingClusterManager.Builder</a></dt>
 <dd>
 <div class="block">Sets the replica backup count.</div>
