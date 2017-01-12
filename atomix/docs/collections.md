@@ -50,6 +50,24 @@ map.put("foo", "Hello world!", Duration.ofSeconds(1)).thenRun(() -> {
 
 Note that TTL timers are deterministically controlled by the cluster leader and are approximate representations of wall clock time that *should not be relied upon for accuracy*.
 
+#### Events
+
+[`DistributedMap`][DistributedMap] also supports events that indicate when a map has changed:
+
+```java
+map.onAdd(event -> {
+  System.out.println("Added " + event.entry());
+});
+
+map.onRemove(event -> {
+  System.out.println("Removed " + event.entry());
+});
+
+map.onUpdate(event -> {
+  System.out.println("Updated " + event.entry());
+});
+```
+
 ### DistributedMultiMap
 
 The [`DistributedMultiMap`][DistributedMultiMap] resources provides a map-like API for storing multiple values for each key in a map.

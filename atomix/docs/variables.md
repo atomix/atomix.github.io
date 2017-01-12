@@ -43,6 +43,16 @@ value.set("Hello world!", Duration.ofSeconds(1)).thenRun(() -> {
 
 Note that TTL timers are deterministically controlled by the cluster leader and are approximate representations of wall clock time that *should not be relied upon for accuracy*.
 
+#### Change Events
+
+[`DistributedValue`][DistributedValue] also supports events that indicate when a value has changed:
+
+```java
+value.onChange(event -> {
+  System.out.println("Value changed from " + event.oldValue() + " to " + event.newValue());
+});
+```
+
 ### DistributedLong
 
 The [`DistributedLong`][DistributedLong] resource extends [`DistributedValue`][DistributedValue] to provide atomic methods for incrementing and decrementing a 64-bit number. The [`DistributedLong`][DistributedLong] interface closely mimics that of Java's [`AtomicLong`][AtomicLong].
