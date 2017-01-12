@@ -664,6 +664,10 @@
 <dd>
 <div class="block">Distributed queue events.</div>
 </dd>
+<dt><a href="io/atomix/collections/DistributedMap.Options.html" title="class in io.atomix.collections"><span class="typeNameLink">DistributedMap.Options</span></a> - Class in <a href="io/atomix/collections/package-summary.html">io.atomix.collections</a></dt>
+<dd>
+<div class="block">Distributed map options.</div>
+</dd>
 <dt><a href="io/atomix/collections/util/DistributedMapFactory.html" title="class in io.atomix.collections.util"><span class="typeNameLink">DistributedMapFactory</span></a> - Class in <a href="io/atomix/collections/util/package-summary.html">io.atomix.collections.util</a></dt>
 <dd>
 <div class="block">Distributed map factory.</div>
@@ -775,6 +779,10 @@
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.EntryEvent.html#EntryEvent-io.atomix.resource.Resource.EventType-java.util.Map.Entry-">EntryEvent(Resource.EventType, Map.Entry&lt;K, V&gt;)</a></span> - Constructor for class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.EntryEvent.html" title="class in io.atomix.collections">DistributedMap.EntryEvent</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#entrySet--">entrySet()</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
+<dd>
+<div class="block">Reads the set of all entries in the map.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#entrySet-io.atomix.resource.ReadConsistency-">entrySet(ReadConsistency)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
 <div class="block">Reads the set of all entries in the map.</div>
 </dd>
@@ -922,11 +930,11 @@
 <dd>
 <div class="block">Gets or creates a distributed map with a cluster-wide configuration.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Options-">getMap(String, Resource.Options)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.collections.DistributedMap.Options-">getMap(String, DistributedMap.Options)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
 <dd>
 <div class="block">Gets or creates a distributed map with local options.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.resource.Resource.Options-">getMap(String, Resource.Config, Resource.Options)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/Atomix.html#getMap-java.lang.String-io.atomix.resource.Resource.Config-io.atomix.collections.DistributedMap.Options-">getMap(String, Resource.Config, DistributedMap.Options)</a></span> - Method in class io.atomix.<a href="io/atomix/Atomix.html" title="class in io.atomix">Atomix</a></dt>
 <dd>
 <div class="block">Gets or creates a distributed map with a cluster-wide configuration and local options.</div>
 </dd>
@@ -1222,6 +1230,10 @@
 <dd>
 <div class="block">Checks whether the set is empty.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.Options.html#isLocalCache--">isLocalCache()</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.Options.html" title="class in io.atomix.collections">DistributedMap.Options</a></dt>
+<dd>
+<div class="block">Returns whether local caching is enabled.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/resource/AbstractResource.html#isOpen--">isOpen()</a></span> - Method in class io.atomix.resource.<a href="io/atomix/resource/AbstractResource.html" title="class in io.atomix.resource">AbstractResource</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/manager/ResourceServer.html#isRunning--">isRunning()</a></span> - Method in class io.atomix.manager.<a href="io/atomix/manager/ResourceServer.html" title="class in io.atomix.manager">ResourceServer</a></dt>
@@ -1301,6 +1313,10 @@
 <div class="block">Returns the keys of existing resources belonging to a resource type.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#keySet--">keySet()</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
+<dd>
+<div class="block">Reads the set of all keys in the map.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#keySet-io.atomix.resource.ReadConsistency-">keySet(ReadConsistency)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
 <dd>
 <div class="block">Reads the set of all keys in the map.</div>
 </dd>
@@ -1563,6 +1579,12 @@
 <dd>
 <div class="block">Opens the resource.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#options--">options()</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.Options.html#Options--">Options()</a></span> - Constructor for class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.Options.html" title="class in io.atomix.collections">DistributedMap.Options</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.Options.html#Options-java.util.Properties-">Options(Properties)</a></span> - Constructor for class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.Options.html" title="class in io.atomix.collections">DistributedMap.Options</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/group/DistributedGroup.Options.html#Options--">Options()</a></span> - Constructor for class io.atomix.group.<a href="io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group">DistributedGroup.Options</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/group/DistributedGroup.Options.html#Options-java.util.Properties-">Options(Properties)</a></span> - Constructor for class io.atomix.group.<a href="io/atomix/group/DistributedGroup.Options.html" title="class in io.atomix.group">DistributedGroup.Options</a></dt>
@@ -2200,6 +2222,10 @@ the order they are declared.</div>
 <dd>
 <div class="block">Reads the collection of all values in the map.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.html#values-io.atomix.resource.ReadConsistency-">values(ReadConsistency)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.html" title="class in io.atomix.collections">DistributedMap</a></dt>
+<dd>
+<div class="block">Reads the collection of all values in the map.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMultiMap.Order.html#values--">values()</a></span> - Static method in enum io.atomix.collections.<a href="io/atomix/collections/DistributedMultiMap.Order.html" title="enum in io.atomix.collections">DistributedMultiMap.Order</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum type, in
@@ -2306,6 +2332,14 @@ the order they are declared.</div>
 <dt><span class="memberNameLink"><a href="io/atomix/manager/ResourceServer.Builder.html#withHeartbeatInterval-java.time.Duration-">withHeartbeatInterval(Duration)</a></span> - Method in class io.atomix.manager.<a href="io/atomix/manager/ResourceServer.Builder.html" title="class in io.atomix.manager">ResourceServer.Builder</a></dt>
 <dd>
 <div class="block">Sets the server heartbeat interval, returning the server builder for method chaining.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.Options.html#withLocalCache--">withLocalCache()</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.Options.html" title="class in io.atomix.collections">DistributedMap.Options</a></dt>
+<dd>
+<div class="block">Enables the local map cache.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/collections/DistributedMap.Options.html#withLocalCache-boolean-">withLocalCache(boolean)</a></span> - Method in class io.atomix.collections.<a href="io/atomix/collections/DistributedMap.Options.html" title="class in io.atomix.collections">DistributedMap.Options</a></dt>
+<dd>
+<div class="block">Sets whether to enable local caching.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/group/DistributedGroup.Config.html#withMemberExpiration-java.time.Duration-">withMemberExpiration(Duration)</a></span> - Method in class io.atomix.group.<a href="io/atomix/group/DistributedGroup.Config.html" title="class in io.atomix.group">DistributedGroup.Config</a></dt>
 <dd>

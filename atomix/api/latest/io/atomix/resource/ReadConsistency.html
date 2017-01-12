@@ -158,6 +158,11 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is
 </td>
 </tr>
 <tr class="altColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ReadConsistency.html#LOCAL">LOCAL</a></span></code>
+<div class="block">Reads state from a local cache if possible, otherwise guarantees sequential consistency.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colOne"><code><span class="memberNameLink"><a href="../../../io/atomix/resource/ReadConsistency.html#SEQUENTIAL">SEQUENTIAL</a></span></code>
 <div class="block">Guarantees sequential consistency for read operations.</div>
 </td>
@@ -263,7 +268,7 @@ the order they are declared.</div>
 <a name="SEQUENTIAL">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>SEQUENTIAL</h4>
 <pre>public static final&nbsp;<a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a> SEQUENTIAL</pre>
@@ -274,6 +279,21 @@ the order they are declared.</div>
  server that receives the query will handle it. However, in order to ensure that state does not go back in time, the
  client must submit its last known index with the query as well. If the server that receives the query has not advanced
  past the provided client index, it will queue the query and await more entries from the leader.</div>
+</li>
+</ul>
+<a name="LOCAL">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>LOCAL</h4>
+<pre>public static final&nbsp;<a href="../../../io/atomix/resource/ReadConsistency.html" title="enum in io.atomix.resource">ReadConsistency</a> LOCAL</pre>
+<div class="block">Reads state from a local cache if possible, otherwise guarantees sequential consistency.
+ <p>
+ This is a special consistency level specifically for use in resources that support local caching. When state is read
+ using <code>LOCAL</code> read consistency, cached resources will attempt to service the read from the local cache and
+ fall back to <a href="../../../io/atomix/resource/ReadConsistency.html#SEQUENTIAL"><code>SEQUENTIAL</code></a> communication with the cluster. State changes in the local cache must be similarly
+ guaranteed to occur in sequential order.</div>
 </li>
 </ul>
 </li>
