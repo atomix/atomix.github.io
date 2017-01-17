@@ -432,11 +432,12 @@ public class MapStateMachine extends StateMachine {
   private Map<Object, Object> map = new HashMap<>();
 
   public Object putWithTtl(Commit<PutWithTtl> commit) {
-    map.put(commit.operation().key, commit);
-    executor.schedule(Duration.ofMillis(commit.operation().ttl, () -> {
+    Object result = storage.put(commit.operation().key, commit);
+    executor.schedule(Duration.ofMillis(commit.operation().ttl), () -> {
       map.remove(commit.operation().key);
       commit.release();
     });
+    return result;
   }
 }
 ```
