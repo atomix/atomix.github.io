@@ -39,9 +39,6 @@ public class Put implements Command<Object> {
   public Object key;
   public Object value;
 
-  public Put() {
-  }
-
   public Put(Object key, Object value) {
     this.key = key;
     this.value = value;
@@ -62,9 +59,6 @@ Queries are defined by implementing the [`Query`][Query] interface. As with comm
 ```java
 public class Get implements Query<Object> {
   public Object key;
-
-  public Get() {
-  }
 
   public Get(Object key) {
     this.key = key;
@@ -316,9 +310,6 @@ public class Put implements Command<Object> {
   public Object key;
   public Object value;
 
-  public Put() {
-  }
-
   public Put(Object key, Object value) {
     this.key = key;
     this.value = value;
@@ -360,9 +351,6 @@ Tombstones are [`Command`][Command]s that *remove* state machine state. It's par
 ```java
 public class Remove implements Command<Object> {
   public Object key;
-
-  public Remove() {
-  }
 
   public Remove(Object key) {
     this.key = key;
@@ -408,9 +396,6 @@ public class PutWithTtl implements Command<Object> {
   public Object key;
   public Object value;
   public long ttl;
-
-  public PutWithTtl() {
-  }
 
   public PutWithTtl(Object key, Object value, long ttl) {
     this.key = key;
