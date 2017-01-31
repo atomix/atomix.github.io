@@ -284,7 +284,7 @@ consumer.onMessage(message -> {
     <div class="row">
       <div class="col-sm-6">
         <h2>Scalable</h2>
-        <p>Copycat scales along with the rest of your system, providing high read throughput while maintaining strong write consistency.</p>
+        <p>Atomix scales along with the rest of your system, providing high read throughput while maintaining strong write consistency.</p>
       </div>
       <div class="col-sm-5 text-right">
         <img class="svg" src="/assets/img/icons/scalable.svg">
