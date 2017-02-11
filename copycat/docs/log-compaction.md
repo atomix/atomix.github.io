@@ -97,7 +97,7 @@ Because segments are immutable and each committed segment represents a fixed ran
 
 As the cluster progresses and entries are written to and removed from the log, each segment will shrink and the overall number of segments will increase. Eventually, the number of open resources can cause performance and fault tolerance issue. Therefore, in addition to reducing the size of individual segments, some mechanism is required to reduce the number of overall segments as well.
 
-During log compaction, multiple neighboring segments are rewritten into a single segment to reduce the number of files on disk. When segments are selected for compaction, segments that are parallel to one another — such that the head of one segment flows into the tail of another segment — are given priority over disjointed segments. In Copycat, we use a generational strategy to select and combine neighboring segments within the same generation iff the resulting compact segment will be smaller than the configured maximum segment size.
+During log compaction, multiple neighboring segments are rewritten into a single segment to reduce the number of files on disk. When segments are selected for compaction, segments that are parallel to one another — such that the head of one segment flows into the tail of another segment — are given priority over disjointed segments. In Copycat, we use a generational strategy to select and combine neighboring segments within the same generation if the resulting compact segment will be smaller than the configured maximum segment size.
 
 <h4 id="major-compaction">8.2.4 Removing Tombstones from the Log</h4>
 
