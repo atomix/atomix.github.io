@@ -602,7 +602,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  If the given index is outside of the bounds of the log then a <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IndexOutOfBoundsException.html?is-external=true" title="class or interface in java.lang"><code>IndexOutOfBoundsException</code></a> will be thrown. If
  the entry at the given index has been compacted then the returned entry will be <code>null</code>.
  <p>
- Entries returned by this method are pooled and <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util"><code>reference counted</code></a>.
+ Entries returned by this method are pooled and <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util/reference/ReferenceCounted.html?is-external=true" title="class or interface in io.atomix.catalyst.util.reference"><code>reference counted</code></a>.
  In order to ensure the entry is released back to the internal entry pool call <code>Entry.close()</code> or load the
  entry in a try-with-resources statement. <pre>
    <code>
