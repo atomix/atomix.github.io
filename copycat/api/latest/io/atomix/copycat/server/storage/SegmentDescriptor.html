@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
+var methods = {"i0":9,"i1":9,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -119,30 +119,28 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <div class="block">Stores information about a <a href="../../../../../io/atomix/copycat/server/storage/Segment.html" title="class in io.atomix.copycat.server.storage"><code>Segment</code></a> of the log.
  <p>
  The segment descriptor manages metadata related to a single segment of the log. Descriptors are stored within the
- first <code>48</code> bytes of each segment in the following order:
+ first <code>64</code> bytes of each segment in the following order:
  <ul>
    <li><code>id</code> (64-bit signed integer) - A unique segment identifier. This is a monotonically increasing number within
    each log. Segments with in-sequence identifiers should contain in-sequence indexes.</li>
    <li><code>index</code> (64-bit signed integer) - The effective first index of the segment. This indicates the index at which
    the first entry should be written to the segment. Indexes are monotonically increasing thereafter.</li>
-   <li><code>range</code> (64-bit signed integer) - The effective length of the segment. Regardless of the actual number of
-   entries in the segment, the range indicates the total number of allowed entries within each segment. If a segment's
-   index is <code>1</code> and its range is <code>10</code> then the next segment should start at index <code>11</code>.</li>
    <li><code>version</code> (64-bit signed integer) - The version of the segment. Versions are monotonically increasing
    starting at <code>1</code>. Versions will only be incremented whenever the segment is rewritten to another memory/disk
    space, e.g. after log compaction.</li>
+   <li><code>maxSegmentSize</code> (32-bit unsigned integer) - The maximum number of bytes allowed in the segment.</li>
+   <li><code>maxEntries</code> (32-bit signed integer) - The total number of expected entries in the segment. This is the final
+   number of entries allowed within the segment both before and after compaction. This entry count is used to determine
+   the count of internal indexing and deduplication facilities.</li>
    <li><code>updated</code> (64-bit signed integer) - The last update to the segment in terms of milliseconds since the epoch.
    When the segment is first constructed, the <code>updated</code> time is <code>0</code>. Once all entries in the segment have
    been committed, the <code>updated</code> time should be set to the current time. Log compaction should not result in a
    change to <code>updated</code>.</li>
-   <li><code>maxEntrySize</code> (32-bit signed integer) - The maximum length in bytes of entry values allowed by the segment.</li>
-   <li><code>entries</code> (32-bit signed integer) - The total number of expected entries in the segment. This is the final
-   number of entries allowed within the segment both before and after compaction. This entry count is used to determine
-   the count of internal indexing and deduplication facilities.</li>
    <li><code>locked</code> (8-bit boolean) - A boolean indicating whether the segment is locked. Segments will be locked once
    all entries have been committed to the segment. The lock state of each segment is used to determine log compaction
    and recovery behavior.</li>
- </ul></div>
+ </ul>
+ The remainder of the 64 segment header bytes are reserved for future metadata.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -281,18 +279,22 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 </td>
 </tr>
 <tr id="i10" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html#toString--">toString</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html#update-long-">update</a></span>(long&nbsp;timestamp)</code>
 <div class="block">Writes an update to the descriptor.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html#updated--">updated</a></span>()</code>
 <div class="block">Returns last time the segment was updated.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/copycat/server/storage/SegmentDescriptor.html#version--">version</a></span>()</code>
 <div class="block">Returns the segment version.</div>
@@ -304,7 +306,7 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
-<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 </li>
 </ul>
@@ -546,11 +548,24 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
 <a name="delete--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>delete</h4>
 <pre>public&nbsp;void&nbsp;delete()</pre>
 <div class="block">Deletes the descriptor.</div>
+</li>
+</ul>
+<a name="toString--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>toString</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+</dl>
 </li>
 </ul>
 </li>
