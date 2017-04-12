@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../io/atomix/catalyst/buffer/UnpooledHeapAllocator.html" title="class in io.atomix.catalyst.buffer"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/catalyst/buffer/UnsafeMappedBytes.html" title="class in io.atomix.catalyst.buffer"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li>Next&nbsp;Class</li>
 </ul>
 <ul class="navList">
@@ -469,7 +469,7 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;io.atomix.catalyst.buffer.<a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></h3>
-<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#isDirect--">isDirect</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#isFile--">isFile</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#order-java.nio.ByteOrder-">order</a></code></li>
+<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#isDirect--">isDirect</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#isFile--">isFile</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#order-java.nio.ByteOrder-">order</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#readString-long-java.nio.charset.Charset-">readString</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeString-long-java.lang.String-java.nio.charset.Charset-">writeString</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -477,6 +477,13 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
 <code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.catalyst.buffer.Bytes">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;io.atomix.catalyst.buffer.<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></h3>
+<code><a href="../../../../io/atomix/catalyst/buffer/Bytes.html#array--">array</a></code></li>
 </ul>
 </li>
 </ul>
@@ -700,6 +707,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readUnsignedByte-long-">BytesInput</a></code></span></div>
 <div class="block">Reads an unsigned byte from the buffer at the given offset.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readUnsignedByte-long-">readUnsignedByte</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="interface in io.atomix.catalyst.buffer">BytesInput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#readUnsignedByte-long-">readUnsignedByte</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>offset</code> - The offset at which to read the byte.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -751,6 +762,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readUnsignedShort-long-">BytesInput</a></code></span></div>
 <div class="block">Reads a 16-bit unsigned integer from the buffer at the given offset.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readUnsignedShort-long-">readUnsignedShort</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="interface in io.atomix.catalyst.buffer">BytesInput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#readUnsignedShort-long-">readUnsignedShort</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>offset</code> - The offset at which to read the short.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -768,6 +783,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readMedium-long-">BytesInput</a></code></span></div>
 <div class="block">Reads a 24-bit signed integer from the buffer at the given offset.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readMedium-long-">readMedium</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="interface in io.atomix.catalyst.buffer">BytesInput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#readMedium-long-">readMedium</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>offset</code> - The offset at which to read the integer.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -785,6 +804,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readUnsignedMedium-long-">BytesInput</a></code></span></div>
 <div class="block">Reads a 24-bin unsigned integer from the buffer at the given offset.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readUnsignedMedium-long-">readUnsignedMedium</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="interface in io.atomix.catalyst.buffer">BytesInput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#readUnsignedMedium-long-">readUnsignedMedium</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>offset</code> - The offset at which to read the integer.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -819,6 +842,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readUnsignedInt-long-">BytesInput</a></code></span></div>
 <div class="block">Reads a 32-bit unsigned integer from the buffer at the given offset.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readUnsignedInt-long-">readUnsignedInt</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="interface in io.atomix.catalyst.buffer">BytesInput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#readUnsignedInt-long-">readUnsignedInt</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>offset</code> - The offset at which to read the integer.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -887,6 +914,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readBoolean-long-">BytesInput</a></code></span></div>
 <div class="block">Reads a 1 byte boolean from the buffer at the given offset.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readBoolean-long-">readBoolean</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="interface in io.atomix.catalyst.buffer">BytesInput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#readBoolean-long-">readBoolean</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>offset</code> - The offset at which to read the boolean.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -904,6 +935,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readString-long-">BytesInput</a></code></span></div>
 <div class="block">Reads a string from the buffer at the given offset.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readString-long-">readString</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="interface in io.atomix.catalyst.buffer">BytesInput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#readString-long-">readString</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>offset</code> - The offset at which to read the string.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -921,6 +956,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readUTF8-long-">BytesInput</a></code></span></div>
 <div class="block">Reads a UTF-8 string from the buffer at the given offset.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readUTF8-long-">readUTF8</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="interface in io.atomix.catalyst.buffer">BytesInput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#readUTF8-long-">readUTF8</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>offset</code> - The offset at which to read the string.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -1004,6 +1043,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeUnsignedByte-long-int-">BytesOutput</a></code></span></div>
 <div class="block">Writes an unsigned byte to the buffer at the given position.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeUnsignedByte-long-int-">writeUnsignedByte</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html" title="interface in io.atomix.catalyst.buffer">BytesOutput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeUnsignedByte-long-int-">writeUnsignedByte</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>offset</code> - The offset at which to write the byte.</dd>
 <dd><code>b</code> - The byte to write.</dd>
@@ -1061,6 +1104,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeUnsignedShort-long-int-">BytesOutput</a></code></span></div>
 <div class="block">Writes a 16-bit unsigned integer to the buffer at the given offset.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeUnsignedShort-long-int-">writeUnsignedShort</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html" title="interface in io.atomix.catalyst.buffer">BytesOutput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeUnsignedShort-long-int-">writeUnsignedShort</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>offset</code> - The offset at which to write the short.</dd>
 <dd><code>s</code> - The short to write.</dd>
@@ -1080,6 +1127,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeMedium-long-int-">BytesOutput</a></code></span></div>
 <div class="block">Writes a 24-bit signed integer to the buffer at the given offset.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeMedium-long-int-">writeMedium</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html" title="interface in io.atomix.catalyst.buffer">BytesOutput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeMedium-long-int-">writeMedium</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>offset</code> - The offset at which to write the short.</dd>
 <dd><code>m</code> - The short to write.</dd>
@@ -1099,6 +1150,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeUnsignedMedium-long-int-">BytesOutput</a></code></span></div>
 <div class="block">Writes a 24-bit unsigned integer to the buffer at the given offset.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeUnsignedMedium-long-int-">writeUnsignedMedium</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html" title="interface in io.atomix.catalyst.buffer">BytesOutput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeUnsignedMedium-long-int-">writeUnsignedMedium</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>offset</code> - The offset at which to write the short.</dd>
 <dd><code>m</code> - The short to write.</dd>
@@ -1137,6 +1192,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeUnsignedInt-long-long-">BytesOutput</a></code></span></div>
 <div class="block">Writes a 32-bit unsigned integer to the buffer at the given offset.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeUnsignedInt-long-long-">writeUnsignedInt</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html" title="interface in io.atomix.catalyst.buffer">BytesOutput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeUnsignedInt-long-long-">writeUnsignedInt</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>offset</code> - The offset at which to write the integer.</dd>
 <dd><code>i</code> - The integer to write.</dd>
@@ -1213,6 +1272,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeBoolean-long-boolean-">BytesOutput</a></code></span></div>
 <div class="block">Writes a 1 byte boolean to the buffer at the given offset.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeBoolean-long-boolean-">writeBoolean</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html" title="interface in io.atomix.catalyst.buffer">BytesOutput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeBoolean-long-boolean-">writeBoolean</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>offset</code> - The offset at which to write the boolean.</dd>
 <dd><code>b</code> - The boolean to write.</dd>
@@ -1232,6 +1295,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeString-long-java.lang.String-">BytesOutput</a></code></span></div>
 <div class="block">Writes a string to the buffer at the given offset.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeString-long-java.lang.String-">writeString</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html" title="interface in io.atomix.catalyst.buffer">BytesOutput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeString-long-java.lang.String-">writeString</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>offset</code> - The offset at which to write the string.</dd>
 <dd><code>s</code> - The string to write.</dd>
@@ -1251,6 +1318,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeUTF8-long-java.lang.String-">BytesOutput</a></code></span></div>
 <div class="block">Writes a UTF-8 string to the buffer at the given offset.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeUTF8-long-java.lang.String-">writeUTF8</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html" title="interface in io.atomix.catalyst.buffer">BytesOutput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeUTF8-long-java.lang.String-">writeUTF8</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>offset</code> - The offset at which to write the string.</dd>
 <dd><code>s</code> - The string to write.</dd>
@@ -1269,6 +1340,10 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#flush--">BytesOutput</a></code></span></div>
 <div class="block">Flushes the bytes to the underlying persistence layer.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#flush--">flush</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html" title="interface in io.atomix.catalyst.buffer">BytesOutput</a>&lt;<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html#flush--">flush</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title="class in io.atomix.catalyst.buffer">AbstractBytes</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The flushed buffer.</dd>
 </dl>
@@ -1319,7 +1394,7 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBytes.html" title
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../io/atomix/catalyst/buffer/UnpooledHeapAllocator.html" title="class in io.atomix.catalyst.buffer"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/catalyst/buffer/UnsafeMappedBytes.html" title="class in io.atomix.catalyst.buffer"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li>Next&nbsp;Class</li>
 </ul>
 <ul class="navList">

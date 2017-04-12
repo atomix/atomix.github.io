@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":10,"i4":10,"i5":9};
-var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9};
+var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/atomix/catalyst/buffer/FileBytes.html" title="class in io.atomix.catalyst.buffer"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/catalyst/buffer/HeapBufferPool.html" title="class in io.atomix.catalyst.buffer"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/catalyst/buffer/HeapBytes.html" title="class in io.atomix.catalyst.buffer"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/catalyst/buffer/HeapBuffer.html" target="_top">Frames</a></li>
@@ -103,7 +103,12 @@ var activeTableTab = "activeTableTab";
 <li><a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html" title="class in io.atomix.catalyst.buffer">io.atomix.catalyst.buffer.AbstractBuffer</a></li>
 <li>
 <ul class="inheritance">
+<li><a href="../../../../io/atomix/catalyst/buffer/ByteBufferBuffer.html" title="class in io.atomix.catalyst.buffer">io.atomix.catalyst.buffer.ByteBufferBuffer</a></li>
+<li>
+<ul class="inheritance">
 <li>io.atomix.catalyst.buffer.HeapBuffer</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -119,8 +124,8 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">HeapBuffer</span>
-extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html" title="class in io.atomix.catalyst.buffer">AbstractBuffer</a></pre>
-<div class="block">Heap byte buffer implementation.</div>
+extends <a href="../../../../io/atomix/catalyst/buffer/ByteBufferBuffer.html" title="class in io.atomix.catalyst.buffer">ByteBufferBuffer</a></pre>
+<div class="block">Direct <a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html?is-external=true" title="class or interface in java.nio"><code>ByteBuffer</code></a> based buffer.</div>
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd><a href="http://github.com/kuujo">Jordan Halterman</a></dd>
@@ -138,7 +143,7 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html" titl
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Static Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Static Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
@@ -146,35 +151,23 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html" titl
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>static <a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html" title="class in io.atomix.catalyst.buffer">HeapBuffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html#allocate--">allocate</a></span>()</code>
-<div class="block">Allocates a heap buffer with an initial capacity of <code>4096</code> and a maximum capacity of <a href="../../../../io/atomix/catalyst/buffer/util/HeapMemory.html#MAX_SIZE"><code>HeapMemory.MAX_SIZE</code></a>.</div>
+<div class="block">Allocates a direct buffer with an initial capacity of <code>4096</code> and a maximum capacity of <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true#MAX_VALUE" title="class or interface in java.lang"><code>Long.MAX_VALUE</code></a>.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html" title="class in io.atomix.catalyst.buffer">HeapBuffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html#allocate-long-">allocate</a></span>(long&nbsp;initialCapacity)</code>
-<div class="block">Allocates a heap buffer with the given initial capacity.</div>
+<div class="block">Allocates a direct buffer with the given initial capacity.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>static <a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html" title="class in io.atomix.catalyst.buffer">HeapBuffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html#allocate-long-long-">allocate</a></span>(long&nbsp;initialCapacity,
         long&nbsp;maxCapacity)</code>
-<div class="block">Allocates a new heap buffer.</div>
+<div class="block">Allocates a new direct buffer.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>byte[]</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html#array--">array</a></span>()</code>
-<div class="block">Returns the underlying byte array.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html" title="class in io.atomix.catalyst.buffer">HeapBuffer</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html#reset-byte:A-">reset</a></span>(byte[]&nbsp;array)</code>
-<div class="block">Resets the internal heap array.</div>
-</td>
-</tr>
-<tr id="i5" class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html" title="class in io.atomix.catalyst.buffer">HeapBuffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html#wrap-byte:A-">wrap</a></span>(byte[]&nbsp;bytes)</code>
 <div class="block">Wraps the given bytes in a heap buffer.</div>
@@ -182,11 +175,18 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html" titl
 </tr>
 </table>
 <ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.catalyst.buffer.ByteBufferBuffer">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;io.atomix.catalyst.buffer.<a href="../../../../io/atomix/catalyst/buffer/ByteBufferBuffer.html" title="class in io.atomix.catalyst.buffer">ByteBufferBuffer</a></h3>
+<code><a href="../../../../io/atomix/catalyst/buffer/ByteBufferBuffer.html#array--">array</a></code></li>
+</ul>
+<ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.catalyst.buffer.AbstractBuffer">
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;io.atomix.catalyst.buffer.<a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html" title="class in io.atomix.catalyst.buffer">AbstractBuffer</a></h3>
-<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#acquire--">acquire</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#asReadOnlyBuffer--">asReadOnlyBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#bytes--">bytes</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#capacity--">capacity</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#capacity-long-">capacity</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#clear--">clear</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#close--">close</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#compact--">compact</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#flip--">flip</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#flush--">flush</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#hasRemaining--">hasRemaining</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#isDirect--">isDirect</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#isFile--">isFile</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#isReadOnly--">isReadOnly</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#limit--">limit</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#limit-long-">limit</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#mark--">mark</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#maxCapacity--">maxCapacity</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#offset--">offset</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#order--">order</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#order-java.nio.ByteOrder-">order</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#position--">position</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#position-long-">position</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#read-io.atomix.catalyst.buffer.Buffer-">read</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#read-byte:A-">read</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#read-byte:A-long-long-">read</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#read-io.atomix.catalyst.buffer.Bytes-">read</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#read-io.atomix.catalyst.buffer.Bytes-long-long-">read</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#read-long-byte:A-long-long-">read</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readBoolean--">readBoolean</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readBoolean-long-">readBoolean</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readByte--">readByte</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readByte-long-">readByte</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readChar--">readChar</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readChar-long-">readChar</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readDouble--">readDouble</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readDouble-long-">readDouble</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readFloat--">readFloat</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readFloat-long-">readFloat</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readInt--">readInt</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readInt-long-">readInt</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readLong--">readLong</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readLong-long-">readLong</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readMedium--">readMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readMedium-long-">readMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readShort--">readShort</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readShort-long-">readShort</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readString--">readString</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readString-long-">readString</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUnsignedByte--">readUnsignedByte</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUnsignedByte-long-">readUnsignedByte</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUnsignedInt--">readUnsignedInt</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUnsignedInt-long-">readUnsignedInt</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUnsignedMedium--">readUnsignedMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUnsignedMedium-long-">readUnsignedMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUnsignedShort--">readUnsignedShort</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUnsignedShort-long-">readUnsignedShort</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUTF8--">readUTF8</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUTF8-long-">readUTF8</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#references--">references</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#release--">release</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#remaining--">remaining</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#reset--">reset</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#rewind--">rewind</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#skip-long-">skip</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#slice--">slice</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#slice-long-">slice</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#slice-long-long-">slice</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#write-io.atomix.catalyst.buffer.Buffer-">write</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#write-byte:A-">write</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#write-byte:A-long-long-">write</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#write-io.atomix.catalyst.buffer.Bytes-">write</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#write-io.atomix.catalyst.buffer.Bytes-long-long-">write</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#write-long-byte:A-long-long-">write</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#write-long-io.atomix.catalyst.buffer.Bytes-long-long-">write</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeBoolean-boolean-">writeBoolean</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeBoolean-long-boolean-">writeBoolean</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeByte-int-">writeByte</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeByte-long-int-">writeByte</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeChar-char-">writeChar</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeChar-long-char-">writeChar</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeDouble-double-">writeDouble</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeDouble-long-double-">writeDouble</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeFloat-float-">writeFloat</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeFloat-long-float-">writeFloat</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeInt-int-">writeInt</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeInt-long-int-">writeInt</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeLong-long-">writeLong</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeLong-long-long-">writeLong</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeMedium-int-">writeMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeMedium-long-int-">writeMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeShort-long-short-">writeShort</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeShort-short-">writeShort</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeString-long-java.lang.String-">writeString</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeString-java.lang.String-">writeString</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUnsignedByte-int-">writeUnsignedByte</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUnsignedByte-long-int-">writeUnsignedByte</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUnsignedInt-long-">writeUnsignedInt</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUnsignedInt-long-long-">writeUnsignedInt</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUnsignedMedium-int-">writeUnsignedMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUnsignedMedium-long-int-">writeUnsignedMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUnsignedShort-int-">writeUnsignedShort</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUnsignedShort-long-int-">writeUnsignedShort</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUTF8-long-java.lang.String-">writeUTF8</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUTF8-java.lang.String-">writeUTF8</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#zero--">zero</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#zero-long-">zero</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#zero-long-long-">zero</a></code></li>
+<code><a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#acquire--">acquire</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#asReadOnlyBuffer--">asReadOnlyBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#bytes--">bytes</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#capacity--">capacity</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#capacity-long-">capacity</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#clear--">clear</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#close--">close</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#compact--">compact</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#flip--">flip</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#flush--">flush</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#hasRemaining--">hasRemaining</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#isDirect--">isDirect</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#isFile--">isFile</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#isReadOnly--">isReadOnly</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#limit--">limit</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#limit-long-">limit</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#mark--">mark</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#maxCapacity--">maxCapacity</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#offset--">offset</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#order--">order</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#order-java.nio.ByteOrder-">order</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#position--">position</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#position-long-">position</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#read-io.atomix.catalyst.buffer.Buffer-">read</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#read-byte:A-">read</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#read-byte:A-long-long-">read</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#read-io.atomix.catalyst.buffer.Bytes-">read</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#read-io.atomix.catalyst.buffer.Bytes-long-long-">read</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#read-long-byte:A-long-long-">read</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readBoolean--">readBoolean</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readBoolean-long-">readBoolean</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readByte--">readByte</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readByte-long-">readByte</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readChar--">readChar</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readChar-long-">readChar</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readDouble--">readDouble</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readDouble-long-">readDouble</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readFloat--">readFloat</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readFloat-long-">readFloat</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readInt--">readInt</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readInt-long-">readInt</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readLong--">readLong</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readLong-long-">readLong</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readMedium--">readMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readMedium-long-">readMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readShort--">readShort</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readShort-long-">readShort</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readString--">readString</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readString-java.nio.charset.Charset-">readString</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readString-long-">readString</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readString-long-java.nio.charset.Charset-">readString</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUnsignedByte--">readUnsignedByte</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUnsignedByte-long-">readUnsignedByte</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUnsignedInt--">readUnsignedInt</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUnsignedInt-long-">readUnsignedInt</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUnsignedMedium--">readUnsignedMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUnsignedMedium-long-">readUnsignedMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUnsignedShort--">readUnsignedShort</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUnsignedShort-long-">readUnsignedShort</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUTF8--">readUTF8</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#readUTF8-long-">readUTF8</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#references--">references</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#release--">release</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#remaining--">remaining</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#reset--">reset</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#rewind--">rewind</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#skip-long-">skip</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#slice--">slice</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#slice-long-">slice</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#slice-long-long-">slice</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#write-io.atomix.catalyst.buffer.Buffer-">write</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#write-byte:A-">write</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#write-byte:A-long-long-">write</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#write-io.atomix.catalyst.buffer.Bytes-">write</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#write-io.atomix.catalyst.buffer.Bytes-long-long-">write</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#write-long-byte:A-long-long-">write</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#write-long-io.atomix.catalyst.buffer.Bytes-long-long-">write</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeBoolean-boolean-">writeBoolean</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeBoolean-long-boolean-">writeBoolean</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeByte-int-">writeByte</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeByte-long-int-">writeByte</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeChar-char-">writeChar</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeChar-long-char-">writeChar</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeDouble-double-">writeDouble</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeDouble-long-double-">writeDouble</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeFloat-float-">writeFloat</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeFloat-long-float-">writeFloat</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeInt-int-">writeInt</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeInt-long-int-">writeInt</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeLong-long-">writeLong</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeLong-long-long-">writeLong</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeMedium-int-">writeMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeMedium-long-int-">writeMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeShort-long-short-">writeShort</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeShort-short-">writeShort</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeString-long-java.lang.String-">writeString</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeString-long-java.lang.String-java.nio.charset.Charset-">writeString</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeString-java.lang.String-">writeString</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeString-java.lang.String-java.nio.charset.Charset-">writeString</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUnsignedByte-int-">writeUnsignedByte</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUnsignedByte-long-int-">writeUnsignedByte</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUnsignedInt-long-">writeUnsignedInt</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUnsignedInt-long-long-">writeUnsignedInt</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUnsignedMedium-int-">writeUnsignedMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUnsignedMedium-long-int-">writeUnsignedMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUnsignedShort-int-">writeUnsignedShort</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUnsignedShort-long-int-">writeUnsignedShort</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUTF8-long-java.lang.String-">writeUTF8</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#writeUTF8-java.lang.String-">writeUTF8</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#zero--">zero</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#zero-long-">zero</a>, <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#zero-long-long-">zero</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -216,16 +216,15 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html" titl
 <li class="blockList">
 <h4>allocate</h4>
 <pre>public static&nbsp;<a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html" title="class in io.atomix.catalyst.buffer">HeapBuffer</a>&nbsp;allocate()</pre>
-<div class="block">Allocates a heap buffer with an initial capacity of <code>4096</code> and a maximum capacity of <a href="../../../../io/atomix/catalyst/buffer/util/HeapMemory.html#MAX_SIZE"><code>HeapMemory.MAX_SIZE</code></a>.
+<div class="block">Allocates a direct buffer with an initial capacity of <code>4096</code> and a maximum capacity of <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true#MAX_VALUE" title="class or interface in java.lang"><code>Long.MAX_VALUE</code></a>.
  <p>
- When the buffer is constructed, <a href="../../../../io/atomix/catalyst/buffer/util/HeapMemoryAllocator.html" title="class in io.atomix.catalyst.buffer.util"><code>HeapMemoryAllocator</code></a> will be used to allocate
- <code>capacity</code> bytes of memory on the Java heap. The resulting buffer will be initialized with a capacity of
- <code>4096</code> and have a maximum capacity of <a href="../../../../io/atomix/catalyst/buffer/util/HeapMemory.html#MAX_SIZE"><code>HeapMemory.MAX_SIZE</code></a>. The buffer's <code>capacity</code> will dynamically
- expand as bytes are written to the buffer. The underlying <a href="../../../../io/atomix/catalyst/buffer/HeapBytes.html" title="class in io.atomix.catalyst.buffer"><code>HeapBytes</code></a> will be initialized
- to the next power of <code>2</code>.</div>
+ When the buffer is constructed, <a href="../../../../io/atomix/catalyst/buffer/util/DirectMemoryAllocator.html" title="class in io.atomix.catalyst.buffer.util"><code>DirectMemoryAllocator</code></a> will be used to allocate
+ <code>capacity</code> bytes of off-heap memory. The resulting buffer will be initialized with a capacity of <code>4096</code>
+ and have a maximum capacity of <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Long.html?is-external=true#MAX_VALUE" title="class or interface in java.lang"><code>Long.MAX_VALUE</code></a>. The buffer's <code>capacity</code> will dynamically expand as
+ bytes are written to the buffer. The underlying <a href="../../../../io/atomix/catalyst/buffer/UnsafeDirectBytes.html" title="class in io.atomix.catalyst.buffer"><code>UnsafeDirectBytes</code></a> will be initialized to the next power of <code>2</code>.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The heap buffer.</dd>
+<dd>The direct buffer.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html#allocate-long-"><code>allocate(long)</code></a>, 
 <a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html#allocate-long-long-"><code>allocate(long, long)</code></a></dd>
@@ -239,19 +238,19 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html" titl
 <li class="blockList">
 <h4>allocate</h4>
 <pre>public static&nbsp;<a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html" title="class in io.atomix.catalyst.buffer">HeapBuffer</a>&nbsp;allocate(long&nbsp;initialCapacity)</pre>
-<div class="block">Allocates a heap buffer with the given initial capacity.
+<div class="block">Allocates a direct buffer with the given initial capacity.
  <p>
- When the buffer is constructed, <a href="../../../../io/atomix/catalyst/buffer/util/HeapMemoryAllocator.html" title="class in io.atomix.catalyst.buffer.util"><code>HeapMemoryAllocator</code></a> will be used to allocate
- <code>capacity</code> bytes of memory on the Java heap. The resulting buffer will have an initial capacity of <code>capacity</code>.
- The underlying <a href="../../../../io/atomix/catalyst/buffer/HeapBytes.html" title="class in io.atomix.catalyst.buffer"><code>HeapBytes</code></a> will be initialized to the next power of <code>2</code>.</div>
+ When the buffer is constructed, <a href="../../../../io/atomix/catalyst/buffer/util/DirectMemoryAllocator.html" title="class in io.atomix.catalyst.buffer.util"><code>DirectMemoryAllocator</code></a> will be used to allocate
+ <code>capacity</code> bytes of off-heap memory. The resulting buffer will have an initial capacity of <code>capacity</code>.
+ The underlying <a href="../../../../io/atomix/catalyst/buffer/UnsafeDirectBytes.html" title="class in io.atomix.catalyst.buffer"><code>UnsafeDirectBytes</code></a> will be initialized to the next power of <code>2</code>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>initialCapacity</code> - The initial capacity of the buffer to allocate (in bytes).</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The heap buffer.</dd>
+<dd>The direct buffer.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If <code>capacity</code> is greater than the maximum allowed capacity for
-         an array on the Java heap - <code>Integer.MAX_VALUE - 5</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If <code>capacity</code> is greater than the maximum allowed count for
+         a <a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html?is-external=true" title="class or interface in java.nio"><code>ByteBuffer</code></a> - <code>Integer.MAX_VALUE - 5</code></dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html#allocate--"><code>allocate()</code></a>, 
 <a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html#allocate-long-long-"><code>allocate(long, long)</code></a></dd>
@@ -266,21 +265,21 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html" titl
 <h4>allocate</h4>
 <pre>public static&nbsp;<a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html" title="class in io.atomix.catalyst.buffer">HeapBuffer</a>&nbsp;allocate(long&nbsp;initialCapacity,
                                   long&nbsp;maxCapacity)</pre>
-<div class="block">Allocates a new heap buffer.
+<div class="block">Allocates a new direct buffer.
  <p>
- When the buffer is constructed, <a href="../../../../io/atomix/catalyst/buffer/util/HeapMemoryAllocator.html" title="class in io.atomix.catalyst.buffer.util"><code>HeapMemoryAllocator</code></a> will be used to allocate
- <code>capacity</code> bytes of memory on the Java heap. The resulting buffer will have an initial capacity of
- <code>initialCapacity</code> and will be doubled up to <code>maxCapacity</code> as bytes are written to the buffer. The
- underlying <a href="../../../../io/atomix/catalyst/buffer/HeapBytes.html" title="class in io.atomix.catalyst.buffer"><code>HeapBytes</code></a> will be initialized to the next power of <code>2</code>.</div>
+ When the buffer is constructed, <a href="../../../../io/atomix/catalyst/buffer/util/DirectMemoryAllocator.html" title="class in io.atomix.catalyst.buffer.util"><code>DirectMemoryAllocator</code></a> will be used to allocate
+ <code>capacity</code> bytes of off-heap memory. The resulting buffer will have an initial capacity of <code>initialCapacity</code>
+ and will be doubled up to <code>maxCapacity</code> as bytes are written to the buffer. The underlying <a href="../../../../io/atomix/catalyst/buffer/UnsafeDirectBytes.html" title="class in io.atomix.catalyst.buffer"><code>UnsafeDirectBytes</code></a>
+ will be initialized to the next power of <code>2</code>.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>initialCapacity</code> - The initial capacity of the buffer to allocate (in bytes).</dd>
 <dd><code>maxCapacity</code> - The maximum capacity of the buffer.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The heap buffer.</dd>
+<dd>The direct buffer.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If <code>initialCapacity</code> or <code>maxCapacity</code> is greater than the
-         maximum allowed count for an array on the Java heap - <code>Integer.MAX_VALUE - 5</code></dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - If <code>capacity</code> or <code>maxCapacity</code> is greater than the maximum
+         allowed count for a <a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html?is-external=true" title="class or interface in java.nio"><code>ByteBuffer</code></a> - <code>Integer.MAX_VALUE - 5</code></dd>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html#allocate--"><code>allocate()</code></a>, 
 <a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html#allocate-long-"><code>allocate(long)</code></a></dd>
@@ -290,7 +289,7 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html" titl
 <a name="wrap-byte:A-">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>wrap</h4>
 <pre>public static&nbsp;<a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html" title="class in io.atomix.catalyst.buffer">HeapBuffer</a>&nbsp;wrap(byte[]&nbsp;bytes)</pre>
@@ -302,36 +301,6 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html" titl
 <dd><code>bytes</code> - The bytes to wrap.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The wrapped bytes.</dd>
-</dl>
-</li>
-</ul>
-<a name="array--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>array</h4>
-<pre>public&nbsp;byte[]&nbsp;array()</pre>
-<div class="block">Returns the underlying byte array.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The underlying byte array.</dd>
-</dl>
-</li>
-</ul>
-<a name="reset-byte:A-">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>reset</h4>
-<pre>public&nbsp;<a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html" title="class in io.atomix.catalyst.buffer">HeapBuffer</a>&nbsp;reset(byte[]&nbsp;array)</pre>
-<div class="block">Resets the internal heap array.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>array</code> - The internal array.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The heap buffer.</dd>
 </dl>
 </li>
 </ul>
@@ -364,7 +333,7 @@ extends <a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html" titl
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/atomix/catalyst/buffer/FileBytes.html" title="class in io.atomix.catalyst.buffer"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/catalyst/buffer/HeapBufferPool.html" title="class in io.atomix.catalyst.buffer"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/catalyst/buffer/HeapBytes.html" title="class in io.atomix.catalyst.buffer"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/catalyst/buffer/HeapBuffer.html" target="_top">Frames</a></li>

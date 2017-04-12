@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6,"i14":6,"i15":6,"i16":6,"i17":6,"i18":6,"i19":6,"i20":6,"i21":6,"i22":6,"i23":6,"i24":6,"i25":6,"i26":6,"i27":6,"i28":6,"i29":6,"i30":6,"i31":6,"i32":6,"i33":6,"i34":6,"i35":6,"i36":6,"i37":6,"i38":6,"i39":6,"i40":6,"i41":6,"i42":6,"i43":6,"i44":6,"i45":6,"i46":6,"i47":6,"i48":6,"i49":6,"i50":6,"i51":6,"i52":6,"i53":6,"i54":6,"i55":6,"i56":6,"i57":6,"i58":6,"i59":6,"i60":6,"i61":6,"i62":6,"i63":6,"i64":6,"i65":6,"i66":6,"i67":6,"i68":6,"i69":6,"i70":6,"i71":6,"i72":6,"i73":6,"i74":6,"i75":6,"i76":6,"i77":6,"i78":6,"i79":6,"i80":6,"i81":6,"i82":6,"i83":6,"i84":6,"i85":6,"i86":6,"i87":6,"i88":6,"i89":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var methods = {"i0":18,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6,"i14":6,"i15":6,"i16":6,"i17":6,"i18":6,"i19":6,"i20":6,"i21":6,"i22":6,"i23":6,"i24":6,"i25":6,"i26":6,"i27":6,"i28":6,"i29":6,"i30":6,"i31":6,"i32":6,"i33":6,"i34":6,"i35":6,"i36":6,"i37":6,"i38":6,"i39":6,"i40":6,"i41":6,"i42":6,"i43":6,"i44":6,"i45":6,"i46":6,"i47":6,"i48":6,"i49":6,"i50":6,"i51":6,"i52":6,"i53":6,"i54":6,"i55":6,"i56":6,"i57":6,"i58":6,"i59":6,"i60":6,"i61":6,"i62":6,"i63":6,"i64":6,"i65":6,"i66":6,"i67":6,"i68":6,"i69":6,"i70":6,"i71":6,"i72":6,"i73":6,"i74":6,"i75":6,"i76":6,"i77":6,"i78":6,"i79":6,"i80":6,"i81":6,"i82":6,"i83":6,"i84":6,"i85":6,"i86":6,"i87":6,"i88":6,"i89":6,"i90":6};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -105,7 +105,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html" title="class in io.atomix.catalyst.buffer">AbstractBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/DirectBuffer.html" title="class in io.atomix.catalyst.buffer">DirectBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/FileBuffer.html" title="class in io.atomix.catalyst.buffer">FileBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html" title="class in io.atomix.catalyst.buffer">HeapBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/MappedBuffer.html" title="class in io.atomix.catalyst.buffer">MappedBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/NativeBuffer.html" title="class in io.atomix.catalyst.buffer">NativeBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/ReadOnlyBuffer.html" title="class in io.atomix.catalyst.buffer">ReadOnlyBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/SlicedBuffer.html" title="class in io.atomix.catalyst.buffer">SlicedBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/SwappedBuffer.html" title="class in io.atomix.catalyst.buffer">SwappedBuffer</a></dd>
+<dd><a href="../../../../io/atomix/catalyst/buffer/AbstractBuffer.html" title="class in io.atomix.catalyst.buffer">AbstractBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/ByteBufferBuffer.html" title="class in io.atomix.catalyst.buffer">ByteBufferBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/DirectBuffer.html" title="class in io.atomix.catalyst.buffer">DirectBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/FileBuffer.html" title="class in io.atomix.catalyst.buffer">FileBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/HeapBuffer.html" title="class in io.atomix.catalyst.buffer">HeapBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/MappedBuffer.html" title="class in io.atomix.catalyst.buffer">MappedBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/NativeBuffer.html" title="class in io.atomix.catalyst.buffer">NativeBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/ReadOnlyBuffer.html" title="class in io.atomix.catalyst.buffer">ReadOnlyBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/SlicedBuffer.html" title="class in io.atomix.catalyst.buffer">SlicedBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/SwappedBuffer.html" title="class in io.atomix.catalyst.buffer">SwappedBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/UnsafeDirectBuffer.html" title="class in io.atomix.catalyst.buffer">UnsafeDirectBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/UnsafeHeapBuffer.html" title="class in io.atomix.catalyst.buffer">UnsafeHeapBuffer</a>, <a href="../../../../io/atomix/catalyst/buffer/UnsafeMappedBuffer.html" title="class in io.atomix.catalyst.buffer">UnsafeMappedBuffer</a></dd>
 </dl>
 <hr>
 <br>
@@ -162,150 +162,156 @@ extends <a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="i
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t5" class="tableTab"><span><a href="javascript:show(16);">Default Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>default byte[]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#array--">array</a></span>()</code>
+<div class="block">Returns the underlying byte array.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#asReadOnlyBuffer--">asReadOnlyBuffer</a></span>()</code>
 <div class="block">Returns a read-only view of the buffer.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#bytes--">bytes</a></span>()</code>
 <div class="block">Returns the bytes underlying the buffer.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#capacity--">capacity</a></span>()</code>
 <div class="block">Returns the buffer's capacity.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#capacity-long-">capacity</a></span>(long&nbsp;capacity)</code>
 <div class="block">Sets the buffer's capacity.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#clear--">clear</a></span>()</code>
 <div class="block">Clears the buffer.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#close--">close</a></span>()</code>
 <div class="block">Closes the buffer.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#compact--">compact</a></span>()</code>
 <div class="block">Compacts the buffer, moving bytes from the current position to the end of the buffer to the head of the buffer.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#flip--">flip</a></span>()</code>
 <div class="block">Flips the buffer.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#hasRemaining--">hasRemaining</a></span>()</code>
 <div class="block">Returns a boolean indicating whether the buffer has bytes remaining.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#isDirect--">isDirect</a></span>()</code>
 <div class="block">Returns a boolean value indicating whether the buffer is a direct buffer.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#isFile--">isFile</a></span>()</code>
 <div class="block">Returns a boolean value indicating whether the buffer is backed by a file.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#isReadOnly--">isReadOnly</a></span>()</code>
 <div class="block">Returns a boolean value indicating whether the buffer is a read-only buffer.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#limit--">limit</a></span>()</code>
 <div class="block">Returns the buffer's read/write limit.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#limit-long-">limit</a></span>(long&nbsp;limit)</code>
 <div class="block">Sets the buffer's read/write limit.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#mark--">mark</a></span>()</code>
 <div class="block">Sets a mark at the current position.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#maxCapacity--">maxCapacity</a></span>()</code>
 <div class="block">Returns the maximum allowed capacity for the buffer.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#offset--">offset</a></span>()</code>
 <div class="block">Returns the buffer's starting offset within the underlying <a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer"><code>Bytes</code></a>.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteOrder.html?is-external=true" title="class or interface in java.nio">ByteOrder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#order--">order</a></span>()</code>
 <div class="block">Returns the byte order.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#order-java.nio.ByteOrder-">order</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteOrder.html?is-external=true" title="class or interface in java.nio">ByteOrder</a>&nbsp;order)</code>
 <div class="block">Sets the byte order, returning a new swapped <a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer"><code>Buffer</code></a> instance.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#position--">position</a></span>()</code>
 <div class="block">Returns the buffer's current read/write position.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#position-long-">position</a></span>(long&nbsp;position)</code>
 <div class="block">Sets the buffer's current read/write position.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#read-io.atomix.catalyst.buffer.Buffer-">read</a></span>(<a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a>&nbsp;buffer)</code>
 <div class="block">Reads bytes into the given buffer.</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#read-byte:A-">read</a></span>(byte[]&nbsp;bytes)</code>
 <div class="block">Reads bytes into the given byte array.</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#read-byte:A-long-long-">read</a></span>(byte[]&nbsp;bytes,
     long&nbsp;offset,
@@ -313,13 +319,13 @@ extends <a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="i
 <div class="block">Reads bytes into the given byte array starting at current position up to the given length.</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#read-io.atomix.catalyst.buffer.Bytes-">read</a></span>(<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes)</code>
 <div class="block">Reads bytes into the given byte array.</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#read-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
     long&nbsp;dstOffset,
@@ -327,7 +333,7 @@ extends <a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="i
 <div class="block">Reads bytes into the given byte array starting at the current position.</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#read-long-byte:A-long-long-">read</a></span>(long&nbsp;srcOffset,
     byte[]&nbsp;bytes,
@@ -336,7 +342,7 @@ extends <a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="i
 <div class="block">Reads bytes into the given byte array starting at the given offset up to the given length.</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(long&nbsp;srcOffset,
     <a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
@@ -345,206 +351,206 @@ extends <a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="i
 <div class="block">Reads bytes into the given byte array starting at the given offset up to the given length.</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i29" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readBoolean--">readBoolean</a></span>()</code>
 <div class="block">Reads a 1 byte boolean from the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i30" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readBoolean-long-">readBoolean</a></span>(long&nbsp;offset)</code>
 <div class="block">Reads a 1 byte boolean from the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i30" class="altColor">
+<tr id="i31" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readByte--">readByte</a></span>()</code>
 <div class="block">Reads a byte from the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i31" class="rowColor">
+<tr id="i32" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readByte-long-">readByte</a></span>(long&nbsp;offset)</code>
 <div class="block">Reads a byte from the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i32" class="altColor">
+<tr id="i33" class="rowColor">
 <td class="colFirst"><code>char</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readChar--">readChar</a></span>()</code>
 <div class="block">Reads a 16-bit character from the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i33" class="rowColor">
+<tr id="i34" class="altColor">
 <td class="colFirst"><code>char</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readChar-long-">readChar</a></span>(long&nbsp;offset)</code>
 <div class="block">Reads a 16-bit character from the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i34" class="altColor">
+<tr id="i35" class="rowColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readDouble--">readDouble</a></span>()</code>
 <div class="block">Reads a double-precision 64-bit floating point number from the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i35" class="rowColor">
+<tr id="i36" class="altColor">
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readDouble-long-">readDouble</a></span>(long&nbsp;offset)</code>
 <div class="block">Reads a double-precision 64-bit floating point number from the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i36" class="altColor">
+<tr id="i37" class="rowColor">
 <td class="colFirst"><code>float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readFloat--">readFloat</a></span>()</code>
 <div class="block">Reads a single-precision 32-bit floating point number from the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i37" class="rowColor">
+<tr id="i38" class="altColor">
 <td class="colFirst"><code>float</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readFloat-long-">readFloat</a></span>(long&nbsp;offset)</code>
 <div class="block">Reads a single-precision 32-bit floating point number from the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i38" class="altColor">
+<tr id="i39" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readInt--">readInt</a></span>()</code>
 <div class="block">Reads a 32-bit signed integer from the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i39" class="rowColor">
+<tr id="i40" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readInt-long-">readInt</a></span>(long&nbsp;offset)</code>
 <div class="block">Reads a 32-bit signed integer from the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i40" class="altColor">
+<tr id="i41" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readLong--">readLong</a></span>()</code>
 <div class="block">Reads a 64-bit signed integer from the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i41" class="rowColor">
+<tr id="i42" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readLong-long-">readLong</a></span>(long&nbsp;offset)</code>
 <div class="block">Reads a 64-bit signed integer from the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i42" class="altColor">
+<tr id="i43" class="rowColor">
 <td class="colFirst"><code>short</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readShort--">readShort</a></span>()</code>
 <div class="block">Reads a 16-bit signed integer from the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i43" class="rowColor">
+<tr id="i44" class="altColor">
 <td class="colFirst"><code>short</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readShort-long-">readShort</a></span>(long&nbsp;offset)</code>
 <div class="block">Reads a 16-bit signed integer from the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i44" class="altColor">
+<tr id="i45" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readUnsignedByte--">readUnsignedByte</a></span>()</code>
 <div class="block">Reads an unsigned byte from the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i45" class="rowColor">
+<tr id="i46" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readUnsignedByte-long-">readUnsignedByte</a></span>(long&nbsp;offset)</code>
 <div class="block">Reads an unsigned byte from the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i46" class="altColor">
+<tr id="i47" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readUnsignedInt--">readUnsignedInt</a></span>()</code>
 <div class="block">Reads a 32-bit unsigned integer from the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i47" class="rowColor">
+<tr id="i48" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readUnsignedInt-long-">readUnsignedInt</a></span>(long&nbsp;offset)</code>
 <div class="block">Reads a 32-bit unsigned integer from the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i48" class="altColor">
+<tr id="i49" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readUnsignedShort--">readUnsignedShort</a></span>()</code>
 <div class="block">Reads a 16-bit unsigned integer from the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i49" class="rowColor">
+<tr id="i50" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readUnsignedShort-long-">readUnsignedShort</a></span>(long&nbsp;offset)</code>
 <div class="block">Reads a 16-bit unsigned integer from the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i50" class="altColor">
+<tr id="i51" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readUTF8--">readUTF8</a></span>()</code>
 <div class="block">Reads a UTF-8 string from the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i51" class="rowColor">
+<tr id="i52" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#readUTF8-long-">readUTF8</a></span>(long&nbsp;offset)</code>
 <div class="block">Reads a UTF-8 string from the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i52" class="altColor">
+<tr id="i53" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#remaining--">remaining</a></span>()</code>
 <div class="block">Returns the number of bytes remaining in the buffer until the <a href="../../../../io/atomix/catalyst/buffer/Buffer.html#limit--"><code>limit()</code></a> is reached.</div>
 </td>
 </tr>
-<tr id="i53" class="rowColor">
+<tr id="i54" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#reset--">reset</a></span>()</code>
 <div class="block">Resets the buffer's position to the previously-marked position.</div>
 </td>
 </tr>
-<tr id="i54" class="altColor">
+<tr id="i55" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#rewind--">rewind</a></span>()</code>
 <div class="block">Rewinds the buffer.</div>
 </td>
 </tr>
-<tr id="i55" class="rowColor">
+<tr id="i56" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#skip-long-">skip</a></span>(long&nbsp;length)</code>
 <div class="block">Advances the buffer's <code>position</code> <code>length</code> bytes.</div>
 </td>
 </tr>
-<tr id="i56" class="altColor">
+<tr id="i57" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#slice--">slice</a></span>()</code>
 <div class="block">Returns a view of this buffer starting at the current position.</div>
 </td>
 </tr>
-<tr id="i57" class="rowColor">
+<tr id="i58" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#slice-long-">slice</a></span>(long&nbsp;length)</code>
 <div class="block">Returns a view of this buffer of the given length starting at the current position.</div>
 </td>
 </tr>
-<tr id="i58" class="altColor">
+<tr id="i59" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#slice-long-long-">slice</a></span>(long&nbsp;offset,
      long&nbsp;length)</code>
 <div class="block">Returns a view of this buffer starting at the given offset with the given length.</div>
 </td>
 </tr>
-<tr id="i59" class="rowColor">
+<tr id="i60" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#write-io.atomix.catalyst.buffer.Buffer-">write</a></span>(<a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a>&nbsp;buffer)</code>
 <div class="block">Writes a buffer to the buffer.</div>
 </td>
 </tr>
-<tr id="i60" class="altColor">
+<tr id="i61" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#write-byte:A-">write</a></span>(byte[]&nbsp;bytes)</code>
 <div class="block">Writes an array of bytes to the buffer.</div>
 </td>
 </tr>
-<tr id="i61" class="rowColor">
+<tr id="i62" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#write-byte:A-long-long-">write</a></span>(byte[]&nbsp;bytes,
      long&nbsp;offset,
@@ -552,13 +558,13 @@ extends <a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="i
 <div class="block">Writes an array of bytes to the buffer.</div>
 </td>
 </tr>
-<tr id="i62" class="altColor">
+<tr id="i63" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#write-io.atomix.catalyst.buffer.Bytes-">write</a></span>(<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes)</code>
 <div class="block">Writes an array of bytes to the buffer.</div>
 </td>
 </tr>
-<tr id="i63" class="rowColor">
+<tr id="i64" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#write-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(<a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
      long&nbsp;offset,
@@ -566,7 +572,7 @@ extends <a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="i
 <div class="block">Writes an array of bytes to the buffer.</div>
 </td>
 </tr>
-<tr id="i64" class="altColor">
+<tr id="i65" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#write-long-byte:A-long-long-">write</a></span>(long&nbsp;offset,
      byte[]&nbsp;src,
@@ -575,7 +581,7 @@ extends <a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="i
 <div class="block">Writes an array of bytes to the buffer.</div>
 </td>
 </tr>
-<tr id="i65" class="rowColor">
+<tr id="i66" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#write-long-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(long&nbsp;offset,
      <a href="../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;src,
@@ -584,157 +590,157 @@ extends <a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="i
 <div class="block">Writes an array of bytes to the buffer.</div>
 </td>
 </tr>
-<tr id="i66" class="altColor">
+<tr id="i67" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeBoolean-boolean-">writeBoolean</a></span>(boolean&nbsp;b)</code>
 <div class="block">Writes a 1 byte boolean to the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i67" class="rowColor">
+<tr id="i68" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeBoolean-long-boolean-">writeBoolean</a></span>(long&nbsp;offset,
             boolean&nbsp;b)</code>
 <div class="block">Writes a 1 byte boolean to the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i68" class="altColor">
+<tr id="i69" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeByte-int-">writeByte</a></span>(int&nbsp;b)</code>
 <div class="block">Writes a byte to the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i69" class="rowColor">
+<tr id="i70" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeByte-long-int-">writeByte</a></span>(long&nbsp;offset,
          int&nbsp;b)</code>
 <div class="block">Writes a byte to the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i70" class="altColor">
+<tr id="i71" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeChar-char-">writeChar</a></span>(char&nbsp;c)</code>
 <div class="block">Writes a 16-bit character to the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i71" class="rowColor">
+<tr id="i72" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeChar-long-char-">writeChar</a></span>(long&nbsp;offset,
          char&nbsp;c)</code>
 <div class="block">Writes a 16-bit character to the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i72" class="altColor">
+<tr id="i73" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeDouble-double-">writeDouble</a></span>(double&nbsp;d)</code>
 <div class="block">Writes a double-precision 64-bit floating point number to the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i73" class="rowColor">
+<tr id="i74" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeDouble-long-double-">writeDouble</a></span>(long&nbsp;offset,
            double&nbsp;d)</code>
 <div class="block">Writes a double-precision 64-bit floating point number to the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i74" class="altColor">
+<tr id="i75" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeFloat-float-">writeFloat</a></span>(float&nbsp;f)</code>
 <div class="block">Writes a single-precision 32-bit floating point number to the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i75" class="rowColor">
+<tr id="i76" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeFloat-long-float-">writeFloat</a></span>(long&nbsp;offset,
           float&nbsp;f)</code>
 <div class="block">Writes a single-precision 32-bit floating point number to the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i76" class="altColor">
+<tr id="i77" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeInt-int-">writeInt</a></span>(int&nbsp;i)</code>
 <div class="block">Writes a 32-bit signed integer to the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i77" class="rowColor">
+<tr id="i78" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeInt-long-int-">writeInt</a></span>(long&nbsp;offset,
         int&nbsp;i)</code>
 <div class="block">Writes a 32-bit signed integer to the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i78" class="altColor">
+<tr id="i79" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeLong-long-">writeLong</a></span>(long&nbsp;l)</code>
 <div class="block">Writes a 64-bit signed integer to the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i79" class="rowColor">
+<tr id="i80" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeLong-long-long-">writeLong</a></span>(long&nbsp;offset,
          long&nbsp;l)</code>
 <div class="block">Writes a 64-bit signed integer to the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i80" class="altColor">
+<tr id="i81" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeShort-long-short-">writeShort</a></span>(long&nbsp;offset,
           short&nbsp;s)</code>
 <div class="block">Writes a 16-bit signed integer to the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i81" class="rowColor">
+<tr id="i82" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeShort-short-">writeShort</a></span>(short&nbsp;s)</code>
 <div class="block">Writes a 16-bit signed integer to the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i82" class="altColor">
+<tr id="i83" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeUnsignedByte-int-">writeUnsignedByte</a></span>(int&nbsp;b)</code>
 <div class="block">Writes an unsigned byte to the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i83" class="rowColor">
+<tr id="i84" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeUnsignedByte-long-int-">writeUnsignedByte</a></span>(long&nbsp;offset,
                  int&nbsp;b)</code>
 <div class="block">Writes an unsigned byte to the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i84" class="altColor">
+<tr id="i85" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeUnsignedInt-long-">writeUnsignedInt</a></span>(long&nbsp;i)</code>
 <div class="block">Writes a 32-bit signed integer to the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i85" class="rowColor">
+<tr id="i86" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeUnsignedInt-long-long-">writeUnsignedInt</a></span>(long&nbsp;offset,
                 long&nbsp;i)</code>
 <div class="block">Writes a 32-bit signed integer to the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i86" class="altColor">
+<tr id="i87" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeUnsignedShort-int-">writeUnsignedShort</a></span>(int&nbsp;s)</code>
 <div class="block">Writes a 16-bit signed integer to the buffer at the current position.</div>
 </td>
 </tr>
-<tr id="i87" class="rowColor">
+<tr id="i88" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeUnsignedShort-long-int-">writeUnsignedShort</a></span>(long&nbsp;offset,
                   int&nbsp;s)</code>
 <div class="block">Writes a 16-bit signed integer to the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i88" class="altColor">
+<tr id="i89" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeUTF8-long-java.lang.String-">writeUTF8</a></span>(long&nbsp;offset,
          <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;s)</code>
 <div class="block">Writes a UTF-8 string to the buffer at the given offset.</div>
 </td>
 </tr>
-<tr id="i89" class="rowColor">
+<tr id="i90" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/catalyst/buffer/Buffer.html#writeUTF8-java.lang.String-">writeUTF8</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;s)</code>
 <div class="block">Writes a UTF-8 string to the buffer at the current position.</div>
@@ -746,28 +752,28 @@ extends <a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="i
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;io.atomix.catalyst.buffer.<a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="interface in io.atomix.catalyst.buffer">BytesInput</a></h3>
-<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readMedium-long-">readMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readString-long-">readString</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readUnsignedMedium-long-">readUnsignedMedium</a></code></li>
+<code><a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readMedium-long-">readMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readString-long-">readString</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readString-long-java.nio.charset.Charset-">readString</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesInput.html#readUnsignedMedium-long-">readUnsignedMedium</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.catalyst.buffer.BufferInput">
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;io.atomix.catalyst.buffer.<a href="../../../../io/atomix/catalyst/buffer/BufferInput.html" title="interface in io.atomix.catalyst.buffer">BufferInput</a></h3>
-<code><a href="../../../../io/atomix/catalyst/buffer/BufferInput.html#readMedium--">readMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/BufferInput.html#readString--">readString</a>, <a href="../../../../io/atomix/catalyst/buffer/BufferInput.html#readUnsignedMedium--">readUnsignedMedium</a></code></li>
+<code><a href="../../../../io/atomix/catalyst/buffer/BufferInput.html#readMedium--">readMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/BufferInput.html#readString--">readString</a>, <a href="../../../../io/atomix/catalyst/buffer/BufferInput.html#readString-java.nio.charset.Charset-">readString</a>, <a href="../../../../io/atomix/catalyst/buffer/BufferInput.html#readUnsignedMedium--">readUnsignedMedium</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.catalyst.buffer.BytesOutput">
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;io.atomix.catalyst.buffer.<a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html" title="interface in io.atomix.catalyst.buffer">BytesOutput</a></h3>
-<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#flush--">flush</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeMedium-long-int-">writeMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeString-long-java.lang.String-">writeString</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeUnsignedMedium-long-int-">writeUnsignedMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#zero--">zero</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#zero-long-">zero</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#zero-long-long-">zero</a></code></li>
+<code><a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#flush--">flush</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeMedium-long-int-">writeMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeString-long-java.lang.String-">writeString</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeString-long-java.lang.String-java.nio.charset.Charset-">writeString</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#writeUnsignedMedium-long-int-">writeUnsignedMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#zero--">zero</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#zero-long-">zero</a>, <a href="../../../../io/atomix/catalyst/buffer/BytesOutput.html#zero-long-long-">zero</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.catalyst.buffer.BufferOutput">
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;io.atomix.catalyst.buffer.<a href="../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a></h3>
-<code><a href="../../../../io/atomix/catalyst/buffer/BufferOutput.html#flush--">flush</a>, <a href="../../../../io/atomix/catalyst/buffer/BufferOutput.html#writeMedium-int-">writeMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/BufferOutput.html#writeString-java.lang.String-">writeString</a>, <a href="../../../../io/atomix/catalyst/buffer/BufferOutput.html#writeUnsignedMedium-int-">writeUnsignedMedium</a></code></li>
+<code><a href="../../../../io/atomix/catalyst/buffer/BufferOutput.html#flush--">flush</a>, <a href="../../../../io/atomix/catalyst/buffer/BufferOutput.html#writeMedium-int-">writeMedium</a>, <a href="../../../../io/atomix/catalyst/buffer/BufferOutput.html#writeString-java.lang.String-">writeString</a>, <a href="../../../../io/atomix/catalyst/buffer/BufferOutput.html#writeString-java.lang.String-java.nio.charset.Charset-">writeString</a>, <a href="../../../../io/atomix/catalyst/buffer/BufferOutput.html#writeUnsignedMedium-int-">writeUnsignedMedium</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.catalyst.util.reference.ReferenceCounted">
@@ -790,6 +796,22 @@ extends <a href="../../../../io/atomix/catalyst/buffer/BytesInput.html" title="i
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="array--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>array</h4>
+<pre>default&nbsp;byte[]&nbsp;array()</pre>
+<div class="block">Returns the underlying byte array.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the underlying byte array</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/UnsupportedOperationException.html?is-external=true" title="class or interface in java.lang">UnsupportedOperationException</a></code> - if a heap array is not supported</dd>
+</dl>
+</li>
+</ul>
 <a name="order--">
 <!--   -->
 </a>

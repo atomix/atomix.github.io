@@ -113,38 +113,62 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/DirectBytes.html" title="class in io.atomix.catalyst.buffer">DirectBytes</a></span></code>
-<div class="block">Direct byte buffer bytes.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html" title="class in io.atomix.catalyst.buffer">ByteBufferBytes</a></span></code>
+<div class="block">Byte buffer bytes.</div>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/DirectBytes.html" title="class in io.atomix.catalyst.buffer">DirectBytes</a></span></code>
+<div class="block"><a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html?is-external=true" title="class or interface in java.nio"><code>ByteBuffer</code></a> based direct bytes.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html" title="class in io.atomix.catalyst.buffer">FileBytes</a></span></code>
 <div class="block">File bytes.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html" title="class in io.atomix.catalyst.buffer">HeapBytes</a></span></code>
-<div class="block">Java heap bytes.</div>
+<div class="block"><a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html?is-external=true" title="class or interface in java.nio"><code>ByteBuffer</code></a> based heap bytes.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/MappedBytes.html" title="class in io.atomix.catalyst.buffer">MappedBytes</a></span></code>
+<div class="block"><a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html?is-external=true" title="class or interface in java.nio"><code>ByteBuffer</code></a> based mapped bytes.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/MappedBytes.html" title="class in io.atomix.catalyst.buffer">MappedBytes</a></span></code>
-<div class="block">Mapped bytes.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html" title="class in io.atomix.catalyst.buffer">NativeBytes</a></span></code>
 <div class="block">Native bytes.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/SwappedBytes.html" title="class in io.atomix.catalyst.buffer">SwappedBytes</a></span></code>
 <div class="block">Bytes in swapped order.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeDirectBytes.html" title="class in io.atomix.catalyst.buffer">UnsafeDirectBytes</a></span></code>
+<div class="block">Direct byte buffer bytes.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html" title="class in io.atomix.catalyst.buffer">UnsafeHeapBytes</a></span></code>
+<div class="block">Java heap bytes.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeMappedBytes.html" title="class in io.atomix.catalyst.buffer">UnsafeMappedBytes</a></span></code>
+<div class="block">Mapped bytes.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -182,7 +206,7 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#flush--">flush</a></span>()</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">UnsafeMappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeMappedBytes.html#flush--">flush</a></span>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
@@ -190,7 +214,7 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#flush--">flush</a></span>()</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">AbstractBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/AbstractBytes.html#flush--">flush</a></span>()</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
@@ -198,20 +222,31 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#order-java.nio.ByteOrder-">order</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteOrder.html?is-external=true" title="class or interface in java.nio">ByteOrder</a>&nbsp;order)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Bytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html#order-java.nio.ByteOrder-">order</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteOrder.html?is-external=true" title="class or interface in java.nio">ByteOrder</a>&nbsp;order)</code>
 <div class="block">Sets the byte order, returning a new swapped <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer"><code>Bytes</code></a> instance.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#read-long-byte:A-long-long-">read</a></span>(long&nbsp;position,
     byte[]&nbsp;bytes,
     long&nbsp;offset,
     long&nbsp;length)</code>&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#read-long-byte:A-long-long-">read</a></span>(long&nbsp;position,
+    byte[]&nbsp;bytes,
+    long&nbsp;offset,
+    long&nbsp;length)</code>&nbsp;</td>
+</tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#read-long-byte:A-long-long-">read</a></span>(long&nbsp;position,
+<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#read-long-byte:A-long-long-">read</a></span>(long&nbsp;position,
     byte[]&nbsp;bytes,
     long&nbsp;offset,
     long&nbsp;length)</code>&nbsp;</td>
@@ -225,7 +260,7 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#read-long-byte:A-long-long-">read</a></span>(long&nbsp;position,
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#read-long-byte:A-long-long-">read</a></span>(long&nbsp;position,
     byte[]&nbsp;bytes,
     long&nbsp;offset,
     long&nbsp;length)</code>&nbsp;</td>
@@ -239,24 +274,35 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(long&nbsp;position,
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(long&nbsp;position,
     <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
     long&nbsp;offset,
     long&nbsp;length)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(long&nbsp;position,
+    <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
+    long&nbsp;offset,
+    long&nbsp;length)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(long&nbsp;offset,
     <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;dst,
     long&nbsp;dstOffset,
     long&nbsp;length)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(long&nbsp;position,
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(long&nbsp;position,
     <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
     long&nbsp;offset,
     long&nbsp;length)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#reset-java.nio.ByteBuffer-">reset</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html?is-external=true" title="class or interface in java.nio">ByteBuffer</a>&nbsp;buffer)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
@@ -264,38 +310,49 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#resize-long-">resize</a></span>(long&nbsp;newSize)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#resize-long-">resize</a></span>(long&nbsp;newSize)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#resize-long-">resize</a></span>(long&nbsp;newSize)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#resize-long-">resize</a></span>(long&nbsp;newSize)</code>&nbsp;</td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#resize-long-">resize</a></span>(long&nbsp;newSize)</code>&nbsp;</td>
+</tr>
 <tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#resize-long-">resize</a></span>(long&nbsp;newSize)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Bytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html#resize-long-">resize</a></span>(long&nbsp;newSize)</code>
 <div class="block">Resizes the bytes.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#root--">root</a></span>()</code>
 <div class="block">Returns the root bytes.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#write-long-byte:A-long-long-">write</a></span>(long&nbsp;position,
      byte[]&nbsp;bytes,
      long&nbsp;offset,
      long&nbsp;length)</code>&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#write-long-byte:A-long-long-">write</a></span>(long&nbsp;position,
+     byte[]&nbsp;bytes,
+     long&nbsp;offset,
+     long&nbsp;length)</code>&nbsp;</td>
+</tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#write-long-byte:A-long-long-">write</a></span>(long&nbsp;position,
+<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#write-long-byte:A-long-long-">write</a></span>(long&nbsp;position,
      byte[]&nbsp;bytes,
      long&nbsp;offset,
      long&nbsp;length)</code>&nbsp;</td>
@@ -309,7 +366,7 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#write-long-byte:A-long-long-">write</a></span>(long&nbsp;position,
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#write-long-byte:A-long-long-">write</a></span>(long&nbsp;position,
      byte[]&nbsp;bytes,
      long&nbsp;offset,
      long&nbsp;length)</code>&nbsp;</td>
@@ -323,33 +380,35 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#write-long-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(long&nbsp;position,
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#write-long-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(long&nbsp;position,
      <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
      long&nbsp;offset,
      long&nbsp;length)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#write-long-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(long&nbsp;offset,
-     <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;src,
-     long&nbsp;srcOffset,
-     long&nbsp;length)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#write-long-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(long&nbsp;position,
      <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
      long&nbsp;offset,
      long&nbsp;length)</code>&nbsp;</td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#write-long-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(long&nbsp;offset,
+     <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;src,
+     long&nbsp;srcOffset,
+     long&nbsp;length)</code>&nbsp;</td>
+</tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#writeBoolean-long-boolean-">writeBoolean</a></span>(long&nbsp;offset,
-            boolean&nbsp;b)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#write-long-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(long&nbsp;position,
+     <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
+     long&nbsp;offset,
+     long&nbsp;length)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#writeBoolean-long-boolean-">writeBoolean</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#writeBoolean-long-boolean-">writeBoolean</a></span>(long&nbsp;offset,
             boolean&nbsp;b)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -359,7 +418,7 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeBoolean-long-boolean-">writeBoolean</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">AbstractBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeBoolean-long-boolean-">writeBoolean</a></span>(long&nbsp;offset,
             boolean&nbsp;b)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -369,27 +428,37 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#writeByte-long-int-">writeByte</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#writeByte-long-int-">writeByte</a></span>(long&nbsp;offset,
          int&nbsp;b)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#writeByte-long-int-">writeByte</a></span>(long&nbsp;offset,
-         int&nbsp;b)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeByte-long-int-">writeByte</a></span>(long&nbsp;offset,
          int&nbsp;b)</code>&nbsp;</td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#writeByte-long-int-">writeByte</a></span>(long&nbsp;offset,
+         int&nbsp;b)</code>&nbsp;</td>
+</tr>
 <tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#writeByte-long-int-">writeByte</a></span>(long&nbsp;offset,
+         int&nbsp;b)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#writeChar-long-char-">writeChar</a></span>(long&nbsp;offset,
          char&nbsp;c)</code>&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#writeChar-long-char-">writeChar</a></span>(long&nbsp;offset,
+         char&nbsp;c)</code>&nbsp;</td>
+</tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#writeChar-long-char-">writeChar</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeChar-long-char-">writeChar</a></span>(long&nbsp;offset,
          char&nbsp;c)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -404,7 +473,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeChar-long-char-">writeChar</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#writeChar-long-char-">writeChar</a></span>(long&nbsp;offset,
          char&nbsp;c)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -414,17 +483,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#writeDouble-long-double-">writeDouble</a></span>(long&nbsp;offset,
-           double&nbsp;d)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#writeDouble-long-double-">writeDouble</a></span>(long&nbsp;offset,
-           double&nbsp;d)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">SwappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/SwappedBytes.html#writeDouble-long-double-">writeDouble</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#writeDouble-long-double-">writeDouble</a></span>(long&nbsp;offset,
            double&nbsp;d)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -434,12 +493,32 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#writeDouble-long-double-">writeDouble</a></span>(long&nbsp;offset,
+           double&nbsp;d)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SwappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/SwappedBytes.html#writeDouble-long-double-">writeDouble</a></span>(long&nbsp;offset,
+           double&nbsp;d)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#writeDouble-long-double-">writeDouble</a></span>(long&nbsp;offset,
+           double&nbsp;d)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#writeFloat-long-float-">writeFloat</a></span>(long&nbsp;offset,
+          float&nbsp;f)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#writeFloat-long-float-">writeFloat</a></span>(long&nbsp;offset,
           float&nbsp;f)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#writeFloat-long-float-">writeFloat</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeFloat-long-float-">writeFloat</a></span>(long&nbsp;offset,
           float&nbsp;f)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -454,7 +533,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeFloat-long-float-">writeFloat</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#writeFloat-long-float-">writeFloat</a></span>(long&nbsp;offset,
           float&nbsp;f)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -464,17 +543,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#writeInt-long-int-">writeInt</a></span>(long&nbsp;offset,
-        int&nbsp;i)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#writeInt-long-int-">writeInt</a></span>(long&nbsp;offset,
-        int&nbsp;i)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">SwappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/SwappedBytes.html#writeInt-long-int-">writeInt</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#writeInt-long-int-">writeInt</a></span>(long&nbsp;offset,
         int&nbsp;i)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -484,12 +553,32 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#writeInt-long-int-">writeInt</a></span>(long&nbsp;offset,
+        int&nbsp;i)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">SwappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/SwappedBytes.html#writeInt-long-int-">writeInt</a></span>(long&nbsp;offset,
+        int&nbsp;i)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#writeInt-long-int-">writeInt</a></span>(long&nbsp;offset,
+        int&nbsp;i)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#writeLong-long-long-">writeLong</a></span>(long&nbsp;offset,
+         long&nbsp;l)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#writeLong-long-long-">writeLong</a></span>(long&nbsp;offset,
          long&nbsp;l)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#writeLong-long-long-">writeLong</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeLong-long-long-">writeLong</a></span>(long&nbsp;offset,
          long&nbsp;l)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -504,17 +593,17 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeLong-long-long-">writeLong</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#writeLong-long-long-">writeLong</a></span>(long&nbsp;offset,
          long&nbsp;l)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#writeMedium-long-int-">writeMedium</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#writeMedium-long-int-">writeMedium</a></span>(long&nbsp;offset,
            int&nbsp;m)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#writeMedium-long-int-">writeMedium</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeMedium-long-int-">writeMedium</a></span>(long&nbsp;offset,
            int&nbsp;m)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -529,7 +618,7 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeMedium-long-int-">writeMedium</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">AbstractBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeMedium-long-int-">writeMedium</a></span>(long&nbsp;offset,
            int&nbsp;m)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -539,17 +628,7 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#writeShort-long-short-">writeShort</a></span>(long&nbsp;offset,
-          short&nbsp;s)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#writeShort-long-short-">writeShort</a></span>(long&nbsp;offset,
-          short&nbsp;s)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">SwappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/SwappedBytes.html#writeShort-long-short-">writeShort</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#writeShort-long-short-">writeShort</a></span>(long&nbsp;offset,
           short&nbsp;s)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -559,52 +638,53 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#writeString-long-java.lang.String-">writeString</a></span>(long&nbsp;offset,
-           <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;s)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#writeShort-long-short-">writeShort</a></span>(long&nbsp;offset,
+          short&nbsp;s)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#writeString-long-java.lang.String-">writeString</a></span>(long&nbsp;offset,
-           <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;s)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">SwappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/SwappedBytes.html#writeShort-long-short-">writeShort</a></span>(long&nbsp;offset,
+          short&nbsp;s)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#writeShort-long-short-">writeShort</a></span>(long&nbsp;offset,
+          short&nbsp;s)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#writeString-long-java.lang.String-">writeString</a></span>(long&nbsp;offset,
            <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;s)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeString-long-java.lang.String-">writeString</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">AbstractBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeString-long-java.lang.String-">writeString</a></span>(long&nbsp;offset,
            <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;s)</code>&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AbstractBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeString-long-java.lang.String-java.nio.charset.Charset-">writeString</a></span>(long&nbsp;offset,
+           <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;s,
+           <a href="http://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html?is-external=true" title="class or interface in java.nio.charset">Charset</a>&nbsp;charset)</code>&nbsp;</td>
+</tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#writeUnsignedByte-long-int-">writeUnsignedByte</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#writeUnsignedByte-long-int-">writeUnsignedByte</a></span>(long&nbsp;offset,
                  int&nbsp;b)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#writeUnsignedByte-long-int-">writeUnsignedByte</a></span>(long&nbsp;offset,
-                 int&nbsp;b)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#writeUnsignedByte-long-int-">writeUnsignedByte</a></span>(long&nbsp;offset,
                  int&nbsp;b)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeUnsignedByte-long-int-">writeUnsignedByte</a></span>(long&nbsp;offset,
-                 int&nbsp;b)</code>&nbsp;</td>
-</tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#writeUnsignedInt-long-long-">writeUnsignedInt</a></span>(long&nbsp;offset,
-                long&nbsp;i)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">AbstractBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeUnsignedByte-long-int-">writeUnsignedByte</a></span>(long&nbsp;offset,
+                 int&nbsp;b)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#writeUnsignedInt-long-long-">writeUnsignedInt</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#writeUnsignedInt-long-long-">writeUnsignedInt</a></span>(long&nbsp;offset,
                 long&nbsp;i)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -619,17 +699,17 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeUnsignedInt-long-long-">writeUnsignedInt</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">AbstractBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeUnsignedInt-long-long-">writeUnsignedInt</a></span>(long&nbsp;offset,
                 long&nbsp;i)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#writeUnsignedMedium-long-int-">writeUnsignedMedium</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#writeUnsignedMedium-long-int-">writeUnsignedMedium</a></span>(long&nbsp;offset,
                    int&nbsp;m)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#writeUnsignedMedium-long-int-">writeUnsignedMedium</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeUnsignedMedium-long-int-">writeUnsignedMedium</a></span>(long&nbsp;offset,
                    int&nbsp;m)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -644,65 +724,46 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeUnsignedMedium-long-int-">writeUnsignedMedium</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">AbstractBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeUnsignedMedium-long-int-">writeUnsignedMedium</a></span>(long&nbsp;offset,
                    int&nbsp;m)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#writeUnsignedShort-long-int-">writeUnsignedShort</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#writeUnsignedShort-long-int-">writeUnsignedShort</a></span>(long&nbsp;offset,
                   int&nbsp;s)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#writeUnsignedShort-long-int-">writeUnsignedShort</a></span>(long&nbsp;offset,
-                  int&nbsp;s)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#writeUnsignedShort-long-int-">writeUnsignedShort</a></span>(long&nbsp;offset,
                   int&nbsp;s)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">SwappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/SwappedBytes.html#writeUnsignedShort-long-int-">writeUnsignedShort</a></span>(long&nbsp;offset,
                   int&nbsp;s)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeUnsignedShort-long-int-">writeUnsignedShort</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">AbstractBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeUnsignedShort-long-int-">writeUnsignedShort</a></span>(long&nbsp;offset,
                   int&nbsp;s)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#writeUTF8-long-java.lang.String-">writeUTF8</a></span>(long&nbsp;offset,
-         <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;s)</code>&nbsp;</td>
-</tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#writeUTF8-long-java.lang.String-">writeUTF8</a></span>(long&nbsp;offset,
-         <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;s)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#writeUTF8-long-java.lang.String-">writeUTF8</a></span>(long&nbsp;offset,
          <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;s)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#writeUTF8-long-java.lang.String-">writeUTF8</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">AbstractBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/AbstractBytes.html#writeUTF8-long-java.lang.String-">writeUTF8</a></span>(long&nbsp;offset,
          <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;s)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#zero--">zero</a></span>()</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#zero--">zero</a></span>()</code>&nbsp;</td>
-</tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#zero--">zero</a></span>()</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#zero--">zero</a></span>()</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
@@ -710,28 +771,45 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#zero--">zero</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#zero--">zero</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#zero-long-">zero</a></span>(long&nbsp;offset)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#zero-long-">zero</a></span>(long&nbsp;offset)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#zero-long-">zero</a></span>(long&nbsp;offset)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#zero-long-">zero</a></span>(long&nbsp;offset)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#zero-long-">zero</a></span>(long&nbsp;offset)</code>&nbsp;</td>
 </tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#zero-long-">zero</a></span>(long&nbsp;offset)</code>&nbsp;</td>
+</tr>
 <tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#zero-long-">zero</a></span>(long&nbsp;offset)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#zero-long-long-">zero</a></span>(long&nbsp;offset,
     long&nbsp;length)</code>&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#zero-long-long-">zero</a></span>(long&nbsp;offset,
+    long&nbsp;length)</code>&nbsp;</td>
+</tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#zero-long-long-">zero</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#zero-long-long-">zero</a></span>(long&nbsp;offset,
     long&nbsp;length)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
@@ -741,7 +819,7 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#zero-long-long-">zero</a></span>(long&nbsp;offset,
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#zero-long-long-">zero</a></span>(long&nbsp;offset,
     long&nbsp;length)</code>&nbsp;</td>
 </tr>
 </tbody>
@@ -810,33 +888,40 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(long&nbsp;position,
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(long&nbsp;position,
     <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
     long&nbsp;offset,
     long&nbsp;length)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(long&nbsp;offset,
-    <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;dst,
-    long&nbsp;dstOffset,
-    long&nbsp;length)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(long&nbsp;position,
     <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
     long&nbsp;offset,
     long&nbsp;length)</code>&nbsp;</td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">WrappedBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/WrappedBytes.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(long&nbsp;offset,
+    <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;dst,
+    long&nbsp;dstOffset,
+    long&nbsp;length)</code>&nbsp;</td>
+</tr>
 <tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(long&nbsp;position,
+    <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
+    long&nbsp;offset,
+    long&nbsp;length)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><span class="typeNameLabel">AbstractBuffer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(long&nbsp;srcOffset,
     <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
     long&nbsp;dstOffset,
     long&nbsp;length)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Buffer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/Buffer.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(long&nbsp;srcOffset,
     <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
@@ -845,7 +930,7 @@
 <div class="block">Reads bytes into the given byte array starting at the given offset up to the given length.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/BytesInput.html" title="type parameter in BytesInput">T</a></code></td>
 <td class="colLast"><span class="typeNameLabel">BytesInput.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/BytesInput.html#read-long-io.atomix.catalyst.buffer.Bytes-long-long-">read</a></span>(long&nbsp;offset,
     <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;dst,
@@ -854,49 +939,49 @@
 <div class="block">Reads bytes into the given byte array starting at the given offset up to the given length.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><span class="typeNameLabel">ReadOnlyBuffer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ReadOnlyBuffer.html#write-io.atomix.catalyst.buffer.Bytes-">write</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><span class="typeNameLabel">AbstractBuffer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#write-io.atomix.catalyst.buffer.Bytes-">write</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">OutputStreamBufferOutput.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/OutputStreamBufferOutput.html#write-io.atomix.catalyst.buffer.Bytes-">write</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Buffer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/Buffer.html#write-io.atomix.catalyst.buffer.Bytes-">write</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes)</code>
 <div class="block">Writes an array of bytes to the buffer.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="type parameter in BufferOutput">T</a></code></td>
 <td class="colLast"><span class="typeNameLabel">BufferOutput.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html#write-io.atomix.catalyst.buffer.Bytes-">write</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes)</code>
 <div class="block">Writes an array of bytes to the buffer.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><span class="typeNameLabel">ReadOnlyBuffer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ReadOnlyBuffer.html#write-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
      long&nbsp;offset,
      long&nbsp;length)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><span class="typeNameLabel">AbstractBuffer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/AbstractBuffer.html#write-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
      long&nbsp;offset,
      long&nbsp;length)</code>&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="interface in io.atomix.catalyst.buffer">BufferOutput</a>&lt;?&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">OutputStreamBufferOutput.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/OutputStreamBufferOutput.html#write-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
      long&nbsp;offset,
      long&nbsp;length)</code>&nbsp;</td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Buffer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/Buffer.html#write-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
      long&nbsp;offset,
@@ -904,7 +989,7 @@
 <div class="block">Writes an array of bytes to the buffer.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html" title="type parameter in BufferOutput">T</a></code></td>
 <td class="colLast"><span class="typeNameLabel">BufferOutput.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/BufferOutput.html#write-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(<a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
      long&nbsp;offset,
@@ -912,9 +997,16 @@
 <div class="block">Writes an array of bytes to the buffer.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
 <td class="colLast"><span class="typeNameLabel">FileBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/FileBytes.html#write-long-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(long&nbsp;position,
+     <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
+     long&nbsp;offset,
+     long&nbsp;length)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
+<td class="colLast"><span class="typeNameLabel">UnsafeHeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/UnsafeHeapBytes.html#write-long-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(long&nbsp;position,
      <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
      long&nbsp;offset,
      long&nbsp;length)</code>&nbsp;</td>
@@ -928,7 +1020,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">HeapBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/HeapBytes.html#write-long-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(long&nbsp;position,
+<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#write-long-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(long&nbsp;position,
      <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
      long&nbsp;offset,
      long&nbsp;length)</code>&nbsp;</td>
@@ -942,7 +1034,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NativeBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/NativeBytes.html#write-long-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(long&nbsp;position,
+<td class="colLast"><span class="typeNameLabel">ByteBufferBytes.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/buffer/ByteBufferBytes.html#write-long-io.atomix.catalyst.buffer.Bytes-long-long-">write</a></span>(long&nbsp;position,
      <a href="../../../../../io/atomix/catalyst/buffer/Bytes.html" title="interface in io.atomix.catalyst.buffer">Bytes</a>&nbsp;bytes,
      long&nbsp;offset,
      long&nbsp;length)</code>&nbsp;</td>
