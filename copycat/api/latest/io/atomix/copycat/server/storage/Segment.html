@@ -140,8 +140,9 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  <p>
  An entry in the log is written in binary format. The binary format of an entry is as follows:
  <ul>
-   <li>Required 32-bit entry length</li>
-   <li>Required 64-bit offset</li>
+   <li>Required 32-bit signed entry length</li>
+   <li>Required 32-bit unsigned entry checksum</li>
+   <li>Required 64-bit signed offset</li>
    <li>Required 8-bit term flag</li>
    <li>Optional 64-bit term</li>
  </ul></div>
