@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -194,6 +194,12 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <div class="block">Sets the client transport.</div>
 </td>
 </tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client">CopycatClient.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html#withUnstabilityTimeout-java.time.Duration-">withUnstabilityTimeout</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;unstabilityTimeout)</code>
+<div class="block">Sets the timeout for session unstability.</div>
+</td>
+</tr>
 </table>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -292,6 +298,26 @@ implements <a href="http://atomix.io/catalyst/api/latest/io/atomix/catalyst/util
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the session timeout is null</dd>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if the session timeout is not <code>-1</code> or positive</dd>
+</dl>
+</li>
+</ul>
+<a name="withUnstabilityTimeout-java.time.Duration-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withUnstabilityTimeout</h4>
+<pre>public&nbsp;<a href="../../../../io/atomix/copycat/client/CopycatClient.Builder.html" title="class in io.atomix.copycat.client">CopycatClient.Builder</a>&nbsp;withUnstabilityTimeout(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;unstabilityTimeout)</pre>
+<div class="block">Sets the timeout for session unstability. Client is automatically closed if it can not reach servers within
+ the given timeout.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>unstabilityTimeout</code> - The client's unstability timeout.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The client builder.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the unstability timeout is null</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalArgumentException.html?is-external=true" title="class or interface in java.lang">IllegalArgumentException</a></code> - if the unstability timeout is not positive</dd>
 </dl>
 </li>
 </ul>
