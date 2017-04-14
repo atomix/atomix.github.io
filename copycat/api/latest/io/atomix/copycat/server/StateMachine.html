@@ -211,12 +211,13 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
    }
    </code>
  </pre>
- Attempts to <code>publish</code> events during the execution will result in an
- <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang"><code>IllegalStateException</code></a>.
+ Attempts to <a href="../../../../io/atomix/copycat/server/session/ServerSession.html#publish-java.lang.String-java.lang.Object-"><code>publish</code></a>
+ events during the execution will result in an <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/IllegalStateException.html?is-external=true" title="class or interface in java.lang"><code>IllegalStateException</code></a>.
  <p>
  As with other operations, state machines should ensure that the publishing of session events is deterministic.
  Messages published via a <a href="../../../../io/atomix/copycat/session/Session.html" title="interface in io.atomix.copycat.session"><code>Session</code></a> will be managed according to the <code>Command.ConsistencyLevel</code>
- of the command being executed at the time the event was <code>published</code>. Each command may
+ of the command being executed at the time the event was
+ <a href="../../../../io/atomix/copycat/server/session/ServerSession.html#publish-java.lang.String-java.lang.Object-"><code>ServerSession.publish(String, Object)</code></a> ) published}. Each command may
  publish zero or many events. For events published during the execution of a <code>Command.ConsistencyLevel#LINEARIZABLE</code>
  command, the state machine executor will transparently await responses from the client(s) before completing the command.
  For commands with lower consistency levels, command responses will be immediately sent. Session events are always guaranteed
@@ -258,8 +259,9 @@ implements <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoClose
  commit log. Copycat will guarantee that <a href="../../../../io/atomix/copycat/server/Commit.html" title="interface in io.atomix.copycat.server"><code>Commit</code></a>s are persisted in the underlying
  <a href="../../../../io/atomix/copycat/server/storage/Log.html" title="class in io.atomix.copycat.server.storage"><code>Log</code></a> as long as is necessary (even after a commit is closed) to
  ensure all operations are applied to a majority of servers and to guarantee delivery of
- <code>session events</code> published as a result of specific operations.
- State machines only need to specify when it's safe to remove each commit from the log.
+ <a href="../../../../io/atomix/copycat/server/session/ServerSession.html#publish-java.lang.String-java.lang.Object-"><code>ServerSession.publish(String, Object)</code></a>  session events}
+ published as a result of specific operations. State machines only need to specify when it's safe to
+ remove each commit from the log.
  <p>
  Note that if commits are not properly closed and are instead garbage collected, a warning will be logged.
  Failure to <a href="../../../../io/atomix/copycat/server/Commit.html#close--"><code>close</code></a> a command commit should be considered a critical bug since instances of the
