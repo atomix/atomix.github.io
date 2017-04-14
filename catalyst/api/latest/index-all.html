@@ -759,14 +759,6 @@
 </dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/util/reference/ReferencePool.html#close--">close()</a></span> - Method in class io.atomix.catalyst.util.reference.<a href="io/atomix/catalyst/util/reference/ReferencePool.html" title="class in io.atomix.catalyst.util.reference">ReferencePool</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/Connection.html#closeListener-java.util.function.Consumer-">closeListener(Consumer&lt;Connection&gt;)</a></span> - Method in interface io.atomix.catalyst.transport.<a href="io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a></dt>
-<dd>
-<div class="block">Sets a close listener on the connection.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/local/LocalConnection.html#closeListener-java.util.function.Consumer-">closeListener(Consumer&lt;Connection&gt;)</a></span> - Method in class io.atomix.catalyst.transport.local.<a href="io/atomix/catalyst/transport/local/LocalConnection.html" title="class in io.atomix.catalyst.transport.local">LocalConnection</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/netty/NettyConnection.html#closeListener-java.util.function.Consumer-">closeListener(Consumer&lt;Connection&gt;)</a></span> - Method in class io.atomix.catalyst.transport.netty.<a href="io/atomix/catalyst/transport/netty/NettyConnection.html" title="class in io.atomix.catalyst.transport.netty">NettyConnection</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/buffer/AbstractBuffer.html#compact--">compact()</a></span> - Method in class io.atomix.catalyst.buffer.<a href="io/atomix/catalyst/buffer/AbstractBuffer.html" title="class in io.atomix.catalyst.buffer">AbstractBuffer</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/buffer/Buffer.html#compact--">compact()</a></span> - Method in interface io.atomix.catalyst.buffer.<a href="io/atomix/catalyst/buffer/Buffer.html" title="interface in io.atomix.catalyst.buffer">Buffer</a></dt>
@@ -983,14 +975,6 @@
 <dd>
 <div class="block">Creates a future that is asynchronously completed exceptionally.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/Connection.html#exceptionListener-java.util.function.Consumer-">exceptionListener(Consumer&lt;Throwable&gt;)</a></span> - Method in interface io.atomix.catalyst.transport.<a href="io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a></dt>
-<dd>
-<div class="block">Sets an exception listener on the connection.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/local/LocalConnection.html#exceptionListener-java.util.function.Consumer-">exceptionListener(Consumer&lt;Throwable&gt;)</a></span> - Method in class io.atomix.catalyst.transport.local.<a href="io/atomix/catalyst/transport/local/LocalConnection.html" title="class in io.atomix.catalyst.transport.local">LocalConnection</a></dt>
-<dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/netty/NettyConnection.html#exceptionListener-java.util.function.Consumer-">exceptionListener(Consumer&lt;Throwable&gt;)</a></span> - Method in class io.atomix.catalyst.transport.netty.<a href="io/atomix/catalyst/transport/netty/NettyConnection.html" title="class in io.atomix.catalyst.transport.netty">NettyConnection</a></dt>
-<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/concurrent/ThreadContext.html#execute-java.lang.Runnable-">execute(Runnable)</a></span> - Method in interface io.atomix.catalyst.concurrent.<a href="io/atomix/catalyst/concurrent/ThreadContext.html" title="interface in io.atomix.catalyst.concurrent">ThreadContext</a></dt>
 <dd>
 <div class="block">Executes a callback on the context.</div>
@@ -1275,17 +1259,21 @@
 </a>
 <h2 class="title">H</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/MessageHandler.html#handle-T-">handle(T)</a></span> - Method in interface io.atomix.catalyst.transport.<a href="io/atomix/catalyst/transport/MessageHandler.html" title="interface in io.atomix.catalyst.transport">MessageHandler</a></dt>
-<dd>
-<div class="block">Handles a message.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/Connection.html#handler-java.lang.Class-io.atomix.catalyst.transport.MessageHandler-">handler(Class&lt;T&gt;, MessageHandler&lt;T, U&gt;)</a></span> - Method in interface io.atomix.catalyst.transport.<a href="io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/Connection.html#handler-java.lang.Class-java.util.function.Consumer-">handler(Class&lt;T&gt;, Consumer&lt;T&gt;)</a></span> - Method in interface io.atomix.catalyst.transport.<a href="io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a></dt>
 <dd>
 <div class="block">Sets a message handler on the connection.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/local/LocalConnection.html#handler-java.lang.Class-io.atomix.catalyst.transport.MessageHandler-">handler(Class&lt;T&gt;, MessageHandler&lt;T, U&gt;)</a></span> - Method in class io.atomix.catalyst.transport.local.<a href="io/atomix/catalyst/transport/local/LocalConnection.html" title="class in io.atomix.catalyst.transport.local">LocalConnection</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/Connection.html#handler-java.lang.Class-java.util.function.Function-">handler(Class&lt;T&gt;, Function&lt;T, CompletableFuture&lt;U&gt;&gt;)</a></span> - Method in interface io.atomix.catalyst.transport.<a href="io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a></dt>
+<dd>
+<div class="block">Sets a message handler on the connection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/local/LocalConnection.html#handler-java.lang.Class-java.util.function.Consumer-">handler(Class&lt;T&gt;, Consumer&lt;T&gt;)</a></span> - Method in class io.atomix.catalyst.transport.local.<a href="io/atomix/catalyst/transport/local/LocalConnection.html" title="class in io.atomix.catalyst.transport.local">LocalConnection</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/netty/NettyConnection.html#handler-java.lang.Class-io.atomix.catalyst.transport.MessageHandler-">handler(Class&lt;T&gt;, MessageHandler&lt;T, U&gt;)</a></span> - Method in class io.atomix.catalyst.transport.netty.<a href="io/atomix/catalyst/transport/netty/NettyConnection.html" title="class in io.atomix.catalyst.transport.netty">NettyConnection</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/local/LocalConnection.html#handler-java.lang.Class-java.util.function.Function-">handler(Class&lt;T&gt;, Function&lt;T, CompletableFuture&lt;U&gt;&gt;)</a></span> - Method in class io.atomix.catalyst.transport.local.<a href="io/atomix/catalyst/transport/local/LocalConnection.html" title="class in io.atomix.catalyst.transport.local">LocalConnection</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/netty/NettyConnection.html#handler-java.lang.Class-java.util.function.Consumer-">handler(Class&lt;T&gt;, Consumer&lt;T&gt;)</a></span> - Method in class io.atomix.catalyst.transport.netty.<a href="io/atomix/catalyst/transport/netty/NettyConnection.html" title="class in io.atomix.catalyst.transport.netty">NettyConnection</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/netty/NettyConnection.html#handler-java.lang.Class-java.util.function.Function-">handler(Class&lt;T&gt;, Function&lt;T, CompletableFuture&lt;U&gt;&gt;)</a></span> - Method in class io.atomix.catalyst.transport.netty.<a href="io/atomix/catalyst/transport/netty/NettyConnection.html" title="class in io.atomix.catalyst.transport.netty">NettyConnection</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/util/hash/Hasher.html#hash32-java.lang.String-">hash32(String)</a></span> - Method in interface io.atomix.catalyst.util.hash.<a href="io/atomix/catalyst/util/hash/Hasher.html" title="interface in io.atomix.catalyst.util.hash">Hasher</a></dt>
 <dd>
@@ -1722,10 +1710,6 @@
 <dd>
 <div class="block">Memory allocator.</div>
 </dd>
-<dt><a href="io/atomix/catalyst/transport/MessageHandler.html" title="interface in io.atomix.catalyst.transport"><span class="typeNameLink">MessageHandler</span></a>&lt;<a href="io/atomix/catalyst/transport/MessageHandler.html" title="type parameter in MessageHandler">T</a>,<a href="io/atomix/catalyst/transport/MessageHandler.html" title="type parameter in MessageHandler">U</a>&gt; - Interface in <a href="io/atomix/catalyst/transport/package-summary.html">io.atomix.catalyst.transport</a></dt>
-<dd>
-<div class="block">Transport layer message handler.</div>
-</dd>
 <dt><a href="io/atomix/catalyst/util/hash/Murmur2Hasher.html" title="class in io.atomix.catalyst.util.hash"><span class="typeNameLink">Murmur2Hasher</span></a> - Class in <a href="io/atomix/catalyst/util/hash/package-summary.html">io.atomix.catalyst.util.hash</a></dt>
 <dd>
 <div class="block">Murmur3 hasher.</div>
@@ -1820,6 +1804,22 @@
 <dd>
 <div class="block">Returns the array base offset.</div>
 </dd>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/Connection.html#onClose-java.util.function.Consumer-">onClose(Consumer&lt;Connection&gt;)</a></span> - Method in interface io.atomix.catalyst.transport.<a href="io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a></dt>
+<dd>
+<div class="block">Sets a close listener on the connection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/local/LocalConnection.html#onClose-java.util.function.Consumer-">onClose(Consumer&lt;Connection&gt;)</a></span> - Method in class io.atomix.catalyst.transport.local.<a href="io/atomix/catalyst/transport/local/LocalConnection.html" title="class in io.atomix.catalyst.transport.local">LocalConnection</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/netty/NettyConnection.html#onClose-java.util.function.Consumer-">onClose(Consumer&lt;Connection&gt;)</a></span> - Method in class io.atomix.catalyst.transport.netty.<a href="io/atomix/catalyst/transport/netty/NettyConnection.html" title="class in io.atomix.catalyst.transport.netty">NettyConnection</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/Connection.html#onException-java.util.function.Consumer-">onException(Consumer&lt;Throwable&gt;)</a></span> - Method in interface io.atomix.catalyst.transport.<a href="io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a></dt>
+<dd>
+<div class="block">Sets an exception listener on the connection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/local/LocalConnection.html#onException-java.util.function.Consumer-">onException(Consumer&lt;Throwable&gt;)</a></span> - Method in class io.atomix.catalyst.transport.local.<a href="io/atomix/catalyst/transport/local/LocalConnection.html" title="class in io.atomix.catalyst.transport.local">LocalConnection</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/netty/NettyConnection.html#onException-java.util.function.Consumer-">onException(Consumer&lt;Throwable&gt;)</a></span> - Method in class io.atomix.catalyst.transport.netty.<a href="io/atomix/catalyst/transport/netty/NettyConnection.html" title="class in io.atomix.catalyst.transport.netty">NettyConnection</a></dt>
+<dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/util/Managed.html#open--">open()</a></span> - Method in interface io.atomix.catalyst.util.<a href="io/atomix/catalyst/util/Managed.html" title="interface in io.atomix.catalyst.util">Managed</a></dt>
 <dd>
 <div class="block">Opens the managed object.</div>
@@ -2938,15 +2938,23 @@
 <dd>
 <div class="block">Scheduled task.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/Connection.html#send-T-">send(T)</a></span> - Method in interface io.atomix.catalyst.transport.<a href="io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/Connection.html#send-java.lang.Object-">send(Object)</a></span> - Method in interface io.atomix.catalyst.transport.<a href="io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a></dt>
 <dd>
 <div class="block">Sends a message to the other side of the connection.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/local/LocalConnection.html#send-T-">send(T)</a></span> - Method in class io.atomix.catalyst.transport.local.<a href="io/atomix/catalyst/transport/local/LocalConnection.html" title="class in io.atomix.catalyst.transport.local">LocalConnection</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/local/LocalConnection.html#send-java.lang.Object-">send(Object)</a></span> - Method in class io.atomix.catalyst.transport.local.<a href="io/atomix/catalyst/transport/local/LocalConnection.html" title="class in io.atomix.catalyst.transport.local">LocalConnection</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/netty/NettyConnection.html#send-T-">send(T)</a></span> - Method in class io.atomix.catalyst.transport.netty.<a href="io/atomix/catalyst/transport/netty/NettyConnection.html" title="class in io.atomix.catalyst.transport.netty">NettyConnection</a></dt>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/netty/NettyConnection.html#send-java.lang.Object-">send(Object)</a></span> - Method in class io.atomix.catalyst.transport.netty.<a href="io/atomix/catalyst/transport/netty/NettyConnection.html" title="class in io.atomix.catalyst.transport.netty">NettyConnection</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/netty/NettyOptions.html#SEND_BUFFER_SIZE">SEND_BUFFER_SIZE</a></span> - Static variable in class io.atomix.catalyst.transport.netty.<a href="io/atomix/catalyst/transport/netty/NettyOptions.html" title="class in io.atomix.catalyst.transport.netty">NettyOptions</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/Connection.html#sendAndReceive-T-">sendAndReceive(T)</a></span> - Method in interface io.atomix.catalyst.transport.<a href="io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a></dt>
+<dd>
+<div class="block">Sends a message to the other side of the connection.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/local/LocalConnection.html#sendAndReceive-T-">sendAndReceive(T)</a></span> - Method in class io.atomix.catalyst.transport.local.<a href="io/atomix/catalyst/transport/local/LocalConnection.html" title="class in io.atomix.catalyst.transport.local">LocalConnection</a></dt>
+<dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/netty/NettyConnection.html#sendAndReceive-T-">sendAndReceive(T)</a></span> - Method in class io.atomix.catalyst.transport.netty.<a href="io/atomix/catalyst/transport/netty/NettyConnection.html" title="class in io.atomix.catalyst.transport.netty">NettyConnection</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="io/atomix/catalyst/transport/netty/NettyOptions.html#sendBufferSize--">sendBufferSize()</a></span> - Method in class io.atomix.catalyst.transport.netty.<a href="io/atomix/catalyst/transport/netty/NettyOptions.html" title="class in io.atomix.catalyst.transport.netty">NettyOptions</a></dt>
 <dd>

@@ -114,8 +114,15 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>&lt;T,U&gt;&nbsp;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Connection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/Connection.html#handler-java.lang.Class-io.atomix.catalyst.transport.MessageHandler-">handler</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
-       <a href="../../../../../io/atomix/catalyst/transport/MessageHandler.html" title="interface in io.atomix.catalyst.transport">MessageHandler</a>&lt;T,U&gt;&nbsp;handler)</code>
+<td class="colLast"><span class="typeNameLabel">Connection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/Connection.html#handler-java.lang.Class-java.util.function.Consumer-">handler</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;T&gt;&nbsp;handler)</code>
+<div class="block">Sets a message handler on the connection.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T,U&gt;&nbsp;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a></code></td>
+<td class="colLast"><span class="typeNameLabel">Connection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/Connection.html#handler-java.lang.Class-java.util.function.Function-">handler</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;T,<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;U&gt;&gt;&nbsp;handler)</code>
 <div class="block">Sets a message handler on the connection.</div>
 </td>
 </tr>
@@ -129,15 +136,15 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">Connection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/Connection.html#closeListener-java.util.function.Consumer-">closeListener</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</code>
-<div class="block">Sets a close listener on the connection.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">Client.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/Client.html#connect-io.atomix.catalyst.transport.Address-">connect</a></span>(<a href="../../../../../io/atomix/catalyst/transport/Address.html" title="class in io.atomix.catalyst.transport">Address</a>&nbsp;address)</code>
 <div class="block">Connects the client to the given address.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">Connection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/Connection.html#onClose-java.util.function.Consumer-">onClose</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</code>
+<div class="block">Sets a close listener on the connection.</div>
 </td>
 </tr>
 </tbody>
@@ -150,16 +157,16 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">Connection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/Connection.html#closeListener-java.util.function.Consumer-">closeListener</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</code>
-<div class="block">Sets a close listener on the connection.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">Server.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/Server.html#listen-io.atomix.catalyst.transport.Address-java.util.function.Consumer-">listen</a></span>(<a href="../../../../../io/atomix/catalyst/transport/Address.html" title="class in io.atomix.catalyst.transport">Address</a>&nbsp;address,
       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</code>
 <div class="block">Listens for connections on the server.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">Connection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/Connection.html#onClose-java.util.function.Consumer-">onClose</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</code>
+<div class="block">Sets a close listener on the connection.</div>
 </td>
 </tr>
 </tbody>
@@ -193,8 +200,13 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>&lt;T,U&gt;&nbsp;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a></code></td>
-<td class="colLast"><span class="typeNameLabel">LocalConnection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/local/LocalConnection.html#handler-java.lang.Class-io.atomix.catalyst.transport.MessageHandler-">handler</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
-       <a href="../../../../../io/atomix/catalyst/transport/MessageHandler.html" title="interface in io.atomix.catalyst.transport">MessageHandler</a>&lt;T,U&gt;&nbsp;handler)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">LocalConnection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/local/LocalConnection.html#handler-java.lang.Class-java.util.function.Consumer-">handler</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;T&gt;&nbsp;handler)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T,U&gt;&nbsp;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a></code></td>
+<td class="colLast"><span class="typeNameLabel">LocalConnection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/local/LocalConnection.html#handler-java.lang.Class-java.util.function.Function-">handler</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;T,<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;U&gt;&gt;&nbsp;handler)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -206,12 +218,12 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">LocalConnection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/local/LocalConnection.html#closeListener-java.util.function.Consumer-">closeListener</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">LocalClient.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/local/LocalClient.html#connect-io.atomix.catalyst.transport.Address-">connect</a></span>(<a href="../../../../../io/atomix/catalyst/transport/Address.html" title="class in io.atomix.catalyst.transport">Address</a>&nbsp;address)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">LocalConnection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/local/LocalConnection.html#onClose-java.util.function.Consumer-">onClose</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -223,13 +235,13 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">LocalConnection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/local/LocalConnection.html#closeListener-java.util.function.Consumer-">closeListener</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">LocalServer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/local/LocalServer.html#listen-io.atomix.catalyst.transport.Address-java.util.function.Consumer-">listen</a></span>(<a href="../../../../../io/atomix/catalyst/transport/Address.html" title="class in io.atomix.catalyst.transport">Address</a>&nbsp;address,
       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">LocalConnection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/local/LocalConnection.html#onClose-java.util.function.Consumer-">onClose</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -262,8 +274,13 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>&lt;T,U&gt;&nbsp;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a></code></td>
-<td class="colLast"><span class="typeNameLabel">NettyConnection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/netty/NettyConnection.html#handler-java.lang.Class-io.atomix.catalyst.transport.MessageHandler-">handler</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
-       <a href="../../../../../io/atomix/catalyst/transport/MessageHandler.html" title="interface in io.atomix.catalyst.transport">MessageHandler</a>&lt;T,U&gt;&nbsp;handler)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">NettyConnection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/netty/NettyConnection.html#handler-java.lang.Class-java.util.function.Consumer-">handler</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;T&gt;&nbsp;handler)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>&lt;T,U&gt;&nbsp;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a></code></td>
+<td class="colLast"><span class="typeNameLabel">NettyConnection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/netty/NettyConnection.html#handler-java.lang.Class-java.util.function.Function-">handler</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;T,<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;U&gt;&gt;&nbsp;handler)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -275,12 +292,12 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">NettyConnection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/netty/NettyConnection.html#closeListener-java.util.function.Consumer-">closeListener</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">NettyClient.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/netty/NettyClient.html#connect-io.atomix.catalyst.transport.Address-">connect</a></span>(<a href="../../../../../io/atomix/catalyst/transport/Address.html" title="class in io.atomix.catalyst.transport">Address</a>&nbsp;address)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">NettyConnection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/netty/NettyConnection.html#onClose-java.util.function.Consumer-">onClose</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -292,13 +309,13 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">NettyConnection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/netty/NettyConnection.html#closeListener-java.util.function.Consumer-">closeListener</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">NettyServer.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/netty/NettyServer.html#listen-io.atomix.catalyst.transport.Address-java.util.function.Consumer-">listen</a></span>(<a href="../../../../../io/atomix/catalyst/transport/Address.html" title="class in io.atomix.catalyst.transport">Address</a>&nbsp;address,
       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/catalyst/concurrent/Listener.html" title="interface in io.atomix.catalyst.concurrent">Listener</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">NettyConnection.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/catalyst/transport/netty/NettyConnection.html#onClose-java.util.function.Consumer-">onClose</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/catalyst/transport/Connection.html" title="interface in io.atomix.catalyst.transport">Connection</a>&gt;&nbsp;listener)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
