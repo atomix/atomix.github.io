@@ -52,7 +52,7 @@ The base [`Operation`][Operation] interface implements Java's [`Serializable`][S
 
 ### State Machine Queries
 
-Queries are state machine operations that read but *do not modify* system state. When submitted to a Copycat cluster, queries may be handled differently depending on the query's [`ConsistencyLevel`][Query.ConsistencyLevel]. Some queries may only be applied on the leader, and others may only be applied on followers. Queries will *never* be applied on all servers, and for that reason it's critical that queries never monofy the state of a state machine.
+Queries are state machine operations that read but *do not modify* system state. When submitted to a Copycat cluster, queries may be handled differently depending on the query's [`ConsistencyLevel`][Query.ConsistencyLevel]. Some queries may only be applied on the leader, and others may only be applied on followers. Queries will *never* be applied on all servers, and for that reason it's critical that queries never modify the state of a state machine.
 
 Queries are defined by implementing the [`Query`][Query] interface. As with commands, the `Query` interface takes a single generic argument that defines the query output (return value) type.
 
