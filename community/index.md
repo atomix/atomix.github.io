@@ -33,7 +33,7 @@ title: Community
         </div>
         <div class="col-sm-6">
           <h3>Pay It Forward</h3>
-          <p>The Atomix stack is a volunteer effort. Help support the projects by answering questions and most importantly by spreading the word. Your help makes a difference!</p>
+          <p>The Atomix project is a volunteer effort. Help support the projects by answering questions and most importantly by spreading the word. Your help makes a difference!</p>
         </div>
       </div>
     </div>
@@ -81,6 +81,11 @@ title: Community
   <div class="row">
     <div class="col-sm-3">
       <h2><span id="thanks"></span>Thanks</h2>
+    </div>
+    <div class="col-sm-9">
+      <p>
+        The <a href="http://opennetworking.org">Open Networking Foundation</a> supports full-time development of Atomix and its related projects.
+      </p>
     </div>
     <div class="col-sm-9">
       <p>

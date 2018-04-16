@@ -224,7 +224,7 @@ AtomixReplica replica = AtomixReplica.builder(address, members)
       <div class="col-sm-12 text-center">
         <h2>Ready to learn more?</h2>
         <p>
-          <a href="/docs" class="btn btn-default btn-lg doc-btn">Explore the Docs</a>
+          <a href="/user-manual" class="btn btn-default btn-lg doc-btn">Explore the Docs</a>
         </p>
       </div>
     </div>
