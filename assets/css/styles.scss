@@ -8,12 +8,12 @@ $medium-gray: #eee;
 $medium-dark-gray: #e7e7e7;
 $dark-gray: #d4d4d4;
 
-$light-green: #009DB7;
-$medium-green: #038fa7;
-$dark-green: #01768a;
-$pink: #F52C5E;
+$light-green: #0f292f;
+$medium-green: #501f3a;
+$dark-green: #14a098;
+$pink: #cb2d6f;
 
-$text-color: #333;
+$text-color: #0f292f;
 
 $link-color: $light-green;
 $link-color-bright: $pink;
@@ -60,6 +60,9 @@ body {
 
 a {
   color: $link-color;
+  &:hover {
+    color: $link-color-bright;
+  }
 }
 
 h1 {
@@ -178,6 +181,10 @@ pre {
       color: $link-color;
       padding-top: 10px;
       padding-bottom: 10px;
+      &:hover {
+        color: $link-color-bright;
+        text-decoration: none;
+      }
     }
 
     li:not(:last-child) {
@@ -543,12 +550,12 @@ pre {
 
   h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
     a.header-anchor {
-      color: #999;
+      color: $text-color;
       visibility: visible;
     }
 
     a.header-anchor:hover {
-      color: $text-color;
+      color: $pink;
       text-decoration: none;
     }
   }
@@ -627,7 +634,11 @@ pre {
   font-size: 18px;
 
   a {
-    color: black
+    color: black;
+    &:hover {
+      color: $dark-green;
+      text-decoration: none;
+    }
   }
 
   img {
