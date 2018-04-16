@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include vars.inc %}
+  <head>
+{% include head.html %}
+    <link href="/assets/css/styles/googlecode.css" rel="stylesheet">
+  </head>
+	<body>
+
+{% include navbar.html %}
+
+<div class="content-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1>{{ page.title }}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container docs-container flex">
+	<div class="row">
+{% if page.menu %}
+    <div class="col-md-9 docs">
+{% else %}
+    <div class="col-md-12 docs">
+{% endif %}
+
+{% if page.pitch %}
+<h2 class="pitch" id="{{ page.first-section }}">&#62; {{ page.pitch }}</h2>
+{% endif %}
+
+{% capture pagemenu %}{{ page.menu }}-menu.md{% endcapture %}
+{% if page.menu %}
+      <div class="hidden-md hidden-lg" id="toc">
+        <h3>Table of Contents</h3>
+  {% capture toc %}{% include {{ pagemenu }} %}{% endcapture %}
+  {{ toc | markdownify }}
+      </div>
+{% endif %}
+
+{{ content }}
+    </div><!-- End col -->
+
+{% if page.menu %}
+      <div class="col-md-3 hidden-xs hidden-sm" id="sidebar-col" >
+        <div class="nav affix-top" id="sidebar">
+  {% capture sidemenu %}{% include {{ pagemenu }} %}{% endcapture %}
+  {{ sidemenu | markdownify }}
+        </div>
+      </div>
+{% endif %}
+
+  </div>
+</div>
+
+{% include footer.html %}
+
+{% include scripts.html %}
+
+<script type="text/javascript">
+  // scrollspy
+  $('body').scrollspy({ target: '#sidebar-col' })
+
+  // lightbox
+  $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox();
+  });
+
+  // make sidebar sticky when it hits the top of the viewport
+  var $sideBar = $("#sidebar");
+  $sideBar.affix({
+    offset: {
+      top: function () {
+        var offsetTop      = $sideBar.offset().top
+        var sideBarMargin  = parseInt($sideBar.children(0).css('margin-top'), 10)
+        var navOuterHeight = $('.navbar-fixed-top').height()
+        return (this.top = offsetTop - navOuterHeight - sideBarMargin - 20)
+      },
+      bottom: function () {
+        footerHeightOffset = 200 // Adjust for footer height
+        return (this.bottom = $('#footer').outerHeight(true) + footerHeightOffset)
+      }
+    }
+  })
+
+  var currentPath = window.location.pathname
+
+  function adjustHref(href) {
+    return '/{{ page.menu }}/' + href;
+  }
+
+  // Adjust doc index
+  $("#doc-index > ul > li > a").each(function() {
+    var href = $(this).attr('href');
+    var project = $(this).parent().parent().parent().attr("project");
+    $(this).attr('href', "/" + project + "/docs/" + href);
+  });
+
+  // Adjust doc TOC for small screens
+  $("#toc > ul > li > a").each(function() {
+    var href = $(this).attr('href');
+    if (currentPath.indexOf(href) > -1) 
+      $(this).parent().css('display', 'block');
+    $(this).attr('href', adjustHref(href));
+  });
+
+  // Adjust sidebar links
+  $("#sidebar > ul > li > a").each(function() {
+    var parentRef = $(this).attr('href');
+
+    // Activate current sidebar item
+    var pathTokens = currentPath.replace(/\?.+/, '').replace(/\#.+/, '').replace(/\/+$/, '').split("/");
+    var lastToken = pathTokens[pathTokens.length - 1];
+    if (lastToken === parentRef) {
+      $(this).parent().attr('class', 'current');
+    }
+    
+    newRef = adjustHref(parentRef);
+    $(this).attr('href', newRef);
+    $(this).attr('data-target', '#' + parentRef);
+    
+    $(this).parent().find("ul > li a").each(function () {
+      var childHref = $(this).attr('href');
+      $(this).attr('data-target', childHref);
+    });
+  });
+
+  // Add link to heading tags
+  $(".docs h1, .docs h2, .docs h3, .docs h4, .docs h5").each(function () {
+    var id = $(this).attr('id');
+    if ($(this).attr('class') != "pitch")
+      $(this).append('<a class="header-anchor" href="#' + id + '"></a>');
+  });
+</script>
+
+	</body>
+</html>

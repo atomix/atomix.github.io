@@ -1,2 +1,2 @@
 {% assign project-name="Atomix" %}
-{% assign project-title="An open source software stack for distributed systems infrastructure" %}
+{% assign project-title="A reactive Java framework for building fault-tolerant distributed systems" %}

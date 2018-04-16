@@ -2,12 +2,11 @@ from pygithub3 import Github
 import os
 import sys
 import yaml
-import operator
 
 DATA_DIR = os.path.join(os.path.dirname( __file__ ), '../_data')
-ATOMIX_STACK = ['atomix', 'copycat', 'catalyst', 'atomix.github.io']
+ATOMIX_STACK = ['atomix', 'atomix-test', 'atomix-py', 'atomix-cli', 'atomix.github.io']
 
-gh = Github(login=sys.argv[1], password=sys.argv[2])
+gh = Github(token=sys.argv[1])
 
 def delete_keys(dic, keys):
   for key in dic.keys():
@@ -47,7 +46,7 @@ contributors = get_users(ATOMIX_STACK, ["login", "avatar_url", "html_url", "cont
 
 # Add contribution counts to committers
 for committer in committers.values():
-  committer['contributions'] = contributors[committer['login']]['contributions']
+  committer['contributions'] = contributors.get(committer['login'], {}).get('contributions', 0)
 
 # Remove committers from contributors
 delete_keys(contributors, committers.keys())

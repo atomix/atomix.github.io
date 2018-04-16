@@ -1,4 +1,0 @@
----
-layout: project
-project: catalyst
----

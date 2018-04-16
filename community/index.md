@@ -22,12 +22,13 @@ title: Community
       </div>
       <div class="row">
         <div class="col-sm-6">
-          <h3>Github Issues</h3>
+          <h3>GitHub Issues</h3>
           <p>Bugs and feature requests can be filed as issues on Github. Issues are tracked separately for each project:</p>
           <ul>
             <li><a href="https://github.com/atomix/atomix/issues">Atomix</a></li>
-            <li><a href="https://github.com/atomix/copycat/issues">Copycat</a></li>
-            <li><a href="https://github.com/atomix/catalyst/issues">Catalyst</a></li>
+            <li><a href="https://github.com/atomix/atomix-py/issues">Atomix Py</a></li>
+            <li><a href="https://github.com/atomix/atomix-cli/issues">Atomix CLI</a></li>
+            <li><a href="https://github.com/atomix/atomix-test/issues">Atomix Test Framework</a></li>
           </ul>
         </div>
         <div class="col-sm-6">

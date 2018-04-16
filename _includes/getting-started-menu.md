@@ -1,0 +1,6 @@
+* [Introduction](#introduction)
+* [Setup](#setup)
+* [Bootstrapping a new Cluster](#bootstrapping-a-new-cluster)
+* [Joining an Existing Cluster](#joining-an-existing-cluster)
+* [Creating Primitives](#creating-distributed-primitives)
+* [Creating a Client](#creating-a-client)
