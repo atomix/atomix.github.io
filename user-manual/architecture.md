@@ -7,6 +7,16 @@ title: Architecture
 
 {:.no-margin-top}
 
-## Coming soon!
+## Cluster Communication
+
+## Group Membership
+
+## Partition Groups
+
+## PrimitiveProtocols
+
+### Raft
+
+### Primary-Backup
 
 {% include common-links.html %}

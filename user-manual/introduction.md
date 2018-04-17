@@ -7,6 +7,18 @@ title: Introduction
 
 {:.no-margin-top}
 
-## Coming soon!
+## What is Atomix?
+
+## Features
+
+## Setup and Installation
+
+## Comparisons
+
+### Something Unique
+
+### ZooKeeper
+
+### Hazelcast
 
 {% include common-links.html %}

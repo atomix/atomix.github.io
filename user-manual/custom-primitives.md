@@ -7,6 +7,24 @@ title: Custom Primitives
 
 {:.no-margin-top}
 
-## Coming soon!
+## Defining the Primitive Type
+
+## Creating the State Machine
+
+### Defining Primitive Operations
+
+#### Commands
+
+#### Queries
+
+### Handling Snapshots
+
+## Creating a Proxy
+
+## Defining the Primitive Configuration
+
+## Supplying a Primitive Builder
+
+## Supporting REST API Access
 
 {% include common-links.html %}

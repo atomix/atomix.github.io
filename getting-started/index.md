@@ -10,4 +10,20 @@ title: Getting Started
 {{ usermanual | markdownify }}
 </div>
 
+## Introduction
+
+## Dependency Management
+
+## Bootstrapping a Cluster
+
+### Using the Java API
+
+### Using the Atomix Agent
+
+## Creating a Java Client
+
+## Creating Distributed Primitives
+
+## Configuring the Cluster
+
 {% include common-links.html %}

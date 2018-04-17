@@ -7,6 +7,8 @@ title: Agent
 
 {:.no-margin-top}
 
-## Coming soon!
+## Starting the Agent
+
+## Client Agents
 
 {% include common-links.html %}

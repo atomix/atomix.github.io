@@ -7,6 +7,8 @@ title: Command Line Interface
 
 {:.no-margin-top}
 
-## Coming soon!
+## Building the CLI
+
+## Running the CLI
 
 {% include common-links.html %}

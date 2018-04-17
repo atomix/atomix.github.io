@@ -7,6 +7,8 @@ title: Cluster Communication
 
 {:.no-margin-top}
 
-## Coming soon!
+## Direct Messaging
+
+## Publish-Subscribe Messaging
 
 {% include common-links.html %}

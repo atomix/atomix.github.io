@@ -102,30 +102,9 @@
   // Adjust doc TOC for small screens
   $("#toc > ul > li > a").each(function() {
     var href = $(this).attr('href');
-    if (currentPath.indexOf(href) > -1) 
+    if (currentPath.indexOf(href) > -1)
       $(this).parent().css('display', 'block');
     $(this).attr('href', adjustHref(href));
-  });
-
-  // Adjust sidebar links
-  $("#sidebar > ul > li > a").each(function() {
-    var parentRef = $(this).attr('href');
-
-    // Activate current sidebar item
-    var pathTokens = currentPath.replace(/\?.+/, '').replace(/\#.+/, '').replace(/\/+$/, '').split("/");
-    var lastToken = pathTokens[pathTokens.length - 1];
-    if (lastToken === parentRef) {
-      $(this).parent().attr('class', 'current');
-    }
-    
-    newRef = adjustHref(parentRef);
-    $(this).attr('href', newRef);
-    $(this).attr('data-target', '#' + parentRef);
-    
-    $(this).parent().find("ul > li a").each(function () {
-      var childHref = $(this).attr('href');
-      $(this).attr('data-target', childHref);
-    });
   });
 
   // Add link to heading tags

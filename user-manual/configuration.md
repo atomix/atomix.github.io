@@ -8,6 +8,10 @@ first-section: overview
 
 {:.no-margin-top}
 
-## Coming soon!
+## Cluster Configuration
+
+## Partition Group Configuration
+
+## Primitive Configuration
 
 {% include common-links.html %}
