@@ -282,7 +282,7 @@ eventingService.send("test", "Hello world!")
 </div>
     <div class="col-sm-5 text-right">
       <h2>Simple</h2>
-      <p>Atomix provides a collection of dead simple, asynchronous APIs for sharing mission critical state and solving a variety of common distributed systems problems.</p>
+      <p>Atomix provides a collection of dead simple, synchronous and asynchronous APIs for sharing mission critical state, communicating across nodes, and coordinating state changes in distributed systems.</p>
     </div>
     </div>
   </div>
@@ -294,7 +294,7 @@ eventingService.send("test", "Hello world!")
     <div class="row">
       <div class="col-sm-6">
         <h2>Reliable</h2>
-        <p>Atomix features reliable data consistency guarantees that are maintained even when machine or network failures occur.</p>
+        <p>Atomix features reliable data consistency guarantees backed by a novel implementation of the Raft consensus protocol, allowing it to maintain its guarantees even when machine or network failures occur.</p>
       </div>
       <div class="col-sm-5 text-right">
         <img class="svg" src="/assets/img/icons/reliable.svg">
@@ -312,7 +312,7 @@ eventingService.send("test", "Hello world!")
       </div>
       <div class="col-sm-6 text-right">
         <h2>Resilient</h2>
-        <p>Atomix clusters are resilient to failure, automatically replacing failed replicas as needed without any data loss.</p>
+        <p>Atomix clusters are resilient to failure, automatically redistributing state as nodes come and go.</p>
       </div>
     </div>
   </div>
@@ -324,7 +324,7 @@ eventingService.send("test", "Hello world!")
     <div class="row">
       <div class="col-sm-6">
         <h2>Scalable</h2>
-        <p>Atomix scales along with the rest of your system, providing high read throughput while maintaining strong write consistency.</p>
+        <p>Atomix partitions data to provide the ability to scale data size and throughput without sacrificing consistency guarantees.</p>
       </div>
       <div class="col-sm-5 text-right">
         <img class="svg" src="/assets/img/icons/scalable.svg">
