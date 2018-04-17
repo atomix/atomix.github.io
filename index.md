@@ -8,7 +8,7 @@ project: atomix
     <div class="row">
       <div class="col-sm-12">
         <p>
-Atomix is an event-driven framework for coordinating fault-tolerant distributed systems built on the Raft consensus algorithm. It provides the building blocks that solve many common distributed systems problems including cluster management, asynchronous messaging, group membership, leader election, distributed concurrency control, partitioning, and replication.
+Atomix is an event-driven framework for coordinating fault-tolerant distributed systems using a variety of proven distributed systems protocols. It provides the building blocks that solve many common distributed systems problems including cluster management, asynchronous messaging, group membership, leader election, distributed concurrency control, partitioning, and replication.
         </p>
       </div>
     </div>
@@ -48,6 +48,15 @@ Atomix atomix = new Atomix("atomix.yaml");
 
 // Start the instance
 atomix.start().join();
+
+// Get or create an AtomicCounter
+AtomicCounter counter = atomix.getAtomicCounter("my-counter");
+
+// Increment the counter
+long value = counter.incrementAndGet();
+
+// Reset the counter value
+counter.set(0);
 ```
 </div>
 <div class="tab-pane" id="consistent-map" markdown="1">
@@ -57,6 +66,23 @@ Atomix atomix = new Atomix("atomix.yaml");
 
 // Start the instance
 atomix.start().join();
+
+// Create a cached ConsistentMap
+ConsistentMap<String, String> map = atomix.consistentMapBuilder("my-map")
+  .withCacheEnabled()
+  .withCacheSize(100)
+  .build();
+
+// Set a value in the map
+map.put("foo", "Hello world!");
+
+// Read a value from the map
+Versioned<String> value = map.get("foo");
+
+// Update the value using an optimistic lock
+while (!map.put("foo", "Hello world again!", value.version())) {
+  Thread.sleep(10);
+}
 ```
 </div>
 <div class="tab-pane" id="consistent-multimap" markdown="1">
@@ -66,6 +92,15 @@ Atomix atomix = new Atomix("atomix.yaml");
 
 // Start the instance
 atomix.start().join();
+
+// Get or create a multimap
+ConsistentMultimap<String, String> multimap = atomix.getConsistentMultimap("my-multimap");
+
+// Add a value to a key
+multimap.put("foo", "Hello world!");
+
+// Get the values associated with a key
+Versioned<Collection<String>> values = multimap.get("foo");
 ```
 </div>
 <div class="tab-pane" id="distributed-set" markdown="1">
@@ -75,6 +110,20 @@ Atomix atomix = new Atomix("atomix.yaml");
 
 // Start the instance
 atomix.start().join();
+
+// Create a cached distributed set
+DistributedSet<String> set = atomix.setBuilder("my-set")
+  .withCacheEnabled()
+  .withCacheSize(100)
+  .build();
+
+// Add a value to the set
+set.add("foo");
+
+// Check a value in the set
+if (set.contains("foo")) {
+  ...
+}
 ```
 </div>
 <div class="tab-pane" id="work-queue" markdown="1">
@@ -102,6 +151,22 @@ Atomix atomix = new Atomix("atomix.yaml");
 
 // Start the instance
 atomix.start().join();
+
+// Get or create a distributed lock
+DistributedLock lock = atomix.getLock("my-lock");
+
+// Acquire the lock
+lock.lock();
+
+// Perform some functions and then release the lock
+try {
+  ...
+} finally {
+  lock.unlock();
+}
+
+// Attempt to acquire the lock until a timeout
+lock.lock(Duration.ofSeconds(5));
 ```
 </div>
 <div class="tab-pane" id="leader-election" markdown="1">
@@ -111,6 +176,24 @@ Atomix atomix = new Atomix("atomix.yaml");
 
 // Start the instance
 atomix.start().join();
+
+// Get or create a leader election
+LeaderElection<NodeId> election = atomix.getLeaderElection("my-election");
+
+// Enter the election
+Leadership<NodeId> leadership = election.run(atomix.clusterService().getLocalNode().id());
+
+// Check if the current node is the leader
+if (leadership.leader().equals(atomix.clusterService().getLocalNode().id())) {
+  System.out.println("I am the leader!");
+}
+
+// Listen for changes in leadership
+election.addListener(event -> {
+  if (event.newLeadership().leader().equals(atomix.clusterService().getLocalNode().id())) {
+    System.out.println("I am the leader!");
+  }
+});
 ```
 </div>
 <div class="tab-pane" id="cluster-management" markdown="1">
@@ -120,6 +203,21 @@ Atomix atomix = new Atomix("atomix.yaml");
 
 // Start the instance
 atomix.start().join();
+
+// Get a list of members in the cluster
+Collection<Node> nodes = atomix.clusterService().getNodes();
+
+// Listen for members joining/leaving the cluster
+atomix.clusterService().addListener(event -> {
+  switch (event.type()) {
+    case NODE_ADDED:
+      System.out.println(event.subject().id() + " joined the cluster");
+      break;
+    case NODE_REMOVED:
+      System.out.println(event.subject().id() + " left the cluster");
+      break;
+  }
+});
 ```
 </div>
 <div class="tab-pane" id="direct-messaging" markdown="1">
@@ -129,6 +227,26 @@ Atomix atomix = new Atomix("atomix.yaml");
 
 // Start the instance
 atomix.start().join();
+
+// Get the cluster messaging servce
+ClusterMessagingService messagingService = atomix.messagingService();
+
+// Register a listener for the "test" subject
+messagingService.subscribe("test", message -> {
+  System.out.println("Received message " + message);
+});
+
+// Send a "test" message to all other nodes
+messagingService.broadcast("test", "Hello world!");
+
+// Send a "test" message to node "foo"
+messagingService.unicast("test", "Hello world!", atomix.clusterService().getNode("foo").id());
+
+// Send a "test" message to node "bar" and wait for a reply
+messagingService.send("test", "Hello world!", atomix.clusterService().getNode("bar").id())
+  .thenAccept(reply -> {
+    System.out.println("bar said: " + reply);
+  });
 ```
 </div>
 <div class="tab-pane" id="publish-subscribe" markdown="1">
@@ -138,6 +256,26 @@ Atomix atomix = new Atomix("atomix.yaml");
 
 // Start the instance
 atomix.start().join();
+
+// Get the cluster eventing service
+ClusterEventingService eventingService = atomix.eventingService();
+
+// Register a listener for the "test" subject
+eventingService.subscribe("test", message -> {
+  System.out.println("Received message " + message);
+});
+
+// Send a "test" message to all other subscribers
+eventingService.broadcast("test", "Hello world!");
+
+// Send a "test" message to one of the subscribers
+eventingService.unicast("test", "Hello world!");
+
+// Send a "test" message to one of the subscribers and wait for a reply
+eventingService.send("test", "Hello world!")
+  .thenAccept(reply -> {
+    System.out.println("responder said: " + reply);
+  });
 ```
 </div>
 </div>
