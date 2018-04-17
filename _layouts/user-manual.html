@@ -5,7 +5,7 @@
 {% include head.html %}
     <link href="/assets/css/styles/googlecode.css" rel="stylesheet">
   </head>
-	<body>
+  <body>
 
 {% include navbar.html %}
 
@@ -20,7 +20,7 @@
 </div>
 
 <div class="container docs-container flex">
-	<div class="row">
+  <div class="row">
 {% if page.menu %}
     <div class="col-md-9 docs">
 {% else %}
@@ -87,9 +87,12 @@
   })
 
   var currentPath = window.location.pathname
+  var pathTokens = currentPath.replace(/\?.+/, '').replace(/\#.+/, '').replace(/\/+$/, '').split("/");
+  pathTokens.pop();
+  var categoryUri = pathTokens.join("/");
 
   function adjustHref(href) {
-    return '/{{ page.menu }}/' + href;
+    return categoryUri + '/' + href;
   }
 
   // Adjust doc index
@@ -102,9 +105,29 @@
   // Adjust doc TOC for small screens
   $("#toc > ul > li > a").each(function() {
     var href = $(this).attr('href');
-    if (currentPath.indexOf(href) > -1)
+    if (currentPath.indexOf(href) > -1) 
       $(this).parent().css('display', 'block');
     $(this).attr('href', adjustHref(href));
+  });
+
+  // Adjust sidebar links
+  $("#sidebar > ul > li > a").each(function() {
+    var parentRef = $(this).attr('href');
+
+    // Activate current sidebar item
+    var lastToken = pathTokens[pathTokens.length - 1];
+    if (lastToken === parentRef) {
+      $(this).parent().attr('class', 'current');
+    }
+    
+    newRef = adjustHref(parentRef);
+    $(this).attr('href', newRef);
+    $(this).attr('data-target', '#' + parentRef);
+    
+    $(this).parent().find("ul > li a").each(function () {
+      var childHref = $(this).attr('href');
+      $(this).attr('data-target', childHref);
+    });
   });
 
   // Add link to heading tags
@@ -115,5 +138,5 @@
   });
 </script>
 
-	</body>
+  </body>
 </html>
