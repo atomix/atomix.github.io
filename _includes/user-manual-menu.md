@@ -70,16 +70,16 @@
 
 <span class="user-guide-menu-header"><img src="/assets/img/icons/custom-primitives.svg" class="custom-primitives"> Custom Primitives</span>
 
-* [Defining the Primitive Type](/docs/latest/user-manual/custom-primitives/defining-the-primitive-type)
-* [Creating the State Machine](/docs/latest/user-manual/custom-primitives/creating-the-state-machine)
-  * [Defining Primitive Operations](/docs/latest/user-manual/custom-primitives/creating-the-state-machine#defining-primitive-operations)
-    * [Commands](/docs/latest/user-manual/custom-primitives/creating-the-state-machine#commands)
-    * [Queries](/docs/latest/user-manual/custom-primitives/creating-the-state-machine#queries)
-  * [Handling Snapshots](/docs/latest/user-manual/custom-primitives/creating-the-state-machine#handling-snapshots)
-* [Creating a Proxy](/docs/latest/user-manual/custom-primitives/creating-a-proxy)
-* [Defining the Primitive Configuration](/docs/latest/user-manual/custom-primitives/defining-the-primitive-configuration)
-* [Supplying a Primitive Builder](/docs/latest/user-manual/custom-primitives/supplying-a-primitive-builder)
-* [Supporting REST API Access](/docs/latest/user-manual/custom-primitives/supporting-rest-api-access)
+* [Defining the Primitive Type](/docs/latest/user-manual/custom-primitives/primitive-type)
+* [Creating the State Machine](/docs/latest/user-manual/custom-primitives/primitive-service)
+  * [Defining Primitive Operations](/docs/latest/user-manual/custom-primitives/primitive-service#defining-primitive-operations)
+    * [Commands](/docs/latest/user-manual/custom-primitives/primitive-service#commands)
+    * [Queries](/docs/latest/user-manual/custom-primitives/primitive-service#queries)
+  * [Handling Snapshots](/docs/latest/user-manual/custom-primitives/primitive-service#handling-snapshots)
+* [Creating a Proxy](/docs/latest/user-manual/custom-primitives/primitive-proxy)
+* [Defining the Primitive Configuration](/docs/latest/user-manual/custom-primitives/primitive-configuration)
+* [Supplying a Primitive Builder](/docs/latest/user-manual/custom-primitives/primitive-builder)
+* [Supporting REST API Access](/docs/latest/user-manual/custom-primitives/primitive-rest-api)
 
 <span class="user-guide-menu-header"><img src="/assets/img/icons/configuration.svg" class="configuration"> Configuration</span>
 
@@ -90,7 +90,7 @@
 
 <span class="user-guide-menu-header"><img src="/assets/img/icons/serialization.svg" class="serialization"> Serialization</span>
 
-* [Configuring a Namespace](/docs/latest/user-manual/serialization/configuring-a-namepsace)
+* [Configuring a Namespace](/docs/latest/user-manual/serialization/configuring-a-namespace)
 * [Registering Custom Serializers](/docs/latest/user-manual/serialization/registering-custom-serializers)
 
 <span class="user-guide-menu-header"><img src="/assets/img/icons/agent.png" class="agent"> Agent</span>
