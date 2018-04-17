@@ -1,8 +1,0 @@
-* [Introduction](#introduction)
-* [Dependency Management](#dependency-management)
-* [Bootstrapping a Cluster](#bootstrapping-a-cluster)
-  * [Using the Java API](#using-the-java-api)
-  * [Using the Atomix Agent](#using-the-atomix-agent)
-* [Creating a Java Client](#creating-a-java-client)
-* [Creating Distributed Primitives](#creating-distributed-primitives)
-* [Configuring the Cluster](#configuring-the-cluster)
