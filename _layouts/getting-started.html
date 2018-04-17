@@ -60,72 +60,10 @@
 {% include scripts.html %}
 
 <script type="text/javascript">
-  // scrollspy
-  $('body').scrollspy({ target: '#sidebar-col' })
-
   // lightbox
   $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
       event.preventDefault();
       $(this).ekkoLightbox();
-  });
-
-  // make sidebar sticky when it hits the top of the viewport
-  var $sideBar = $("#sidebar");
-  $sideBar.affix({
-    offset: {
-      top: function () {
-        var offsetTop      = $sideBar.offset().top
-        var sideBarMargin  = parseInt($sideBar.children(0).css('margin-top'), 10)
-        var navOuterHeight = $('.navbar-fixed-top').height()
-        return (this.top = offsetTop - navOuterHeight - sideBarMargin - 20)
-      },
-      bottom: function () {
-        footerHeightOffset = 200 // Adjust for footer height
-        return (this.bottom = $('#footer').outerHeight(true) + footerHeightOffset)
-      }
-    }
-  })
-
-  var currentPath = window.location.pathname
-
-  function adjustHref(href) {
-    return '/{{ page.menu }}/' + href;
-  }
-
-  // Adjust doc index
-  $("#doc-index > ul > li > a").each(function() {
-    var href = $(this).attr('href');
-    var project = $(this).parent().parent().parent().attr("project");
-    $(this).attr('href', "/" + project + "/docs/" + href);
-  });
-
-  // Adjust doc TOC for small screens
-  $("#toc > ul > li > a").each(function() {
-    var href = $(this).attr('href');
-    if (currentPath.indexOf(href) > -1)
-      $(this).parent().css('display', 'block');
-    $(this).attr('href', adjustHref(href));
-  });
-
-  // Adjust sidebar links
-  $("#sidebar > ul > li > a").each(function() {
-    var parentRef = $(this).attr('href');
-
-    // Activate current sidebar item
-    var pathTokens = currentPath.replace(/\?.+/, '').replace(/\#.+/, '').replace(/\/+$/, '').split("/");
-    var lastToken = pathTokens[pathTokens.length - 1];
-    if (lastToken === parentRef) {
-      $(this).parent().attr('class', 'current');
-    }
-
-    newRef = adjustHref(parentRef);
-    $(this).attr('href', newRef);
-    $(this).attr('data-target', '#' + parentRef);
-
-    $(this).parent().find("ul > li a").each(function () {
-      var childHref = $(this).attr('href');
-      $(this).attr('data-target', childHref);
-    });
   });
 
   // Add link to heading tags
