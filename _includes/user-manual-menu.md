@@ -41,8 +41,7 @@
   * [Primary-Backup Partition Groups](/docs/latest/user-manual/cluster-management/partition-groups#primary-backup-partition-groups)
 * [Member Groups](/docs/latest/user-manual/cluster-management/member-groups)
   * [Rack Awareness](/docs/latest/user-manual/cluster-management/member-groups#rack-awareness)
-* [Reading Cluster Membership](/docs/latest/user-manual/cluster-management/reading-cluster-membership)
-* [Listening for Membership Changes](/docs/latest/user-manual/cluster-management/listening-for-membership-changes)
+* [Cluster Membership](/docs/latest/user-manual/cluster-management/cluster-membership)
 * [Failure Detection](/docs/latest/user-manual/cluster-management/failure-detection)
 
 <span class="user-guide-menu-header"><img src="/assets/img/icons/communication.svg" class="cluster-communication"> Cluster Communication</span>
@@ -56,15 +55,18 @@
 * [Primitive Protocols](/docs/latest/user-manual/primitives/primitive-protocols)
   * [RaftProtocol](/docs/latest/user-manual/primitives/primitive-protocols#raftprotocol)
   * [MultiPrimaryProtocol](/docs/latest/user-manual/primitives/primitive-protocols#multiprimaryprotocol)
-* [ConsistentMap](/docs/latest/user-manual/primitives/consistentmap)
-* [ConsistentMultimap](/docs/latest/user-manual/primitives/consistentmultimap)
-* [DistributedSet](/docs/latest/user-manual/primitives/distributedset)
-* [AtomicValue](/docs/latest/user-manual/primitives/atomicvalue)
-* [AtomicCounter](/docs/latest/user-manual/primitives/atomiccounter)
-* [DocumentTree](/docs/latest/user-manual/primitives/documenttree)
-* [DistributedLock](/docs/latest/user-manual/primitives/distributedlock)
-* [LeaderElection](/docs/latest/user-manual/primitives/leaderelection)
-* [WorkQueue](/docs/latest/user-manual/primitives/workqueue)
+* [AtomicCounter](/docs/latest/user-manual/primitives/AtomicCounter)
+* [AtomicCounterMap](/docs/latest/user-manual/primitives/AtomicCounterMap)
+* [AtomicIdGenerator](/docs/latest/user-manual/primitives/AtomicIdGenerator)
+* [AtomicValue](/docs/latest/user-manual/primitives/AtomicValue)
+* [ConsistentMap](/docs/latest/user-manual/primitives/ConsistentMap)
+* [ConsistentMultimap](/docs/latest/user-manual/primitives/ConsistentMultimap)
+* [ConsistentTreeMap](/docs/latest/user-manual/primitives/ConsistentTreeMap)
+* [DistributedLock](/docs/latest/user-manual/primitives/DistributedLock)
+* [DistributedSet](/docs/latest/user-manual/primitives/DistributedSet)
+* [DocumentTree](/docs/latest/user-manual/primitives/DocumentTree)
+* [LeaderElection](/docs/latest/user-manual/primitives/LeaderElection)
+* [WorkQueue](/docs/latest/user-manual/primitives/WorkQueue)
 
 <span class="user-guide-menu-header"><img src="/assets/img/icons/custom-primitives.svg" class="custom-primitives"> Custom Primitives</span>
 

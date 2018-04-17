@@ -2,11 +2,11 @@
 layout: user-manual
 project: atomix
 menu: user-manual
-title: Listening for Membership Changes
+title: ConsistentTreeMap
 ---
 
 {:.no-margin-top}
 
-## Listening for Membership Changes
+## ConsistentTreeMap
 
 {% include common-links.html %}
