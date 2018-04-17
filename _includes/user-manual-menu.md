@@ -83,7 +83,13 @@
 
 * [Cluster Configuration](/user-manual/configuration#cluster-configuration)
 * [Partition Group Configuration](/user-manual/configuration#partition-group-configuration)
-* [Primitive Configurations](/user-manual/configuration#primitive-configuration)
+* [Primitive Configurations](/user-manual/configuration#primitive-configurations)
+* [Serializer Configurations](/user-manual/configuration#serializer-configurations)
+
+<span class="user-guide-menu-header"><a href="/user-manual/serialization"><img src="/assets/img/icons/serialization.svg" class="serialization"> Serialization</a></span>
+
+* [Configuring a Namespace](/user-manual/serialization#configuring-a-namepsace)
+* [Registering Custom Serializers](/user-manual/serialization#registering-custom-serializers)
 
 <span class="user-guide-menu-header"><a href="/user-manual/agent"><img src="/assets/img/icons/agent.png" class="agent"> Agent</a></span>
 
