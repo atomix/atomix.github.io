@@ -60,8 +60,6 @@
 {% include scripts.html %}
 
 <script type="text/javascript">
-  // scrollspy
-  $('body').scrollspy({ target: '#sidebar-col' })
 
   // lightbox
   $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
@@ -69,75 +67,21 @@
       $(this).ekkoLightbox();
   });
 
-  // make sidebar sticky when it hits the top of the viewport
-  var $sideBar = $("#sidebar");
-  $sideBar.affix({
-    offset: {
-      top: function () {
-        var offsetTop      = $sideBar.offset().top
-        var sideBarMargin  = parseInt($sideBar.children(0).css('margin-top'), 10)
-        var navOuterHeight = $('.navbar-fixed-top').height()
-        return (this.top = offsetTop - navOuterHeight - sideBarMargin - 20)
-      },
-      bottom: function () {
-        footerHeightOffset = 200 // Adjust for footer height
-        return (this.bottom = $('#footer').outerHeight(true) + footerHeightOffset)
+  (function($) {
+    var allPanels = $('#sidebar > div').hide();
+
+    $('#sidebar > h3').click(function() {
+      allPanels.slideUp();
+      var panel = $(this).next();
+      if (!panel.is(":visible")) {
+        panel.slideDown();
+      } else {
+        panel.hide();
       }
-    }
-  })
-
-  var currentPath = window.location.pathname
-  var pathTokens = currentPath.replace(/\?.+/, '').replace(/\#.+/, '').replace(/\/+$/, '').split("/");
-  pathTokens.pop();
-  var categoryUri = pathTokens.join("/");
-
-  function adjustHref(href) {
-    return categoryUri + '/' + href;
-  }
-
-  // Adjust doc index
-  $("#doc-index > ul > li > a").each(function() {
-    var href = $(this).attr('href');
-    var project = $(this).parent().parent().parent().attr("project");
-    $(this).attr('href', "/" + project + "/docs/" + href);
-  });
-
-  // Adjust doc TOC for small screens
-  $("#toc > ul > li > a").each(function() {
-    var href = $(this).attr('href');
-    if (currentPath.indexOf(href) > -1) 
-      $(this).parent().css('display', 'block');
-    $(this).attr('href', adjustHref(href));
-  });
-
-  /*
-  // Adjust sidebar links
-  $("#sidebar > ul > li > a").each(function() {
-    var parentRef = $(this).attr('href');
-
-    // Activate current sidebar item
-    var lastToken = pathTokens[pathTokens.length - 1];
-    if (lastToken === parentRef) {
-      $(this).parent().attr('class', 'current');
-    }
-    
-    newRef = adjustHref(parentRef);
-    $(this).attr('href', newRef);
-    $(this).attr('data-target', '#' + parentRef);
-
-    $(this).parent().find("ul > li a").each(function () {
-      var childHref = $(this).attr('href');
-      $(this).attr('data-target', childHref);
+      return false;
     });
-  });
+  })(jQuery);
 
-  // Add link to heading tags
-  $(".docs h1, .docs h2, .docs h3, .docs h4, .docs h5").each(function () {
-    var id = $(this).attr('id');
-    if ($(this).attr('class') != "pitch")
-      $(this).append('<a class="header-anchor" href="#' + id + '"></a>');
-  });
-  */
 </script>
 
   </body>

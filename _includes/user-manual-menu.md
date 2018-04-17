@@ -1,5 +1,6 @@
-<span class="user-guide-menu-header"><img src="/assets/img/icons/introduction.svg" class="introduction"> Introduction</span>
-
+<h3 class="user-guide-menu-header"><img src="/assets/img/icons/introduction.svg" class="introduction"> Introduction</h3>
+<div markdown="1">
+{% capture toc %}
 * [What is Atomix](/docs/latest/user-manual/introduction/what-is-atomix)
 * [Features](/docs/latest/user-manual/introduction/features)
 * [Installation and Setup](/docs/latest/user-manual/introduction/installation-and-setup)
@@ -7,9 +8,13 @@
   * [Something Unique](/docs/latest/user-manual/introduction/comparisons#something-unique)
   * [ZooKeeper](/docs/latest/user-manual/introduction/comparisons#zookeeper)
   * [Hazelcast](/docs/latest/user-manual/introduction/comparisons#hazelcast)
+{% endcapture %}
+{{ toc | markdownify }}
+</div>
 
-<span class="user-guide-menu-header"><img src="/assets/img/icons/concepts.svg" class="concepts"> Concepts</span>
-
+<h3 class="user-guide-menu-header"><img src="/assets/img/icons/concepts.svg" class="concepts"> Concepts</h3>
+<div markdown="1">
+{% capture toc %}
 * [Cluster Architecture](/docs/latest/user-manual/concepts/cluster-architecture)
   * [Core Nodes](/docs/latest/user-manual/concepts/cluster-architecture#core-nodes)
   * [Data Nodes](/docs/latest/user-manual/concepts/cluster-architecture#data-nodes)
@@ -28,9 +33,13 @@
   * [Node Failures](/docs/latest/user-manual/concepts/fault-tolerance#node-failures)
   * [Network Partitions](/docs/latest/user-manual/concepts/fault-tolerance#network-partitions)
 * [Threading Model](/docs/latest/user-manual/concepts/threading-model)
+{% endcapture %}
+{{ toc | markdownify }}
+</div>
 
-<span class="user-guide-menu-header"><img src="/assets/img/icons/clustering.png" class="cluster-management"> Cluster Management</span>
-
+<h3 class="user-guide-menu-header"><img src="/assets/img/icons/clustering.png" class="cluster-management"> Cluster Management</h3>
+<div markdown="1">
+{% capture toc %}
 * [Bootstrapping a Cluster](/docs/latest/user-manual/cluster-management/bootstrapping-a-cluster)
   * [Node Objects](/docs/latest/user-manual/cluster-management/bootstrapping-a-cluster#node-objects)
 * [Member Discovery](/docs/latest/user-manual/cluster-management/member-discovery)
@@ -43,14 +52,22 @@
   * [Rack Awareness](/docs/latest/user-manual/cluster-management/member-groups#rack-awareness)
 * [Cluster Membership](/docs/latest/user-manual/cluster-management/cluster-membership)
 * [Failure Detection](/docs/latest/user-manual/cluster-management/failure-detection)
+{% endcapture %}
+{{ toc | markdownify }}
+</div>
 
-<span class="user-guide-menu-header"><img src="/assets/img/icons/communication.svg" class="cluster-communication"> Cluster Communication</span>
-
+<h3 class="user-guide-menu-header"><img src="/assets/img/icons/communication.svg" class="cluster-communication"> Cluster Communication</h3>
+<div markdown="1">
+{% capture toc %}
 * [Direct Messaging](/docs/latest/user-manual/cluster-communication/direct-messaging)
 * [Publish-subscribe Messaging](/docs/latest/user-manual/cluster-communication/publish-subscribe-messaging)
+{% endcapture %}
+{{ toc | markdownify }}
+</div>
 
-<span class="user-guide-menu-header"><img src="/assets/img/icons/primitives.svg" class="primitives"> Primitives</span>
-
+<h3 class="user-guide-menu-header"><img src="/assets/img/icons/primitives.svg" class="primitives"> Primitives</h3>
+<div>
+{% capture toc %}
 * [Overview](/docs/latest/user-manual/primitives/overview)
 * [Primitive Protocols](/docs/latest/user-manual/primitives/primitive-protocols)
   * [RaftProtocol](/docs/latest/user-manual/primitives/primitive-protocols#raftprotocol)
@@ -67,9 +84,13 @@
 * [DocumentTree](/docs/latest/user-manual/primitives/DocumentTree)
 * [LeaderElection](/docs/latest/user-manual/primitives/LeaderElection)
 * [WorkQueue](/docs/latest/user-manual/primitives/WorkQueue)
+{% endcapture %}
+{{ toc | markdownify }}
+</div>
 
-<span class="user-guide-menu-header"><img src="/assets/img/icons/custom-primitives.svg" class="custom-primitives"> Custom Primitives</span>
-
+<h3 class="user-guide-menu-header"><img src="/assets/img/icons/custom-primitives.svg" class="custom-primitives"> Custom Primitives</h3>
+<div markdown="1">
+{% capture toc %}
 * [Defining the Primitive Type](/docs/latest/user-manual/custom-primitives/primitive-type)
 * [Creating the State Machine](/docs/latest/user-manual/custom-primitives/primitive-service)
   * [Defining Primitive Operations](/docs/latest/user-manual/custom-primitives/primitive-service#defining-primitive-operations)
@@ -80,38 +101,62 @@
 * [Defining the Primitive Configuration](/docs/latest/user-manual/custom-primitives/primitive-configuration)
 * [Supplying a Primitive Builder](/docs/latest/user-manual/custom-primitives/primitive-builder)
 * [Supporting REST API Access](/docs/latest/user-manual/custom-primitives/primitive-rest-api)
+{% endcapture %}
+{{ toc | markdownify }}
+</div>
 
-<span class="user-guide-menu-header"><img src="/assets/img/icons/configuration.svg" class="configuration"> Configuration</span>
-
+<h3 class="user-guide-menu-header"><img src="/assets/img/icons/configuration.svg" class="configuration"> Configuration</h3>
+<div markdown="1">
+{% capture toc %}
 * [Cluster Configuration](/docs/latest/user-manual/configuration/cluster-configuration)
 * [Partition Group Configuration](/docs/latest/user-manual/configuration/partition-group-configuration)
 * [Primitive Configurations](/docs/latest/user-manual/configuration/primitive-configurations)
 * [Serializer Configurations](/docs/latest/user-manual/configuration/serializer-configurations)
+{% endcapture %}
+{{ toc | markdownify }}
+</div>
 
-<span class="user-guide-menu-header"><img src="/assets/img/icons/serialization.svg" class="serialization"> Serialization</span>
-
+<h3 class="user-guide-menu-header"><img src="/assets/img/icons/serialization.svg" class="serialization"> Serialization</h3>
+<div markdown="1">
+{% capture toc %}
 * [Configuring a Namespace](/docs/latest/user-manual/serialization/configuring-a-namespace)
 * [Registering Custom Serializers](/docs/latest/user-manual/serialization/registering-custom-serializers)
+{% endcapture %}
+{{ toc | markdownify }}
+</div>
 
-<span class="user-guide-menu-header"><img src="/assets/img/icons/agent.png" class="agent"> Agent</span>
-
+<h3 class="user-guide-menu-header"><img src="/assets/img/icons/agent.png" class="agent"> Agent</h3>
+<div>
+{% capture toc %}
 * [Starting the Agent](/docs/latest/user-manual/agent/starting-the-agent)
 * [Client Agents](/docs/latest/user-manual/agent/client-agents)
+{% endcapture %}
+{{ toc | markdownify }}
+</div>
 
-<span class="user-guide-menu-header"><img src="/assets/img/icons/rest.svg" class="rest"> REST API</span>
-
+<h3 class="user-guide-menu-header"><img src="/assets/img/icons/rest.svg" class="rest"> REST API</h3>
+<div markdown="1">
+{% capture toc %}
 * [Cluster Management](/docs/latest/user-manual/rest/cluster-management)
 * [Direct Messaging](/docs/latest/user-manual/rest/direct-messaging)
 * [Publish-Subscribe Messaging](/docs/latest/user-manual/rest/publish-subscribe-messaging)
 * [Distributed Primitives](/docs/latest/user-manual/rest/distributed-primitives)
+{% endcapture %}
+{{ toc | markdownify }}
+</div>
 
-<span class="user-guide-menu-header"><img src="/assets/img/icons/cli.svg" class="cli"> CLI</span>
-
+<h3 class="user-guide-menu-header"><img src="/assets/img/icons/cli.svg" class="cli"> CLI</h3>
+<div markdown="1">
+{% capture toc %}
 * [Setup](/docs/latest/user-manual/cli/setup)
 * [Operation](/docs/latest/user-manual/cli/operation)
+{% endcapture %}
+{{ toc | markdownify }}
+</div>
 
-<span class="user-guide-menu-header"><img src="/assets/img/icons/test.svg" class="test"> Test Framework</span>
-
+<h3 class="user-guide-menu-header"><img src="/assets/img/icons/test.svg" class="test"> Test Framework</h3>
+<div markdown="1">
+{% capture toc %}
 * [Setting up the Framework](/docs/latest/user-manual/test/setup)
 * [Bootstrapping a Test Cluster](/docs/latest/user-manual/test/bootstrapping)
 * [Adding Nodes](/docs/latest/user-manual/test/adding-nodes)
@@ -123,12 +168,19 @@
   * [Creating Network Partitions](/docs/latest/user-manual/test/disrupting-networks#creating-network-partitions)
 * [Running Tests](/docs/latest/user-manual/test/running-tests)
 * [Writing New Tests](/docs/latest/user-manual/test/writing-tests)
+{% endcapture %}
+{{ toc | markdownify }}
+</div>
 
-<span class="user-guide-menu-header"><img src="/assets/img/icons/architecture.svg" class="architecture"> Architecture</span>
-
+<h3 class="user-guide-menu-header"><img src="/assets/img/icons/architecture.svg" class="architecture"> Architecture</h3>
+<div markdown="1">
+{% capture toc %}
 * [Cluster Communication](/docs/latest/user-manual/architecture/cluster-communication)
 * [Group Membership](/docs/latest/user-manual/architecture/group-membership)
 * [Partition Groups](/docs/latest/user-manual/architecture/partition-groups)
 * [Primitive Protocols](/docs/latest/user-manual/architecture/primitive-protocols)
   * [Raft](/docs/latest/user-manual/architecture/primitive-protocols#raft)
   * [Primary-backup](/docs/latest/user-manual/architecture/primitive-protocols#primary-backup)
+{% endcapture %}
+{{ toc | markdownify }}
+</div>
