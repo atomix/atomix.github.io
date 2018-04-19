@@ -145,6 +145,14 @@
 {{ toc | markdownify }}
 </div>
 
+<h3 class="user-guide-menu-header"><img src="/assets/img/icons/python.svg" class="python"> Python API</h3>
+<div markdown="1">
+{% capture toc %}
+* [Setup](/docs/latest/user-manual/python/setup)
+{% endcapture %}
+{{ toc | markdownify }}
+</div>
+
 <h3 class="user-guide-menu-header"><img src="/assets/img/icons/cli.svg" class="cli"> CLI</h3>
 <div markdown="1">
 {% capture toc %}
