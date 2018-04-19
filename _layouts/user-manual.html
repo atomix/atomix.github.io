@@ -70,13 +70,14 @@
   var currentPath = location.pathname.replace(/\?.+/, '').replace(/\#.+/, '').replace(/\/+$/, '');
   var currentVersion = currentPath.split('/')[2]
 
-  function adjustHref(href) {
-    return '/docs/' + currentVersion + '/user-manual/' + href;
+  function adjustHref(parent, href) {
+    return '/docs/' + currentVersion + '/user-manual/' + parent + '/' + href;
   }
 
   $('#sidebar a').each(function() {
+    var parent = $(this).closest('div').prev().find('img').attr('class');
     var href = $(this).attr('href');
-    $(this).attr('href', adjustHref(href));
+    $(this).attr('href', adjustHref(parent, href));
   });
 
   var allPanels = $('#sidebar > div').hide();
