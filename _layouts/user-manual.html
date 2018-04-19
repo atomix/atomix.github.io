@@ -68,6 +68,16 @@
   });
 
   var currentPath = location.pathname.replace(/\?.+/, '').replace(/\#.+/, '').replace(/\/+$/, '');
+  var currentVersion = currentPath.split('/')[2]
+
+  function adjustHref(href) {
+    return '/docs/' + currentVersion + '/user-manual/' + href;
+  }
+
+  $('#sidebar a').each(function() {
+    var href = $(this).attr('href');
+    $(this).attr('href', adjustHref(href));
+  });
 
   var allPanels = $('#sidebar > div').hide();
   var activePanel = $('#sidebar div ul li a').filter(function(){
