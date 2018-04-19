@@ -6,7 +6,6 @@ title: Partition Groups
 ---
 
 {:.no-margin-top}
-
 ## Partition Groups
 
 {% include common-links.html %}

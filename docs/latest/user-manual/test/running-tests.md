@@ -6,7 +6,6 @@ title: Running Tests
 ---
 
 {:.no-margin-top}
-
 ## Running Tests
 
 {% include common-links.html %}

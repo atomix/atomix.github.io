@@ -6,7 +6,6 @@ title: REST API
 ---
 
 {:.no-margin-top}
-
 ## Managing the Cluster
 
 ## Sending Messages

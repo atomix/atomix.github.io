@@ -6,7 +6,6 @@ title: ConsistentTreeMap
 ---
 
 {:.no-margin-top}
-
 ## ConsistentTreeMap
 
 {% include common-links.html %}

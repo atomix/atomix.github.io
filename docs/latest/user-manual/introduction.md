@@ -6,7 +6,6 @@ title: Introduction
 ---
 
 {:.no-margin-top}
-
 ## What is Atomix?
 
 ## Features

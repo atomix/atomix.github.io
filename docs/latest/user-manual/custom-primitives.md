@@ -6,7 +6,6 @@ title: Custom Primitives
 ---
 
 {:.no-margin-top}
-
 ## Defining the Primitive Type
 
 ## Creating the State Machine

@@ -6,7 +6,6 @@ title: Disrupting Networks
 ---
 
 {:.no-margin-top}
-
 ## Disrupting Networks
 
 {% include common-links.html %}

@@ -6,7 +6,6 @@ title: ConsistentMap
 ---
 
 {:.no-margin-top}
-
 ## ConsistentMap
 
 {% include common-links.html %}

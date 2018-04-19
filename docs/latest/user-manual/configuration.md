@@ -7,7 +7,6 @@ first-section: overview
 ---
 
 {:.no-margin-top}
-
 ## Cluster Configuration
 
 ## Partition Group Configuration

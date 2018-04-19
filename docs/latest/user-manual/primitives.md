@@ -7,7 +7,6 @@ first-section: overview
 ---
 
 {:.no-margin-top}
-
 ## Overview
 
 ## Primitive Protocols

@@ -6,7 +6,6 @@ title: Agent
 ---
 
 {:.no-margin-top}
-
 ## Starting the Agent
 
 ## Client Agents

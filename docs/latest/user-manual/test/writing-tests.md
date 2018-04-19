@@ -6,7 +6,6 @@ title: Writing New Tests
 ---
 
 {:.no-margin-top}
-
 ## Writing New Tests
 
 {% include common-links.html %}

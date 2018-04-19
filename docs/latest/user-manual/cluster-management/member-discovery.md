@@ -6,7 +6,6 @@ title: Member Discovery
 ---
 
 {:.no-margin-top}
-
 ## Member Discovery
 
 {% include common-links.html %}

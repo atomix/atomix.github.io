@@ -6,7 +6,6 @@ title: Cluster Management
 ---
 
 {:.no-margin-top}
-
 ## Bootstrapping a Cluster
 
 ### Node Objects

@@ -6,7 +6,6 @@ title: WorkQueue
 ---
 
 {:.no-margin-top}
-
 ## WorkQueue
 
 {% include common-links.html %}

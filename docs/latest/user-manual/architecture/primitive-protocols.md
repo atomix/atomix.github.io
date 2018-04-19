@@ -6,7 +6,6 @@ title: Primitive Protocols
 ---
 
 {:.no-margin-top}
-
 ## Primitive Protocols
 
 {% include common-links.html %}

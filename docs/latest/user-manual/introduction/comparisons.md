@@ -6,7 +6,6 @@ title: Comparisons
 ---
 
 {:.no-margin-top}
-
 ## Comparisons
 
 {% include common-links.html %}

@@ -6,7 +6,6 @@ title: DocumentTree
 ---
 
 {:.no-margin-top}
-
 ## DocumentTree
 
 {% include common-links.html %}

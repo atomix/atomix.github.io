@@ -6,7 +6,6 @@ title: Architecture
 ---
 
 {:.no-margin-top}
-
 ## Cluster Communication
 
 ## Group Membership

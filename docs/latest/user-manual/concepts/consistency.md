@@ -6,7 +6,6 @@ title: Consistency
 ---
 
 {:.no-margin-top}
-
 ## Consistency
 
 {% include common-links.html %}

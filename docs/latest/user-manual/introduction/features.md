@@ -6,7 +6,6 @@ title: Features
 ---
 
 {:.no-margin-top}
-
 ## Features
 
 {% include common-links.html %}

@@ -6,7 +6,6 @@ title: What is Atomix?
 ---
 
 {:.no-margin-top}
-
 ## What is Atomix
 
 {% include common-links.html %}

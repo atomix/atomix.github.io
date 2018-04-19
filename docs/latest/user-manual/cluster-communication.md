@@ -6,7 +6,6 @@ title: Cluster Communication
 ---
 
 {:.no-margin-top}
-
 ## Direct Messaging
 
 ## Publish-Subscribe Messaging

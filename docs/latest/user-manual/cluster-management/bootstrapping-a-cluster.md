@@ -6,7 +6,6 @@ title: Bootstrapping a Cluster
 ---
 
 {:.no-margin-top}
-
 ## Bootstrapping a Cluster
 
 {% include common-links.html %}

@@ -6,7 +6,6 @@ title: Reading Cluster Membership
 ---
 
 {:.no-margin-top}
-
 ## Reading Cluster Membership
 
 {% include common-links.html %}

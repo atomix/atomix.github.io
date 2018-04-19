@@ -6,7 +6,6 @@ title: AtomicCounterMap
 ---
 
 {:.no-margin-top}
-
 ## AtomicCounterMap
 
 {% include common-links.html %}

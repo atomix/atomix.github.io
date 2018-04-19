@@ -6,7 +6,6 @@ title: Cluster Architecture
 ---
 
 {:.no-margin-top}
-
 ## Cluster Architecture
 
 {% include common-links.html %}

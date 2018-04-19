@@ -6,7 +6,6 @@ title: Publish-Subscribe Messaging
 ---
 
 {:.no-margin-top}
-
 ## Publish-Subscribe Messaging
 
 {% include common-links.html %}

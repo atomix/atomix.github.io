@@ -5,7 +5,6 @@ title: Getting Started
 ---
 
 {:.no-margin-top}
-
 ## Overview
 
 Atomix 2.1 is a fully featured framework for building fault-tolerant distributed systems. Combining ZooKeeper's consistency with Hazelcast's usability and performance, Atomix uses a set of custom communication APIs, a sharded Raft cluster, and a multi-primary protocol to provide a series of high-level primitives for building distributed systems. These primitives include:

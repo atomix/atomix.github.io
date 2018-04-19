@@ -6,7 +6,6 @@ title: Serialization
 ---
 
 {:.no-margin-top}
-
 ## Configuring a Namespace
 
 ## Registering Custom Serializers

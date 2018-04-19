@@ -6,7 +6,6 @@ title: Operation
 ---
 
 {:.no-margin-top}
-
 ## Operation
 
 {% include common-links.html %}

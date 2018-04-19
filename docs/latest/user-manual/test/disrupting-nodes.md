@@ -6,7 +6,6 @@ title: Disrupting Nodes
 ---
 
 {:.no-margin-top}
-
 ## Disrupting Nodes
 
 {% include common-links.html %}

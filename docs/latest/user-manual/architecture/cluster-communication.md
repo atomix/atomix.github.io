@@ -6,7 +6,6 @@ title: Cluster Communication
 ---
 
 {:.no-margin-top}
-
 ## Cluster Communication
 
 {% include common-links.html %}

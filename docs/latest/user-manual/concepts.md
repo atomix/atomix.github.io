@@ -6,7 +6,6 @@ title: Concepts
 ---
 
 {:.no-margin-top}
-
 ## Cluster Architecture
 
 ### Core Nodes

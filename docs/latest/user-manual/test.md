@@ -6,7 +6,6 @@ title: Test Framework
 ---
 
 {:.no-margin-top}
-
 ## Setting Up the Test Framework
 
 ## Bootstrapping a Test Cluster
