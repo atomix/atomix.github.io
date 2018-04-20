@@ -1,7 +1,8 @@
 ---
 layout: user-manual-index
 project: atomix
-title: User Manual
+title: Distributed Primitives
+first-section: overview
 ---
 
 {:.no-margin-top}

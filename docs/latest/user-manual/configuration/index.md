@@ -1,7 +1,8 @@
 ---
 layout: user-manual-index
 project: atomix
-title: User Manual
+title: Operation
+first-section: overview
 ---
 
 {:.no-margin-top}

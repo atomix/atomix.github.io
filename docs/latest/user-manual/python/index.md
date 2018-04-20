@@ -1,7 +1,8 @@
 ---
 layout: user-manual-index
 project: atomix
-title: User Manual
+title: Python API
+first-section: setup
 ---
 
 {:.no-margin-top}

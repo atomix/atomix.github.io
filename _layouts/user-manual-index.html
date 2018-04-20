@@ -43,15 +43,6 @@
 {{ content }}
     </div><!-- End col -->
 
-{% if page.menu %}
-      <div class="col-md-3 hidden-xs hidden-sm" id="sidebar-col" >
-        <div class="nav affix-top" id="sidebar">
-  {% capture sidemenu %}{% include {{ pagemenu }} %}{% endcapture %}
-  {{ sidemenu | markdownify }}
-        </div>
-      </div>
-{% endif %}
-
   </div>
 </div>
 
@@ -68,35 +59,37 @@
   });
 
   var currentPath = location.pathname.replace(/\?.+/, '').replace(/\#.+/, '').replace(/\/+$/, '');
-  var currentVersion = currentPath.split('/')[2]
+  var parts = currentPath.split('/');
+  var currentSection = parts.length > 4 ? currentPath.split('/')[4] : null;
+  var currentVersion = parts[2];
 
   function adjustHref(parent, href) {
     return '/docs/' + currentVersion + '/user-manual/' + parent + '/' + href;
   }
 
-  $('#sidebar a').each(function() {
+  function buildSectionHref(section) {
+    return '/docs/' + currentVersion + '/user-manual/' + section;
+  }
+
+  $('#user-manual-index a').each(function() {
     var parent = $(this).closest('div').prev().find('img').attr('class');
     var href = $(this).attr('href');
     $(this).attr('href', adjustHref(parent, href));
   });
 
-  var allPanels = $('#sidebar > div').hide();
-  var activePanel = $('#sidebar div ul li a').filter(function(){
-    return $(this).prop('href').indexOf(currentPath) != -1;
-  }).closest('div');
-  activePanel.slideDown();
+  if (currentSection != null) {
+    $('#user-manual-index > h3').hide();
+    $('#user-manual-index > div').hide();
+    var activePanel = $('#user-manual-index > h3 > img').filter(function(){
+      return $(this).attr('class') == currentSection;
+    }).parent().next();
+    activePanel.show();
+  }
 
-  $('#sidebar > h3').click(function() {
-    allPanels.slideUp();
-    var panel = $(this).next();
-    if (!panel.is(":visible")) {
-      panel.slideDown();
-    } else {
-      panel.slideUp();
-    }
-    return false;
+  $('#user-manual-index > h3').each(function() {
+    var section = $(this).find('img').attr('class');
+    $(this).wrapInner('<a href="' + buildSectionHref(section) + '"></a>')
   });
-
 </script>
 
   </body>

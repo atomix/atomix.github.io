@@ -830,6 +830,67 @@ pre {
   }
 }
 
+// User manual index
+
+#user-manual-index {
+  padding: 0;
+  font-size: 20px;
+
+  img {
+    visibility: hidden;
+  }
+
+  h3.user-guide-menu-header {
+    font-size: 24px;
+    cursor: pointer;
+    padding-bottom: 6px;
+  }
+
+  h3.user-guide-menu-header a {
+    color: $pink;
+  }
+
+  ul {
+    list-style: none;
+
+    > .active > a, > .current > a {
+      color: $link-color-bright;
+    }
+  }
+
+  div > ul {
+    padding-left: 40px;
+  }
+
+  div > ul {
+    > li > ul li {
+      padding-left: 20px;
+    }
+
+    ul {
+      display: none;
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+  }
+
+  li a {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  ul > li > a {
+    padding-bottom: 20px;
+    position: relative;
+    display: block;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
 // Footer
 
 footer {

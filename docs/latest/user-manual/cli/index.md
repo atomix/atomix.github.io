@@ -1,7 +1,7 @@
 ---
 layout: user-manual-index
 project: atomix
-title: User Manual
+title: Command Line Interface
 ---
 
 {:.no-margin-top}
