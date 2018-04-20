@@ -5,7 +5,4 @@ menu: user-manual
 title: AtomicCounter
 ---
 
-{:.no-margin-top}
-## AtomicCounter
-
 {% include common-links.html %}

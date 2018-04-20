@@ -74,6 +74,12 @@
     return '/docs/' + currentVersion + '/user-manual/' + parent + '/' + href;
   }
 
+  $('#user-manual-index a').each(function() {
+    var parent = $(this).closest('div').prev().find('img').attr('class');
+    var href = $(this).attr('href');
+    $(this).attr('href', adjustHref(parent, href));
+  });
+
   $('#sidebar a').each(function() {
     var parent = $(this).closest('div').prev().find('img').attr('class');
     var href = $(this).attr('href');

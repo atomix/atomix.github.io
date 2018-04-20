@@ -5,7 +5,4 @@ menu: user-manual
 title: AtomicIdGenerator
 ---
 
-{:.no-margin-top}
-## AtomicIdGenerator
-
 {% include common-links.html %}

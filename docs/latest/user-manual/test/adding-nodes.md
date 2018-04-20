@@ -5,7 +5,4 @@ menu: user-manual
 title: Adding Nodes
 ---
 
-{:.no-margin-top}
-## Adding Nodes
-
 {% include common-links.html %}

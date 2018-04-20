@@ -5,7 +5,4 @@ menu: user-manual
 title: Transactions
 ---
 
-{:.no-margin-top}
-## Transactions
-
 {% include common-links.html %}

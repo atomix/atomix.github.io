@@ -5,7 +5,4 @@ menu: user-manual
 title: Member Groups
 ---
 
-{:.no-margin-top}
-## Member Groups
-
 {% include common-links.html %}

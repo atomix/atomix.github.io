@@ -5,7 +5,4 @@ menu: user-manual
 title: DistributedSet
 ---
 
-{:.no-margin-top}
-## DistributedSet
-
 {% include common-links.html %}
