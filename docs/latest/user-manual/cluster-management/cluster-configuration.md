@@ -105,7 +105,8 @@ Atomix atomix = Atomix.builder()
       Member.builder("member3")
         .withType(Member.Type.PERSISTENT)
         .withAddress("localhost:5003")
-        .build());
+        .build())
+  .build();
 
 atomix.start().join();
 ```
@@ -143,6 +144,9 @@ The configuration file can be used to configure the Atomix [agent][agent] or can
 ```java
 AtomixCluster cluster = new AtomixCluster("cluster.yaml");
 ```
+
+{:.callout .callout-info}
+When constructing an `Atomix` instance from a configuration file, the cluster configuration should be namespaced under the `cluster` field.
 
 Additionally, builders can be initialized using the cluster configuration. This can be convenient for initializing a builder with a shared configuration:
 
