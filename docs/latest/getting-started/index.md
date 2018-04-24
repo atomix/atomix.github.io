@@ -43,29 +43,28 @@ Additionally, most clusters are configured with a set of partition groups. The p
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix</artifactId>
-    <version>2.1.0-beta3</version>
+    <version>2.1.0-SNAPSHOT</version>
   </dependency>
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix-raft</artifactId>
-    <version>2.1.0-beta3</version>
+    <version>2.1.0-SNAPSHOT</version>
   </dependency>
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix-primary-backup</artifactId>
-    <version>2.1.0-beta3</version>
+    <version>2.1.0-SNAPSHOT</version>
   </dependency>
 </dependencies>
 ```
 
 ## Bootstrapping a Cluster
 
-The first step to working with Atomix is forming a cluster. Atomix clusters consist of three types of nodes:
-* `CORE` nodes participate in a consensus algorithm that is both persistent and strongly consistent
-* `DATA` nodes participate in a scalable, in-memory multi-primary replication protocol
-* `CLIENT` nodes are stateless and must connect to `CORE`/`DATA` nodes to store state remotely
+The first step to working with Atomix is forming a cluster. Atomix clusters consist of two types of members:
+* `PERSISTENT` members exist in the cluster configuration whether available or not
+* `EPHEMERAL` members join and leave the cluster based on their availability
 
-To form a cluster, typically a set of `CORE` or `DATA` nodes need to be bootstrapped. Additionally, if using distributed primitives, one or more [partition groups](/docs/latest/user-manual/cluster-management/partition-groups) must be configured.
+To form a cluster, typically a set of nodes need to be bootstrapped. Additionally, if using distributed primitives, one or more [partition groups][partition-groups] must be configured.
 
 ### Using the Java API
 
@@ -82,8 +81,8 @@ Atomix.Builder builder = Atomix.builder();
 The builder should be configured with the local node configuration:
 
 ```java
-builder.withLocalNode(Node.builder("node1")
-  .withType(Node.Type.DATA)
+builder.withLocalMember(Member.builder("node1")
+  .withType(Member.Type.EPHEMERAL)
   .withAddress("localhost:5000")
   .build());
 ```
@@ -91,32 +90,30 @@ builder.withLocalNode(Node.builder("node1")
 In addition to configuring the local node information, each instance must be configured with a set of _bootstrap nodes_ from which to form a cluster. When first starting a cluster, all instances should provide the same set of bootstrap nodes.
 
 ```java
-builder.withNodes(
-  Node.builder("server1")
-    .withType(Node.Type.DATA)
+builder.withMembers(
+  Member.builder("member1")
+    .withType(Member.Type.EPHEMERAL)
     .withAddress("localhost:5000")
     .build(),
-  Node.builder("server2")
-    .withType(Node.Type.DATA)
+  Member.builder("member2")
+    .withType(Member.Type.EPHEMERAL)
     .withAddress("localhost:5001")
     .build(),
-  Node.builder("server3")
-    .withType(Node.Type.DATA)
+  Member.builder("member3")
+    .withType(Member.Type.EPHEMERAL)
     .withAddress("localhost:5002")
     .build());
 ```
 
-Bootstrap nodes can be either `CORE` or `DATA` nodes. Clusters that require strong consistency must be bootstrapped with a set of `CORE` nodes capable of participating in consensus. Clusters that have more relaxed persistence/consistency requirements should use `DATA` nodes which can scale to much greater size and throughput.
+Bootstrap nodes can be either `PERSISTENT` or `EPHEMERAL` nodes. Clusters that require strong consistency must be bootstrapped with a set of `PERSISTENT` nodes capable of participating in consensus. Clusters that have more relaxed persistence/consistency requirements can use `EPHEMERAL` nodes which can scale dynamically.
 
 {:.callout .callout-info}
 To read more about the difference between the various types of nodes, see the [user manual][node-types]
 
-Finally, the instance must be configured with one or more partition groups. The partition groups define how data is distribtued in the cluster.
+Finally, the instance must be configured with one or more partition groups. Common partition groups can be configured using [profiles][profiles].
 
 ```java
-builder.addPartitionGroup(PrimaryBackupPartitionGroup.builder("data")
-  .withNumPartitions(32)
-  .build());
+builder.addProfiles(Profiles.DATA_GRID);
 ```
 
 Typically, clusters that require strong consistency guarantees are configured with `CORE` nodes and at least one `RaftPartitionGroup`, and clusters designed for performance and scalability with `DATA` nodes use `PrimaryBackupPartitionGroup`s.
@@ -167,21 +164,18 @@ When working with the agent, it's most convenient to provide a JSON or YAML conf
 ```
 cluster:
   nodes:
-    - name: node1
-      type: core
+    node1:
+      type: ephemeral
       address: localhost:5001
-    - name: node2
-      type: core
+    node2:
+      type: ephemeral
       address: localhost:5002
-    - name: node3
-      type: core
+    node3:
+      type: ephemeral
       address: localhost:5003
-partition-groups:
-  - name: raft
-    type: raft
-    partitions: 3
-    partition-size: 3
-    data-directory: data/raft
+profiles:
+  - consensus
+  - data-grid
 ```
 
 {:.callout .callout-info}
@@ -212,20 +206,20 @@ Client nodes are constructed in the same way as all other nodes except that they
 
 ```java
 Atomix atomix = Atomix.builder()
-  .withLocalNode(Node.builder("client1")
+  .withLocalMember(Member.builder("client1")
     .withAddress("localhost:6000")
     .build())
-  .withNodes(
-    Node.builder("server1")
-      .withType(Node.Type.CORE)
+  .withMembers(
+    Member.builder("member1")
+      .withType(Member.Type.PERSISTENT)
       .withAddress("localhost:5000")
       .build(),
-    Node.builder("server2")
-      .withType(Node.Type.CORE)
+    Member.builder("member2")
+      .withType(Member.Type.PERSISTENT)
       .withAddress("localhost:5001")
       .build(),
-    Node.builder("server3")
-      .withType(Node.Type.CORE)
+    Member.builder("member3")
+      .withType(Member.Type.PERSISTENT)
       .withAddress("localhost:5002")
       .build());
 ```

@@ -5,4 +5,6 @@ menu: user-manual
 title: Member Groups
 ---
 
+### Rack Awareness
+
 {% include common-links.html %}

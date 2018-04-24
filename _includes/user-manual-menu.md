@@ -16,9 +16,8 @@
 <div markdown="1">
 {% capture toc %}
 * [Cluster Architecture](cluster-architecture)
-  * [Core Nodes](cluster-architecture#core-nodes)
-  * [Data Nodes](cluster-architecture#data-nodes)
-  * [Client Nodes](cluster-architecture#client-nodes)
+  * [Persistent Nodes](cluster-architecture#persistent-nodes)
+  * [Ephemeral Nodes](cluster-architecture#ephemeral-nodes)
   * [Partition Groups](cluster-architecture#partition-groups)
 * [Distributed Primitives](distributed-primitives)
   * [Data Primitives](distributed-primitives#data-primitives)
@@ -40,18 +39,27 @@
 <h3 class="user-guide-menu-header"><img src="/assets/img/icons/clustering.png" class="cluster-management"> Cluster Management</h3>
 <div markdown="1">
 {% capture toc %}
-* [Bootstrapping a Cluster](bootstrapping-a-cluster)
-  * [Node Objects](bootstrapping-a-cluster#node-objects)
+* [Cluster Configuration](cluster-configuration)
+  * [Members](cluster-configuration#members)
+  * [Member Types](cluster-configuration#member-types)
+  * [Bootstrapping a New Cluster](cluster-configuration#bootstrapping-a-new-cluster)
+  * [Joingin an Existing Cluster](cluster-configuration#joining-an-existing-cluster)
+  * [File-based Configuration](cluster-configuration#file-based-configuration)
 * [Member Discovery](member-discovery)
-  * [IP Ranges](member-discovery#ip-ranges)
   * [Multicast Discovery](member-discovery#multicast-discovery)
 * [Partition Groups](partition-groups)
+  * [Configuring Partition Groups](partition-groups#configuring-partition-groups)
+  * [The Management Group](partition-groups#the-management-group)
+  * [Primitive Groups](partition-groups#primitive-groups)
   * [Raft Partition Groups](partition-groups#raft-partition-groups)
   * [Primary-Backup Partition Groups](partition-groups#primary-backup-partition-groups)
+  * [Profiles](partition-groups#profiles)
 * [Member Groups](member-groups)
   * [Rack Awareness](member-groups#rack-awareness)
 * [Cluster Membership](cluster-membership)
-* [Failure Detection](failure-detection)
+  * [Getting the Set of Members in the Cluster](cluster-membership#getting-the-set-of-members-in-the-cluster)
+  * [Member States](cluster-membership#member-states)
+  * [Listening for Membership Changes](cluster-membership#listening-for-membership-changes)
 {% endcapture %}
 {{ toc | markdownify }}
 </div>
