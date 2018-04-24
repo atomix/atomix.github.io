@@ -228,7 +228,7 @@ Atomix atomix = new Atomix("atomix.yaml");
 // Start the instance
 atomix.start().join();
 
-// Get the cluster messaging servce
+// Get the cluster messaging service
 ClusterMessagingService messagingService = atomix.messagingService();
 
 // Register a listener for the "test" subject

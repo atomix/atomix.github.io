@@ -51,7 +51,7 @@ for committer in committers.values():
 # Remove committers from contributors
 delete_keys(contributors, committers.keys())
 
-# Remove contributoes without a name
+# Remove contributors without a name
 for login, contributor in contributors.items():
   if 'name' not in contributor:
     del contributors[login]
