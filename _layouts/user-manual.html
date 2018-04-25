@@ -96,14 +96,24 @@
   if (previous.length > 0) {
     $('#previous').attr('href', previous.find('a').attr('href'));
   } else {
-    $('#previous').hide();
+    previous = activeLink.closest('div').prev().prev();
+    if (previous.length > 0) {
+      $('#previous').attr('href', previous.find('a').attr('href'));
+    } else {
+      $('#previous').hide();
+    }
   }
 
   var next = activeLink.parent().next();
   if (next.length > 0) {
     $('#next').attr('href', next.find('a').attr('href'));
   } else {
-    $('#next').hide();
+    next = activeLink.closest('div').next().next();
+    if (next.length > 0) {
+      $('#next').attr('href', next.find('a').attr('href'));
+    } else {
+      $('#next').hide();
+    }
   }
 
   var allPanels = $('#sidebar > div').hide();
