@@ -49,6 +49,7 @@
   * [Multicast Discovery](member-discovery#multicast-discovery)
 * [Partition Groups](partition-groups)
   * [Configuring Partition Groups](partition-groups#configuring-partition-groups)
+  * [Group Discovery](partition-groups#group-discovery)
   * [The Management Group](partition-groups#the-management-group)
   * [Primitive Groups](partition-groups#primitive-groups)
   * [Raft Partition Groups](partition-groups#raft-partition-groups)
