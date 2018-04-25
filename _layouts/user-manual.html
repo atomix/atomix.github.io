@@ -53,6 +53,14 @@
 {% endif %}
 
   </div>
+  <div class="row">
+      <div class="col-sm-4 previous">
+          <a href="" id="previous">Previous</a>
+      </div>
+      <div class="col-sm-5 next">
+          <a href="" id="next">Next</a>
+      </div>
+  </div>
 </div>
 
 {% include footer.html %}
@@ -80,10 +88,26 @@
     $(this).attr('href', adjustHref(parent, href));
   });
 
+  var activeLink = $('#sidebar div ul li a').filter(function(){
+    return $(this).prop('href').replace(/\/$/, '').endsWith(currentPath);
+  });
+
+  var previous = activeLink.parent().prev();
+  if (previous.length > 0) {
+    $('#previous').attr('href', previous.find('a').attr('href'));
+  } else {
+    $('#previous').hide();
+  }
+
+  var next = activeLink.parent().next();
+  if (next.length > 0) {
+    $('#next').attr('href', next.find('a').attr('href'));
+  } else {
+    $('#next').hide();
+  }
+
   var allPanels = $('#sidebar > div').hide();
-  var activePanel = $('#sidebar div ul li a').filter(function(){
-    return $(this).prop('href').indexOf(currentPath) != -1;
-  }).closest('div');
+  var activePanel = activeLink.closest('div');
   activePanel.slideDown();
 
   $('#sidebar > h3').click(function() {
