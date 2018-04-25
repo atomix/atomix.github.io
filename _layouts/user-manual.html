@@ -92,6 +92,8 @@
     return $(this).prop('href').replace(/\/$/, '').endsWith(currentPath);
   });
 
+  activeLink.parent().find('ul').show();
+
   var previous = activeLink.parent().prev();
   if (previous.length > 0) {
     $('#previous').attr('href', previous.find('a').attr('href'));
