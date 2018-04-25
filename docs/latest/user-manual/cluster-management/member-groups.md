@@ -30,7 +30,7 @@ Atomix.Builder builder = Atomix.builder()
       Member.builder("member-2")
         .withType(Member.Type.EPHEMERAL)
         .withAddress("localhost:5002")
-        .withRaft("rack-2")
+        .withRack("rack-2")
         .build(),
       Member.builder("member-3")
         .withType(Member.Type.EPHEMERAL)
