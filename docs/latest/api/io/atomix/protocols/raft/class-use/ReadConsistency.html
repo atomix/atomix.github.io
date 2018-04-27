@@ -89,29 +89,15 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.protocols.raft.protocol">io.atomix.protocols.raft.protocol</a></td>
-<td class="colLast">
-<div class="block">Provides <a href="../../../../../io/atomix/protocols/raft/protocol/RaftRequest.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftRequest</code></a> and <a href="../../../../../io/atomix/protocols/raft/protocol/RaftResponse.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftResponse</code></a>
- implementations for all internal Raft protocol communication.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.proxy">io.atomix.protocols.raft.proxy</a></td>
 <td class="colLast">
 <div class="block">Provides a <a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy"><code>PartitionProxy</code></a> implementation for the Raft consensus protocol.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.session">io.atomix.protocols.raft.session</a></td>
 <td class="colLast">
 <div class="block">Provides a <a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session"><code>PrimitiveSession</code></a> implementation for the Raft consensus protocol.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.protocols.raft.storage.log.entry">io.atomix.protocols.raft.storage.log.entry</a></td>
-<td class="colLast">
-<div class="block">Provides <a href="../../../../../io/atomix/protocols/raft/storage/log/entry/RaftLogEntry.html" title="class in io.atomix.protocols.raft.storage.log.entry"><code>RaftLogEntry</code></a> implementations used internally to replicate
- state changes, sessions, and configuration changes in the cluster.</div>
 </td>
 </tr>
 </tbody>
@@ -173,57 +159,6 @@ the order they are declared.</div>
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="io.atomix.protocols.raft.protocol">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a> in <a href="../../../../../io/atomix/protocols/raft/protocol/package-summary.html">io.atomix.protocols.raft.protocol</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/protocols/raft/protocol/package-summary.html">io.atomix.protocols.raft.protocol</a> that return <a href="../../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a></code></td>
-<td class="colLast"><span class="typeNameLabel">OpenSessionRequest.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/OpenSessionRequest.html#readConsistency--">readConsistency</a></span>()</code>
-<div class="block">Returns the session read consistency level.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/protocols/raft/protocol/package-summary.html">io.atomix.protocols.raft.protocol</a> with parameters of type <a href="../../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/protocols/raft/protocol/OpenSessionRequest.Builder.html" title="class in io.atomix.protocols.raft.protocol">OpenSessionRequest.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">OpenSessionRequest.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/OpenSessionRequest.Builder.html#withReadConsistency-io.atomix.protocols.raft.ReadConsistency-">withReadConsistency</a></span>(<a href="../../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a>&nbsp;readConsistency)</code>
-<div class="block">Sets the session read consistency.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
-<caption><span>Constructors in <a href="../../../../../io/atomix/protocols/raft/protocol/package-summary.html">io.atomix.protocols.raft.protocol</a> with parameters of type <a href="../../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Constructor and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/OpenSessionRequest.html#OpenSessionRequest-java.lang.String-java.lang.String-java.lang.String-io.atomix.protocols.raft.ReadConsistency-long-long-">OpenSessionRequest</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;node,
-                  <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-                  <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;typeName,
-                  <a href="../../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a>&nbsp;readConsistency,
-                  long&nbsp;minTimeout,
-                  long&nbsp;maxTimeout)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
 <li class="blockList"><a name="io.atomix.protocols.raft.proxy">
 <!--   -->
 </a>
@@ -281,45 +216,7 @@ the order they are declared.</div>
            <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
            <a href="../../../../../io/atomix/protocols/raft/service/RaftServiceContext.html" title="class in io.atomix.protocols.raft.service">RaftServiceContext</a>&nbsp;context,
            io.atomix.protocols.raft.impl.RaftContext&nbsp;server,
-           <a href="../../../../../io/atomix/utils/concurrent/ThreadContextFactory.html" title="interface in io.atomix.utils.concurrent">ThreadContextFactory</a>&nbsp;threadContextFactory)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.protocols.raft.storage.log.entry">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a> in <a href="../../../../../io/atomix/protocols/raft/storage/log/entry/package-summary.html">io.atomix.protocols.raft.storage.log.entry</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/protocols/raft/storage/log/entry/package-summary.html">io.atomix.protocols.raft.storage.log.entry</a> that return <a href="../../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a></code></td>
-<td class="colLast"><span class="typeNameLabel">OpenSessionEntry.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/storage/log/entry/OpenSessionEntry.html#readConsistency--">readConsistency</a></span>()</code>
-<div class="block">Returns the session read consistency level.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
-<caption><span>Constructors in <a href="../../../../../io/atomix/protocols/raft/storage/log/entry/package-summary.html">io.atomix.protocols.raft.storage.log.entry</a> with parameters of type <a href="../../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Constructor and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/storage/log/entry/OpenSessionEntry.html#OpenSessionEntry-long-long-java.lang.String-java.lang.String-java.lang.String-io.atomix.protocols.raft.ReadConsistency-long-long-">OpenSessionEntry</a></span>(long&nbsp;term,
-                long&nbsp;timestamp,
-                <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId,
-                <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;serviceName,
-                <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;serviceType,
-                <a href="../../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a>&nbsp;readConsistency,
-                long&nbsp;minTimeout,
-                long&nbsp;maxTimeout)</code>&nbsp;</td>
+           io.atomix.utils.concurrent.ThreadContextFactory&nbsp;threadContextFactory)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

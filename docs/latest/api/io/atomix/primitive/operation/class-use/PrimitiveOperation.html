@@ -95,35 +95,15 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.protocols.backup.protocol">io.atomix.protocols.backup.protocol</a></td>
-<td class="colLast">
-<div class="block">Provides classes and managing cluster communication in support of a primary-backup replication protocol.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.protocols.backup.proxy">io.atomix.protocols.backup.proxy</a></td>
 <td class="colLast">
 <div class="block">Provides a <a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy"><code>PartitionProxy</code></a> implementation for primary-backup.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.protocols.raft.protocol">io.atomix.protocols.raft.protocol</a></td>
-<td class="colLast">
-<div class="block">Provides <a href="../../../../../io/atomix/protocols/raft/protocol/RaftRequest.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftRequest</code></a> and <a href="../../../../../io/atomix/protocols/raft/protocol/RaftResponse.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftResponse</code></a>
- implementations for all internal Raft protocol communication.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.service">io.atomix.protocols.raft.service</a></td>
 <td class="colLast">
 <div class="block">Provides classes for managing Raft-based primitive services.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.protocols.raft.storage.log.entry">io.atomix.protocols.raft.storage.log.entry</a></td>
-<td class="colLast">
-<div class="block">Provides <a href="../../../../../io/atomix/protocols/raft/storage/log/entry/RaftLogEntry.html" title="class in io.atomix.protocols.raft.storage.log.entry"><code>RaftLogEntry</code></a> implementations used internally to replicate
- state changes, sessions, and configuration changes in the cluster.</div>
 </td>
 </tr>
 </tbody>
@@ -178,65 +158,6 @@
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="io.atomix.protocols.backup.protocol">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a> in <a href="../../../../../io/atomix/protocols/backup/protocol/package-summary.html">io.atomix.protocols.backup.protocol</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/protocols/backup/protocol/package-summary.html">io.atomix.protocols.backup.protocol</a> that return <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ExecuteOperation.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/protocol/ExecuteOperation.html#operation--">operation</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ExecuteRequest.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/protocol/ExecuteRequest.html#operation--">operation</a></span>()</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/protocols/backup/protocol/package-summary.html">io.atomix.protocols.backup.protocol</a> with parameters of type <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../../io/atomix/protocols/backup/protocol/ExecuteRequest.html" title="class in io.atomix.protocols.backup.protocol">ExecuteRequest</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ExecuteRequest.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/protocol/ExecuteRequest.html#request-io.atomix.protocols.backup.protocol.PrimitiveDescriptor-long-io.atomix.cluster.MemberId-io.atomix.primitive.operation.PrimitiveOperation-">request</a></span>(<a href="../../../../../io/atomix/protocols/backup/protocol/PrimitiveDescriptor.html" title="class in io.atomix.protocols.backup.protocol">PrimitiveDescriptor</a>&nbsp;primitive,
-       long&nbsp;session,
-       <a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;node,
-       <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a>&nbsp;operation)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
-<caption><span>Constructors in <a href="../../../../../io/atomix/protocols/backup/protocol/package-summary.html">io.atomix.protocols.backup.protocol</a> with parameters of type <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Constructor and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/protocol/ExecuteOperation.html#ExecuteOperation-long-long-long-io.atomix.cluster.MemberId-io.atomix.primitive.operation.PrimitiveOperation-">ExecuteOperation</a></span>(long&nbsp;index,
-                long&nbsp;timestamp,
-                long&nbsp;session,
-                <a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;node,
-                <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a>&nbsp;operation)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/protocol/ExecuteRequest.html#ExecuteRequest-io.atomix.protocols.backup.protocol.PrimitiveDescriptor-long-io.atomix.cluster.MemberId-io.atomix.primitive.operation.PrimitiveOperation-">ExecuteRequest</a></span>(<a href="../../../../../io/atomix/protocols/backup/protocol/PrimitiveDescriptor.html" title="class in io.atomix.protocols.backup.protocol">PrimitiveDescriptor</a>&nbsp;primitive,
-              long&nbsp;session,
-              <a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;node,
-              <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a>&nbsp;operation)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
 <li class="blockList"><a name="io.atomix.protocols.backup.proxy">
 <!--   -->
 </a>
@@ -251,60 +172,6 @@
 <tr class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;byte[]&gt;</code></td>
 <td class="colLast"><span class="typeNameLabel">PrimaryBackupProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/proxy/PrimaryBackupProxy.html#execute-io.atomix.primitive.operation.PrimitiveOperation-">execute</a></span>(<a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a>&nbsp;operation)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.protocols.raft.protocol">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a> in <a href="../../../../../io/atomix/protocols/raft/protocol/package-summary.html">io.atomix.protocols.raft.protocol</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/protocols/raft/protocol/package-summary.html">io.atomix.protocols.raft.protocol</a> that return <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a></code></td>
-<td class="colLast"><span class="typeNameLabel">OperationRequest.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/OperationRequest.html#operation--">operation</a></span>()</code>
-<div class="block">Returns the operation.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/protocols/raft/protocol/package-summary.html">io.atomix.protocols.raft.protocol</a> with parameters of type <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/protocols/raft/protocol/OperationRequest.Builder.html" title="type parameter in OperationRequest.Builder">T</a></code></td>
-<td class="colLast"><span class="typeNameLabel">OperationRequest.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/OperationRequest.Builder.html#withOperation-io.atomix.primitive.operation.PrimitiveOperation-">withOperation</a></span>(<a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a>&nbsp;operation)</code>
-<div class="block">Sets the request operation.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
-<caption><span>Constructors in <a href="../../../../../io/atomix/protocols/raft/protocol/package-summary.html">io.atomix.protocols.raft.protocol</a> with parameters of type <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Constructor and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/CommandRequest.html#CommandRequest-long-long-io.atomix.primitive.operation.PrimitiveOperation-">CommandRequest</a></span>(long&nbsp;session,
-              long&nbsp;sequence,
-              <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a>&nbsp;operation)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/QueryRequest.html#QueryRequest-long-long-io.atomix.primitive.operation.PrimitiveOperation-long-">QueryRequest</a></span>(long&nbsp;session,
-            long&nbsp;sequence,
-            <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a>&nbsp;operation,
-            long&nbsp;index)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -339,55 +206,6 @@
             <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a>&nbsp;operation)</code>
 <div class="block">Executes the given query on the state machine.</div>
 </td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.protocols.raft.storage.log.entry">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a> in <a href="../../../../../io/atomix/protocols/raft/storage/log/entry/package-summary.html">io.atomix.protocols.raft.storage.log.entry</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/protocols/raft/storage/log/entry/package-summary.html">io.atomix.protocols.raft.storage.log.entry</a> that return <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a></code></td>
-<td class="colLast"><span class="typeNameLabel">OperationEntry.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/storage/log/entry/OperationEntry.html#operation--">operation</a></span>()</code>
-<div class="block">Returns the entry operation.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
-<caption><span>Constructors in <a href="../../../../../io/atomix/protocols/raft/storage/log/entry/package-summary.html">io.atomix.protocols.raft.storage.log.entry</a> with parameters of type <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Constructor and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/storage/log/entry/CommandEntry.html#CommandEntry-long-long-long-long-io.atomix.primitive.operation.PrimitiveOperation-">CommandEntry</a></span>(long&nbsp;term,
-            long&nbsp;timestamp,
-            long&nbsp;session,
-            long&nbsp;sequence,
-            <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a>&nbsp;operation)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/storage/log/entry/OperationEntry.html#OperationEntry-long-long-long-long-io.atomix.primitive.operation.PrimitiveOperation-">OperationEntry</a></span>(long&nbsp;term,
-              long&nbsp;timestamp,
-              long&nbsp;session,
-              long&nbsp;sequence,
-              <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a>&nbsp;operation)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/storage/log/entry/QueryEntry.html#QueryEntry-long-long-long-long-io.atomix.primitive.operation.PrimitiveOperation-">QueryEntry</a></span>(long&nbsp;term,
-          long&nbsp;timestamp,
-          long&nbsp;session,
-          long&nbsp;sequence,
-          <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a>&nbsp;operation)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

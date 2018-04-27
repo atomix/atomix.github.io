@@ -204,19 +204,12 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.protocols.raft.protocol">io.atomix.protocols.raft.protocol</a></td>
-<td class="colLast">
-<div class="block">Provides <a href="../../../../io/atomix/protocols/raft/protocol/RaftRequest.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftRequest</code></a> and <a href="../../../../io/atomix/protocols/raft/protocol/RaftResponse.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftResponse</code></a>
- implementations for all internal Raft protocol communication.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.service">io.atomix.protocols.raft.service</a></td>
 <td class="colLast">
 <div class="block">Provides classes for managing Raft-based primitive services.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.session">io.atomix.protocols.raft.session</a></td>
 <td class="colLast">
 <div class="block">Provides a <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session"><code>PrimitiveSession</code></a> implementation for the Raft consensus protocol.</div>
@@ -1077,11 +1070,11 @@
                   <a href="../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId,
                   <a href="../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
                   <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
-                  <a href="../../../../io/atomix/protocols/backup/protocol/PrimitiveDescriptor.html" title="class in io.atomix.protocols.backup.protocol">PrimitiveDescriptor</a>&nbsp;descriptor,
+                  io.atomix.protocols.backup.protocol.PrimitiveDescriptor&nbsp;descriptor,
                   <a href="../../../../io/atomix/cluster/ClusterMembershipService.html" title="interface in io.atomix.cluster">ClusterMembershipService</a>&nbsp;clusterMembershipService,
-                  <a href="../../../../io/atomix/protocols/backup/protocol/PrimaryBackupClientProtocol.html" title="interface in io.atomix.protocols.backup.protocol">PrimaryBackupClientProtocol</a>&nbsp;protocol,
+                  io.atomix.protocols.backup.protocol.PrimaryBackupClientProtocol&nbsp;protocol,
                   <a href="../../../../io/atomix/primitive/partition/PrimaryElection.html" title="interface in io.atomix.primitive.partition">PrimaryElection</a>&nbsp;primaryElection,
-                  <a href="../../../../io/atomix/utils/concurrent/ThreadContext.html" title="interface in io.atomix.utils.concurrent">ThreadContext</a>&nbsp;threadContext)</code>&nbsp;</td>
+                  io.atomix.utils.concurrent.ThreadContext&nbsp;threadContext)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -1130,26 +1123,6 @@
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="io.atomix.protocols.raft.protocol">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a> in <a href="../../../../io/atomix/protocols/raft/protocol/package-summary.html">io.atomix.protocols.raft.protocol</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../io/atomix/protocols/raft/protocol/package-summary.html">io.atomix.protocols.raft.protocol</a> with parameters of type <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/protocol/OpenSessionRequest.Builder.html" title="class in io.atomix.protocols.raft.protocol">OpenSessionRequest.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">OpenSessionRequest.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/protocol/OpenSessionRequest.Builder.html#withServiceType-io.atomix.primitive.PrimitiveType-">withServiceType</a></span>(<a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType)</code>
-<div class="block">Sets the service type name.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
 <li class="blockList"><a name="io.atomix.protocols.raft.service">
 <!--   -->
 </a>
@@ -1179,7 +1152,7 @@
                   <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
                   <a href="../../../../io/atomix/primitive/service/PrimitiveService.html" title="interface in io.atomix.primitive.service">PrimitiveService</a>&nbsp;service,
                   io.atomix.protocols.raft.impl.RaftContext&nbsp;raft,
-                  <a href="../../../../io/atomix/utils/concurrent/ThreadContextFactory.html" title="interface in io.atomix.utils.concurrent">ThreadContextFactory</a>&nbsp;threadContextFactory)</code>&nbsp;</td>
+                  io.atomix.utils.concurrent.ThreadContextFactory&nbsp;threadContextFactory)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -1219,7 +1192,7 @@
            <a href="../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
            <a href="../../../../io/atomix/protocols/raft/service/RaftServiceContext.html" title="class in io.atomix.protocols.raft.service">RaftServiceContext</a>&nbsp;context,
            io.atomix.protocols.raft.impl.RaftContext&nbsp;server,
-           <a href="../../../../io/atomix/utils/concurrent/ThreadContextFactory.html" title="interface in io.atomix.utils.concurrent">ThreadContextFactory</a>&nbsp;threadContextFactory)</code>&nbsp;</td>
+           io.atomix.utils.concurrent.ThreadContextFactory&nbsp;threadContextFactory)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

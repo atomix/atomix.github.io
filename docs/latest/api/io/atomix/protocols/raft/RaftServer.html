@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../io/atomix/protocols/raft/RaftPerformanceTest.TestMember.html" title="class in io.atomix.protocols.raft"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/protocols/raft/RaftMetadataClient.html" title="interface in io.atomix.protocols.raft"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../io/atomix/protocols/raft/RaftServer.Builder.html" title="class in io.atomix.protocols.raft"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -106,7 +106,7 @@ var activeTableTab = "activeTableTab";
  <p>
  To create a new server, use the server <a href="../../../../io/atomix/protocols/raft/RaftServer.Builder.html" title="class in io.atomix.protocols.raft"><code>RaftServer.Builder</code></a>. Servers require
  cluster membership information in order to perform communication. Each server must be provided a local <a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster"><code>MemberId</code></a>
- to which to bind the internal <a href="../../../../io/atomix/protocols/raft/protocol/RaftServerProtocol.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftServerProtocol</code></a> and a set of addresses
+ to which to bind the internal <code>RaftServerProtocol</code> and a set of addresses
  for other members in the cluster.
  <h2>State machines</h2>
  Underlying each server is a <a href="../../../../io/atomix/primitive/service/PrimitiveService.html" title="interface in io.atomix.primitive.service"><code>PrimitiveService</code></a>. The state machine is responsible for maintaining the state with
@@ -126,12 +126,12 @@ var activeTableTab = "activeTableTab";
  Server state machines are responsible for registering <a href="../../../../io/atomix/primitive/operation/OperationType.html#COMMAND"><code>OperationType.COMMAND</code></a>s which can be
  submitted to the cluster. Raft relies upon determinism to ensure consistency throughout the cluster, so <em>it is
  imperative that each server in a cluster have the same state machine with the same commands.</em> State machines are
- provided to the server as a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function"><code>factory</code></a> to allow servers to <a href="../../../../io/atomix/protocols/raft/cluster/RaftMember.html#promote-io.atomix.protocols.raft.cluster.RaftMember.Type-"><code>transition</code></a>
+ provided to the server as a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function"><code>factory</code></a> to allow servers to <code>transition</code>
  between stateful and stateless states.
  <h2>Storage</h2>
  As <a href="../../../../io/atomix/primitive/operation/OperationType.html#COMMAND"><code>OperationType.COMMAND</code></a>s are received by the server, they're written to the Raft
- <a href="../../../../io/atomix/protocols/raft/storage/log/RaftLog.html" title="class in io.atomix.protocols.raft.storage.log"><code>RaftLog</code></a> and replicated to other members
- of the cluster. By default, the log is stored on disk, but users can override the default <a href="../../../../io/atomix/protocols/raft/storage/RaftStorage.html" title="class in io.atomix.protocols.raft.storage"><code>RaftStorage</code></a> configuration
+ <code>RaftLog</code> and replicated to other members
+ of the cluster. By default, the log is stored on disk, but users can override the default <code>RaftStorage</code> configuration
  via <a href="../../../../io/atomix/protocols/raft/RaftServer.Builder.html#withStorage-io.atomix.protocols.raft.storage.RaftStorage-"><code>RaftServer.Builder.withStorage(RaftStorage)</code></a>. Most notably, to configure the storage module to store entries in
  memory instead of disk, configure the <a href="../../../../io/atomix/storage/StorageLevel.html" title="enum in io.atomix.storage"><code>StorageLevel</code></a>.
  <pre>
@@ -146,7 +146,7 @@ var activeTableTab = "activeTableTab";
  </code>
  </pre>
  Servers use the <code>Storage</code> object to manage the storage of cluster configurations, voting information, and
- state machine snapshots in addition to logs. See the <a href="../../../../io/atomix/protocols/raft/storage/RaftStorage.html" title="class in io.atomix.protocols.raft.storage"><code>RaftStorage</code></a> documentation for more information.
+ state machine snapshots in addition to logs. See the <code>RaftStorage</code> documentation for more information.
  <h2>Bootstrapping the cluster</h2>
  Once a server has been built, it must either be <a href="../../../../io/atomix/protocols/raft/RaftServer.html#bootstrap--"><code>bootstrapped</code></a> to form a new cluster or
  <a href="../../../../io/atomix/protocols/raft/RaftServer.html#join-io.atomix.cluster.MemberId...-"><code>joined</code></a> to an existing cluster. The simplest way to bootstrap a new cluster is to bootstrap
@@ -203,7 +203,7 @@ var activeTableTab = "activeTableTab";
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../io/atomix/primitive/service/PrimitiveService.html" title="interface in io.atomix.primitive.service"><code>PrimitiveService</code></a>, 
-<a href="../../../../io/atomix/protocols/raft/storage/RaftStorage.html" title="class in io.atomix.protocols.raft.storage"><code>RaftStorage</code></a></dd>
+<code>RaftStorage</code></dd>
 </dl>
 </li>
 </ul>
@@ -287,7 +287,7 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/cluster/RaftCluster.html" title="interface in io.atomix.protocols.raft.cluster">RaftCluster</a></code></td>
+<td class="colFirst"><code>io.atomix.protocols.raft.cluster.RaftCluster</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftServer.html#cluster--">cluster</a></span>()</code>
 <div class="block">Returns the server's cluster configuration.</div>
 </td>
@@ -429,9 +429,9 @@ var activeTableTab = "activeTableTab";
 <div class="block">Returns the server name.
  <p>
  The server name is provided to the server via the <a href="../../../../io/atomix/protocols/raft/RaftServer.Builder.html#withName-java.lang.String-"><code>builder configuration</code></a>.
- The name is used internally to manage the server's on-disk state. <a href="../../../../io/atomix/protocols/raft/storage/log/RaftLog.html" title="class in io.atomix.protocols.raft.storage.log"><code>Log</code></a>,
- <a href="../../../../io/atomix/protocols/raft/storage/snapshot/SnapshotStore.html" title="class in io.atomix.protocols.raft.storage.snapshot"><code>snapshot</code></a>,
- and <a href="../../../../io/atomix/protocols/raft/storage/system/MetaStore.html" title="class in io.atomix.protocols.raft.storage.system"><code>configuration</code></a> files stored on disk use
+ The name is used internally to manage the server's on-disk state. <code>Log</code>,
+ <code>snapshot</code>,
+ and <code>configuration</code> files stored on disk use
  the server name as the prefix.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -445,16 +445,16 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>cluster</h4>
-<pre><a href="../../../../io/atomix/protocols/raft/cluster/RaftCluster.html" title="interface in io.atomix.protocols.raft.cluster">RaftCluster</a>&nbsp;cluster()</pre>
+<pre>io.atomix.protocols.raft.cluster.RaftCluster&nbsp;cluster()</pre>
 <div class="block">Returns the server's cluster configuration.
  <p>
- The <a href="../../../../io/atomix/protocols/raft/cluster/RaftCluster.html" title="interface in io.atomix.protocols.raft.cluster"><code>RaftCluster</code></a> is representative of the server's current view of the cluster configuration. The first time
+ The <code>RaftCluster</code> is representative of the server's current view of the cluster configuration. The first time
  the server is <a href="../../../../io/atomix/protocols/raft/RaftServer.html#bootstrap--"><code>started</code></a>, the cluster configuration will be initialized using the <a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster"><code>MemberId</code></a>
  list provided to the server <a href="../../../../io/atomix/protocols/raft/RaftServer.html#builder-io.atomix.cluster.MemberId-"><code>builder</code></a>. For <a href="../../../../io/atomix/storage/StorageLevel.html#DISK"><code>persistent</code></a>
  servers, subsequent starts will result in the last known cluster configuration being loaded from disk.
  <p>
- The returned <a href="../../../../io/atomix/protocols/raft/cluster/RaftCluster.html" title="interface in io.atomix.protocols.raft.cluster"><code>RaftCluster</code></a> can be used to modify the state of the cluster to which this server belongs. Note,
- however, that users need not explicitly <a href="../../../../io/atomix/protocols/raft/cluster/RaftCluster.html#join-io.atomix.cluster.MemberId...-"><code>join</code></a> or <a href="../../../../io/atomix/protocols/raft/cluster/RaftCluster.html#leave--"><code>leave</code></a> the
+ The returned <code>RaftCluster</code> can be used to modify the state of the cluster to which this server belongs. Note,
+ however, that users need not explicitly <code>join</code> or <code>leave</code> the
  cluster since starting and stopping the server results in joining and leaving the cluster respectively.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -667,7 +667,7 @@ var activeTableTab = "activeTableTab";
  <p>
  In order to preserve safety during configuration changes, Raft leaders do not allow concurrent configuration
  changes. In the event that an existing configuration change (a server joining or leaving the cluster or a
- member being <a href="../../../../io/atomix/protocols/raft/cluster/RaftMember.html#promote--"><code>promoted</code></a> or <a href="../../../../io/atomix/protocols/raft/cluster/RaftMember.html#demote--"><code>demoted</code></a>) is under way, the local
+ member being <code>promoted</code> or <code>demoted</code>) is under way, the local
  server will retry attempts to join the cluster until successful. If the server fails to reach the leader,
  the join will be retried until successful.</div>
 <dl>
@@ -707,7 +707,7 @@ var activeTableTab = "activeTableTab";
  <p>
  In order to preserve safety during configuration changes, Raft leaders do not allow concurrent configuration
  changes. In the event that an existing configuration change (a server joining or leaving the cluster or a
- member being <a href="../../../../io/atomix/protocols/raft/cluster/RaftMember.html#promote--"><code>promoted</code></a> or <a href="../../../../io/atomix/protocols/raft/cluster/RaftMember.html#demote--"><code>demoted</code></a>) is under way, the local
+ member being <code>promoted</code> or <code>demoted</code>) is under way, the local
  server will retry attempts to join the cluster until successful. If the server fails to reach the leader,
  the join will be retried until successful.</div>
 <dl>
@@ -834,7 +834,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../io/atomix/protocols/raft/RaftPerformanceTest.TestMember.html" title="class in io.atomix.protocols.raft"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/protocols/raft/RaftMetadataClient.html" title="interface in io.atomix.protocols.raft"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../io/atomix/protocols/raft/RaftServer.Builder.html" title="class in io.atomix.protocols.raft"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

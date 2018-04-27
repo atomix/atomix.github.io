@@ -101,19 +101,6 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.protocols.raft">io.atomix.protocols.raft</a></td>
-<td class="colLast">
-<div class="block">Provides classes and interfaces for managing Raft clients and servers.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.protocols.raft.protocol">io.atomix.protocols.raft.protocol</a></td>
-<td class="colLast">
-<div class="block">Provides <a href="../../../../../io/atomix/protocols/raft/protocol/RaftRequest.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftRequest</code></a> and <a href="../../../../../io/atomix/protocols/raft/protocol/RaftResponse.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftResponse</code></a>
- implementations for all internal Raft protocol communication.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.service">io.atomix.protocols.raft.service</a></td>
 <td class="colLast">
 <div class="block">Provides classes for managing Raft-based primitive services.</div>
@@ -123,30 +110,6 @@
 <td class="colFirst"><a href="#io.atomix.protocols.raft.session">io.atomix.protocols.raft.session</a></td>
 <td class="colLast">
 <div class="block">Provides a <a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session"><code>PrimitiveSession</code></a> implementation for the Raft consensus protocol.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.protocols.raft.storage">io.atomix.protocols.raft.storage</a></td>
-<td class="colLast">
-<div class="block">Provides various classes and interfaces for storing logs and snapshots in the Raft consensus protocol.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.protocols.raft.storage.log">io.atomix.protocols.raft.storage.log</a></td>
-<td class="colLast">
-<div class="block">Provides a standalone segmented log for use in the Raft consensus protocol implementation.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.protocols.raft.storage.system">io.atomix.protocols.raft.storage.system</a></td>
-<td class="colLast">
-<div class="block">Provides classes and interfaces that aid in storing and loading persistent cluster and server configurations.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.storage.journal">io.atomix.storage.journal</a></td>
-<td class="colLast">
-<div class="block">Provides a low-level journal abstraction for appending to logs and managing segmented logs.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -237,76 +200,6 @@
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="io.atomix.protocols.raft">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a> in <a href="../../../../../io/atomix/protocols/raft/package-summary.html">io.atomix.protocols.raft</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/protocols/raft/package-summary.html">io.atomix.protocols.raft</a> that return <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RaftPerformanceTest.PerformanceService.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftPerformanceTest.PerformanceService.html#serializer--">serializer</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RaftFuzzTest.FuzzStateMachine.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftFuzzTest.FuzzStateMachine.html#serializer--">serializer</a></span>()</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.protocols.raft.protocol">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a> in <a href="../../../../../io/atomix/protocols/raft/protocol/package-summary.html">io.atomix.protocols.raft.protocol</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
-<caption><span>Constructors in <a href="../../../../../io/atomix/protocols/raft/protocol/package-summary.html">io.atomix.protocols.raft.protocol</a> with parameters of type <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Constructor and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftClientProtocol.html#LocalRaftClientProtocol-io.atomix.cluster.MemberId-io.atomix.utils.serializer.Serializer-java.util.Map-java.util.Map-">LocalRaftClientProtocol</a></span>(<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId,
-                       <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
-                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftServerProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftServerProtocol</a>&gt;&nbsp;servers,
-                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftClientProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftClientProtocol</a>&gt;&nbsp;clients)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftProtocol.html#LocalRaftProtocol-io.atomix.utils.serializer.Serializer-java.util.Map-java.util.Map-">LocalRaftProtocol</a></span>(<a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
-                 <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftServerProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftServerProtocol</a>&gt;&nbsp;servers,
-                 <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftClientProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftClientProtocol</a>&gt;&nbsp;clients)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftProtocolFactory.html#LocalRaftProtocolFactory-io.atomix.utils.serializer.Serializer-">LocalRaftProtocolFactory</a></span>(<a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftServerProtocol.html#LocalRaftServerProtocol-io.atomix.cluster.MemberId-io.atomix.utils.serializer.Serializer-java.util.Map-java.util.Map-">LocalRaftServerProtocol</a></span>(<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId,
-                       <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
-                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftServerProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftServerProtocol</a>&gt;&nbsp;servers,
-                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftClientProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftClientProtocol</a>&gt;&nbsp;clients)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftClientMessagingProtocol.html#RaftClientMessagingProtocol-io.atomix.messaging.MessagingService-io.atomix.utils.serializer.Serializer-java.util.function.Function-">RaftClientMessagingProtocol</a></span>(<a href="../../../../../io/atomix/messaging/MessagingService.html" title="interface in io.atomix.messaging">MessagingService</a>&nbsp;messagingService,
-                           <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
-                           <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&gt;&nbsp;addressProvider)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftMessagingProtocol.html#RaftMessagingProtocol-io.atomix.messaging.MessagingService-io.atomix.utils.serializer.Serializer-java.util.function.Function-">RaftMessagingProtocol</a></span>(<a href="../../../../../io/atomix/messaging/MessagingService.html" title="interface in io.atomix.messaging">MessagingService</a>&nbsp;messagingService,
-                     <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
-                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&gt;&nbsp;addressProvider)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftServerMessagingProtocol.html#RaftServerMessagingProtocol-io.atomix.messaging.MessagingService-io.atomix.utils.serializer.Serializer-java.util.function.Function-">RaftServerMessagingProtocol</a></span>(<a href="../../../../../io/atomix/messaging/MessagingService.html" title="interface in io.atomix.messaging">MessagingService</a>&nbsp;messagingService,
-                           <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
-                           <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&gt;&nbsp;addressProvider)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
 <li class="blockList"><a name="io.atomix.protocols.raft.service">
 <!--   -->
 </a>
@@ -347,136 +240,7 @@
            <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
            <a href="../../../../../io/atomix/protocols/raft/service/RaftServiceContext.html" title="class in io.atomix.protocols.raft.service">RaftServiceContext</a>&nbsp;context,
            io.atomix.protocols.raft.impl.RaftContext&nbsp;server,
-           <a href="../../../../../io/atomix/utils/concurrent/ThreadContextFactory.html" title="interface in io.atomix.utils.concurrent">ThreadContextFactory</a>&nbsp;threadContextFactory)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.protocols.raft.storage">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a> in <a href="../../../../../io/atomix/protocols/raft/storage/package-summary.html">io.atomix.protocols.raft.storage</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/protocols/raft/storage/package-summary.html">io.atomix.protocols.raft.storage</a> that return <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RaftStorage.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/storage/RaftStorage.html#serializer--">serializer</a></span>()</code>
-<div class="block">Returns the storage serializer.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/protocols/raft/storage/package-summary.html">io.atomix.protocols.raft.storage</a> with parameters of type <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/protocols/raft/storage/RaftStorage.Builder.html" title="class in io.atomix.protocols.raft.storage">RaftStorage.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RaftStorage.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/storage/RaftStorage.Builder.html#withSerializer-io.atomix.utils.serializer.Serializer-">withSerializer</a></span>(<a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer)</code>
-<div class="block">Sets the storage serializer.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.protocols.raft.storage.log">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a> in <a href="../../../../../io/atomix/protocols/raft/storage/log/package-summary.html">io.atomix.protocols.raft.storage.log</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/protocols/raft/storage/log/package-summary.html">io.atomix.protocols.raft.storage.log</a> with parameters of type <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/protocols/raft/storage/log/RaftLog.Builder.html" title="class in io.atomix.protocols.raft.storage.log">RaftLog.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RaftLog.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/storage/log/RaftLog.Builder.html#withSerializer-io.atomix.utils.serializer.Serializer-">withSerializer</a></span>(<a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer)</code>
-<div class="block">Sets the journal serializer, returning the builder for method chaining.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.protocols.raft.storage.system">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a> in <a href="../../../../../io/atomix/protocols/raft/storage/system/package-summary.html">io.atomix.protocols.raft.storage.system</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
-<caption><span>Constructors in <a href="../../../../../io/atomix/protocols/raft/storage/system/package-summary.html">io.atomix.protocols.raft.storage.system</a> with parameters of type <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Constructor and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/storage/system/MetaStore.html#MetaStore-io.atomix.protocols.raft.storage.RaftStorage-io.atomix.utils.serializer.Serializer-">MetaStore</a></span>(<a href="../../../../../io/atomix/protocols/raft/storage/RaftStorage.html" title="class in io.atomix.protocols.raft.storage">RaftStorage</a>&nbsp;storage,
-         <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.storage.journal">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a> in <a href="../../../../../io/atomix/storage/journal/package-summary.html">io.atomix.storage.journal</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/storage/journal/package-summary.html">io.atomix.storage.journal</a> with parameters of type <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/storage/journal/SegmentedJournal.Builder.html" title="class in io.atomix.storage.journal">SegmentedJournal.Builder</a>&lt;<a href="../../../../../io/atomix/storage/journal/SegmentedJournal.Builder.html" title="type parameter in SegmentedJournal.Builder">E</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">SegmentedJournal.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/storage/journal/SegmentedJournal.Builder.html#withSerializer-io.atomix.utils.serializer.Serializer-">withSerializer</a></span>(<a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer)</code>
-<div class="block">Sets the journal serializer, returning the builder for method chaining.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
-<caption><span>Constructors in <a href="../../../../../io/atomix/storage/journal/package-summary.html">io.atomix.storage.journal</a> with parameters of type <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Constructor and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/storage/journal/JournalSegment.html#JournalSegment-io.atomix.storage.journal.JournalSegmentFile-io.atomix.storage.journal.JournalSegmentDescriptor-double-int-io.atomix.utils.serializer.Serializer-">JournalSegment</a></span>(<a href="../../../../../io/atomix/storage/journal/JournalSegmentFile.html" title="class in io.atomix.storage.journal">JournalSegmentFile</a>&nbsp;file,
-              <a href="../../../../../io/atomix/storage/journal/JournalSegmentDescriptor.html" title="class in io.atomix.storage.journal">JournalSegmentDescriptor</a>&nbsp;descriptor,
-              double&nbsp;indexDensity,
-              int&nbsp;cacheSize,
-              <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/storage/journal/JournalSegmentReader.html#JournalSegmentReader-io.atomix.storage.journal.JournalSegmentDescriptor-io.atomix.storage.journal.JournalSegmentCache-io.atomix.storage.journal.index.JournalIndex-io.atomix.utils.serializer.Serializer-">JournalSegmentReader</a></span>(<a href="../../../../../io/atomix/storage/journal/JournalSegmentDescriptor.html" title="class in io.atomix.storage.journal">JournalSegmentDescriptor</a>&nbsp;descriptor,
-                    io.atomix.storage.journal.JournalSegmentCache&nbsp;cache,
-                    <a href="../../../../../io/atomix/storage/journal/index/JournalIndex.html" title="interface in io.atomix.storage.journal.index">JournalIndex</a>&nbsp;index,
-                    <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/storage/journal/JournalSegmentWriter.html#JournalSegmentWriter-io.atomix.storage.journal.JournalSegmentDescriptor-io.atomix.storage.journal.JournalSegmentCache-io.atomix.storage.journal.index.JournalIndex-io.atomix.utils.serializer.Serializer-">JournalSegmentWriter</a></span>(<a href="../../../../../io/atomix/storage/journal/JournalSegmentDescriptor.html" title="class in io.atomix.storage.journal">JournalSegmentDescriptor</a>&nbsp;descriptor,
-                    io.atomix.storage.journal.JournalSegmentCache&nbsp;cache,
-                    <a href="../../../../../io/atomix/storage/journal/index/JournalIndex.html" title="interface in io.atomix.storage.journal.index">JournalIndex</a>&nbsp;index,
-                    <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/storage/journal/SegmentedJournal.html#SegmentedJournal-java.lang.String-io.atomix.storage.StorageLevel-java.io.File-io.atomix.utils.serializer.Serializer-int-int-double-int-">SegmentedJournal</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-                <a href="../../../../../io/atomix/storage/StorageLevel.html" title="enum in io.atomix.storage">StorageLevel</a>&nbsp;storageLevel,
-                <a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a>&nbsp;directory,
-                <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
-                int&nbsp;maxSegmentSize,
-                int&nbsp;maxEntriesPerSegment,
-                double&nbsp;indexDensity,
-                int&nbsp;cacheSize)</code>&nbsp;</td>
+           io.atomix.utils.concurrent.ThreadContextFactory&nbsp;threadContextFactory)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

@@ -95,22 +95,9 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.protocols.backup.protocol">io.atomix.protocols.backup.protocol</a></td>
-<td class="colLast">
-<div class="block">Provides classes and managing cluster communication in support of a primary-backup replication protocol.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.protocols.backup.proxy">io.atomix.protocols.backup.proxy</a></td>
 <td class="colLast">
 <div class="block">Provides a <a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy"><code>PartitionProxy</code></a> implementation for primary-backup.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.protocols.raft.protocol">io.atomix.protocols.raft.protocol</a></td>
-<td class="colLast">
-<div class="block">Provides <a href="../../../../../io/atomix/protocols/raft/protocol/RaftRequest.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftRequest</code></a> and <a href="../../../../../io/atomix/protocols/raft/protocol/RaftResponse.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftResponse</code></a>
- implementations for all internal Raft protocol communication.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -191,42 +178,6 @@
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="io.atomix.protocols.backup.protocol">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a> in <a href="../../../../../io/atomix/protocols/backup/protocol/package-summary.html">io.atomix.protocols.backup.protocol</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/protocols/backup/protocol/package-summary.html">io.atomix.protocols.backup.protocol</a> with parameters of type <a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">PrimaryBackupServerProtocol.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/protocol/PrimaryBackupServerProtocol.html#event-io.atomix.cluster.MemberId-io.atomix.primitive.session.SessionId-io.atomix.primitive.event.PrimitiveEvent-">event</a></span>(<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId,
-     <a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;session,
-     <a href="../../../../../io/atomix/primitive/event/PrimitiveEvent.html" title="class in io.atomix.primitive.event">PrimitiveEvent</a>&nbsp;event)</code>
-<div class="block">Sends a primitive event to the given node.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">PrimaryBackupClientProtocol.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/protocol/PrimaryBackupClientProtocol.html#registerEventListener-io.atomix.primitive.session.SessionId-java.util.function.Consumer-java.util.concurrent.Executor-">registerEventListener</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
-                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/primitive/event/PrimitiveEvent.html" title="class in io.atomix.primitive.event">PrimitiveEvent</a>&gt;&nbsp;listener,
-                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html?is-external=true" title="class or interface in java.util.concurrent">Executor</a>&nbsp;executor)</code>
-<div class="block">Registers a publish request listener.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">PrimaryBackupClientProtocol.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/protocol/PrimaryBackupClientProtocol.html#unregisterEventListener-io.atomix.primitive.session.SessionId-">unregisterEventListener</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId)</code>
-<div class="block">Unregisters the publish request listener for the given session.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
 <li class="blockList"><a name="io.atomix.protocols.backup.proxy">
 <!--   -->
 </a>
@@ -255,93 +206,11 @@
                   <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId,
                   <a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
                   <a href="../../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
-                  <a href="../../../../../io/atomix/protocols/backup/protocol/PrimitiveDescriptor.html" title="class in io.atomix.protocols.backup.protocol">PrimitiveDescriptor</a>&nbsp;descriptor,
+                  io.atomix.protocols.backup.protocol.PrimitiveDescriptor&nbsp;descriptor,
                   <a href="../../../../../io/atomix/cluster/ClusterMembershipService.html" title="interface in io.atomix.cluster">ClusterMembershipService</a>&nbsp;clusterMembershipService,
-                  <a href="../../../../../io/atomix/protocols/backup/protocol/PrimaryBackupClientProtocol.html" title="interface in io.atomix.protocols.backup.protocol">PrimaryBackupClientProtocol</a>&nbsp;protocol,
+                  io.atomix.protocols.backup.protocol.PrimaryBackupClientProtocol&nbsp;protocol,
                   <a href="../../../../../io/atomix/primitive/partition/PrimaryElection.html" title="interface in io.atomix.primitive.partition">PrimaryElection</a>&nbsp;primaryElection,
-                  <a href="../../../../../io/atomix/utils/concurrent/ThreadContext.html" title="interface in io.atomix.utils.concurrent">ThreadContext</a>&nbsp;threadContext)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.protocols.raft.protocol">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a> in <a href="../../../../../io/atomix/protocols/raft/protocol/package-summary.html">io.atomix.protocols.raft.protocol</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/protocols/raft/protocol/package-summary.html">io.atomix.protocols.raft.protocol</a> with parameters of type <a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">LocalRaftClientProtocol.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftClientProtocol.html#registerPublishListener-io.atomix.primitive.session.SessionId-java.util.function.Consumer-java.util.concurrent.Executor-">registerPublishListener</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
-                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/protocols/raft/protocol/PublishRequest.html" title="class in io.atomix.protocols.raft.protocol">PublishRequest</a>&gt;&nbsp;listener,
-                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html?is-external=true" title="class or interface in java.util.concurrent">Executor</a>&nbsp;executor)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">RaftClientMessagingProtocol.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftClientMessagingProtocol.html#registerPublishListener-io.atomix.primitive.session.SessionId-java.util.function.Consumer-java.util.concurrent.Executor-">registerPublishListener</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
-                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/protocols/raft/protocol/PublishRequest.html" title="class in io.atomix.protocols.raft.protocol">PublishRequest</a>&gt;&nbsp;listener,
-                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html?is-external=true" title="class or interface in java.util.concurrent">Executor</a>&nbsp;executor)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">RaftClientProtocol.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftClientProtocol.html#registerPublishListener-io.atomix.primitive.session.SessionId-java.util.function.Consumer-java.util.concurrent.Executor-">registerPublishListener</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
-                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/protocols/raft/protocol/PublishRequest.html" title="class in io.atomix.protocols.raft.protocol">PublishRequest</a>&gt;&nbsp;listener,
-                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html?is-external=true" title="class or interface in java.util.concurrent">Executor</a>&nbsp;executor)</code>
-<div class="block">Registers a publish request listener.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">RaftServerMessagingProtocol.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftServerMessagingProtocol.html#registerResetListener-io.atomix.primitive.session.SessionId-java.util.function.Consumer-java.util.concurrent.Executor-">registerResetListener</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
-                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/protocols/raft/protocol/ResetRequest.html" title="class in io.atomix.protocols.raft.protocol">ResetRequest</a>&gt;&nbsp;listener,
-                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html?is-external=true" title="class or interface in java.util.concurrent">Executor</a>&nbsp;executor)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">LocalRaftServerProtocol.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftServerProtocol.html#registerResetListener-io.atomix.primitive.session.SessionId-java.util.function.Consumer-java.util.concurrent.Executor-">registerResetListener</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
-                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/protocols/raft/protocol/ResetRequest.html" title="class in io.atomix.protocols.raft.protocol">ResetRequest</a>&gt;&nbsp;listener,
-                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html?is-external=true" title="class or interface in java.util.concurrent">Executor</a>&nbsp;executor)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">RaftServerProtocol.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftServerProtocol.html#registerResetListener-io.atomix.primitive.session.SessionId-java.util.function.Consumer-java.util.concurrent.Executor-">registerResetListener</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
-                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/protocols/raft/protocol/ResetRequest.html" title="class in io.atomix.protocols.raft.protocol">ResetRequest</a>&gt;&nbsp;listener,
-                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html?is-external=true" title="class or interface in java.util.concurrent">Executor</a>&nbsp;executor)</code>
-<div class="block">Registers a reset request listener.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">LocalRaftClientProtocol.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftClientProtocol.html#unregisterPublishListener-io.atomix.primitive.session.SessionId-">unregisterPublishListener</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">RaftClientMessagingProtocol.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftClientMessagingProtocol.html#unregisterPublishListener-io.atomix.primitive.session.SessionId-">unregisterPublishListener</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">RaftClientProtocol.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftClientProtocol.html#unregisterPublishListener-io.atomix.primitive.session.SessionId-">unregisterPublishListener</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId)</code>
-<div class="block">Unregisters the publish request listener for the given session.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">RaftServerMessagingProtocol.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftServerMessagingProtocol.html#unregisterResetListener-io.atomix.primitive.session.SessionId-">unregisterResetListener</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">LocalRaftServerProtocol.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftServerProtocol.html#unregisterResetListener-io.atomix.primitive.session.SessionId-">unregisterResetListener</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">RaftServerProtocol.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftServerProtocol.html#unregisterResetListener-io.atomix.primitive.session.SessionId-">unregisterResetListener</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId)</code>
-<div class="block">Unregisters the given reset request listener.</div>
-</td>
+                  io.atomix.utils.concurrent.ThreadContext&nbsp;threadContext)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -402,7 +271,7 @@
            <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
            <a href="../../../../../io/atomix/protocols/raft/service/RaftServiceContext.html" title="class in io.atomix.protocols.raft.service">RaftServiceContext</a>&nbsp;context,
            io.atomix.protocols.raft.impl.RaftContext&nbsp;server,
-           <a href="../../../../../io/atomix/utils/concurrent/ThreadContextFactory.html" title="interface in io.atomix.utils.concurrent">ThreadContextFactory</a>&nbsp;threadContextFactory)</code>&nbsp;</td>
+           io.atomix.utils.concurrent.ThreadContextFactory&nbsp;threadContextFactory)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

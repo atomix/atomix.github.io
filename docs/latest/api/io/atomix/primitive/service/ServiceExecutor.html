@@ -101,12 +101,12 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Superinterfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html?is-external=true" title="class or interface in java.util.concurrent">Executor</a>, <a href="../../../../io/atomix/utils/concurrent/Scheduler.html" title="interface in io.atomix.utils.concurrent">Scheduler</a>, <a href="../../../../io/atomix/utils/concurrent/ThreadContext.html" title="interface in io.atomix.utils.concurrent">ThreadContext</a></dd>
+<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html?is-external=true" title="class or interface in java.util.concurrent">Executor</a>, io.atomix.utils.concurrent.Scheduler, io.atomix.utils.concurrent.ThreadContext</dd>
 </dl>
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">ServiceExecutor</span>
-extends <a href="../../../../io/atomix/utils/concurrent/ThreadContext.html" title="interface in io.atomix.utils.concurrent">ThreadContext</a></pre>
+extends io.atomix.utils.concurrent.ThreadContext</pre>
 <div class="block">Facilitates registration and execution of state machine commands and provides deterministic scheduling.
  <p>
  The state machine executor is responsible for managing input to and output from a <a href="../../../../io/atomix/primitive/service/PrimitiveService.html" title="interface in io.atomix.primitive.service"><code>PrimitiveService</code></a>.
@@ -220,8 +220,8 @@ extends <a href="../../../../io/atomix/utils/concurrent/ThreadContext.html" titl
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.utils.concurrent.ThreadContext">
 <!--   -->
 </a>
-<h3>Methods inherited from interface&nbsp;io.atomix.utils.concurrent.<a href="../../../../io/atomix/utils/concurrent/ThreadContext.html" title="interface in io.atomix.utils.concurrent">ThreadContext</a></h3>
-<code><a href="../../../../io/atomix/utils/concurrent/ThreadContext.html#checkThread--">checkThread</a>, <a href="../../../../io/atomix/utils/concurrent/ThreadContext.html#currentContext--">currentContext</a>, <a href="../../../../io/atomix/utils/concurrent/ThreadContext.html#currentContextOrThrow--">currentContextOrThrow</a>, <a href="../../../../io/atomix/utils/concurrent/ThreadContext.html#isCurrentContext--">isCurrentContext</a></code></li>
+<h3>Methods inherited from interface&nbsp;io.atomix.utils.concurrent.ThreadContext</h3>
+<code>checkThread, currentContext, currentContextOrThrow, isCurrentContext</code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.util.concurrent.Executor">
@@ -234,8 +234,8 @@ extends <a href="../../../../io/atomix/utils/concurrent/ThreadContext.html" titl
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.utils.concurrent.Scheduler">
 <!--   -->
 </a>
-<h3>Methods inherited from interface&nbsp;io.atomix.utils.concurrent.<a href="../../../../io/atomix/utils/concurrent/Scheduler.html" title="interface in io.atomix.utils.concurrent">Scheduler</a></h3>
-<code><a href="../../../../io/atomix/utils/concurrent/Scheduler.html#schedule-java.time.Duration-java.time.Duration-java.lang.Runnable-">schedule</a>, <a href="../../../../io/atomix/utils/concurrent/Scheduler.html#schedule-java.time.Duration-java.lang.Runnable-">schedule</a>, <a href="../../../../io/atomix/utils/concurrent/Scheduler.html#schedule-long-long-java.util.concurrent.TimeUnit-java.lang.Runnable-">schedule</a>, <a href="../../../../io/atomix/utils/concurrent/Scheduler.html#schedule-long-java.util.concurrent.TimeUnit-java.lang.Runnable-">schedule</a></code></li>
+<h3>Methods inherited from interface&nbsp;io.atomix.utils.concurrent.Scheduler</h3>
+<code>schedule, schedule, schedule, schedule</code></li>
 </ul>
 </li>
 </ul>
@@ -378,13 +378,13 @@ extends <a href="../../../../io/atomix/utils/concurrent/ThreadContext.html" titl
 <li class="blockList">
 <h4>close</h4>
 <pre>default&nbsp;void&nbsp;close()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/utils/concurrent/ThreadContext.html#close--">ThreadContext</a></code></span></div>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code>io.atomix.utils.concurrent.ThreadContext</code></span></div>
 <div class="block">Closes the context.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true#close--" title="class or interface in java.lang">close</a></code>&nbsp;in interface&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/AutoCloseable.html?is-external=true" title="class or interface in java.lang">AutoCloseable</a></code></dd>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../io/atomix/utils/concurrent/ThreadContext.html#close--">close</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/utils/concurrent/ThreadContext.html" title="interface in io.atomix.utils.concurrent">ThreadContext</a></code></dd>
+<dd><code>close</code>&nbsp;in interface&nbsp;<code>io.atomix.utils.concurrent.ThreadContext</code></dd>
 </dl>
 </li>
 </ul>

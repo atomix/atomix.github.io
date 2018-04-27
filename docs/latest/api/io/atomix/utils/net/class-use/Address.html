@@ -107,19 +107,6 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.protocols.raft.protocol">io.atomix.protocols.raft.protocol</a></td>
-<td class="colLast">
-<div class="block">Provides <a href="../../../../../io/atomix/protocols/raft/protocol/RaftRequest.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftRequest</code></a> and <a href="../../../../../io/atomix/protocols/raft/protocol/RaftResponse.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftResponse</code></a>
- implementations for all internal Raft protocol communication.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.rest">io.atomix.rest</a></td>
-<td class="colLast">
-<div class="block">Provides interfaces for managing REST services.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.utils.net">io.atomix.utils.net</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for representing and operating on IP addresses.</div>
@@ -358,69 +345,6 @@
 <td class="colLast"><span class="typeNameLabel">MessagingService.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/messaging/MessagingService.html#registerHandler-java.lang.String-java.util.function.BiFunction-">registerHandler</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;type,
                <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html?is-external=true" title="class or interface in java.util.function">BiFunction</a>&lt;<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>,byte[],<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;byte[]&gt;&gt;&nbsp;handler)</code>
 <div class="block">Registers a new message handler for message type.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.protocols.raft.protocol">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a> in <a href="../../../../../io/atomix/protocols/raft/protocol/package-summary.html">io.atomix.protocols.raft.protocol</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
-<caption><span>Constructor parameters in <a href="../../../../../io/atomix/protocols/raft/protocol/package-summary.html">io.atomix.protocols.raft.protocol</a> with type arguments of type <a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Constructor and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftClientMessagingProtocol.html#RaftClientMessagingProtocol-io.atomix.messaging.MessagingService-io.atomix.utils.serializer.Serializer-java.util.function.Function-">RaftClientMessagingProtocol</a></span>(<a href="../../../../../io/atomix/messaging/MessagingService.html" title="interface in io.atomix.messaging">MessagingService</a>&nbsp;messagingService,
-                           <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
-                           <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&gt;&nbsp;addressProvider)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftMessagingProtocol.html#RaftMessagingProtocol-io.atomix.messaging.MessagingService-io.atomix.utils.serializer.Serializer-java.util.function.Function-">RaftMessagingProtocol</a></span>(<a href="../../../../../io/atomix/messaging/MessagingService.html" title="interface in io.atomix.messaging">MessagingService</a>&nbsp;messagingService,
-                     <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
-                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&gt;&nbsp;addressProvider)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftServerMessagingProtocol.html#RaftServerMessagingProtocol-io.atomix.messaging.MessagingService-io.atomix.utils.serializer.Serializer-java.util.function.Function-">RaftServerMessagingProtocol</a></span>(<a href="../../../../../io/atomix/messaging/MessagingService.html" title="interface in io.atomix.messaging">MessagingService</a>&nbsp;messagingService,
-                           <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
-                           <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&gt;&nbsp;addressProvider)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.rest">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a> in <a href="../../../../../io/atomix/rest/package-summary.html">io.atomix.rest</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/rest/package-summary.html">io.atomix.rest</a> that return <a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RestService.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/rest/RestService.html#address--">address</a></span>()</code>
-<div class="block">Returns the REST service address.</div>
-</td>
-</tr>
-</tbody>
-</table>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/rest/package-summary.html">io.atomix.rest</a> with parameters of type <a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/rest/RestService.Builder.html" title="class in io.atomix.rest">RestService.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RestService.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/rest/RestService.Builder.html#withAddress-io.atomix.utils.net.Address-">withAddress</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>
-<div class="block">Sets the REST service address.</div>
 </td>
 </tr>
 </tbody>
