@@ -114,14 +114,14 @@ var activeTableTab = "activeTableTab";
  <p>
  When implemented by a <a href="../../../../io/atomix/primitive/service/PrimitiveService.html" title="interface in io.atomix.primitive.service"><code>StateMachine</code></a>, this interface provides
  support to state machines for reacting to changes in the sessions connected to the cluster. State machines
- can react to clients <a href="../../../../io/atomix/primitive/session/SessionListener.html#onOpen-io.atomix.primitive.session.Session-"><code>registering</code></a> and <a href="../../../../io/atomix/primitive/session/SessionListener.html#onClose-io.atomix.primitive.session.Session-"><code>unregistering</code></a>
- sessions and servers <a href="../../../../io/atomix/primitive/session/SessionListener.html#onExpire-io.atomix.primitive.session.Session-"><code>expiring</code></a> sessions.
+ can react to clients <a href="../../../../io/atomix/primitive/session/SessionListener.html#onOpen-io.atomix.primitive.session.PrimitiveSession-"><code>registering</code></a> and <a href="../../../../io/atomix/primitive/session/SessionListener.html#onClose-io.atomix.primitive.session.PrimitiveSession-"><code>unregistering</code></a>
+ sessions and servers <a href="../../../../io/atomix/primitive/session/SessionListener.html#onExpire-io.atomix.primitive.session.PrimitiveSession-"><code>expiring</code></a> sessions.
  <p>
- <a href="../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session"><code>Session</code></a>s represent a single client's open connection to a cluster. Within the context of a session,
+ <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session"><code>PrimitiveSession</code></a>s represent a single client's open connection to a cluster. Within the context of a session,
  Raft provides additional guarantees for clients like linearizability for writes and sequential consistency
  for reads. Additionally, state machines can push messages to specific clients via sessions. Typically, all
  state machines that rely on session-based messaging should implement this interface to track when a session
- is <a href="../../../../io/atomix/primitive/session/SessionListener.html#onClose-io.atomix.primitive.session.Session-"><code>closed</code></a>.</div>
+ is <a href="../../../../io/atomix/primitive/session/SessionListener.html#onClose-io.atomix.primitive.session.PrimitiveSession-"><code>closed</code></a>.</div>
 </li>
 </ul>
 </div>
@@ -142,19 +142,19 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/SessionListener.html#onClose-io.atomix.primitive.session.Session-">onClose</a></span>(<a href="../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a>&nbsp;session)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/SessionListener.html#onClose-io.atomix.primitive.session.PrimitiveSession-">onClose</a></span>(<a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a>&nbsp;session)</code>
 <div class="block">Called when a session was closed by the client.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/SessionListener.html#onExpire-io.atomix.primitive.session.Session-">onExpire</a></span>(<a href="../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a>&nbsp;session)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/SessionListener.html#onExpire-io.atomix.primitive.session.PrimitiveSession-">onExpire</a></span>(<a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a>&nbsp;session)</code>
 <div class="block">Called when a session is expired by the system.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/SessionListener.html#onOpen-io.atomix.primitive.session.Session-">onOpen</a></span>(<a href="../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a>&nbsp;session)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/SessionListener.html#onOpen-io.atomix.primitive.session.PrimitiveSession-">onOpen</a></span>(<a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a>&nbsp;session)</code>
 <div class="block">Called when a new session is registered.</div>
 </td>
 </tr>
@@ -173,18 +173,18 @@ var activeTableTab = "activeTableTab";
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="onOpen-io.atomix.primitive.session.Session-">
+<a name="onOpen-io.atomix.primitive.session.PrimitiveSession-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>onOpen</h4>
-<pre>void&nbsp;onOpen(<a href="../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a>&nbsp;session)</pre>
+<pre>void&nbsp;onOpen(<a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a>&nbsp;session)</pre>
 <div class="block">Called when a new session is registered.
  <p>
  A session is registered when a new client connects to the cluster or an existing client recovers its
  session after being partitioned from the cluster. It's important to note that when this method is called,
- the <a href="../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session"><code>Session</code></a> is <em>not yet open</em> and so events cannot be <a href="../../../../io/atomix/primitive/session/Session.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>published</code></a>
+ the <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session"><code>PrimitiveSession</code></a> is <em>not yet open</em> and so events cannot be <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>published</code></a>
  to the registered session. This is because clients cannot reliably track messages pushed from server state machines
  to the client until the session has been fully registered. Session event messages may still be published to
  other already-registered sessions in reaction to a session being registered.
@@ -203,52 +203,52 @@ var activeTableTab = "activeTableTab";
  be sent the next time an operation is applied to the state machine.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>session</code> - The session that was registered. State machines <em>cannot</em> <a href="../../../../io/atomix/primitive/session/Session.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>Session.publish(PrimitiveEvent)</code></a> session
+<dd><code>session</code> - The session that was registered. State machines <em>cannot</em> <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>PrimitiveSession.publish(PrimitiveEvent)</code></a> session
                 events to this session.</dd>
 </dl>
 </li>
 </ul>
-<a name="onExpire-io.atomix.primitive.session.Session-">
+<a name="onExpire-io.atomix.primitive.session.PrimitiveSession-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>onExpire</h4>
-<pre>void&nbsp;onExpire(<a href="../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a>&nbsp;session)</pre>
+<pre>void&nbsp;onExpire(<a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a>&nbsp;session)</pre>
 <div class="block">Called when a session is expired by the system.
  <p>
  This method is called when a client fails to keep its session alive with the cluster. If the leader hasn't heard
  from a client for a configurable time interval, the leader will expire the session to free the related memory.
- This method will always be called for a given session before <a href="../../../../io/atomix/primitive/session/SessionListener.html#onClose-io.atomix.primitive.session.Session-"><code>onClose(Session)</code></a>, and <a href="../../../../io/atomix/primitive/session/SessionListener.html#onClose-io.atomix.primitive.session.Session-"><code>onClose(Session)</code></a>
+ This method will always be called for a given session before <a href="../../../../io/atomix/primitive/session/SessionListener.html#onClose-io.atomix.primitive.session.PrimitiveSession-"><code>onClose(PrimitiveSession)</code></a>, and <a href="../../../../io/atomix/primitive/session/SessionListener.html#onClose-io.atomix.primitive.session.PrimitiveSession-"><code>onClose(PrimitiveSession)</code></a>
  will always be called following this method.
  <p>
- State machines are free to <a href="../../../../io/atomix/primitive/session/Session.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>Session.publish(PrimitiveEvent)</code></a> session event messages to any session except
+ State machines are free to <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>PrimitiveSession.publish(PrimitiveEvent)</code></a> session event messages to any session except
  the one that expired. Session event messages sent to the session that expired will be lost since the session is closed once this
  method call completes.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>session</code> - The session that was expired. State machines <em>cannot</em> <a href="../../../../io/atomix/primitive/session/Session.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>Session.publish(PrimitiveEvent)</code></a> session
+<dd><code>session</code> - The session that was expired. State machines <em>cannot</em> <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>PrimitiveSession.publish(PrimitiveEvent)</code></a> session
                 events to this session.</dd>
 </dl>
 </li>
 </ul>
-<a name="onClose-io.atomix.primitive.session.Session-">
+<a name="onClose-io.atomix.primitive.session.PrimitiveSession-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>onClose</h4>
-<pre>void&nbsp;onClose(<a href="../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a>&nbsp;session)</pre>
+<pre>void&nbsp;onClose(<a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a>&nbsp;session)</pre>
 <div class="block">Called when a session was closed by the client.
  <p>
  This method is called when a client explicitly closes a session.
  <p>
- State machines are free to <a href="../../../../io/atomix/primitive/session/Session.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>Session.publish(PrimitiveEvent)</code></a> session event messages to any session except
+ State machines are free to <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>PrimitiveSession.publish(PrimitiveEvent)</code></a> session event messages to any session except
  the one that was closed. Session event messages sent to the session that was closed will be lost since the session is closed once this
  method call completes.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>session</code> - The session that was closed. State machines <em>cannot</em> <a href="../../../../io/atomix/primitive/session/Session.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>Session.publish(PrimitiveEvent)</code></a> session
+<dd><code>session</code> - The session that was closed. State machines <em>cannot</em> <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>PrimitiveSession.publish(PrimitiveEvent)</code></a> session
                 events to this session.</dd>
 </dl>
 </li>

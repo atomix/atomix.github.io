@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -122,36 +122,30 @@ var activeTableTab = "activeTableTab";
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/cluster/ClusterService.html" title="interface in io.atomix.cluster">ClusterService</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionManagementService.html#getClusterService--">getClusterService</a></span>()</code>
-<div class="block">Returns the cluster service.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/cluster/messaging/ClusterMessagingService.html" title="interface in io.atomix.cluster.messaging">ClusterMessagingService</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionManagementService.html#getCommunicationService--">getCommunicationService</a></span>()</code>
-<div class="block">Returns the cluster communication service.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/partition/PrimaryElectionService.html" title="interface in io.atomix.primitive.partition">PrimaryElectionService</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionManagementService.html#getElectionService--">getElectionService</a></span>()</code>
 <div class="block">Returns the primary election service.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/cluster/ClusterMetadataService.html" title="interface in io.atomix.cluster">ClusterMetadataService</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionManagementService.html#getMetadataService--">getMetadataService</a></span>()</code>
-<div class="block">Returns the cluster metadata service.</div>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/cluster/ClusterMembershipService.html" title="interface in io.atomix.cluster">ClusterMembershipService</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionManagementService.html#getMembershipService--">getMembershipService</a></span>()</code>
+<div class="block">Returns the cluster service.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/cluster/messaging/ClusterMessagingService.html" title="interface in io.atomix.cluster.messaging">ClusterMessagingService</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionManagementService.html#getMessagingService--">getMessagingService</a></span>()</code>
+<div class="block">Returns the cluster messaging service.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/PrimitiveTypeRegistry.html" title="class in io.atomix.primitive">PrimitiveTypeRegistry</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionManagementService.html#getPrimitiveTypes--">getPrimitiveTypes</a></span>()</code>
 <div class="block">Returns the primitive type registry.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/session/SessionIdService.html" title="interface in io.atomix.primitive.session">SessionIdService</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionManagementService.html#getSessionIdService--">getSessionIdService</a></span>()</code>
 <div class="block">Returns the session ID generator service.</div>
@@ -172,27 +166,13 @@ var activeTableTab = "activeTableTab";
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="getMetadataService--">
+<a name="getMembershipService--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getMetadataService</h4>
-<pre><a href="../../../../io/atomix/cluster/ClusterMetadataService.html" title="interface in io.atomix.cluster">ClusterMetadataService</a>&nbsp;getMetadataService()</pre>
-<div class="block">Returns the cluster metadata service.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the cluster metadata service</dd>
-</dl>
-</li>
-</ul>
-<a name="getClusterService--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getClusterService</h4>
-<pre><a href="../../../../io/atomix/cluster/ClusterService.html" title="interface in io.atomix.cluster">ClusterService</a>&nbsp;getClusterService()</pre>
+<h4>getMembershipService</h4>
+<pre><a href="../../../../io/atomix/cluster/ClusterMembershipService.html" title="interface in io.atomix.cluster">ClusterMembershipService</a>&nbsp;getMembershipService()</pre>
 <div class="block">Returns the cluster service.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -200,17 +180,17 @@ var activeTableTab = "activeTableTab";
 </dl>
 </li>
 </ul>
-<a name="getCommunicationService--">
+<a name="getMessagingService--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getCommunicationService</h4>
-<pre><a href="../../../../io/atomix/cluster/messaging/ClusterMessagingService.html" title="interface in io.atomix.cluster.messaging">ClusterMessagingService</a>&nbsp;getCommunicationService()</pre>
-<div class="block">Returns the cluster communication service.</div>
+<h4>getMessagingService</h4>
+<pre><a href="../../../../io/atomix/cluster/messaging/ClusterMessagingService.html" title="interface in io.atomix.cluster.messaging">ClusterMessagingService</a>&nbsp;getMessagingService()</pre>
+<div class="block">Returns the cluster messaging service.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the cluster communication service</dd>
+<dd>the cluster messaging service</dd>
 </dl>
 </li>
 </ul>

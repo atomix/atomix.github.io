@@ -167,41 +167,40 @@
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.primitive.protocol">io.atomix.primitive.protocol</a></td>
+<td class="colLast">
+<div class="block">Provides classes and interfaces for defining and managing primitive protocols.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.primitive.proxy">io.atomix.primitive.proxy</a></td>
 <td class="colLast">
 <div class="block">Provides interfaces for operating on distributed primitive services.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.primitive.resource">io.atomix.primitive.resource</a></td>
 <td class="colLast">
 <div class="block">Provides interfaces for defining REST APIs for distributed primitives.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.primitive.service">io.atomix.primitive.service</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for defining distributed primitive state machines.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.primitive.session">io.atomix.primitive.session</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for managing primitive sessions.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.protocols.backup">io.atomix.protocols.backup</a></td>
 <td class="colLast">
 <div class="block">Provides a <a href="../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol"><code>PrimitiveProtocol</code></a> implementation for multi-primary replication and
  classes for managing primary-backup clients/servers.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.protocols.backup.partition">io.atomix.protocols.backup.partition</a></td>
-<td class="colLast">
-<div class="block">Provides <a href="../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition"><code>PartitionGroup</code></a> and <a href="../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition"><code>Partition</code></a>
- implementations for primary-backup.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -213,7 +212,7 @@
 <tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.protocols.backup.proxy">io.atomix.protocols.backup.proxy</a></td>
 <td class="colLast">
-<div class="block">Provides a <a href="../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy"><code>PrimitiveProxy</code></a> implementation for primary-backup.</div>
+<div class="block">Provides a <a href="../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy"><code>PartitionProxy</code></a> implementation for primary-backup.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -223,17 +222,16 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.protocols.raft.partition">io.atomix.protocols.raft.partition</a></td>
-<td class="colLast">
-<div class="block">Provides <a href="../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition"><code>PartitionGroup</code></a> and <a href="../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition"><code>Partition</code></a>
- implementations for the Raft consensus protocol.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.protocol">io.atomix.protocols.raft.protocol</a></td>
 <td class="colLast">
 <div class="block">Provides <a href="../../../io/atomix/protocols/raft/protocol/RaftRequest.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftRequest</code></a> and <a href="../../../io/atomix/protocols/raft/protocol/RaftResponse.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftResponse</code></a>
  implementations for all internal Raft protocol communication.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.protocols.raft.proxy">io.atomix.protocols.raft.proxy</a></td>
+<td class="colLast">
+<div class="block">Provides a <a href="../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy"><code>PartitionProxy</code></a> implementation for the Raft consensus protocol.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -245,7 +243,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.session">io.atomix.protocols.raft.session</a></td>
 <td class="colLast">
-<div class="block">Provides a <a href="../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session"><code>Session</code></a> implementation for the Raft consensus protocol.</div>
+<div class="block">Provides a <a href="../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session"><code>PrimitiveSession</code></a> implementation for the Raft consensus protocol.</div>
 </td>
 </tr>
 </tbody>
@@ -917,13 +915,25 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colOne"><a href="../../../io/atomix/primitive/class-use/PrimitiveClient.html#io.atomix.primitive.partition">PrimitiveClient</a>
-<div class="block">Primitive client.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/primitive/class-use/PrimitiveTypeRegistry.html#io.atomix.primitive.partition">PrimitiveTypeRegistry</a>
 <div class="block">Primitive registry.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.primitive.protocol">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../io/atomix/primitive/package-summary.html">io.atomix.primitive</a> used by <a href="../../../io/atomix/primitive/protocol/package-summary.html">io.atomix.primitive.protocol</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../io/atomix/primitive/class-use/PrimitiveType.html#io.atomix.primitive.protocol">PrimitiveType</a>
+<div class="block">Raft service type.</div>
 </td>
 </tr>
 </tbody>
@@ -1017,45 +1027,23 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../io/atomix/primitive/class-use/PrimitiveClient.html#io.atomix.protocols.backup">PrimitiveClient</a>
-<div class="block">Primitive client.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/primitive/class-use/PrimitiveType.html#io.atomix.protocols.backup">PrimitiveType</a>
 <div class="block">Raft service type.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/primitive/class-use/PrimitiveTypeRegistry.html#io.atomix.protocols.backup">PrimitiveTypeRegistry</a>
 <div class="block">Primitive registry.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/primitive/class-use/Recovery.html#io.atomix.protocols.backup">Recovery</a>
 <div class="block">Primitive session recovery strategy.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/primitive/class-use/Replication.html#io.atomix.protocols.backup">Replication</a>
 <div class="block">Replication strategy.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.protocols.backup.partition">
-<!--   -->
-</a>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../io/atomix/primitive/package-summary.html">io.atomix.primitive</a> used by <a href="../../../io/atomix/protocols/backup/partition/package-summary.html">io.atomix.protocols.backup.partition</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Class and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colOne"><a href="../../../io/atomix/primitive/class-use/PrimitiveClient.html#io.atomix.protocols.backup.partition">PrimitiveClient</a>
-<div class="block">Primitive client.</div>
 </td>
 </tr>
 </tbody>
@@ -1088,8 +1076,23 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colOne"><a href="../../../io/atomix/primitive/class-use/Consistency.html#io.atomix.protocols.backup.proxy">Consistency</a>
+<div class="block">Primitive consistency model.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/primitive/class-use/PrimitiveType.html#io.atomix.protocols.backup.proxy">PrimitiveType</a>
 <div class="block">Raft service type.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><a href="../../../io/atomix/primitive/class-use/Recovery.html#io.atomix.protocols.backup.proxy">Recovery</a>
+<div class="block">Primitive session recovery strategy.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../io/atomix/primitive/class-use/Replication.html#io.atomix.protocols.backup.proxy">Replication</a>
+<div class="block">Replication strategy.</div>
 </td>
 </tr>
 </tbody>
@@ -1105,45 +1108,23 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colOne"><a href="../../../io/atomix/primitive/class-use/PrimitiveClient.html#io.atomix.protocols.raft">PrimitiveClient</a>
-<div class="block">Primitive client.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/primitive/class-use/PrimitiveException.html#io.atomix.protocols.raft">PrimitiveException</a>
 <div class="block">Top level exception for Store failures.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/primitive/class-use/PrimitiveType.html#io.atomix.protocols.raft">PrimitiveType</a>
 <div class="block">Raft service type.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/primitive/class-use/PrimitiveTypeRegistry.html#io.atomix.protocols.raft">PrimitiveTypeRegistry</a>
 <div class="block">Primitive registry.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><a href="../../../io/atomix/primitive/class-use/Recovery.html#io.atomix.protocols.raft">Recovery</a>
 <div class="block">Primitive session recovery strategy.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.protocols.raft.partition">
-<!--   -->
-</a>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
-<caption><span>Classes in <a href="../../../io/atomix/primitive/package-summary.html">io.atomix.primitive</a> used by <a href="../../../io/atomix/protocols/raft/partition/package-summary.html">io.atomix.protocols.raft.partition</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Class and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colOne"><a href="../../../io/atomix/primitive/class-use/PrimitiveClient.html#io.atomix.protocols.raft.partition">PrimitiveClient</a>
-<div class="block">Primitive client.</div>
 </td>
 </tr>
 </tbody>
@@ -1161,6 +1142,23 @@
 <tr class="altColor">
 <td class="colOne"><a href="../../../io/atomix/primitive/class-use/PrimitiveType.html#io.atomix.protocols.raft.protocol">PrimitiveType</a>
 <div class="block">Raft service type.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.protocols.raft.proxy">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../io/atomix/primitive/package-summary.html">io.atomix.primitive</a> used by <a href="../../../io/atomix/protocols/raft/proxy/package-summary.html">io.atomix.protocols.raft.proxy</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../io/atomix/primitive/class-use/Recovery.html#io.atomix.protocols.raft.proxy">Recovery</a>
+<div class="block">Primitive session recovery strategy.</div>
 </td>
 </tr>
 </tbody>

@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9};
+var methods = {"i0":9,"i1":9,"i2":9};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -137,21 +137,15 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/primitive/partition/PartitionGroupFactory.html" title="interface in io.atomix.primitive.partition">PartitionGroupFactory</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionGroups.html#getGroupFactory-java.lang.String-">getGroupFactory</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;type)</code>
-<div class="block">Returns the partition group factory for the given type.</div>
+<td class="colFirst"><code>static <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/primitive/partition/PartitionGroupFactory.html" title="interface in io.atomix.primitive.partition">PartitionGroupFactory</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionGroups.html#getGroupFactories--">getGroupFactories</a></span>()</code>
+<div class="block">Returns the partition group factories.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>static <a href="../../../../io/atomix/primitive/partition/PartitionGroupFactory.html" title="interface in io.atomix.primitive.partition">PartitionGroupFactory</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionGroups.html#getPrimaryBackupGroupFactory--">getPrimaryBackupGroupFactory</a></span>()</code>
-<div class="block">Returns the primary-backup partition group factory if it's available on the class path.</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/primitive/partition/PartitionGroupFactory.html" title="interface in io.atomix.primitive.partition">PartitionGroupFactory</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionGroups.html#getRaftGroupFactory--">getRaftGroupFactory</a></span>()</code>
-<div class="block">Returns the Raft partition group factory if it's available on the class path.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionGroups.html#getGroupFactory-java.lang.String-">getGroupFactory</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;type)</code>
+<div class="block">Returns the partition group factory for the given type.</div>
 </td>
 </tr>
 </table>
@@ -208,35 +202,17 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?
 </dl>
 </li>
 </ul>
-<a name="getRaftGroupFactory--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getRaftGroupFactory</h4>
-<pre>public static&nbsp;<a href="../../../../io/atomix/primitive/partition/PartitionGroupFactory.html" title="interface in io.atomix.primitive.partition">PartitionGroupFactory</a>&nbsp;getRaftGroupFactory()</pre>
-<div class="block">Returns the Raft partition group factory if it's available on the class path.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the Raft partition group factory</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../io/atomix/utils/ConfigurationException.html" title="class in io.atomix.utils">ConfigurationException</a></code> - if the Raft partition group factory is not on the classpath</dd>
-</dl>
-</li>
-</ul>
-<a name="getPrimaryBackupGroupFactory--">
+<a name="getGroupFactories--">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>getPrimaryBackupGroupFactory</h4>
-<pre>public static&nbsp;<a href="../../../../io/atomix/primitive/partition/PartitionGroupFactory.html" title="interface in io.atomix.primitive.partition">PartitionGroupFactory</a>&nbsp;getPrimaryBackupGroupFactory()</pre>
-<div class="block">Returns the primary-backup partition group factory if it's available on the class path.</div>
+<h4>getGroupFactories</h4>
+<pre>public static&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/primitive/partition/PartitionGroupFactory.html" title="interface in io.atomix.primitive.partition">PartitionGroupFactory</a>&gt;&nbsp;getGroupFactories()</pre>
+<div class="block">Returns the partition group factories.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the primary-backup partition group factory</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="../../../../io/atomix/utils/ConfigurationException.html" title="class in io.atomix.utils">ConfigurationException</a></code> - if the primary-backup partition group factory is not on the classpath</dd>
+<dd>the partition group factories</dd>
 </dl>
 </li>
 </ul>

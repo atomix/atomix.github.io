@@ -89,12 +89,6 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.primitive.proxy">io.atomix.primitive.proxy</a></td>
-<td class="colLast">
-<div class="block">Provides interfaces for operating on distributed primitive services.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.primitive.service">io.atomix.primitive.service</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for defining distributed primitive state machines.</div>
@@ -157,6 +151,19 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PrimitiveOperation.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html#operation-io.atomix.primitive.operation.OperationId-">operation</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;id)</code>
+<div class="block">Creates a new primitive operation with a simplified identifier and a null value.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html" title="class in io.atomix.primitive.operation">PrimitiveOperation</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PrimitiveOperation.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html#operation-io.atomix.primitive.operation.OperationId-byte:A-">operation</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;id,
+         byte[]&nbsp;value)</code>
+<div class="block">Creates a new primitive operation with a simplified identifier.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a></code></td>
 <td class="colLast"><span class="typeNameLabel">OperationId.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/operation/OperationId.html#simplify-io.atomix.primitive.operation.OperationId-">simplify</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId)</code>
 <div class="block">Simplifies the given operation identifier.</div>
@@ -173,63 +180,6 @@
 <tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/operation/PrimitiveOperation.html#PrimitiveOperation-io.atomix.primitive.operation.OperationId-byte:A-">PrimitiveOperation</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;id,
                   byte[]&nbsp;value)</code>&nbsp;</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.primitive.proxy">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a> in <a href="../../../../../io/atomix/primitive/proxy/package-summary.html">io.atomix.primitive.proxy</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/primitive/proxy/package-summary.html">io.atomix.primitive.proxy</a> with parameters of type <a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;byte[]&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">PrimitiveProxyExecutor.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxyExecutor.html#execute-io.atomix.primitive.operation.OperationId-">execute</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId)</code>
-<div class="block">Executes an operation to the Raft cluster.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;byte[]&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">PrimitiveProxyExecutor.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxyExecutor.html#execute-io.atomix.primitive.operation.OperationId-byte:A-">execute</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-       byte[]&nbsp;operation)</code>
-<div class="block">Executes an operation to the Raft cluster.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">PrimitiveProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#invoke-io.atomix.primitive.operation.OperationId-">invoke</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId)</code>
-<div class="block">Submits an empty operation to the Raft cluster, awaiting a void result.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>default &lt;R&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;R&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">PrimitiveProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#invoke-io.atomix.primitive.operation.OperationId-java.util.function.Function-">invoke</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-      <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;byte[],R&gt;&nbsp;decoder)</code>
-<div class="block">Submits an empty operation to the Raft cluster.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>default &lt;T&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">PrimitiveProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#invoke-io.atomix.primitive.operation.OperationId-java.util.function.Function-T-">invoke</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-      <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;T,byte[]&gt;&nbsp;encoder,
-      T&nbsp;operation)</code>
-<div class="block">Submits an operation to the Raft cluster.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>default &lt;T,R&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;R&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">PrimitiveProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#invoke-io.atomix.primitive.operation.OperationId-java.util.function.Function-T-java.util.function.Function-">invoke</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-      <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;T,byte[]&gt;&nbsp;encoder,
-      T&nbsp;operation,
-      <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;byte[],R&gt;&nbsp;decoder)</code>
-<div class="block">Submits an operation to the Raft cluster.</div>
-</td>
 </tr>
 </tbody>
 </table>
@@ -268,35 +218,17 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>default void</code></td>
+<td class="colFirst"><code>&lt;T&gt;&nbsp;void</code></td>
 <td class="colLast"><span class="typeNameLabel">ServiceExecutor.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/service/ServiceExecutor.html#register-io.atomix.primitive.operation.OperationId-java.util.function.Consumer-">register</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&gt;&nbsp;callback)</code>
-<div class="block">Registers a operation callback.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>default &lt;T&gt;&nbsp;void</code></td>
-<td class="colLast"><span class="typeNameLabel">ServiceExecutor.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/service/ServiceExecutor.html#register-io.atomix.primitive.operation.OperationId-java.util.function.Function-java.util.function.Consumer-">register</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;byte[],T&gt;&nbsp;decoder,
         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;T&gt;&gt;&nbsp;callback)</code>
 <div class="block">Registers a operation callback.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code>default &lt;T,R&gt;&nbsp;void</code></td>
-<td class="colLast"><span class="typeNameLabel">ServiceExecutor.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/service/ServiceExecutor.html#register-io.atomix.primitive.operation.OperationId-java.util.function.Function-java.util.function.Function-java.util.function.Function-">register</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;byte[],T&gt;&nbsp;decoder,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;T&gt;,R&gt;&nbsp;callback,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;R,byte[]&gt;&nbsp;encoder)</code>
-<div class="block">Registers an operation callback.</div>
-</td>
-</tr>
 <tr class="altColor">
-<td class="colFirst"><code>default &lt;R&gt;&nbsp;void</code></td>
-<td class="colLast"><span class="typeNameLabel">ServiceExecutor.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/service/ServiceExecutor.html#register-io.atomix.primitive.operation.OperationId-java.util.function.Function-java.util.function.Function-">register</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;,R&gt;&nbsp;callback,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;R,byte[]&gt;&nbsp;encoder)</code>
-<div class="block">Registers a operation callback.</div>
+<td class="colFirst"><code>&lt;T,R&gt;&nbsp;void</code></td>
+<td class="colLast"><span class="typeNameLabel">ServiceExecutor.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/service/ServiceExecutor.html#register-io.atomix.primitive.operation.OperationId-java.util.function.Function-">register</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
+        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;T&gt;,R&gt;&nbsp;callback)</code>
+<div class="block">Registers an operation callback.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -307,10 +239,9 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>default &lt;R&gt;&nbsp;void</code></td>
-<td class="colLast"><span class="typeNameLabel">ServiceExecutor.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/service/ServiceExecutor.html#register-io.atomix.primitive.operation.OperationId-java.util.function.Supplier-java.util.function.Function-">register</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function">Supplier</a>&lt;R&gt;&nbsp;callback,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;R,byte[]&gt;&nbsp;encoder)</code>
+<td class="colFirst"><code>&lt;R&gt;&nbsp;void</code></td>
+<td class="colLast"><span class="typeNameLabel">ServiceExecutor.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/service/ServiceExecutor.html#register-io.atomix.primitive.operation.OperationId-java.util.function.Supplier-">register</a></span>(<a href="../../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
+        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function">Supplier</a>&lt;R&gt;&nbsp;callback)</code>
 <div class="block">Registers a no argument operation callback.</div>
 </td>
 </tr>

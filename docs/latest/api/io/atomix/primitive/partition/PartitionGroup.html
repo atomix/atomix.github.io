@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":18,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6};
+var methods = {"i0":6,"i1":18,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -93,12 +93,16 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">io.atomix.primitive.partition</div>
-<h2 title="Interface PartitionGroup" class="title">Interface PartitionGroup&lt;P extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a>&gt;</h2>
+<h2 title="Interface PartitionGroup" class="title">Interface PartitionGroup&lt;P extends <a href="../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition">Partition</a>&gt;</h2>
 </div>
 <div class="contentContainer">
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt>All Superinterfaces:</dt>
+<dd><a href="../../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a>&lt;<a href="../../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a>&gt;</dd>
+</dl>
 <dl>
 <dt>All Known Subinterfaces:</dt>
 <dd><a href="../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;P&gt;</dd>
@@ -109,7 +113,8 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public interface <span class="typeNameLabel">PartitionGroup&lt;P extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a>&gt;</span></pre>
+<pre>public interface <span class="typeNameLabel">PartitionGroup&lt;P extends <a href="../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition">Partition</a>&gt;</span>
+extends <a href="../../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a>&lt;<a href="../../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a>&gt;</pre>
 <div class="block">Primitive partition group.</div>
 </li>
 </ul>
@@ -135,6 +140,12 @@ var activeTableTab = "activeTableTab";
 <div class="block">Partition group builder.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static interface&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionGroup.Type.html" title="interface in io.atomix.primitive.partition">PartitionGroup.Type</a></span></code>
+<div class="block">Primitive protocol type.</div>
+</td>
+</tr>
 </table>
 </li>
 </ul>
@@ -151,13 +162,13 @@ var activeTableTab = "activeTableTab";
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition">Partition</a></code></td>
+<td class="colFirst"><code><a href="../../../../io/atomix/primitive/partition/PartitionGroup.html" title="type parameter in PartitionGroup">P</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionGroup.html#getPartition-io.atomix.primitive.partition.PartitionId-">getPartition</a></span>(<a href="../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId)</code>
 <div class="block">Returns a partition by ID.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>default <a href="../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition">Partition</a></code></td>
+<td class="colFirst"><code>default <a href="../../../../io/atomix/primitive/partition/PartitionGroup.html" title="type parameter in PartitionGroup">P</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionGroup.html#getPartition-java.lang.String-">getPartition</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
 <div class="block">Returns the partition for the given key.</div>
 </td>
@@ -169,7 +180,7 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition">Partition</a>&lt;<a href="../../../../io/atomix/primitive/partition/PartitionGroup.html" title="type parameter in PartitionGroup">P</a>&gt;&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/primitive/partition/PartitionGroup.html" title="type parameter in PartitionGroup">P</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionGroup.html#getPartitions--">getPartitions</a></span>()</code>
 <div class="block">Returns a collection of all partitions.</div>
 </td>
@@ -181,18 +192,31 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/primitive/partition/PartitionGroup.html" title="type parameter in PartitionGroup">P</a></code></td>
+<td class="colFirst"><code><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionGroup.html#newProtocol--">newProtocol</a></span>()</code>
 <div class="block">Returns a new primitive protocol.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionGroup.html#type--">type</a></span>()</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionGroup.html#protocol--">protocol</a></span>()</code>
 <div class="block">Returns the primitive protocol type supported by the partition group.</div>
 </td>
 </tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/primitive/partition/PartitionGroup.Type.html" title="interface in io.atomix.primitive.partition">PartitionGroup.Type</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PartitionGroup.html#type--">type</a></span>()</code>
+<div class="block">Returns the partition group type.</div>
+</td>
+</tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.utils.config.Configured">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;io.atomix.utils.config.<a href="../../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a></h3>
+<code><a href="../../../../io/atomix/utils/config/Configured.html#config--">config</a></code></li>
+</ul>
 </li>
 </ul>
 </li>
@@ -227,7 +251,21 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>type</h4>
-<pre><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a>&nbsp;type()</pre>
+<pre><a href="../../../../io/atomix/primitive/partition/PartitionGroup.Type.html" title="interface in io.atomix.primitive.partition">PartitionGroup.Type</a>&nbsp;type()</pre>
+<div class="block">Returns the partition group type.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the partition group type</dd>
+</dl>
+</li>
+</ul>
+<a name="protocol--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>protocol</h4>
+<pre><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a>&nbsp;protocol()</pre>
 <div class="block">Returns the primitive protocol type supported by the partition group.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -241,7 +279,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>newProtocol</h4>
-<pre><a href="../../../../io/atomix/primitive/partition/PartitionGroup.html" title="type parameter in PartitionGroup">P</a>&nbsp;newProtocol()</pre>
+<pre><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a>&nbsp;newProtocol()</pre>
 <div class="block">Returns a new primitive protocol.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -255,7 +293,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>getPartition</h4>
-<pre><a href="../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition">Partition</a>&nbsp;getPartition(<a href="../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId)</pre>
+<pre><a href="../../../../io/atomix/primitive/partition/PartitionGroup.html" title="type parameter in PartitionGroup">P</a>&nbsp;getPartition(<a href="../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId)</pre>
 <div class="block">Returns a partition by ID.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -273,7 +311,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>getPartition</h4>
-<pre>default&nbsp;<a href="../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition">Partition</a>&nbsp;getPartition(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</pre>
+<pre>default&nbsp;<a href="../../../../io/atomix/primitive/partition/PartitionGroup.html" title="type parameter in PartitionGroup">P</a>&nbsp;getPartition(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</pre>
 <div class="block">Returns the partition for the given key.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -289,7 +327,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>getPartitions</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition">Partition</a>&lt;<a href="../../../../io/atomix/primitive/partition/PartitionGroup.html" title="type parameter in PartitionGroup">P</a>&gt;&gt;&nbsp;getPartitions()</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/primitive/partition/PartitionGroup.html" title="type parameter in PartitionGroup">P</a>&gt;&nbsp;getPartitions()</pre>
 <div class="block">Returns a collection of all partitions.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>

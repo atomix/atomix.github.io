@@ -75,13 +75,13 @@ var activeTableTab = "activeTableTab";
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -103,9 +103,18 @@ var activeTableTab = "activeTableTab";
 <dt><span class="paramLabel">Type Parameters:</span></dt>
 <dd><code>K</code> - object type.</dd>
 </dl>
+<dl>
+<dt>All Known Implementing Classes:</dt>
+<dd><a href="../../../../io/atomix/primitive/partition/Murmur3Partitioner.html" title="class in io.atomix.primitive.partition">Murmur3Partitioner</a></dd>
+</dl>
+<dl>
+<dt>Functional Interface:</dt>
+<dd>This is a functional interface and can therefore be used as the assignment target for a lambda expression or method reference.</dd>
+</dl>
 <hr>
 <br>
-<pre>public interface <span class="typeNameLabel">Partitioner&lt;K&gt;</span></pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/FunctionalInterface.html?is-external=true" title="class or interface in java.lang">@FunctionalInterface</a>
+public interface <span class="typeNameLabel">Partitioner&lt;K&gt;</span></pre>
 <div class="block">Interface for mapping from an object to partition ID.</div>
 </li>
 </ul>
@@ -113,6 +122,27 @@ var activeTableTab = "activeTableTab";
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../io/atomix/primitive/partition/Partitioner.html" title="interface in io.atomix.primitive.partition">Partitioner</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/Partitioner.html#MURMUR3">MURMUR3</a></span></code>
+<div class="block">Murmur 3 partitioner.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
 <!-- ========== METHOD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="method.summary">
@@ -127,7 +157,8 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/Partitioner.html#partition-K-">partition</a></span>(<a href="../../../../io/atomix/primitive/partition/Partitioner.html" title="type parameter in Partitioner">K</a>&nbsp;object)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/Partitioner.html#partition-K-java.util.List-">partition</a></span>(<a href="../../../../io/atomix/primitive/partition/Partitioner.html" title="type parameter in Partitioner">K</a>&nbsp;key,
+         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&gt;&nbsp;partitions)</code>
 <div class="block">Returns the partition ID to which the specified object maps.</div>
 </td>
 </tr>
@@ -140,25 +171,45 @@ var activeTableTab = "activeTableTab";
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="MURMUR3">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>MURMUR3</h4>
+<pre>static final&nbsp;<a href="../../../../io/atomix/primitive/partition/Partitioner.html" title="interface in io.atomix.primitive.partition">Partitioner</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt; MURMUR3</pre>
+<div class="block">Murmur 3 partitioner.</div>
+</li>
+</ul>
+</li>
+</ul>
 <!-- ============ METHOD DETAIL ========== -->
 <ul class="blockList">
 <li class="blockList"><a name="method.detail">
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="partition-java.lang.Object-">
+<a name="partition-java.lang.Object-java.util.List-">
 <!--   -->
-</a><a name="partition-K-">
+</a><a name="partition-K-java.util.List-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>partition</h4>
-<pre><a href="../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partition(<a href="../../../../io/atomix/primitive/partition/Partitioner.html" title="type parameter in Partitioner">K</a>&nbsp;object)</pre>
+<pre><a href="../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partition(<a href="../../../../io/atomix/primitive/partition/Partitioner.html" title="type parameter in Partitioner">K</a>&nbsp;key,
+                      <a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&gt;&nbsp;partitions)</pre>
 <div class="block">Returns the partition ID to which the specified object maps.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>object</code> - object</dd>
+<dd><code>key</code> - the key to partition</dd>
+<dd><code>partitions</code> - the list of partitions</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>partition identifier</dd>
 </dl>
@@ -218,13 +269,13 @@ var activeTableTab = "activeTableTab";
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>

@@ -83,15 +83,15 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.cluster.messaging">io.atomix.cluster.messaging</a></td>
+<td class="colFirst"><a href="#io.atomix.cluster">io.atomix.cluster</a></td>
 <td class="colLast">
-<div class="block">Provides high-level interfaces for direct and publish-subscribe inter-cluster communication.</div>
+<div class="block">Provides classes and interfaces for cluster management.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.core">io.atomix.core</a></td>
+<td class="colFirst"><a href="#io.atomix.cluster.messaging">io.atomix.cluster.messaging</a></td>
 <td class="colLast">
-<div class="block">Core APIs for managing Atomix clusters and operating on distributed primitives.</div>
+<div class="block">Provides high-level interfaces for direct and publish-subscribe inter-cluster communication.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -111,6 +111,26 @@
 </li>
 <li class="blockList">
 <ul class="blockList">
+<li class="blockList"><a name="io.atomix.cluster">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/cluster/messaging/ClusterMessagingService.html" title="interface in io.atomix.cluster.messaging">ClusterMessagingService</a> in <a href="../../../../../io/atomix/cluster/package-summary.html">io.atomix.cluster</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/cluster/package-summary.html">io.atomix.cluster</a> that return <a href="../../../../../io/atomix/cluster/messaging/ClusterMessagingService.html" title="interface in io.atomix.cluster.messaging">ClusterMessagingService</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/cluster/messaging/ClusterMessagingService.html" title="interface in io.atomix.cluster.messaging">ClusterMessagingService</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AtomixCluster.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/AtomixCluster.html#messagingService--">messagingService</a></span>()</code>
+<div class="block">Returns the cluster messaging service.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
 <li class="blockList"><a name="io.atomix.cluster.messaging">
 <!--   -->
 </a>
@@ -126,26 +146,6 @@
 <td class="colFirst"><code>interface&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/messaging/ManagedClusterMessagingService.html" title="interface in io.atomix.cluster.messaging">ManagedClusterMessagingService</a></span></code>
 <div class="block">Managed cluster communicator.</div>
-</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="blockList"><a name="io.atomix.core">
-<!--   -->
-</a>
-<h3>Uses of <a href="../../../../../io/atomix/cluster/messaging/ClusterMessagingService.html" title="interface in io.atomix.cluster.messaging">ClusterMessagingService</a> in <a href="../../../../../io/atomix/core/package-summary.html">io.atomix.core</a></h3>
-<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/core/package-summary.html">io.atomix.core</a> that return <a href="../../../../../io/atomix/cluster/messaging/ClusterMessagingService.html" title="interface in io.atomix.cluster.messaging">ClusterMessagingService</a></span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Method and Description</th>
-</tr>
-<tbody>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/cluster/messaging/ClusterMessagingService.html" title="interface in io.atomix.cluster.messaging">ClusterMessagingService</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Atomix.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/Atomix.html#messagingService--">messagingService</a></span>()</code>
-<div class="block">Returns the cluster communication service.</div>
 </td>
 </tr>
 </tbody>
@@ -184,8 +184,8 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/cluster/messaging/ClusterMessagingService.html" title="interface in io.atomix.cluster.messaging">ClusterMessagingService</a></code></td>
-<td class="colLast"><span class="typeNameLabel">PartitionManagementService.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/partition/PartitionManagementService.html#getCommunicationService--">getCommunicationService</a></span>()</code>
-<div class="block">Returns the cluster communication service.</div>
+<td class="colLast"><span class="typeNameLabel">PartitionManagementService.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/partition/PartitionManagementService.html#getMessagingService--">getMessagingService</a></span>()</code>
+<div class="block">Returns the cluster messaging service.</div>
 </td>
 </tr>
 </tbody>

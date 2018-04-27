@@ -112,13 +112,13 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RaftClient.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.html#builder-java.util.Collection-">builder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&gt;&nbsp;cluster)</code>
+<td class="colLast"><span class="typeNameLabel">RaftClient.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.html#builder-java.util.Collection-">builder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&gt;&nbsp;cluster)</code>
 <div class="block">Returns a new Raft client builder.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RaftClient.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.html#builder-io.atomix.cluster.NodeId...-">builder</a></span>(<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>...&nbsp;cluster)</code>
+<td class="colLast"><span class="typeNameLabel">RaftClient.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.html#builder-io.atomix.cluster.MemberId...-">builder</a></span>(<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>...&nbsp;cluster)</code>
 <div class="block">Returns a new Raft client builder.</div>
 </td>
 </tr>
@@ -132,7 +132,7 @@
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RaftClient.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.html#newBuilder-java.util.Collection-">newBuilder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&gt;&nbsp;cluster)</code>
+<td class="colLast"><span class="typeNameLabel">RaftClient.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.html#newBuilder-java.util.Collection-">newBuilder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&gt;&nbsp;cluster)</code>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
 <div class="block"><span class="deprecationComment">since 2.1</span></div>
 </div>
@@ -140,7 +140,7 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RaftClient.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.html#newBuilder-io.atomix.cluster.NodeId...-">newBuilder</a></span>(<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>...&nbsp;cluster)</code>
+<td class="colLast"><span class="typeNameLabel">RaftClient.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.html#newBuilder-io.atomix.cluster.MemberId...-">newBuilder</a></span>(<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>...&nbsp;cluster)</code>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
 <div class="block"><span class="deprecationComment">since 2.1</span></div>
 </div>
@@ -154,23 +154,29 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RaftClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html#withNodeId-io.atomix.cluster.NodeId-">withNodeId</a></span>(<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;nodeId)</code>
+<td class="colLast"><span class="typeNameLabel">RaftClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html#withMemberId-io.atomix.cluster.MemberId-">withMemberId</a></span>(<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId)</code>
 <div class="block">Sets the local node identifier.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">RaftClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html#withPartitionId-io.atomix.primitive.partition.PartitionId-">withPartitionId</a></span>(<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId)</code>
+<div class="block">Sets the partition identifier.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">RaftClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html#withProtocol-io.atomix.protocols.raft.protocol.RaftClientProtocol-">withProtocol</a></span>(<a href="../../../../../io/atomix/protocols/raft/protocol/RaftClientProtocol.html" title="interface in io.atomix.protocols.raft.protocol">RaftClientProtocol</a>&nbsp;protocol)</code>
 <div class="block">Sets the client protocol.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">RaftClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html#withThreadModel-io.atomix.utils.concurrent.ThreadModel-">withThreadModel</a></span>(<a href="../../../../../io/atomix/utils/concurrent/ThreadModel.html" title="enum in io.atomix.utils.concurrent">ThreadModel</a>&nbsp;threadModel)</code>
 <div class="block">Sets the client thread model.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">RaftClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html#withThreadPoolSize-int-">withThreadPoolSize</a></span>(int&nbsp;threadPoolSize)</code>
 <div class="block">Sets the client thread pool size.</div>

@@ -100,6 +100,18 @@
 <div class="block">Provides classes and interfaces for managing primitive sessions.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.protocols.backup.proxy">io.atomix.protocols.backup.proxy</a></td>
+<td class="colLast">
+<div class="block">Provides a <a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy"><code>PartitionProxy</code></a> implementation for primary-backup.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.protocols.raft.session">io.atomix.protocols.raft.session</a></td>
+<td class="colLast">
+<div class="block">Provides a <a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session"><code>PrimitiveSession</code></a> implementation for the Raft consensus protocol.</div>
+</td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -118,17 +130,23 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a></code></td>
+<td class="colLast"><span class="typeNameLabel">EventType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/event/EventType.html#canonical-io.atomix.primitive.event.EventType-">canonical</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType)</code>
+<div class="block">Simplifies the given event type.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>default <a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a></code></td>
+<td class="colLast"><span class="typeNameLabel">EventType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/event/EventType.html#canonicalize--">canonicalize</a></span>()</code>
+<div class="block">Returns an identical event type in canonical form.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a></code></td>
 <td class="colLast"><span class="typeNameLabel">EventType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/event/EventType.html#from-java.lang.String-">from</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Creates a new Raft event identifier.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a></code></td>
-<td class="colLast"><span class="typeNameLabel">EventType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/event/EventType.html#simplify-io.atomix.primitive.event.EventType-">simplify</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType)</code>
-<div class="block">Simplifies the given event type.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a></code></td>
 <td class="colLast"><span class="typeNameLabel">PrimitiveEvent.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/event/PrimitiveEvent.html#type--">type</a></span>()</code>
 <div class="block">Returns the event type identifier.</div>
@@ -145,8 +163,21 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a></code></td>
-<td class="colLast"><span class="typeNameLabel">EventType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/event/EventType.html#simplify-io.atomix.primitive.event.EventType-">simplify</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType)</code>
+<td class="colLast"><span class="typeNameLabel">EventType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/event/EventType.html#canonical-io.atomix.primitive.event.EventType-">canonical</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType)</code>
 <div class="block">Simplifies the given event type.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../../io/atomix/primitive/event/PrimitiveEvent.html" title="class in io.atomix.primitive.event">PrimitiveEvent</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PrimitiveEvent.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/event/PrimitiveEvent.html#event-io.atomix.primitive.event.EventType-">event</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType)</code>
+<div class="block">Creates a new primitive event.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../../io/atomix/primitive/event/PrimitiveEvent.html" title="class in io.atomix.primitive.event">PrimitiveEvent</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PrimitiveEvent.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/event/PrimitiveEvent.html#event-io.atomix.primitive.event.EventType-byte:A-">event</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
+     byte[]&nbsp;value)</code>
+<div class="block">Creates a new primitive event.</div>
 </td>
 </tr>
 </tbody>
@@ -177,38 +208,16 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">PrimitiveProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#addEventListener-io.atomix.primitive.event.EventType-java.util.function.Consumer-">addEventListener</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
-                <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;byte[]&gt;&nbsp;listener)</code>
-<div class="block">Adds a session event listener.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>&lt;T&gt;&nbsp;void</code></td>
-<td class="colLast"><span class="typeNameLabel">PrimitiveProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#addEventListener-io.atomix.primitive.event.EventType-java.util.function.Function-java.util.function.Consumer-">addEventListener</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
-                <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;byte[],T&gt;&nbsp;decoder,
-                <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;T&gt;&nbsp;listener)</code>
+<td class="colLast"><span class="typeNameLabel">PartitionProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html#addEventListener-io.atomix.primitive.event.EventType-java.util.function.Consumer-">addEventListener</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
+                <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/primitive/event/PrimitiveEvent.html" title="class in io.atomix.primitive.event">PrimitiveEvent</a>&gt;&nbsp;listener)</code>
 <div class="block">Adds an event listener.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">PrimitiveProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#addEventListener-io.atomix.primitive.event.EventType-java.lang.Runnable-">addEventListener</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
-                <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a>&nbsp;listener)</code>
-<div class="block">Adds an empty session event listener.</div>
-</td>
-</tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">PrimitiveProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#removeEventListener-io.atomix.primitive.event.EventType-java.util.function.Consumer-">removeEventListener</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
-                   <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&nbsp;listener)</code>
-<div class="block">Removes a session event listener.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><span class="typeNameLabel">PrimitiveProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#removeEventListener-io.atomix.primitive.event.EventType-java.lang.Runnable-">removeEventListener</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
-                   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a>&nbsp;listener)</code>
-<div class="block">Removes an empty session event listener.</div>
+<td class="colLast"><span class="typeNameLabel">PartitionProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html#removeEventListener-io.atomix.primitive.event.EventType-java.util.function.Consumer-">removeEventListener</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
+                   <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/primitive/event/PrimitiveEvent.html" title="class in io.atomix.primitive.event">PrimitiveEvent</a>&gt;&nbsp;listener)</code>
+<div class="block">Removes an event listener.</div>
 </td>
 </tr>
 </tbody>
@@ -227,24 +236,59 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>default void</code></td>
-<td class="colLast"><span class="typeNameLabel">Session.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/session/Session.html#publish-io.atomix.primitive.event.EventType-">publish</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType)</code>
+<td class="colLast"><span class="typeNameLabel">PrimitiveSession.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.EventType-">publish</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType)</code>
 <div class="block">Publishes an empty event to the session.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>default void</code></td>
-<td class="colLast"><span class="typeNameLabel">Session.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/session/Session.html#publish-io.atomix.primitive.event.EventType-byte:A-">publish</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
-       byte[]&nbsp;event)</code>
-<div class="block">Publishes an event to the session.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>default &lt;T&gt;&nbsp;void</code></td>
-<td class="colLast"><span class="typeNameLabel">Session.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/session/Session.html#publish-io.atomix.primitive.event.EventType-java.util.function.Function-T-">publish</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
-       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;T,byte[]&gt;&nbsp;encoder,
+<td class="colFirst"><code>&lt;T&gt;&nbsp;void</code></td>
+<td class="colLast"><span class="typeNameLabel">PrimitiveSession.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.EventType-T-">publish</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
        T&nbsp;event)</code>
 <div class="block">Publishes an event to the session.</div>
 </td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.protocols.backup.proxy">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a> in <a href="../../../../../io/atomix/protocols/backup/proxy/package-summary.html">io.atomix.protocols.backup.proxy</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/protocols/backup/proxy/package-summary.html">io.atomix.protocols.backup.proxy</a> with parameters of type <a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">PrimaryBackupProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/proxy/PrimaryBackupProxy.html#addEventListener-io.atomix.primitive.event.EventType-java.util.function.Consumer-">addEventListener</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
+                <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/primitive/event/PrimitiveEvent.html" title="class in io.atomix.primitive.event">PrimitiveEvent</a>&gt;&nbsp;listener)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><span class="typeNameLabel">PrimaryBackupProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/proxy/PrimaryBackupProxy.html#removeEventListener-io.atomix.primitive.event.EventType-java.util.function.Consumer-">removeEventListener</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
+                   <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../../io/atomix/primitive/event/PrimitiveEvent.html" title="class in io.atomix.primitive.event">PrimitiveEvent</a>&gt;&nbsp;listener)</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.protocols.raft.session">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a> in <a href="../../../../../io/atomix/protocols/raft/session/package-summary.html">io.atomix.protocols.raft.session</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/protocols/raft/session/package-summary.html">io.atomix.protocols.raft.session</a> with parameters of type <a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;void</code></td>
+<td class="colLast"><span class="typeNameLabel">RaftSession.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#publish-io.atomix.primitive.event.EventType-T-">publish</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
+       T&nbsp;event)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

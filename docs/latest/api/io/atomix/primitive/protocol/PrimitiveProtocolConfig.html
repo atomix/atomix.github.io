@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
+var methods = {"i0":10,"i1":6,"i2":10};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -109,17 +109,17 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../../io/atomix/utils/Config.html" title="interface in io.atomix.utils">Config</a></dd>
+<dd><a href="../../../../io/atomix/utils/config/Config.html" title="interface in io.atomix.utils.config">Config</a></dd>
 </dl>
 <dl>
 <dt>Direct Known Subclasses:</dt>
-<dd><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolConfig</a>, <a href="../../../../io/atomix/protocols/raft/RaftProtocolConfig.html" title="class in io.atomix.protocols.raft">RaftProtocolConfig</a></dd>
+<dd><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolConfig</a>, <a href="../../../../io/atomix/protocols/raft/MultiRaftProtocolConfig.html" title="class in io.atomix.protocols.raft">MultiRaftProtocolConfig</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public abstract class <span class="typeNameLabel">PrimitiveProtocolConfig&lt;C extends PrimitiveProtocolConfig&lt;C&gt;&gt;</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="../../../../io/atomix/utils/Config.html" title="interface in io.atomix.utils">Config</a></pre>
+implements <a href="../../../../io/atomix/utils/config/Config.html" title="interface in io.atomix.utils.config">Config</a></pre>
 <div class="block">Primitive protocol configuration.</div>
 </li>
 </ul>
@@ -151,7 +151,7 @@ implements <a href="../../../../io/atomix/utils/Config.html" title="interface in
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
@@ -163,6 +163,12 @@ implements <a href="../../../../io/atomix/utils/Config.html" title="interface in
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>abstract <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfig.html#getType--">getType</a></span>()</code>
+<div class="block">Returns the primitive protocol type.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfig.html" title="type parameter in PrimitiveProtocolConfig">C</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfig.html#setGroup-java.lang.String-">setGroup</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;group)</code>
 <div class="block">Sets the protocol group.</div>
@@ -207,6 +213,20 @@ implements <a href="../../../../io/atomix/utils/Config.html" title="interface in
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="getType--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getType</h4>
+<pre>public abstract&nbsp;<a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a>&nbsp;getType()</pre>
+<div class="block">Returns the primitive protocol type.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the primitive protocol type</dd>
+</dl>
+</li>
+</ul>
 <a name="getGroup--">
 <!--   -->
 </a>

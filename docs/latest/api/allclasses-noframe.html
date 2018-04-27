@@ -70,13 +70,17 @@
 <li><a href="io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a></li>
 <li><a href="io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></li>
 <li><a href="io/atomix/agent/AtomixAgent.html" title="class in io.atomix.agent">AtomixAgent</a></li>
+<li><a href="io/atomix/cluster/AtomixCluster.html" title="class in io.atomix.cluster">AtomixCluster</a></li>
+<li><a href="io/atomix/cluster/AtomixCluster.Builder.html" title="class in io.atomix.cluster">AtomixCluster.Builder</a></li>
 <li><a href="io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a></li>
 <li><a href="io/atomix/utils/AtomixIOException.html" title="class in io.atomix.utils">AtomixIOException</a></li>
 <li><a href="io/atomix/utils/AtomixRuntimeException.html" title="class in io.atomix.utils">AtomixRuntimeException</a></li>
 <li><a href="io/atomix/utils/concurrent/AtomixThread.html" title="class in io.atomix.utils.concurrent">AtomixThread</a></li>
 <li><a href="io/atomix/utils/concurrent/AtomixThreadFactory.html" title="class in io.atomix.utils.concurrent">AtomixThreadFactory</a></li>
+<li><a href="io/atomix/primitive/service/BackupInput.html" title="interface in io.atomix.primitive.service"><span class="interfaceName">BackupInput</span></a></li>
 <li><a href="io/atomix/protocols/backup/protocol/BackupOperation.html" title="class in io.atomix.protocols.backup.protocol">BackupOperation</a></li>
 <li><a href="io/atomix/protocols/backup/protocol/BackupOperation.Type.html" title="enum in io.atomix.protocols.backup.protocol">BackupOperation.Type</a></li>
+<li><a href="io/atomix/primitive/service/BackupOutput.html" title="interface in io.atomix.primitive.service"><span class="interfaceName">BackupOutput</span></a></li>
 <li><a href="io/atomix/protocols/backup/protocol/BackupRequest.html" title="class in io.atomix.protocols.backup.protocol">BackupRequest</a></li>
 <li><a href="io/atomix/protocols/backup/protocol/BackupResponse.html" title="class in io.atomix.protocols.backup.protocol">BackupResponse</a></li>
 <li><a href="io/atomix/protocols/backup/roles/BackupRole.html" title="class in io.atomix.protocols.backup.roles">BackupRole</a></li>
@@ -97,6 +101,7 @@
 <li><a href="io/atomix/storage/buffer/BytesInput.html" title="interface in io.atomix.storage.buffer"><span class="interfaceName">BytesInput</span></a></li>
 <li><a href="io/atomix/storage/buffer/BytesOutput.html" title="interface in io.atomix.storage.buffer"><span class="interfaceName">BytesOutput</span></a></li>
 <li><a href="io/atomix/protocols/raft/roles/CandidateRole.html" title="class in io.atomix.protocols.raft.roles">CandidateRole</a></li>
+<li><a href="io/atomix/core/profile/ClientProfile.html" title="class in io.atomix.core.profile">ClientProfile</a></li>
 <li><a href="io/atomix/utils/time/Clock.html" title="interface in io.atomix.utils.time"><span class="interfaceName">Clock</span></a></li>
 <li><a href="io/atomix/protocols/backup/protocol/CloseOperation.html" title="class in io.atomix.protocols.backup.protocol">CloseOperation</a></li>
 <li><a href="io/atomix/protocols/backup/protocol/CloseRequest.html" title="class in io.atomix.protocols.backup.protocol">CloseRequest</a></li>
@@ -107,10 +112,11 @@
 <li><a href="io/atomix/protocols/raft/protocol/CloseSessionResponse.html" title="class in io.atomix.protocols.raft.protocol">CloseSessionResponse</a></li>
 <li><a href="io/atomix/protocols/raft/protocol/CloseSessionResponse.Builder.html" title="class in io.atomix.protocols.raft.protocol">CloseSessionResponse.Builder</a></li>
 <li><a href="io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a></li>
-<li><a href="io/atomix/cluster/ClusterEvent.html" title="class in io.atomix.cluster">ClusterEvent</a></li>
-<li><a href="io/atomix/cluster/ClusterEvent.Type.html" title="enum in io.atomix.cluster">ClusterEvent.Type</a></li>
 <li><a href="io/atomix/cluster/messaging/ClusterEventingService.html" title="interface in io.atomix.cluster.messaging"><span class="interfaceName">ClusterEventingService</span></a></li>
-<li><a href="io/atomix/cluster/ClusterEventListener.html" title="interface in io.atomix.cluster"><span class="interfaceName">ClusterEventListener</span></a></li>
+<li><a href="io/atomix/cluster/ClusterMembershipEvent.html" title="class in io.atomix.cluster">ClusterMembershipEvent</a></li>
+<li><a href="io/atomix/cluster/ClusterMembershipEvent.Type.html" title="enum in io.atomix.cluster">ClusterMembershipEvent.Type</a></li>
+<li><a href="io/atomix/cluster/ClusterMembershipEventListener.html" title="interface in io.atomix.cluster"><span class="interfaceName">ClusterMembershipEventListener</span></a></li>
+<li><a href="io/atomix/cluster/ClusterMembershipService.html" title="interface in io.atomix.cluster"><span class="interfaceName">ClusterMembershipService</span></a></li>
 <li><a href="io/atomix/cluster/messaging/ClusterMessagingService.html" title="interface in io.atomix.cluster.messaging"><span class="interfaceName">ClusterMessagingService</span></a></li>
 <li><a href="io/atomix/cluster/ClusterMetadata.html" title="class in io.atomix.cluster">ClusterMetadata</a></li>
 <li><a href="io/atomix/cluster/ClusterMetadata.Builder.html" title="class in io.atomix.cluster">ClusterMetadata.Builder</a></li>
@@ -118,7 +124,6 @@
 <li><a href="io/atomix/cluster/ClusterMetadataEvent.Type.html" title="enum in io.atomix.cluster">ClusterMetadataEvent.Type</a></li>
 <li><a href="io/atomix/cluster/ClusterMetadataEventListener.html" title="interface in io.atomix.cluster"><span class="interfaceName">ClusterMetadataEventListener</span></a></li>
 <li><a href="io/atomix/cluster/ClusterMetadataService.html" title="interface in io.atomix.cluster"><span class="interfaceName">ClusterMetadataService</span></a></li>
-<li><a href="io/atomix/cluster/ClusterService.html" title="interface in io.atomix.cluster"><span class="interfaceName">ClusterService</span></a></li>
 <li><a href="io/atomix/protocols/raft/storage/log/entry/CommandEntry.html" title="class in io.atomix.protocols.raft.storage.log.entry">CommandEntry</a></li>
 <li><a href="io/atomix/protocols/raft/protocol/CommandRequest.html" title="class in io.atomix.protocols.raft.protocol">CommandRequest</a></li>
 <li><a href="io/atomix/protocols/raft/protocol/CommandRequest.Builder.html" title="class in io.atomix.protocols.raft.protocol">CommandRequest.Builder</a></li>
@@ -128,20 +133,22 @@
 <li><a href="io/atomix/core/transaction/CommitStatus.html" title="enum in io.atomix.core.transaction">CommitStatus</a></li>
 <li><a href="io/atomix/protocols/raft/proxy/CommunicationStrategy.html" title="enum in io.atomix.protocols.raft.proxy">CommunicationStrategy</a></li>
 <li><a href="io/atomix/utils/concurrent/ComposableFuture.html" title="class in io.atomix.utils.concurrent">ComposableFuture</a></li>
-<li><a href="io/atomix/utils/Config.html" title="interface in io.atomix.utils"><span class="interfaceName">Config</span></a></li>
-<li><a href="io/atomix/core/config/ConfigProvider.html" title="interface in io.atomix.core.config"><span class="interfaceName">ConfigProvider</span></a></li>
-<li><a href="io/atomix/core/config/ConfigService.html" title="interface in io.atomix.core.config"><span class="interfaceName">ConfigService</span></a></li>
+<li><a href="io/atomix/utils/config/Config.html" title="interface in io.atomix.utils.config"><span class="interfaceName">Config</span></a></li>
+<li><a href="io/atomix/utils/config/ConfigProvider.html" title="interface in io.atomix.utils.config"><span class="interfaceName">ConfigProvider</span></a></li>
+<li><a href="io/atomix/utils/config/Configs.html" title="class in io.atomix.utils.config">Configs</a></li>
 <li><a href="io/atomix/protocols/raft/storage/system/Configuration.html" title="class in io.atomix.protocols.raft.storage.system">Configuration</a></li>
 <li><a href="io/atomix/protocols/raft/storage/log/entry/ConfigurationEntry.html" title="class in io.atomix.protocols.raft.storage.log.entry">ConfigurationEntry</a></li>
-<li><a href="io/atomix/utils/ConfigurationException.html" title="class in io.atomix.utils">ConfigurationException</a></li>
+<li><a href="io/atomix/utils/config/ConfigurationException.html" title="class in io.atomix.utils.config">ConfigurationException</a></li>
 <li><a href="io/atomix/protocols/raft/protocol/ConfigurationRequest.html" title="class in io.atomix.protocols.raft.protocol">ConfigurationRequest</a></li>
 <li><a href="io/atomix/protocols/raft/protocol/ConfigurationRequest.Builder.html" title="class in io.atomix.protocols.raft.protocol">ConfigurationRequest.Builder</a></li>
 <li><a href="io/atomix/protocols/raft/protocol/ConfigurationResponse.html" title="class in io.atomix.protocols.raft.protocol">ConfigurationResponse</a></li>
 <li><a href="io/atomix/protocols/raft/protocol/ConfigurationResponse.Builder.html" title="class in io.atomix.protocols.raft.protocol">ConfigurationResponse.Builder</a></li>
+<li><a href="io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config"><span class="interfaceName">Configured</span></a></li>
 <li><a href="io/atomix/protocols/raft/protocol/ConfigureRequest.html" title="class in io.atomix.protocols.raft.protocol">ConfigureRequest</a></li>
 <li><a href="io/atomix/protocols/raft/protocol/ConfigureRequest.Builder.html" title="class in io.atomix.protocols.raft.protocol">ConfigureRequest.Builder</a></li>
 <li><a href="io/atomix/protocols/raft/protocol/ConfigureResponse.html" title="class in io.atomix.protocols.raft.protocol">ConfigureResponse</a></li>
 <li><a href="io/atomix/protocols/raft/protocol/ConfigureResponse.Builder.html" title="class in io.atomix.protocols.raft.protocol">ConfigureResponse.Builder</a></li>
+<li><a href="io/atomix/core/profile/ConsensusProfile.html" title="class in io.atomix.core.profile">ConsensusProfile</a></li>
 <li><a href="io/atomix/primitive/Consistency.html" title="enum in io.atomix.primitive">Consistency</a></li>
 <li><a href="io/atomix/core/map/ConsistentMap.html" title="interface in io.atomix.core.map"><span class="interfaceName">ConsistentMap</span></a></li>
 <li><a href="io/atomix/core/map/ConsistentMapBackedJavaMap.html" title="class in io.atomix.core.map">ConsistentMapBackedJavaMap</a></li>
@@ -162,7 +169,7 @@
 <li><a href="io/atomix/core/map/ConsistentTreeMapType.html" title="class in io.atomix.core.map">ConsistentTreeMapType</a></li>
 <li><a href="io/atomix/utils/logging/ContextualLogger.html" title="class in io.atomix.utils.logging">ContextualLogger</a></li>
 <li><a href="io/atomix/utils/logging/ContextualLoggerFactory.html" title="class in io.atomix.utils.logging">ContextualLoggerFactory</a></li>
-<li><a href="io/atomix/cluster/CoreMetadataService.html" title="interface in io.atomix.cluster"><span class="interfaceName">CoreMetadataService</span></a></li>
+<li><a href="io/atomix/core/profile/DataGridProfile.html" title="class in io.atomix.core.profile">DataGridProfile</a></li>
 <li><a href="io/atomix/storage/journal/DelegatingJournal.html" title="class in io.atomix.storage.journal">DelegatingJournal</a></li>
 <li><a href="io/atomix/storage/journal/DelegatingJournalReader.html" title="class in io.atomix.storage.journal">DelegatingJournalReader</a></li>
 <li><a href="io/atomix/storage/journal/DelegatingJournalWriter.html" title="class in io.atomix.storage.journal">DelegatingJournalWriter</a></li>
@@ -209,6 +216,8 @@
 <li><a href="io/atomix/protocols/raft/roles/FollowerRole.html" title="class in io.atomix.protocols.raft.roles">FollowerRole</a></li>
 <li><a href="io/atomix/utils/concurrent/Futures.html" title="class in io.atomix.utils.concurrent">Futures</a></li>
 <li><a href="io/atomix/utils/Generics.html" title="class in io.atomix.utils">Generics</a></li>
+<li><a href="io/atomix/primitive/partition/GroupMember.html" title="class in io.atomix.primitive.partition">GroupMember</a></li>
+<li><a href="io/atomix/cluster/GroupMembershipConfig.html" title="class in io.atomix.cluster">GroupMembershipConfig</a></li>
 <li><a href="io/atomix/storage/buffer/HeapBuffer.html" title="class in io.atomix.storage.buffer">HeapBuffer</a></li>
 <li><a href="io/atomix/storage/buffer/HeapBytes.html" title="class in io.atomix.storage.buffer">HeapBytes</a></li>
 <li><a href="io/atomix/utils/memory/HeapMemory.html" title="class in io.atomix.utils.memory">HeapMemory</a></li>
@@ -284,14 +293,14 @@
 <li><a href="io/atomix/cluster/ManagedBootstrapMetadataService.html" title="interface in io.atomix.cluster"><span class="interfaceName">ManagedBootstrapMetadataService</span></a></li>
 <li><a href="io/atomix/messaging/ManagedBroadcastService.html" title="interface in io.atomix.messaging"><span class="interfaceName">ManagedBroadcastService</span></a></li>
 <li><a href="io/atomix/cluster/messaging/ManagedClusterEventingService.html" title="interface in io.atomix.cluster.messaging"><span class="interfaceName">ManagedClusterEventingService</span></a></li>
+<li><a href="io/atomix/cluster/ManagedClusterMembershipService.html" title="interface in io.atomix.cluster"><span class="interfaceName">ManagedClusterMembershipService</span></a></li>
 <li><a href="io/atomix/cluster/messaging/ManagedClusterMessagingService.html" title="interface in io.atomix.cluster.messaging"><span class="interfaceName">ManagedClusterMessagingService</span></a></li>
 <li><a href="io/atomix/cluster/ManagedClusterMetadataService.html" title="interface in io.atomix.cluster"><span class="interfaceName">ManagedClusterMetadataService</span></a></li>
-<li><a href="io/atomix/cluster/ManagedClusterService.html" title="interface in io.atomix.cluster"><span class="interfaceName">ManagedClusterService</span></a></li>
-<li><a href="io/atomix/cluster/ManagedCoreMetadataService.html" title="interface in io.atomix.cluster"><span class="interfaceName">ManagedCoreMetadataService</span></a></li>
 <li><a href="io/atomix/primitive/partition/ManagedMemberGroupService.html" title="interface in io.atomix.primitive.partition"><span class="interfaceName">ManagedMemberGroupService</span></a></li>
 <li><a href="io/atomix/messaging/ManagedMessagingService.html" title="interface in io.atomix.messaging"><span class="interfaceName">ManagedMessagingService</span></a></li>
 <li><a href="io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition"><span class="interfaceName">ManagedPartitionGroup</span></a></li>
 <li><a href="io/atomix/primitive/partition/ManagedPartitionService.html" title="interface in io.atomix.primitive.partition"><span class="interfaceName">ManagedPartitionService</span></a></li>
+<li><a href="io/atomix/cluster/ManagedPersistentMetadataService.html" title="interface in io.atomix.cluster"><span class="interfaceName">ManagedPersistentMetadataService</span></a></li>
 <li><a href="io/atomix/primitive/partition/ManagedPrimaryElection.html" title="interface in io.atomix.primitive.partition"><span class="interfaceName">ManagedPrimaryElection</span></a></li>
 <li><a href="io/atomix/primitive/partition/ManagedPrimaryElectionService.html" title="interface in io.atomix.primitive.partition"><span class="interfaceName">ManagedPrimaryElectionService</span></a></li>
 <li><a href="io/atomix/primitive/ManagedPrimitiveRegistry.html" title="interface in io.atomix.primitive"><span class="interfaceName">ManagedPrimitiveRegistry</span></a></li>
@@ -307,7 +316,11 @@
 <li><a href="io/atomix/utils/memory/MappedMemory.html" title="class in io.atomix.utils.memory">MappedMemory</a></li>
 <li><a href="io/atomix/utils/memory/MappedMemoryAllocator.html" title="class in io.atomix.utils.memory">MappedMemoryAllocator</a></li>
 <li><a href="io/atomix/utils/Match.html" title="class in io.atomix.utils">Match</a></li>
-<li><a href="io/atomix/primitive/partition/Member.html" title="class in io.atomix.primitive.partition">Member</a></li>
+<li><a href="io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a></li>
+<li><a href="io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a></li>
+<li><a href="io/atomix/cluster/Member.State.html" title="enum in io.atomix.cluster">Member.State</a></li>
+<li><a href="io/atomix/cluster/Member.Type.html" title="enum in io.atomix.cluster">Member.Type</a></li>
+<li><a href="io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a></li>
 <li><a href="io/atomix/primitive/partition/MemberGroup.html" title="interface in io.atomix.primitive.partition"><span class="interfaceName">MemberGroup</span></a></li>
 <li><a href="io/atomix/primitive/partition/MemberGroupEvent.html" title="class in io.atomix.primitive.partition">MemberGroupEvent</a></li>
 <li><a href="io/atomix/primitive/partition/MemberGroupEvent.Type.html" title="enum in io.atomix.primitive.partition">MemberGroupEvent.Type</a></li>
@@ -316,6 +329,7 @@
 <li><a href="io/atomix/primitive/partition/MemberGroupProvider.html" title="interface in io.atomix.primitive.partition"><span class="interfaceName">MemberGroupProvider</span></a></li>
 <li><a href="io/atomix/primitive/partition/MemberGroupService.html" title="interface in io.atomix.primitive.partition"><span class="interfaceName">MemberGroupService</span></a></li>
 <li><a href="io/atomix/primitive/partition/MemberGroupStrategy.html" title="enum in io.atomix.primitive.partition">MemberGroupStrategy</a></li>
+<li><a href="io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a></li>
 <li><a href="io/atomix/utils/memory/Memory.html" title="interface in io.atomix.utils.memory"><span class="interfaceName">Memory</span></a></li>
 <li><a href="io/atomix/utils/memory/Memory.Util.html" title="class in io.atomix.utils.memory">Memory.Util</a></li>
 <li><a href="io/atomix/utils/memory/MemoryAllocator.html" title="interface in io.atomix.utils.memory"><span class="interfaceName">MemoryAllocator</span></a></li>
@@ -338,19 +352,21 @@
 <li><a href="io/atomix/core/multimap/MultimapEventListener.html" title="interface in io.atomix.core.multimap"><span class="interfaceName">MultimapEventListener</span></a></li>
 <li><a href="io/atomix/protocols/backup/MultiPrimaryProtocol.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocol</a></li>
 <li><a href="io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocol.Builder</a></li>
+<li><a href="io/atomix/protocols/backup/MultiPrimaryProtocol.Type.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocol.Type</a></li>
 <li><a href="io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolConfig</a></li>
 <li><a href="io/atomix/protocols/backup/MultiPrimaryProtocolFactory.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolFactory</a></li>
+<li><a href="io/atomix/protocols/raft/MultiRaftProtocol.html" title="class in io.atomix.protocols.raft">MultiRaftProtocol</a></li>
+<li><a href="io/atomix/protocols/raft/MultiRaftProtocol.Builder.html" title="class in io.atomix.protocols.raft">MultiRaftProtocol.Builder</a></li>
+<li><a href="io/atomix/protocols/raft/MultiRaftProtocol.Type.html" title="class in io.atomix.protocols.raft">MultiRaftProtocol.Type</a></li>
+<li><a href="io/atomix/protocols/raft/MultiRaftProtocolConfig.html" title="class in io.atomix.protocols.raft">MultiRaftProtocolConfig</a></li>
+<li><a href="io/atomix/protocols/raft/MultiRaftProtocolFactory.html" title="class in io.atomix.protocols.raft">MultiRaftProtocolFactory</a></li>
 <li><a href="io/atomix/utils/time/MultiValuedTimestamp.html" title="class in io.atomix.utils.time">MultiValuedTimestamp</a></li>
+<li><a href="io/atomix/primitive/partition/Murmur3Partitioner.html" title="class in io.atomix.primitive.partition">Murmur3Partitioner</a></li>
+<li><a href="io/atomix/core/profile/NamedProfile.html" title="interface in io.atomix.core.profile"><span class="interfaceName">NamedProfile</span></a></li>
 <li><a href="io/atomix/utils/serializer/Namespace.html" title="interface in io.atomix.utils.serializer"><span class="interfaceName">Namespace</span></a></li>
 <li><a href="io/atomix/storage/buffer/NativeBuffer.html" title="class in io.atomix.storage.buffer">NativeBuffer</a></li>
 <li><a href="io/atomix/storage/buffer/NativeBytes.html" title="class in io.atomix.storage.buffer">NativeBytes</a></li>
 <li><a href="io/atomix/utils/memory/NativeMemory.html" title="class in io.atomix.utils.memory">NativeMemory</a></li>
-<li><a href="io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a></li>
-<li><a href="io/atomix/cluster/Node.Builder.html" title="class in io.atomix.cluster">Node.Builder</a></li>
-<li><a href="io/atomix/cluster/Node.State.html" title="enum in io.atomix.cluster">Node.State</a></li>
-<li><a href="io/atomix/cluster/Node.Type.html" title="enum in io.atomix.cluster">Node.Type</a></li>
-<li><a href="io/atomix/cluster/NodeConfig.html" title="class in io.atomix.cluster">NodeConfig</a></li>
-<li><a href="io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a></li>
 <li><a href="io/atomix/protocols/backup/roles/NoneRole.html" title="class in io.atomix.protocols.backup.roles">NoneRole</a></li>
 <li><a href="io/atomix/core/tree/NoSuchDocumentPathException.html" title="class in io.atomix.core.tree">NoSuchDocumentPathException</a></li>
 <li><a href="io/atomix/protocols/raft/storage/log/entry/OpenSessionEntry.html" title="class in io.atomix.protocols.raft.storage.log.entry">OpenSessionEntry</a></li>
@@ -372,14 +388,18 @@
 <li><a href="io/atomix/primitive/partition/Partitioner.html" title="interface in io.atomix.primitive.partition"><span class="interfaceName">Partitioner</span></a></li>
 <li><a href="io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition"><span class="interfaceName">PartitionGroup</span></a></li>
 <li><a href="io/atomix/primitive/partition/PartitionGroup.Builder.html" title="class in io.atomix.primitive.partition">PartitionGroup.Builder</a></li>
+<li><a href="io/atomix/primitive/partition/PartitionGroup.Type.html" title="interface in io.atomix.primitive.partition"><span class="interfaceName">PartitionGroup.Type</span></a></li>
 <li><a href="io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a></li>
 <li><a href="io/atomix/primitive/partition/PartitionGroupFactory.html" title="interface in io.atomix.primitive.partition"><span class="interfaceName">PartitionGroupFactory</span></a></li>
 <li><a href="io/atomix/primitive/partition/PartitionGroups.html" title="class in io.atomix.primitive.partition">PartitionGroups</a></li>
 <li><a href="io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></li>
 <li><a href="io/atomix/primitive/partition/PartitionManagementService.html" title="interface in io.atomix.primitive.partition"><span class="interfaceName">PartitionManagementService</span></a></li>
 <li><a href="io/atomix/primitive/partition/PartitionMetadata.html" title="class in io.atomix.primitive.partition">PartitionMetadata</a></li>
+<li><a href="io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy"><span class="interfaceName">PartitionProxy</span></a></li>
+<li><a href="io/atomix/primitive/proxy/PartitionProxy.Builder.html" title="class in io.atomix.primitive.proxy">PartitionProxy.Builder</a></li>
 <li><a href="io/atomix/primitive/partition/PartitionService.html" title="interface in io.atomix.primitive.partition"><span class="interfaceName">PartitionService</span></a></li>
 <li><a href="io/atomix/protocols/raft/roles/PassiveRole.html" title="class in io.atomix.protocols.raft.roles">PassiveRole</a></li>
+<li><a href="io/atomix/cluster/PersistentMetadataService.html" title="interface in io.atomix.cluster"><span class="interfaceName">PersistentMetadataService</span></a></li>
 <li><a href="io/atomix/protocols/raft/protocol/PollRequest.html" title="class in io.atomix.protocols.raft.protocol">PollRequest</a></li>
 <li><a href="io/atomix/protocols/raft/protocol/PollRequest.Builder.html" title="class in io.atomix.protocols.raft.protocol">PollRequest.Builder</a></li>
 <li><a href="io/atomix/protocols/raft/protocol/PollResponse.html" title="class in io.atomix.protocols.raft.protocol">PollResponse</a></li>
@@ -394,9 +414,11 @@
 <li><a href="io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a></li>
 <li><a href="io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartitionGroup</a></li>
 <li><a href="io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.Builder.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartitionGroup.Builder</a></li>
+<li><a href="io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.Type.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartitionGroup.Type</a></li>
 <li><a href="io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroupConfig.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartitionGroupConfig</a></li>
 <li><a href="io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroupFactory.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartitionGroupFactory</a></li>
 <li><a href="io/atomix/protocols/backup/proxy/PrimaryBackupProxy.html" title="class in io.atomix.protocols.backup.proxy">PrimaryBackupProxy</a></li>
+<li><a href="io/atomix/protocols/backup/proxy/PrimaryBackupProxy.Builder.html" title="class in io.atomix.protocols.backup.proxy">PrimaryBackupProxy.Builder</a></li>
 <li><a href="io/atomix/protocols/backup/protocol/PrimaryBackupRequest.html" title="class in io.atomix.protocols.backup.protocol">PrimaryBackupRequest</a></li>
 <li><a href="io/atomix/protocols/backup/protocol/PrimaryBackupResponse.html" title="class in io.atomix.protocols.backup.protocol">PrimaryBackupResponse</a></li>
 <li><a href="io/atomix/protocols/backup/protocol/PrimaryBackupResponse.Status.html" title="enum in io.atomix.protocols.backup.protocol">PrimaryBackupResponse.Status</a></li>
@@ -412,7 +434,6 @@
 <li><a href="io/atomix/primitive/partition/PrimaryElectionService.html" title="interface in io.atomix.primitive.partition"><span class="interfaceName">PrimaryElectionService</span></a></li>
 <li><a href="io/atomix/protocols/backup/roles/PrimaryRole.html" title="class in io.atomix.protocols.backup.roles">PrimaryRole</a></li>
 <li><a href="io/atomix/primitive/partition/PrimaryTerm.html" title="class in io.atomix.primitive.partition">PrimaryTerm</a></li>
-<li><a href="io/atomix/primitive/PrimitiveClient.html" title="interface in io.atomix.primitive"><span class="interfaceName">PrimitiveClient</span></a></li>
 <li><a href="io/atomix/primitive/PrimitiveConfig.html" title="class in io.atomix.primitive">PrimitiveConfig</a></li>
 <li><a href="io/atomix/protocols/backup/protocol/PrimitiveDescriptor.html" title="class in io.atomix.protocols.backup.protocol">PrimitiveDescriptor</a></li>
 <li><a href="io/atomix/primitive/event/PrimitiveEvent.html" title="class in io.atomix.primitive.event">PrimitiveEvent</a></li>
@@ -439,17 +460,26 @@
 <li><a href="io/atomix/primitive/protocol/PrimitiveProtocolFactory.html" title="interface in io.atomix.primitive.protocol"><span class="interfaceName">PrimitiveProtocolFactory</span></a></li>
 <li><a href="io/atomix/primitive/protocol/PrimitiveProtocols.html" title="class in io.atomix.primitive.protocol">PrimitiveProtocols</a></li>
 <li><a href="io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy"><span class="interfaceName">PrimitiveProxy</span></a></li>
-<li><a href="io/atomix/primitive/proxy/PrimitiveProxy.State.html" title="enum in io.atomix.primitive.proxy">PrimitiveProxy.State</a></li>
-<li><a href="io/atomix/primitive/proxy/PrimitiveProxyExecutor.html" title="interface in io.atomix.primitive.proxy"><span class="interfaceName">PrimitiveProxyExecutor</span></a></li>
 <li><a href="io/atomix/primitive/PrimitiveRegistry.html" title="interface in io.atomix.primitive"><span class="interfaceName">PrimitiveRegistry</span></a></li>
 <li><a href="io/atomix/protocols/backup/protocol/PrimitiveRequest.html" title="class in io.atomix.protocols.backup.protocol">PrimitiveRequest</a></li>
 <li><a href="io/atomix/primitive/resource/PrimitiveResource.html" title="class in io.atomix.primitive.resource">PrimitiveResource</a></li>
 <li><a href="io/atomix/primitive/service/PrimitiveService.html" title="interface in io.atomix.primitive.service"><span class="interfaceName">PrimitiveService</span></a></li>
+<li><a href="io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session"><span class="interfaceName">PrimitiveSession</span></a></li>
+<li><a href="io/atomix/primitive/session/PrimitiveSession.State.html" title="enum in io.atomix.primitive.session">PrimitiveSession.State</a></li>
+<li><a href="io/atomix/primitive/session/PrimitiveSessionEvent.html" title="class in io.atomix.primitive.session">PrimitiveSessionEvent</a></li>
+<li><a href="io/atomix/primitive/session/PrimitiveSessionEvent.Type.html" title="enum in io.atomix.primitive.session">PrimitiveSessionEvent.Type</a></li>
+<li><a href="io/atomix/primitive/session/PrimitiveSessionEventListener.html" title="interface in io.atomix.primitive.session"><span class="interfaceName">PrimitiveSessionEventListener</span></a></li>
+<li><a href="io/atomix/primitive/session/PrimitiveSessions.html" title="interface in io.atomix.primitive.session"><span class="interfaceName">PrimitiveSessions</span></a></li>
 <li><a href="io/atomix/core/PrimitivesService.html" title="interface in io.atomix.core"><span class="interfaceName">PrimitivesService</span></a></li>
 <li><a href="io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive"><span class="interfaceName">PrimitiveType</span></a></li>
 <li><a href="io/atomix/primitive/PrimitiveTypeRegistry.html" title="class in io.atomix.primitive">PrimitiveTypeRegistry</a></li>
 <li><a href="io/atomix/primitive/PrimitiveTypes.html" title="class in io.atomix.primitive">PrimitiveTypes</a></li>
+<li><a href="io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile"><span class="interfaceName">Profile</span></a></li>
+<li><a href="io/atomix/core/profile/Profiles.html" title="class in io.atomix.core.profile">Profiles</a></li>
 <li><a href="io/atomix/protocols/raft/roles/PromotableRole.html" title="class in io.atomix.protocols.raft.roles">PromotableRole</a></li>
+<li><a href="io/atomix/primitive/proxy/Proxy.html" title="interface in io.atomix.primitive.proxy"><span class="interfaceName">Proxy</span></a></li>
+<li><a href="io/atomix/primitive/proxy/Proxy.State.html" title="enum in io.atomix.primitive.proxy">Proxy.State</a></li>
+<li><a href="io/atomix/primitive/proxy/ProxyClient.html" title="interface in io.atomix.primitive.proxy"><span class="interfaceName">ProxyClient</span></a></li>
 <li><a href="io/atomix/protocols/raft/protocol/PublishRequest.html" title="class in io.atomix.protocols.raft.protocol">PublishRequest</a></li>
 <li><a href="io/atomix/protocols/raft/protocol/PublishRequest.Builder.html" title="class in io.atomix.protocols.raft.protocol">PublishRequest.Builder</a></li>
 <li><a href="io/atomix/protocols/raft/storage/log/entry/QueryEntry.html" title="class in io.atomix.protocols.raft.storage.log.entry">QueryEntry</a></li>
@@ -498,16 +528,14 @@
 <li><a href="io/atomix/protocols/raft/partition/RaftPartition.html" title="class in io.atomix.protocols.raft.partition">RaftPartition</a></li>
 <li><a href="io/atomix/protocols/raft/partition/RaftPartitionGroup.html" title="class in io.atomix.protocols.raft.partition">RaftPartitionGroup</a></li>
 <li><a href="io/atomix/protocols/raft/partition/RaftPartitionGroup.Builder.html" title="class in io.atomix.protocols.raft.partition">RaftPartitionGroup.Builder</a></li>
+<li><a href="io/atomix/protocols/raft/partition/RaftPartitionGroup.Type.html" title="class in io.atomix.protocols.raft.partition">RaftPartitionGroup.Type</a></li>
 <li><a href="io/atomix/protocols/raft/partition/RaftPartitionGroupConfig.html" title="class in io.atomix.protocols.raft.partition">RaftPartitionGroupConfig</a></li>
 <li><a href="io/atomix/protocols/raft/partition/RaftPartitionGroupFactory.html" title="class in io.atomix.protocols.raft.partition">RaftPartitionGroupFactory</a></li>
 <li><a href="io/atomix/protocols/raft/RaftPerformanceTest.html" title="class in io.atomix.protocols.raft">RaftPerformanceTest</a></li>
 <li><a href="io/atomix/protocols/raft/RaftPerformanceTest.PerformanceService.html" title="class in io.atomix.protocols.raft">RaftPerformanceTest.PerformanceService</a></li>
 <li><a href="io/atomix/protocols/raft/RaftPerformanceTest.TestMember.html" title="class in io.atomix.protocols.raft">RaftPerformanceTest.TestMember</a></li>
-<li><a href="io/atomix/protocols/raft/RaftProtocol.html" title="class in io.atomix.protocols.raft">RaftProtocol</a></li>
-<li><a href="io/atomix/protocols/raft/RaftProtocol.Builder.html" title="class in io.atomix.protocols.raft">RaftProtocol.Builder</a></li>
-<li><a href="io/atomix/protocols/raft/RaftProtocolConfig.html" title="class in io.atomix.protocols.raft">RaftProtocolConfig</a></li>
-<li><a href="io/atomix/protocols/raft/RaftProtocolFactory.html" title="class in io.atomix.protocols.raft">RaftProtocolFactory</a></li>
 <li><a href="io/atomix/protocols/raft/proxy/RaftProxy.html" title="interface in io.atomix.protocols.raft.proxy"><span class="interfaceName">RaftProxy</span></a></li>
+<li><a href="io/atomix/protocols/raft/proxy/RaftProxy.Builder.html" title="class in io.atomix.protocols.raft.proxy">RaftProxy.Builder</a></li>
 <li><a href="io/atomix/protocols/raft/protocol/RaftRequest.html" title="interface in io.atomix.protocols.raft.protocol"><span class="interfaceName">RaftRequest</span></a></li>
 <li><a href="io/atomix/protocols/raft/protocol/RaftRequest.Builder.html" title="interface in io.atomix.protocols.raft.protocol"><span class="interfaceName">RaftRequest.Builder</span></a></li>
 <li><a href="io/atomix/protocols/raft/protocol/RaftResponse.html" title="interface in io.atomix.protocols.raft.protocol"><span class="interfaceName">RaftResponse</span></a></li>
@@ -557,12 +585,7 @@
 <li><a href="io/atomix/primitive/service/ServiceContext.html" title="interface in io.atomix.primitive.service"><span class="interfaceName">ServiceContext</span></a></li>
 <li><a href="io/atomix/primitive/service/ServiceExecutor.html" title="interface in io.atomix.primitive.service"><span class="interfaceName">ServiceExecutor</span></a></li>
 <li><a href="io/atomix/utils/Services.html" title="class in io.atomix.utils">Services</a></li>
-<li><a href="io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session"><span class="interfaceName">Session</span></a></li>
-<li><a href="io/atomix/primitive/session/Session.State.html" title="enum in io.atomix.primitive.session">Session.State</a></li>
 <li><a href="io/atomix/protocols/raft/storage/log/entry/SessionEntry.html" title="class in io.atomix.protocols.raft.storage.log.entry">SessionEntry</a></li>
-<li><a href="io/atomix/primitive/session/SessionEvent.html" title="class in io.atomix.primitive.session">SessionEvent</a></li>
-<li><a href="io/atomix/primitive/session/SessionEvent.Type.html" title="enum in io.atomix.primitive.session">SessionEvent.Type</a></li>
-<li><a href="io/atomix/primitive/session/SessionEventListener.html" title="interface in io.atomix.primitive.session"><span class="interfaceName">SessionEventListener</span></a></li>
 <li><a href="io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a></li>
 <li><a href="io/atomix/primitive/session/SessionIdService.html" title="interface in io.atomix.primitive.session"><span class="interfaceName">SessionIdService</span></a></li>
 <li><a href="io/atomix/primitive/session/SessionListener.html" title="interface in io.atomix.primitive.session"><span class="interfaceName">SessionListener</span></a></li>
@@ -571,7 +594,6 @@
 <li><a href="io/atomix/protocols/raft/protocol/SessionRequest.Builder.html" title="class in io.atomix.protocols.raft.protocol">SessionRequest.Builder</a></li>
 <li><a href="io/atomix/protocols/raft/protocol/SessionResponse.html" title="class in io.atomix.protocols.raft.protocol">SessionResponse</a></li>
 <li><a href="io/atomix/protocols/raft/protocol/SessionResponse.Builder.html" title="class in io.atomix.protocols.raft.protocol">SessionResponse.Builder</a></li>
-<li><a href="io/atomix/primitive/session/Sessions.html" title="interface in io.atomix.primitive.session"><span class="interfaceName">Sessions</span></a></li>
 <li><a href="io/atomix/core/set/SetEvent.html" title="class in io.atomix.core.set">SetEvent</a></li>
 <li><a href="io/atomix/core/set/SetEvent.Type.html" title="enum in io.atomix.core.set">SetEvent.Type</a></li>
 <li><a href="io/atomix/core/set/SetEventListener.html" title="interface in io.atomix.core.set"><span class="interfaceName">SetEventListener</span></a></li>

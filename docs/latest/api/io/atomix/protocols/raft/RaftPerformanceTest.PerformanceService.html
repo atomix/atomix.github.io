@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10};
+var methods = {"i0":10,"i1":10,"i2":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -162,14 +162,20 @@ extends <a href="../../../../io/atomix/primitive/service/AbstractPrimitiveServic
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftPerformanceTest.PerformanceService.html#backup-io.atomix.storage.buffer.BufferOutput-">backup</a></span>(<a href="../../../../io/atomix/storage/buffer/BufferOutput.html" title="interface in io.atomix.storage.buffer">BufferOutput</a>&lt;?&gt;&nbsp;writer)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftPerformanceTest.PerformanceService.html#backup-io.atomix.primitive.service.BackupOutput-">backup</a></span>(<a href="../../../../io/atomix/primitive/service/BackupOutput.html" title="interface in io.atomix.primitive.service">BackupOutput</a>&nbsp;writer)</code>
 <div class="block">Backs up the service state to the given buffer.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftPerformanceTest.PerformanceService.html#restore-io.atomix.storage.buffer.BufferInput-">restore</a></span>(<a href="../../../../io/atomix/storage/buffer/BufferInput.html" title="interface in io.atomix.storage.buffer">BufferInput</a>&lt;?&gt;&nbsp;reader)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftPerformanceTest.PerformanceService.html#restore-io.atomix.primitive.service.BackupInput-">restore</a></span>(<a href="../../../../io/atomix/primitive/service/BackupInput.html" title="interface in io.atomix.primitive.service">BackupInput</a>&nbsp;reader)</code>
 <div class="block">Restores the service state from the given buffer.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftPerformanceTest.PerformanceService.html#serializer--">serializer</a></span>()</code>
+<div class="block">Returns the primitive service serializer.</div>
 </td>
 </tr>
 </table>
@@ -178,7 +184,7 @@ extends <a href="../../../../io/atomix/primitive/service/AbstractPrimitiveServic
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;io.atomix.primitive.service.<a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html" title="class in io.atomix.primitive.service">AbstractPrimitiveService</a></h3>
-<code><a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#apply-io.atomix.primitive.service.Commit-">apply</a>, <a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#init-io.atomix.primitive.service.ServiceContext-">init</a>, <a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#onClose-io.atomix.primitive.session.Session-">onClose</a>, <a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#onExpire-io.atomix.primitive.session.Session-">onExpire</a>, <a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#onOpen-io.atomix.primitive.session.Session-">onOpen</a>, <a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#tick-io.atomix.utils.time.WallClockTimestamp-">tick</a></code></li>
+<code><a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#apply-io.atomix.primitive.service.Commit-">apply</a>, <a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#init-io.atomix.primitive.service.ServiceContext-">init</a>, <a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#onClose-io.atomix.primitive.session.PrimitiveSession-">onClose</a>, <a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#onExpire-io.atomix.primitive.session.PrimitiveSession-">onExpire</a>, <a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#onOpen-io.atomix.primitive.session.PrimitiveSession-">onOpen</a>, <a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#tick-io.atomix.utils.time.WallClockTimestamp-">tick</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
@@ -225,14 +231,29 @@ extends <a href="../../../../io/atomix/primitive/service/AbstractPrimitiveServic
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="backup-io.atomix.storage.buffer.BufferOutput-">
+<a name="serializer--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>serializer</h4>
+<pre>public&nbsp;<a href="../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#serializer--">PrimitiveService</a></code></span></div>
+<div class="block">Returns the primitive service serializer.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the primitive service serializer</dd>
+</dl>
+</li>
+</ul>
+<a name="backup-io.atomix.primitive.service.BackupOutput-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>backup</h4>
-<pre>public&nbsp;void&nbsp;backup(<a href="../../../../io/atomix/storage/buffer/BufferOutput.html" title="interface in io.atomix.storage.buffer">BufferOutput</a>&lt;?&gt;&nbsp;writer)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#backup-io.atomix.storage.buffer.BufferOutput-">PrimitiveService</a></code></span></div>
+<pre>public&nbsp;void&nbsp;backup(<a href="../../../../io/atomix/primitive/service/BackupOutput.html" title="interface in io.atomix.primitive.service">BackupOutput</a>&nbsp;writer)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#backup-io.atomix.primitive.service.BackupOutput-">PrimitiveService</a></code></span></div>
 <div class="block">Backs up the service state to the given buffer.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -240,14 +261,14 @@ extends <a href="../../../../io/atomix/primitive/service/AbstractPrimitiveServic
 </dl>
 </li>
 </ul>
-<a name="restore-io.atomix.storage.buffer.BufferInput-">
+<a name="restore-io.atomix.primitive.service.BackupInput-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>restore</h4>
-<pre>public&nbsp;void&nbsp;restore(<a href="../../../../io/atomix/storage/buffer/BufferInput.html" title="interface in io.atomix.storage.buffer">BufferInput</a>&lt;?&gt;&nbsp;reader)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#restore-io.atomix.storage.buffer.BufferInput-">PrimitiveService</a></code></span></div>
+<pre>public&nbsp;void&nbsp;restore(<a href="../../../../io/atomix/primitive/service/BackupInput.html" title="interface in io.atomix.primitive.service">BackupInput</a>&nbsp;reader)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#restore-io.atomix.primitive.service.BackupInput-">PrimitiveService</a></code></span></div>
 <div class="block">Restores the service state from the given buffer.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>

@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html" title="class in io.atomix.protocols.backup"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Type.html" title="class in io.atomix.protocols.backup"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolFactory.html" title="class in io.atomix.protocols.backup"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -114,7 +114,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../../io/atomix/utils/Config.html" title="interface in io.atomix.utils">Config</a></dd>
+<dd><a href="../../../../io/atomix/utils/config/Config.html" title="interface in io.atomix.utils.config">Config</a></dd>
 </dl>
 <hr>
 <br>
@@ -157,90 +157,108 @@ extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfi
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#getBackups--">getBackups</a></span>()</code>
+<div class="block">Returns the number of backups.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/Consistency.html" title="enum in io.atomix.primitive">Consistency</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#getConsistency--">getConsistency</a></span>()</code>
 <div class="block">Returns the consistency level.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html?is-external=true" title="class or interface in java.util.concurrent">Executor</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#getExecutor--">getExecutor</a></span>()</code>
 <div class="block">Returns the executor.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#getMaxRetries--">getMaxRetries</a></span>()</code>
 <div class="block">Returns the maximum allowed number of retries.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#getNumBackups--">getNumBackups</a></span>()</code>
-<div class="block">Returns the number of backups.</div>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/primitive/partition/Partitioner.html" title="interface in io.atomix.primitive.partition">Partitioner</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#getPartitioner--">getPartitioner</a></span>()</code>
+<div class="block">Returns the protocol partitioner.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/Recovery.html" title="enum in io.atomix.primitive">Recovery</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#getRecovery--">getRecovery</a></span>()</code>
 <div class="block">Returns the recovery strategy.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/Replication.html" title="enum in io.atomix.primitive">Replication</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#getReplication--">getReplication</a></span>()</code>
 <div class="block">Returns the replication level.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#getRetryDelay--">getRetryDelay</a></span>()</code>
 <div class="block">Returns the retry delay.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#getType--">getType</a></span>()</code>
+<div class="block">Returns the primitive protocol type.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolConfig</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#setBackups-int-">setBackups</a></span>(int&nbsp;numBackups)</code>
+<div class="block">Sets the number of backups.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolConfig</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#setConsistency-io.atomix.primitive.Consistency-">setConsistency</a></span>(<a href="../../../../io/atomix/primitive/Consistency.html" title="enum in io.atomix.primitive">Consistency</a>&nbsp;consistency)</code>
 <div class="block">Sets the consistency level.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolConfig</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#setExecutor-java.util.concurrent.Executor-">setExecutor</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html?is-external=true" title="class or interface in java.util.concurrent">Executor</a>&nbsp;executor)</code>
 <div class="block">Sets the executor.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolConfig</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#setMaxRetries-int-">setMaxRetries</a></span>(int&nbsp;maxRetries)</code>
 <div class="block">Sets the maximum allowed number of retries.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolConfig</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#setNumBackups-int-">setNumBackups</a></span>(int&nbsp;numBackups)</code>
-<div class="block">Sets the number of backups.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#setPartitioner-io.atomix.primitive.partition.Partitioner-">setPartitioner</a></span>(<a href="../../../../io/atomix/primitive/partition/Partitioner.html" title="interface in io.atomix.primitive.partition">Partitioner</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;partitioner)</code>
+<div class="block">Sets the protocol partitioner.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolConfig</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#setRecovery-io.atomix.primitive.Recovery-">setRecovery</a></span>(<a href="../../../../io/atomix/primitive/Recovery.html" title="enum in io.atomix.primitive">Recovery</a>&nbsp;recovery)</code>
 <div class="block">Sets the recovery strategy.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolConfig</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#setReplication-io.atomix.primitive.Replication-">setReplication</a></span>(<a href="../../../../io/atomix/primitive/Replication.html" title="enum in io.atomix.primitive">Replication</a>&nbsp;replication)</code>
 <div class="block">Sets the replication level.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolConfig</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#setRetryDelay-java.time.Duration-">setRetryDelay</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;retryDelay)</code>
 <div class="block">Sets the retry delay.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolConfig</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html#setRetryDelayMillis-long-">setRetryDelayMillis</a></span>(long&nbsp;retryDelayMillis)</code>
 <div class="block">Sets the retry delay.</div>
@@ -292,6 +310,53 @@ extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfi
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="getType--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getType</h4>
+<pre>public&nbsp;<a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a>&nbsp;getType()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfig.html#getType--">PrimitiveProtocolConfig</a></code></span></div>
+<div class="block">Returns the primitive protocol type.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfig.html#getType--">getType</a></code>&nbsp;in class&nbsp;<code><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfig.html" title="class in io.atomix.primitive.protocol">PrimitiveProtocolConfig</a>&lt;<a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolConfig</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the primitive protocol type</dd>
+</dl>
+</li>
+</ul>
+<a name="getPartitioner--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPartitioner</h4>
+<pre>public&nbsp;<a href="../../../../io/atomix/primitive/partition/Partitioner.html" title="interface in io.atomix.primitive.partition">Partitioner</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;getPartitioner()</pre>
+<div class="block">Returns the protocol partitioner.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the protocol partitioner</dd>
+</dl>
+</li>
+</ul>
+<a name="setPartitioner-io.atomix.primitive.partition.Partitioner-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setPartitioner</h4>
+<pre>public&nbsp;<a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolConfig</a>&nbsp;setPartitioner(<a href="../../../../io/atomix/primitive/partition/Partitioner.html" title="interface in io.atomix.primitive.partition">Partitioner</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;partitioner)</pre>
+<div class="block">Sets the protocol partitioner.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>partitioner</code> - the protocol partitioner</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the protocol configuration</dd>
+</dl>
+</li>
+</ul>
 <a name="getConsistency--">
 <!--   -->
 </a>
@@ -382,13 +447,13 @@ extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfi
 </dl>
 </li>
 </ul>
-<a name="getNumBackups--">
+<a name="getBackups--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getNumBackups</h4>
-<pre>public&nbsp;int&nbsp;getNumBackups()</pre>
+<h4>getBackups</h4>
+<pre>public&nbsp;int&nbsp;getBackups()</pre>
 <div class="block">Returns the number of backups.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -396,13 +461,13 @@ extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfi
 </dl>
 </li>
 </ul>
-<a name="setNumBackups-int-">
+<a name="setBackups-int-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setNumBackups</h4>
-<pre>public&nbsp;<a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolConfig</a>&nbsp;setNumBackups(int&nbsp;numBackups)</pre>
+<h4>setBackups</h4>
+<pre>public&nbsp;<a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolConfig</a>&nbsp;setBackups(int&nbsp;numBackups)</pre>
 <div class="block">Sets the number of backups.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -546,7 +611,7 @@ extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfi
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html" title="class in io.atomix.protocols.backup"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Type.html" title="class in io.atomix.protocols.backup"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolFactory.html" title="class in io.atomix.protocols.backup"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

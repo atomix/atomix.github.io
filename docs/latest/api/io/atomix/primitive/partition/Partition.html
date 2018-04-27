@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../io/atomix/primitive/partition/MemberGroupStrategy.html" title="enum in io.atomix.primitive.partition"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/primitive/partition/Murmur3Partitioner.html" title="class in io.atomix.primitive.partition"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../io/atomix/primitive/partition/Partitioner.html" title="interface in io.atomix.primitive.partition"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -93,7 +93,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">io.atomix.primitive.partition</div>
-<h2 title="Interface Partition" class="title">Interface Partition&lt;P extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a>&gt;</h2>
+<h2 title="Interface Partition" class="title">Interface Partition</h2>
 </div>
 <div class="contentContainer">
 <div class="description">
@@ -105,7 +105,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public interface <span class="typeNameLabel">Partition&lt;P extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a>&gt;</span></pre>
+<pre>public interface <span class="typeNameLabel">Partition</span></pre>
 <div class="block">Atomix partition.</div>
 </li>
 </ul>
@@ -126,14 +126,14 @@ var activeTableTab = "activeTableTab";
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&gt;</code></td>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/Partition.html#backups--">backups</a></span>()</code>
 <div class="block">Returns the partition's backups.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/primitive/PrimitiveClient.html" title="interface in io.atomix.primitive">PrimitiveClient</a>&lt;<a href="../../../../io/atomix/primitive/partition/Partition.html" title="type parameter in Partition">P</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/Partition.html#getPrimitiveClient--">getPrimitiveClient</a></span>()</code>
+<td class="colFirst"><code><a href="../../../../io/atomix/primitive/proxy/ProxyClient.html" title="interface in io.atomix.primitive.proxy">ProxyClient</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/Partition.html#getProxyClient--">getProxyClient</a></span>()</code>
 <div class="block">Returns the primitive client for the partition.</div>
 </td>
 </tr>
@@ -144,7 +144,7 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a></code></td>
+<td class="colFirst"><code><a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/Partition.html#primary--">primary</a></span>()</code>
 <div class="block">Returns the partition's current primary.</div>
 </td>
@@ -204,7 +204,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>primary</h4>
-<pre><a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;primary()</pre>
+<pre><a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;primary()</pre>
 <div class="block">Returns the partition's current primary.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -218,7 +218,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>backups</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&gt;&nbsp;backups()</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&gt;&nbsp;backups()</pre>
 <div class="block">Returns the partition's backups.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -226,13 +226,13 @@ var activeTableTab = "activeTableTab";
 </dl>
 </li>
 </ul>
-<a name="getPrimitiveClient--">
+<a name="getProxyClient--">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>getPrimitiveClient</h4>
-<pre><a href="../../../../io/atomix/primitive/PrimitiveClient.html" title="interface in io.atomix.primitive">PrimitiveClient</a>&lt;<a href="../../../../io/atomix/primitive/partition/Partition.html" title="type parameter in Partition">P</a>&gt;&nbsp;getPrimitiveClient()</pre>
+<h4>getProxyClient</h4>
+<pre><a href="../../../../io/atomix/primitive/proxy/ProxyClient.html" title="interface in io.atomix.primitive.proxy">ProxyClient</a>&nbsp;getProxyClient()</pre>
 <div class="block">Returns the primitive client for the partition.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -268,7 +268,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../io/atomix/primitive/partition/MemberGroupStrategy.html" title="enum in io.atomix.primitive.partition"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/primitive/partition/Murmur3Partitioner.html" title="class in io.atomix.primitive.partition"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../io/atomix/primitive/partition/Partitioner.html" title="interface in io.atomix.primitive.partition"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

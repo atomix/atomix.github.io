@@ -125,7 +125,7 @@ implements <a href="../../../../io/atomix/utils/Builder.html" title="interface i
  This builder should be used to programmatically configure and construct a new <a href="../../../../io/atomix/protocols/raft/RaftServer.html" title="interface in io.atomix.protocols.raft"><code>RaftServer</code></a> instance.
  The builder provides methods for configuring all aspects of a Raft server. The <code>RaftServer.Builder</code>
  class cannot be instantiated directly. To create a new builder, use one of the
- <a href="../../../../io/atomix/protocols/raft/RaftServer.html#builder-io.atomix.cluster.NodeId-"><code>server builder factory</code></a> methods.
+ <a href="../../../../io/atomix/protocols/raft/RaftServer.html#builder-io.atomix.cluster.MemberId-"><code>server builder factory</code></a> methods.
  <pre>
    <code>
    RaftServer.Builder builder = RaftServer.builder(address);
@@ -176,20 +176,20 @@ implements <a href="../../../../io/atomix/utils/Builder.html" title="interface i
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/RaftServer.Builder.html" title="class in io.atomix.protocols.raft">RaftServer.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftServer.Builder.html#withClusterService-io.atomix.cluster.ClusterService-">withClusterService</a></span>(<a href="../../../../io/atomix/cluster/ClusterService.html" title="interface in io.atomix.cluster">ClusterService</a>&nbsp;clusterService)</code>
-<div class="block">Sets the cluster service.</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/RaftServer.Builder.html" title="class in io.atomix.protocols.raft">RaftServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftServer.Builder.html#withElectionTimeout-java.time.Duration-">withElectionTimeout</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;electionTimeout)</code>
 <div class="block">Sets the Raft election timeout, returning the Raft configuration for method chaining.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/RaftServer.Builder.html" title="class in io.atomix.protocols.raft">RaftServer.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftServer.Builder.html#withHeartbeatInterval-java.time.Duration-">withHeartbeatInterval</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;heartbeatInterval)</code>
 <div class="block">Sets the Raft heartbeat interval, returning the Raft configuration for method chaining.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/RaftServer.Builder.html" title="class in io.atomix.protocols.raft">RaftServer.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftServer.Builder.html#withMembershipService-io.atomix.cluster.ClusterMembershipService-">withMembershipService</a></span>(<a href="../../../../io/atomix/cluster/ClusterMembershipService.html" title="interface in io.atomix.cluster">ClusterMembershipService</a>&nbsp;membershipService)</code>
+<div class="block">Sets the cluster membership service.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
@@ -287,17 +287,17 @@ implements <a href="../../../../io/atomix/utils/Builder.html" title="interface i
 </dl>
 </li>
 </ul>
-<a name="withClusterService-io.atomix.cluster.ClusterService-">
+<a name="withMembershipService-io.atomix.cluster.ClusterMembershipService-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>withClusterService</h4>
-<pre>public&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftServer.Builder.html" title="class in io.atomix.protocols.raft">RaftServer.Builder</a>&nbsp;withClusterService(<a href="../../../../io/atomix/cluster/ClusterService.html" title="interface in io.atomix.cluster">ClusterService</a>&nbsp;clusterService)</pre>
-<div class="block">Sets the cluster service.</div>
+<h4>withMembershipService</h4>
+<pre>public&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftServer.Builder.html" title="class in io.atomix.protocols.raft">RaftServer.Builder</a>&nbsp;withMembershipService(<a href="../../../../io/atomix/cluster/ClusterMembershipService.html" title="interface in io.atomix.cluster">ClusterMembershipService</a>&nbsp;membershipService)</pre>
+<div class="block">Sets the cluster membership service.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>clusterService</code> - the cluster service</dd>
+<dd><code>membershipService</code> - the cluster membership service</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the server builder</dd>
 </dl>

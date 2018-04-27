@@ -93,40 +93,40 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../io/atomix/cluster/ClusterEventListener.html" title="interface in io.atomix.cluster">ClusterEventListener</a></td>
+<td class="colFirst"><a href="../../../io/atomix/cluster/ClusterMembershipEventListener.html" title="interface in io.atomix.cluster">ClusterMembershipEventListener</a></td>
 <td class="colLast">
 <div class="block">Entity capable of receiving device cluster-related events.</div>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><a href="../../../io/atomix/cluster/ClusterMembershipService.html" title="interface in io.atomix.cluster">ClusterMembershipService</a></td>
+<td class="colLast">
+<div class="block">Service for obtaining information about the individual members within
+ the cluster.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../io/atomix/cluster/ClusterMetadataEventListener.html" title="interface in io.atomix.cluster">ClusterMetadataEventListener</a></td>
 <td class="colLast">
 <div class="block">Cluster metadata event listener.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../../io/atomix/cluster/ClusterMetadataService.html" title="interface in io.atomix.cluster">ClusterMetadataService</a></td>
 <td class="colLast">
 <div class="block">Cluster metadata service.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../io/atomix/cluster/ClusterService.html" title="interface in io.atomix.cluster">ClusterService</a></td>
-<td class="colLast">
-<div class="block">Service for obtaining information about the individual nodes within
- the controller cluster.</div>
-</td>
-</tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../io/atomix/cluster/CoreMetadataService.html" title="interface in io.atomix.cluster">CoreMetadataService</a></td>
-<td class="colLast">
-<div class="block">Core metadata service.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="../../../io/atomix/cluster/ManagedBootstrapMetadataService.html" title="interface in io.atomix.cluster">ManagedBootstrapMetadataService</a></td>
 <td class="colLast">
 <div class="block">Managed bootstrap metadata service.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../io/atomix/cluster/ManagedClusterMembershipService.html" title="interface in io.atomix.cluster">ManagedClusterMembershipService</a></td>
+<td class="colLast">
+<div class="block">Managed cluster.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -136,15 +136,15 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../io/atomix/cluster/ManagedClusterService.html" title="interface in io.atomix.cluster">ManagedClusterService</a></td>
+<td class="colFirst"><a href="../../../io/atomix/cluster/ManagedPersistentMetadataService.html" title="interface in io.atomix.cluster">ManagedPersistentMetadataService</a></td>
 <td class="colLast">
-<div class="block">Managed cluster.</div>
+<div class="block">Managed core metadata service.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../io/atomix/cluster/ManagedCoreMetadataService.html" title="interface in io.atomix.cluster">ManagedCoreMetadataService</a></td>
+<td class="colFirst"><a href="../../../io/atomix/cluster/PersistentMetadataService.html" title="interface in io.atomix.cluster">PersistentMetadataService</a></td>
 <td class="colLast">
-<div class="block">Managed core metadata service.</div>
+<div class="block">Core metadata service.</div>
 </td>
 </tr>
 </tbody>
@@ -159,13 +159,25 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><a href="../../../io/atomix/cluster/AtomixCluster.html" title="class in io.atomix.cluster">AtomixCluster</a>&lt;T extends <a href="../../../io/atomix/cluster/AtomixCluster.html" title="class in io.atomix.cluster">AtomixCluster</a>&lt;T&gt;&gt;</td>
+<td class="colLast">
+<div class="block">Cluster configuration.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html" title="class in io.atomix.cluster">AtomixCluster.Builder</a>&lt;T extends <a href="../../../io/atomix/cluster/AtomixCluster.html" title="class in io.atomix.cluster">AtomixCluster</a>&lt;T&gt;&gt;</td>
+<td class="colLast">
+<div class="block">Cluster builder.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a></td>
 <td class="colLast">
 <div class="block">Cluster configuration.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../io/atomix/cluster/ClusterEvent.html" title="class in io.atomix.cluster">ClusterEvent</a></td>
+<td class="colFirst"><a href="../../../io/atomix/cluster/ClusterMembershipEvent.html" title="class in io.atomix.cluster">ClusterMembershipEvent</a></td>
 <td class="colLast">
 <div class="block">Describes cluster-related event.</div>
 </td>
@@ -189,25 +201,31 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a></td>
+<td class="colFirst"><a href="../../../io/atomix/cluster/GroupMembershipConfig.html" title="class in io.atomix.cluster">GroupMembershipConfig</a></td>
+<td class="colLast">
+<div class="block">Group membership protocol configuration.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a></td>
 <td class="colLast">
 <div class="block">Represents a controller instance as a member in a cluster.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../io/atomix/cluster/Node.Builder.html" title="class in io.atomix.cluster">Node.Builder</a></td>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a></td>
 <td class="colLast">
 <div class="block">Node builder.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../io/atomix/cluster/NodeConfig.html" title="class in io.atomix.cluster">NodeConfig</a></td>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a></td>
 <td class="colLast">
 <div class="block">Node configuration.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a></td>
+<tr class="rowColor">
+<td class="colFirst"><a href="../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a></td>
 <td class="colLast">
 <div class="block">Controller cluster identity.</div>
 </td>
@@ -224,7 +242,7 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../io/atomix/cluster/ClusterEvent.Type.html" title="enum in io.atomix.cluster">ClusterEvent.Type</a></td>
+<td class="colFirst"><a href="../../../io/atomix/cluster/ClusterMembershipEvent.Type.html" title="enum in io.atomix.cluster">ClusterMembershipEvent.Type</a></td>
 <td class="colLast">
 <div class="block">Type of cluster-related events.</div>
 </td>
@@ -236,13 +254,13 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../io/atomix/cluster/Node.State.html" title="enum in io.atomix.cluster">Node.State</a></td>
+<td class="colFirst"><a href="../../../io/atomix/cluster/Member.State.html" title="enum in io.atomix.cluster">Member.State</a></td>
 <td class="colLast">
 <div class="block">Represents the operational state of the instance.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../io/atomix/cluster/Node.Type.html" title="enum in io.atomix.cluster">Node.Type</a></td>
+<td class="colFirst"><a href="../../../io/atomix/cluster/Member.Type.html" title="enum in io.atomix.cluster">Member.Type</a></td>
 <td class="colLast">
 <div class="block">Node type.</div>
 </td>

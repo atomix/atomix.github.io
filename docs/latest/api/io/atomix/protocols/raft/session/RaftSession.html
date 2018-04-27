@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10,"i41":10,"i42":10,"i43":10,"i44":10,"i45":10,"i46":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -109,13 +109,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a></dd>
+<dd><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">RaftSession</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="../../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a></pre>
+implements <a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a></pre>
 <div class="block">Raft session.</div>
 </li>
 </ul>
@@ -130,11 +130,11 @@ implements <a href="../../../../../io/atomix/primitive/session/Session.html" tit
 </a>
 <h3>Nested Class Summary</h3>
 <ul class="blockList">
-<li class="blockList"><a name="nested.classes.inherited.from.class.io.atomix.primitive.session.Session">
+<li class="blockList"><a name="nested.classes.inherited.from.class.io.atomix.primitive.session.PrimitiveSession">
 <!--   -->
 </a>
-<h3>Nested classes/interfaces inherited from interface&nbsp;io.atomix.primitive.session.<a href="../../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a></h3>
-<code><a href="../../../../../io/atomix/primitive/session/Session.State.html" title="enum in io.atomix.primitive.session">Session.State</a></code></li>
+<h3>Nested classes/interfaces inherited from interface&nbsp;io.atomix.primitive.session.<a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a></h3>
+<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.State.html" title="enum in io.atomix.primitive.session">PrimitiveSession.State</a></code></li>
 </ul>
 </li>
 </ul>
@@ -150,14 +150,15 @@ implements <a href="../../../../../io/atomix/primitive/session/Session.html" tit
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#RaftSession-io.atomix.primitive.session.SessionId-io.atomix.cluster.NodeId-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.protocols.raft.ReadConsistency-long-long-long-io.atomix.protocols.raft.service.RaftServiceContext-io.atomix.protocols.raft.impl.RaftContext-io.atomix.utils.concurrent.ThreadContextFactory-">RaftSession</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
-           <a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;member,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#RaftSession-io.atomix.primitive.session.SessionId-io.atomix.cluster.MemberId-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.protocols.raft.ReadConsistency-long-long-long-io.atomix.utils.serializer.Serializer-io.atomix.protocols.raft.service.RaftServiceContext-io.atomix.protocols.raft.impl.RaftContext-io.atomix.utils.concurrent.ThreadContextFactory-">RaftSession</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
+           <a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;member,
            <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
            <a href="../../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
            <a href="../../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a>&nbsp;readConsistency,
            long&nbsp;minTimeout,
            long&nbsp;maxTimeout,
            long&nbsp;lastUpdated,
+           <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
            <a href="../../../../../io/atomix/protocols/raft/service/RaftServiceContext.html" title="class in io.atomix.protocols.raft.service">RaftServiceContext</a>&nbsp;context,
            io.atomix.protocols.raft.impl.RaftContext&nbsp;server,
            <a href="../../../../../io/atomix/utils/concurrent/ThreadContextFactory.html" title="interface in io.atomix.utils.concurrent">ThreadContextFactory</a>&nbsp;threadContextFactory)</code>&nbsp;</td>
@@ -179,7 +180,7 @@ implements <a href="../../../../../io/atomix/primitive/session/Session.html" tit
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#addListener-io.atomix.primitive.session.SessionEventListener-">addListener</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionEventListener.html" title="interface in io.atomix.primitive.session">SessionEventListener</a>&nbsp;listener)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#addListener-io.atomix.primitive.session.PrimitiveSessionEventListener-">addListener</a></span>(<a href="../../../../../io/atomix/primitive/session/PrimitiveSessionEventListener.html" title="interface in io.atomix.primitive.session">PrimitiveSessionEventListener</a>&nbsp;listener)</code>
 <div class="block">Adds a state change listener to the session.</div>
 </td>
 </tr>
@@ -278,7 +279,7 @@ implements <a href="../../../../../io/atomix/primitive/session/Session.html" tit
 </td>
 </tr>
 <tr id="i17" class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/session/Session.State.html" title="enum in io.atomix.primitive.session">Session.State</a></code></td>
+<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.State.html" title="enum in io.atomix.primitive.session">PrimitiveSession.State</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#getState--">getState</a></span>()</code>
 <div class="block">Returns the session state.</div>
 </td>
@@ -300,27 +301,27 @@ implements <a href="../../../../../io/atomix/primitive/session/Session.html" tit
 </td>
 </tr>
 <tr id="i21" class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#memberId--">memberId</a></span>()</code>
+<div class="block">Returns the member identifier to which the session belongs.</div>
+</td>
+</tr>
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#minTimeout--">minTimeout</a></span>()</code>
 <div class="block">Returns the minimum session timeout.</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#nextCommandSequence--">nextCommandSequence</a></span>()</code>
 <div class="block">Returns the next operation sequence number.</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#nextRequestSequence--">nextRequestSequence</a></span>()</code>
 <div class="block">Returns the next request sequence number.</div>
-</td>
-</tr>
-<tr id="i24" class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#nodeId--">nodeId</a></span>()</code>
-<div class="block">Returns the node identifier to which the session belongs.</div>
 </td>
 </tr>
 <tr id="i25" class="rowColor">
@@ -330,124 +331,131 @@ implements <a href="../../../../../io/atomix/primitive/session/Session.html" tit
 </td>
 </tr>
 <tr id="i26" class="altColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#publish-io.atomix.primitive.event.EventType-T-">publish</a></span>(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
+       T&nbsp;event)</code>
+<div class="block">Publishes an event to the session.</div>
+</td>
+</tr>
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#publish-io.atomix.primitive.event.PrimitiveEvent-">publish</a></span>(<a href="../../../../../io/atomix/primitive/event/PrimitiveEvent.html" title="class in io.atomix.primitive.event">PrimitiveEvent</a>&nbsp;event)</code>
 <div class="block">Publishes an event to the session.</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#readConsistency--">readConsistency</a></span>()</code>
 <div class="block">Returns the session read consistency.</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i29" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#registerCommand-long-io.atomix.protocols.raft.impl.PendingCommand-">registerCommand</a></span>(long&nbsp;sequence,
                io.atomix.protocols.raft.impl.PendingCommand&nbsp;pendingCommand)</code>
 <div class="block">Registers a pending command.</div>
 </td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i30" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#registerIndexQuery-long-java.lang.Runnable-">registerIndexQuery</a></span>(long&nbsp;index,
                   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a>&nbsp;query)</code>
 <div class="block">Registers a session index query.</div>
 </td>
 </tr>
-<tr id="i30" class="altColor">
+<tr id="i31" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#registerResult-long-io.atomix.protocols.raft.impl.OperationResult-">registerResult</a></span>(long&nbsp;sequence,
               io.atomix.protocols.raft.impl.OperationResult&nbsp;result)</code>
 <div class="block">Registers a session result.</div>
 </td>
 </tr>
-<tr id="i31" class="rowColor">
+<tr id="i32" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#registerSequenceQuery-long-java.lang.Runnable-">registerSequenceQuery</a></span>(long&nbsp;sequence,
                      <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a>&nbsp;query)</code>
 <div class="block">Registers a causal session query.</div>
 </td>
 </tr>
-<tr id="i32" class="altColor">
+<tr id="i33" class="rowColor">
 <td class="colFirst"><code>io.atomix.protocols.raft.impl.PendingCommand</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#removeCommand-long-">removeCommand</a></span>(long&nbsp;sequence)</code>
 <div class="block">Removes and returns a pending command.</div>
 </td>
 </tr>
-<tr id="i33" class="rowColor">
+<tr id="i34" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#removeListener-io.atomix.primitive.session.SessionEventListener-">removeListener</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionEventListener.html" title="interface in io.atomix.primitive.session">SessionEventListener</a>&nbsp;listener)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#removeListener-io.atomix.primitive.session.PrimitiveSessionEventListener-">removeListener</a></span>(<a href="../../../../../io/atomix/primitive/session/PrimitiveSessionEventListener.html" title="interface in io.atomix.primitive.session">PrimitiveSessionEventListener</a>&nbsp;listener)</code>
 <div class="block">Removes a state change listener from the session.</div>
 </td>
 </tr>
-<tr id="i34" class="altColor">
+<tr id="i35" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#resendEvents-long-">resendEvents</a></span>(long&nbsp;index)</code>
 <div class="block">Resends events from the given sequence.</div>
 </td>
 </tr>
-<tr id="i35" class="rowColor">
+<tr id="i36" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#resetRequestSequence-long-">resetRequestSequence</a></span>(long&nbsp;requestSequence)</code>
 <div class="block">Resets the current request sequence number.</div>
 </td>
 </tr>
-<tr id="i36" class="altColor">
+<tr id="i37" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#serviceName--">serviceName</a></span>()</code>
 <div class="block">Returns the session's service name.</div>
 </td>
 </tr>
-<tr id="i37" class="rowColor">
+<tr id="i38" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#serviceType--">serviceType</a></span>()</code>
 <div class="block">Returns the session's service type.</div>
 </td>
 </tr>
-<tr id="i38" class="altColor">
+<tr id="i39" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#sessionId--">sessionId</a></span>()</code>
 <div class="block">Returns the session identifier.</div>
 </td>
 </tr>
-<tr id="i39" class="rowColor">
+<tr id="i40" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#setCommandSequence-long-">setCommandSequence</a></span>(long&nbsp;sequence)</code>
 <div class="block">Sets the session operation sequence number.</div>
 </td>
 </tr>
-<tr id="i40" class="altColor">
+<tr id="i41" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#setEventIndex-long-">setEventIndex</a></span>(long&nbsp;eventIndex)</code>
 <div class="block">Sets the session event index.</div>
 </td>
 </tr>
-<tr id="i41" class="rowColor">
+<tr id="i42" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#setLastApplied-long-">setLastApplied</a></span>(long&nbsp;index)</code>
 <div class="block">Sets the session index.</div>
 </td>
 </tr>
-<tr id="i42" class="altColor">
+<tr id="i43" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#setLastCompleted-long-">setLastCompleted</a></span>(long&nbsp;lastCompleted)</code>
 <div class="block">Sets the last completed event index for the session.</div>
 </td>
 </tr>
-<tr id="i43" class="rowColor">
+<tr id="i44" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#setLastUpdated-long-">setLastUpdated</a></span>(long&nbsp;lastUpdated)</code>
 <div class="block">Updates the session timestamp.</div>
 </td>
 </tr>
-<tr id="i44" class="altColor">
+<tr id="i45" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#setRequestSequence-long-">setRequestSequence</a></span>(long&nbsp;requestSequence)</code>
 <div class="block">Sets the current request sequence number.</div>
 </td>
 </tr>
-<tr id="i45" class="rowColor">
+<tr id="i46" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
@@ -460,11 +468,11 @@ implements <a href="../../../../../io/atomix/primitive/session/Session.html" tit
 <code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
 </ul>
 <ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.io.atomix.primitive.session.Session">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.primitive.session.PrimitiveSession">
 <!--   -->
 </a>
-<h3>Methods inherited from interface&nbsp;io.atomix.primitive.session.<a href="../../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a></h3>
-<code><a href="../../../../../io/atomix/primitive/session/Session.html#publish-io.atomix.primitive.event.EventType-">publish</a>, <a href="../../../../../io/atomix/primitive/session/Session.html#publish-io.atomix.primitive.event.EventType-byte:A-">publish</a>, <a href="../../../../../io/atomix/primitive/session/Session.html#publish-io.atomix.primitive.event.EventType-java.util.function.Function-T-">publish</a></code></li>
+<h3>Methods inherited from interface&nbsp;io.atomix.primitive.session.<a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a></h3>
+<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.EventType-">publish</a></code></li>
 </ul>
 </li>
 </ul>
@@ -480,20 +488,21 @@ implements <a href="../../../../../io/atomix/primitive/session/Session.html" tit
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="RaftSession-io.atomix.primitive.session.SessionId-io.atomix.cluster.NodeId-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.protocols.raft.ReadConsistency-long-long-long-io.atomix.protocols.raft.service.RaftServiceContext-io.atomix.protocols.raft.impl.RaftContext-io.atomix.utils.concurrent.ThreadContextFactory-">
+<a name="RaftSession-io.atomix.primitive.session.SessionId-io.atomix.cluster.MemberId-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.protocols.raft.ReadConsistency-long-long-long-io.atomix.utils.serializer.Serializer-io.atomix.protocols.raft.service.RaftServiceContext-io.atomix.protocols.raft.impl.RaftContext-io.atomix.utils.concurrent.ThreadContextFactory-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>RaftSession</h4>
 <pre>public&nbsp;RaftSession(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
-                   <a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;member,
+                   <a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;member,
                    <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                    <a href="../../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
                    <a href="../../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a>&nbsp;readConsistency,
                    long&nbsp;minTimeout,
                    long&nbsp;maxTimeout,
                    long&nbsp;lastUpdated,
+                   <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
                    <a href="../../../../../io/atomix/protocols/raft/service/RaftServiceContext.html" title="class in io.atomix.protocols.raft.service">RaftServiceContext</a>&nbsp;context,
                    io.atomix.protocols.raft.impl.RaftContext&nbsp;server,
                    <a href="../../../../../io/atomix/utils/concurrent/ThreadContextFactory.html" title="interface in io.atomix.utils.concurrent">ThreadContextFactory</a>&nbsp;threadContextFactory)</pre>
@@ -514,11 +523,11 @@ implements <a href="../../../../../io/atomix/primitive/session/Session.html" tit
 <li class="blockList">
 <h4>sessionId</h4>
 <pre>public&nbsp;<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/Session.html#sessionId--">Session</a></code></span></div>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#sessionId--">PrimitiveSession</a></code></span></div>
 <div class="block">Returns the session identifier.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/session/Session.html#sessionId--">sessionId</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a></code></dd>
+<dd><code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#sessionId--">sessionId</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The session identifier.</dd>
 </dl>
@@ -531,11 +540,11 @@ implements <a href="../../../../../io/atomix/primitive/session/Session.html" tit
 <li class="blockList">
 <h4>serviceName</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;serviceName()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/Session.html#serviceName--">Session</a></code></span></div>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#serviceName--">PrimitiveSession</a></code></span></div>
 <div class="block">Returns the session's service name.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/session/Session.html#serviceName--">serviceName</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a></code></dd>
+<dd><code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#serviceName--">serviceName</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The session's service name.</dd>
 </dl>
@@ -548,30 +557,30 @@ implements <a href="../../../../../io/atomix/primitive/session/Session.html" tit
 <li class="blockList">
 <h4>serviceType</h4>
 <pre>public&nbsp;<a href="../../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;serviceType()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/Session.html#serviceType--">Session</a></code></span></div>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#serviceType--">PrimitiveSession</a></code></span></div>
 <div class="block">Returns the session's service type.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/session/Session.html#serviceType--">serviceType</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a></code></dd>
+<dd><code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#serviceType--">serviceType</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The session's service type.</dd>
 </dl>
 </li>
 </ul>
-<a name="nodeId--">
+<a name="memberId--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>nodeId</h4>
-<pre>public&nbsp;<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;nodeId()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/Session.html#nodeId--">Session</a></code></span></div>
-<div class="block">Returns the node identifier to which the session belongs.</div>
+<h4>memberId</h4>
+<pre>public&nbsp;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#memberId--">PrimitiveSession</a></code></span></div>
+<div class="block">Returns the member identifier to which the session belongs.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/session/Session.html#nodeId--">nodeId</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a></code></dd>
+<dd><code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#memberId--">memberId</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>The node to which the session belongs.</dd>
+<dd>The member to which the session belongs.</dd>
 </dl>
 </li>
 </ul>
@@ -681,46 +690,46 @@ implements <a href="../../../../../io/atomix/primitive/session/Session.html" tit
 <ul class="blockList">
 <li class="blockList">
 <h4>getState</h4>
-<pre>public&nbsp;<a href="../../../../../io/atomix/primitive/session/Session.State.html" title="enum in io.atomix.primitive.session">Session.State</a>&nbsp;getState()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/Session.html#getState--">Session</a></code></span></div>
+<pre>public&nbsp;<a href="../../../../../io/atomix/primitive/session/PrimitiveSession.State.html" title="enum in io.atomix.primitive.session">PrimitiveSession.State</a>&nbsp;getState()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#getState--">PrimitiveSession</a></code></span></div>
 <div class="block">Returns the session state.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/session/Session.html#getState--">getState</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a></code></dd>
+<dd><code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#getState--">getState</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The session state.</dd>
 </dl>
 </li>
 </ul>
-<a name="addListener-io.atomix.primitive.session.SessionEventListener-">
+<a name="addListener-io.atomix.primitive.session.PrimitiveSessionEventListener-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>addListener</h4>
-<pre>public&nbsp;void&nbsp;addListener(<a href="../../../../../io/atomix/primitive/session/SessionEventListener.html" title="interface in io.atomix.primitive.session">SessionEventListener</a>&nbsp;listener)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/Session.html#addListener-io.atomix.primitive.session.SessionEventListener-">Session</a></code></span></div>
+<pre>public&nbsp;void&nbsp;addListener(<a href="../../../../../io/atomix/primitive/session/PrimitiveSessionEventListener.html" title="interface in io.atomix.primitive.session">PrimitiveSessionEventListener</a>&nbsp;listener)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#addListener-io.atomix.primitive.session.PrimitiveSessionEventListener-">PrimitiveSession</a></code></span></div>
 <div class="block">Adds a state change listener to the session.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/session/Session.html#addListener-io.atomix.primitive.session.SessionEventListener-">addListener</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a></code></dd>
+<dd><code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#addListener-io.atomix.primitive.session.PrimitiveSessionEventListener-">addListener</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>listener</code> - the state change listener to add</dd>
 </dl>
 </li>
 </ul>
-<a name="removeListener-io.atomix.primitive.session.SessionEventListener-">
+<a name="removeListener-io.atomix.primitive.session.PrimitiveSessionEventListener-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>removeListener</h4>
-<pre>public&nbsp;void&nbsp;removeListener(<a href="../../../../../io/atomix/primitive/session/SessionEventListener.html" title="interface in io.atomix.primitive.session">SessionEventListener</a>&nbsp;listener)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/Session.html#removeListener-io.atomix.primitive.session.SessionEventListener-">Session</a></code></span></div>
+<pre>public&nbsp;void&nbsp;removeListener(<a href="../../../../../io/atomix/primitive/session/PrimitiveSessionEventListener.html" title="interface in io.atomix.primitive.session">PrimitiveSessionEventListener</a>&nbsp;listener)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#removeListener-io.atomix.primitive.session.PrimitiveSessionEventListener-">PrimitiveSession</a></code></span></div>
 <div class="block">Removes a state change listener from the session.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/session/Session.html#removeListener-io.atomix.primitive.session.SessionEventListener-">removeListener</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a></code></dd>
+<dd><code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#removeListener-io.atomix.primitive.session.PrimitiveSessionEventListener-">removeListener</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>listener</code> - the state change listener to remove</dd>
 </dl>
@@ -1042,6 +1051,29 @@ implements <a href="../../../../../io/atomix/primitive/session/Session.html" tit
 </dl>
 </li>
 </ul>
+<a name="publish-io.atomix.primitive.event.EventType-java.lang.Object-">
+<!--   -->
+</a><a name="publish-io.atomix.primitive.event.EventType-T-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>publish</h4>
+<pre>public&nbsp;&lt;T&gt;&nbsp;void&nbsp;publish(<a href="../../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
+                        T&nbsp;event)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.EventType-T-">PrimitiveSession</a></code></span></div>
+<div class="block">Publishes an event to the session.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.EventType-T-">publish</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a></code></dd>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - the event type</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>eventType</code> - the event identifier</dd>
+<dd><code>event</code> - the event value</dd>
+</dl>
+</li>
+</ul>
 <a name="publish-io.atomix.primitive.event.PrimitiveEvent-">
 <!--   -->
 </a>
@@ -1049,11 +1081,11 @@ implements <a href="../../../../../io/atomix/primitive/session/Session.html" tit
 <li class="blockList">
 <h4>publish</h4>
 <pre>public&nbsp;void&nbsp;publish(<a href="../../../../../io/atomix/primitive/event/PrimitiveEvent.html" title="class in io.atomix.primitive.event">PrimitiveEvent</a>&nbsp;event)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/Session.html#publish-io.atomix.primitive.event.PrimitiveEvent-">Session</a></code></span></div>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.PrimitiveEvent-">PrimitiveSession</a></code></span></div>
 <div class="block">Publishes an event to the session.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/session/Session.html#publish-io.atomix.primitive.event.PrimitiveEvent-">publish</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session">Session</a></code></dd>
+<dd><code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.PrimitiveEvent-">publish</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>event</code> - the event to publish</dd>
 </dl>

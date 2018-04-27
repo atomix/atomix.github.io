@@ -161,59 +161,65 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.primitive.protocol">io.atomix.primitive.protocol</a></td>
+<td class="colLast">
+<div class="block">Provides classes and interfaces for defining and managing primitive protocols.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.primitive.proxy">io.atomix.primitive.proxy</a></td>
 <td class="colLast">
 <div class="block">Provides interfaces for operating on distributed primitive services.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.primitive.service">io.atomix.primitive.service</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for defining distributed primitive state machines.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.primitive.session">io.atomix.primitive.session</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for managing primitive sessions.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.protocols.backup">io.atomix.protocols.backup</a></td>
 <td class="colLast">
 <div class="block">Provides a <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol"><code>PrimitiveProtocol</code></a> implementation for multi-primary replication and
  classes for managing primary-backup clients/servers.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.protocols.backup.proxy">io.atomix.protocols.backup.proxy</a></td>
 <td class="colLast">
-<div class="block">Provides a <a href="../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy"><code>PrimitiveProxy</code></a> implementation for primary-backup.</div>
+<div class="block">Provides a <a href="../../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy"><code>PartitionProxy</code></a> implementation for primary-backup.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft">io.atomix.protocols.raft</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for managing Raft clients and servers.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.protocol">io.atomix.protocols.raft.protocol</a></td>
 <td class="colLast">
 <div class="block">Provides <a href="../../../../io/atomix/protocols/raft/protocol/RaftRequest.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftRequest</code></a> and <a href="../../../../io/atomix/protocols/raft/protocol/RaftResponse.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftResponse</code></a>
  implementations for all internal Raft protocol communication.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.service">io.atomix.protocols.raft.service</a></td>
 <td class="colLast">
 <div class="block">Provides classes for managing Raft-based primitive services.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.session">io.atomix.protocols.raft.session</a></td>
 <td class="colLast">
-<div class="block">Provides a <a href="../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session"><code>Session</code></a> implementation for the Raft consensus protocol.</div>
+<div class="block">Provides a <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session"><code>PrimitiveSession</code></a> implementation for the Raft consensus protocol.</div>
 </td>
 </tr>
 </tbody>
@@ -871,33 +877,12 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">PrimitiveClient.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/PrimitiveClient.html#getPrimitives-io.atomix.primitive.PrimitiveType-">getPrimitives</a></span>(<a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType)</code>
-<div class="block">Gets a list of primitives of the given type.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy">PrimitiveProxy</a></code></td>
-<td class="colLast"><span class="typeNameLabel">PrimitiveClient.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/PrimitiveClient.html#newProxy-java.lang.String-io.atomix.primitive.PrimitiveType-">newProxy</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
-        <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType)</code>
-<div class="block">Returns a new proxy builder for the given primitive type.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy">PrimitiveProxy</a></code></td>
-<td class="colLast"><span class="typeNameLabel">PrimitiveClient.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/PrimitiveClient.html#newProxy-java.lang.String-io.atomix.primitive.PrimitiveType-P-">newProxy</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
-        <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
-        <a href="../../../../io/atomix/primitive/PrimitiveClient.html" title="type parameter in PrimitiveClient">P</a>&nbsp;primitiveProtocol)</code>
-<div class="block">Returns a new proxy builder for the given primitive type.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">PrimitiveTypeRegistry.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/PrimitiveTypeRegistry.html#register-io.atomix.primitive.PrimitiveType-">register</a></span>(<a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;type)</code>
 <div class="block">Registers a primitive type.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><span class="typeNameLabel">PrimitiveTypeRegistry.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/PrimitiveTypeRegistry.html#unregister-io.atomix.primitive.PrimitiveType-">unregister</a></span>(<a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;type)</code>
 <div class="block">Unregisters a primitive type.</div>
@@ -935,6 +920,28 @@
 </tbody>
 </table>
 </li>
+<li class="blockList"><a name="io.atomix.primitive.protocol">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a> in <a href="../../../../io/atomix/primitive/protocol/package-summary.html">io.atomix.primitive.protocol</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../io/atomix/primitive/protocol/package-summary.html">io.atomix.primitive.protocol</a> with parameters of type <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy">PrimitiveProxy</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PrimitiveProtocol.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html#newProxy-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.primitive.partition.PartitionService-">newProxy</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
+        <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
+        <a href="../../../../io/atomix/primitive/partition/PartitionService.html" title="interface in io.atomix.primitive.partition">PartitionService</a>&nbsp;partitionService)</code>
+<div class="block">Returns a new primitive proxy for the given partition group.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
 <li class="blockList"><a name="io.atomix.primitive.proxy">
 <!--   -->
 </a>
@@ -948,8 +955,24 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a></code></td>
-<td class="colLast"><span class="typeNameLabel">PrimitiveProxy.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#serviceType--">serviceType</a></span>()</code>
+<td class="colLast"><span class="typeNameLabel">Proxy.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/proxy/Proxy.html#type--">type</a></span>()</code>
 <div class="block">Returns the client proxy type.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../io/atomix/primitive/proxy/package-summary.html">io.atomix.primitive.proxy</a> with parameters of type <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/primitive/proxy/PartitionProxy.Builder.html" title="class in io.atomix.primitive.proxy">PartitionProxy.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ProxyClient.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/proxy/ProxyClient.html#proxyBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-">proxyBuilder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
+            <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType)</code>
+<div class="block">Returns a new proxy builder for the given primitive type.</div>
 </td>
 </tr>
 </tbody>
@@ -988,7 +1011,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Session.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/Session.html#serviceType--">serviceType</a></span>()</code>
+<td class="colLast"><span class="typeNameLabel">PrimitiveSession.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#serviceType--">serviceType</a></span>()</code>
 <div class="block">Returns the session's service type.</div>
 </td>
 </tr>
@@ -1013,19 +1036,15 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">PrimaryBackupClient.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/PrimaryBackupClient.html#getPrimitives-io.atomix.primitive.PrimitiveType-">getPrimitives</a></span>(<a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType)</code>&nbsp;</td>
+<td class="colFirst"><code><a href="../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy">PrimitiveProxy</a></code></td>
+<td class="colLast"><span class="typeNameLabel">MultiPrimaryProtocol.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.html#newProxy-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.primitive.partition.PartitionService-">newProxy</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
+        <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
+        <a href="../../../../io/atomix/primitive/partition/PartitionService.html" title="interface in io.atomix.primitive.partition">PartitionService</a>&nbsp;partitionService)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy">PrimitiveProxy</a></code></td>
-<td class="colLast"><span class="typeNameLabel">PrimaryBackupClient.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/PrimaryBackupClient.html#newProxy-java.lang.String-io.atomix.primitive.PrimitiveType-">newProxy</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
-        <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType)</code>&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy">PrimitiveProxy</a></code></td>
-<td class="colLast"><span class="typeNameLabel">PrimaryBackupClient.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/PrimaryBackupClient.html#newProxy-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.protocols.backup.MultiPrimaryProtocol-">newProxy</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
-        <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
-        <a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocol</a>&nbsp;primitiveProtocol)</code>&nbsp;</td>
+<td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/proxy/PrimaryBackupProxy.Builder.html" title="class in io.atomix.protocols.backup.proxy">PrimaryBackupProxy.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PrimaryBackupClient.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/PrimaryBackupClient.html#proxyBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-">proxyBuilder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
+            <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -1043,7 +1062,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a></code></td>
-<td class="colLast"><span class="typeNameLabel">PrimaryBackupProxy.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/proxy/PrimaryBackupProxy.html#serviceType--">serviceType</a></span>()</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">PrimaryBackupProxy.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/proxy/PrimaryBackupProxy.html#type--">type</a></span>()</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -1054,11 +1073,12 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/proxy/PrimaryBackupProxy.html#PrimaryBackupProxy-java.lang.String-io.atomix.primitive.session.SessionId-io.atomix.primitive.PrimitiveType-io.atomix.protocols.backup.protocol.PrimitiveDescriptor-io.atomix.cluster.ClusterService-io.atomix.protocols.backup.protocol.PrimaryBackupClientProtocol-io.atomix.primitive.partition.PrimaryElection-io.atomix.utils.concurrent.ThreadContext-">PrimaryBackupProxy</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;clientName,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/proxy/PrimaryBackupProxy.html#PrimaryBackupProxy-java.lang.String-io.atomix.primitive.partition.PartitionId-io.atomix.primitive.session.SessionId-io.atomix.primitive.PrimitiveType-io.atomix.protocols.backup.protocol.PrimitiveDescriptor-io.atomix.cluster.ClusterMembershipService-io.atomix.protocols.backup.protocol.PrimaryBackupClientProtocol-io.atomix.primitive.partition.PrimaryElection-io.atomix.utils.concurrent.ThreadContext-">PrimaryBackupProxy</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;clientName,
+                  <a href="../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId,
                   <a href="../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
                   <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
                   <a href="../../../../io/atomix/protocols/backup/protocol/PrimitiveDescriptor.html" title="class in io.atomix.protocols.backup.protocol">PrimitiveDescriptor</a>&nbsp;descriptor,
-                  <a href="../../../../io/atomix/cluster/ClusterService.html" title="interface in io.atomix.cluster">ClusterService</a>&nbsp;clusterService,
+                  <a href="../../../../io/atomix/cluster/ClusterMembershipService.html" title="interface in io.atomix.cluster">ClusterMembershipService</a>&nbsp;clusterMembershipService,
                   <a href="../../../../io/atomix/protocols/backup/protocol/PrimaryBackupClientProtocol.html" title="interface in io.atomix.protocols.backup.protocol">PrimaryBackupClientProtocol</a>&nbsp;protocol,
                   <a href="../../../../io/atomix/primitive/partition/PrimaryElection.html" title="interface in io.atomix.primitive.partition">PrimaryElection</a>&nbsp;primaryElection,
                   <a href="../../../../io/atomix/utils/concurrent/ThreadContext.html" title="interface in io.atomix.utils.concurrent">ThreadContext</a>&nbsp;threadContext)</code>&nbsp;</td>
@@ -1095,6 +1115,17 @@
            <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;serviceName)</code>
 <div class="block">Returns a list of open sessions for the given service.</div>
 </td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy">PrimitiveProxy</a></code></td>
+<td class="colLast"><span class="typeNameLabel">MultiRaftProtocol.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/MultiRaftProtocol.html#newProxy-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.primitive.partition.PartitionService-">newProxy</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
+        <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
+        <a href="../../../../io/atomix/primitive/partition/PartitionService.html" title="interface in io.atomix.primitive.partition">PartitionService</a>&nbsp;partitionService)</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/proxy/RaftProxy.Builder.html" title="class in io.atomix.protocols.raft.proxy">RaftProxy.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">RaftClient.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#proxyBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-">proxyBuilder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
+            <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -1177,14 +1208,15 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/session/RaftSession.html#RaftSession-io.atomix.primitive.session.SessionId-io.atomix.cluster.NodeId-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.protocols.raft.ReadConsistency-long-long-long-io.atomix.protocols.raft.service.RaftServiceContext-io.atomix.protocols.raft.impl.RaftContext-io.atomix.utils.concurrent.ThreadContextFactory-">RaftSession</a></span>(<a href="../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
-           <a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;member,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/session/RaftSession.html#RaftSession-io.atomix.primitive.session.SessionId-io.atomix.cluster.MemberId-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.protocols.raft.ReadConsistency-long-long-long-io.atomix.utils.serializer.Serializer-io.atomix.protocols.raft.service.RaftServiceContext-io.atomix.protocols.raft.impl.RaftContext-io.atomix.utils.concurrent.ThreadContextFactory-">RaftSession</a></span>(<a href="../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
+           <a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;member,
            <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
            <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
            <a href="../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a>&nbsp;readConsistency,
            long&nbsp;minTimeout,
            long&nbsp;maxTimeout,
            long&nbsp;lastUpdated,
+           <a href="../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
            <a href="../../../../io/atomix/protocols/raft/service/RaftServiceContext.html" title="class in io.atomix.protocols.raft.service">RaftServiceContext</a>&nbsp;context,
            io.atomix.protocols.raft.impl.RaftContext&nbsp;server,
            <a href="../../../../io/atomix/utils/concurrent/ThreadContextFactory.html" title="interface in io.atomix.utils.concurrent">ThreadContextFactory</a>&nbsp;threadContextFactory)</code>&nbsp;</td>

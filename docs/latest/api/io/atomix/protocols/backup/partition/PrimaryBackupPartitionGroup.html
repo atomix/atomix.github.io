@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
+var methods = {"i0":9,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -75,13 +75,13 @@ var activeTableTab = "activeTableTab";
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -109,13 +109,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>, <a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition">PartitionGroup</a></dd>
+<dd><a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;, <a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition">PartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;, <a href="../../../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a>&lt;<a href="../../../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a>&gt;</dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">PrimaryBackupPartitionGroup</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a></pre>
+implements <a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;</pre>
 <div class="block">Primary-backup partition group.</div>
 </li>
 </ul>
@@ -140,6 +140,31 @@ implements <a href="../../../../../io/atomix/primitive/partition/ManagedPartitio
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.Builder.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartitionGroup.Builder</a></span></code>
 <div class="block">Primary-backup partition group builder.</div>
 </td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.Type.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartitionGroup.Type</a></span></code>
+<div class="block">The primary-backup partition group type.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
+<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Field and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static <a href="../../../../../io/atomix/primitive/partition/PartitionGroup.Type.html" title="interface in io.atomix.primitive.partition">PartitionGroup.Type</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.html#TYPE">TYPE</a></span></code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -186,49 +211,67 @@ implements <a href="../../../../../io/atomix/primitive/partition/ManagedPartitio
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition">Partition</a></code></td>
+<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.html#config--">config</a></span>()</code>
+<div class="block">Returns the object configuration.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.html#connect-io.atomix.primitive.partition.PartitionManagementService-">connect</a></span>(<a href="../../../../../io/atomix/primitive/partition/PartitionManagementService.html" title="interface in io.atomix.primitive.partition">PartitionManagementService</a>&nbsp;managementService)</code>
+<div class="block">Connects to the partition group.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.html#getPartition-io.atomix.primitive.partition.PartitionId-">getPartition</a></span>(<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId)</code>
 <div class="block">Returns a partition by ID.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.html#getPartitionIds--">getPartitionIds</a></span>()</code>
 <div class="block">Returns a sorted list of partition IDs.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition">Partition</a>&gt;</code></td>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.html#getPartitions--">getPartitions</a></span>()</code>
 <div class="block">Returns a collection of all partitions.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.html#join-io.atomix.primitive.partition.PartitionManagementService-">join</a></span>(<a href="../../../../../io/atomix/primitive/partition/PartitionManagementService.html" title="interface in io.atomix.primitive.partition">PartitionManagementService</a>&nbsp;managementService)</code>
+<div class="block">Joins the partition group.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.html#name--">name</a></span>()</code>
 <div class="block">Returns the partition group name.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.html#newProtocol--">newProtocol</a></span>()</code>
 <div class="block">Returns a new primitive protocol.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.html#open-io.atomix.primitive.partition.PartitionManagementService-">open</a></span>(<a href="../../../../../io/atomix/primitive/partition/PartitionManagementService.html" title="interface in io.atomix.primitive.partition">PartitionManagementService</a>&nbsp;managementService)</code>
-<div class="block">Initializes the partition group.</div>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.html#protocol--">protocol</a></span>()</code>
+<div class="block">Returns the primitive protocol type supported by the partition group.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a></code></td>
+<tr id="i12" class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.Type.html" title="interface in io.atomix.primitive.partition">PartitionGroup.Type</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.html#type--">type</a></span>()</code>
-<div class="block">Returns the primitive protocol type supported by the partition group.</div>
+<div class="block">Returns the partition group type.</div>
 </td>
 </tr>
 </table>
@@ -254,6 +297,23 @@ implements <a href="../../../../../io/atomix/primitive/partition/ManagedPartitio
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
+<!-- ============ FIELD DETAIL =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.detail">
+<!--   -->
+</a>
+<h3>Field Detail</h3>
+<a name="TYPE">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>TYPE</h4>
+<pre>public static final&nbsp;<a href="../../../../../io/atomix/primitive/partition/PartitionGroup.Type.html" title="interface in io.atomix.primitive.partition">PartitionGroup.Type</a> TYPE</pre>
+</li>
+</ul>
+</li>
+</ul>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.detail">
@@ -304,7 +364,7 @@ implements <a href="../../../../../io/atomix/primitive/partition/ManagedPartitio
 <div class="block">Returns the partition group name.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#name--">name</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition">PartitionGroup</a></code></dd>
+<dd><code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#name--">name</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition">PartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the partition group name</dd>
 </dl>
@@ -316,14 +376,48 @@ implements <a href="../../../../../io/atomix/primitive/partition/ManagedPartitio
 <ul class="blockList">
 <li class="blockList">
 <h4>type</h4>
-<pre>public&nbsp;<a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a>&nbsp;type()</pre>
+<pre>public&nbsp;<a href="../../../../../io/atomix/primitive/partition/PartitionGroup.Type.html" title="interface in io.atomix.primitive.partition">PartitionGroup.Type</a>&nbsp;type()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#type--">PartitionGroup</a></code></span></div>
+<div class="block">Returns the partition group type.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#type--">type</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition">PartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the partition group type</dd>
+</dl>
+</li>
+</ul>
+<a name="protocol--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>protocol</h4>
+<pre>public&nbsp;<a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a>&nbsp;protocol()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#protocol--">PartitionGroup</a></code></span></div>
 <div class="block">Returns the primitive protocol type supported by the partition group.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#type--">type</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition">PartitionGroup</a></code></dd>
+<dd><code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#protocol--">protocol</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition">PartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the primitive protocol type supported by the partition group</dd>
+</dl>
+</li>
+</ul>
+<a name="config--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>config</h4>
+<pre>public&nbsp;<a href="../../../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a>&nbsp;config()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/utils/config/Configured.html#config--">Configured</a></code></span></div>
+<div class="block">Returns the object configuration.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../../io/atomix/utils/config/Configured.html#config--">config</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a>&lt;<a href="../../../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the object configuration</dd>
 </dl>
 </li>
 </ul>
@@ -338,7 +432,7 @@ implements <a href="../../../../../io/atomix/primitive/partition/ManagedPartitio
 <div class="block">Returns a new primitive protocol.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#newProtocol--">newProtocol</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition">PartitionGroup</a></code></dd>
+<dd><code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#newProtocol--">newProtocol</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition">PartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a new primitive protocol</dd>
 </dl>
@@ -350,12 +444,12 @@ implements <a href="../../../../../io/atomix/primitive/partition/ManagedPartitio
 <ul class="blockList">
 <li class="blockList">
 <h4>getPartition</h4>
-<pre>public&nbsp;<a href="../../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition">Partition</a>&nbsp;getPartition(<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId)</pre>
+<pre>public&nbsp;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&nbsp;getPartition(<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#getPartition-io.atomix.primitive.partition.PartitionId-">PartitionGroup</a></code></span></div>
 <div class="block">Returns a partition by ID.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#getPartition-io.atomix.primitive.partition.PartitionId-">getPartition</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition">PartitionGroup</a></code></dd>
+<dd><code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#getPartition-io.atomix.primitive.partition.PartitionId-">getPartition</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition">PartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>partitionId</code> - the partition identifier</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -369,12 +463,12 @@ implements <a href="../../../../../io/atomix/primitive/partition/ManagedPartitio
 <ul class="blockList">
 <li class="blockList">
 <h4>getPartitions</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition">Partition</a>&gt;&nbsp;getPartitions()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;&nbsp;getPartitions()</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#getPartitions--">PartitionGroup</a></code></span></div>
 <div class="block">Returns a collection of all partitions.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#getPartitions--">getPartitions</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition">PartitionGroup</a></code></dd>
+<dd><code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#getPartitions--">getPartitions</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition">PartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a collection of all partitions</dd>
 </dl>
@@ -391,28 +485,47 @@ implements <a href="../../../../../io/atomix/primitive/partition/ManagedPartitio
 <div class="block">Returns a sorted list of partition IDs.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#getPartitionIds--">getPartitionIds</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition">PartitionGroup</a></code></dd>
+<dd><code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#getPartitionIds--">getPartitionIds</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition">PartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a sorted list of partition IDs</dd>
 </dl>
 </li>
 </ul>
-<a name="open-io.atomix.primitive.partition.PartitionManagementService-">
+<a name="join-io.atomix.primitive.partition.PartitionManagementService-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>open</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&gt;&nbsp;open(<a href="../../../../../io/atomix/primitive/partition/PartitionManagementService.html" title="interface in io.atomix.primitive.partition">PartitionManagementService</a>&nbsp;managementService)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html#open-io.atomix.primitive.partition.PartitionManagementService-">ManagedPartitionGroup</a></code></span></div>
-<div class="block">Initializes the partition group.</div>
+<h4>join</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;&gt;&nbsp;join(<a href="../../../../../io/atomix/primitive/partition/PartitionManagementService.html" title="interface in io.atomix.primitive.partition">PartitionManagementService</a>&nbsp;managementService)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html#join-io.atomix.primitive.partition.PartitionManagementService-">ManagedPartitionGroup</a></code></span></div>
+<div class="block">Joins the partition group.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html#open-io.atomix.primitive.partition.PartitionManagementService-">open</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a></code></dd>
+<dd><code><a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html#join-io.atomix.primitive.partition.PartitionManagementService-">join</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;</code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>managementService</code> - the partition management service</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>a future to be completed once the partition group has been initialized</dd>
+<dd>a future to be completed once the partition group has been joined</dd>
+</dl>
+</li>
+</ul>
+<a name="connect-io.atomix.primitive.partition.PartitionManagementService-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>connect</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;&gt;&nbsp;connect(<a href="../../../../../io/atomix/primitive/partition/PartitionManagementService.html" title="interface in io.atomix.primitive.partition">PartitionManagementService</a>&nbsp;managementService)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html#connect-io.atomix.primitive.partition.PartitionManagementService-">ManagedPartitionGroup</a></code></span></div>
+<div class="block">Connects to the partition group.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html#connect-io.atomix.primitive.partition.PartitionManagementService-">connect</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>managementService</code> - the partition management service</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a future to be completed once the partition group has been connected</dd>
 </dl>
 </li>
 </ul>
@@ -427,7 +540,7 @@ implements <a href="../../../../../io/atomix/primitive/partition/ManagedPartitio
 <div class="block">Closes the partition group.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html#close--">close</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a></code></dd>
+<dd><code><a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html#close--">close</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;<a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a future to be completed once the partition group has been closed</dd>
 </dl>
@@ -500,13 +613,13 @@ implements <a href="../../../../../io/atomix/primitive/partition/ManagedPartitio
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>

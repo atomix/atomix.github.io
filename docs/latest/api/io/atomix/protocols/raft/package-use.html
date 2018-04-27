@@ -103,18 +103,24 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.protocols.raft.proxy">io.atomix.protocols.raft.proxy</a></td>
+<td class="colLast">
+<div class="block">Provides a <a href="../../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy"><code>PartitionProxy</code></a> implementation for the Raft consensus protocol.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.roles">io.atomix.protocols.raft.roles</a></td>
 <td class="colLast">
 <div class="block">Provides classes for role-based management of leader election and replication in the Raft consensus protocol.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.session">io.atomix.protocols.raft.session</a></td>
 <td class="colLast">
-<div class="block">Provides a <a href="../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session"><code>Session</code></a> implementation for the Raft consensus protocol.</div>
+<div class="block">Provides a <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session"><code>PrimitiveSession</code></a> implementation for the Raft consensus protocol.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.storage.log.entry">io.atomix.protocols.raft.storage.log.entry</a></td>
 <td class="colLast">
 <div class="block">Provides <a href="../../../../io/atomix/protocols/raft/storage/log/entry/RaftLogEntry.html" title="class in io.atomix.protocols.raft.storage.log.entry"><code>RaftLogEntry</code></a> implementations used internally to replicate
@@ -133,6 +139,26 @@
 <th class="colOne" scope="col">Class and Description</th>
 </tr>
 <tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../io/atomix/protocols/raft/class-use/MultiRaftProtocol.html#io.atomix.protocols.raft">MultiRaftProtocol</a>
+<div class="block">Multi-Raft protocol.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../io/atomix/protocols/raft/class-use/MultiRaftProtocol.Builder.html#io.atomix.protocols.raft">MultiRaftProtocol.Builder</a>
+<div class="block">Multi-Raft protocol builder.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../io/atomix/protocols/raft/class-use/MultiRaftProtocol.Type.html#io.atomix.protocols.raft">MultiRaftProtocol.Type</a>
+<div class="block">The multi-raft protocol type.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colOne"><a href="../../../../io/atomix/protocols/raft/class-use/MultiRaftProtocolConfig.html#io.atomix.protocols.raft">MultiRaftProtocolConfig</a>
+<div class="block">Raft protocol configuration.</div>
+</td>
+</tr>
 <tr class="altColor">
 <td class="colOne"><a href="../../../../io/atomix/protocols/raft/class-use/RaftClient.html#io.atomix.protocols.raft">RaftClient</a>
 <div class="block">Provides an interface for submitting operations to the Raft cluster.</div>
@@ -162,36 +188,21 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/protocols/raft/class-use/RaftProtocol.html#io.atomix.protocols.raft">RaftProtocol</a>
-<div class="block">Raft protocol.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../../io/atomix/protocols/raft/class-use/RaftProtocol.Builder.html#io.atomix.protocols.raft">RaftProtocol.Builder</a>
-<div class="block">Raft protocol builder.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/protocols/raft/class-use/RaftProtocolConfig.html#io.atomix.protocols.raft">RaftProtocolConfig</a>
-<div class="block">Raft protocol configuration.</div>
-</td>
-</tr>
-<tr class="rowColor">
 <td class="colOne"><a href="../../../../io/atomix/protocols/raft/class-use/RaftServer.html#io.atomix.protocols.raft">RaftServer</a>
 <div class="block">Provides a standalone implementation of the <a href="http://raft.github.io/">Raft consensus algorithm</a>.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><a href="../../../../io/atomix/protocols/raft/class-use/RaftServer.Builder.html#io.atomix.protocols.raft">RaftServer.Builder</a>
 <div class="block">Builds a single-use Raft server.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><a href="../../../../io/atomix/protocols/raft/class-use/RaftServer.Role.html#io.atomix.protocols.raft">RaftServer.Role</a>
 <div class="block">Raft server state types.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><a href="../../../../io/atomix/protocols/raft/class-use/ReadConsistency.html#io.atomix.protocols.raft">ReadConsistency</a>
 <div class="block">Constants for specifying Raft <code>RaftQuery</code> consistency levels.</div>
 </td>
@@ -209,8 +220,8 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/protocols/raft/class-use/RaftProtocol.html#io.atomix.protocols.raft.partition">RaftProtocol</a>
-<div class="block">Raft protocol.</div>
+<td class="colOne"><a href="../../../../io/atomix/protocols/raft/class-use/RaftClient.html#io.atomix.protocols.raft.partition">RaftClient</a>
+<div class="block">Provides an interface for submitting operations to the Raft cluster.</div>
 </td>
 </tr>
 </tbody>
@@ -237,6 +248,23 @@
 </tr>
 <tr class="altColor">
 <td class="colOne"><a href="../../../../io/atomix/protocols/raft/class-use/ReadConsistency.html#io.atomix.protocols.raft.protocol">ReadConsistency</a>
+<div class="block">Constants for specifying Raft <code>RaftQuery</code> consistency levels.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.protocols.raft.proxy">
+<!--   -->
+</a>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../io/atomix/protocols/raft/package-summary.html">io.atomix.protocols.raft</a> used by <a href="../../../../io/atomix/protocols/raft/proxy/package-summary.html">io.atomix.protocols.raft.proxy</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colOne"><a href="../../../../io/atomix/protocols/raft/class-use/ReadConsistency.html#io.atomix.protocols.raft.proxy">ReadConsistency</a>
 <div class="block">Constants for specifying Raft <code>RaftQuery</code> consistency levels.</div>
 </td>
 </tr>

@@ -108,7 +108,7 @@ var activeTableTab = "activeTableTab";
 <pre>public interface <span class="typeNameLabel">MemberGroupProvider</span></pre>
 <div class="block">Member group provider.
  <p>
- The member group provider defines how to translate a collection of <a href="../../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster"><code>Node</code></a>s into a collection of
+ The member group provider defines how to translate a collection of <a href="../../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster"><code>Member</code></a>s into a collection of
  <a href="../../../../io/atomix/primitive/partition/MemberGroup.html" title="interface in io.atomix.primitive.partition"><code>MemberGroup</code></a>s.</div>
 </li>
 </ul>
@@ -130,7 +130,7 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/primitive/partition/MemberGroup.html" title="interface in io.atomix.primitive.partition">MemberGroup</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/MemberGroupProvider.html#getMemberGroups-java.util.Collection-">getMemberGroups</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a>&gt;&nbsp;nodes)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/MemberGroupProvider.html#getMemberGroups-java.util.Collection-">getMemberGroups</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a>&gt;&nbsp;members)</code>
 <div class="block">Creates member groups from the given list of nodes.</div>
 </td>
 </tr>
@@ -155,14 +155,14 @@ var activeTableTab = "activeTableTab";
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getMemberGroups</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/primitive/partition/MemberGroup.html" title="interface in io.atomix.primitive.partition">MemberGroup</a>&gt;&nbsp;getMemberGroups(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a>&gt;&nbsp;nodes)</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/primitive/partition/MemberGroup.html" title="interface in io.atomix.primitive.partition">MemberGroup</a>&gt;&nbsp;getMemberGroups(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a>&gt;&nbsp;members)</pre>
 <div class="block">Creates member groups from the given list of nodes.
  <p>
- The returned groups must not contain duplicate <a href="../../../../io/atomix/primitive/partition/MemberGroupId.html" title="class in io.atomix.primitive.partition"><code>MemberGroupId</code></a> or duplicate membership. Not all <a href="../../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster"><code>Node</code></a>s
+ The returned groups must not contain duplicate <a href="../../../../io/atomix/primitive/partition/MemberGroupId.html" title="class in io.atomix.primitive.partition"><code>MemberGroupId</code></a> or duplicate membership. Not all <a href="../../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster"><code>Member</code></a>s
  must be assigned to a group, but all groups must contain a unique set of nodes.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>nodes</code> - the nodes from which to create member groups</dd>
+<dd><code>members</code> - the nodes from which to create member groups</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a collection of member groups</dd>
 </dl>

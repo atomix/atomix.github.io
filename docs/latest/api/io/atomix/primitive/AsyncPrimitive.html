@@ -168,7 +168,7 @@ extends <a href="../../../io/atomix/primitive/DistributedPrimitive.html" title="
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/primitive/AsyncPrimitive.html#destroy--">destroy</a></span>()</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/primitive/AsyncPrimitive.html#delete--">delete</a></span>()</code>
 <div class="block">Purges state associated with this primitive.</div>
 </td>
 </tr>
@@ -206,24 +206,6 @@ extends <a href="../../../io/atomix/primitive/DistributedPrimitive.html" title="
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="destroy--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>destroy</h4>
-<pre>default&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;destroy()</pre>
-<div class="block">Purges state associated with this primitive.
- <p>
- Implementations can override and provide appropriate clean up logic for purging
- any state state associated with the primitive. Whether modifications made within the
- destroy method have local or global visibility is left unspecified.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>CompletableFuture</code> that is completed when the operation completes</dd>
-</dl>
-</li>
-</ul>
 <a name="close--">
 <!--   -->
 </a>
@@ -235,6 +217,24 @@ extends <a href="../../../io/atomix/primitive/DistributedPrimitive.html" title="
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a future to be completed once the primitive is closed</dd>
+</dl>
+</li>
+</ul>
+<a name="delete--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>delete</h4>
+<pre>default&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;delete()</pre>
+<div class="block">Purges state associated with this primitive.
+ <p>
+ Implementations can override and provide appropriate clean up logic for purging
+ any state state associated with the primitive. Whether modifications made within the
+ destroy method have local or global visibility is left unspecified.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd><code>CompletableFuture</code> that is completed when the operation completes</dd>
 </dl>
 </li>
 </ul>

@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":17,"i1":17,"i2":17,"i3":6,"i4":6,"i5":18,"i6":6,"i7":18,"i8":6,"i9":6,"i10":49,"i11":49,"i12":49,"i13":6};
+var methods = {"i0":17,"i1":17,"i2":17,"i3":6,"i4":6,"i5":18,"i6":6,"i7":18,"i8":6,"i9":6,"i10":49,"i11":49,"i12":49,"i13":6,"i14":6};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev&nbsp;Class</li>
+<li><a href="../../../../io/atomix/protocols/raft/MultiRaftProtocolFactory.html" title="class in io.atomix.protocols.raft"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -101,12 +101,12 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Superinterfaces:</dt>
-<dd><a href="../../../../io/atomix/primitive/PrimitiveClient.html" title="interface in io.atomix.primitive">PrimitiveClient</a>&lt;<a href="../../../../io/atomix/protocols/raft/RaftProtocol.html" title="class in io.atomix.protocols.raft">RaftProtocol</a>&gt;</dd>
+<dd><a href="../../../../io/atomix/primitive/proxy/ProxyClient.html" title="interface in io.atomix.primitive.proxy">ProxyClient</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">RaftClient</span>
-extends <a href="../../../../io/atomix/primitive/PrimitiveClient.html" title="interface in io.atomix.primitive">PrimitiveClient</a>&lt;<a href="../../../../io/atomix/protocols/raft/RaftProtocol.html" title="class in io.atomix.protocols.raft">RaftProtocol</a>&gt;</pre>
+extends <a href="../../../../io/atomix/primitive/proxy/ProxyClient.html" title="interface in io.atomix.primitive.proxy">ProxyClient</a></pre>
 <div class="block">Provides an interface for submitting operations to the Raft cluster.</div>
 </li>
 </ul>
@@ -155,13 +155,13 @@ extends <a href="../../../../io/atomix/primitive/PrimitiveClient.html" title="in
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#builder-java.util.Collection-">builder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&gt;&nbsp;cluster)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#builder-java.util.Collection-">builder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&gt;&nbsp;cluster)</code>
 <div class="block">Returns a new Raft client builder.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>static <a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#builder-io.atomix.cluster.NodeId...-">builder</a></span>(<a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>...&nbsp;cluster)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#builder-io.atomix.cluster.MemberId...-">builder</a></span>(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>...&nbsp;cluster)</code>
 <div class="block">Returns a new Raft client builder.</div>
 </td>
 </tr>
@@ -185,18 +185,18 @@ extends <a href="../../../../io/atomix/primitive/PrimitiveClient.html" title="in
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/protocols/raft/RaftClient.html" title="interface in io.atomix.protocols.raft">RaftClient</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#connect-java.util.Collection-">connect</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&gt;&nbsp;members)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#connect-java.util.Collection-">connect</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&gt;&nbsp;members)</code>
 <div class="block">Connects the client to Raft cluster via the provided server addresses.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/protocols/raft/RaftClient.html" title="interface in io.atomix.protocols.raft">RaftClient</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#connect-io.atomix.cluster.NodeId...-">connect</a></span>(<a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>...&nbsp;members)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#connect-io.atomix.cluster.MemberId...-">connect</a></span>(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>...&nbsp;members)</code>
 <div class="block">Connects the client to Raft cluster via the provided server addresses.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a></code></td>
+<td class="colFirst"><code><a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#leader--">leader</a></span>()</code>
 <div class="block">Returns the current leader.</div>
 </td>
@@ -217,7 +217,7 @@ extends <a href="../../../../io/atomix/primitive/PrimitiveClient.html" title="in
 </tr>
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#newBuilder-java.util.Collection-">newBuilder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&gt;&nbsp;cluster)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#newBuilder-java.util.Collection-">newBuilder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&gt;&nbsp;cluster)</code>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
 <div class="block"><span class="deprecationComment">since 2.1</span></div>
 </div>
@@ -225,26 +225,26 @@ extends <a href="../../../../io/atomix/primitive/PrimitiveClient.html" title="in
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>static <a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#newBuilder-io.atomix.cluster.NodeId...-">newBuilder</a></span>(<a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>...&nbsp;cluster)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#newBuilder-io.atomix.cluster.MemberId...-">newBuilder</a></span>(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>...&nbsp;cluster)</code>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
 <div class="block"><span class="deprecationComment">since 2.1</span></div>
 </div>
 </td>
 </tr>
 <tr id="i13" class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/proxy/RaftProxy.Builder.html" title="class in io.atomix.protocols.raft.proxy">RaftProxy.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#proxyBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-">proxyBuilder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
+            <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType)</code>
+<div class="block">Returns a new proxy builder for the given primitive type.</div>
+</td>
+</tr>
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>long</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#term--">term</a></span>()</code>
 <div class="block">Returns the current term.</div>
 </td>
 </tr>
 </table>
-<ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.io.atomix.primitive.PrimitiveClient">
-<!--   -->
-</a>
-<h3>Methods inherited from interface&nbsp;io.atomix.primitive.<a href="../../../../io/atomix/primitive/PrimitiveClient.html" title="interface in io.atomix.primitive">PrimitiveClient</a></h3>
-<code><a href="../../../../io/atomix/primitive/PrimitiveClient.html#getPrimitives-io.atomix.primitive.PrimitiveType-">getPrimitives</a>, <a href="../../../../io/atomix/primitive/PrimitiveClient.html#newProxy-java.lang.String-io.atomix.primitive.PrimitiveType-">newProxy</a>, <a href="../../../../io/atomix/primitive/PrimitiveClient.html#newProxy-java.lang.String-io.atomix.primitive.PrimitiveType-P-">newProxy</a></code></li>
-</ul>
 </li>
 </ul>
 </li>
@@ -277,13 +277,13 @@ extends <a href="../../../../io/atomix/primitive/PrimitiveClient.html" title="in
 </dl>
 </li>
 </ul>
-<a name="builder-io.atomix.cluster.NodeId...-">
+<a name="builder-io.atomix.cluster.MemberId...-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>builder</h4>
-<pre>static&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a>&nbsp;builder(<a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>...&nbsp;cluster)</pre>
+<pre>static&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a>&nbsp;builder(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>...&nbsp;cluster)</pre>
 <div class="block">Returns a new Raft client builder.
  <p>
  The provided set of members will be used to connect to the Raft cluster. The members list does not have to represent
@@ -303,7 +303,7 @@ extends <a href="../../../../io/atomix/primitive/PrimitiveClient.html" title="in
 <ul class="blockList">
 <li class="blockList">
 <h4>builder</h4>
-<pre>static&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a>&nbsp;builder(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&gt;&nbsp;cluster)</pre>
+<pre>static&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a>&nbsp;builder(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&gt;&nbsp;cluster)</pre>
 <div class="block">Returns a new Raft client builder.
  <p>
  The provided set of members will be used to connect to the Raft cluster. The members list does not have to represent
@@ -328,14 +328,14 @@ static&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.htm
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">since 2.1</span></div>
 </li>
 </ul>
-<a name="newBuilder-io.atomix.cluster.NodeId...-">
+<a name="newBuilder-io.atomix.cluster.MemberId...-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>newBuilder</h4>
 <pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
-static&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a>&nbsp;newBuilder(<a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>...&nbsp;cluster)</pre>
+static&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a>&nbsp;newBuilder(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>...&nbsp;cluster)</pre>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">since 2.1</span></div>
 </li>
 </ul>
@@ -346,7 +346,7 @@ static&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.htm
 <li class="blockList">
 <h4>newBuilder</h4>
 <pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Deprecated.html?is-external=true" title="class or interface in java.lang">@Deprecated</a>
-static&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a>&nbsp;newBuilder(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&gt;&nbsp;cluster)</pre>
+static&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a>&nbsp;newBuilder(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&gt;&nbsp;cluster)</pre>
 <div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;<span class="deprecationComment">since 2.1</span></div>
 </li>
 </ul>
@@ -384,7 +384,7 @@ static&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.htm
 <ul class="blockList">
 <li class="blockList">
 <h4>leader</h4>
-<pre><a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;leader()</pre>
+<pre><a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;leader()</pre>
 <div class="block">Returns the current leader.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -403,6 +403,27 @@ static&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.htm
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The Raft metadata.</dd>
+</dl>
+</li>
+</ul>
+<a name="proxyBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>proxyBuilder</h4>
+<pre><a href="../../../../io/atomix/protocols/raft/proxy/RaftProxy.Builder.html" title="class in io.atomix.protocols.raft.proxy">RaftProxy.Builder</a>&nbsp;proxyBuilder(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
+                               <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/proxy/ProxyClient.html#proxyBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-">ProxyClient</a></code></span></div>
+<div class="block">Returns a new proxy builder for the given primitive type.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/primitive/proxy/ProxyClient.html#proxyBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-">proxyBuilder</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/primitive/proxy/ProxyClient.html" title="interface in io.atomix.primitive.proxy">ProxyClient</a></code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>primitiveName</code> - the proxy name</dd>
+<dd><code>primitiveType</code> - the type for which to return a new proxy builder</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a new proxy builder for the given primitive type</dd>
 </dl>
 </li>
 </ul>
@@ -426,13 +447,13 @@ static&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.htm
 </dl>
 </li>
 </ul>
-<a name="connect-io.atomix.cluster.NodeId...-">
+<a name="connect-io.atomix.cluster.MemberId...-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>connect</h4>
-<pre>default&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/protocols/raft/RaftClient.html" title="interface in io.atomix.protocols.raft">RaftClient</a>&gt;&nbsp;connect(<a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>...&nbsp;members)</pre>
+<pre>default&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/protocols/raft/RaftClient.html" title="interface in io.atomix.protocols.raft">RaftClient</a>&gt;&nbsp;connect(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>...&nbsp;members)</pre>
 <div class="block">Connects the client to Raft cluster via the provided server addresses.
  <p>
  The client will connect to servers in the cluster according to the pattern specified by the configured
@@ -451,7 +472,7 @@ static&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.htm
 <ul class="blockList">
 <li class="blockList">
 <h4>connect</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/protocols/raft/RaftClient.html" title="interface in io.atomix.protocols.raft">RaftClient</a>&gt;&nbsp;connect(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&gt;&nbsp;members)</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/protocols/raft/RaftClient.html" title="interface in io.atomix.protocols.raft">RaftClient</a>&gt;&nbsp;connect(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&gt;&nbsp;members)</pre>
 <div class="block">Connects the client to Raft cluster via the provided server addresses.
  <p>
  The client will connect to servers in the cluster according to the pattern specified by the configured
@@ -506,7 +527,7 @@ static&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.htm
 </div>
 <div class="subNav">
 <ul class="navList">
-<li>Prev&nbsp;Class</li>
+<li><a href="../../../../io/atomix/protocols/raft/MultiRaftProtocolFactory.html" title="class in io.atomix.protocols.raft"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

@@ -123,14 +123,14 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/protocols/backup/protocol/BackupResponse.html" title="class in io.atomix.protocols.backup.protocol">BackupResponse</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/protocol/PrimaryBackupServerProtocol.html#backup-io.atomix.cluster.NodeId-io.atomix.protocols.backup.protocol.BackupRequest-">backup</a></span>(<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;nodeId,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/protocol/PrimaryBackupServerProtocol.html#backup-io.atomix.cluster.MemberId-io.atomix.protocols.backup.protocol.BackupRequest-">backup</a></span>(<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId,
       <a href="../../../../../io/atomix/protocols/backup/protocol/BackupRequest.html" title="class in io.atomix.protocols.backup.protocol">BackupRequest</a>&nbsp;request)</code>
 <div class="block">Sends a backup request to the given node.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/protocol/PrimaryBackupServerProtocol.html#event-io.atomix.cluster.NodeId-io.atomix.primitive.session.SessionId-io.atomix.primitive.event.PrimitiveEvent-">event</a></span>(<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;nodeId,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/protocol/PrimaryBackupServerProtocol.html#event-io.atomix.cluster.MemberId-io.atomix.primitive.session.SessionId-io.atomix.primitive.event.PrimitiveEvent-">event</a></span>(<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId,
      <a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;session,
      <a href="../../../../../io/atomix/primitive/event/PrimitiveEvent.html" title="class in io.atomix.primitive.event">PrimitiveEvent</a>&nbsp;event)</code>
 <div class="block">Sends a primitive event to the given node.</div>
@@ -168,7 +168,7 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/protocols/backup/protocol/RestoreResponse.html" title="class in io.atomix.protocols.backup.protocol">RestoreResponse</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/protocol/PrimaryBackupServerProtocol.html#restore-io.atomix.cluster.NodeId-io.atomix.protocols.backup.protocol.RestoreRequest-">restore</a></span>(<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;nodeId,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/protocol/PrimaryBackupServerProtocol.html#restore-io.atomix.cluster.MemberId-io.atomix.protocols.backup.protocol.RestoreRequest-">restore</a></span>(<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId,
        <a href="../../../../../io/atomix/protocols/backup/protocol/RestoreRequest.html" title="class in io.atomix.protocols.backup.protocol">RestoreRequest</a>&nbsp;request)</code>
 <div class="block">Sends a restore request to the given node.</div>
 </td>
@@ -218,55 +218,55 @@ var activeTableTab = "activeTableTab";
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="backup-io.atomix.cluster.NodeId-io.atomix.protocols.backup.protocol.BackupRequest-">
+<a name="backup-io.atomix.cluster.MemberId-io.atomix.protocols.backup.protocol.BackupRequest-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>backup</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/protocols/backup/protocol/BackupResponse.html" title="class in io.atomix.protocols.backup.protocol">BackupResponse</a>&gt;&nbsp;backup(<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;nodeId,
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/protocols/backup/protocol/BackupResponse.html" title="class in io.atomix.protocols.backup.protocol">BackupResponse</a>&gt;&nbsp;backup(<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId,
                                          <a href="../../../../../io/atomix/protocols/backup/protocol/BackupRequest.html" title="class in io.atomix.protocols.backup.protocol">BackupRequest</a>&nbsp;request)</pre>
 <div class="block">Sends a backup request to the given node.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>nodeId</code> - the node to which to send the request</dd>
+<dd><code>memberId</code> - the node to which to send the request</dd>
 <dd><code>request</code> - the request to send</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a future to be completed with the response</dd>
 </dl>
 </li>
 </ul>
-<a name="restore-io.atomix.cluster.NodeId-io.atomix.protocols.backup.protocol.RestoreRequest-">
+<a name="restore-io.atomix.cluster.MemberId-io.atomix.protocols.backup.protocol.RestoreRequest-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>restore</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/protocols/backup/protocol/RestoreResponse.html" title="class in io.atomix.protocols.backup.protocol">RestoreResponse</a>&gt;&nbsp;restore(<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;nodeId,
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/protocols/backup/protocol/RestoreResponse.html" title="class in io.atomix.protocols.backup.protocol">RestoreResponse</a>&gt;&nbsp;restore(<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId,
                                            <a href="../../../../../io/atomix/protocols/backup/protocol/RestoreRequest.html" title="class in io.atomix.protocols.backup.protocol">RestoreRequest</a>&nbsp;request)</pre>
 <div class="block">Sends a restore request to the given node.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>nodeId</code> - the node to which to send the request</dd>
+<dd><code>memberId</code> - the node to which to send the request</dd>
 <dd><code>request</code> - the request to send</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a future to be completed with the response</dd>
 </dl>
 </li>
 </ul>
-<a name="event-io.atomix.cluster.NodeId-io.atomix.primitive.session.SessionId-io.atomix.primitive.event.PrimitiveEvent-">
+<a name="event-io.atomix.cluster.MemberId-io.atomix.primitive.session.SessionId-io.atomix.primitive.event.PrimitiveEvent-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>event</h4>
-<pre>void&nbsp;event(<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;nodeId,
+<pre>void&nbsp;event(<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId,
            <a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;session,
            <a href="../../../../../io/atomix/primitive/event/PrimitiveEvent.html" title="class in io.atomix.primitive.event">PrimitiveEvent</a>&nbsp;event)</pre>
 <div class="block">Sends a primitive event to the given node.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>nodeId</code> - the node to which to publish the event</dd>
+<dd><code>memberId</code> - the node to which to publish the event</dd>
 <dd><code>session</code> - the session to which to publish the event</dd>
 <dd><code>event</code> - the primitive event to publish</dd>
 </dl>

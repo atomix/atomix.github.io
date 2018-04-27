@@ -98,7 +98,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.protocols.backup.proxy">io.atomix.protocols.backup.proxy</a></td>
 <td class="colLast">
-<div class="block">Provides a <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy"><code>PrimitiveProxy</code></a> implementation for primary-backup.</div>
+<div class="block">Provides a <a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy"><code>PartitionProxy</code></a> implementation for primary-backup.</div>
 </td>
 </tr>
 </tbody>
@@ -173,8 +173,9 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/PrimaryBackupClient.html#PrimaryBackupClient-java.lang.String-io.atomix.cluster.ClusterService-io.atomix.protocols.backup.protocol.PrimaryBackupClientProtocol-io.atomix.primitive.partition.PrimaryElection-io.atomix.primitive.session.SessionIdService-io.atomix.utils.concurrent.ThreadContextFactory-">PrimaryBackupClient</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;clientName,
-                   <a href="../../../../../io/atomix/cluster/ClusterService.html" title="interface in io.atomix.cluster">ClusterService</a>&nbsp;clusterService,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/PrimaryBackupClient.html#PrimaryBackupClient-java.lang.String-io.atomix.primitive.partition.PartitionId-io.atomix.cluster.ClusterMembershipService-io.atomix.protocols.backup.protocol.PrimaryBackupClientProtocol-io.atomix.primitive.partition.PrimaryElection-io.atomix.primitive.session.SessionIdService-io.atomix.utils.concurrent.ThreadContextFactory-">PrimaryBackupClient</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;clientName,
+                   <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId,
+                   <a href="../../../../../io/atomix/cluster/ClusterMembershipService.html" title="interface in io.atomix.cluster">ClusterMembershipService</a>&nbsp;clusterMembershipService,
                    <a href="../../../../../io/atomix/protocols/backup/protocol/PrimaryBackupClientProtocol.html" title="interface in io.atomix.protocols.backup.protocol">PrimaryBackupClientProtocol</a>&nbsp;protocol,
                    <a href="../../../../../io/atomix/primitive/partition/PrimaryElection.html" title="interface in io.atomix.primitive.partition">PrimaryElection</a>&nbsp;primaryElection,
                    <a href="../../../../../io/atomix/primitive/session/SessionIdService.html" title="interface in io.atomix.primitive.session">SessionIdService</a>&nbsp;sessionIdService,
@@ -194,11 +195,12 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/proxy/PrimaryBackupProxy.html#PrimaryBackupProxy-java.lang.String-io.atomix.primitive.session.SessionId-io.atomix.primitive.PrimitiveType-io.atomix.protocols.backup.protocol.PrimitiveDescriptor-io.atomix.cluster.ClusterService-io.atomix.protocols.backup.protocol.PrimaryBackupClientProtocol-io.atomix.primitive.partition.PrimaryElection-io.atomix.utils.concurrent.ThreadContext-">PrimaryBackupProxy</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;clientName,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/proxy/PrimaryBackupProxy.html#PrimaryBackupProxy-java.lang.String-io.atomix.primitive.partition.PartitionId-io.atomix.primitive.session.SessionId-io.atomix.primitive.PrimitiveType-io.atomix.protocols.backup.protocol.PrimitiveDescriptor-io.atomix.cluster.ClusterMembershipService-io.atomix.protocols.backup.protocol.PrimaryBackupClientProtocol-io.atomix.primitive.partition.PrimaryElection-io.atomix.utils.concurrent.ThreadContext-">PrimaryBackupProxy</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;clientName,
+                  <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId,
                   <a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
                   <a href="../../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
                   <a href="../../../../../io/atomix/protocols/backup/protocol/PrimitiveDescriptor.html" title="class in io.atomix.protocols.backup.protocol">PrimitiveDescriptor</a>&nbsp;descriptor,
-                  <a href="../../../../../io/atomix/cluster/ClusterService.html" title="interface in io.atomix.cluster">ClusterService</a>&nbsp;clusterService,
+                  <a href="../../../../../io/atomix/cluster/ClusterMembershipService.html" title="interface in io.atomix.cluster">ClusterMembershipService</a>&nbsp;clusterMembershipService,
                   <a href="../../../../../io/atomix/protocols/backup/protocol/PrimaryBackupClientProtocol.html" title="interface in io.atomix.protocols.backup.protocol">PrimaryBackupClientProtocol</a>&nbsp;protocol,
                   <a href="../../../../../io/atomix/primitive/partition/PrimaryElection.html" title="interface in io.atomix.primitive.partition">PrimaryElection</a>&nbsp;primaryElection,
                   <a href="../../../../../io/atomix/utils/concurrent/ThreadContext.html" title="interface in io.atomix.utils.concurrent">ThreadContext</a>&nbsp;threadContext)</code>&nbsp;</td>

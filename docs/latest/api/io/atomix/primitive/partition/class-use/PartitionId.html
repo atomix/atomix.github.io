@@ -89,10 +89,35 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.primitive.proxy">io.atomix.primitive.proxy</a></td>
+<td class="colLast">
+<div class="block">Provides interfaces for operating on distributed primitive services.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.protocols.backup">io.atomix.protocols.backup</a></td>
+<td class="colLast">
+<div class="block">Provides a <a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol"><code>PrimitiveProtocol</code></a> implementation for multi-primary replication and
+ classes for managing primary-backup clients/servers.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.protocols.backup.partition">io.atomix.protocols.backup.partition</a></td>
 <td class="colLast">
 <div class="block">Provides <a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition"><code>PartitionGroup</code></a> and <a href="../../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition"><code>Partition</code></a>
  implementations for primary-backup.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.protocols.backup.proxy">io.atomix.protocols.backup.proxy</a></td>
+<td class="colLast">
+<div class="block">Provides a <a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy"><code>PartitionProxy</code></a> implementation for primary-backup.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.protocols.raft">io.atomix.protocols.raft</a></td>
+<td class="colLast">
+<div class="block">Provides classes and interfaces for managing Raft clients and servers.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -139,11 +164,17 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Partitioner.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/partition/Partitioner.html#partition-K-">partition</a></span>(<a href="../../../../../io/atomix/primitive/partition/Partitioner.html" title="type parameter in Partitioner">K</a>&nbsp;object)</code>
+<td class="colLast"><span class="typeNameLabel">Partitioner.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/partition/Partitioner.html#partition-K-java.util.List-">partition</a></span>(<a href="../../../../../io/atomix/primitive/partition/Partitioner.html" title="type parameter in Partitioner">K</a>&nbsp;key,
+         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&gt;&nbsp;partitions)</code>
 <div class="block">Returns the partition ID to which the specified object maps.</div>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></code></td>
+<td class="colLast"><span class="typeNameLabel">Murmur3Partitioner.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/partition/Murmur3Partitioner.html#partition-java.lang.String-java.util.List-">partition</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&gt;&nbsp;partitions)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></code></td>
 <td class="colLast"><span class="typeNameLabel">PrimaryElectionEvent.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/partition/PrimaryElectionEvent.html#partitionId--">partitionId</a></span>()</code>
 <div class="block">Returns the partition ID.</div>
@@ -184,10 +215,31 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition">Partition</a></code></td>
+<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="type parameter in PartitionGroup">P</a></code></td>
 <td class="colLast"><span class="typeNameLabel">PartitionGroup.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html#getPartition-io.atomix.primitive.partition.PartitionId-">getPartition</a></span>(<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId)</code>
 <div class="block">Returns a partition by ID.</div>
 </td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Method parameters in <a href="../../../../../io/atomix/primitive/partition/package-summary.html">io.atomix.primitive.partition</a> with type arguments of type <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></code></td>
+<td class="colLast"><span class="typeNameLabel">Partitioner.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/partition/Partitioner.html#partition-K-java.util.List-">partition</a></span>(<a href="../../../../../io/atomix/primitive/partition/Partitioner.html" title="type parameter in Partitioner">K</a>&nbsp;key,
+         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&gt;&nbsp;partitions)</code>
+<div class="block">Returns the partition ID to which the specified object maps.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></code></td>
+<td class="colLast"><span class="typeNameLabel">Murmur3Partitioner.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/partition/Murmur3Partitioner.html#partition-java.lang.String-java.util.List-">partition</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&gt;&nbsp;partitions)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -199,12 +251,99 @@
 <tbody>
 <tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/partition/PartitionMetadata.html#PartitionMetadata-io.atomix.primitive.partition.PartitionId-java.util.Collection-">PartitionMetadata</a></span>(<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;id,
-                 <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&gt;&nbsp;members)</code>&nbsp;</td>
+                 <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&gt;&nbsp;members)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/partition/PrimaryElectionEvent.html#PrimaryElectionEvent-io.atomix.primitive.partition.PrimaryElectionEvent.Type-io.atomix.primitive.partition.PartitionId-io.atomix.primitive.partition.PrimaryTerm-">PrimaryElectionEvent</a></span>(<a href="../../../../../io/atomix/primitive/partition/PrimaryElectionEvent.Type.html" title="enum in io.atomix.primitive.partition">PrimaryElectionEvent.Type</a>&nbsp;type,
                     <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId,
                     <a href="../../../../../io/atomix/primitive/partition/PrimaryTerm.html" title="class in io.atomix.primitive.partition">PrimaryTerm</a>&nbsp;subject)</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.primitive.proxy">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a> in <a href="../../../../../io/atomix/primitive/proxy/package-summary.html">io.atomix.primitive.proxy</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/primitive/proxy/package-summary.html">io.atomix.primitive.proxy</a> that return <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PartitionProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html#partitionId--">partitionId</a></span>()</code>
+<div class="block">Returns the partition identifier.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/primitive/proxy/package-summary.html">io.atomix.primitive.proxy</a> that return types with arguments of type <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">PrimitiveProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#getPartitionIds--">getPartitionIds</a></span>()</code>
+<div class="block">Returns the collection of all partition IDs.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/primitive/proxy/package-summary.html">io.atomix.primitive.proxy</a> with parameters of type <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy">PartitionProxy</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PrimitiveProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#getPartition-io.atomix.primitive.partition.PartitionId-">getPartition</a></span>(<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId)</code>
+<div class="block">Returns the proxy with the given identifier.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.protocols.backup">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a> in <a href="../../../../../io/atomix/protocols/backup/package-summary.html">io.atomix.protocols.backup</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/protocols/backup/package-summary.html">io.atomix.protocols.backup</a> with parameters of type <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/protocols/backup/PrimaryBackupClient.Builder.html" title="class in io.atomix.protocols.backup">PrimaryBackupClient.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PrimaryBackupClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/PrimaryBackupClient.Builder.html#withPartitionId-io.atomix.primitive.partition.PartitionId-">withPartitionId</a></span>(<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId)</code>
+<div class="block">Sets the client partition ID.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
+<caption><span>Constructors in <a href="../../../../../io/atomix/protocols/backup/package-summary.html">io.atomix.protocols.backup</a> with parameters of type <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/PrimaryBackupClient.html#PrimaryBackupClient-java.lang.String-io.atomix.primitive.partition.PartitionId-io.atomix.cluster.ClusterMembershipService-io.atomix.protocols.backup.protocol.PrimaryBackupClientProtocol-io.atomix.primitive.partition.PrimaryElection-io.atomix.primitive.session.SessionIdService-io.atomix.utils.concurrent.ThreadContextFactory-">PrimaryBackupClient</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;clientName,
+                   <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId,
+                   <a href="../../../../../io/atomix/cluster/ClusterMembershipService.html" title="interface in io.atomix.cluster">ClusterMembershipService</a>&nbsp;clusterMembershipService,
+                   <a href="../../../../../io/atomix/protocols/backup/protocol/PrimaryBackupClientProtocol.html" title="interface in io.atomix.protocols.backup.protocol">PrimaryBackupClientProtocol</a>&nbsp;protocol,
+                   <a href="../../../../../io/atomix/primitive/partition/PrimaryElection.html" title="interface in io.atomix.primitive.partition">PrimaryElection</a>&nbsp;primaryElection,
+                   <a href="../../../../../io/atomix/primitive/session/SessionIdService.html" title="interface in io.atomix.primitive.session">SessionIdService</a>&nbsp;sessionIdService,
+                   <a href="../../../../../io/atomix/utils/concurrent/ThreadContextFactory.html" title="interface in io.atomix.utils.concurrent">ThreadContextFactory</a>&nbsp;threadContextFactory)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -247,7 +386,7 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition">Partition</a></code></td>
+<td class="colFirst"><code><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html" title="class in io.atomix.protocols.backup.partition">PrimaryBackupPartition</a></code></td>
 <td class="colLast"><span class="typeNameLabel">PrimaryBackupPartitionGroup.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartitionGroup.html#getPartition-io.atomix.primitive.partition.PartitionId-">getPartition</a></span>(<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId)</code>&nbsp;</td>
 </tr>
 </tbody>
@@ -261,6 +400,63 @@
 <tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/partition/PrimaryBackupPartition.html#PrimaryBackupPartition-io.atomix.primitive.partition.PartitionId-io.atomix.primitive.partition.MemberGroupProvider-">PrimaryBackupPartition</a></span>(<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId,
                       <a href="../../../../../io/atomix/primitive/partition/MemberGroupProvider.html" title="interface in io.atomix.primitive.partition">MemberGroupProvider</a>&nbsp;memberGroupProvider)</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.protocols.backup.proxy">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a> in <a href="../../../../../io/atomix/protocols/backup/proxy/package-summary.html">io.atomix.protocols.backup.proxy</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/protocols/backup/proxy/package-summary.html">io.atomix.protocols.backup.proxy</a> that return <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PrimaryBackupProxy.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/proxy/PrimaryBackupProxy.html#partitionId--">partitionId</a></span>()</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
+<caption><span>Constructors in <a href="../../../../../io/atomix/protocols/backup/proxy/package-summary.html">io.atomix.protocols.backup.proxy</a> with parameters of type <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/backup/proxy/PrimaryBackupProxy.html#PrimaryBackupProxy-java.lang.String-io.atomix.primitive.partition.PartitionId-io.atomix.primitive.session.SessionId-io.atomix.primitive.PrimitiveType-io.atomix.protocols.backup.protocol.PrimitiveDescriptor-io.atomix.cluster.ClusterMembershipService-io.atomix.protocols.backup.protocol.PrimaryBackupClientProtocol-io.atomix.primitive.partition.PrimaryElection-io.atomix.utils.concurrent.ThreadContext-">PrimaryBackupProxy</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;clientName,
+                  <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId,
+                  <a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
+                  <a href="../../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
+                  <a href="../../../../../io/atomix/protocols/backup/protocol/PrimitiveDescriptor.html" title="class in io.atomix.protocols.backup.protocol">PrimitiveDescriptor</a>&nbsp;descriptor,
+                  <a href="../../../../../io/atomix/cluster/ClusterMembershipService.html" title="interface in io.atomix.cluster">ClusterMembershipService</a>&nbsp;clusterMembershipService,
+                  <a href="../../../../../io/atomix/protocols/backup/protocol/PrimaryBackupClientProtocol.html" title="interface in io.atomix.protocols.backup.protocol">PrimaryBackupClientProtocol</a>&nbsp;protocol,
+                  <a href="../../../../../io/atomix/primitive/partition/PrimaryElection.html" title="interface in io.atomix.primitive.partition">PrimaryElection</a>&nbsp;primaryElection,
+                  <a href="../../../../../io/atomix/utils/concurrent/ThreadContext.html" title="interface in io.atomix.utils.concurrent">ThreadContext</a>&nbsp;threadContext)</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.protocols.raft">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a> in <a href="../../../../../io/atomix/protocols/raft/package-summary.html">io.atomix.protocols.raft</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/protocols/raft/package-summary.html">io.atomix.protocols.raft</a> with parameters of type <a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">RaftClient.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.Builder.html#withPartitionId-io.atomix.primitive.partition.PartitionId-">withPartitionId</a></span>(<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId)</code>
+<div class="block">Sets the partition identifier.</div>
+</td>
 </tr>
 </tbody>
 </table>
@@ -303,7 +499,7 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition">Partition</a></code></td>
+<td class="colFirst"><code><a href="../../../../../io/atomix/protocols/raft/partition/RaftPartition.html" title="class in io.atomix.protocols.raft.partition">RaftPartition</a></code></td>
 <td class="colLast"><span class="typeNameLabel">RaftPartitionGroup.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/partition/RaftPartitionGroup.html#getPartition-io.atomix.primitive.partition.PartitionId-">getPartition</a></span>(<a href="../../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId)</code>&nbsp;</td>
 </tr>
 </tbody>

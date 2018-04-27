@@ -122,7 +122,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.protocols.backup.proxy">io.atomix.protocols.backup.proxy</a></td>
 <td class="colLast">
-<div class="block">Provides a <a href="../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy"><code>PrimitiveProxy</code></a> implementation for primary-backup.</div>
+<div class="block">Provides a <a href="../../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy"><code>PartitionProxy</code></a> implementation for primary-backup.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -147,7 +147,7 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.session">io.atomix.protocols.raft.session</a></td>
 <td class="colLast">
-<div class="block">Provides a <a href="../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session"><code>Session</code></a> implementation for the Raft consensus protocol.</div>
+<div class="block">Provides a <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session"><code>PrimitiveSession</code></a> implementation for the Raft consensus protocol.</div>
 </td>
 </tr>
 </tbody>
@@ -197,18 +197,18 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/Session.html#io.atomix.primitive.service">Session</a>
+<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/PrimitiveSession.html#io.atomix.primitive.service">PrimitiveSession</a>
 <div class="block">Provides an interface to communicating with a client via session events.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/SessionListener.html#io.atomix.primitive.service">SessionListener</a>
-<div class="block">Support for listening for state changes in server sessions.</div>
+<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/PrimitiveSessions.html#io.atomix.primitive.service">PrimitiveSessions</a>
+<div class="block">Provides a set of active server sessions.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/Sessions.html#io.atomix.primitive.service">Sessions</a>
-<div class="block">Provides a set of active server sessions.</div>
+<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/SessionListener.html#io.atomix.primitive.service">SessionListener</a>
+<div class="block">Support for listening for state changes in server sessions.</div>
 </td>
 </tr>
 </tbody>
@@ -224,43 +224,43 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/Session.html#io.atomix.primitive.session">Session</a>
+<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/PrimitiveSession.html#io.atomix.primitive.session">PrimitiveSession</a>
 <div class="block">Provides an interface to communicating with a client via session events.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/Session.State.html#io.atomix.primitive.session">Session.State</a>
+<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/PrimitiveSession.State.html#io.atomix.primitive.session">PrimitiveSession.State</a>
 <div class="block">Session state enums.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/SessionEvent.Type.html#io.atomix.primitive.session">SessionEvent.Type</a>
+<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/PrimitiveSessionEvent.Type.html#io.atomix.primitive.session">PrimitiveSessionEvent.Type</a>
 <div class="block">Raft session type.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/SessionEventListener.html#io.atomix.primitive.session">SessionEventListener</a>
+<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/PrimitiveSessionEventListener.html#io.atomix.primitive.session">PrimitiveSessionEventListener</a>
 <div class="block">Raft session event listener.</div>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/PrimitiveSessions.html#io.atomix.primitive.session">PrimitiveSessions</a>
+<div class="block">Provides a set of active server sessions.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/SessionId.html#io.atomix.primitive.session">SessionId</a>
 <div class="block">Session identifier.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/SessionIdService.html#io.atomix.primitive.session">SessionIdService</a>
 <div class="block">Globally unique session ID provider.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/SessionListener.html#io.atomix.primitive.session">SessionListener</a>
 <div class="block">Support for listening for state changes in server sessions.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/Sessions.html#io.atomix.primitive.session">Sessions</a>
-<div class="block">Provides a set of active server sessions.</div>
 </td>
 </tr>
 </tbody>
@@ -371,12 +371,12 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/Session.html#io.atomix.protocols.raft.service">Session</a>
+<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/PrimitiveSession.html#io.atomix.protocols.raft.service">PrimitiveSession</a>
 <div class="block">Provides an interface to communicating with a client via session events.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/Sessions.html#io.atomix.protocols.raft.service">Sessions</a>
+<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/PrimitiveSessions.html#io.atomix.protocols.raft.service">PrimitiveSessions</a>
 <div class="block">Provides a set of active server sessions.</div>
 </td>
 </tr>
@@ -393,17 +393,17 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/Session.html#io.atomix.protocols.raft.session">Session</a>
+<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/PrimitiveSession.html#io.atomix.protocols.raft.session">PrimitiveSession</a>
 <div class="block">Provides an interface to communicating with a client via session events.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/Session.State.html#io.atomix.protocols.raft.session">Session.State</a>
+<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/PrimitiveSession.State.html#io.atomix.protocols.raft.session">PrimitiveSession.State</a>
 <div class="block">Session state enums.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/SessionEventListener.html#io.atomix.protocols.raft.session">SessionEventListener</a>
+<td class="colOne"><a href="../../../../io/atomix/primitive/session/class-use/PrimitiveSessionEventListener.html#io.atomix.protocols.raft.session">PrimitiveSessionEventListener</a>
 <div class="block">Raft session event listener.</div>
 </td>
 </tr>

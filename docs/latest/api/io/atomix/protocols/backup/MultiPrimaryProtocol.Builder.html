@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.html" title="class in io.atomix.protocols.backup"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Type.html" title="class in io.atomix.protocols.backup"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html" target="_top">Frames</a></li>
@@ -175,30 +175,36 @@ extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Buil
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocol.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html#withPartitioner-io.atomix.primitive.partition.Partitioner-">withPartitioner</a></span>(<a href="../../../../io/atomix/primitive/partition/Partitioner.html" title="interface in io.atomix.primitive.partition">Partitioner</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;partitioner)</code>
+<div class="block">Sets the protocol partitioner.</div>
+</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocol.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html#withRecovery-io.atomix.primitive.Recovery-">withRecovery</a></span>(<a href="../../../../io/atomix/primitive/Recovery.html" title="enum in io.atomix.primitive">Recovery</a>&nbsp;recovery)</code>
 <div class="block">Sets the protocol recovery strategy.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocol.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html#withReplication-io.atomix.primitive.Replication-">withReplication</a></span>(<a href="../../../../io/atomix/primitive/Replication.html" title="enum in io.atomix.primitive">Replication</a>&nbsp;replication)</code>
 <div class="block">Sets the protocol replication strategy.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocol.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html#withRetryDelay-java.time.Duration-">withRetryDelay</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;retryDelay)</code>
 <div class="block">Sets the operation retry delay.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocol.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html#withRetryDelay-long-java.util.concurrent.TimeUnit-">withRetryDelay</a></span>(long&nbsp;retryDelay,
               <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/TimeUnit.html?is-external=true" title="class or interface in java.util.concurrent">TimeUnit</a>&nbsp;timeUnit)</code>
 <div class="block">Sets the operation retry delay.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocol.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html#withRetryDelayMillis-long-">withRetryDelayMillis</a></span>(long&nbsp;retryDelayMillis)</code>
 <div class="block">Sets the operation retry delay.</div>
@@ -226,6 +232,22 @@ extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Buil
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="withPartitioner-io.atomix.primitive.partition.Partitioner-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withPartitioner</h4>
+<pre>public&nbsp;<a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocol.Builder</a>&nbsp;withPartitioner(<a href="../../../../io/atomix/primitive/partition/Partitioner.html" title="interface in io.atomix.primitive.partition">Partitioner</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;partitioner)</pre>
+<div class="block">Sets the protocol partitioner.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>partitioner</code> - the protocol partitioner</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the protocol builder</dd>
+</dl>
+</li>
+</ul>
 <a name="withConsistency-io.atomix.primitive.Consistency-">
 <!--   -->
 </a>
@@ -425,7 +447,7 @@ extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Buil
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.html" title="class in io.atomix.protocols.backup"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolConfig.html" title="class in io.atomix.protocols.backup"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Type.html" title="class in io.atomix.protocols.backup"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html" target="_top">Frames</a></li>

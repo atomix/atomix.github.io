@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6,"i14":6,"i15":6,"i16":18,"i17":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6,"i14":18,"i15":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -241,24 +241,12 @@ extends <a href="../../../../io/atomix/core/map/ConsistentMap.html" title="inter
 </td>
 </tr>
 <tr id="i14" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../io/atomix/core/map/ConsistentTreeMap.html" title="type parameter in ConsistentTreeMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/map/ConsistentTreeMap.html#pollFirstEntry--">pollFirstEntry</a></span>()</code>
-<div class="block">Returns and removes the entry associated with the lowest key.</div>
-</td>
-</tr>
-<tr id="i15" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../io/atomix/core/map/ConsistentTreeMap.html" title="type parameter in ConsistentTreeMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/map/ConsistentTreeMap.html#pollLastEntry--">pollLastEntry</a></span>()</code>
-<div class="block">Returns and removes the entry associated with the highest key.</div>
-</td>
-</tr>
-<tr id="i16" class="altColor">
 <td class="colFirst"><code>default <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/map/ConsistentTreeMap.html#primitiveType--">primitiveType</a></span>()</code>
 <div class="block">Returns the type of primitive.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/NavigableMap.html?is-external=true" title="class or interface in java.util">NavigableMap</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../io/atomix/core/map/ConsistentTreeMap.html" title="type parameter in ConsistentTreeMap">V</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/map/ConsistentTreeMap.html#subMap-java.lang.String-java.lang.String-boolean-boolean-">subMap</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;upperKey,
       <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;lowerKey,
@@ -282,7 +270,7 @@ extends <a href="../../../../io/atomix/core/map/ConsistentMap.html" title="inter
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;io.atomix.primitive.<a href="../../../../io/atomix/primitive/SyncPrimitive.html" title="interface in io.atomix.primitive">SyncPrimitive</a></h3>
-<code><a href="../../../../io/atomix/primitive/SyncPrimitive.html#close--">close</a>, <a href="../../../../io/atomix/primitive/SyncPrimitive.html#destroy--">destroy</a></code></li>
+<code><a href="../../../../io/atomix/primitive/SyncPrimitive.html#close--">close</a>, <a href="../../../../io/atomix/primitive/SyncPrimitive.html#delete--">delete</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.primitive.DistributedPrimitive">
@@ -438,34 +426,6 @@ extends <a href="../../../../io/atomix/core/map/ConsistentMap.html" title="inter
 <h4>lastEntry</h4>
 <pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../io/atomix/core/map/ConsistentTreeMap.html" title="type parameter in ConsistentTreeMap">V</a>&gt;&gt;&nbsp;lastEntry()</pre>
 <div class="block">Returns the entry associated with the highest key in the map.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the entry or null</dd>
-</dl>
-</li>
-</ul>
-<a name="pollFirstEntry--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>pollFirstEntry</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../io/atomix/core/map/ConsistentTreeMap.html" title="type parameter in ConsistentTreeMap">V</a>&gt;&gt;&nbsp;pollFirstEntry()</pre>
-<div class="block">Returns and removes the entry associated with the lowest key.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the entry or null</dd>
-</dl>
-</li>
-</ul>
-<a name="pollLastEntry--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>pollLastEntry</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../io/atomix/core/map/ConsistentTreeMap.html" title="type parameter in ConsistentTreeMap">V</a>&gt;&gt;&nbsp;pollLastEntry()</pre>
-<div class="block">Returns and removes the entry associated with the highest key.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the entry or null</dd>

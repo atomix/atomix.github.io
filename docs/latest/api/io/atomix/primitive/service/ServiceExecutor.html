@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":18,"i2":6,"i3":18,"i4":18,"i5":18,"i6":18,"i7":18,"i8":18,"i9":6};
+var methods = {"i0":6,"i1":18,"i2":6,"i3":6,"i4":6,"i5":18,"i6":6,"i7":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -182,53 +182,34 @@ extends <a href="../../../../io/atomix/utils/concurrent/ThreadContext.html" titl
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>default void</code></td>
+<td class="colFirst"><code>&lt;T&gt;&nbsp;void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/ServiceExecutor.html#register-io.atomix.primitive.operation.OperationId-java.util.function.Consumer-">register</a></span>(<a href="../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&gt;&nbsp;callback)</code>
-<div class="block">Registers a operation callback.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>default &lt;T&gt;&nbsp;void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/ServiceExecutor.html#register-io.atomix.primitive.operation.OperationId-java.util.function.Function-java.util.function.Consumer-">register</a></span>(<a href="../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;byte[],T&gt;&nbsp;decoder,
         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;T&gt;&gt;&nbsp;callback)</code>
 <div class="block">Registers a operation callback.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>default &lt;T,R&gt;&nbsp;void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/ServiceExecutor.html#register-io.atomix.primitive.operation.OperationId-java.util.function.Function-java.util.function.Function-java.util.function.Function-">register</a></span>(<a href="../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;byte[],T&gt;&nbsp;decoder,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;T&gt;,R&gt;&nbsp;callback,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;R,byte[]&gt;&nbsp;encoder)</code>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>&lt;T,R&gt;&nbsp;void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/ServiceExecutor.html#register-io.atomix.primitive.operation.OperationId-java.util.function.Function-">register</a></span>(<a href="../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
+        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;T&gt;,R&gt;&nbsp;callback)</code>
 <div class="block">Registers an operation callback.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>default &lt;R&gt;&nbsp;void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/ServiceExecutor.html#register-io.atomix.primitive.operation.OperationId-java.util.function.Function-java.util.function.Function-">register</a></span>(<a href="../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;,R&gt;&nbsp;callback,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;R,byte[]&gt;&nbsp;encoder)</code>
-<div class="block">Registers a operation callback.</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>default void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/ServiceExecutor.html#register-io.atomix.primitive.operation.OperationId-java.lang.Runnable-">register</a></span>(<a href="../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
         <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Runnable.html?is-external=true" title="class or interface in java.lang">Runnable</a>&nbsp;callback)</code>
 <div class="block">Registers a operation callback.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>default &lt;R&gt;&nbsp;void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/ServiceExecutor.html#register-io.atomix.primitive.operation.OperationId-java.util.function.Supplier-java.util.function.Function-">register</a></span>(<a href="../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function">Supplier</a>&lt;R&gt;&nbsp;callback,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;R,byte[]&gt;&nbsp;encoder)</code>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>&lt;R&gt;&nbsp;void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/ServiceExecutor.html#register-io.atomix.primitive.operation.OperationId-java.util.function.Supplier-">register</a></span>(<a href="../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
+        <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function">Supplier</a>&lt;R&gt;&nbsp;callback)</code>
 <div class="block">Registers a no argument operation callback.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/ServiceExecutor.html#tick-io.atomix.utils.time.WallClockTimestamp-">tick</a></span>(<a href="../../../../io/atomix/utils/time/WallClockTimestamp.html" title="class in io.atomix.utils.time">WallClockTimestamp</a>&nbsp;timestamp)</code>
 <div class="block">Increments the service clock.</div>
@@ -336,21 +317,19 @@ extends <a href="../../../../io/atomix/utils/concurrent/ThreadContext.html" titl
 </dl>
 </li>
 </ul>
-<a name="register-io.atomix.primitive.operation.OperationId-java.util.function.Supplier-java.util.function.Function-">
+<a name="register-io.atomix.primitive.operation.OperationId-java.util.function.Supplier-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>register</h4>
-<pre>default&nbsp;&lt;R&gt;&nbsp;void&nbsp;register(<a href="../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-                          <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function">Supplier</a>&lt;R&gt;&nbsp;callback,
-                          <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;R,byte[]&gt;&nbsp;encoder)</pre>
+<pre>&lt;R&gt;&nbsp;void&nbsp;register(<a href="../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
+                  <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Supplier.html?is-external=true" title="class or interface in java.util.function">Supplier</a>&lt;R&gt;&nbsp;callback)</pre>
 <div class="block">Registers a no argument operation callback.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>operationId</code> - the operation identifier</dd>
 <dd><code>callback</code> - the operation callback</dd>
-<dd><code>encoder</code> - result encoder</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the <code>operationId</code> or <code>callback</code> is null</dd>
 </dl>
@@ -362,8 +341,8 @@ extends <a href="../../../../io/atomix/utils/concurrent/ThreadContext.html" titl
 <ul class="blockList">
 <li class="blockList">
 <h4>register</h4>
-<pre>default&nbsp;void&nbsp;register(<a href="../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-                      <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&gt;&nbsp;callback)</pre>
+<pre>&lt;T&gt;&nbsp;void&nbsp;register(<a href="../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
+                  <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;T&gt;&gt;&nbsp;callback)</pre>
 <div class="block">Registers a operation callback.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -374,63 +353,19 @@ extends <a href="../../../../io/atomix/utils/concurrent/ThreadContext.html" titl
 </dl>
 </li>
 </ul>
-<a name="register-io.atomix.primitive.operation.OperationId-java.util.function.Function-java.util.function.Function-">
+<a name="register-io.atomix.primitive.operation.OperationId-java.util.function.Function-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>register</h4>
-<pre>default&nbsp;&lt;R&gt;&nbsp;void&nbsp;register(<a href="../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-                          <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;,R&gt;&nbsp;callback,
-                          <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;R,byte[]&gt;&nbsp;encoder)</pre>
-<div class="block">Registers a operation callback.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>operationId</code> - the operation identifier</dd>
-<dd><code>callback</code> - the operation callback</dd>
-<dd><code>encoder</code> - result encoder</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the <code>operationId</code> or <code>callback</code> is null</dd>
-</dl>
-</li>
-</ul>
-<a name="register-io.atomix.primitive.operation.OperationId-java.util.function.Function-java.util.function.Consumer-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>register</h4>
-<pre>default&nbsp;&lt;T&gt;&nbsp;void&nbsp;register(<a href="../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-                          <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;byte[],T&gt;&nbsp;decoder,
-                          <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html?is-external=true" title="class or interface in java.util.function">Consumer</a>&lt;<a href="../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;T&gt;&gt;&nbsp;callback)</pre>
-<div class="block">Registers a operation callback.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>operationId</code> - the operation identifier</dd>
-<dd><code>decoder</code> - the operation decoder</dd>
-<dd><code>callback</code> - the operation callback</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the <code>operationId</code> or <code>callback</code> is null</dd>
-</dl>
-</li>
-</ul>
-<a name="register-io.atomix.primitive.operation.OperationId-java.util.function.Function-java.util.function.Function-java.util.function.Function-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>register</h4>
-<pre>default&nbsp;&lt;T,R&gt;&nbsp;void&nbsp;register(<a href="../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
-                            <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;byte[],T&gt;&nbsp;decoder,
-                            <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;T&gt;,R&gt;&nbsp;callback,
-                            <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;R,byte[]&gt;&nbsp;encoder)</pre>
+<pre>&lt;T,R&gt;&nbsp;void&nbsp;register(<a href="../../../../io/atomix/primitive/operation/OperationId.html" title="interface in io.atomix.primitive.operation">OperationId</a>&nbsp;operationId,
+                    <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;T&gt;,R&gt;&nbsp;callback)</pre>
 <div class="block">Registers an operation callback.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>operationId</code> - the operation identifier</dd>
-<dd><code>decoder</code> - the operation decoder</dd>
 <dd><code>callback</code> - the operation callback</dd>
-<dd><code>encoder</code> - the output encoder</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the <code>operationId</code> or <code>callback</code> is null</dd>
 </dl>

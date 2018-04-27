@@ -44,7 +44,7 @@
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../io/atomix/protocols/raft/proxy/CommunicationStrategy.html" title="enum in io.atomix.protocols.raft.proxy"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../io/atomix/protocols/raft/proxy/RecoveryStrategy.html" title="enum in io.atomix.protocols.raft.proxy"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../io/atomix/protocols/raft/proxy/RaftProxy.Builder.html" title="class in io.atomix.protocols.raft.proxy"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?io/atomix/protocols/raft/proxy/RaftProxy.html" target="_top">Frames</a></li>
@@ -68,7 +68,7 @@
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li>Method</li>
@@ -95,12 +95,12 @@
 <li class="blockList">
 <dl>
 <dt>All Superinterfaces:</dt>
-<dd><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy">PrimitiveProxy</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxyExecutor.html" title="interface in io.atomix.primitive.proxy">PrimitiveProxyExecutor</a></dd>
+<dd><a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy">PartitionProxy</a>, <a href="../../../../../io/atomix/primitive/proxy/Proxy.html" title="interface in io.atomix.primitive.proxy">Proxy</a>&lt;<a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy">PartitionProxy</a>&gt;</dd>
 </dl>
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">RaftProxy</span>
-extends <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy">PrimitiveProxy</a></pre>
+extends <a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy">PartitionProxy</a></pre>
 <div class="block">Raft primitive proxy.</div>
 </li>
 </ul>
@@ -114,12 +114,25 @@ extends <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" t
 <!--   -->
 </a>
 <h3>Nested Class Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Interface and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/proxy/RaftProxy.Builder.html" title="class in io.atomix.protocols.raft.proxy">RaftProxy.Builder</a></span></code>
+<div class="block">Raft proxy builder.</div>
+</td>
+</tr>
+</table>
 <ul class="blockList">
-<li class="blockList"><a name="nested.classes.inherited.from.class.io.atomix.primitive.proxy.PrimitiveProxy">
+<li class="blockList"><a name="nested.classes.inherited.from.class.io.atomix.primitive.proxy.Proxy">
 <!--   -->
 </a>
-<h3>Nested classes/interfaces inherited from interface&nbsp;io.atomix.primitive.proxy.<a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy">PrimitiveProxy</a></h3>
-<code><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.State.html" title="enum in io.atomix.primitive.proxy">PrimitiveProxy.State</a></code></li>
+<h3>Nested classes/interfaces inherited from interface&nbsp;io.atomix.primitive.proxy.<a href="../../../../../io/atomix/primitive/proxy/Proxy.html" title="interface in io.atomix.primitive.proxy">Proxy</a></h3>
+<code><a href="../../../../../io/atomix/primitive/proxy/Proxy.State.html" title="enum in io.atomix.primitive.proxy">Proxy.State</a></code></li>
 </ul>
 </li>
 </ul>
@@ -130,18 +143,18 @@ extends <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" t
 </a>
 <h3>Method Summary</h3>
 <ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.io.atomix.primitive.proxy.PrimitiveProxy">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.primitive.proxy.PartitionProxy">
 <!--   -->
 </a>
-<h3>Methods inherited from interface&nbsp;io.atomix.primitive.proxy.<a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy">PrimitiveProxy</a></h3>
-<code><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#addEventListener-io.atomix.primitive.event.EventType-java.util.function.Consumer-">addEventListener</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#addEventListener-io.atomix.primitive.event.EventType-java.util.function.Function-java.util.function.Consumer-">addEventListener</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#addEventListener-io.atomix.primitive.event.EventType-java.lang.Runnable-">addEventListener</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#close--">close</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#connect--">connect</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#getState--">getState</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#invoke-io.atomix.primitive.operation.OperationId-">invoke</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#invoke-io.atomix.primitive.operation.OperationId-java.util.function.Function-">invoke</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#invoke-io.atomix.primitive.operation.OperationId-java.util.function.Function-T-">invoke</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#invoke-io.atomix.primitive.operation.OperationId-java.util.function.Function-T-java.util.function.Function-">invoke</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#name--">name</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#removeEventListener-io.atomix.primitive.event.EventType-java.util.function.Consumer-">removeEventListener</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#removeEventListener-io.atomix.primitive.event.EventType-java.lang.Runnable-">removeEventListener</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#serviceType--">serviceType</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html#sessionId--">sessionId</a></code></li>
+<h3>Methods inherited from interface&nbsp;io.atomix.primitive.proxy.<a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy">PartitionProxy</a></h3>
+<code><a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html#addEventListener-io.atomix.primitive.event.EventType-java.util.function.Consumer-">addEventListener</a>, <a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html#execute-io.atomix.primitive.operation.PrimitiveOperation-">execute</a>, <a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html#partitionId--">partitionId</a>, <a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html#removeEventListener-io.atomix.primitive.event.EventType-java.util.function.Consumer-">removeEventListener</a>, <a href="../../../../../io/atomix/primitive/proxy/PartitionProxy.html#sessionId--">sessionId</a></code></li>
 </ul>
 <ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.io.atomix.primitive.proxy.PrimitiveProxyExecutor">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.primitive.proxy.Proxy">
 <!--   -->
 </a>
-<h3>Methods inherited from interface&nbsp;io.atomix.primitive.proxy.<a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxyExecutor.html" title="interface in io.atomix.primitive.proxy">PrimitiveProxyExecutor</a></h3>
-<code><a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxyExecutor.html#addEventListener-java.util.function.Consumer-">addEventListener</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxyExecutor.html#addStateChangeListener-java.util.function.Consumer-">addStateChangeListener</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxyExecutor.html#execute-io.atomix.primitive.operation.OperationId-">execute</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxyExecutor.html#execute-io.atomix.primitive.operation.OperationId-byte:A-">execute</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxyExecutor.html#execute-io.atomix.primitive.operation.PrimitiveOperation-">execute</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxyExecutor.html#removeEventListener-java.util.function.Consumer-">removeEventListener</a>, <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxyExecutor.html#removeStateChangeListener-java.util.function.Consumer-">removeStateChangeListener</a></code></li>
+<h3>Methods inherited from interface&nbsp;io.atomix.primitive.proxy.<a href="../../../../../io/atomix/primitive/proxy/Proxy.html" title="interface in io.atomix.primitive.proxy">Proxy</a></h3>
+<code><a href="../../../../../io/atomix/primitive/proxy/Proxy.html#addStateChangeListener-java.util.function.Consumer-">addStateChangeListener</a>, <a href="../../../../../io/atomix/primitive/proxy/Proxy.html#close--">close</a>, <a href="../../../../../io/atomix/primitive/proxy/Proxy.html#connect--">connect</a>, <a href="../../../../../io/atomix/primitive/proxy/Proxy.html#getState--">getState</a>, <a href="../../../../../io/atomix/primitive/proxy/Proxy.html#name--">name</a>, <a href="../../../../../io/atomix/primitive/proxy/Proxy.html#removeStateChangeListener-java.util.function.Consumer-">removeStateChangeListener</a>, <a href="../../../../../io/atomix/primitive/proxy/Proxy.html#type--">type</a></code></li>
 </ul>
 </li>
 </ul>
@@ -172,7 +185,7 @@ extends <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" t
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../../io/atomix/protocols/raft/proxy/CommunicationStrategy.html" title="enum in io.atomix.protocols.raft.proxy"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../../io/atomix/protocols/raft/proxy/RecoveryStrategy.html" title="enum in io.atomix.protocols.raft.proxy"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../../io/atomix/protocols/raft/proxy/RaftProxy.Builder.html" title="class in io.atomix.protocols.raft.proxy"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../../index.html?io/atomix/protocols/raft/proxy/RaftProxy.html" target="_top">Frames</a></li>
@@ -196,7 +209,7 @@ extends <a href="../../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" t
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li>Method</li>

@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -109,13 +109,13 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../io/atomix/utils/Config.html" title="interface in io.atomix.utils">Config</a></dd>
+<dd><a href="../../../io/atomix/utils/config/Config.html" title="interface in io.atomix.utils.config">Config</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">AtomixConfig</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="../../../io/atomix/utils/Config.html" title="interface in io.atomix.utils">Config</a></pre>
+implements <a href="../../../io/atomix/utils/config/Config.html" title="interface in io.atomix.utils.config">Config</a></pre>
 <div class="block">Atomix configuration.</div>
 </li>
 </ul>
@@ -167,68 +167,68 @@ implements <a href="../../../io/atomix/utils/Config.html" title="interface in io
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#addProfile-io.atomix.core.profile.Profile-">addProfile</a></span>(<a href="../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a>&nbsp;profile)</code>
+<div class="block">Adds an Atomix profile.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#addType-java.lang.Class-">addType</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&gt;&nbsp;type)</code>
 <div class="block">Adds a primitive type.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#getClusterConfig--">getClusterConfig</a></span>()</code>
 <div class="block">Returns the cluster configuration.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#getDataDirectory--">getDataDirectory</a></span>()</code>
-<div class="block">Returns the data directory.</div>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code><a href="../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#getManagementGroup--">getManagementGroup</a></span>()</code>
+<div class="block">Returns the system management partition group.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a>&gt;</code></td>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#getPartitionGroups--">getPartitionGroups</a></span>()</code>
 <div class="block">Returns the partition group configurations.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>&lt;C extends <a href="../../../io/atomix/primitive/PrimitiveConfig.html" title="class in io.atomix.primitive">PrimitiveConfig</a>&lt;C&gt;&gt;<br>C</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#getPrimitive-java.lang.String-">getPrimitive</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Returns a primitive configuration.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../io/atomix/primitive/PrimitiveConfig.html" title="class in io.atomix.primitive">PrimitiveConfig</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#getPrimitives--">getPrimitives</a></span>()</code>
 <div class="block">Returns the primitive configurations.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&gt;&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#getPrimitiveTypes--">getPrimitiveTypes</a></span>()</code>
 <div class="block">Returns the primitive types.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#getProfiles--">getProfiles</a></span>()</code>
+<div class="block">Returns the Atomix profile.</div>
+</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#isEnableShutdownHook--">isEnableShutdownHook</a></span>()</code>
 <div class="block">Returns whether to enable the shutdown hook.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#setClusterConfig-io.atomix.cluster.ClusterConfig-">setClusterConfig</a></span>(<a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a>&nbsp;cluster)</code>
 <div class="block">Sets the cluster configuration.</div>
-</td>
-</tr>
-<tr id="i11" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#setDataDirectory-java.io.File-">setDataDirectory</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a>&nbsp;dataDirectory)</code>
-<div class="block">Sets the data directory.</div>
-</td>
-</tr>
-<tr id="i12" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#setDataDirectory-java.lang.String-">setDataDirectory</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;dataDirectory)</code>
-<div class="block">Sets the data directory.</div>
 </td>
 </tr>
 <tr id="i13" class="rowColor">
@@ -239,20 +239,32 @@ implements <a href="../../../io/atomix/utils/Config.html" title="interface in io
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#setPartitionGroups-java.util.Collection-">setPartitionGroups</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a>&gt;&nbsp;partitionGroups)</code>
-<div class="block">Sets the partition group configurations.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#setManagementGroup-io.atomix.primitive.partition.PartitionGroupConfig-">setManagementGroup</a></span>(<a href="../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a>&nbsp;managementGroup)</code>
+<div class="block">Sets the system management partition group.</div>
 </td>
 </tr>
 <tr id="i15" class="rowColor">
+<td class="colFirst"><code><a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#setPartitionGroups-java.util.Map-">setPartitionGroups</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a>&gt;&nbsp;partitionGroups)</code>
+<div class="block">Sets the partition group configurations.</div>
+</td>
+</tr>
+<tr id="i16" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#setPrimitives-java.util.Map-">setPrimitives</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../io/atomix/primitive/PrimitiveConfig.html" title="class in io.atomix.primitive">PrimitiveConfig</a>&gt;&nbsp;primitives)</code>
 <div class="block">Sets the primitive configurations.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#setPrimitiveTypes-java.util.Collection-">setPrimitiveTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&gt;&gt;&nbsp;types)</code>
 <div class="block">Sets the primitive types.</div>
+</td>
+</tr>
+<tr id="i18" class="altColor">
+<td class="colFirst"><code><a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixConfig.html#setProfiles-java.util.List-">setProfiles</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;profiles)</code>
+<div class="block">Sets the Atomix profile.</div>
 </td>
 </tr>
 </table>
@@ -324,52 +336,6 @@ implements <a href="../../../io/atomix/utils/Config.html" title="interface in io
 </dl>
 </li>
 </ul>
-<a name="getDataDirectory--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getDataDirectory</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a>&nbsp;getDataDirectory()</pre>
-<div class="block">Returns the data directory.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the data directory</dd>
-</dl>
-</li>
-</ul>
-<a name="setDataDirectory-java.lang.String-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setDataDirectory</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a>&nbsp;setDataDirectory(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;dataDirectory)</pre>
-<div class="block">Sets the data directory.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>dataDirectory</code> - the data directory</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the Atomix configuration</dd>
-</dl>
-</li>
-</ul>
-<a name="setDataDirectory-java.io.File-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setDataDirectory</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a>&nbsp;setDataDirectory(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a>&nbsp;dataDirectory)</pre>
-<div class="block">Sets the data directory.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>dataDirectory</code> - the data directory</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the Atomix configuration</dd>
-</dl>
-</li>
-</ul>
 <a name="isEnableShutdownHook--">
 <!--   -->
 </a>
@@ -400,13 +366,43 @@ implements <a href="../../../io/atomix/utils/Config.html" title="interface in io
 </dl>
 </li>
 </ul>
+<a name="getManagementGroup--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getManagementGroup</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a>&nbsp;getManagementGroup()</pre>
+<div class="block">Returns the system management partition group.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the system management partition group</dd>
+</dl>
+</li>
+</ul>
+<a name="setManagementGroup-io.atomix.primitive.partition.PartitionGroupConfig-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setManagementGroup</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a>&nbsp;setManagementGroup(<a href="../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a>&nbsp;managementGroup)</pre>
+<div class="block">Sets the system management partition group.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>managementGroup</code> - the system management partition group</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Atomix configuration</dd>
+</dl>
+</li>
+</ul>
 <a name="getPartitionGroups--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>getPartitionGroups</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a>&gt;&nbsp;getPartitionGroups()</pre>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a>&gt;&nbsp;getPartitionGroups()</pre>
 <div class="block">Returns the partition group configurations.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -414,13 +410,13 @@ implements <a href="../../../io/atomix/utils/Config.html" title="interface in io
 </dl>
 </li>
 </ul>
-<a name="setPartitionGroups-java.util.Collection-">
+<a name="setPartitionGroups-java.util.Map-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setPartitionGroups</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a>&nbsp;setPartitionGroups(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a>&gt;&nbsp;partitionGroups)</pre>
+<pre>public&nbsp;<a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a>&nbsp;setPartitionGroups(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../io/atomix/primitive/partition/PartitionGroupConfig.html" title="class in io.atomix.primitive.partition">PartitionGroupConfig</a>&gt;&nbsp;partitionGroups)</pre>
 <div class="block">Sets the partition group configurations.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -543,7 +539,7 @@ implements <a href="../../../io/atomix/utils/Config.html" title="interface in io
 <a name="getPrimitive-java.lang.String-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getPrimitive</h4>
 <pre>public&nbsp;&lt;C extends <a href="../../../io/atomix/primitive/PrimitiveConfig.html" title="class in io.atomix.primitive">PrimitiveConfig</a>&lt;C&gt;&gt;&nbsp;C&nbsp;getPrimitive(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
@@ -555,6 +551,52 @@ implements <a href="../../../io/atomix/utils/Config.html" title="interface in io
 <dd><code>name</code> - the primitive name</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the primitive configuration</dd>
+</dl>
+</li>
+</ul>
+<a name="getProfiles--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getProfiles</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a>&gt;&nbsp;getProfiles()</pre>
+<div class="block">Returns the Atomix profile.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Atomix profile</dd>
+</dl>
+</li>
+</ul>
+<a name="setProfiles-java.util.List-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setProfiles</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a>&nbsp;setProfiles(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;profiles)</pre>
+<div class="block">Sets the Atomix profile.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>profiles</code> - the profiles</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Atomix configuration</dd>
+</dl>
+</li>
+</ul>
+<a name="addProfile-io.atomix.core.profile.Profile-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>addProfile</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a>&nbsp;addProfile(<a href="../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a>&nbsp;profile)</pre>
+<div class="block">Adds an Atomix profile.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>profile</code> - the profile to add</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Atomix configuration</dd>
 </dl>
 </li>
 </ul>

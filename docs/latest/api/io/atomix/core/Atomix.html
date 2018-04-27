@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":9,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -100,7 +100,12 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
+<li><a href="../../../io/atomix/cluster/AtomixCluster.html" title="class in io.atomix.cluster">io.atomix.cluster.AtomixCluster</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</li>
+<li>
+<ul class="inheritance">
 <li>io.atomix.core.Atomix</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -114,7 +119,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">Atomix</span>
-extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
+extends <a href="../../../io/atomix/cluster/AtomixCluster.html" title="class in io.atomix.cluster">AtomixCluster</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;
 implements <a href="../../../io/atomix/core/PrimitivesService.html" title="interface in io.atomix.core">PrimitivesService</a>, <a href="../../../io/atomix/utils/Managed.html" title="interface in io.atomix.utils">Managed</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</pre>
 <div class="block">Atomix!</div>
 </li>
@@ -204,84 +209,72 @@ implements <a href="../../../io/atomix/core/PrimitivesService.html" title="inter
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/cluster/ClusterService.html" title="interface in io.atomix.cluster">ClusterService</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#clusterService--">clusterService</a></span>()</code>
-<div class="block">Returns the cluster service.</div>
-</td>
-</tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/cluster/messaging/ClusterEventingService.html" title="interface in io.atomix.cluster.messaging">ClusterEventingService</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#eventingService--">eventingService</a></span>()</code>
-<div class="block">Returns the cluster event service.</div>
-</td>
-</tr>
-<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/counter/AtomicCounter.html" title="interface in io.atomix.core.counter">AtomicCounter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getAtomicCounter-java.lang.String-">getAtomicCounter</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Creates a new AtomicCounterBuilder.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>&lt;K&gt;&nbsp;<a href="../../../io/atomix/core/map/AtomicCounterMap.html" title="interface in io.atomix.core.map">AtomicCounterMap</a>&lt;K&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getAtomicCounterMap-java.lang.String-">getAtomicCounterMap</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Creates a new <code>AtomicCounterMapBuilder</code>.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/generator/AtomicIdGenerator.html" title="interface in io.atomix.core.generator">AtomicIdGenerator</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getAtomicIdGenerator-java.lang.String-">getAtomicIdGenerator</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Creates a new AtomicIdGeneratorBuilder.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>&lt;V&gt;&nbsp;<a href="../../../io/atomix/core/value/AtomicValue.html" title="interface in io.atomix.core.value">AtomicValue</a>&lt;V&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getAtomicValue-java.lang.String-">getAtomicValue</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Creates a new AtomicValueBuilder.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>&lt;K,V&gt;&nbsp;<a href="../../../io/atomix/core/map/ConsistentMap.html" title="interface in io.atomix.core.map">ConsistentMap</a>&lt;K,V&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getConsistentMap-java.lang.String-">getConsistentMap</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Creates a new ConsistentMapBuilder.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>&lt;K,V&gt;&nbsp;<a href="../../../io/atomix/core/multimap/ConsistentMultimap.html" title="interface in io.atomix.core.multimap">ConsistentMultimap</a>&lt;K,V&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getConsistentMultimap-java.lang.String-">getConsistentMultimap</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Creates a new <code>AsyncConsistentSetMultimapBuilder</code>.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>&lt;V&gt;&nbsp;<a href="../../../io/atomix/core/tree/DocumentTree.html" title="interface in io.atomix.core.tree">DocumentTree</a>&lt;V&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getDocumentTree-java.lang.String-">getDocumentTree</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Creates a new ConsistentMapBuilder.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../io/atomix/core/election/LeaderElection.html" title="interface in io.atomix.core.election">LeaderElection</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getLeaderElection-java.lang.String-">getLeaderElection</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Creates a new LeaderElectionBuilder.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;<a href="../../../io/atomix/core/election/LeaderElector.html" title="interface in io.atomix.core.election">LeaderElector</a>&lt;T&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getLeaderElector-java.lang.String-">getLeaderElector</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Creates a new LeaderElectorBuilder.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/lock/DistributedLock.html" title="interface in io.atomix.core.lock">DistributedLock</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getLock-java.lang.String-">getLock</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Creates a new DistributedLockBuilder.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>&lt;P extends <a href="../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a>&gt;<br>P</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getPrimitive-java.lang.String-">getPrimitive</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Returns a registered primitive.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>&lt;C extends <a href="../../../io/atomix/primitive/PrimitiveConfig.html" title="class in io.atomix.primitive">PrimitiveConfig</a>&lt;C&gt;,P extends <a href="../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a>&gt;<br>P</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getPrimitive-java.lang.String-io.atomix.primitive.PrimitiveType-C-">getPrimitive</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
             <a href="../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&lt;?,C,P&gt;&nbsp;primitiveType,
@@ -289,90 +282,85 @@ implements <a href="../../../io/atomix/core/PrimitivesService.html" title="inter
 <div class="block">Returns a cached primitive.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/primitive/PrimitiveInfo.html" title="class in io.atomix.primitive">PrimitiveInfo</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getPrimitives--">getPrimitives</a></span>()</code>
 <div class="block">Returns a collection of open primitives.</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/primitive/PrimitiveInfo.html" title="class in io.atomix.primitive">PrimitiveInfo</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getPrimitives-io.atomix.primitive.PrimitiveType-">getPrimitives</a></span>(<a href="../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType)</code>
 <div class="block">Returns a collection of open primitives of the given type.</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>&lt;E&gt;&nbsp;<a href="../../../io/atomix/core/set/DistributedSet.html" title="interface in io.atomix.core.set">DistributedSet</a>&lt;E&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getSet-java.lang.String-">getSet</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Creates a new DistributedSetBuilder.</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>&lt;V&gt;&nbsp;<a href="../../../io/atomix/core/map/ConsistentTreeMap.html" title="interface in io.atomix.core.map">ConsistentTreeMap</a>&lt;V&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getTreeMap-java.lang.String-">getTreeMap</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Creates a new <code>AsyncConsistentTreeMapBuilder</code>.</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>&lt;E&gt;&nbsp;<a href="../../../io/atomix/core/queue/WorkQueue.html" title="interface in io.atomix.core.queue">WorkQueue</a>&lt;E&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#getWorkQueue-java.lang.String-">getWorkQueue</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Creates a new WorkQueueBuilder.</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#isRunning--">isRunning</a></span>()</code>
-<div class="block">Returns a boolean value indicating whether the managed object is running.</div>
-</td>
-</tr>
-<tr id="i24" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/cluster/messaging/ClusterMessagingService.html" title="interface in io.atomix.cluster.messaging">ClusterMessagingService</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#messagingService--">messagingService</a></span>()</code>
-<div class="block">Returns the cluster communication service.</div>
-</td>
-</tr>
-<tr id="i25" class="rowColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/primitive/partition/PartitionService.html" title="interface in io.atomix.primitive.partition">PartitionService</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#partitionService--">partitionService</a></span>()</code>
 <div class="block">Returns the partition service.</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>&lt;B extends <a href="../../../io/atomix/primitive/DistributedPrimitiveBuilder.html" title="class in io.atomix.primitive">DistributedPrimitiveBuilder</a>&lt;B,C,P&gt;,C extends <a href="../../../io/atomix/primitive/PrimitiveConfig.html" title="class in io.atomix.primitive">PrimitiveConfig</a>&lt;C&gt;,P extends <a href="../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a>&gt;<br>B</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#primitiveBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-">primitiveBuilder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                 <a href="../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&lt;B,C,P&gt;&nbsp;primitiveType)</code>
 <div class="block">Returns a primitive builder of the given type.</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/PrimitivesService.html" title="interface in io.atomix.core">PrimitivesService</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#primitivesService--">primitivesService</a></span>()</code>
 <div class="block">Returns the primitives service.</div>
 </td>
 </tr>
-<tr id="i28" class="altColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#start--">start</a></span>()</code>
 <div class="block">Starts the Atomix instance.</div>
 </td>
 </tr>
-<tr id="i29" class="rowColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#stop--">stop</a></span>()</code>
 <div class="block">Stops the managed object.</div>
 </td>
 </tr>
-<tr id="i30" class="altColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#toString--">toString</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i31" class="rowColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/transaction/TransactionBuilder.html" title="class in io.atomix.core.transaction">TransactionBuilder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.html#transactionBuilder-java.lang.String-">transactionBuilder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
 <div class="block">Creates a new transaction builder.</div>
 </td>
 </tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.cluster.AtomixCluster">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;io.atomix.cluster.<a href="../../../io/atomix/cluster/AtomixCluster.html" title="class in io.atomix.cluster">AtomixCluster</a></h3>
+<code><a href="../../../io/atomix/cluster/AtomixCluster.html#builder-io.atomix.cluster.ClusterConfig-">builder</a>, <a href="../../../io/atomix/cluster/AtomixCluster.html#eventingService--">eventingService</a>, <a href="../../../io/atomix/cluster/AtomixCluster.html#isRunning--">isRunning</a>, <a href="../../../io/atomix/cluster/AtomixCluster.html#membershipService--">membershipService</a>, <a href="../../../io/atomix/cluster/AtomixCluster.html#messagingService--">messagingService</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
@@ -386,6 +374,13 @@ implements <a href="../../../io/atomix/core/PrimitivesService.html" title="inter
 </a>
 <h3>Methods inherited from interface&nbsp;io.atomix.core.<a href="../../../io/atomix/core/PrimitivesService.html" title="interface in io.atomix.core">PrimitivesService</a></h3>
 <code><a href="../../../io/atomix/core/PrimitivesService.html#atomicCounterBuilder-java.lang.String-">atomicCounterBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#atomicCounterBuilder-java.lang.String-io.atomix.primitive.protocol.PrimitiveProtocol-">atomicCounterBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#atomicCounterMapBuilder-java.lang.String-">atomicCounterMapBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#atomicCounterMapBuilder-java.lang.String-io.atomix.primitive.protocol.PrimitiveProtocol-">atomicCounterMapBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#atomicIdGeneratorBuilder-java.lang.String-">atomicIdGeneratorBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#atomicIdGeneratorBuilder-java.lang.String-io.atomix.primitive.protocol.PrimitiveProtocol-">atomicIdGeneratorBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#atomicValueBuilder-java.lang.String-">atomicValueBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#atomicValueBuilder-java.lang.String-io.atomix.primitive.protocol.PrimitiveProtocol-">atomicValueBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#consistentMapBuilder-java.lang.String-">consistentMapBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#consistentMapBuilder-java.lang.String-io.atomix.primitive.protocol.PrimitiveProtocol-">consistentMapBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#consistentMultimapBuilder-java.lang.String-">consistentMultimapBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#consistentMultimapBuilder-java.lang.String-io.atomix.primitive.protocol.PrimitiveProtocol-">consistentMultimapBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#consistentTreeMapBuilder-java.lang.String-">consistentTreeMapBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#consistentTreeMapBuilder-java.lang.String-io.atomix.primitive.protocol.PrimitiveProtocol-">consistentTreeMapBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#documentTreeBuilder-java.lang.String-">documentTreeBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#documentTreeBuilder-java.lang.String-io.atomix.primitive.protocol.PrimitiveProtocol-">documentTreeBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#leaderElectionBuilder-java.lang.String-">leaderElectionBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#leaderElectionBuilder-java.lang.String-io.atomix.primitive.protocol.PrimitiveProtocol-">leaderElectionBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#leaderElectorBuilder-java.lang.String-">leaderElectorBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#leaderElectorBuilder-java.lang.String-io.atomix.primitive.protocol.PrimitiveProtocol-">leaderElectorBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#lockBuilder-java.lang.String-">lockBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#lockBuilder-java.lang.String-io.atomix.primitive.protocol.PrimitiveProtocol-">lockBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#primitiveBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.primitive.protocol.PrimitiveProtocol-">primitiveBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#setBuilder-java.lang.String-">setBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#setBuilder-java.lang.String-io.atomix.primitive.protocol.PrimitiveProtocol-">setBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#transactionBuilder--">transactionBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#workQueueBuilder-java.lang.String-">workQueueBuilder</a>, <a href="../../../io/atomix/core/PrimitivesService.html#workQueueBuilder-java.lang.String-io.atomix.primitive.protocol.PrimitiveProtocol-">workQueueBuilder</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.utils.Managed">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;io.atomix.utils.<a href="../../../io/atomix/utils/Managed.html" title="interface in io.atomix.utils">Managed</a></h3>
+<code><a href="../../../io/atomix/utils/Managed.html#isRunning--">isRunning</a></code></li>
 </ul>
 </li>
 </ul>
@@ -495,48 +490,6 @@ implements <a href="../../../io/atomix/core/PrimitivesService.html" title="inter
 <dd><code>config</code> - the Atomix configuration</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a new Atomix builder</dd>
-</dl>
-</li>
-</ul>
-<a name="clusterService--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>clusterService</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/cluster/ClusterService.html" title="interface in io.atomix.cluster">ClusterService</a>&nbsp;clusterService()</pre>
-<div class="block">Returns the cluster service.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the cluster service</dd>
-</dl>
-</li>
-</ul>
-<a name="messagingService--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>messagingService</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/cluster/messaging/ClusterMessagingService.html" title="interface in io.atomix.cluster.messaging">ClusterMessagingService</a>&nbsp;messagingService()</pre>
-<div class="block">Returns the cluster communication service.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the cluster communication service</dd>
-</dl>
-</li>
-</ul>
-<a name="eventingService--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>eventingService</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/cluster/messaging/ClusterEventingService.html" title="interface in io.atomix.cluster.messaging">ClusterEventingService</a>&nbsp;eventingService()</pre>
-<div class="block">Returns the cluster event service.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the cluster event service</dd>
 </dl>
 </li>
 </ul>
@@ -976,25 +929,10 @@ implements <a href="../../../io/atomix/core/PrimitivesService.html" title="inter
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../io/atomix/utils/Managed.html#start--">start</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/utils/Managed.html" title="interface in io.atomix.utils">Managed</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/cluster/AtomixCluster.html#start--">start</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.html" title="class in io.atomix.cluster">AtomixCluster</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a future to be completed once the instance has completed startup</dd>
-</dl>
-</li>
-</ul>
-<a name="isRunning--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>isRunning</h4>
-<pre>public&nbsp;boolean&nbsp;isRunning()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/utils/Managed.html#isRunning--">Managed</a></code></span></div>
-<div class="block">Returns a boolean value indicating whether the managed object is running.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../io/atomix/utils/Managed.html#isRunning--">isRunning</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/utils/Managed.html" title="interface in io.atomix.utils">Managed</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</code></dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>Indicates whether the managed object is running.</dd>
 </dl>
 </li>
 </ul>
@@ -1010,6 +948,8 @@ implements <a href="../../../io/atomix/core/PrimitivesService.html" title="inter
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../io/atomix/utils/Managed.html#stop--">stop</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/utils/Managed.html" title="interface in io.atomix.utils">Managed</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/cluster/AtomixCluster.html#stop--">stop</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.html" title="class in io.atomix.cluster">AtomixCluster</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>A completable future to be completed once the object has been stopped.</dd>
 </dl>
@@ -1024,7 +964,7 @@ implements <a href="../../../io/atomix/core/PrimitivesService.html" title="inter
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dd><code><a href="../../../io/atomix/cluster/AtomixCluster.html#toString--">toString</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.html" title="class in io.atomix.cluster">AtomixCluster</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</code></dd>
 </dl>
 </li>
 </ul>

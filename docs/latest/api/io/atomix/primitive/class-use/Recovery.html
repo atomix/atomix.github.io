@@ -96,9 +96,21 @@
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.protocols.backup.proxy">io.atomix.protocols.backup.proxy</a></td>
+<td class="colLast">
+<div class="block">Provides a <a href="../../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy"><code>PartitionProxy</code></a> implementation for primary-backup.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft">io.atomix.protocols.raft</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for managing Raft clients and servers.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.protocols.raft.proxy">io.atomix.protocols.raft.proxy</a></td>
+<td class="colLast">
+<div class="block">Provides a <a href="../../../../io/atomix/primitive/proxy/PartitionProxy.html" title="interface in io.atomix.primitive.proxy"><code>PartitionProxy</code></a> implementation for the Raft consensus protocol.</div>
 </td>
 </tr>
 </tbody>
@@ -150,12 +162,6 @@ the order they are declared.</div>
 <div class="block">Returns the recovery strategy.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/primitive/Recovery.html" title="enum in io.atomix.primitive">Recovery</a></code></td>
-<td class="colLast"><span class="typeNameLabel">MultiPrimaryProtocol.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.html#recovery--">recovery</a></span>()</code>
-<div class="block">Returns the protocol recovery strategy.</div>
-</td>
-</tr>
 </tbody>
 </table>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
@@ -180,6 +186,26 @@ the order they are declared.</div>
 </tbody>
 </table>
 </li>
+<li class="blockList"><a name="io.atomix.protocols.backup.proxy">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../io/atomix/primitive/Recovery.html" title="enum in io.atomix.primitive">Recovery</a> in <a href="../../../../io/atomix/protocols/backup/proxy/package-summary.html">io.atomix.protocols.backup.proxy</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../io/atomix/protocols/backup/proxy/package-summary.html">io.atomix.protocols.backup.proxy</a> with parameters of type <a href="../../../../io/atomix/primitive/Recovery.html" title="enum in io.atomix.primitive">Recovery</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/protocols/backup/proxy/PrimaryBackupProxy.Builder.html" title="class in io.atomix.protocols.backup.proxy">PrimaryBackupProxy.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PrimaryBackupProxy.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/proxy/PrimaryBackupProxy.Builder.html#withRecovery-io.atomix.primitive.Recovery-">withRecovery</a></span>(<a href="../../../../io/atomix/primitive/Recovery.html" title="enum in io.atomix.primitive">Recovery</a>&nbsp;recovery)</code>
+<div class="block">Sets the protocol recovery strategy.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
 <li class="blockList"><a name="io.atomix.protocols.raft">
 <!--   -->
 </a>
@@ -193,14 +219,8 @@ the order they are declared.</div>
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/Recovery.html" title="enum in io.atomix.primitive">Recovery</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RaftProtocolConfig.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftProtocolConfig.html#getRecoveryStrategy--">getRecoveryStrategy</a></span>()</code>
+<td class="colLast"><span class="typeNameLabel">MultiRaftProtocolConfig.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/MultiRaftProtocolConfig.html#getRecoveryStrategy--">getRecoveryStrategy</a></span>()</code>
 <div class="block">Returns the client recovery strategy.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/primitive/Recovery.html" title="enum in io.atomix.primitive">Recovery</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RaftProtocol.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftProtocol.html#recoveryStrategy--">recoveryStrategy</a></span>()</code>
-<div class="block">Returns the recovery strategy.</div>
 </td>
 </tr>
 </tbody>
@@ -213,14 +233,34 @@ the order they are declared.</div>
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/RaftProtocolConfig.html" title="class in io.atomix.protocols.raft">RaftProtocolConfig</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RaftProtocolConfig.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftProtocolConfig.html#setRecoveryStrategy-io.atomix.primitive.Recovery-">setRecoveryStrategy</a></span>(<a href="../../../../io/atomix/primitive/Recovery.html" title="enum in io.atomix.primitive">Recovery</a>&nbsp;recoveryStrategy)</code>
+<td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/MultiRaftProtocolConfig.html" title="class in io.atomix.protocols.raft">MultiRaftProtocolConfig</a></code></td>
+<td class="colLast"><span class="typeNameLabel">MultiRaftProtocolConfig.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/MultiRaftProtocolConfig.html#setRecoveryStrategy-io.atomix.primitive.Recovery-">setRecoveryStrategy</a></span>(<a href="../../../../io/atomix/primitive/Recovery.html" title="enum in io.atomix.primitive">Recovery</a>&nbsp;recoveryStrategy)</code>
 <div class="block">Sets the client recovery strategy.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/RaftProtocol.Builder.html" title="class in io.atomix.protocols.raft">RaftProtocol.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">RaftProtocol.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftProtocol.Builder.html#withRecoveryStrategy-io.atomix.primitive.Recovery-">withRecoveryStrategy</a></span>(<a href="../../../../io/atomix/primitive/Recovery.html" title="enum in io.atomix.primitive">Recovery</a>&nbsp;recoveryStrategy)</code>
+<td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/MultiRaftProtocol.Builder.html" title="class in io.atomix.protocols.raft">MultiRaftProtocol.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">MultiRaftProtocol.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/MultiRaftProtocol.Builder.html#withRecoveryStrategy-io.atomix.primitive.Recovery-">withRecoveryStrategy</a></span>(<a href="../../../../io/atomix/primitive/Recovery.html" title="enum in io.atomix.primitive">Recovery</a>&nbsp;recoveryStrategy)</code>
+<div class="block">Sets the recovery strategy.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.protocols.raft.proxy">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../io/atomix/primitive/Recovery.html" title="enum in io.atomix.primitive">Recovery</a> in <a href="../../../../io/atomix/protocols/raft/proxy/package-summary.html">io.atomix.protocols.raft.proxy</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../io/atomix/protocols/raft/proxy/package-summary.html">io.atomix.protocols.raft.proxy</a> with parameters of type <a href="../../../../io/atomix/primitive/Recovery.html" title="enum in io.atomix.primitive">Recovery</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/proxy/RaftProxy.Builder.html" title="class in io.atomix.protocols.raft.proxy">RaftProxy.Builder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">RaftProxy.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/proxy/RaftProxy.Builder.html#withRecoveryStrategy-io.atomix.primitive.Recovery-">withRecoveryStrategy</a></span>(<a href="../../../../io/atomix/primitive/Recovery.html" title="enum in io.atomix.primitive">Recovery</a>&nbsp;recoveryStrategy)</code>
 <div class="block">Sets the recovery strategy.</div>
 </td>
 </tr>

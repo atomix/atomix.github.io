@@ -88,6 +88,13 @@
 <div class="block">Provides classes and interfaces for managing Raft clients and servers.</div>
 </td>
 </tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.protocols.raft.partition">io.atomix.protocols.raft.partition</a></td>
+<td class="colLast">
+<div class="block">Provides <a href="../../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition"><code>PartitionGroup</code></a> and <a href="../../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition"><code>Partition</code></a>
+ implementations for the Raft consensus protocol.</div>
+</td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -112,15 +119,33 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/protocols/raft/RaftClient.html" title="interface in io.atomix.protocols.raft">RaftClient</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">RaftClient.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.html#connect-java.util.Collection-">connect</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&gt;&nbsp;members)</code>
+<td class="colLast"><span class="typeNameLabel">RaftClient.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.html#connect-java.util.Collection-">connect</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&gt;&nbsp;members)</code>
 <div class="block">Connects the client to Raft cluster via the provided server addresses.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/protocols/raft/RaftClient.html" title="interface in io.atomix.protocols.raft">RaftClient</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">RaftClient.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.html#connect-io.atomix.cluster.NodeId...-">connect</a></span>(<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>...&nbsp;members)</code>
+<td class="colLast"><span class="typeNameLabel">RaftClient.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftClient.html#connect-io.atomix.cluster.MemberId...-">connect</a></span>(<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>...&nbsp;members)</code>
 <div class="block">Connects the client to Raft cluster via the provided server addresses.</div>
 </td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.protocols.raft.partition">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/protocols/raft/RaftClient.html" title="interface in io.atomix.protocols.raft">RaftClient</a> in <a href="../../../../../io/atomix/protocols/raft/partition/package-summary.html">io.atomix.protocols.raft.partition</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/protocols/raft/partition/package-summary.html">io.atomix.protocols.raft.partition</a> that return <a href="../../../../../io/atomix/protocols/raft/RaftClient.html" title="interface in io.atomix.protocols.raft">RaftClient</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/protocols/raft/RaftClient.html" title="interface in io.atomix.protocols.raft">RaftClient</a></code></td>
+<td class="colLast"><span class="typeNameLabel">RaftPartition.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/partition/RaftPartition.html#getProxyClient--">getProxyClient</a></span>()</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

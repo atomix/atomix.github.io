@@ -95,10 +95,34 @@
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.primitive.service">io.atomix.primitive.service</a></td>
+<td class="colLast">
+<div class="block">Provides classes and interfaces for defining distributed primitive state machines.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.protocols.raft">io.atomix.protocols.raft</a></td>
+<td class="colLast">
+<div class="block">Provides classes and interfaces for managing Raft clients and servers.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.protocol">io.atomix.protocols.raft.protocol</a></td>
 <td class="colLast">
 <div class="block">Provides <a href="../../../../../io/atomix/protocols/raft/protocol/RaftRequest.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftRequest</code></a> and <a href="../../../../../io/atomix/protocols/raft/protocol/RaftResponse.html" title="interface in io.atomix.protocols.raft.protocol"><code>RaftResponse</code></a>
  implementations for all internal Raft protocol communication.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.protocols.raft.service">io.atomix.protocols.raft.service</a></td>
+<td class="colLast">
+<div class="block">Provides classes for managing Raft-based primitive services.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.protocols.raft.session">io.atomix.protocols.raft.session</a></td>
+<td class="colLast">
+<div class="block">Provides a <a href="../../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session"><code>PrimitiveSession</code></a> implementation for the Raft consensus protocol.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -193,6 +217,48 @@
 </tbody>
 </table>
 </li>
+<li class="blockList"><a name="io.atomix.primitive.service">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a> in <a href="../../../../../io/atomix/primitive/service/package-summary.html">io.atomix.primitive.service</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/primitive/service/package-summary.html">io.atomix.primitive.service</a> that return <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PrimitiveService.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/service/PrimitiveService.html#serializer--">serializer</a></span>()</code>
+<div class="block">Returns the primitive service serializer.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.protocols.raft">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a> in <a href="../../../../../io/atomix/protocols/raft/package-summary.html">io.atomix.protocols.raft</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/protocols/raft/package-summary.html">io.atomix.protocols.raft</a> that return <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></code></td>
+<td class="colLast"><span class="typeNameLabel">RaftPerformanceTest.PerformanceService.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftPerformanceTest.PerformanceService.html#serializer--">serializer</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></code></td>
+<td class="colLast"><span class="typeNameLabel">RaftFuzzTest.FuzzStateMachine.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/RaftFuzzTest.FuzzStateMachine.html#serializer--">serializer</a></span>()</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</li>
 <li class="blockList"><a name="io.atomix.protocols.raft.protocol">
 <!--   -->
 </a>
@@ -204,39 +270,84 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftClientProtocol.html#LocalRaftClientProtocol-io.atomix.cluster.NodeId-io.atomix.utils.serializer.Serializer-java.util.Map-java.util.Map-">LocalRaftClientProtocol</a></span>(<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;nodeId,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftClientProtocol.html#LocalRaftClientProtocol-io.atomix.cluster.MemberId-io.atomix.utils.serializer.Serializer-java.util.Map-java.util.Map-">LocalRaftClientProtocol</a></span>(<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId,
                        <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
-                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftServerProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftServerProtocol</a>&gt;&nbsp;servers,
-                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftClientProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftClientProtocol</a>&gt;&nbsp;clients)</code>&nbsp;</td>
+                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftServerProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftServerProtocol</a>&gt;&nbsp;servers,
+                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftClientProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftClientProtocol</a>&gt;&nbsp;clients)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftProtocol.html#LocalRaftProtocol-io.atomix.utils.serializer.Serializer-java.util.Map-java.util.Map-">LocalRaftProtocol</a></span>(<a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
-                 <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftServerProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftServerProtocol</a>&gt;&nbsp;servers,
-                 <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftClientProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftClientProtocol</a>&gt;&nbsp;clients)</code>&nbsp;</td>
+                 <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftServerProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftServerProtocol</a>&gt;&nbsp;servers,
+                 <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftClientProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftClientProtocol</a>&gt;&nbsp;clients)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftProtocolFactory.html#LocalRaftProtocolFactory-io.atomix.utils.serializer.Serializer-">LocalRaftProtocolFactory</a></span>(<a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftServerProtocol.html#LocalRaftServerProtocol-io.atomix.cluster.NodeId-io.atomix.utils.serializer.Serializer-java.util.Map-java.util.Map-">LocalRaftServerProtocol</a></span>(<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;nodeId,
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftServerProtocol.html#LocalRaftServerProtocol-io.atomix.cluster.MemberId-io.atomix.utils.serializer.Serializer-java.util.Map-java.util.Map-">LocalRaftServerProtocol</a></span>(<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId,
                        <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
-                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftServerProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftServerProtocol</a>&gt;&nbsp;servers,
-                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftClientProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftClientProtocol</a>&gt;&nbsp;clients)</code>&nbsp;</td>
+                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftServerProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftServerProtocol</a>&gt;&nbsp;servers,
+                       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/protocols/raft/protocol/LocalRaftClientProtocol.html" title="class in io.atomix.protocols.raft.protocol">LocalRaftClientProtocol</a>&gt;&nbsp;clients)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftClientMessagingProtocol.html#RaftClientMessagingProtocol-io.atomix.messaging.MessagingService-io.atomix.utils.serializer.Serializer-java.util.function.Function-">RaftClientMessagingProtocol</a></span>(<a href="../../../../../io/atomix/messaging/MessagingService.html" title="interface in io.atomix.messaging">MessagingService</a>&nbsp;messagingService,
                            <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
-                           <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>,<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&gt;&nbsp;addressProvider)</code>&nbsp;</td>
+                           <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&gt;&nbsp;addressProvider)</code>&nbsp;</td>
 </tr>
 <tr class="rowColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftMessagingProtocol.html#RaftMessagingProtocol-io.atomix.messaging.MessagingService-io.atomix.utils.serializer.Serializer-java.util.function.Function-">RaftMessagingProtocol</a></span>(<a href="../../../../../io/atomix/messaging/MessagingService.html" title="interface in io.atomix.messaging">MessagingService</a>&nbsp;messagingService,
                      <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
-                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>,<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&gt;&nbsp;addressProvider)</code>&nbsp;</td>
+                     <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&gt;&nbsp;addressProvider)</code>&nbsp;</td>
 </tr>
 <tr class="altColor">
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/protocol/RaftServerMessagingProtocol.html#RaftServerMessagingProtocol-io.atomix.messaging.MessagingService-io.atomix.utils.serializer.Serializer-java.util.function.Function-">RaftServerMessagingProtocol</a></span>(<a href="../../../../../io/atomix/messaging/MessagingService.html" title="interface in io.atomix.messaging">MessagingService</a>&nbsp;messagingService,
                            <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
-                           <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>,<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&gt;&nbsp;addressProvider)</code>&nbsp;</td>
+                           <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>,<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&gt;&nbsp;addressProvider)</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.protocols.raft.service">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a> in <a href="../../../../../io/atomix/protocols/raft/service/package-summary.html">io.atomix.protocols.raft.service</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/protocols/raft/service/package-summary.html">io.atomix.protocols.raft.service</a> that return <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></code></td>
+<td class="colLast"><span class="typeNameLabel">RaftServiceContext.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/service/RaftServiceContext.html#serializer--">serializer</a></span>()</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.protocols.raft.session">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a> in <a href="../../../../../io/atomix/protocols/raft/session/package-summary.html">io.atomix.protocols.raft.session</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing constructors, and an explanation">
+<caption><span>Constructors in <a href="../../../../../io/atomix/protocols/raft/session/package-summary.html">io.atomix.protocols.raft.session</a> with parameters of type <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/session/RaftSession.html#RaftSession-io.atomix.primitive.session.SessionId-io.atomix.cluster.MemberId-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.protocols.raft.ReadConsistency-long-long-long-io.atomix.utils.serializer.Serializer-io.atomix.protocols.raft.service.RaftServiceContext-io.atomix.protocols.raft.impl.RaftContext-io.atomix.utils.concurrent.ThreadContextFactory-">RaftSession</a></span>(<a href="../../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId,
+           <a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;member,
+           <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+           <a href="../../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
+           <a href="../../../../../io/atomix/protocols/raft/ReadConsistency.html" title="enum in io.atomix.protocols.raft">ReadConsistency</a>&nbsp;readConsistency,
+           long&nbsp;minTimeout,
+           long&nbsp;maxTimeout,
+           long&nbsp;lastUpdated,
+           <a href="../../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a>&nbsp;serializer,
+           <a href="../../../../../io/atomix/protocols/raft/service/RaftServiceContext.html" title="class in io.atomix.protocols.raft.service">RaftServiceContext</a>&nbsp;context,
+           io.atomix.protocols.raft.impl.RaftContext&nbsp;server,
+           <a href="../../../../../io/atomix/utils/concurrent/ThreadContextFactory.html" title="interface in io.atomix.utils.concurrent">ThreadContextFactory</a>&nbsp;threadContextFactory)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

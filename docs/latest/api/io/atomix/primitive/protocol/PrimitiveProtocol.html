@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6};
+var methods = {"i0":6,"i1":6,"i2":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -101,7 +101,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocol</a>, <a href="../../../../io/atomix/protocols/raft/RaftProtocol.html" title="class in io.atomix.protocols.raft">RaftProtocol</a></dd>
+<dd><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocol</a>, <a href="../../../../io/atomix/protocols/raft/MultiRaftProtocol.html" title="class in io.atomix.protocols.raft">MultiRaftProtocol</a></dd>
 </dl>
 <hr>
 <br>
@@ -159,6 +159,14 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy">PrimitiveProxy</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html#newProxy-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.primitive.partition.PartitionService-">newProxy</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
+        <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
+        <a href="../../../../io/atomix/primitive/partition/PartitionService.html" title="interface in io.atomix.primitive.partition">PartitionService</a>&nbsp;partitionService)</code>
+<div class="block">Returns a new primitive proxy for the given partition group.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html#type--">type</a></span>()</code>
 <div class="block">Returns the protocol type.</div>
@@ -196,7 +204,7 @@ var activeTableTab = "activeTableTab";
 <a name="group--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>group</h4>
 <pre><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;group()</pre>
@@ -204,6 +212,26 @@ var activeTableTab = "activeTableTab";
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the protocol group name</dd>
+</dl>
+</li>
+</ul>
+<a name="newProxy-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.primitive.partition.PartitionService-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>newProxy</h4>
+<pre><a href="../../../../io/atomix/primitive/proxy/PrimitiveProxy.html" title="interface in io.atomix.primitive.proxy">PrimitiveProxy</a>&nbsp;newProxy(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
+                        <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
+                        <a href="../../../../io/atomix/primitive/partition/PartitionService.html" title="interface in io.atomix.primitive.partition">PartitionService</a>&nbsp;partitionService)</pre>
+<div class="block">Returns a new primitive proxy for the given partition group.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>primitiveName</code> - the primitive name</dd>
+<dd><code>primitiveType</code> - the primitive type</dd>
+<dd><code>partitionService</code> - the partition service</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the proxy for the given partition group</dd>
 </dl>
 </li>
 </ul>

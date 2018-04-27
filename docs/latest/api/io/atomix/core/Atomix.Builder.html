@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -100,7 +100,12 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
+<li><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html" title="class in io.atomix.cluster">io.atomix.cluster.AtomixCluster.Builder</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</li>
+<li>
+<ul class="inheritance">
 <li>io.atomix.core.Atomix.Builder</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -109,7 +114,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../io/atomix/utils/Builder.html" title="interface in io.atomix.utils">Builder</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</dd>
+<dd><a href="../../../io/atomix/utils/Builder.html" title="interface in io.atomix.utils">Builder</a>&lt;<a href="../../../io/atomix/cluster/AtomixCluster.html" title="class in io.atomix.cluster">AtomixCluster</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;&gt;</dd>
 </dl>
 <dl>
 <dt>Enclosing class:</dt>
@@ -118,8 +123,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public static class <span class="typeNameLabel">Atomix.Builder</span>
-extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="../../../io/atomix/utils/Builder.html" title="interface in io.atomix.utils">Builder</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</pre>
+extends <a href="../../../io/atomix/cluster/AtomixCluster.Builder.html" title="class in io.atomix.cluster">AtomixCluster.Builder</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</pre>
 <div class="block">Atomix builder.</div>
 </li>
 </ul>
@@ -141,7 +145,7 @@ implements <a href="../../../io/atomix/utils/Builder.html" title="interface in i
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#addPartitionGroup-io.atomix.primitive.partition.ManagedPartitionGroup-">addPartitionGroup</a></span>(<a href="../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&nbsp;partitionGroup)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#addPartitionGroup-io.atomix.primitive.partition.ManagedPartitionGroup-">addPartitionGroup</a></span>(<a href="../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;?&gt;&nbsp;partitionGroup)</code>
 <div class="block">Adds a partition group.</div>
 </td>
 </tr>
@@ -152,86 +156,110 @@ implements <a href="../../../io/atomix/utils/Builder.html" title="interface in i
 </td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#addProfile-io.atomix.core.profile.Profile-">addProfile</a></span>(<a href="../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a>&nbsp;profile)</code>
+<div class="block">Adds an Atomix profile.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#build--">build</a></span>()</code>
 <div class="block">Builds a new Atomix instance.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withClusterName-java.lang.String-">withClusterName</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
-<div class="block">Sets the cluster name.</div>
-</td>
-</tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withDataDirectory-java.io.File-">withDataDirectory</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a>&nbsp;dataDirectory)</code>
-<div class="block">Sets the partition data directory.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withClusterName-java.lang.String-">withClusterName</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;clusterName)</code>
+<div class="block">Sets the cluster name.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withLocalNode-io.atomix.cluster.Node-">withLocalNode</a></span>(<a href="../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a>&nbsp;localNode)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withLocalMember-io.atomix.cluster.Member-">withLocalMember</a></span>(<a href="../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a>&nbsp;localMember)</code>
 <div class="block">Sets the local node metadata.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withManagementGroup-io.atomix.primitive.partition.ManagedPartitionGroup-">withManagementGroup</a></span>(<a href="../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;?&gt;&nbsp;systemManagementGroup)</code>
+<div class="block">Sets the system management partition group.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withMembers-java.util.Collection-">withMembers</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a>&gt;&nbsp;members)</code>
+<div class="block">Sets the core nodes.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withMembers-io.atomix.cluster.Member...-">withMembers</a></span>(<a href="../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a>...&nbsp;members)</code>
+<div class="block">Sets the core nodes.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withMulticastAddress-io.atomix.utils.net.Address-">withMulticastAddress</a></span>(<a href="../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>
 <div class="block">Sets the multicast address.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withMulticastEnabled--">withMulticastEnabled</a></span>()</code>
 <div class="block">Enables multicast node discovery.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withMulticastEnabled-boolean-">withMulticastEnabled</a></span>(boolean&nbsp;multicastEnabled)</code>
 <div class="block">Sets whether multicast node discovery is enabled.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withNodes-java.util.Collection-">withNodes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a>&gt;&nbsp;coreNodes)</code>
-<div class="block">Sets the core nodes.</div>
-</td>
-</tr>
-<tr id="i10" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withNodes-io.atomix.cluster.Node...-">withNodes</a></span>(<a href="../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a>...&nbsp;coreNodes)</code>
-<div class="block">Sets the core nodes.</div>
-</td>
-</tr>
-<tr id="i11" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withPartitionGroups-java.util.Collection-">withPartitionGroups</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&gt;&nbsp;partitionGroups)</code>
-<div class="block">Sets the partition groups.</div>
-</td>
-</tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withPartitionGroups-io.atomix.primitive.partition.ManagedPartitionGroup...-">withPartitionGroups</a></span>(<a href="../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>...&nbsp;partitionGroups)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withPartitionGroups-java.util.Collection-">withPartitionGroups</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;?&gt;&gt;&nbsp;partitionGroups)</code>
 <div class="block">Sets the partition groups.</div>
 </td>
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withPrimitiveTypes-java.util.Collection-">withPrimitiveTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&gt;&nbsp;primitiveTypes)</code>
-<div class="block">Sets the primitive types.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withPartitionGroups-io.atomix.primitive.partition.ManagedPartitionGroup...-">withPartitionGroups</a></span>(<a href="../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;?&gt;...&nbsp;partitionGroups)</code>
+<div class="block">Sets the partition groups.</div>
 </td>
 </tr>
 <tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withPrimitiveTypes-io.atomix.primitive.PrimitiveType...-">withPrimitiveTypes</a></span>(<a href="../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>...&nbsp;primitiveTypes)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withPrimitiveTypes-java.util.Collection-">withPrimitiveTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&gt;&nbsp;primitiveTypes)</code>
 <div class="block">Sets the primitive types.</div>
 </td>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withShutdownHook-boolean-">withShutdownHook</a></span>(boolean&nbsp;enable)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withPrimitiveTypes-io.atomix.primitive.PrimitiveType...-">withPrimitiveTypes</a></span>(<a href="../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>...&nbsp;primitiveTypes)</code>
+<div class="block">Sets the primitive types.</div>
+</td>
+</tr>
+<tr id="i16" class="altColor">
+<td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withProfiles-java.util.Collection-">withProfiles</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a>&gt;&nbsp;profiles)</code>
+<div class="block">Sets the Atomix profiles.</div>
+</td>
+</tr>
+<tr id="i17" class="rowColor">
+<td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withProfiles-io.atomix.core.profile.Profile...-">withProfiles</a></span>(<a href="../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a>...&nbsp;profiles)</code>
+<div class="block">Sets the Atomix profiles.</div>
+</td>
+</tr>
+<tr id="i18" class="altColor">
+<td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withShutdownHook-boolean-">withShutdownHook</a></span>(boolean&nbsp;enabled)</code>
+<div class="block">Enables the shutdown hook.</div>
+</td>
+</tr>
+<tr id="i19" class="rowColor">
+<td class="colFirst"><code><a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/Atomix.Builder.html#withShutdownHookEnabled--">withShutdownHookEnabled</a></span>()</code>
 <div class="block">Enables the shutdown hook.</div>
 </td>
 </tr>
@@ -257,21 +285,17 @@ implements <a href="../../../io/atomix/utils/Builder.html" title="interface in i
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="withClusterName-java.lang.String-">
+<a name="withShutdownHookEnabled--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>withClusterName</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withClusterName(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
-<div class="block">Sets the cluster name.</div>
+<h4>withShutdownHookEnabled</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withShutdownHookEnabled()</pre>
+<div class="block">Enables the shutdown hook.</div>
 <dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>name</code> - the cluster name</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the cluster metadata builder</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the name is null</dd>
+<dd>the Atomix builder</dd>
 </dl>
 </li>
 </ul>
@@ -281,125 +305,77 @@ implements <a href="../../../io/atomix/utils/Builder.html" title="interface in i
 <ul class="blockList">
 <li class="blockList">
 <h4>withShutdownHook</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withShutdownHook(boolean&nbsp;enable)</pre>
+<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withShutdownHook(boolean&nbsp;enabled)</pre>
 <div class="block">Enables the shutdown hook.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>enable</code> - if <code>true</code> a shutdown hook will be registered</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the cluster metadata builder</dd>
-</dl>
-</li>
-</ul>
-<a name="withLocalNode-io.atomix.cluster.Node-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>withLocalNode</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withLocalNode(<a href="../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a>&nbsp;localNode)</pre>
-<div class="block">Sets the local node metadata.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>localNode</code> - the local node metadata</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the cluster metadata builder</dd>
-</dl>
-</li>
-</ul>
-<a name="withNodes-io.atomix.cluster.Node...-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>withNodes</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withNodes(<a href="../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a>...&nbsp;coreNodes)</pre>
-<div class="block">Sets the core nodes.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>coreNodes</code> - the core nodes</dd>
+<dd><code>enabled</code> - if <code>true</code> a shutdown hook will be registered</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the Atomix builder</dd>
 </dl>
 </li>
 </ul>
-<a name="withNodes-java.util.Collection-">
+<a name="withProfiles-io.atomix.core.profile.Profile...-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>withNodes</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withNodes(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a>&gt;&nbsp;coreNodes)</pre>
-<div class="block">Sets the core nodes.</div>
+<h4>withProfiles</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withProfiles(<a href="../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a>...&nbsp;profiles)</pre>
+<div class="block">Sets the Atomix profiles.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>coreNodes</code> - the core nodes</dd>
+<dd><code>profiles</code> - the profiles</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the Atomix builder</dd>
 </dl>
 </li>
 </ul>
-<a name="withMulticastEnabled--">
+<a name="withProfiles-java.util.Collection-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>withMulticastEnabled</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withMulticastEnabled()</pre>
-<div class="block">Enables multicast node discovery.</div>
+<h4>withProfiles</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withProfiles(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a>&gt;&nbsp;profiles)</pre>
+<div class="block">Sets the Atomix profiles.</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>profiles</code> - the profiles</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the Atomix builder</dd>
 </dl>
 </li>
 </ul>
-<a name="withMulticastEnabled-boolean-">
+<a name="addProfile-io.atomix.core.profile.Profile-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>withMulticastEnabled</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withMulticastEnabled(boolean&nbsp;multicastEnabled)</pre>
-<div class="block">Sets whether multicast node discovery is enabled.</div>
+<h4>addProfile</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;addProfile(<a href="../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a>&nbsp;profile)</pre>
+<div class="block">Adds an Atomix profile.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>multicastEnabled</code> - whether to enable multicast node discovery</dd>
+<dd><code>profile</code> - the profile to add</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the Atomix builder</dd>
 </dl>
 </li>
 </ul>
-<a name="withMulticastAddress-io.atomix.utils.net.Address-">
+<a name="withManagementGroup-io.atomix.primitive.partition.ManagedPartitionGroup-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>withMulticastAddress</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withMulticastAddress(<a href="../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</pre>
-<div class="block">Sets the multicast address.</div>
+<h4>withManagementGroup</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withManagementGroup(<a href="../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;?&gt;&nbsp;systemManagementGroup)</pre>
+<div class="block">Sets the system management partition group.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>address</code> - the multicast address</dd>
+<dd><code>systemManagementGroup</code> - the system management partition group</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the Atomix builder</dd>
-</dl>
-</li>
-</ul>
-<a name="withDataDirectory-java.io.File-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>withDataDirectory</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withDataDirectory(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/File.html?is-external=true" title="class or interface in java.io">File</a>&nbsp;dataDirectory)</pre>
-<div class="block">Sets the partition data directory.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>dataDirectory</code> - the partition data directory</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the Atomix builder</dd>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if the data directory is null</dd>
 </dl>
 </li>
 </ul>
@@ -409,7 +385,7 @@ implements <a href="../../../io/atomix/utils/Builder.html" title="interface in i
 <ul class="blockList">
 <li class="blockList">
 <h4>withPartitionGroups</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withPartitionGroups(<a href="../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>...&nbsp;partitionGroups)</pre>
+<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withPartitionGroups(<a href="../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;?&gt;...&nbsp;partitionGroups)</pre>
 <div class="block">Sets the partition groups.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -427,7 +403,7 @@ implements <a href="../../../io/atomix/utils/Builder.html" title="interface in i
 <ul class="blockList">
 <li class="blockList">
 <h4>withPartitionGroups</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withPartitionGroups(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&gt;&nbsp;partitionGroups)</pre>
+<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withPartitionGroups(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;?&gt;&gt;&nbsp;partitionGroups)</pre>
 <div class="block">Sets the partition groups.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -445,7 +421,7 @@ implements <a href="../../../io/atomix/utils/Builder.html" title="interface in i
 <ul class="blockList">
 <li class="blockList">
 <h4>addPartitionGroup</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;addPartitionGroup(<a href="../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&nbsp;partitionGroup)</pre>
+<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;addPartitionGroup(<a href="../../../io/atomix/primitive/partition/ManagedPartitionGroup.html" title="interface in io.atomix.primitive.partition">ManagedPartitionGroup</a>&lt;?&gt;&nbsp;partitionGroup)</pre>
 <div class="block">Adds a partition group.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -511,6 +487,137 @@ implements <a href="../../../io/atomix/utils/Builder.html" title="interface in i
 </dl>
 </li>
 </ul>
+<a name="withClusterName-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withClusterName</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withClusterName(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;clusterName)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html#withClusterName-java.lang.String-">AtomixCluster.Builder</a></code></span></div>
+<div class="block">Sets the cluster name.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html#withClusterName-java.lang.String-">withClusterName</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html" title="class in io.atomix.cluster">AtomixCluster.Builder</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>clusterName</code> - the cluster name</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the cluster builder</dd>
+</dl>
+</li>
+</ul>
+<a name="withLocalMember-io.atomix.cluster.Member-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withLocalMember</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withLocalMember(<a href="../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a>&nbsp;localMember)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html#withLocalMember-io.atomix.cluster.Member-">AtomixCluster.Builder</a></code></span></div>
+<div class="block">Sets the local node metadata.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html#withLocalMember-io.atomix.cluster.Member-">withLocalMember</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html" title="class in io.atomix.cluster">AtomixCluster.Builder</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>localMember</code> - the local node metadata</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the cluster metadata builder</dd>
+</dl>
+</li>
+</ul>
+<a name="withMembers-io.atomix.cluster.Member...-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withMembers</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withMembers(<a href="../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a>...&nbsp;members)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html#withMembers-io.atomix.cluster.Member...-">AtomixCluster.Builder</a></code></span></div>
+<div class="block">Sets the core nodes.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html#withMembers-io.atomix.cluster.Member...-">withMembers</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html" title="class in io.atomix.cluster">AtomixCluster.Builder</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>members</code> - the core nodes</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Atomix builder</dd>
+</dl>
+</li>
+</ul>
+<a name="withMembers-java.util.Collection-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withMembers</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withMembers(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a>&gt;&nbsp;members)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html#withMembers-java.util.Collection-">AtomixCluster.Builder</a></code></span></div>
+<div class="block">Sets the core nodes.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html#withMembers-java.util.Collection-">withMembers</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html" title="class in io.atomix.cluster">AtomixCluster.Builder</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>members</code> - the core nodes</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Atomix builder</dd>
+</dl>
+</li>
+</ul>
+<a name="withMulticastEnabled--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withMulticastEnabled</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withMulticastEnabled()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html#withMulticastEnabled--">AtomixCluster.Builder</a></code></span></div>
+<div class="block">Enables multicast node discovery.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html#withMulticastEnabled--">withMulticastEnabled</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html" title="class in io.atomix.cluster">AtomixCluster.Builder</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Atomix builder</dd>
+</dl>
+</li>
+</ul>
+<a name="withMulticastEnabled-boolean-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withMulticastEnabled</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withMulticastEnabled(boolean&nbsp;multicastEnabled)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html#withMulticastEnabled-boolean-">AtomixCluster.Builder</a></code></span></div>
+<div class="block">Sets whether multicast node discovery is enabled.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html#withMulticastEnabled-boolean-">withMulticastEnabled</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html" title="class in io.atomix.cluster">AtomixCluster.Builder</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>multicastEnabled</code> - whether to enable multicast node discovery</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Atomix builder</dd>
+</dl>
+</li>
+</ul>
+<a name="withMulticastAddress-io.atomix.utils.net.Address-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withMulticastAddress</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a>&nbsp;withMulticastAddress(<a href="../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html#withMulticastAddress-io.atomix.utils.net.Address-">AtomixCluster.Builder</a></code></span></div>
+<div class="block">Sets the multicast address.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html#withMulticastAddress-io.atomix.utils.net.Address-">withMulticastAddress</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html" title="class in io.atomix.cluster">AtomixCluster.Builder</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</code></dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>address</code> - the multicast address</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the Atomix builder</dd>
+</dl>
+</li>
+</ul>
 <a name="build--">
 <!--   -->
 </a>
@@ -521,7 +628,9 @@ implements <a href="../../../io/atomix/utils/Builder.html" title="interface in i
 <div class="block">Builds a new Atomix instance.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../io/atomix/utils/Builder.html#build--">build</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/utils/Builder.html" title="interface in io.atomix.utils">Builder</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</code></dd>
+<dd><code><a href="../../../io/atomix/utils/Builder.html#build--">build</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/utils/Builder.html" title="interface in io.atomix.utils">Builder</a>&lt;<a href="../../../io/atomix/cluster/AtomixCluster.html" title="class in io.atomix.cluster">AtomixCluster</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html#build--">build</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html" title="class in io.atomix.cluster">AtomixCluster.Builder</a>&lt;<a href="../../../io/atomix/core/Atomix.html" title="class in io.atomix.core">Atomix</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a new Atomix instance</dd>
 </dl>

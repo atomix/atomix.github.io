@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -156,23 +156,29 @@ implements <a href="../../../../io/atomix/utils/Builder.html" title="interface i
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html#withNodeId-io.atomix.cluster.NodeId-">withNodeId</a></span>(<a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;nodeId)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html#withMemberId-io.atomix.cluster.MemberId-">withMemberId</a></span>(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId)</code>
 <div class="block">Sets the local node identifier.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html#withPartitionId-io.atomix.primitive.partition.PartitionId-">withPartitionId</a></span>(<a href="../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId)</code>
+<div class="block">Sets the partition identifier.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html#withProtocol-io.atomix.protocols.raft.protocol.RaftClientProtocol-">withProtocol</a></span>(<a href="../../../../io/atomix/protocols/raft/protocol/RaftClientProtocol.html" title="interface in io.atomix.protocols.raft.protocol">RaftClientProtocol</a>&nbsp;protocol)</code>
 <div class="block">Sets the client protocol.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html#withThreadModel-io.atomix.utils.concurrent.ThreadModel-">withThreadModel</a></span>(<a href="../../../../io/atomix/utils/concurrent/ThreadModel.html" title="enum in io.atomix.utils.concurrent">ThreadModel</a>&nbsp;threadModel)</code>
 <div class="block">Sets the client thread model.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html#withThreadPoolSize-int-">withThreadPoolSize</a></span>(int&nbsp;threadPoolSize)</code>
 <div class="block">Sets the client thread pool size.</div>
@@ -228,21 +234,39 @@ implements <a href="../../../../io/atomix/utils/Builder.html" title="interface i
 </dl>
 </li>
 </ul>
-<a name="withNodeId-io.atomix.cluster.NodeId-">
+<a name="withPartitionId-io.atomix.primitive.partition.PartitionId-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>withNodeId</h4>
-<pre>public&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a>&nbsp;withNodeId(<a href="../../../../io/atomix/cluster/NodeId.html" title="class in io.atomix.cluster">NodeId</a>&nbsp;nodeId)</pre>
-<div class="block">Sets the local node identifier.</div>
+<h4>withPartitionId</h4>
+<pre>public&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a>&nbsp;withPartitionId(<a href="../../../../io/atomix/primitive/partition/PartitionId.html" title="class in io.atomix.primitive.partition">PartitionId</a>&nbsp;partitionId)</pre>
+<div class="block">Sets the partition identifier.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>nodeId</code> - The local node identifier.</dd>
+<dd><code>partitionId</code> - The partition identifier.</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The client builder.</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>nodeId</code> is null</dd>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>partitionId</code> is null</dd>
+</dl>
+</li>
+</ul>
+<a name="withMemberId-io.atomix.cluster.MemberId-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>withMemberId</h4>
+<pre>public&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.html" title="class in io.atomix.protocols.raft">RaftClient.Builder</a>&nbsp;withMemberId(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId)</pre>
+<div class="block">Sets the local node identifier.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>memberId</code> - The local node identifier.</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>The client builder.</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/NullPointerException.html?is-external=true" title="class or interface in java.lang">NullPointerException</a></code> - if <code>memberId</code> is null</dd>
 </dl>
 </li>
 </ul>

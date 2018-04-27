@@ -114,7 +114,7 @@ extends <a href="../../../../io/atomix/utils/event/ListenerService.html" title="
 <div class="block">Partition primary election.
  <p>
  A primary election is used to elect a primary and backups for a single partition. To enter a primary election
- for a partition, a node must call the <a href="../../../../io/atomix/primitive/partition/PrimaryElection.html#enter-io.atomix.primitive.partition.Member-"><code>enter(Member)</code></a> method. Once an election is complete, the
+ for a partition, a node must call the <a href="../../../../io/atomix/primitive/partition/PrimaryElection.html#enter-io.atomix.primitive.partition.GroupMember-"><code>enter(GroupMember)</code></a> method. Once an election is complete, the
  <a href="../../../../io/atomix/primitive/partition/PrimaryTerm.html" title="class in io.atomix.primitive.partition"><code>PrimaryTerm</code></a> can be read via <a href="../../../../io/atomix/primitive/partition/PrimaryElection.html#getTerm--"><code>getTerm()</code></a>.
  <p>
  The prioritization of candidates within a primary election is unspecified.</div>
@@ -138,7 +138,7 @@ extends <a href="../../../../io/atomix/utils/event/ListenerService.html" title="
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/primitive/partition/PrimaryTerm.html" title="class in io.atomix.primitive.partition">PrimaryTerm</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PrimaryElection.html#enter-io.atomix.primitive.partition.Member-">enter</a></span>(<a href="../../../../io/atomix/primitive/partition/Member.html" title="class in io.atomix.primitive.partition">Member</a>&nbsp;member)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/partition/PrimaryElection.html#enter-io.atomix.primitive.partition.GroupMember-">enter</a></span>(<a href="../../../../io/atomix/primitive/partition/GroupMember.html" title="class in io.atomix.primitive.partition">GroupMember</a>&nbsp;member)</code>
 <div class="block">Enters the primary election.</div>
 </td>
 </tr>
@@ -170,16 +170,16 @@ extends <a href="../../../../io/atomix/utils/event/ListenerService.html" title="
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="enter-io.atomix.primitive.partition.Member-">
+<a name="enter-io.atomix.primitive.partition.GroupMember-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>enter</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/primitive/partition/PrimaryTerm.html" title="class in io.atomix.primitive.partition">PrimaryTerm</a>&gt;&nbsp;enter(<a href="../../../../io/atomix/primitive/partition/Member.html" title="class in io.atomix.primitive.partition">Member</a>&nbsp;member)</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../io/atomix/primitive/partition/PrimaryTerm.html" title="class in io.atomix.primitive.partition">PrimaryTerm</a>&gt;&nbsp;enter(<a href="../../../../io/atomix/primitive/partition/GroupMember.html" title="class in io.atomix.primitive.partition">GroupMember</a>&nbsp;member)</pre>
 <div class="block">Enters the primary election.
  <p>
- When entering a primary election, the provided <a href="../../../../io/atomix/primitive/partition/Member.html" title="class in io.atomix.primitive.partition"><code>Member</code></a> will be added to the election's candidate list.
+ When entering a primary election, the provided <a href="../../../../io/atomix/primitive/partition/GroupMember.html" title="class in io.atomix.primitive.partition"><code>GroupMember</code></a> will be added to the election's candidate list.
  The returned term is representative of the term <em>after</em> the member joins the election. Thus, if the
  joining member is immediately elected primary, the returned term should reflect that.</div>
 <dl>
