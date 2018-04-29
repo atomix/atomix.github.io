@@ -78,9 +78,12 @@
 <div>
 {% capture toc %}
 * [Overview](overview)
+  * [Constructing Distributed Primitives](overview#constructing-distributed-primitives)
+  * [Synchronous and Asynchronous Primitives](overview#synchronous-and-asynchronous-primitives)
 * [Primitive Protocols](primitive-protocols)
-  * [RaftProtocol](primitive-protocols#raftprotocol)
+  * [MultiRaftProtocol](primitive-protocols#multiraftprotocol)
   * [MultiPrimaryProtocol](primitive-protocols#multiprimaryprotocol)
+  * [Protocol Partitioners](primitive-protocols#protocol-partitioners)
 * [AtomicCounter](AtomicCounter)
 * [AtomicCounterMap](AtomicCounterMap)
 * [AtomicIdGenerator](AtomicIdGenerator)
