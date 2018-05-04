@@ -184,7 +184,7 @@ LeaderElection<MemberId> election = atomix.getLeaderElection("my-election");
 Leadership<MemberId> leadership = election.run(atomix.membershipService().getLocalMember().id());
 
 // Check if the current node is the leader
-if (leadership.leader().equals(atomix.membershipService().MemberId().id())) {
+if (leadership.leader().equals(atomix.membershipService().getLocalMember().id())) {
   System.out.println("I am the leader!");
 }
 
