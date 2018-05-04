@@ -178,19 +178,19 @@ Atomix atomix = new Atomix("atomix.yaml");
 atomix.start().join();
 
 // Get or create a leader election
-LeaderElection<NodeId> election = atomix.getLeaderElection("my-election");
+LeaderElection<MemberId> election = atomix.getLeaderElection("my-election");
 
 // Enter the election
-Leadership<NodeId> leadership = election.run(atomix.clusterService().getLocalNode().id());
+Leadership<MemberId> leadership = election.run(atomix.membershipService().getLocalMember().id());
 
 // Check if the current node is the leader
-if (leadership.leader().equals(atomix.clusterService().getLocalNode().id())) {
+if (leadership.leader().equals(atomix.membershipService().MemberId().id())) {
   System.out.println("I am the leader!");
 }
 
 // Listen for changes in leadership
 election.addListener(event -> {
-  if (event.newLeadership().leader().equals(atomix.clusterService().getLocalNode().id())) {
+  if (event.newLeadership().leader().equals(atomix.membershipService().getLocalMember().id())) {
     System.out.println("I am the leader!");
   }
 });
