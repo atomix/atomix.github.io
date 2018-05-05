@@ -141,8 +141,9 @@ implements <a href="../../../io/atomix/utils/Builder.html" title="interface in i
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.Builder.html#addTag-java.lang.String-">addTag</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;tag)</code>
-<div class="block">Adds a tag to the node.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.Builder.html#addMetadata-java.lang.String-java.lang.String-">addMetadata</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+           <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;value)</code>
+<div class="block">Adds metadata to the node.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -190,14 +191,14 @@ implements <a href="../../../io/atomix/utils/Builder.html" title="interface in i
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.Builder.html#withRack-java.lang.String-">withRack</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;rack)</code>
-<div class="block">Sets the rack to which the node belongs.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.Builder.html#withMetadata-java.util.Map-">withMetadata</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;metadata)</code>
+<div class="block">Sets the node metadata.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.Builder.html#withTags-java.util.Set-">withTags</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;tags)</code>
-<div class="block">Sets the node tags.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.Builder.html#withRack-java.lang.String-">withRack</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;rack)</code>
+<div class="block">Sets the rack to which the node belongs.</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
@@ -388,17 +389,17 @@ implements <a href="../../../io/atomix/utils/Builder.html" title="interface in i
 </dl>
 </li>
 </ul>
-<a name="withTags-java.util.Set-">
+<a name="withMetadata-java.util.Map-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>withTags</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a>&nbsp;withTags(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;tags)</pre>
-<div class="block">Sets the node tags.</div>
+<h4>withMetadata</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a>&nbsp;withMetadata(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;metadata)</pre>
+<div class="block">Sets the node metadata.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>tags</code> - the node tags</dd>
+<dd><code>metadata</code> - the node metadata</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the node builder</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -406,17 +407,19 @@ implements <a href="../../../io/atomix/utils/Builder.html" title="interface in i
 </dl>
 </li>
 </ul>
-<a name="addTag-java.lang.String-">
+<a name="addMetadata-java.lang.String-java.lang.String-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>addTag</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a>&nbsp;addTag(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;tag)</pre>
-<div class="block">Adds a tag to the node.</div>
+<h4>addMetadata</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a>&nbsp;addMetadata(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key,
+                                  <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;value)</pre>
+<div class="block">Adds metadata to the node.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>tag</code> - the tag to add</dd>
+<dd><code>key</code> - the metadata key to add</dd>
+<dd><code>value</code> - the metadata value to add</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the node builder</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>

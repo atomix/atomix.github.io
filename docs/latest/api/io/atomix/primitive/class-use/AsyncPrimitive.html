@@ -125,30 +125,34 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.core.semaphore">io.atomix.core.semaphore</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.core.set">io.atomix.core.set</a></td>
 <td class="colLast">
 <div class="block">Distributed set primitive interfaces.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.core.transaction">io.atomix.core.transaction</a></td>
 <td class="colLast">
 <div class="block">Interfaces for managing distributed primitive transactions.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.core.tree">io.atomix.core.tree</a></td>
 <td class="colLast">
 <div class="block">Distributed tree primitive interfaces.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.core.value">io.atomix.core.value</a></td>
 <td class="colLast">
 <div class="block">Distributed value primitive interfaces.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.primitive">io.atomix.primitive</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for defining and managing primitive types.</div>
@@ -317,6 +321,26 @@
 </tbody>
 </table>
 </li>
+<li class="blockList"><a name="io.atomix.core.semaphore">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="interface in io.atomix.primitive">AsyncPrimitive</a> in <a href="../../../../io/atomix/core/semaphore/package-summary.html">io.atomix.core.semaphore</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing subinterfaces, and an explanation">
+<caption><span>Subinterfaces of <a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="interface in io.atomix.primitive">AsyncPrimitive</a> in <a href="../../../../io/atomix/core/semaphore/package-summary.html">io.atomix.core.semaphore</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Interface and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>interface&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/semaphore/AsyncDistributedSemaphore.html" title="interface in io.atomix.core.semaphore">AsyncDistributedSemaphore</a></span></code>
+<div class="block">Distributed implementation of <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Semaphore.html?is-external=true" title="class or interface in java.util.concurrent"><code>Semaphore</code></a>.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
 <li class="blockList"><a name="io.atomix.core.set">
 <!--   -->
 </a>
@@ -422,9 +446,42 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/AbstractAsyncPrimitive.html" title="class in io.atomix.primitive">AbstractAsyncPrimitive</a>&lt;A extends <a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="interface in io.atomix.primitive">AsyncPrimitive</a>&gt;</span></code>
+<div class="block">Abstract base class for primitives that interact with Raft replicated state machines via proxy.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/AbstractAsyncPrimitiveProxy.html" title="class in io.atomix.primitive">AbstractAsyncPrimitiveProxy</a>&lt;A extends <a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="interface in io.atomix.primitive">AsyncPrimitive</a>,S&gt;</span></code>
+<div class="block">Abstract asynchronous primitive that provides proxies.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/Synchronous.html" title="class in io.atomix.primitive">Synchronous</a>&lt;T extends <a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="interface in io.atomix.primitive">AsyncPrimitive</a>&gt;</span></code>
 <div class="block">DistributedPrimitive that is a synchronous (blocking) version of
  another.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../io/atomix/primitive/package-summary.html">io.atomix.primitive</a> that implement <a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="interface in io.atomix.primitive">AsyncPrimitive</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/AbstractAsyncPrimitive.html" title="class in io.atomix.primitive">AbstractAsyncPrimitive</a>&lt;A extends <a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="interface in io.atomix.primitive">AsyncPrimitive</a>&gt;</span></code>
+<div class="block">Abstract base class for primitives that interact with Raft replicated state machines via proxy.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/AbstractAsyncPrimitiveProxy.html" title="class in io.atomix.primitive">AbstractAsyncPrimitiveProxy</a>&lt;A extends <a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="interface in io.atomix.primitive">AsyncPrimitive</a>,S&gt;</span></code>
+<div class="block">Abstract asynchronous primitive that provides proxies.</div>
 </td>
 </tr>
 </tbody>

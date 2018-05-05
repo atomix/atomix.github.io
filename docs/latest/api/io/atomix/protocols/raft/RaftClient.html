@@ -233,8 +233,9 @@ extends <a href="../../../../io/atomix/primitive/proxy/ProxyClient.html" title="
 </tr>
 <tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/protocols/raft/proxy/RaftProxy.Builder.html" title="class in io.atomix.protocols.raft.proxy">RaftProxy.Builder</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#proxyBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-">proxyBuilder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
-            <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/RaftClient.html#proxyBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.primitive.service.ServiceConfig-">proxyBuilder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
+            <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
+            <a href="../../../../io/atomix/primitive/service/ServiceConfig.html" title="class in io.atomix.primitive.service">ServiceConfig</a>&nbsp;serviceConfig)</code>
 <div class="block">Returns a new proxy builder for the given primitive type.</div>
 </td>
 </tr>
@@ -406,22 +407,24 @@ static&nbsp;<a href="../../../../io/atomix/protocols/raft/RaftClient.Builder.htm
 </dl>
 </li>
 </ul>
-<a name="proxyBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-">
+<a name="proxyBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.primitive.service.ServiceConfig-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>proxyBuilder</h4>
 <pre><a href="../../../../io/atomix/protocols/raft/proxy/RaftProxy.Builder.html" title="class in io.atomix.protocols.raft.proxy">RaftProxy.Builder</a>&nbsp;proxyBuilder(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;primitiveName,
-                               <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/proxy/ProxyClient.html#proxyBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-">ProxyClient</a></code></span></div>
+                               <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
+                               <a href="../../../../io/atomix/primitive/service/ServiceConfig.html" title="class in io.atomix.primitive.service">ServiceConfig</a>&nbsp;serviceConfig)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/proxy/ProxyClient.html#proxyBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.primitive.service.ServiceConfig-">ProxyClient</a></code></span></div>
 <div class="block">Returns a new proxy builder for the given primitive type.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../io/atomix/primitive/proxy/ProxyClient.html#proxyBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-">proxyBuilder</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/primitive/proxy/ProxyClient.html" title="interface in io.atomix.primitive.proxy">ProxyClient</a></code></dd>
+<dd><code><a href="../../../../io/atomix/primitive/proxy/ProxyClient.html#proxyBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.primitive.service.ServiceConfig-">proxyBuilder</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/primitive/proxy/ProxyClient.html" title="interface in io.atomix.primitive.proxy">ProxyClient</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>primitiveName</code> - the proxy name</dd>
 <dd><code>primitiveType</code> - the type for which to return a new proxy builder</dd>
+<dd><code>serviceConfig</code> - the primitive service configuration</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a new proxy builder for the given primitive type</dd>
 </dl>

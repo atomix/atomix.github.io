@@ -135,9 +135,10 @@ implements <a href="../../../../../io/atomix/primitive/service/ServiceContext.ht
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/service/RaftServiceContext.html#RaftServiceContext-io.atomix.primitive.PrimitiveId-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.primitive.service.PrimitiveService-io.atomix.protocols.raft.impl.RaftContext-io.atomix.utils.concurrent.ThreadContextFactory-">RaftServiceContext</a></span>(<a href="../../../../../io/atomix/primitive/PrimitiveId.html" title="class in io.atomix.primitive">PrimitiveId</a>&nbsp;primitiveId,
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/service/RaftServiceContext.html#RaftServiceContext-io.atomix.primitive.PrimitiveId-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.primitive.service.ServiceConfig-io.atomix.primitive.service.PrimitiveService-io.atomix.protocols.raft.impl.RaftContext-io.atomix.utils.concurrent.ThreadContextFactory-">RaftServiceContext</a></span>(<a href="../../../../../io/atomix/primitive/PrimitiveId.html" title="class in io.atomix.primitive">PrimitiveId</a>&nbsp;primitiveId,
                   <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;serviceName,
                   <a href="../../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
+                  <a href="../../../../../io/atomix/primitive/service/ServiceConfig.html" title="class in io.atomix.primitive.service">ServiceConfig</a>&nbsp;config,
                   <a href="../../../../../io/atomix/primitive/service/PrimitiveService.html" title="interface in io.atomix.primitive.service">PrimitiveService</a>&nbsp;service,
                   io.atomix.protocols.raft.impl.RaftContext&nbsp;raft,
                   io.atomix.utils.concurrent.ThreadContextFactory&nbsp;threadContextFactory)</code>&nbsp;</td>
@@ -253,27 +254,27 @@ implements <a href="../../../../../io/atomix/primitive/service/ServiceContext.ht
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/service/RaftServiceContext.html#serializer--">serializer</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i13" class="rowColor">
+<td class="colFirst"><code>&lt;C extends <a href="../../../../../io/atomix/primitive/service/ServiceConfig.html" title="class in io.atomix.primitive.service">ServiceConfig</a>&gt;<br>C</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/service/RaftServiceContext.html#serviceConfig--">serviceConfig</a></span>()</code>
+<div class="block">Returns the service configuration.</div>
+</td>
+</tr>
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/primitive/PrimitiveId.html" title="class in io.atomix.primitive">PrimitiveId</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/service/RaftServiceContext.html#serviceId--">serviceId</a></span>()</code>
 <div class="block">Returns the state machine identifier.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/service/RaftServiceContext.html#serviceName--">serviceName</a></span>()</code>
 <div class="block">Returns the state machine name.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/service/RaftServiceContext.html#serviceType--">serviceType</a></span>()</code>
 <div class="block">Returns the state machine type.</div>
-</td>
-</tr>
-<tr id="i16" class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/session/PrimitiveSessions.html" title="interface in io.atomix.primitive.session">PrimitiveSessions</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/protocols/raft/service/RaftServiceContext.html#sessions--">sessions</a></span>()</code>
-<div class="block">Returns the state machine sessions.</div>
 </td>
 </tr>
 <tr id="i17" class="rowColor">
@@ -314,7 +315,7 @@ implements <a href="../../../../../io/atomix/primitive/service/ServiceContext.ht
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a name="RaftServiceContext-io.atomix.primitive.PrimitiveId-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.primitive.service.PrimitiveService-io.atomix.protocols.raft.impl.RaftContext-io.atomix.utils.concurrent.ThreadContextFactory-">
+<a name="RaftServiceContext-io.atomix.primitive.PrimitiveId-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.primitive.service.ServiceConfig-io.atomix.primitive.service.PrimitiveService-io.atomix.protocols.raft.impl.RaftContext-io.atomix.utils.concurrent.ThreadContextFactory-">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -323,6 +324,7 @@ implements <a href="../../../../../io/atomix/primitive/service/ServiceContext.ht
 <pre>public&nbsp;RaftServiceContext(<a href="../../../../../io/atomix/primitive/PrimitiveId.html" title="class in io.atomix.primitive">PrimitiveId</a>&nbsp;primitiveId,
                           <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;serviceName,
                           <a href="../../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType,
+                          <a href="../../../../../io/atomix/primitive/service/ServiceConfig.html" title="class in io.atomix.primitive.service">ServiceConfig</a>&nbsp;config,
                           <a href="../../../../../io/atomix/primitive/service/PrimitiveService.html" title="interface in io.atomix.primitive.service">PrimitiveService</a>&nbsp;service,
                           io.atomix.protocols.raft.impl.RaftContext&nbsp;raft,
                           io.atomix.utils.concurrent.ThreadContextFactory&nbsp;threadContextFactory)</pre>
@@ -384,6 +386,25 @@ implements <a href="../../../../../io/atomix/primitive/service/ServiceContext.ht
 <dd><code><a href="../../../../../io/atomix/primitive/service/ServiceContext.html#serviceType--">serviceType</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/service/ServiceContext.html" title="interface in io.atomix.primitive.service">ServiceContext</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The state machine type.</dd>
+</dl>
+</li>
+</ul>
+<a name="serviceConfig--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>serviceConfig</h4>
+<pre>public&nbsp;&lt;C extends <a href="../../../../../io/atomix/primitive/service/ServiceConfig.html" title="class in io.atomix.primitive.service">ServiceConfig</a>&gt;&nbsp;C&nbsp;serviceConfig()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/service/ServiceContext.html#serviceConfig--">ServiceContext</a></code></span></div>
+<div class="block">Returns the service configuration.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../../io/atomix/primitive/service/ServiceContext.html#serviceConfig--">serviceConfig</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/service/ServiceContext.html" title="interface in io.atomix.primitive.service">ServiceContext</a></code></dd>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>C</code> - the configuration type</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the service configuration</dd>
 </dl>
 </li>
 </ul>
@@ -482,23 +503,6 @@ implements <a href="../../../../../io/atomix/primitive/service/ServiceContext.ht
 <dd><code><a href="../../../../../io/atomix/primitive/service/ServiceContext.html#wallClock--">wallClock</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/service/ServiceContext.html" title="interface in io.atomix.primitive.service">ServiceContext</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The state machine's wall clock.</dd>
-</dl>
-</li>
-</ul>
-<a name="sessions--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>sessions</h4>
-<pre>public&nbsp;<a href="../../../../../io/atomix/primitive/session/PrimitiveSessions.html" title="interface in io.atomix.primitive.session">PrimitiveSessions</a>&nbsp;sessions()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../../io/atomix/primitive/service/ServiceContext.html#sessions--">ServiceContext</a></code></span></div>
-<div class="block">Returns the state machine sessions.</div>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../../io/atomix/primitive/service/ServiceContext.html#sessions--">sessions</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../../io/atomix/primitive/service/ServiceContext.html" title="interface in io.atomix.primitive.service">ServiceContext</a></code></dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>The state machine sessions.</dd>
 </dl>
 </li>
 </ul>

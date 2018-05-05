@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":18,"i3":6,"i4":6,"i5":6,"i6":6};
+var methods = {"i0":6,"i1":6,"i2":18,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/primitive/service/ServiceContext.html" title="interface in io.atomix.primitive.service"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/primitive/service/PrimitiveServiceFactory.html" title="interface in io.atomix.primitive.service"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/primitive/service/PrimitiveService.html" target="_top">Frames</a></li>
@@ -100,17 +100,12 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <dl>
-<dt>All Superinterfaces:</dt>
-<dd><a href="../../../../io/atomix/primitive/session/SessionListener.html" title="interface in io.atomix.primitive.session">SessionListener</a></dd>
-</dl>
-<dl>
 <dt>All Known Implementing Classes:</dt>
 <dd><a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html" title="class in io.atomix.primitive.service">AbstractPrimitiveService</a></dd>
 </dl>
 <hr>
 <br>
-<pre>public interface <span class="typeNameLabel">PrimitiveService</span>
-extends <a href="../../../../io/atomix/primitive/session/SessionListener.html" title="interface in io.atomix.primitive.session">SessionListener</a></pre>
+<pre>public interface <span class="typeNameLabel">PrimitiveService</span></pre>
 <div class="block">Base class for user-provided services.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
@@ -156,36 +151,47 @@ extends <a href="../../../../io/atomix/primitive/session/SessionListener.html" t
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#close-io.atomix.primitive.session.SessionId-">close</a></span>(<a href="../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId)</code>
+<div class="block">Closes the session with the given identifier.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#expire-io.atomix.primitive.session.SessionId-">expire</a></span>(<a href="../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId)</code>
+<div class="block">Expires the session with the given identifier.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#init-io.atomix.primitive.service.ServiceContext-">init</a></span>(<a href="../../../../io/atomix/primitive/service/ServiceContext.html" title="interface in io.atomix.primitive.service">ServiceContext</a>&nbsp;context)</code>
 <div class="block">Initializes the state machine.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#register-io.atomix.primitive.session.PrimitiveSession-">register</a></span>(<a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a>&nbsp;session)</code>
+<div class="block">Registers a primitive session.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#restore-io.atomix.primitive.service.BackupInput-">restore</a></span>(<a href="../../../../io/atomix/primitive/service/BackupInput.html" title="interface in io.atomix.primitive.service">BackupInput</a>&nbsp;input)</code>
 <div class="block">Restores the service state from the given buffer.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/utils/serializer/Serializer.html" title="interface in io.atomix.utils.serializer">Serializer</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#serializer--">serializer</a></span>()</code>
 <div class="block">Returns the primitive service serializer.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#tick-io.atomix.utils.time.WallClockTimestamp-">tick</a></span>(<a href="../../../../io/atomix/utils/time/WallClockTimestamp.html" title="class in io.atomix.utils.time">WallClockTimestamp</a>&nbsp;timestamp)</code>
 <div class="block">Increments the Raft service time to the given timestamp.</div>
 </td>
 </tr>
 </table>
-<ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.io.atomix.primitive.session.SessionListener">
-<!--   -->
-</a>
-<h3>Methods inherited from interface&nbsp;io.atomix.primitive.session.<a href="../../../../io/atomix/primitive/session/SessionListener.html" title="interface in io.atomix.primitive.session">SessionListener</a></h3>
-<code><a href="../../../../io/atomix/primitive/session/SessionListener.html#onClose-io.atomix.primitive.session.PrimitiveSession-">onClose</a>, <a href="../../../../io/atomix/primitive/session/SessionListener.html#onExpire-io.atomix.primitive.session.PrimitiveSession-">onExpire</a>, <a href="../../../../io/atomix/primitive/session/SessionListener.html#onOpen-io.atomix.primitive.session.PrimitiveSession-">onOpen</a></code></li>
-</ul>
 </li>
 </ul>
 </li>
@@ -288,6 +294,48 @@ extends <a href="../../../../io/atomix/primitive/session/SessionListener.html" t
 </dl>
 </li>
 </ul>
+<a name="register-io.atomix.primitive.session.PrimitiveSession-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>register</h4>
+<pre>void&nbsp;register(<a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a>&nbsp;session)</pre>
+<div class="block">Registers a primitive session.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>session</code> - the session to register</dd>
+</dl>
+</li>
+</ul>
+<a name="expire-io.atomix.primitive.session.SessionId-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>expire</h4>
+<pre>void&nbsp;expire(<a href="../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId)</pre>
+<div class="block">Expires the session with the given identifier.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>sessionId</code> - the session identifier</dd>
+</dl>
+</li>
+</ul>
+<a name="close-io.atomix.primitive.session.SessionId-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>close</h4>
+<pre>void&nbsp;close(<a href="../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId)</pre>
+<div class="block">Closes the session with the given identifier.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>sessionId</code> - the session identifier</dd>
+</dl>
+</li>
+</ul>
 <a name="close--">
 <!--   -->
 </a>
@@ -327,7 +375,7 @@ extends <a href="../../../../io/atomix/primitive/session/SessionListener.html" t
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/primitive/service/ServiceContext.html" title="interface in io.atomix.primitive.service"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/primitive/service/PrimitiveServiceFactory.html" title="interface in io.atomix.primitive.service"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/primitive/service/PrimitiveService.html" target="_top">Frames</a></li>

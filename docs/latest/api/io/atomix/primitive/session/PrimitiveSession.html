@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":18,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6};
+var methods = {"i0":6,"i1":6,"i2":18,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -167,61 +167,49 @@ var activeTableTab = "activeTableTab";
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#addListener-io.atomix.primitive.session.PrimitiveSessionEventListener-">addListener</a></span>(<a href="../../../../io/atomix/primitive/session/PrimitiveSessionEventListener.html" title="interface in io.atomix.primitive.session">PrimitiveSessionEventListener</a>&nbsp;listener)</code>
-<div class="block">Adds a state change listener to the session.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/session/PrimitiveSession.State.html" title="enum in io.atomix.primitive.session">PrimitiveSession.State</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#getState--">getState</a></span>()</code>
 <div class="block">Returns the session state.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#memberId--">memberId</a></span>()</code>
 <div class="block">Returns the member identifier to which the session belongs.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>default void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.EventType-">publish</a></span>(<a href="../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType)</code>
 <div class="block">Publishes an empty event to the session.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.EventType-T-">publish</a></span>(<a href="../../../../io/atomix/primitive/event/EventType.html" title="interface in io.atomix.primitive.event">EventType</a>&nbsp;eventType,
        T&nbsp;event)</code>
 <div class="block">Publishes an event to the session.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.PrimitiveEvent-">publish</a></span>(<a href="../../../../io/atomix/primitive/event/PrimitiveEvent.html" title="class in io.atomix.primitive.event">PrimitiveEvent</a>&nbsp;event)</code>
 <div class="block">Publishes an event to the session.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#removeListener-io.atomix.primitive.session.PrimitiveSessionEventListener-">removeListener</a></span>(<a href="../../../../io/atomix/primitive/session/PrimitiveSessionEventListener.html" title="interface in io.atomix.primitive.session">PrimitiveSessionEventListener</a>&nbsp;listener)</code>
-<div class="block">Removes a state change listener from the session.</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#serviceName--">serviceName</a></span>()</code>
 <div class="block">Returns the session's service name.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#serviceType--">serviceType</a></span>()</code>
 <div class="block">Returns the session's service type.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#sessionId--">sessionId</a></span>()</code>
 <div class="block">Returns the session identifier.</div>
@@ -309,34 +297,6 @@ var activeTableTab = "activeTableTab";
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>The session state.</dd>
-</dl>
-</li>
-</ul>
-<a name="addListener-io.atomix.primitive.session.PrimitiveSessionEventListener-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addListener</h4>
-<pre>void&nbsp;addListener(<a href="../../../../io/atomix/primitive/session/PrimitiveSessionEventListener.html" title="interface in io.atomix.primitive.session">PrimitiveSessionEventListener</a>&nbsp;listener)</pre>
-<div class="block">Adds a state change listener to the session.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>listener</code> - the state change listener to add</dd>
-</dl>
-</li>
-</ul>
-<a name="removeListener-io.atomix.primitive.session.PrimitiveSessionEventListener-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>removeListener</h4>
-<pre>void&nbsp;removeListener(<a href="../../../../io/atomix/primitive/session/PrimitiveSessionEventListener.html" title="interface in io.atomix.primitive.session">PrimitiveSessionEventListener</a>&nbsp;listener)</pre>
-<div class="block">Removes a state change listener from the session.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>listener</code> - the state change listener to remove</dd>
 </dl>
 </li>
 </ul>

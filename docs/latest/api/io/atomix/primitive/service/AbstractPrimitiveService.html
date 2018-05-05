@@ -76,13 +76,13 @@ var activeTableTab = "activeTableTab";
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
@@ -93,14 +93,14 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">io.atomix.primitive.service</div>
-<h2 title="Class AbstractPrimitiveService" class="title">Class AbstractPrimitiveService</h2>
+<h2 title="Class AbstractPrimitiveService" class="title">Class AbstractPrimitiveService&lt;C,F extends <a href="../../../../io/atomix/primitive/service/ServiceConfig.html" title="class in io.atomix.primitive.service">ServiceConfig</a>&gt;</h2>
 </div>
 <div class="contentContainer">
 <ul class="inheritance">
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
-<li>io.atomix.primitive.service.AbstractPrimitiveService</li>
+<li>io.atomix.primitive.service.AbstractPrimitiveService&lt;C,F&gt;</li>
 </ul>
 </li>
 </ul>
@@ -109,11 +109,11 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../../io/atomix/primitive/service/PrimitiveService.html" title="interface in io.atomix.primitive.service">PrimitiveService</a>, <a href="../../../../io/atomix/primitive/session/SessionListener.html" title="interface in io.atomix.primitive.session">SessionListener</a></dd>
+<dd><a href="../../../../io/atomix/primitive/service/PrimitiveService.html" title="interface in io.atomix.primitive.service">PrimitiveService</a></dd>
 </dl>
 <hr>
 <br>
-<pre>public abstract class <span class="typeNameLabel">AbstractPrimitiveService</span>
+<pre>public abstract class <span class="typeNameLabel">AbstractPrimitiveService&lt;C,F extends <a href="../../../../io/atomix/primitive/service/ServiceConfig.html" title="class in io.atomix.primitive.service">ServiceConfig</a>&gt;</span>
 extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../../../io/atomix/primitive/service/PrimitiveService.html" title="interface in io.atomix.primitive.service">PrimitiveService</a></pre>
 <div class="block">Raft service.</div>
@@ -123,23 +123,6 @@ implements <a href="../../../../io/atomix/primitive/service/PrimitiveService.htm
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
-<!-- ======== CONSTRUCTOR SUMMARY ======== -->
-<ul class="blockList">
-<li class="blockList"><a name="constructor.summary">
-<!--   -->
-</a>
-<h3>Constructor Summary</h3>
-<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
-<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colOne" scope="col">Constructor and Description</th>
-</tr>
-<tr class="altColor">
-<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#AbstractPrimitiveService--">AbstractPrimitiveService</a></span>()</code>&nbsp;</td>
-</tr>
-</table>
-</li>
-</ul>
 <!-- ========== METHOD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="method.summary">
@@ -160,26 +143,26 @@ implements <a href="../../../../io/atomix/primitive/service/PrimitiveService.htm
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#init-io.atomix.primitive.service.ServiceContext-">init</a></span>(<a href="../../../../io/atomix/primitive/service/ServiceContext.html" title="interface in io.atomix.primitive.service">ServiceContext</a>&nbsp;context)</code>
-<div class="block">Initializes the state machine.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#close-io.atomix.primitive.session.SessionId-">close</a></span>(<a href="../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId)</code>
+<div class="block">Closes the session with the given identifier.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#onClose-io.atomix.primitive.session.PrimitiveSession-">onClose</a></span>(<a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a>&nbsp;session)</code>
-<div class="block">Called when a session was closed by the client.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#expire-io.atomix.primitive.session.SessionId-">expire</a></span>(<a href="../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId)</code>
+<div class="block">Expires the session with the given identifier.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#onExpire-io.atomix.primitive.session.PrimitiveSession-">onExpire</a></span>(<a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a>&nbsp;session)</code>
-<div class="block">Called when a session is expired by the system.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#init-io.atomix.primitive.service.ServiceContext-">init</a></span>(<a href="../../../../io/atomix/primitive/service/ServiceContext.html" title="interface in io.atomix.primitive.service">ServiceContext</a>&nbsp;context)</code>
+<div class="block">Initializes the state machine.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#onOpen-io.atomix.primitive.session.PrimitiveSession-">onOpen</a></span>(<a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a>&nbsp;session)</code>
-<div class="block">Called when a new session is registered.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/service/AbstractPrimitiveService.html#register-io.atomix.primitive.session.PrimitiveSession-">register</a></span>(<a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a>&nbsp;session)</code>
+<div class="block">Registers a primitive session.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
@@ -211,23 +194,6 @@ implements <a href="../../../../io/atomix/primitive/service/PrimitiveService.htm
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
-<!-- ========= CONSTRUCTOR DETAIL ======== -->
-<ul class="blockList">
-<li class="blockList"><a name="constructor.detail">
-<!--   -->
-</a>
-<h3>Constructor Detail</h3>
-<a name="AbstractPrimitiveService--">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>AbstractPrimitiveService</h4>
-<pre>public&nbsp;AbstractPrimitiveService()</pre>
-</li>
-</ul>
-</li>
-</ul>
 <!-- ============ METHOD DETAIL ========== -->
 <ul class="blockList">
 <li class="blockList"><a name="method.detail">
@@ -240,7 +206,7 @@ implements <a href="../../../../io/atomix/primitive/service/PrimitiveService.htm
 <ul class="blockList">
 <li class="blockList">
 <h4>init</h4>
-<pre>public&nbsp;void&nbsp;init(<a href="../../../../io/atomix/primitive/service/ServiceContext.html" title="interface in io.atomix.primitive.service">ServiceContext</a>&nbsp;context)</pre>
+<pre>public final&nbsp;void&nbsp;init(<a href="../../../../io/atomix/primitive/service/ServiceContext.html" title="interface in io.atomix.primitive.service">ServiceContext</a>&nbsp;context)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#init-io.atomix.primitive.service.ServiceContext-">PrimitiveService</a></code></span></div>
 <div class="block">Initializes the state machine.</div>
 <dl>
@@ -257,7 +223,7 @@ implements <a href="../../../../io/atomix/primitive/service/PrimitiveService.htm
 <ul class="blockList">
 <li class="blockList">
 <h4>tick</h4>
-<pre>public&nbsp;void&nbsp;tick(<a href="../../../../io/atomix/utils/time/WallClockTimestamp.html" title="class in io.atomix.utils.time">WallClockTimestamp</a>&nbsp;timestamp)</pre>
+<pre>public final&nbsp;void&nbsp;tick(<a href="../../../../io/atomix/utils/time/WallClockTimestamp.html" title="class in io.atomix.utils.time">WallClockTimestamp</a>&nbsp;timestamp)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#tick-io.atomix.utils.time.WallClockTimestamp-">PrimitiveService</a></code></span></div>
 <div class="block">Increments the Raft service time to the given timestamp.</div>
 <dl>
@@ -274,7 +240,7 @@ implements <a href="../../../../io/atomix/primitive/service/PrimitiveService.htm
 <ul class="blockList">
 <li class="blockList">
 <h4>apply</h4>
-<pre>public&nbsp;byte[]&nbsp;apply(<a href="../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;byte[]&gt;&nbsp;commit)</pre>
+<pre>public final&nbsp;byte[]&nbsp;apply(<a href="../../../../io/atomix/primitive/service/Commit.html" title="interface in io.atomix.primitive.service">Commit</a>&lt;byte[]&gt;&nbsp;commit)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#apply-io.atomix.primitive.service.Commit-">PrimitiveService</a></code></span></div>
 <div class="block">Applies a commit to the state machine.</div>
 <dl>
@@ -287,92 +253,54 @@ implements <a href="../../../../io/atomix/primitive/service/PrimitiveService.htm
 </dl>
 </li>
 </ul>
-<a name="onOpen-io.atomix.primitive.session.PrimitiveSession-">
+<a name="register-io.atomix.primitive.session.PrimitiveSession-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>onOpen</h4>
-<pre>public&nbsp;void&nbsp;onOpen(<a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a>&nbsp;session)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/session/SessionListener.html#onOpen-io.atomix.primitive.session.PrimitiveSession-">SessionListener</a></code></span></div>
-<div class="block">Called when a new session is registered.
- <p>
- A session is registered when a new client connects to the cluster or an existing client recovers its
- session after being partitioned from the cluster. It's important to note that when this method is called,
- the <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session"><code>PrimitiveSession</code></a> is <em>not yet open</em> and so events cannot be <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>published</code></a>
- to the registered session. This is because clients cannot reliably track messages pushed from server state machines
- to the client until the session has been fully registered. Session event messages may still be published to
- other already-registered sessions in reaction to a session being registered.
- <p>
- To push session event messages to a client through its session upon registration, state machines can
- use an asynchronous callback or schedule a callback to send a message.
- <pre>
-   <code>
-   public void onOpen(RaftSession session) {
-     executor.execute(() -&gt; session.publish("foo", "Hello world!"));
-   }
-   </code>
- </pre>
- Sending a session event message in an asynchronous callback allows the server time to register the session
- and notify the client before the event message is sent. Published event messages sent via this method will
- be sent the next time an operation is applied to the state machine.</div>
+<h4>register</h4>
+<pre>public final&nbsp;void&nbsp;register(<a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a>&nbsp;session)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#register-io.atomix.primitive.session.PrimitiveSession-">PrimitiveService</a></code></span></div>
+<div class="block">Registers a primitive session.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../io/atomix/primitive/session/SessionListener.html#onOpen-io.atomix.primitive.session.PrimitiveSession-">onOpen</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/primitive/session/SessionListener.html" title="interface in io.atomix.primitive.session">SessionListener</a></code></dd>
+<dd><code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#register-io.atomix.primitive.session.PrimitiveSession-">register</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html" title="interface in io.atomix.primitive.service">PrimitiveService</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>session</code> - The session that was registered. State machines <em>cannot</em> <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>PrimitiveSession.publish(PrimitiveEvent)</code></a> session
-                events to this session.</dd>
+<dd><code>session</code> - the session to register</dd>
 </dl>
 </li>
 </ul>
-<a name="onExpire-io.atomix.primitive.session.PrimitiveSession-">
+<a name="expire-io.atomix.primitive.session.SessionId-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>onExpire</h4>
-<pre>public&nbsp;void&nbsp;onExpire(<a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a>&nbsp;session)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/session/SessionListener.html#onExpire-io.atomix.primitive.session.PrimitiveSession-">SessionListener</a></code></span></div>
-<div class="block">Called when a session is expired by the system.
- <p>
- This method is called when a client fails to keep its session alive with the cluster. If the leader hasn't heard
- from a client for a configurable time interval, the leader will expire the session to free the related memory.
- This method will always be called for a given session before <a href="../../../../io/atomix/primitive/session/SessionListener.html#onClose-io.atomix.primitive.session.PrimitiveSession-"><code>SessionListener.onClose(PrimitiveSession)</code></a>, and <a href="../../../../io/atomix/primitive/session/SessionListener.html#onClose-io.atomix.primitive.session.PrimitiveSession-"><code>SessionListener.onClose(PrimitiveSession)</code></a>
- will always be called following this method.
- <p>
- State machines are free to <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>PrimitiveSession.publish(PrimitiveEvent)</code></a> session event messages to any session except
- the one that expired. Session event messages sent to the session that expired will be lost since the session is closed once this
- method call completes.</div>
+<h4>expire</h4>
+<pre>public final&nbsp;void&nbsp;expire(<a href="../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#expire-io.atomix.primitive.session.SessionId-">PrimitiveService</a></code></span></div>
+<div class="block">Expires the session with the given identifier.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../io/atomix/primitive/session/SessionListener.html#onExpire-io.atomix.primitive.session.PrimitiveSession-">onExpire</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/primitive/session/SessionListener.html" title="interface in io.atomix.primitive.session">SessionListener</a></code></dd>
+<dd><code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#expire-io.atomix.primitive.session.SessionId-">expire</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html" title="interface in io.atomix.primitive.service">PrimitiveService</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>session</code> - The session that was expired. State machines <em>cannot</em> <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>PrimitiveSession.publish(PrimitiveEvent)</code></a> session
-                events to this session.</dd>
+<dd><code>sessionId</code> - the session identifier</dd>
 </dl>
 </li>
 </ul>
-<a name="onClose-io.atomix.primitive.session.PrimitiveSession-">
+<a name="close-io.atomix.primitive.session.SessionId-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>onClose</h4>
-<pre>public&nbsp;void&nbsp;onClose(<a href="../../../../io/atomix/primitive/session/PrimitiveSession.html" title="interface in io.atomix.primitive.session">PrimitiveSession</a>&nbsp;session)</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/session/SessionListener.html#onClose-io.atomix.primitive.session.PrimitiveSession-">SessionListener</a></code></span></div>
-<div class="block">Called when a session was closed by the client.
- <p>
- This method is called when a client explicitly closes a session.
- <p>
- State machines are free to <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>PrimitiveSession.publish(PrimitiveEvent)</code></a> session event messages to any session except
- the one that was closed. Session event messages sent to the session that was closed will be lost since the session is closed once this
- method call completes.</div>
+<h4>close</h4>
+<pre>public final&nbsp;void&nbsp;close(<a href="../../../../io/atomix/primitive/session/SessionId.html" title="class in io.atomix.primitive.session">SessionId</a>&nbsp;sessionId)</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#close-io.atomix.primitive.session.SessionId-">PrimitiveService</a></code></span></div>
+<div class="block">Closes the session with the given identifier.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../../io/atomix/primitive/session/SessionListener.html#onClose-io.atomix.primitive.session.PrimitiveSession-">onClose</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/primitive/session/SessionListener.html" title="interface in io.atomix.primitive.session">SessionListener</a></code></dd>
+<dd><code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html#close-io.atomix.primitive.session.SessionId-">close</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/primitive/service/PrimitiveService.html" title="interface in io.atomix.primitive.service">PrimitiveService</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>session</code> - The session that was closed. State machines <em>cannot</em> <a href="../../../../io/atomix/primitive/session/PrimitiveSession.html#publish-io.atomix.primitive.event.PrimitiveEvent-"><code>PrimitiveSession.publish(PrimitiveEvent)</code></a> session
-                events to this session.</dd>
+<dd><code>sessionId</code> - the session identifier</dd>
 </dl>
 </li>
 </ul>
@@ -431,13 +359,13 @@ implements <a href="../../../../io/atomix/primitive/service/PrimitiveService.htm
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
-<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
+<li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
