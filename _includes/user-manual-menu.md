@@ -103,14 +103,15 @@
 <h3 class="user-guide-menu-header"><img src="/assets/img/icons/custom-primitives.svg" class="custom-primitives"> Custom Primitives</h3>
 <div markdown="1">
 {% capture toc %}
+* [Overview](overview)
 * [Defining the Primitive Type](primitive-type)
-* [Creating the State Machine](primitive-service)
-  * [Defining Primitive Operations](primitive-service#defining-primitive-operations)
-    * [Commands](primitive-service#commands)
-    * [Queries](primitive-service#queries)
-  * [Handling Snapshots](primitive-service#handling-snapshots)
+* [Creating the Primitive Service](primitive-service)
+  * [Service Proxy](primitive-service#service-proxy)
+  * [Client Proxy](primitive-service#client-proxy)
+  * [Defining the Service](primitive-service#defining-the-service)
+  * [Listening for Disconnections](primitive-service#listening-for-disconnections)
+  * [Backing Up the State](primitive-service#backing-up-the-state)
 * [Creating a Proxy](primitive-proxy)
-* [Defining the Primitive Configuration](primitive-configuration)
 * [Supplying a Primitive Builder](primitive-builder)
 * [Supporting REST API Access](primitive-rest-api)
 {% endcapture %}
