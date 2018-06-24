@@ -51,20 +51,20 @@ Note that the cluster _must_ be configured with a system management group if [pr
 
 When using a file-based configuration, configure the `management-group`:
 
-```
-cluster:
-  local-member:
+```hocon
+cluster {
+  local-member {
     ...
-  members:
-    ...
-management-group:
+  }
+  members: [...]
+}
+
+management-group {
   type: raft
   name: system
   partitions: 1
-  members:
-    - member-1
-    - member-2
-    - member-3
+  members: [member-1, member-2, member-3]
+}
 ```
 
 ### Primitive Groups
@@ -145,32 +145,36 @@ Atomix atomix = Atomix.builder()
 
 As with other partition groups, Raft groups can be configured via configuration files. The above configuration when translated to YAML looks like this:
 
-```
-cluster:
-  local-member:
+```hocon
+cluster {
+  local-member {
     name: member-1
-  members:
-    member-1:
-      type: persistent
-      address: localhost:5001
-    member-2:
-      type: persistent
-      address: localhost:5002
-    member-3:
-      type: persistent
-      address: localhost:5003
-management-group:
+  }
+  members.1 {
+    name: member-1
+    address: "localhost:5001"
+  }
+  members.2 {
+    name: member-2
+    address: "localhost:5002"
+  }
+  members.3 {
+    name: member-3
+    address: "localhost:5003"
+  }
+}
+
+management-group {
   type: raft
   name: system
   partitions: 1
-  members:
-    - member-1
-    - member-2
-    - member-3
-partition-groups:
-  data:
-    type: primary-backup
-    partitions: 32
+  members: [member-1, member-2, member-3]
+}
+
+partition-groups.data {
+  type: primary-backup
+  partitions: 32
+}
 ```
 
 ## Primary-Backup Partition Groups
@@ -192,11 +196,11 @@ The configuration for primary-backup groups is simple. Most features of the repl
 
 Primary-backup partition groups can, of course, be configured in configuration files:
 
-```
-partition-groups:
-  data:
-    type: primary-backup
-    partitions: 32
+```hocon
+partition-groups.data {
+  type: primary-backup
+  partitions: 32
+}
 ```
 
 ## Profiles
@@ -226,48 +230,55 @@ Profiles will configure the Atomix instance in the order in which they're specif
 
 The [`Atomix`][Atomix] configuration, of course, supports profiles via the `profiles    ` field:
 
-```
-cluster:
-  local-member:
+```hocon
+cluster {
+  local-member {
     name: member-1
-  members:
-    member-1:
-      type: persistent
-      address: localhost:5001
-    member-2:
-      type: persistent
-      address: localhost:5002
-    member-3:
-      type: persistent
-      address: localhost:5003
-profiles:
-  - consensus
-  - data-grid
+  }
+  members.1 {
+    name: member-1
+    address: "localhost:5001"
+  }
+  members.2 {
+    name: member-2
+    address: "localhost:5002"
+  }
+  members.3 {
+    name: member-3
+    address: "localhost:5003"
+  }
+}
+
+profiles: [consensus, data-grid]
 ```
 
 Additional partition groups may be added to profiles as well:
 
 ```
-cluster:
-  local-member:
+cluster {
+  local-member {
     name: member-1
-  members:
-    member-1:
-      type: persistent
-      address: localhost:5001
-    member-2:
-      type: persistent
-      address: localhost:5002
-    member-3:
-      type: persistent
-      address: localhost:5003
-profiles:
-  - consensus
-  - data-grid
-partition-groups:
-  more-data:
-    type: primary-backup
-    partitions: 7
+  }
+  members.1 {
+    name: member-1
+    address: "localhost:5001"
+  }
+  members.2 {
+    name: member-2
+    address: "localhost:5002"
+  }
+  members.3 {
+    name: member-3
+    address: "localhost:5003"
+  }
+}
+
+profiles: [consensus, data-grid]
+
+partition-groups.more-data {
+  type: primary-backup
+  partitions: 7
+}
 ```
 
 {% include common-links.html %}

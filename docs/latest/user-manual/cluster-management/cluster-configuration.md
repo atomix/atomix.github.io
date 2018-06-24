@@ -11,7 +11,6 @@ The [`Atomix`][Atomix] class extends [`AtomixCluster`][AtomixCluster] which prov
 
 When configuring an Atomix cluster, a local [`Member`][Member] must be provided. The `Member` object represents the location information for the node joining the cluster. Members support the following attributes:
 * `memberId()` - the globally unique `MemberId` of the member
-* `type()` - the [`Member.Type`][MemberType] of the member, either `EPHEMERAL` or `PERSISTENT`
 * `address()` - the TCP [`Address`][Address] through which other members can communicate with the node
 * `zone()` - an optional `String` zone which can be used when constructing [member groups][member-groups]
 * `rack()` - an optional `String` rack which can be used when constructing [member groups][member-groups]
@@ -21,15 +20,8 @@ Members are constructed using the builder pattern:
 
 ```java
 Member localMember = Member.builder("member1")
-  .withType(Member.Type.EPHEMERAL)
   .withAddress("localhost:5000")
   .build();
-```
-
-For simple members that use the default `0.0.0.0` address, members can also be constructed via static helper methods:
-
-```java
-Member localMember = Member.persistent("member1");
 ```
 
 To configure an `AtomixCluster` or `Atomix` instance with the local member, use the respective builder's `withLocalMember` method:
@@ -37,7 +29,6 @@ To configure an `AtomixCluster` or `Atomix` instance with the local member, use 
 ```java
 Atomix.Builder builder = Atomix.builder();
 builder.withLocalMember(Member.builder("member1")
-  .withType(Member.Type.PERSISTENT)
   .withAddress("localhost:5001")
   .build());
 ```
@@ -47,15 +38,12 @@ In addition to configuring the local member, additional existing cluster members
 ```java
 builder.withMembers(
     Member.builder("member1")
-      .withType(Member.Type.PERSISTENT)
       .withAddress("localhost:5001")
       .build(),
     Member.builder("member2")
-      .withType(Member.Type.PERSISTENT)
       .withAddress("localhost:5002")
       .build(),
     Member.builder("member3")
-      .withType(Member.Type.PERSISTENT)
       .withAddress("localhost:5003")
       .build());
 ```
@@ -90,20 +78,16 @@ Bootstrapping an Atomix cluster is simple, but joining an existing cluster can b
 ```java
 Atomix atomix = Atomix.builder()
   .withLocalMember(Member.builder("member4")
-    .withType(Member.Type.EPHEMERAL)
     .withAddress("localhost:5004")
     .build())
   .withMembers(
       Member.builder("member1")
-        .withType(Member.Type.PERSISTENT)
         .withAddress("localhost:5001")
         .build(),
       Member.builder("member2")
-        .withType(Member.Type.PERSISTENT)
         .withAddress("localhost:5002")
         .build(),
       Member.builder("member3")
-        .withType(Member.Type.PERSISTENT)
         .withAddress("localhost:5003")
         .build())
   .build();
@@ -120,29 +104,30 @@ It may be convenient to choose a set of `PERSISTENT` members through which all n
 
 As with all other components of Atomix, clusters support file-based configurations via JSON or YAML. The configuration file format mimics that of the builder API:
 
-`cluster.yaml`
+`cluster.conf`
 
 ```java
-local-member:
+local-member {
   name: member4
-  type: ephemeral
-  address: localhost:5004
-members:
-  member1:
-    type: persistent
-    address: localhost:5001
-  member2:
-    type: persistent
-    address: localhost:5002
-  member3:
-    type: persistent
-    address: localhost:5003
+}
+members.1 {
+  name: member1
+  address: "localhost:5001"
+}
+members.2 {
+  name: member2
+  address: "localhost:5002"
+}
+members.3 {
+  name: member3
+  address: "localhost:5003"
+}
 ```
 
 The configuration file can be used to configure the Atomix [agent][agent] or can be passed directly to the `AtomixCluster` API:
 
 ```java
-AtomixCluster cluster = new AtomixCluster("cluster.yaml");
+AtomixCluster cluster = new AtomixCluster();
 ```
 
 {:.callout .callout-info}
@@ -151,9 +136,8 @@ When constructing an `Atomix` instance from a configuration file, the cluster co
 Additionally, builders can be initialized using the cluster configuration. This can be convenient for initializing a builder with a shared configuration:
 
 ```java
-AtomixCluster cluster = AtomixCluster.builder("cluster.yaml")
+AtomixCluster cluster = AtomixCluster.builder()
   .withLocalMember(Member.builder("member4")
-    .withType(Member.Type.EPHEMERAL)
     .withAddress("localhost:5004")
     .build())
   .build();

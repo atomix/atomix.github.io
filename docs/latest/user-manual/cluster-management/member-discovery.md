@@ -9,11 +9,11 @@ Configuring Atomix clusters can be tedious. It would be much more convenient if 
 
 ### Multicast Discovery
 
-Atomix supports dynamic discovery of `EPHEMERAL` group members via multicast. Multicast member discovery can be enabled via the `AtomixCluster` builder:
+Atomix supports dynamic discovery of group members via multicast. Multicast member discovery can be enabled via the `AtomixCluster` builder:
 
 ```java
 AtomixCluster cluster = AtomixCluster.builder()
-  .withLocalMember(Member.ephemeral("member1"))
+  .withLocalMember(Member.member("localhost:5000"))
   .withMulticastEnabled()
   .build();
 ```
@@ -22,17 +22,17 @@ An optional multicast [`Address`][Address] can also be provided via `withMultica
 
 ```java
 AtomixCluster cluster = AtomixCluster.builder()
-  .withLocalMember(Member.ephemeral("member1"))
+  .withLocalMember(Member.member("localhost:5000"))
   .withMulticastEnabled()
   .withMulticastAddress("230.0.0.1:54321")
   .build();
 ```
 
-Finally, multicast can be enabled via the JSON/YAML configuration:
+Finally, multicast can be enabled via the HOCON/JSON configuration:
 
 ```
-multicast-enabled: true
-multicast-address: 230.0.0.1:54321
+cluster.multicast-enabled: true
+cluster.multicast-address: 230.0.0.1:54321
 ```
 
 When multicast is enabled, the instance will broadcast the local member's information at startup and periodically thereafter. Multicast is used strictly for initial identification of ephemeral nodes. Once a node has been discovered via multicast, it will be connected over TCP and the normal failure detection mechanisms will take over.

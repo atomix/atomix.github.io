@@ -18,7 +18,7 @@ Atomix 2.1 is a fully featured framework for building fault-tolerant distributed
 
 ## Background
 
-Atomix was originally conceived in 2014 along with its sister project [Copycat](http://github.com/atomix/copycat) (deprecated) as a hobby project. Over time, Copycat grew into a mature implementation of the Raft consensus protocol, and both Copycat and Atomix were put into use in various projects. In 2017, development of a new version was begun, and Copycat and Atomix were combined in Atomix 2.x. Additionally, significant extensions to the projects originally developed for use in [ONOS](http://onosproject.org) were migrated into Atomix 2.x. Atomix is now maintained as a core component of ONOS at the [Open Networking Foundation](http://opennetworking.org).
+Atomix was originally conceived in 2014 along with its sister project [Copycat](http://github.com/atomix/copycat) (deprecated) as a hobby project. Over time, Copycat grew into a mature implementation of the Raft consensus protocol, and both Copycat and Atomix were put into use in various projects. In 2017, development of a new version was begun, and Copycat and Atomix were combined in Atomix 3.x. Additionally, significant extensions to the projects originally developed for use in [ONOS](http://onosproject.org) were migrated into Atomix 3.x. Atomix is now maintained as a core component of ONOS at the [Open Networking Foundation](http://opennetworking.org).
 
 ## Dependency Management
 
@@ -29,7 +29,7 @@ Atomix is packaged in a hierarchy of modules that allow users to depend only on 
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix</artifactId>
-    <version>2.1.0-SNAPSHOT</version>
+    <version>3.0.0-rc1</version>
   </dependency>
 </dependencies>
 ```
@@ -43,28 +43,24 @@ Additionally, most clusters are configured with a set of partition groups. The p
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix</artifactId>
-    <version>2.1.0-SNAPSHOT</version>
+    <version>3.0.0-rc1</version>
   </dependency>
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix-raft</artifactId>
-    <version>2.1.0-SNAPSHOT</version>
+    <version>3.0.0-rc1</version>
   </dependency>
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix-primary-backup</artifactId>
-    <version>2.1.0-SNAPSHOT</version>
+    <version>3.0.0-rc1</version>
   </dependency>
 </dependencies>
 ```
 
 ## Bootstrapping a Cluster
 
-The first step to working with Atomix is forming a cluster. Atomix clusters consist of two types of members:
-* `PERSISTENT` members exist in the cluster configuration whether available or not
-* `EPHEMERAL` members join and leave the cluster based on their availability
-
-To form a cluster, typically a set of nodes need to be bootstrapped. Additionally, if using distributed primitives, one or more [partition groups][partition-groups] must be configured.
+The first step to working with Atomix is forming a cluster. To form a cluster, typically a set of nodes need to be bootstrapped. Additionally, if using distributed primitives, one or more [partition groups][partition-groups] must be configured.
 
 ### Using the Java API
 
@@ -81,8 +77,8 @@ Atomix.Builder builder = Atomix.builder();
 The builder should be configured with the local node configuration:
 
 ```java
-builder.withLocalMember(Member.builder("node1")
-  .withType(Member.Type.EPHEMERAL)
+builder.withLocalMember(Member.builder()
+  .withId("member1")
   .withAddress("localhost:5000")
   .build());
 ```
@@ -92,20 +88,15 @@ In addition to configuring the local node information, each instance must be con
 ```java
 builder.withMembers(
   Member.builder("member1")
-    .withType(Member.Type.EPHEMERAL)
     .withAddress("localhost:5000")
     .build(),
   Member.builder("member2")
-    .withType(Member.Type.EPHEMERAL)
     .withAddress("localhost:5001")
     .build(),
   Member.builder("member3")
-    .withType(Member.Type.EPHEMERAL)
     .withAddress("localhost:5002")
     .build());
 ```
-
-Bootstrap nodes can be either `PERSISTENT` or `EPHEMERAL` nodes. Clusters that require strong consistency must be bootstrapped with a set of `PERSISTENT` nodes capable of participating in consensus. Clusters that have more relaxed persistence/consistency requirements can use `EPHEMERAL` nodes which can scale dynamically.
 
 {:.callout .callout-info}
 To read more about the difference between the various types of nodes, see the [user manual][node-types]
@@ -113,7 +104,7 @@ To read more about the difference between the various types of nodes, see the [u
 Finally, the instance must be configured with one or more partition groups. Common partition groups can be configured using [profiles][profiles].
 
 ```java
-builder.addProfiles(Profiles.DATA_GRID);
+builder.addProfiles(Profile.DATA_GRID);
 ```
 
 Typically, clusters that require strong consistency guarantees are configured with `CORE` nodes and at least one `RaftPartitionGroup`, and clusters designed for performance and scalability with `DATA` nodes use `PrimaryBackupPartitionGroup`s.
@@ -157,25 +148,25 @@ bin/atomix-agent -h
 
 Use the `-h` option to see a list of options for the agent script.
 
-When working with the agent, it's most convenient to provide a JSON or YAML configuration file. All builder configurations supported via the Java API are supported in configuration files as well. To configure the agent, create an `atomix.yaml` file and define the cluster:
+When working with the agent, it's most convenient to provide a JSON or YAML configuration file. All builder configurations supported via the Java API are supported in configuration files as well. To configure the agent, create an `atomix.conf` file and define the cluster:
 
-`atomix.yaml`
+`atomix.conf`
 
 ```
-cluster:
-  nodes:
-    node1:
-      type: ephemeral
-      address: localhost:5001
-    node2:
-      type: ephemeral
-      address: localhost:5002
-    node3:
-      type: ephemeral
-      address: localhost:5003
-profiles:
-  - consensus
-  - data-grid
+cluster.members.1 {
+  id: member1
+  address: "localhost:5001"
+}
+cluster.members.2 {
+  id: member2
+  address: "localhost:5002"
+}
+cluster.members.3 {
+  id: member3
+  address: "localhost:5003"
+}
+
+profiles: [consensus, data-grid]
 ```
 
 {:.callout .callout-info}
@@ -184,15 +175,15 @@ The Java API supports configuration files as well. To configure an `Atomix` inst
 Once the configuration file has been created, start the cluster by bootstrapping the configured nodes:
 
 ```
-bin/atomix-agent node1 -c atomix.yaml
+bin/atomix-agent member1
 ```
 
 ```
-bin/atomix-agent node2 -c atomix.yaml
+bin/atomix-agent member2
 ```
 
 ```
-bin/atomix-agent node3 -c atomix.yaml
+bin/atomix-agent member3
 ```
 
 {:.callout .callout-info}
@@ -211,15 +202,12 @@ Atomix atomix = Atomix.builder()
     .build())
   .withMembers(
     Member.builder("member1")
-      .withType(Member.Type.PERSISTENT)
       .withAddress("localhost:5000")
       .build(),
     Member.builder("member2")
-      .withType(Member.Type.PERSISTENT)
       .withAddress("localhost:5001")
       .build(),
     Member.builder("member3")
-      .withType(Member.Type.PERSISTENT)
       .withAddress("localhost:5002")
       .build());
 ```

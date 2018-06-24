@@ -2,12 +2,10 @@
 <div markdown="1">
 {% capture toc %}
 * [What is Atomix](what-is-atomix)
-* [Features](features)
 * [Installation and Setup](installation-and-setup)
 * [Comparisons](comparisons)
-  * [Something Unique](comparisons#something-unique)
-  * [ZooKeeper](comparisons#zookeeper)
   * [Hazelcast](comparisons#hazelcast)
+  * [ZooKeeper](comparisons#zookeeper)
 {% endcapture %}
 {{ toc | markdownify }}
 </div>
@@ -15,23 +13,11 @@
 <h3 class="user-guide-menu-header"><img src="/assets/img/icons/concepts.svg" class="concepts"> Concepts</h3>
 <div markdown="1">
 {% capture toc %}
-* [Cluster Architecture](cluster-architecture)
-  * [Persistent Nodes](cluster-architecture#persistent-nodes)
-  * [Ephemeral Nodes](cluster-architecture#ephemeral-nodes)
-  * [Partition Groups](cluster-architecture#partition-groups)
+* [Cluster](cluster)
+* [Replication Protocols](replication-protocols)
+* [Partition Groups](partition-groups)
 * [Distributed Primitives](distributed-primitives)
-  * [Data Primitives](distributed-primitives#data-primitives)
-  * [Coordination Primitives](distributed-primitives#coordination-primitives)
-  * [Primitive Protocols](distributed-primitives#primitive-protocols)
-* [Consistency](consistency)
-  * [CAP Theorem](consistency#cap-theorem)
-  * [Consistency Models](consistency#consistency-models)
-  * [Event Consistency](consistency#event-consistency)
-  * [Cross-primitive Consistency](consistency#cross-primitive-consistency)
-* [Fault Tolerance](fault-tolerance)
-  * [Node Failures](fault-tolerance#node-failures)
-  * [Network Partitions](fault-tolerance#network-partitions)
-* [Threading Model](threading-model)
+* [Primitive Protocols](primitive-protocols)
 {% endcapture %}
 {{ toc | markdownify }}
 </div>
@@ -41,9 +27,8 @@
 {% capture toc %}
 * [Cluster Configuration](cluster-configuration)
   * [Members](cluster-configuration#members)
-  * [Member Types](cluster-configuration#member-types)
   * [Bootstrapping a New Cluster](cluster-configuration#bootstrapping-a-new-cluster)
-  * [Joingin an Existing Cluster](cluster-configuration#joining-an-existing-cluster)
+  * [Joining an Existing Cluster](cluster-configuration#joining-an-existing-cluster)
   * [File-based Configuration](cluster-configuration#file-based-configuration)
 * [Member Discovery](member-discovery)
   * [Multicast Discovery](member-discovery#multicast-discovery)

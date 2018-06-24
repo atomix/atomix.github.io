@@ -17,23 +17,19 @@ To configure zone/rack/host awareness, members of the cluster must first be conf
 ```java
 Atomix.Builder builder = Atomix.builder()
   .withLocalMember(Member.builder("member-4")
-    .withType(Member.Type.EPHEMERAL)
     .withAddress("localhost:5004")
     .withRack("rack-1")
     .build())
   .withMembers(
       Member.builder("member-1")
-        .withType(Member.Type.EPHEMERAL)
         .withAddress("localhost:5001")
         .withRack("rack-1")
         .build(),
       Member.builder("member-2")
-        .withType(Member.Type.EPHEMERAL)
         .withAddress("localhost:5002")
         .withRack("rack-2")
         .build(),
       Member.builder("member-3")
-        .withType(Member.Type.EPHEMERAL)
         .withAddress("localhost:5003")
         .withRack("rack-2")
         .build());
@@ -60,31 +56,35 @@ If a grouping attribute is `null` then by default the member will be placed in i
 
 Member group strategies can also be configured via configuration files:
 
-```
-cluster:
-  local-member:
+```hocon
+cluster {
+  local-member {
     name: member-4
-    type: ephemeral
-    address: localhost:5004
+    address: "localhost:5004"
     rack: rack-1
-  members:
-    member-1:
-      type: ephemeral
-      address: localhost:5001
-      rack: rack-1
-    member-2:
-      type: ephemeral
-      address: localhost:5002
-      rack: rack-2
-    member-3:
-      type: ephemeral
-      address: localhost:5003
-      rack: rack-2
-partition-groups:
-  data:
-    type: primary-backup
-    partitions: 32
-    member-group-strategy: RACK_AWARE
+  }
+  members.1 {
+    name: member-1
+    address: "localhost:5001"
+    rack: rack-1
+  }
+  members.2 {
+    name: member-2
+    address: "localhost:5002"
+    rack: rack-2
+  }
+  members.3 {
+    name: member-3
+    address: "localhost:5003"
+    rack: rack-3
+  }
+}
+
+partition-groups.data {
+  type: primary-backup
+  partitions: 32
+  member-group-strategy: RACK_AWARE
+}
 ```
 
 {% include common-links.html %}
