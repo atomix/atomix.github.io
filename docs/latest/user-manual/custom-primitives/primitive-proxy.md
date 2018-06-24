@@ -22,7 +22,7 @@ public class DistributedLockProxy
   @Override
   public CompletableFuture<Long> lock() {
     lockFuture = new CompletableFuture<>();
-    acceptBy(getPartitionKey(), service -> service.lock())
+    getProxyClient().acceptBy(name(), service -> service.lock())
       .whenComplete((result, error) -> {
         if (error != null) {
           lockFuture.completeExceptionally(error);
@@ -34,7 +34,7 @@ public class DistributedLockProxy
   @Override
   public CompletableFuture<Optional<Long>> tryLock(Duration timeout) {
     lockFuture = new CompletableFuture<>();
-    acceptBy(getPartitionKey(), service -> service.tryLock(timeout.toMillis()))
+    getProxyClient().acceptBy(name(), service -> service.tryLock(timeout.toMillis()))
       .whenComplete((result, error) -> {
         if (error != null) {
           lockFuture.completeExceptionally(error);
@@ -45,7 +45,7 @@ public class DistributedLockProxy
   
   @Override
   public CompletableFuture<Void> unlock() {
-    return acceptBy(getPartitionKey(), service -> service.unlock());
+    return getProxyClient().acceptBy(name(), service -> service.unlock());
   }
   
   @Override
@@ -67,18 +67,18 @@ public class DistributedLockProxy
 ```
 
 Operations are performed on the primitive service via the service proxy. Service proxy methods are invoked by using one of the following methods:
-* `invokeAll`/`acceptAll` - invokes the given callback on all the partitions
+* `applyAll`/`acceptAll` - invokes the given callback on all the partitions
 ```java
-invokeAll(service -> service.size())
+applyAll(service -> service.size())
     .thenApply(results -> results.reduce(Math::addExact).orElse(0));
 ```
-* `invokeOn`/`acceptOn` - invokes the given callback on the given partition
+* `applyOn`/`acceptOn` - invokes the given callback on the given partition
 ```java
-invokeOn(getPartition(1).partitionId(), service -> service.size());
+applyOn(getPartition(1).partitionId(), service -> service.size());
 ```
-* `invokeBy`/`acceptBy` - invokes the given callback on the partition that owns the given key
+* `applyBy`/`acceptBy` - invokes the given callback on the partition that owns the given key
 ```java
-invokeBy(key, service -> service.put(key, value));
+applyBy(key, service -> service.put(key, value));
 ```
 
 {% include common-links.html %}

@@ -13,22 +13,22 @@ The most convenient way to operate on a primitive service is to create a service
 
 ```java
 public interface DistributedLockService {
-  @Operation(value = "lock", type = OperationType.COMMAND)
+  @Command
   void lock();
   
-  @Operation(value = "tryLock", type = OperationType.COMMAND)
+  @Command
   void tryLock(long timeout);
 
-  @Operation(value = "unlock", type = OperationType.COMMAND)
+  @Command
   void unlock();
 }
 ```
 
-The service proxy interface must have methods annotated with the `@Operation` annotation. The annotation must specify a unique name for the operation and an operation type. The two types of operations are:
-* `OperationType.COMMAND` - Indicates the method modifies the state of the primitive
-* `OperationType.QUERY` - Indicates the method queries but _does not modify_ the state of the primitive
+The service proxy interface must have methods annotated with the `@Command` or `@Query` annotation. The annotation must specify a unique name for the operation and an operation type. The two types of operations are:
+* `@Command` - Indicates the method modifies the state of the primitive
+* `@Query` - Indicates the method queries but _does not modify_ the state of the primitive
 
-It's critical for correctness that operations that are marked `QUERY` _do not ever modify the state of the primitive service_.
+It's critical for correctness that operations that are marked `@Query` _do not ever modify the state of the primitive service_.
 
 ## Client Proxy
 
@@ -36,10 +36,10 @@ Often, primitive services need to be able to communicate with client-side primit
 
 ```java
 public interface DistributedLockClient {
-  @Event("locked")
+  @Event
   void locked(long index);
   
-  @Event("failed")
+  @Event
   void failed();
 }
 ```
@@ -55,8 +55,8 @@ public class DefaultDistributedLockService extends AbstractPrimitiveService<Dist
   private Queue<SessionId> queue = new ArrayDeque<>();
   private SessionId lock;
     
-  public DefaultDistributedLockService(ServiceConfig config) {
-    super(DistributedLockClient.class, config);
+  public DefaultDistributedLockService() {
+    super(DistributedLockType.instance(), DistributedLockClient.class);
   }
   
   @Override
@@ -64,7 +64,7 @@ public class DefaultDistributedLockService extends AbstractPrimitiveService<Dist
     PrimitiveSession session = getCurrentSession();
     if (lock == null) {
       lock = session.sessionId();
-      acceptOn(session, service -> service.locked(getCurrentIndex()));
+      session.accept(client -> client.locked(getCurrentIndex()));
     } else {
       queue.add(session.sessionId());
     }
@@ -75,13 +75,13 @@ public class DefaultDistributedLockService extends AbstractPrimitiveService<Dist
     PrimitiveSession session = getCurrentSession();
     if (lock == null) {
       lock = session.sessionId();
-      acceptOn(session, service -> service.locked(getCurrentIndex()));
+      session.accept(client -> client.locked(getCurrentIndex()));
     } else {
       queue.add(session.sessionId());
       if (timeout != -1) {
         getScheduler().schedule(Duration.ofMillis(timeout), () -> {
           queue.remove(session.sessionId());
-          acceptOn(session, service -> service.failed());
+          session.accept(client -> client.failed());
         });
       }
     }
@@ -91,7 +91,7 @@ public class DefaultDistributedLockService extends AbstractPrimitiveService<Dist
   public void unlock() {
     lock = queue.poll();
     if (lock != null) {
-      acceptOn(lock, service -> service.locked(getCurrentIndex()));
+      getSession(lock).accept(client -> client.locked(getCurrentIndex()));
     }
   }
 }

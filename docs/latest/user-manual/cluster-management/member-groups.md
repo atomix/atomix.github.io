@@ -59,22 +59,22 @@ Member group strategies can also be configured via configuration files:
 ```hocon
 cluster {
   local-member {
-    name: member-4
+    id: member-4
     address: "localhost:5004"
     rack: rack-1
   }
   members.1 {
-    name: member-1
+    id: member-1
     address: "localhost:5001"
     rack: rack-1
   }
   members.2 {
-    name: member-2
+    id: member-2
     address: "localhost:5002"
     rack: rack-2
   }
   members.3 {
-    name: member-3
+    id: member-3
     address: "localhost:5003"
     rack: rack-3
   }

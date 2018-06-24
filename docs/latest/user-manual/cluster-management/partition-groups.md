@@ -106,7 +106,7 @@ To configure the group's members, use the `withMembers` method, passing a list o
 raftBuilder.withMembers("member-1", "member-2", "member-3");
 ```
 
-The Raft partition group's members must be `PERSISTENT`. This constraint exists because the semantics of persistent members accurately reflect the semantics of Raft cluster members: even after a Raft node crashes, the quorum size remains the same and the node still counts towards vote tallies.
+The Raft partition group's members must be explicitly named. This constraint exists because Raft requires that each node have a persistent identifier. Even after a Raft node crashes, the quorum size remains the same and the node still counts towards vote tallies.
 
 Once the group has been configured, call the `build()` method to build the group:
 
@@ -121,15 +121,12 @@ Atomix atomix = Atomix.builder()
   .withLocalMember("member-1")
   .withMembers(
       Member.builder("member-1")
-        .withType(Member.Type.PERSISTENT)
         .withAddress("localhost:5001")
         .build(),
       Member.builder("member-2")
-        .withType(Member.Type.PERSISTENT)
         .withAddress("localhost:5002")
         .build(),
       Member.builder("member-3")
-        .withType(Member.Type.PERSISTENT)
         .withAddress("localhost:5003")
         .build())
   .withManagementGroup(RaftPartitionGroup.builder("system")
@@ -148,18 +145,18 @@ As with other partition groups, Raft groups can be configured via configuration 
 ```hocon
 cluster {
   local-member {
-    name: member-1
+    id: member-1
   }
   members.1 {
-    name: member-1
+    id: member-1
     address: "localhost:5001"
   }
   members.2 {
-    name: member-2
+    nidame: member-2
     address: "localhost:5002"
   }
   members.3 {
-    name: member-3
+    id: member-3
     address: "localhost:5003"
   }
 }
@@ -184,7 +181,7 @@ Even with sharding, Raft partition groups can be limited in their scalability. W
 {:.callout .callout-warning}
 Primary-backup partitions are only as reliable as the protocol used in the [system management group](#the-management-group). For the strongest consistency and reliability guarantees, use a Raft management group.
 
-Primary-backup groups are configured via the [`PrimaryBackupPartitionGroup`] builder:
+Primary-backup groups are configured via the [`PrimaryBackupPartitionGroup`][PrimaryBackupPartitionGroup] builder:
 
 ```java
 PartitionGroup primaryBackupGroup = PrimaryBackupPartitionGroup.builder("data")
@@ -222,9 +219,9 @@ Atomix atomix = Atomix.builder()
 ```
 
 The built-in profiles provided by Atomix are:
-* `CONSENSUS` - creates a [Raft](#raft-partition-groups) system management group and a Raft primitive group named `raft` both replicated on all initially configured `PERSISTENT` members
+* `CONSENSUS` - creates a [Raft](#raft-partition-groups) system management group and a Raft primitive group named `raft` both replicated on all initially configured named members
 * `DATA_GRID` - creates a [primary-backup](#primary-backup-partition-groups) system management group if no group already exists, and a primary-backup primitive group named `data`
-* `CLIENT` - sets the local member to `EPHEMERAL` and does not configure any management or primitive groups
+* `CLIENT` - placeholder profile that does not configure any management or primitive groups
 
 Profiles will configure the Atomix instance in the order in which they're specified. This allows, e.g., the `DATA_GRID` profile to configure primary-backup partitions that may or may not be backed by Raft depending on prior configurations. Thus, when chaining `Profile.CONSENSUS` and `Profile.DATA_GRID` we get a Raft-backed primary-backup `data` group for primitives.
 
@@ -233,18 +230,18 @@ The [`Atomix`][Atomix] configuration, of course, supports profiles via the `prof
 ```hocon
 cluster {
   local-member {
-    name: member-1
+    id: member-1
   }
   members.1 {
-    name: member-1
+    id: member-1
     address: "localhost:5001"
   }
   members.2 {
-    name: member-2
+    id: member-2
     address: "localhost:5002"
   }
   members.3 {
-    name: member-3
+    id: member-3
     address: "localhost:5003"
   }
 }
@@ -254,21 +251,21 @@ profiles: [consensus, data-grid]
 
 Additional partition groups may be added to profiles as well:
 
-```
+```hocon
 cluster {
   local-member {
-    name: member-1
+    id: member-1
   }
   members.1 {
-    name: member-1
+    id: member-1
     address: "localhost:5001"
   }
   members.2 {
-    name: member-2
+    id: member-2
     address: "localhost:5002"
   }
   members.3 {
-    name: member-3
+    id: member-3
     address: "localhost:5003"
   }
 }

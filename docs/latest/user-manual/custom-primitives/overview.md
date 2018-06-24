@@ -15,7 +15,7 @@ Atomix [primitives][primitives] implement a common, pluggable API that can be us
 Custom primitives can be constructed via the Java API using the generic `primitiveBuilder` method on the [`Atomix`][Atomix] class:
 
 ```java
-MyPrimitive myPrimitive = atomix.primitiveBuilder("my-primitive", MyPrimitive.Type.instance())
+MyPrimitive myPrimitive = atomix.primitiveBuilder("my-primitive", MyPrimitiveType.instance())
   .withProtocol(MultiPrimaryProtocol.builder()
     .withReplication(Replication.ASYNCHRONOUS)
     .withNumBackups(2)

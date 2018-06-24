@@ -13,35 +13,37 @@ For example, to configure a [`DistributedLock`][DistributedLock] primitive to ru
 
 The [`MultiRaftProtocol`][MultiRaftProtocol] is the protocol configuration required by [`RaftPartitionGroup`][RaftPartitionGroup]s. To replicate a primitive using the Raft consensus protocol, the cluster must first be configured with a Raft partition group:
 
-```yaml
-cluster:
-  local-member-id: member-1
-  members:
-    member-1:
-      type: persistent
-      address: localhost:5001
-    member-2:
-      type: persistent
-      address: localhost:5002
-    member-3:
-      type: persistent
-      address: localhost:5003
-management-group:
+```hocon
+cluster {
+  local-member {
+    id: member-1
+  }
+  members.1 {
+    id: member-1
+    address: "localhost:5001"
+  }
+  members.2 {
+    id: member-2
+    address: "localhost:5002"
+  }
+  members.3 {
+    id: member-3
+    address: "localhost:5003"
+  }
+}
+
+management-group {
   type: raft
   name: system
   partitions: 1
-  members:
-    - member-1
-    - member-2
-    - member-3
-partition-groups:
-  raft:
-    type: raft
-    partitions: 7
-    members:
-      - member-1
-      - member-2
-      - member-3
+  members: [member-1, member-2, member-3]
+}
+
+partition-groups.raft {
+  type: raft
+  partitions: 7
+  members: [member-1, member-2, member-3]
+}
 ```
 
 The groups listed under the `partition-groups` section of the configuration are accessible to distributed primitives. To create a primitive replicated in the Raft partition group named `raft`, construct a `MultiRaftProtocol` configuration indicating the Raft partition group name:
@@ -72,13 +74,14 @@ DistributedLock lock = atomix.lockBuilder("my-lock")
 
 Individual primitives' protocols may also be configured via the Atomix configuration files. To configure a primitive to use the multi-Raft protocol, use the `multi-raft` protocol type:
 
-```yaml
-primitives:
-  my-lock:
-    protocol:
-      type: multi-raft
-      read-consistency: linearizable
-      communication-strategy: leader
+```hocon
+primitives.my-lock {
+  protocol {
+    type: multi-raft
+    read-consistency: linearizable
+    communication-strategy: leader
+  }
+}
 ```
 
 ## MultiPrimaryProtocol
@@ -87,31 +90,36 @@ The multi-primary protocol is used to configure primitives to be replicated in a
 
 To use multi-primary primitives, the cluster must first be configured with a [`PrimaryBackupPartitionGroup`][PrimaryBackupPartitionGroup]:
 
-```yaml
-cluster:
-  local-member-id: member-1
-  members:
-    member-1:
-      type: persistent
-      address: localhost:5001
-    member-2:
-      type: persistent
-      address: localhost:5002
-    member-3:
-      type: persistent
-      address: localhost:5003
-management-group:
+```hocon
+cluster {
+  local-member {
+    id: member-1
+  }
+  members.1 {
+    id: member-1
+    address: "localhost:5001"
+  }
+  members.2 {
+    id: member-2
+    address: "localhost:5002"
+  }
+  members.3 {
+    id: member-3
+    address: "localhost:5003"
+  }
+}
+
+management-group {
   type: raft
   name: system
   partitions: 1
-  members:
-    - member-1
-    - member-2
-    - member-3
-partition-groups:
-  data:
-    type: primary-backup
-    partitions: 32
+  members: [member-1, member-2, member-3]
+}
+
+partition-groups.data {
+  type: primary-backup
+  partitions: 32
+}
 ```
 
 To configure a multi-primary-based primitive, use the [`MultiPrimaryProtocol`][MultiPrimaryProtocol] builder, passing the name of the primary-backup group to the `builder` method:
@@ -130,13 +138,14 @@ ConsistentMap<String, String> map = atomix.<String, String>consistentMapBuilder(
 
 Individual primitives' protocols may also be configured via the Atomix configuration files. To configure a primitive to use the multi-primary protocol, use the `multi-primary` protocol type:
 
-```yaml
-primitives:
-  my-map:
-    protocol:
-      type: multi-primary
-      backups: 2
-      replication: asynchronous
+```hocon
+primitives.my-map {
+  protocol {
+    type: multi-primary
+    backups: 2
+    replication: asynchronous
+  }
+}
 ```
 
 ## Protocol Partitioners

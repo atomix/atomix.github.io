@@ -48,14 +48,6 @@ builder.withMembers(
       .build());
 ```
 
-### Member types
-
-The sections above introduce a [`Member.Type`][MemberType] enum. Member types define how the Atomix cluster interprets member state changes. The two types of members are:
-* `PERSISTENT` - always exist in the cluster configuration even when unreachable
-* `EPHEMERAL` - exist in the cluster configuration as long as reachable
-
-Different types of Atomix clusters may require different configurations with respect to member types. For example, Raft-based clusters require a set of `PERSISTENT` members on which to store Raft partitions, while primary-backup partition groups can be efficiently rebalanced as `EPHEMERAL` members come and go. See [partition groups][partition-groups] for more information.
-
 ## Bootstrapping a new cluster
 
 To bootstrap an Atomix cluster, simply build and `start()` the `AtomixCluster` or `Atomix` instance:
@@ -97,9 +89,6 @@ atomix.start().join();
 
 To join the cluster, the instance will broadcast its configuration to each of the members in listed in its membership list. Once successful, those nodes will gossip the joining node's information to any remaining nodes and will send the information about unknown members back to the joining node.
 
-{:.callout .callout-info}
-It may be convenient to choose a set of `PERSISTENT` members through which all new nodes join.
-
 ## File-based Configuration
 
 As with all other components of Atomix, clusters support file-based configurations via JSON or YAML. The configuration file format mimics that of the builder API:
@@ -108,18 +97,18 @@ As with all other components of Atomix, clusters support file-based configuratio
 
 ```java
 local-member {
-  name: member4
+  id: member4
 }
 members.1 {
-  name: member1
+  id: member1
   address: "localhost:5001"
 }
 members.2 {
-  name: member2
+  id: member2
   address: "localhost:5002"
 }
 members.3 {
-  name: member3
+  id: member3
   address: "localhost:5003"
 }
 ```
