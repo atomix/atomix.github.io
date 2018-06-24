@@ -25,8 +25,8 @@ Atomix is an event-driven framework for coordinating fault-tolerant distributed 
 <div class="tab-content" markdown="1">
 <div class="tab-pane active" id="atomic-value" markdown="1">
 ```java
-// Create an Atomix instances from a YAML configuration file
-Atomix atomix = new Atomix("atomix.yaml");
+// Create an Atomix instance from a HOCON configuration file
+Atomix atomix = new Atomix("atomix.conf");
 
 // Start the instance
 atomix.start().join();
@@ -43,8 +43,8 @@ System.out.println(value.get());
 </div>
 <div class="tab-pane" id="atomic-counter" markdown="1">
 ```java
-// Create an Atomix instances from a YAML configuration file
-Atomix atomix = new Atomix("atomix.yaml");
+// Create an Atomix instance from a HOCON configuration file
+Atomix atomix = new Atomix("atomix.conf");
 
 // Start the instance
 atomix.start().join();
@@ -61,8 +61,8 @@ counter.set(0);
 </div>
 <div class="tab-pane" id="consistent-map" markdown="1">
 ```java
-// Create an Atomix instances from a YAML configuration file
-Atomix atomix = new Atomix("atomix.yaml");
+// Create an Atomix instance from a HOCON configuration file
+Atomix atomix = new Atomix("atomix.conf");
 
 // Start the instance
 atomix.start().join();
@@ -87,8 +87,8 @@ while (!map.put("foo", "Hello world again!", value.version())) {
 </div>
 <div class="tab-pane" id="consistent-multimap" markdown="1">
 ```java
-// Create an Atomix instances from a YAML configuration file
-Atomix atomix = new Atomix("atomix.yaml");
+// Create an Atomix instance from a HOCON configuration file
+Atomix atomix = new Atomix("atomix.conf");
 
 // Start the instance
 atomix.start().join();
@@ -105,8 +105,8 @@ Versioned<Collection<String>> values = multimap.get("foo");
 </div>
 <div class="tab-pane" id="distributed-set" markdown="1">
 ```java
-// Create an Atomix instances from a YAML configuration file
-Atomix atomix = new Atomix("atomix.yaml");
+// Create an Atomix instance from a HOCON configuration file
+Atomix atomix = new Atomix("atomix.conf");
 
 // Start the instance
 atomix.start().join();
@@ -128,8 +128,8 @@ if (set.contains("foo")) {
 </div>
 <div class="tab-pane" id="work-queue" markdown="1">
 ```java
-// Create an Atomix instances from a YAML configuration file
-Atomix atomix = new Atomix("atomix.yaml");
+// Create an Atomix instance from a HOCON configuration file
+Atomix atomix = new Atomix("atomix.conf");
 
 // Start the instance
 atomix.start().join();
@@ -137,8 +137,8 @@ atomix.start().join();
 </div>
 <div class="tab-pane" id="document-tree" markdown="1">
 ```java
-// Create an Atomix instances from a YAML configuration file
-Atomix atomix = new Atomix("atomix.yaml");
+// Create an Atomix instance from a HOCON configuration file
+Atomix atomix = new Atomix("atomix.conf");
 
 // Start the instance
 atomix.start().join();
@@ -146,8 +146,8 @@ atomix.start().join();
 </div>
 <div class="tab-pane" id="distributed-lock" markdown="1">
 ```java
-// Create an Atomix instances from a YAML configuration file
-Atomix atomix = new Atomix("atomix.yaml");
+// Create an Atomix instance from a HOCON configuration file
+Atomix atomix = new Atomix("atomix.conf");
 
 // Start the instance
 atomix.start().join();
@@ -171,8 +171,8 @@ lock.lock(Duration.ofSeconds(5));
 </div>
 <div class="tab-pane" id="leader-election" markdown="1">
 ```java
-// Create an Atomix instances from a YAML configuration file
-Atomix atomix = new Atomix("atomix.yaml");
+// Create an Atomix instance from a HOCON configuration file
+Atomix atomix = new Atomix("atomix.conf");
 
 // Start the instance
 atomix.start().join();
@@ -198,22 +198,22 @@ election.addListener(event -> {
 </div>
 <div class="tab-pane" id="cluster-management" markdown="1">
 ```java
-// Create an Atomix instances from a YAML configuration file
-Atomix atomix = new Atomix("atomix.yaml");
+// Create an Atomix instance from a HOCON configuration file
+Atomix atomix = new Atomix("atomix.conf");
 
 // Start the instance
 atomix.start().join();
 
 // Get a list of members in the cluster
-Collection<Node> nodes = atomix.clusterService().getNodes();
+Collection<Node> nodes = atomix.getMembershipService().getNodes();
 
 // Listen for members joining/leaving the cluster
-atomix.clusterService().addListener(event -> {
+atomix.getMembershipService().addListener(event -> {
   switch (event.type()) {
-    case NODE_ADDED:
+    case MEMBER_ADDED:
       System.out.println(event.subject().id() + " joined the cluster");
       break;
-    case NODE_REMOVED:
+    case MEMBER_REMOVED:
       System.out.println(event.subject().id() + " left the cluster");
       break;
   }
@@ -222,28 +222,28 @@ atomix.clusterService().addListener(event -> {
 </div>
 <div class="tab-pane" id="direct-messaging" markdown="1">
 ```java
-// Create an Atomix instances from a YAML configuration file
-Atomix atomix = new Atomix("atomix.yaml");
+// Create an Atomix instance from a HOCON configuration file
+Atomix atomix = new Atomix("atomix.conf");
 
 // Start the instance
 atomix.start().join();
 
-// Get the cluster messaging service
-ClusterMessagingService messagingService = atomix.messagingService();
+// Get the cluster communication service
+ClusterCommunicationService communicationService = atomix.getCommunicationService();
 
 // Register a listener for the "test" subject
-messagingService.subscribe("test", message -> {
+communicationService.subscribe("test", message -> {
   System.out.println("Received message " + message);
 });
 
 // Send a "test" message to all other nodes
-messagingService.broadcast("test", "Hello world!");
+communicationService.broadcast("test", "Hello world!");
 
 // Send a "test" message to node "foo"
-messagingService.unicast("test", "Hello world!", atomix.clusterService().getNode("foo").id());
+communicationService.unicast("test", "Hello world!", atomix.getMembershipService().getNode("foo").id());
 
 // Send a "test" message to node "bar" and wait for a reply
-messagingService.send("test", "Hello world!", atomix.clusterService().getNode("bar").id())
+communicationService.send("test", "Hello world!", atomix.getMembershipService().getNode("bar").id())
   .thenAccept(reply -> {
     System.out.println("bar said: " + reply);
   });
@@ -251,28 +251,28 @@ messagingService.send("test", "Hello world!", atomix.clusterService().getNode("b
 </div>
 <div class="tab-pane" id="publish-subscribe" markdown="1">
 ```java
-// Create an Atomix instances from a YAML configuration file
-Atomix atomix = new Atomix("atomix.yaml");
+// Create an Atomix instance from a HOCON configuration file
+Atomix atomix = new Atomix("atomix.conf");
 
 // Start the instance
 atomix.start().join();
 
-// Get the cluster eventing service
-ClusterEventingService eventingService = atomix.eventingService();
+// Get the cluster event service
+ClusterEventService eventService = atomix.getEventService();
 
 // Register a listener for the "test" subject
-eventingService.subscribe("test", message -> {
+eventService.subscribe("test", message -> {
   System.out.println("Received message " + message);
 });
 
 // Send a "test" message to all other subscribers
-eventingService.broadcast("test", "Hello world!");
+eventService.broadcast("test", "Hello world!");
 
 // Send a "test" message to one of the subscribers
-eventingService.unicast("test", "Hello world!");
+eventService.unicast("test", "Hello world!");
 
 // Send a "test" message to one of the subscribers and wait for a reply
-eventingService.send("test", "Hello world!")
+eventService.send("test", "Hello world!")
   .thenAccept(reply -> {
     System.out.println("responder said: " + reply);
   });
