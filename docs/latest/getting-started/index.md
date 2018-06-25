@@ -29,7 +29,7 @@ Atomix is packaged in a hierarchy of modules that allow users to depend only on 
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix</artifactId>
-    <version>3.0.0-rc1</version>
+    <version>3.0.0-rc2</version>
   </dependency>
 </dependencies>
 ```
@@ -43,17 +43,17 @@ Additionally, most clusters are configured with a set of partition groups. The p
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix</artifactId>
-    <version>3.0.0-rc1</version>
+    <version>3.0.0-rc2</version>
   </dependency>
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix-raft</artifactId>
-    <version>3.0.0-rc1</version>
+    <version>3.0.0-rc2</version>
   </dependency>
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix-primary-backup</artifactId>
-    <version>3.0.0-rc1</version>
+    <version>3.0.0-rc2</version>
   </dependency>
 </dependencies>
 ```

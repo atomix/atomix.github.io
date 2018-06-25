@@ -77,10 +77,12 @@
 * [ConsistentMultimap](ConsistentMultimap)
 * [ConsistentTreeMap](ConsistentTreeMap)
 * [DistributedLock](DistributedLock)
+* [DistributedSemaphore](DistributedSemaphore)
 * [DistributedSet](DistributedSet)
 * [DocumentTree](DocumentTree)
 * [LeaderElection](LeaderElection)
 * [WorkQueue](WorkQueue)
+* [Primitive Anti-Patterns](primitive-anti-patterns)
 {% endcapture %}
 {{ toc | markdownify }}
 </div>
