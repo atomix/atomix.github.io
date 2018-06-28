@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":18,"i4":18,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6,"i14":6,"i15":18,"i16":6};
+var methods = {"i0":18,"i1":6,"i2":18};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -105,12 +105,12 @@ var activeTableTab = "activeTableTab";
 </dl>
 <dl>
 <dt>All Superinterfaces:</dt>
-<dd><a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="interface in io.atomix.primitive">AsyncPrimitive</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a></dd>
+<dd><a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html" title="interface in io.atomix.core.collection">AsyncDistributedCollection</a>&lt;E&gt;, <a href="../../../../io/atomix/core/collection/AsyncIterable.html" title="interface in io.atomix.core.collection">AsyncIterable</a>&lt;E&gt;, <a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="interface in io.atomix.primitive">AsyncPrimitive</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a>, <a href="../../../../io/atomix/core/transaction/Transactional.html" title="interface in io.atomix.core.transaction">Transactional</a>&lt;io.atomix.core.set.impl.SetUpdate&lt;E&gt;&gt;</dd>
 </dl>
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">AsyncDistributedSet&lt;E&gt;</span>
-extends <a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="interface in io.atomix.primitive">AsyncPrimitive</a></pre>
+extends <a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html" title="interface in io.atomix.core.collection">AsyncDistributedCollection</a>&lt;E&gt;, <a href="../../../../io/atomix/core/transaction/Transactional.html" title="interface in io.atomix.core.transaction">Transactional</a>&lt;io.atomix.core.set.impl.SetUpdate&lt;E&gt;&gt;</pre>
 <div class="block">A distributed collection designed for holding unique elements.
  <p>
  All methods of <code>AsyncDistributedSet</code> immediately return a <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent"><code>future</code></a>.
@@ -150,110 +150,31 @@ extends <a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="int
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#add-E-">add</a></span>(<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&nbsp;element)</code>
-<div class="block">Adds the specified element to this set if it is not already present (optional operation).</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#addAll-java.util.Collection-">addAll</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;&nbsp;c)</code>
-<div class="block">Adds all of the elements in the specified collection to this set if they're not
- already present (optional operation).</div>
-</td>
-</tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#addListener-io.atomix.core.set.SetEventListener-">addListener</a></span>(<a href="../../../../io/atomix/core/set/SetEventListener.html" title="interface in io.atomix.core.set">SetEventListener</a>&lt;<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;&nbsp;listener)</code>
-<div class="block">Registers the specified listener to be notified whenever
- the set is updated.</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>default <a href="../../../../io/atomix/core/set/DistributedSet.html" title="interface in io.atomix.core.set">DistributedSet</a>&lt;<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#asDistributedSet--">asDistributedSet</a></span>()</code>
-<div class="block">Returns a new <a href="../../../../io/atomix/core/set/DistributedSet.html" title="interface in io.atomix.core.set"><code>DistributedSet</code></a> that is backed by this instance.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>default <a href="../../../../io/atomix/core/set/DistributedSet.html" title="interface in io.atomix.core.set">DistributedSet</a>&lt;<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#asDistributedSet-long-">asDistributedSet</a></span>(long&nbsp;timeoutMillis)</code>
-<div class="block">Returns a new <a href="../../../../io/atomix/core/set/DistributedSet.html" title="interface in io.atomix.core.set"><code>DistributedSet</code></a> that is backed by this instance.</div>
-</td>
-</tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#clear--">clear</a></span>()</code>
-<div class="block">Removes all elements from the set.</div>
-</td>
-</tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#contains-E-">contains</a></span>(<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&nbsp;element)</code>
-<div class="block">Returns if this set contains the specified element.</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#containsAll-java.util.Collection-">containsAll</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;&nbsp;c)</code>
-<div class="block">Returns if this set contains all the elements in specified collection.</div>
-</td>
-</tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;? extends <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#getAsImmutableSet--">getAsImmutableSet</a></span>()</code>
-<div class="block">Returns the entries as a immutable set.</div>
-</td>
-</tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#isEmpty--">isEmpty</a></span>()</code>
-<div class="block">Returns if the set is empty.</div>
-</td>
-</tr>
-<tr id="i10" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#remove-E-">remove</a></span>(<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&nbsp;element)</code>
-<div class="block">Removes the specified element to this set if it is present (optional operation).</div>
-</td>
-</tr>
-<tr id="i11" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#removeAll-java.util.Collection-">removeAll</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;&nbsp;c)</code>
-<div class="block">Removes from this set all of its elements that are contained in the specified collection (optional operation).</div>
-</td>
-</tr>
-<tr id="i12" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#removeListener-io.atomix.core.set.SetEventListener-">removeListener</a></span>(<a href="../../../../io/atomix/core/set/SetEventListener.html" title="interface in io.atomix.core.set">SetEventListener</a>&lt;<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;&nbsp;listener)</code>
-<div class="block">Unregisters the specified listener.</div>
-</td>
-</tr>
-<tr id="i13" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#retainAll-java.util.Collection-">retainAll</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;&nbsp;c)</code>
-<div class="block">Retains only the elements in this set that are contained in the specified collection (optional operation).</div>
-</td>
-</tr>
-<tr id="i14" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#size--">size</a></span>()</code>
-<div class="block">Returns the number of elements in the set.</div>
-</td>
-</tr>
-<tr id="i15" class="rowColor">
 <td class="colFirst"><code>default <a href="../../../../io/atomix/core/set/DistributedSet.html" title="interface in io.atomix.core.set">DistributedSet</a>&lt;<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#sync--">sync</a></span>()</code>
 <div class="block">Returns a synchronous wrapper around the asynchronous primitive.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/core/set/DistributedSet.html" title="interface in io.atomix.core.set">DistributedSet</a>&lt;<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#sync-java.time.Duration-">sync</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;operationTimeout)</code>
 <div class="block">Returns a synchronous wrapper around the asynchronous primitive.</div>
 </td>
 </tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>default <a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html#type--">type</a></span>()</code>
+<div class="block">Returns the type of primitive.</div>
+</td>
+</tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.core.collection.AsyncDistributedCollection">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;io.atomix.core.collection.<a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html" title="interface in io.atomix.core.collection">AsyncDistributedCollection</a></h3>
+<code><a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html#add-E-">add</a>, <a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html#addAll-java.util.Collection-">addAll</a>, <a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html#addListener-io.atomix.core.collection.CollectionEventListener-">addListener</a>, <a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html#clear--">clear</a>, <a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html#contains-E-">contains</a>, <a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html#containsAll-java.util.Collection-">containsAll</a>, <a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html#isEmpty--">isEmpty</a>, <a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html#remove-E-">remove</a>, <a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html#removeAll-java.util.Collection-">removeAll</a>, <a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html#removeListener-io.atomix.core.collection.CollectionEventListener-">removeListener</a>, <a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html#retainAll-java.util.Collection-">retainAll</a>, <a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html#size--">size</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.io.atomix.primitive.AsyncPrimitive">
 <!--   -->
@@ -266,7 +187,21 @@ extends <a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="int
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;io.atomix.primitive.<a href="../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a></h3>
-<code><a href="../../../../io/atomix/primitive/DistributedPrimitive.html#addStateChangeListener-java.util.function.Consumer-">addStateChangeListener</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#name--">name</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#primitiveType--">primitiveType</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#removeStateChangeListener-java.util.function.Consumer-">removeStateChangeListener</a></code></li>
+<code><a href="../../../../io/atomix/primitive/DistributedPrimitive.html#addStateChangeListener-java.util.function.Consumer-">addStateChangeListener</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#name--">name</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#protocol--">protocol</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#removeStateChangeListener-java.util.function.Consumer-">removeStateChangeListener</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.core.collection.AsyncIterable">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;io.atomix.core.collection.<a href="../../../../io/atomix/core/collection/AsyncIterable.html" title="interface in io.atomix.core.collection">AsyncIterable</a></h3>
+<code><a href="../../../../io/atomix/core/collection/AsyncIterable.html#iterator--">iterator</a>, <a href="../../../../io/atomix/core/collection/AsyncIterable.html#stream--">stream</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.core.transaction.Transactional">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;io.atomix.core.transaction.<a href="../../../../io/atomix/core/transaction/Transactional.html" title="interface in io.atomix.core.transaction">Transactional</a></h3>
+<code><a href="../../../../io/atomix/core/transaction/Transactional.html#commit-io.atomix.core.transaction.TransactionId-">commit</a>, <a href="../../../../io/atomix/core/transaction/Transactional.html#prepare-io.atomix.core.transaction.TransactionLog-">prepare</a>, <a href="../../../../io/atomix/core/transaction/Transactional.html#rollback-io.atomix.core.transaction.TransactionId-">rollback</a></code></li>
 </ul>
 </li>
 </ul>
@@ -282,244 +217,22 @@ extends <a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="int
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="addListener-io.atomix.core.set.SetEventListener-">
+<a name="type--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>addListener</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;addListener(<a href="../../../../io/atomix/core/set/SetEventListener.html" title="interface in io.atomix.core.set">SetEventListener</a>&lt;<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;&nbsp;listener)</pre>
-<div class="block">Registers the specified listener to be notified whenever
- the set is updated.</div>
+<h4>type</h4>
+<pre>default&nbsp;<a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;type()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/DistributedPrimitive.html#type--">DistributedPrimitive</a></code></span></div>
+<div class="block">Returns the type of primitive.</div>
 <dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>listener</code> - listener to notify about set update events</dd>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html#type--">type</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html" title="interface in io.atomix.core.collection">AsyncDistributedCollection</a>&lt;<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/primitive/DistributedPrimitive.html#type--">type</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>CompletableFuture that is completed when the operation completes</dd>
-</dl>
-</li>
-</ul>
-<a name="removeListener-io.atomix.core.set.SetEventListener-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>removeListener</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;removeListener(<a href="../../../../io/atomix/core/set/SetEventListener.html" title="interface in io.atomix.core.set">SetEventListener</a>&lt;<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;&nbsp;listener)</pre>
-<div class="block">Unregisters the specified listener.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>listener</code> - listener to unregister.</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>CompletableFuture that is completed when the operation completes</dd>
-</dl>
-</li>
-</ul>
-<a name="add-java.lang.Object-">
-<!--   -->
-</a><a name="add-E-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>add</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;add(<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&nbsp;element)</pre>
-<div class="block">Adds the specified element to this set if it is not already present (optional operation).</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>element</code> - element to add</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if this set did not already contain the specified element.</dd>
-</dl>
-</li>
-</ul>
-<a name="remove-java.lang.Object-">
-<!--   -->
-</a><a name="remove-E-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>remove</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;remove(<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&nbsp;element)</pre>
-<div class="block">Removes the specified element to this set if it is present (optional operation).</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>element</code> - element to remove</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if this set contained the specified element</dd>
-</dl>
-</li>
-</ul>
-<a name="size--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>size</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html?is-external=true" title="class or interface in java.lang">Integer</a>&gt;&nbsp;size()</pre>
-<div class="block">Returns the number of elements in the set.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>size of the set</dd>
-</dl>
-</li>
-</ul>
-<a name="isEmpty--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>isEmpty</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;isEmpty()</pre>
-<div class="block">Returns if the set is empty.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if this set is empty</dd>
-</dl>
-</li>
-</ul>
-<a name="clear--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>clear</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;clear()</pre>
-<div class="block">Removes all elements from the set.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>CompletableFuture that is completed when the operation completes</dd>
-</dl>
-</li>
-</ul>
-<a name="contains-java.lang.Object-">
-<!--   -->
-</a><a name="contains-E-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>contains</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;contains(<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&nbsp;element)</pre>
-<div class="block">Returns if this set contains the specified element.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>element</code> - element to check</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if this set contains the specified element</dd>
-</dl>
-</li>
-</ul>
-<a name="addAll-java.util.Collection-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addAll</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;addAll(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;&nbsp;c)</pre>
-<div class="block">Adds all of the elements in the specified collection to this set if they're not
- already present (optional operation).</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>c</code> - collection containing elements to be added to this set</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if this set contains all elements in the collection</dd>
-</dl>
-</li>
-</ul>
-<a name="containsAll-java.util.Collection-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>containsAll</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;containsAll(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;&nbsp;c)</pre>
-<div class="block">Returns if this set contains all the elements in specified collection.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>c</code> - collection</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if this set contains all elements in the collection</dd>
-</dl>
-</li>
-</ul>
-<a name="retainAll-java.util.Collection-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>retainAll</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;retainAll(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;&nbsp;c)</pre>
-<div class="block">Retains only the elements in this set that are contained in the specified collection (optional operation).</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>c</code> - collection containing elements to be retained in this set</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if this set changed as a result of the call</dd>
-</dl>
-</li>
-</ul>
-<a name="removeAll-java.util.Collection-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>removeAll</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;&nbsp;removeAll(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;&nbsp;c)</pre>
-<div class="block">Removes from this set all of its elements that are contained in the specified collection (optional operation).
- If the specified collection is also a set, this operation effectively modifies this set so that its
- value is the asymmetric set difference of the two sets.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>c</code> - collection containing elements to be removed from this set</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd><code>true</code> if this set changed as a result of the call</dd>
-</dl>
-</li>
-</ul>
-<a name="asDistributedSet--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>asDistributedSet</h4>
-<pre>default&nbsp;<a href="../../../../io/atomix/core/set/DistributedSet.html" title="interface in io.atomix.core.set">DistributedSet</a>&lt;<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;&nbsp;asDistributedSet()</pre>
-<div class="block">Returns a new <a href="../../../../io/atomix/core/set/DistributedSet.html" title="interface in io.atomix.core.set"><code>DistributedSet</code></a> that is backed by this instance.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>new <code>DistributedSet</code> instance</dd>
-</dl>
-</li>
-</ul>
-<a name="asDistributedSet-long-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>asDistributedSet</h4>
-<pre>default&nbsp;<a href="../../../../io/atomix/core/set/DistributedSet.html" title="interface in io.atomix.core.set">DistributedSet</a>&lt;<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;&nbsp;asDistributedSet(long&nbsp;timeoutMillis)</pre>
-<div class="block">Returns a new <a href="../../../../io/atomix/core/set/DistributedSet.html" title="interface in io.atomix.core.set"><code>DistributedSet</code></a> that is backed by this instance.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>timeoutMillis</code> - timeout duration for the returned DistributedSet operations</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>new <code>DistributedSet</code> instance</dd>
-</dl>
-</li>
-</ul>
-<a name="getAsImmutableSet--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getAsImmutableSet</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;? extends <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;&gt;&nbsp;getAsImmutableSet()</pre>
-<div class="block">Returns the entries as a immutable set. The returned set is a snapshot and will not reflect new changes made to
- this AsyncDistributedSet</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>immutable set copy</dd>
+<dd>primitive type</dd>
 </dl>
 </li>
 </ul>
@@ -533,6 +246,8 @@ extends <a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="int
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/AsyncPrimitive.html#sync--">AsyncPrimitive</a></code></span></div>
 <div class="block">Returns a synchronous wrapper around the asynchronous primitive.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html#sync--">sync</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html" title="interface in io.atomix.core.collection">AsyncDistributedCollection</a>&lt;<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;</code></dd>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../io/atomix/primitive/AsyncPrimitive.html#sync--">sync</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="interface in io.atomix.primitive">AsyncPrimitive</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -550,6 +265,8 @@ extends <a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="int
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../../io/atomix/primitive/AsyncPrimitive.html#sync-java.time.Duration-">AsyncPrimitive</a></code></span></div>
 <div class="block">Returns a synchronous wrapper around the asynchronous primitive.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html#sync-java.time.Duration-">sync</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html" title="interface in io.atomix.core.collection">AsyncDistributedCollection</a>&lt;<a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="type parameter in AsyncDistributedSet">E</a>&gt;</code></dd>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../../io/atomix/primitive/AsyncPrimitive.html#sync-java.time.Duration-">sync</a></code>&nbsp;in interface&nbsp;<code><a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="interface in io.atomix.primitive">AsyncPrimitive</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>

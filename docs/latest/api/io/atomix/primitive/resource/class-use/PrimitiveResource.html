@@ -85,49 +85,49 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.core.counter">io.atomix.core.counter</a></td>
 <td class="colLast">
-<div class="block">Distributed counter primitive interfaces.</div>
+<div class="block">Atomic counter primitive.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.core.election">io.atomix.core.election</a></td>
+<td class="colFirst"><a href="#io.atomix.core.idgenerator">io.atomix.core.idgenerator</a></td>
 <td class="colLast">
-<div class="block">Distributed leader election primitive interfaces.</div>
+<div class="block">Atomic ID generator primitive.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="#io.atomix.core.generator">io.atomix.core.generator</a></td>
+<td class="colFirst"><a href="#io.atomix.core.leadership">io.atomix.core.leadership</a></td>
 <td class="colLast">
-<div class="block">Distributed atomic ID generator primitive interfaces.</div>
+<div class="block">Distributed leader election primitives.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.core.lock">io.atomix.core.lock</a></td>
 <td class="colLast">
-<div class="block">Distributed lock primitive interfaces.</div>
+<div class="block">Distributed lock primitive.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.core.map">io.atomix.core.map</a></td>
 <td class="colLast">
-<div class="block">Distributed map primitive interfaces.</div>
+<div class="block">Atomic map primitive.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.core.queue">io.atomix.core.queue</a></td>
 <td class="colLast">
-<div class="block">Distributed queueing primitive interfaces.</div>
+<div class="block">Distributed queue primitive.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.core.semaphore">io.atomix.core.semaphore</a></td>
 <td class="colLast">
-<div class="block">Atomix profiles used to apply common node configurations.</div>
+<div class="block">Distributed semaphore primitive.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.core.set">io.atomix.core.set</a></td>
 <td class="colLast">
-<div class="block">Distributed set primitive interfaces.</div>
+<div class="block">Distributed set primitive.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -139,16 +139,22 @@
 <tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.core.value">io.atomix.core.value</a></td>
 <td class="colLast">
-<div class="block">Distributed value primitive interfaces.</div>
+<div class="block">Atomic value primitive.</div>
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.core.workqueue">io.atomix.core.workqueue</a></td>
+<td class="colLast">
+<div class="block">Distributed work processing primitives.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.primitive">io.atomix.primitive</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for defining and managing primitive types.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.primitive.resource">io.atomix.primitive.resource</a></td>
 <td class="colLast">
 <div class="block">Provides interfaces for defining REST APIs for distributed primitives.</div>
@@ -177,12 +183,12 @@
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="io.atomix.core.election">
+<li class="blockList"><a name="io.atomix.core.idgenerator">
 <!--   -->
 </a>
-<h3>Uses of <a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a> in <a href="../../../../../io/atomix/core/election/package-summary.html">io.atomix.core.election</a></h3>
+<h3>Uses of <a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a> in <a href="../../../../../io/atomix/core/idgenerator/package-summary.html">io.atomix.core.idgenerator</a></h3>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/core/election/package-summary.html">io.atomix.core.election</a> that return <a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Methods in <a href="../../../../../io/atomix/core/idgenerator/package-summary.html">io.atomix.core.idgenerator</a> that return <a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
@@ -190,17 +196,17 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">LeaderElectionType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/election/LeaderElectionType.html#newResource-io.atomix.core.election.LeaderElection-">newResource</a></span>(<a href="../../../../../io/atomix/core/election/LeaderElection.html" title="interface in io.atomix.core.election">LeaderElection</a>&lt;<a href="../../../../../io/atomix/core/election/LeaderElectionType.html" title="type parameter in LeaderElectionType">T</a>&gt;&nbsp;primitive)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">AtomicIdGeneratorType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/idgenerator/AtomicIdGeneratorType.html#newResource-io.atomix.core.idgenerator.AtomicIdGenerator-">newResource</a></span>(<a href="../../../../../io/atomix/core/idgenerator/AtomicIdGenerator.html" title="interface in io.atomix.core.idgenerator">AtomicIdGenerator</a>&nbsp;primitive)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
 </li>
-<li class="blockList"><a name="io.atomix.core.generator">
+<li class="blockList"><a name="io.atomix.core.leadership">
 <!--   -->
 </a>
-<h3>Uses of <a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a> in <a href="../../../../../io/atomix/core/generator/package-summary.html">io.atomix.core.generator</a></h3>
+<h3>Uses of <a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a> in <a href="../../../../../io/atomix/core/leadership/package-summary.html">io.atomix.core.leadership</a></h3>
 <table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
-<caption><span>Methods in <a href="../../../../../io/atomix/core/generator/package-summary.html">io.atomix.core.generator</a> that return <a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span>Methods in <a href="../../../../../io/atomix/core/leadership/package-summary.html">io.atomix.core.leadership</a> that return <a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a></span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
@@ -208,7 +214,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">AtomicIdGeneratorType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/generator/AtomicIdGeneratorType.html#newResource-io.atomix.core.generator.AtomicIdGenerator-">newResource</a></span>(<a href="../../../../../io/atomix/core/generator/AtomicIdGenerator.html" title="interface in io.atomix.core.generator">AtomicIdGenerator</a>&nbsp;primitive)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">LeaderElectionType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/leadership/LeaderElectionType.html#newResource-io.atomix.core.leadership.LeaderElection-">newResource</a></span>(<a href="../../../../../io/atomix/core/leadership/LeaderElection.html" title="interface in io.atomix.core.leadership">LeaderElection</a>&lt;<a href="../../../../../io/atomix/core/leadership/LeaderElectionType.html" title="type parameter in LeaderElectionType">T</a>&gt;&nbsp;primitive)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -244,7 +250,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMapType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMapType.html#newResource-io.atomix.core.map.ConsistentMap-">newResource</a></span>(<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="interface in io.atomix.core.map">ConsistentMap</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMapType.html" title="type parameter in ConsistentMapType">K</a>,<a href="../../../../../io/atomix/core/map/ConsistentMapType.html" title="type parameter in ConsistentMapType">V</a>&gt;&nbsp;primitive)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">AtomicMapType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMapType.html#newResource-io.atomix.core.map.AtomicMap-">newResource</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="interface in io.atomix.core.map">AtomicMap</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMapType.html" title="type parameter in AtomicMapType">K</a>,<a href="../../../../../io/atomix/core/map/AtomicMapType.html" title="type parameter in AtomicMapType">V</a>&gt;&nbsp;primitive)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -262,7 +268,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">WorkQueueType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/queue/WorkQueueType.html#newResource-io.atomix.core.queue.WorkQueue-">newResource</a></span>(<a href="../../../../../io/atomix/core/queue/WorkQueue.html" title="interface in io.atomix.core.queue">WorkQueue</a>&lt;<a href="../../../../../io/atomix/core/queue/WorkQueueType.html" title="type parameter in WorkQueueType">E</a>&gt;&nbsp;primitive)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">DistributedQueueType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/queue/DistributedQueueType.html#newResource-io.atomix.core.queue.DistributedQueue-">newResource</a></span>(<a href="../../../../../io/atomix/core/queue/DistributedQueue.html" title="interface in io.atomix.core.queue">DistributedQueue</a>&lt;<a href="../../../../../io/atomix/core/queue/DistributedQueueType.html" title="type parameter in DistributedQueueType">E</a>&gt;&nbsp;primitive)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -316,7 +322,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DocumentTreeType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/DocumentTreeType.html#newResource-io.atomix.core.tree.DocumentTree-">newResource</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentTree.html" title="interface in io.atomix.core.tree">DocumentTree</a>&lt;<a href="../../../../../io/atomix/core/tree/DocumentTreeType.html" title="type parameter in DocumentTreeType">V</a>&gt;&nbsp;primitive)</code>&nbsp;</td>
+<td class="colLast"><span class="typeNameLabel">AtomicDocumentTreeType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/AtomicDocumentTreeType.html#newResource-io.atomix.core.tree.AtomicDocumentTree-">newResource</a></span>(<a href="../../../../../io/atomix/core/tree/AtomicDocumentTree.html" title="interface in io.atomix.core.tree">AtomicDocumentTree</a>&lt;<a href="../../../../../io/atomix/core/tree/AtomicDocumentTreeType.html" title="type parameter in AtomicDocumentTreeType">V</a>&gt;&nbsp;primitive)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -335,6 +341,24 @@
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a></code></td>
 <td class="colLast"><span class="typeNameLabel">AtomicValueType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/value/AtomicValueType.html#newResource-io.atomix.core.value.AtomicValue-">newResource</a></span>(<a href="../../../../../io/atomix/core/value/AtomicValue.html" title="interface in io.atomix.core.value">AtomicValue</a>&lt;<a href="../../../../../io/atomix/core/value/AtomicValueType.html" title="type parameter in AtomicValueType">V</a>&gt;&nbsp;primitive)</code>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.core.workqueue">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a> in <a href="../../../../../io/atomix/core/workqueue/package-summary.html">io.atomix.core.workqueue</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/core/workqueue/package-summary.html">io.atomix.core.workqueue</a> that return <a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/resource/PrimitiveResource.html" title="interface in io.atomix.primitive.resource">PrimitiveResource</a></code></td>
+<td class="colLast"><span class="typeNameLabel">WorkQueueType.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/workqueue/WorkQueueType.html#newResource-io.atomix.core.workqueue.WorkQueue-">newResource</a></span>(<a href="../../../../../io/atomix/core/workqueue/WorkQueue.html" title="interface in io.atomix.core.workqueue">WorkQueue</a>&lt;<a href="../../../../../io/atomix/core/workqueue/WorkQueueType.html" title="type parameter in WorkQueueType">E</a>&gt;&nbsp;primitive)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

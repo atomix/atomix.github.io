@@ -44,7 +44,7 @@
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/atomix/core/map/package-summary.html">Prev&nbsp;Package</a></li>
-<li><a href="../../../../io/atomix/core/profile/package-summary.html">Next&nbsp;Package</a></li>
+<li><a href="../../../../io/atomix/core/multiset/package-summary.html">Next&nbsp;Package</a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/core/multimap/package-summary.html" target="_top">Frames</a></li>
@@ -72,7 +72,7 @@
 <div class="header">
 <h1 title="Package" class="title">Package&nbsp;io.atomix.core.multimap</h1>
 <div class="docSummary">
-<div class="block">Distributed multimap primitive interfaces.</div>
+<div class="block">Atomic multimap primitive.</div>
 </div>
 <p>See:&nbsp;<a href="#package.description">Description</a></p>
 </div>
@@ -87,20 +87,20 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/multimap/AsyncConsistentMultimap.html" title="interface in io.atomix.core.multimap">AsyncConsistentMultimap</a>&lt;K,V&gt;</td>
+<td class="colFirst"><a href="../../../../io/atomix/core/multimap/AsyncAtomicMultimap.html" title="interface in io.atomix.core.multimap">AsyncAtomicMultimap</a>&lt;K,V&gt;</td>
 <td class="colLast">
 <div class="block">Interface for a distributed multimap.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/multimap/ConsistentMultimap.html" title="interface in io.atomix.core.multimap">ConsistentMultimap</a>&lt;K,V&gt;</td>
+<td class="colFirst"><a href="../../../../io/atomix/core/multimap/AtomicMultimap.html" title="interface in io.atomix.core.multimap">AtomicMultimap</a>&lt;K,V&gt;</td>
 <td class="colLast">
 <div class="block">This provides a synchronous version of the functionality provided by
- <a href="../../../../io/atomix/core/multimap/AsyncConsistentMultimap.html" title="interface in io.atomix.core.multimap"><code>AsyncConsistentMultimap</code></a>.</div>
+ <a href="../../../../io/atomix/core/multimap/AsyncAtomicMultimap.html" title="interface in io.atomix.core.multimap"><code>AsyncAtomicMultimap</code></a>.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/multimap/MultimapEventListener.html" title="interface in io.atomix.core.multimap">MultimapEventListener</a>&lt;K,V&gt;</td>
+<td class="colFirst"><a href="../../../../io/atomix/core/multimap/AtomicMultimapEventListener.html" title="interface in io.atomix.core.multimap">AtomicMultimapEventListener</a>&lt;K,V&gt;</td>
 <td class="colLast">
 <div class="block">Listener to be notified about updates to a ConsistentMultimap.</div>
 </td>
@@ -117,27 +117,27 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/multimap/ConsistentMultimapBuilder.html" title="class in io.atomix.core.multimap">ConsistentMultimapBuilder</a>&lt;K,V&gt;</td>
+<td class="colFirst"><a href="../../../../io/atomix/core/multimap/AtomicMultimapBuilder.html" title="class in io.atomix.core.multimap">AtomicMultimapBuilder</a>&lt;K,V&gt;</td>
 <td class="colLast">
 <div class="block">A builder class for <code>AsyncConsistentMultimap</code>.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/multimap/ConsistentMultimapConfig.html" title="class in io.atomix.core.multimap">ConsistentMultimapConfig</a></td>
+<td class="colFirst"><a href="../../../../io/atomix/core/multimap/AtomicMultimapConfig.html" title="class in io.atomix.core.multimap">AtomicMultimapConfig</a></td>
 <td class="colLast">
 <div class="block">Consistent multimap configuration.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/multimap/ConsistentMultimapType.html" title="class in io.atomix.core.multimap">ConsistentMultimapType</a>&lt;K,V&gt;</td>
+<td class="colFirst"><a href="../../../../io/atomix/core/multimap/AtomicMultimapEvent.html" title="class in io.atomix.core.multimap">AtomicMultimapEvent</a>&lt;K,V&gt;</td>
 <td class="colLast">
-<div class="block">Consistent multimap primitive type.</div>
+<div class="block">Representation of a ConsistentMultimap update notification.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/multimap/MultimapEvent.html" title="class in io.atomix.core.multimap">MultimapEvent</a>&lt;K,V&gt;</td>
+<td class="colFirst"><a href="../../../../io/atomix/core/multimap/AtomicMultimapType.html" title="class in io.atomix.core.multimap">AtomicMultimapType</a>&lt;K,V&gt;</td>
 <td class="colLast">
-<div class="block">Representation of a ConsistentMultimap update notification.</div>
+<div class="block">Consistent multimap primitive type.</div>
 </td>
 </tr>
 </tbody>
@@ -152,7 +152,7 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/multimap/MultimapEvent.Type.html" title="enum in io.atomix.core.multimap">MultimapEvent.Type</a></td>
+<td class="colFirst"><a href="../../../../io/atomix/core/multimap/AtomicMultimapEvent.Type.html" title="enum in io.atomix.core.multimap">AtomicMultimapEvent.Type</a></td>
 <td class="colLast">
 <div class="block">MultimapEvent type.</div>
 </td>
@@ -165,7 +165,7 @@
 <!--   -->
 </a>
 <h2 title="Package io.atomix.core.multimap Description">Package io.atomix.core.multimap Description</h2>
-<div class="block">Distributed multimap primitive interfaces.</div>
+<div class="block">Atomic multimap primitive.</div>
 </div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar.bottom">
@@ -189,7 +189,7 @@
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../../io/atomix/core/map/package-summary.html">Prev&nbsp;Package</a></li>
-<li><a href="../../../../io/atomix/core/profile/package-summary.html">Next&nbsp;Package</a></li>
+<li><a href="../../../../io/atomix/core/multiset/package-summary.html">Next&nbsp;Package</a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/core/multimap/package-summary.html" target="_top">Frames</a></li>

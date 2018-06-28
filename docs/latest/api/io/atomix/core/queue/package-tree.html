@@ -83,36 +83,76 @@
 <ul>
 <li type="circle">io.atomix.primitive.<a href="../../../../io/atomix/primitive/DistributedPrimitiveBuilder.html" title="class in io.atomix.primitive"><span class="typeNameLink">DistributedPrimitiveBuilder</span></a>&lt;B,C,P&gt; (implements io.atomix.utils.<a href="../../../../io/atomix/utils/Builder.html" title="interface in io.atomix.utils">Builder</a>&lt;T&gt;)
 <ul>
-<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/WorkQueueBuilder.html" title="class in io.atomix.core.queue"><span class="typeNameLink">WorkQueueBuilder</span></a>&lt;E&gt;</li>
+<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/DistributedQueueBuilder.html" title="class in io.atomix.core.queue"><span class="typeNameLink">DistributedQueueBuilder</span></a>&lt;E&gt;</li>
 </ul>
 </li>
+<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/DistributedQueueType.html" title="class in io.atomix.core.queue"><span class="typeNameLink">DistributedQueueType</span></a>&lt;E&gt; (implements io.atomix.primitive.<a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&lt;B,C,P&gt;)</li>
 <li type="circle">io.atomix.primitive.config.<a href="../../../../io/atomix/primitive/config/PrimitiveConfig.html" title="class in io.atomix.primitive.config"><span class="typeNameLink">PrimitiveConfig</span></a>&lt;C&gt; (implements io.atomix.utils.config.<a href="../../../../io/atomix/utils/config/NamedConfig.html" title="interface in io.atomix.utils.config">NamedConfig</a>&lt;C&gt;, io.atomix.utils.config.<a href="../../../../io/atomix/utils/config/TypedConfig.html" title="interface in io.atomix.utils.config">TypedConfig</a>&lt;C,T&gt;)
 <ul>
-<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/WorkQueueConfig.html" title="class in io.atomix.core.queue"><span class="typeNameLink">WorkQueueConfig</span></a></li>
+<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/DistributedQueueConfig.html" title="class in io.atomix.core.queue"><span class="typeNameLink">DistributedQueueConfig</span></a></li>
 </ul>
 </li>
-<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/Task.html" title="class in io.atomix.core.queue"><span class="typeNameLink">Task</span></a>&lt;E&gt;</li>
-<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/WorkQueueStats.html" title="class in io.atomix.core.queue"><span class="typeNameLink">WorkQueueStats</span></a></li>
-<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/WorkQueueStats.Builder.html" title="class in io.atomix.core.queue"><span class="typeNameLink">WorkQueueStats.Builder</span></a></li>
-<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/WorkQueueType.html" title="class in io.atomix.core.queue"><span class="typeNameLink">WorkQueueType</span></a>&lt;E&gt; (implements io.atomix.primitive.<a href="../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&lt;B,C,P&gt;)</li>
 </ul>
 </li>
 </ul>
 <h2 title="Interface Hierarchy">Interface Hierarchy</h2>
 <ul>
+<li type="circle">io.atomix.core.collection.<a href="../../../../io/atomix/core/collection/AsyncIterable.html" title="interface in io.atomix.core.collection"><span class="typeNameLink">AsyncIterable</span></a>&lt;T&gt;
+<ul>
+<li type="circle">io.atomix.core.collection.<a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html" title="interface in io.atomix.core.collection"><span class="typeNameLink">AsyncDistributedCollection</span></a>&lt;E&gt; (also extends io.atomix.primitive.<a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="interface in io.atomix.primitive">AsyncPrimitive</a>)
+<ul>
+<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/AsyncDistributedQueue.html" title="interface in io.atomix.core.queue"><span class="typeNameLink">AsyncDistributedQueue</span></a>&lt;E&gt;</li>
+</ul>
+</li>
+</ul>
+</li>
 <li type="circle">io.atomix.primitive.<a href="../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive"><span class="typeNameLink">DistributedPrimitive</span></a>
 <ul>
 <li type="circle">io.atomix.primitive.<a href="../../../../io/atomix/primitive/AsyncPrimitive.html" title="interface in io.atomix.primitive"><span class="typeNameLink">AsyncPrimitive</span></a>
 <ul>
-<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/AsyncWorkQueue.html" title="interface in io.atomix.core.queue"><span class="typeNameLink">AsyncWorkQueue</span></a>&lt;E&gt;</li>
+<li type="circle">io.atomix.core.collection.<a href="../../../../io/atomix/core/collection/AsyncDistributedCollection.html" title="interface in io.atomix.core.collection"><span class="typeNameLink">AsyncDistributedCollection</span></a>&lt;E&gt; (also extends io.atomix.core.collection.<a href="../../../../io/atomix/core/collection/AsyncIterable.html" title="interface in io.atomix.core.collection">AsyncIterable</a>&lt;T&gt;)
+<ul>
+<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/AsyncDistributedQueue.html" title="interface in io.atomix.core.queue"><span class="typeNameLink">AsyncDistributedQueue</span></a>&lt;E&gt;</li>
+</ul>
+</li>
 </ul>
 </li>
 <li type="circle">io.atomix.primitive.<a href="../../../../io/atomix/primitive/SyncPrimitive.html" title="interface in io.atomix.primitive"><span class="typeNameLink">SyncPrimitive</span></a>
 <ul>
-<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/WorkQueue.html" title="interface in io.atomix.core.queue"><span class="typeNameLink">WorkQueue</span></a>&lt;E&gt;</li>
+<li type="circle">io.atomix.core.collection.<a href="../../../../io/atomix/core/collection/DistributedCollection.html" title="interface in io.atomix.core.collection"><span class="typeNameLink">DistributedCollection</span></a>&lt;E&gt; (also extends java.util.<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;E&gt;, io.atomix.core.collection.<a href="../../../../io/atomix/core/collection/SyncIterable.html" title="interface in io.atomix.core.collection">SyncIterable</a>&lt;T&gt;)
+<ul>
+<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/DistributedQueue.html" title="interface in io.atomix.core.queue"><span class="typeNameLink">DistributedQueue</span></a>&lt;E&gt; (also extends java.util.<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Queue.html?is-external=true" title="class or interface in java.util">Queue</a>&lt;E&gt;)</li>
 </ul>
 </li>
-<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/Topic.html" title="interface in io.atomix.core.queue"><span class="typeNameLink">Topic</span></a>&lt;T&gt;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li type="circle">java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang"><span class="typeNameLink">Iterable</span></a>&lt;T&gt;
+<ul>
+<li type="circle">java.util.<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util"><span class="typeNameLink">Collection</span></a>&lt;E&gt;
+<ul>
+<li type="circle">io.atomix.core.collection.<a href="../../../../io/atomix/core/collection/DistributedCollection.html" title="interface in io.atomix.core.collection"><span class="typeNameLink">DistributedCollection</span></a>&lt;E&gt; (also extends io.atomix.core.collection.<a href="../../../../io/atomix/core/collection/SyncIterable.html" title="interface in io.atomix.core.collection">SyncIterable</a>&lt;T&gt;, io.atomix.primitive.<a href="../../../../io/atomix/primitive/SyncPrimitive.html" title="interface in io.atomix.primitive">SyncPrimitive</a>)
+<ul>
+<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/DistributedQueue.html" title="interface in io.atomix.core.queue"><span class="typeNameLink">DistributedQueue</span></a>&lt;E&gt; (also extends java.util.<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Queue.html?is-external=true" title="class or interface in java.util">Queue</a>&lt;E&gt;)</li>
+</ul>
+</li>
+<li type="circle">java.util.<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Queue.html?is-external=true" title="class or interface in java.util"><span class="typeNameLink">Queue</span></a>&lt;E&gt;
+<ul>
+<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/DistributedQueue.html" title="interface in io.atomix.core.queue"><span class="typeNameLink">DistributedQueue</span></a>&lt;E&gt; (also extends io.atomix.core.collection.<a href="../../../../io/atomix/core/collection/DistributedCollection.html" title="interface in io.atomix.core.collection">DistributedCollection</a>&lt;E&gt;)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li type="circle">io.atomix.core.collection.<a href="../../../../io/atomix/core/collection/SyncIterable.html" title="interface in io.atomix.core.collection"><span class="typeNameLink">SyncIterable</span></a>&lt;T&gt;
+<ul>
+<li type="circle">io.atomix.core.collection.<a href="../../../../io/atomix/core/collection/DistributedCollection.html" title="interface in io.atomix.core.collection"><span class="typeNameLink">DistributedCollection</span></a>&lt;E&gt; (also extends java.util.<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;E&gt;, io.atomix.primitive.<a href="../../../../io/atomix/primitive/SyncPrimitive.html" title="interface in io.atomix.primitive">SyncPrimitive</a>)
+<ul>
+<li type="circle">io.atomix.core.queue.<a href="../../../../io/atomix/core/queue/DistributedQueue.html" title="interface in io.atomix.core.queue"><span class="typeNameLink">DistributedQueue</span></a>&lt;E&gt; (also extends java.util.<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Queue.html?is-external=true" title="class or interface in java.util">Queue</a>&lt;E&gt;)</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

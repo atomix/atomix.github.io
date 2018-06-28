@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var methods = {"i0":18,"i1":6,"i2":6};
+var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -101,7 +101,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Superinterfaces:</dt>
-<dd><a href="../../../../io/atomix/utils/Named.html" title="interface in io.atomix.utils">Named</a>, <a href="../../../../io/atomix/utils/NamedType.html" title="interface in io.atomix.utils">NamedType</a>, <a href="../../../../io/atomix/utils/Type.html" title="interface in io.atomix.utils">Type</a></dd>
+<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html?is-external=true" title="class or interface in java.lang">Comparable</a>&lt;<a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a>&lt;C&gt;&gt;, <a href="../../../../io/atomix/utils/Named.html" title="interface in io.atomix.utils">Named</a>, <a href="../../../../io/atomix/utils/NamedType.html" title="interface in io.atomix.utils">NamedType</a>, <a href="../../../../io/atomix/utils/Type.html" title="interface in io.atomix.utils">Type</a></dd>
 </dl>
 <dl>
 <dt>All Known Implementing Classes:</dt>
@@ -114,7 +114,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public static interface <span class="typeNameLabel">PrimitiveProtocol.Type&lt;C extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfig.html" title="class in io.atomix.primitive.protocol">PrimitiveProtocolConfig</a>&lt;C&gt;&gt;</span>
-extends <a href="../../../../io/atomix/utils/NamedType.html" title="interface in io.atomix.utils">NamedType</a></pre>
+extends <a href="../../../../io/atomix/utils/NamedType.html" title="interface in io.atomix.utils">NamedType</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html?is-external=true" title="class or interface in java.lang">Comparable</a>&lt;<a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a>&lt;C&gt;&gt;</pre>
 <div class="block">Distributed primitive protocol type.</div>
 </li>
 </ul>
@@ -129,18 +129,22 @@ extends <a href="../../../../io/atomix/utils/NamedType.html" title="interface in
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t5" class="tableTab"><span><a href="javascript:show(16);">Default Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>default int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html#compareTo-io.atomix.primitive.protocol.PrimitiveProtocol.Type-">compareTo</a></span>(<a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a>&lt;<a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="type parameter in PrimitiveProtocol.Type">C</a>&gt;&nbsp;o)</code>&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="type parameter in PrimitiveProtocol.Type">C</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html#newConfig--">newConfig</a></span>()</code>
 <div class="block">Returns a new protocol configuration.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html#newProtocol-C-">newProtocol</a></span>(<a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="type parameter in PrimitiveProtocol.Type">C</a>&nbsp;config)</code>
 <div class="block">Creates a new protocol instance.</div>
@@ -194,7 +198,7 @@ extends <a href="../../../../io/atomix/utils/NamedType.html" title="interface in
 </a><a name="newProtocol-C-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>newProtocol</h4>
 <pre><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a>&nbsp;newProtocol(<a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="type parameter in PrimitiveProtocol.Type">C</a>&nbsp;config)</pre>
@@ -204,6 +208,19 @@ extends <a href="../../../../io/atomix/utils/NamedType.html" title="interface in
 <dd><code>config</code> - the protocol configuration</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the protocol instance</dd>
+</dl>
+</li>
+</ul>
+<a name="compareTo-io.atomix.primitive.protocol.PrimitiveProtocol.Type-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>compareTo</h4>
+<pre>default&nbsp;int&nbsp;compareTo(<a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a>&lt;<a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="type parameter in PrimitiveProtocol.Type">C</a>&gt;&nbsp;o)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html?is-external=true#compareTo-T-" title="class or interface in java.lang">compareTo</a></code>&nbsp;in interface&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html?is-external=true" title="class or interface in java.lang">Comparable</a>&lt;<a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol.Type</a>&lt;<a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="type parameter in PrimitiveProtocol.Type">C</a> extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfig.html" title="class in io.atomix.primitive.protocol">PrimitiveProtocolConfig</a>&lt;<a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Type.html" title="type parameter in PrimitiveProtocol.Type">C</a>&gt;&gt;&gt;</code></dd>
 </dl>
 </li>
 </ul>

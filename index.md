@@ -21,7 +21,7 @@ Atomix is an event-driven framework for coordinating fault-tolerant distributed 
     <div class="row">
 
 <div class="col-sm-7" markdown="1">
-{% include sync-tabs-params.html active="#atomic-value:AtomicValue" inactive="#atomic-counter:AtomicCounter,#consistent-map:ConsistentMap,#consistent-multimap:ConsistentMultimap,#distributed-set:DistributedSet,#work-queue:WorkQueue,#document-tree:DocumentTree,#distributed-lock:DistributedLock,#leader-election:LeaderElection,#cluster-management:Cluster Management,#direct-messaging:Direct Messaging,#publish-subscribe:Publish-Subscribe" %}
+{% include sync-tabs-params.html active="#atomic-value:AtomicValue" inactive="#atomic-counter:AtomicCounter,#atomic-map:AtomicMap,#atomic-multimap:AtomicMultimap,#distributed-set:DistributedSet,#distributed-list:DistributedList,#distributed-queue:DistributedQueue,#work-queue:WorkQueue,#atomic-document-tree:AtomicDocumentTree,#distributed-lock:DistributedLock,#distributed-semaphore:DistributedSemaphore,#leader-election:LeaderElection,#cluster-management:Cluster Management,#direct-messaging:Direct Messaging,#publish-subscribe:Publish-Subscribe" %}
 <div class="tab-content" markdown="1">
 <div class="tab-pane active" id="atomic-value" markdown="1">
 ```java
@@ -59,7 +59,7 @@ long value = counter.incrementAndGet();
 counter.set(0);
 ```
 </div>
-<div class="tab-pane" id="consistent-map" markdown="1">
+<div class="tab-pane" id="atomic-map" markdown="1">
 ```java
 // Create an Atomix instance from a HOCON configuration file
 Atomix atomix = new Atomix("atomix.conf");
@@ -67,8 +67,8 @@ Atomix atomix = new Atomix("atomix.conf");
 // Start the instance
 atomix.start().join();
 
-// Create a cached ConsistentMap
-ConsistentMap<String, String> map = atomix.consistentMapBuilder("my-map")
+// Create a cached AtomicMap
+AtomicMap<String, String> map = atomix.atomicMapBuilder("my-map")
   .withCacheEnabled()
   .withCacheSize(100)
   .build();
@@ -85,7 +85,7 @@ while (!map.put("foo", "Hello world again!", value.version())) {
 }
 ```
 </div>
-<div class="tab-pane" id="consistent-multimap" markdown="1">
+<div class="tab-pane" id="atomic-multimap" markdown="1">
 ```java
 // Create an Atomix instance from a HOCON configuration file
 Atomix atomix = new Atomix("atomix.conf");
@@ -94,7 +94,7 @@ Atomix atomix = new Atomix("atomix.conf");
 atomix.start().join();
 
 // Get or create a multimap
-ConsistentMultimap<String, String> multimap = atomix.getConsistentMultimap("my-multimap");
+AtomicMultimap<String, String> multimap = atomix.getAtomicMultimap("my-multimap");
 
 // Add a value to a key
 multimap.put("foo", "Hello world!");
@@ -126,6 +126,52 @@ if (set.contains("foo")) {
 }
 ```
 </div>
+<div class="tab-pane" id="distributed-list" markdown="1">
+```java
+// Create an Atomix instance from a HOCON configuration file
+Atomix atomix = new Atomix("atomix.conf");
+
+// Start the instance
+atomix.start().join();
+
+// Get or create a distributed list
+DistributedList<String> list = atomix.getList("my-list");
+
+// Add a value to the list
+list.add("foo");
+
+// Get a value from the list
+String foo = list.get(0);
+
+// Stream all values in the list
+list.stream().forEach(value -> {
+  ...
+});
+```
+</div>
+<div class="tab-pane" id="distributed-queue" markdown="1">
+```java
+// Create an Atomix instance from a HOCON configuration file
+Atomix atomix = new Atomix("atomix.conf");
+
+// Start the instance
+atomix.start().join();
+
+// Get or create a distributed queue
+DistributedList<String> queue = atomix.getQueue("my-queue");
+
+// Add a value to the queue
+queue.offer("foo");
+
+// Get a value from the queue
+String next = queue.poll();
+
+// Stream all values in the queue
+queue.stream().forEach(value -> {
+  ...
+});
+```
+</div>
 <div class="tab-pane" id="work-queue" markdown="1">
 ```java
 // Create an Atomix instance from a HOCON configuration file
@@ -135,7 +181,7 @@ Atomix atomix = new Atomix("atomix.conf");
 atomix.start().join();
 ```
 </div>
-<div class="tab-pane" id="document-tree" markdown="1">
+<div class="tab-pane" id="atomic-document-tree" markdown="1">
 ```java
 // Create an Atomix instance from a HOCON configuration file
 Atomix atomix = new Atomix("atomix.conf");
@@ -154,6 +200,40 @@ atomix.start().join();
 
 // Get or create a distributed lock
 DistributedLock lock = atomix.getLock("my-lock");
+
+// Acquire the lock
+lock.lock();
+
+// Perform some functions and then release the lock
+try {
+  ...
+} finally {
+  lock.unlock();
+}
+
+// Attempt to acquire the lock until a timeout
+lock.lock(Duration.ofSeconds(5));
+```
+</div>
+<div class="tab-pane" id="distributed-semaphore" markdown="1">
+```java
+// Create an Atomix instance from a HOCON configuration file
+Atomix atomix = new Atomix("atomix.conf");
+
+// Start the instance
+atomix.start().join();
+
+// Get or create a distributed semaphore
+DistributedSemaphore semaphore = atomix.getSemaphore("my-semaphore");
+
+// Acquire the semaphore
+semaphore.acquire();
+
+try {
+  ...
+} finally {
+  semaphore.release();
+}
 
 // Acquire the lock
 lock.lock();

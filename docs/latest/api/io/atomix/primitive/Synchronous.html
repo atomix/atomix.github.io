@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -191,8 +191,14 @@ implements <a href="../../../io/atomix/primitive/SyncPrimitive.html" title="inte
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code><a href="../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/primitive/Synchronous.html#protocol--">protocol</a></span>()</code>
+<div class="block">Returns the primitive protocol.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/primitive/Synchronous.html#primitiveType--">primitiveType</a></span>()</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/primitive/Synchronous.html#type--">type</a></span>()</code>
 <div class="block">Returns the type of primitive.</div>
 </td>
 </tr>
@@ -268,20 +274,37 @@ implements <a href="../../../io/atomix/primitive/SyncPrimitive.html" title="inte
 </dl>
 </li>
 </ul>
-<a name="primitiveType--">
+<a name="type--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>primitiveType</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;primitiveType()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/primitive/DistributedPrimitive.html#primitiveType--">DistributedPrimitive</a></code></span></div>
+<h4>type</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&nbsp;type()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/primitive/DistributedPrimitive.html#type--">DistributedPrimitive</a></code></span></div>
 <div class="block">Returns the type of primitive.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../io/atomix/primitive/DistributedPrimitive.html#primitiveType--">primitiveType</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a></code></dd>
+<dd><code><a href="../../../io/atomix/primitive/DistributedPrimitive.html#type--">type</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>primitive type</dd>
+</dl>
+</li>
+</ul>
+<a name="protocol--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>protocol</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a>&nbsp;protocol()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../io/atomix/primitive/DistributedPrimitive.html#protocol--">DistributedPrimitive</a></code></span></div>
+<div class="block">Returns the primitive protocol.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../io/atomix/primitive/DistributedPrimitive.html#protocol--">protocol</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a></code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the primitive protocol</dd>
 </dl>
 </li>
 </ul>

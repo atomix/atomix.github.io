@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -99,9 +99,14 @@ var activeTableTab = "activeTableTab";
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt>All Superinterfaces:</dt>
+<dd><a href="../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a></dd>
+</dl>
 <hr>
 <br>
-<pre>public interface <span class="typeNameLabel">TransactionParticipant&lt;T&gt;</span></pre>
+<pre>public interface <span class="typeNameLabel">TransactionParticipant&lt;T&gt;</span>
+extends <a href="../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a></pre>
 <div class="block">Transaction participant.</div>
 </li>
 </ul>
@@ -109,6 +114,21 @@ var activeTableTab = "activeTableTab";
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- =========== FIELD SUMMARY =========== -->
+<ul class="blockList">
+<li class="blockList"><a name="field.summary">
+<!--   -->
+</a>
+<h3>Field Summary</h3>
+<ul class="blockList">
+<li class="blockList"><a name="fields.inherited.from.class.io.atomix.primitive.DistributedPrimitive">
+<!--   -->
+</a>
+<h3>Fields inherited from interface&nbsp;io.atomix.primitive.<a href="../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a></h3>
+<code><a href="../../../../io/atomix/primitive/DistributedPrimitive.html#DEFAULT_OPERATION_TIMEOUT_MILLIS">DEFAULT_OPERATION_TIMEOUT_MILLIS</a></code></li>
+</ul>
+</li>
+</ul>
 <!-- ========== METHOD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="method.summary">
@@ -123,29 +143,42 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/transaction/TransactionParticipant.html#close--">close</a></span>()</code>
+<div class="block">Closes the participant.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/transaction/TransactionParticipant.html#commit--">commit</a></span>()</code>
 <div class="block">Commits the participant.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/core/transaction/TransactionLog.html" title="class in io.atomix.core.transaction">TransactionLog</a>&lt;<a href="../../../../io/atomix/core/transaction/TransactionParticipant.html" title="type parameter in TransactionParticipant">T</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/transaction/TransactionParticipant.html#log--">log</a></span>()</code>
 <div class="block">Returns the participant's transaction log.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Boolean.html?is-external=true" title="class or interface in java.lang">Boolean</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/transaction/TransactionParticipant.html#prepare--">prepare</a></span>()</code>
 <div class="block">Prepares the participant.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/transaction/TransactionParticipant.html#rollback--">rollback</a></span>()</code>
 <div class="block">Rolls back the participant.</div>
 </td>
 </tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.primitive.DistributedPrimitive">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;io.atomix.primitive.<a href="../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a></h3>
+<code><a href="../../../../io/atomix/primitive/DistributedPrimitive.html#addStateChangeListener-java.util.function.Consumer-">addStateChangeListener</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#name--">name</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#protocol--">protocol</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#removeStateChangeListener-java.util.function.Consumer-">removeStateChangeListener</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#type--">type</a></code></li>
+</ul>
 </li>
 </ul>
 </li>
@@ -205,7 +238,7 @@ var activeTableTab = "activeTableTab";
 <a name="rollback--">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>rollback</h4>
 <pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;rollback()</pre>
@@ -213,6 +246,20 @@ var activeTableTab = "activeTableTab";
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a future to be completed once the participant has been rolled back</dd>
+</dl>
+</li>
+</ul>
+<a name="close--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>close</h4>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;close()</pre>
+<div class="block">Closes the participant.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a future to be completed once the participant has been closed</dd>
 </dl>
 </li>
 </ul>

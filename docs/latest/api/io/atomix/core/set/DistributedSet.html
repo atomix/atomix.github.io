@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6};
+var methods = {"i0":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -105,12 +105,12 @@ var activeTableTab = "activeTableTab";
 </dl>
 <dl>
 <dt>All Superinterfaces:</dt>
-<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;E&gt;, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;E&gt;, <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;E&gt;, <a href="../../../../io/atomix/primitive/SyncPrimitive.html" title="interface in io.atomix.primitive">SyncPrimitive</a></dd>
+<dd><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;E&gt;, <a href="../../../../io/atomix/core/collection/DistributedCollection.html" title="interface in io.atomix.core.collection">DistributedCollection</a>&lt;E&gt;, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;E&gt;, <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;E&gt;, <a href="../../../../io/atomix/core/collection/SyncIterable.html" title="interface in io.atomix.core.collection">SyncIterable</a>&lt;E&gt;, <a href="../../../../io/atomix/primitive/SyncPrimitive.html" title="interface in io.atomix.primitive">SyncPrimitive</a></dd>
 </dl>
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">DistributedSet&lt;E&gt;</span>
-extends <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;E&gt;, <a href="../../../../io/atomix/primitive/SyncPrimitive.html" title="interface in io.atomix.primitive">SyncPrimitive</a></pre>
+extends <a href="../../../../io/atomix/core/collection/DistributedCollection.html" title="interface in io.atomix.core.collection">DistributedCollection</a>&lt;E&gt;, <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;E&gt;</pre>
 <div class="block">A distributed collection designed for holding unique elements.</div>
 </li>
 </ul>
@@ -146,25 +146,33 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/DistributedSet.html#addListener-io.atomix.core.set.SetEventListener-">addListener</a></span>(<a href="../../../../io/atomix/core/set/SetEventListener.html" title="interface in io.atomix.core.set">SetEventListener</a>&lt;<a href="../../../../io/atomix/core/set/DistributedSet.html" title="type parameter in DistributedSet">E</a>&gt;&nbsp;listener)</code>
-<div class="block">Registers the specified listener to be notified whenever
- the set is updated.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/core/set/AsyncDistributedSet.html" title="interface in io.atomix.core.set">AsyncDistributedSet</a>&lt;<a href="../../../../io/atomix/core/set/DistributedSet.html" title="type parameter in DistributedSet">E</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/DistributedSet.html#async--">async</a></span>()</code>
 <div class="block">Returns the underlying asynchronous primitive.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/set/DistributedSet.html#removeListener-io.atomix.core.set.SetEventListener-">removeListener</a></span>(<a href="../../../../io/atomix/core/set/SetEventListener.html" title="interface in io.atomix.core.set">SetEventListener</a>&lt;<a href="../../../../io/atomix/core/set/DistributedSet.html" title="type parameter in DistributedSet">E</a>&gt;&nbsp;listener)</code>
-<div class="block">Unregisters the specified listener.</div>
-</td>
-</tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.core.collection.DistributedCollection">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;io.atomix.core.collection.<a href="../../../../io/atomix/core/collection/DistributedCollection.html" title="interface in io.atomix.core.collection">DistributedCollection</a></h3>
+<code><a href="../../../../io/atomix/core/collection/DistributedCollection.html#addListener-io.atomix.core.collection.CollectionEventListener-">addListener</a>, <a href="../../../../io/atomix/core/collection/DistributedCollection.html#iterator--">iterator</a>, <a href="../../../../io/atomix/core/collection/DistributedCollection.html#removeListener-io.atomix.core.collection.CollectionEventListener-">removeListener</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.primitive.SyncPrimitive">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;io.atomix.primitive.<a href="../../../../io/atomix/primitive/SyncPrimitive.html" title="interface in io.atomix.primitive">SyncPrimitive</a></h3>
+<code><a href="../../../../io/atomix/primitive/SyncPrimitive.html#close--">close</a>, <a href="../../../../io/atomix/primitive/SyncPrimitive.html#delete--">delete</a></code></li>
+</ul>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.primitive.DistributedPrimitive">
+<!--   -->
+</a>
+<h3>Methods inherited from interface&nbsp;io.atomix.primitive.<a href="../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a></h3>
+<code><a href="../../../../io/atomix/primitive/DistributedPrimitive.html#addStateChangeListener-java.util.function.Consumer-">addStateChangeListener</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#name--">name</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#protocol--">protocol</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#removeStateChangeListener-java.util.function.Consumer-">removeStateChangeListener</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#type--">type</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.util.Set">
 <!--   -->
@@ -186,20 +194,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-
 <h3>Methods inherited from interface&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a></h3>
 <code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true#forEach-java.util.function.Consumer-" title="class or interface in java.lang">forEach</a></code></li>
 </ul>
-<ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.io.atomix.primitive.SyncPrimitive">
-<!--   -->
-</a>
-<h3>Methods inherited from interface&nbsp;io.atomix.primitive.<a href="../../../../io/atomix/primitive/SyncPrimitive.html" title="interface in io.atomix.primitive">SyncPrimitive</a></h3>
-<code><a href="../../../../io/atomix/primitive/SyncPrimitive.html#close--">close</a>, <a href="../../../../io/atomix/primitive/SyncPrimitive.html#delete--">delete</a></code></li>
-</ul>
-<ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.io.atomix.primitive.DistributedPrimitive">
-<!--   -->
-</a>
-<h3>Methods inherited from interface&nbsp;io.atomix.primitive.<a href="../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a></h3>
-<code><a href="../../../../io/atomix/primitive/DistributedPrimitive.html#addStateChangeListener-java.util.function.Consumer-">addStateChangeListener</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#name--">name</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#primitiveType--">primitiveType</a>, <a href="../../../../io/atomix/primitive/DistributedPrimitive.html#removeStateChangeListener-java.util.function.Consumer-">removeStateChangeListener</a></code></li>
-</ul>
 </li>
 </ul>
 </li>
@@ -214,35 +208,6 @@ extends <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="addListener-io.atomix.core.set.SetEventListener-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addListener</h4>
-<pre>void&nbsp;addListener(<a href="../../../../io/atomix/core/set/SetEventListener.html" title="interface in io.atomix.core.set">SetEventListener</a>&lt;<a href="../../../../io/atomix/core/set/DistributedSet.html" title="type parameter in DistributedSet">E</a>&gt;&nbsp;listener)</pre>
-<div class="block">Registers the specified listener to be notified whenever
- the set is updated.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>listener</code> - listener to notify about set update events</dd>
-</dl>
-</li>
-</ul>
-<a name="removeListener-io.atomix.core.set.SetEventListener-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>removeListener</h4>
-<pre>void&nbsp;removeListener(<a href="../../../../io/atomix/core/set/SetEventListener.html" title="interface in io.atomix.core.set">SetEventListener</a>&lt;<a href="../../../../io/atomix/core/set/DistributedSet.html" title="type parameter in DistributedSet">E</a>&gt;&nbsp;listener)</pre>
-<div class="block">Unregisters the specified listener.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>listener</code> - listener to unregister.</dd>
-</dl>
-</li>
-</ul>
 <a name="async--">
 <!--   -->
 </a>

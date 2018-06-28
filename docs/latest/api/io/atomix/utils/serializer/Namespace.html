@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":18,"i3":6,"i4":18,"i5":6,"i6":6,"i7":18,"i8":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
+var methods = {"i0":10,"i1":9,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10};
+var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -49,8 +49,8 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../io/atomix/utils/serializer/KryoNamespaces.html" title="class in io.atomix.utils.serializer"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/utils/serializer/SerializableTypeConfig.html" title="class in io.atomix.utils.serializer"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li>Prev&nbsp;Class</li>
+<li><a href="../../../../io/atomix/utils/serializer/Namespace.Builder.html" title="class in io.atomix.utils.serializer"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/utils/serializer/Namespace.html" target="_top">Frames</a></li>
@@ -74,15 +74,15 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>
@@ -93,26 +93,57 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">io.atomix.utils.serializer</div>
-<h2 title="Interface Namespace" class="title">Interface Namespace</h2>
+<h2 title="Class Namespace" class="title">Class Namespace</h2>
 </div>
 <div class="contentContainer">
+<ul class="inheritance">
+<li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
+<li>
+<ul class="inheritance">
+<li>io.atomix.utils.serializer.Namespace</li>
+</ul>
+</li>
+</ul>
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
 <dl>
-<dt>All Known Implementing Classes:</dt>
-<dd><a href="../../../../io/atomix/utils/serializer/KryoNamespace.html" title="class in io.atomix.utils.serializer">KryoNamespace</a></dd>
+<dt>All Implemented Interfaces:</dt>
+<dd>com.esotericsoftware.kryo.pool.KryoFactory, com.esotericsoftware.kryo.pool.KryoPool</dd>
 </dl>
 <hr>
 <br>
-<pre>public interface <span class="typeNameLabel">Namespace</span></pre>
-<div class="block">Serializer namespace.</div>
+<pre>public final class <span class="typeNameLabel">Namespace</span>
+extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
+implements com.esotericsoftware.kryo.pool.KryoFactory, com.esotericsoftware.kryo.pool.KryoPool</pre>
+<div class="block">Pool of Kryo instances, with classes pre-registered.</div>
 </li>
 </ul>
 </div>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="nested.class.summary">
+<!--   -->
+</a>
+<h3>Nested Class Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.Builder.html" title="class in io.atomix.utils.serializer">Namespace.Builder</a></span></code>
+<div class="block">KryoNamespace builder.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
 <!-- =========== FIELD SUMMARY =========== -->
 <ul class="blockList">
 <li class="blockList"><a name="field.summary">
@@ -126,18 +157,51 @@ var activeTableTab = "activeTableTab";
 <th class="colLast" scope="col">Field and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#DEFAULT_BUFFER_SIZE">DEFAULT_BUFFER_SIZE</a></span></code>&nbsp;</td>
+<td class="colFirst"><code>static <a href="../../../../io/atomix/utils/serializer/Namespace.html" title="class in io.atomix.utils.serializer">Namespace</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#DEFAULT">DEFAULT</a></span></code>
+<div class="block">Default Kryo namespace.</div>
+</td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>static int</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#MAX_BUFFER_SIZE">MAX_BUFFER_SIZE</a></span></code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#DEFAULT_BUFFER_SIZE">DEFAULT_BUFFER_SIZE</a></span></code>
+<div class="block">Default buffer size used for serialization.</div>
+</td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/utils/serializer/Namespace.html" title="interface in io.atomix.utils.serializer">Namespace</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#NONE">NONE</a></span></code>
-<div class="block">Empty namespace that throws exceptions on serialization.</div>
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#FLOATING_ID">FLOATING_ID</a></span></code>
+<div class="block">ID to use if this KryoNamespace does not define registration id.</div>
 </td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#INITIAL_ID">INITIAL_ID</a></span></code>
+<div class="block">Smallest ID free to use for user defined registrations.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>static int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#MAX_BUFFER_SIZE">MAX_BUFFER_SIZE</a></span></code>
+<div class="block">Maximum allowed buffer size.</div>
+</td>
+</tr>
+</table>
+</li>
+</ul>
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor.summary">
+<!--   -->
+</a>
+<h3>Constructor Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Constructor Summary table, listing constructors, and an explanation">
+<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colOne" scope="col">Constructor and Description</th>
+</tr>
+<tr class="altColor">
+<td class="colOne"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#Namespace-io.atomix.utils.serializer.NamespaceConfig-">Namespace</a></span>(<a href="../../../../io/atomix/utils/serializer/NamespaceConfig.html" title="class in io.atomix.utils.serializer">NamespaceConfig</a>&nbsp;config)</code>&nbsp;</td>
 </tr>
 </table>
 </li>
@@ -149,64 +213,94 @@ var activeTableTab = "activeTableTab";
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t5" class="tableTab"><span><a href="javascript:show(16);">Default Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Static Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t4" class="tableTab"><span><a href="javascript:show(8);">Concrete Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>com.esotericsoftware.kryo.Kryo</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#borrow--">borrow</a></span>()</code>&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../io/atomix/utils/serializer/Namespace.Builder.html" title="class in io.atomix.utils.serializer">Namespace.Builder</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#builder--">builder</a></span>()</code>
+<div class="block">Creates a new <a href="../../../../io/atomix/utils/serializer/Namespace.html" title="class in io.atomix.utils.serializer"><code>Namespace</code></a> builder.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>com.esotericsoftware.kryo.Kryo</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#create--">create</a></span>()</code>
+<div class="block">Creates a Kryo instance.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#deserialize-byte:A-">deserialize</a></span>(byte[]&nbsp;bytes)</code>
 <div class="block">Deserializes given byte array to Object using Kryo instance in pool.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#deserialize-java.nio.ByteBuffer-">deserialize</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html?is-external=true" title="class or interface in java.nio">ByteBuffer</a>&nbsp;buffer)</code>
 <div class="block">Deserializes given byte buffer to Object using Kryo instance in pool.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>default &lt;T&gt;&nbsp;T</code></td>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#deserialize-java.io.InputStream-">deserialize</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html?is-external=true" title="class or interface in java.io">InputStream</a>&nbsp;stream)</code>
 <div class="block">Deserializes given InputStream to an Object using Kryo instance in pool.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#deserialize-java.io.InputStream-int-">deserialize</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html?is-external=true" title="class or interface in java.io">InputStream</a>&nbsp;stream,
            int&nbsp;bufferSize)</code>
 <div class="block">Deserializes given InputStream to an Object using Kryo instance in pool.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>default byte[]</code></td>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/utils/serializer/Namespace.html" title="class in io.atomix.utils.serializer">Namespace</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#populate-int-">populate</a></span>(int&nbsp;instances)</code>
+<div class="block">Populates the Kryo pool.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#release-com.esotericsoftware.kryo.Kryo-">release</a></span>(com.esotericsoftware.kryo.Kryo&nbsp;kryo)</code>&nbsp;</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>&lt;T&gt;&nbsp;T</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#run-com.esotericsoftware.kryo.pool.KryoCallback-">run</a></span>(com.esotericsoftware.kryo.pool.KryoCallback&lt;T&gt;&nbsp;callback)</code>&nbsp;</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>byte[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#serialize-java.lang.Object-">serialize</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj)</code>
 <div class="block">Serializes given object to byte array using Kryo instance in pool.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#serialize-java.lang.Object-java.nio.ByteBuffer-">serialize</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj,
          <a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html?is-external=true" title="class or interface in java.nio">ByteBuffer</a>&nbsp;buffer)</code>
 <div class="block">Serializes given object to byte buffer using Kryo instance in pool.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>byte[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#serialize-java.lang.Object-int-">serialize</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj,
          int&nbsp;bufferSize)</code>
 <div class="block">Serializes given object to byte array using Kryo instance in pool.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
-<td class="colFirst"><code>default void</code></td>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#serialize-java.lang.Object-java.io.OutputStream-">serialize</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj,
          <a href="http://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html?is-external=true" title="class or interface in java.io">OutputStream</a>&nbsp;stream)</code>
 <div class="block">Serializes given object to OutputStream using Kryo instance in pool.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#serialize-java.lang.Object-java.io.OutputStream-int-">serialize</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj,
          <a href="http://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html?is-external=true" title="class or interface in java.io">OutputStream</a>&nbsp;stream,
@@ -214,7 +308,24 @@ var activeTableTab = "activeTableTab";
 <div class="block">Serializes given object to OutputStream using Kryo instance in pool.</div>
 </td>
 </tr>
+<tr id="i15" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#size--">size</a></span>()</code>
+<div class="block">Gets the number of classes registered in this Kryo namespace.</div>
+</td>
+</tr>
+<tr id="i16" class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/utils/serializer/Namespace.html#toString--">toString</a></span>()</code>&nbsp;</td>
+</tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;java.lang.<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></h3>
+<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#getClass--" title="class or interface in java.lang">getClass</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notify--" title="class or interface in java.lang">notify</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#notifyAll--" title="class or interface in java.lang">notifyAll</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait--" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-" title="class or interface in java.lang">wait</a>, <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#wait-long-int-" title="class or interface in java.lang">wait</a></code></li>
+</ul>
 </li>
 </ul>
 </li>
@@ -229,40 +340,88 @@ var activeTableTab = "activeTableTab";
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a name="NONE">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>NONE</h4>
-<pre>static final&nbsp;<a href="../../../../io/atomix/utils/serializer/Namespace.html" title="interface in io.atomix.utils.serializer">Namespace</a> NONE</pre>
-<div class="block">Empty namespace that throws exceptions on serialization.</div>
-</li>
-</ul>
 <a name="DEFAULT_BUFFER_SIZE">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>DEFAULT_BUFFER_SIZE</h4>
-<pre>static final&nbsp;int DEFAULT_BUFFER_SIZE</pre>
+<pre>public static final&nbsp;int DEFAULT_BUFFER_SIZE</pre>
+<div class="block">Default buffer size used for serialization.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../constant-values.html#io.atomix.utils.serializer.Namespace.DEFAULT_BUFFER_SIZE">Constant Field Values</a></dd>
+<dd><a href="../../../../io/atomix/utils/serializer/Namespace.html#serialize-java.lang.Object-"><code>serialize(Object)</code></a>, 
+<a href="../../../../constant-values.html#io.atomix.utils.serializer.Namespace.DEFAULT_BUFFER_SIZE">Constant Field Values</a></dd>
 </dl>
 </li>
 </ul>
 <a name="MAX_BUFFER_SIZE">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>MAX_BUFFER_SIZE</h4>
-<pre>static final&nbsp;int MAX_BUFFER_SIZE</pre>
+<pre>public static final&nbsp;int MAX_BUFFER_SIZE</pre>
+<div class="block">Maximum allowed buffer size.</div>
 <dl>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../constant-values.html#io.atomix.utils.serializer.Namespace.MAX_BUFFER_SIZE">Constant Field Values</a></dd>
 </dl>
+</li>
+</ul>
+<a name="FLOATING_ID">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>FLOATING_ID</h4>
+<pre>public static final&nbsp;int FLOATING_ID</pre>
+<div class="block">ID to use if this KryoNamespace does not define registration id.</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../constant-values.html#io.atomix.utils.serializer.Namespace.FLOATING_ID">Constant Field Values</a></dd>
+</dl>
+</li>
+</ul>
+<a name="INITIAL_ID">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>INITIAL_ID</h4>
+<pre>public static final&nbsp;int INITIAL_ID</pre>
+<div class="block">Smallest ID free to use for user defined registrations.</div>
+<dl>
+<dt><span class="seeLabel">See Also:</span></dt>
+<dd><a href="../../../../constant-values.html#io.atomix.utils.serializer.Namespace.INITIAL_ID">Constant Field Values</a></dd>
+</dl>
+</li>
+</ul>
+<a name="DEFAULT">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>DEFAULT</h4>
+<pre>public static&nbsp;<a href="../../../../io/atomix/utils/serializer/Namespace.html" title="class in io.atomix.utils.serializer">Namespace</a> DEFAULT</pre>
+<div class="block">Default Kryo namespace.</div>
+</li>
+</ul>
+</li>
+</ul>
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<ul class="blockList">
+<li class="blockList"><a name="constructor.detail">
+<!--   -->
+</a>
+<h3>Constructor Detail</h3>
+<a name="Namespace-io.atomix.utils.serializer.NamespaceConfig-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>Namespace</h4>
+<pre>public&nbsp;Namespace(<a href="../../../../io/atomix/utils/serializer/NamespaceConfig.html" title="class in io.atomix.utils.serializer">NamespaceConfig</a>&nbsp;config)</pre>
 </li>
 </ul>
 </li>
@@ -273,13 +432,43 @@ var activeTableTab = "activeTableTab";
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="builder--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>builder</h4>
+<pre>public static&nbsp;<a href="../../../../io/atomix/utils/serializer/Namespace.Builder.html" title="class in io.atomix.utils.serializer">Namespace.Builder</a>&nbsp;builder()</pre>
+<div class="block">Creates a new <a href="../../../../io/atomix/utils/serializer/Namespace.html" title="class in io.atomix.utils.serializer"><code>Namespace</code></a> builder.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>builder</dd>
+</dl>
+</li>
+</ul>
+<a name="populate-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>populate</h4>
+<pre>public&nbsp;<a href="../../../../io/atomix/utils/serializer/Namespace.html" title="class in io.atomix.utils.serializer">Namespace</a>&nbsp;populate(int&nbsp;instances)</pre>
+<div class="block">Populates the Kryo pool.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>instances</code> - to add to the pool</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>this</dd>
+</dl>
+</li>
+</ul>
 <a name="serialize-java.lang.Object-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>serialize</h4>
-<pre>default&nbsp;byte[]&nbsp;serialize(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj)</pre>
+<pre>public&nbsp;byte[]&nbsp;serialize(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj)</pre>
 <div class="block">Serializes given object to byte array using Kryo instance in pool.
  <p>
  Note: Serialized bytes must be smaller than <a href="../../../../io/atomix/utils/serializer/Namespace.html#MAX_BUFFER_SIZE"><code>MAX_BUFFER_SIZE</code></a>.</div>
@@ -297,8 +486,8 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>serialize</h4>
-<pre>byte[]&nbsp;serialize(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj,
-                 int&nbsp;bufferSize)</pre>
+<pre>public&nbsp;byte[]&nbsp;serialize(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj,
+                        int&nbsp;bufferSize)</pre>
 <div class="block">Serializes given object to byte array using Kryo instance in pool.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -315,8 +504,8 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>serialize</h4>
-<pre>void&nbsp;serialize(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj,
-               <a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html?is-external=true" title="class or interface in java.nio">ByteBuffer</a>&nbsp;buffer)</pre>
+<pre>public&nbsp;void&nbsp;serialize(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj,
+                      <a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html?is-external=true" title="class or interface in java.nio">ByteBuffer</a>&nbsp;buffer)</pre>
 <div class="block">Serializes given object to byte buffer using Kryo instance in pool.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -331,8 +520,8 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>serialize</h4>
-<pre>default&nbsp;void&nbsp;serialize(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj,
-                       <a href="http://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html?is-external=true" title="class or interface in java.io">OutputStream</a>&nbsp;stream)</pre>
+<pre>public&nbsp;void&nbsp;serialize(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj,
+                      <a href="http://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html?is-external=true" title="class or interface in java.io">OutputStream</a>&nbsp;stream)</pre>
 <div class="block">Serializes given object to OutputStream using Kryo instance in pool.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -347,9 +536,9 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>serialize</h4>
-<pre>void&nbsp;serialize(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj,
-               <a href="http://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html?is-external=true" title="class or interface in java.io">OutputStream</a>&nbsp;stream,
-               int&nbsp;bufferSize)</pre>
+<pre>public&nbsp;void&nbsp;serialize(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;obj,
+                      <a href="http://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html?is-external=true" title="class or interface in java.io">OutputStream</a>&nbsp;stream,
+                      int&nbsp;bufferSize)</pre>
 <div class="block">Serializes given object to OutputStream using Kryo instance in pool.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -365,7 +554,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>deserialize</h4>
-<pre>&lt;T&gt;&nbsp;T&nbsp;deserialize(byte[]&nbsp;bytes)</pre>
+<pre>public&nbsp;&lt;T&gt;&nbsp;T&nbsp;deserialize(byte[]&nbsp;bytes)</pre>
 <div class="block">Deserializes given byte array to Object using Kryo instance in pool.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
@@ -383,7 +572,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>deserialize</h4>
-<pre>&lt;T&gt;&nbsp;T&nbsp;deserialize(<a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html?is-external=true" title="class or interface in java.nio">ByteBuffer</a>&nbsp;buffer)</pre>
+<pre>public&nbsp;&lt;T&gt;&nbsp;T&nbsp;deserialize(<a href="http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html?is-external=true" title="class or interface in java.nio">ByteBuffer</a>&nbsp;buffer)</pre>
 <div class="block">Deserializes given byte buffer to Object using Kryo instance in pool.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
@@ -401,7 +590,7 @@ var activeTableTab = "activeTableTab";
 <ul class="blockList">
 <li class="blockList">
 <h4>deserialize</h4>
-<pre>default&nbsp;&lt;T&gt;&nbsp;T&nbsp;deserialize(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html?is-external=true" title="class or interface in java.io">InputStream</a>&nbsp;stream)</pre>
+<pre>public&nbsp;&lt;T&gt;&nbsp;T&nbsp;deserialize(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html?is-external=true" title="class or interface in java.io">InputStream</a>&nbsp;stream)</pre>
 <div class="block">Deserializes given InputStream to an Object using Kryo instance in pool.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
@@ -416,11 +605,11 @@ var activeTableTab = "activeTableTab";
 <a name="deserialize-java.io.InputStream-int-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>deserialize</h4>
-<pre>&lt;T&gt;&nbsp;T&nbsp;deserialize(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html?is-external=true" title="class or interface in java.io">InputStream</a>&nbsp;stream,
-                  int&nbsp;bufferSize)</pre>
+<pre>public&nbsp;&lt;T&gt;&nbsp;T&nbsp;deserialize(<a href="http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html?is-external=true" title="class or interface in java.io">InputStream</a>&nbsp;stream,
+                         int&nbsp;bufferSize)</pre>
 <div class="block">Deserializes given InputStream to an Object using Kryo instance in pool.</div>
 <dl>
 <dt><span class="paramLabel">Type Parameters:</span></dt>
@@ -430,6 +619,88 @@ var activeTableTab = "activeTableTab";
 <dd><code>bufferSize</code> - size of the buffer in front of the stream</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>deserialized Object</dd>
+</dl>
+</li>
+</ul>
+<a name="size--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>size</h4>
+<pre>public&nbsp;int&nbsp;size()</pre>
+<div class="block">Gets the number of classes registered in this Kryo namespace.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>size of namespace</dd>
+</dl>
+</li>
+</ul>
+<a name="create--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>create</h4>
+<pre>public&nbsp;com.esotericsoftware.kryo.Kryo&nbsp;create()</pre>
+<div class="block">Creates a Kryo instance.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>create</code>&nbsp;in interface&nbsp;<code>com.esotericsoftware.kryo.pool.KryoFactory</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>Kryo instance</dd>
+</dl>
+</li>
+</ul>
+<a name="borrow--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>borrow</h4>
+<pre>public&nbsp;com.esotericsoftware.kryo.Kryo&nbsp;borrow()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>borrow</code>&nbsp;in interface&nbsp;<code>com.esotericsoftware.kryo.pool.KryoPool</code></dd>
+</dl>
+</li>
+</ul>
+<a name="release-com.esotericsoftware.kryo.Kryo-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>release</h4>
+<pre>public&nbsp;void&nbsp;release(com.esotericsoftware.kryo.Kryo&nbsp;kryo)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>release</code>&nbsp;in interface&nbsp;<code>com.esotericsoftware.kryo.pool.KryoPool</code></dd>
+</dl>
+</li>
+</ul>
+<a name="run-com.esotericsoftware.kryo.pool.KryoCallback-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>run</h4>
+<pre>public&nbsp;&lt;T&gt;&nbsp;T&nbsp;run(com.esotericsoftware.kryo.pool.KryoCallback&lt;T&gt;&nbsp;callback)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code>run</code>&nbsp;in interface&nbsp;<code>com.esotericsoftware.kryo.pool.KryoPool</code></dd>
+</dl>
+</li>
+</ul>
+<a name="toString--">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>toString</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -461,8 +732,8 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../io/atomix/utils/serializer/KryoNamespaces.html" title="class in io.atomix.utils.serializer"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/utils/serializer/SerializableTypeConfig.html" title="class in io.atomix.utils.serializer"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li>Prev&nbsp;Class</li>
+<li><a href="../../../../io/atomix/utils/serializer/Namespace.Builder.html" title="class in io.atomix.utils.serializer"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/utils/serializer/Namespace.html" target="_top">Frames</a></li>
@@ -486,15 +757,15 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
 <li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
-<li>Constr&nbsp;|&nbsp;</li>
+<li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
 </div>

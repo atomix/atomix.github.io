@@ -72,7 +72,7 @@
 <div class="header">
 <h1 title="Package" class="title">Package&nbsp;io.atomix.core.map</h1>
 <div class="docSummary">
-<div class="block">Distributed map primitive interfaces.</div>
+<div class="block">Atomic map primitive.</div>
 </div>
 <p>See:&nbsp;<a href="#package.description">Description</a></p>
 </div>
@@ -87,44 +87,20 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/AsyncAtomicCounterMap.html" title="interface in io.atomix.core.map">AsyncAtomicCounterMap</a>&lt;K&gt;</td>
-<td class="colLast">
-<div class="block">An async atomic counter map dispenses monotonically increasing values associated with key.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/AsyncConsistentMap.html" title="interface in io.atomix.core.map">AsyncConsistentMap</a>&lt;K,V&gt;</td>
+<td class="colFirst"><a href="../../../../io/atomix/core/map/AsyncAtomicMap.html" title="interface in io.atomix.core.map">AsyncAtomicMap</a>&lt;K,V&gt;</td>
 <td class="colLast">
 <div class="block">A distributed, strongly consistent map whose methods are all executed asynchronously.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/AsyncConsistentTreeMap.html" title="interface in io.atomix.core.map">AsyncConsistentTreeMap</a>&lt;V&gt;</td>
-<td class="colLast">
-<div class="block">API for a distributed tree map implementation.</div>
-</td>
-</tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/AtomicCounterMap.html" title="interface in io.atomix.core.map">AtomicCounterMap</a>&lt;K&gt;</td>
+<td class="colFirst"><a href="../../../../io/atomix/core/map/AtomicMap.html" title="interface in io.atomix.core.map">AtomicMap</a>&lt;K,V&gt;</td>
 <td class="colLast">
-<div class="block">Distributed version of com.google.common.util.concurrent.AtomicLongMap.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/ConsistentMap.html" title="interface in io.atomix.core.map">ConsistentMap</a>&lt;K,V&gt;</td>
-<td class="colLast">
-<div class="block"><code>ConsistentMap</code> provides the same functionality as <a href="../../../../io/atomix/core/map/AsyncConsistentMap.html" title="interface in io.atomix.core.map"><code>AsyncConsistentMap</code></a> with
+<div class="block"><code>ConsistentMap</code> provides the same functionality as <a href="../../../../io/atomix/core/map/AsyncAtomicMap.html" title="interface in io.atomix.core.map"><code>AsyncAtomicMap</code></a> with
  the only difference that all its methods block until the corresponding operation completes.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/ConsistentTreeMap.html" title="interface in io.atomix.core.map">ConsistentTreeMap</a>&lt;V&gt;</td>
-<td class="colLast">
-<div class="block">Tree map interface counterpart to <a href="../../../../io/atomix/core/map/AsyncConsistentTreeMap.html" title="interface in io.atomix.core.map"><code>AsyncConsistentTreeMap</code></a>.</div>
-</td>
-</tr>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/MapEventListener.html" title="interface in io.atomix.core.map">MapEventListener</a>&lt;K,V&gt;</td>
+<td class="colFirst"><a href="../../../../io/atomix/core/map/AtomicMapEventListener.html" title="interface in io.atomix.core.map">AtomicMapEventListener</a>&lt;K,V&gt;</td>
 <td class="colLast">
 <div class="block">Listener to be notified about updates to a ConsistentMap.</div>
 </td>
@@ -141,69 +117,33 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/AtomicCounterMapBuilder.html" title="class in io.atomix.core.map">AtomicCounterMapBuilder</a>&lt;K&gt;</td>
+<td class="colFirst"><a href="../../../../io/atomix/core/map/AtomicMapBackedJavaMap.html" title="class in io.atomix.core.map">AtomicMapBackedJavaMap</a>&lt;K,V&gt;</td>
 <td class="colLast">
-<div class="block">Builder for AtomicCounterMap.</div>
+<div class="block">Standard java <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util"><code>Map</code></a> backed by a <a href="../../../../io/atomix/core/map/AtomicMap.html" title="interface in io.atomix.core.map"><code>AtomicMap</code></a>.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/AtomicCounterMapConfig.html" title="class in io.atomix.core.map">AtomicCounterMapConfig</a></td>
+<td class="colFirst"><a href="../../../../io/atomix/core/map/AtomicMapBuilder.html" title="class in io.atomix.core.map">AtomicMapBuilder</a>&lt;K,V&gt;</td>
 <td class="colLast">
-<div class="block">Atomic counter map configuration.</div>
+<div class="block">Builder for <a href="../../../../io/atomix/core/map/AtomicMap.html" title="interface in io.atomix.core.map"><code>AtomicMap</code></a> instances.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/AtomicCounterMapType.html" title="class in io.atomix.core.map">AtomicCounterMapType</a>&lt;K&gt;</td>
-<td class="colLast">
-<div class="block">Atomic counter map primitive type.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/ConsistentMapBackedJavaMap.html" title="class in io.atomix.core.map">ConsistentMapBackedJavaMap</a>&lt;K,V&gt;</td>
-<td class="colLast">
-<div class="block">Standard java <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util"><code>Map</code></a> backed by a <a href="../../../../io/atomix/core/map/ConsistentMap.html" title="interface in io.atomix.core.map"><code>ConsistentMap</code></a>.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/ConsistentMapBuilder.html" title="class in io.atomix.core.map">ConsistentMapBuilder</a>&lt;K,V&gt;</td>
-<td class="colLast">
-<div class="block">Builder for <a href="../../../../io/atomix/core/map/ConsistentMap.html" title="interface in io.atomix.core.map"><code>ConsistentMap</code></a> instances.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/ConsistentMapConfig.html" title="class in io.atomix.core.map">ConsistentMapConfig</a></td>
+<td class="colFirst"><a href="../../../../io/atomix/core/map/AtomicMapConfig.html" title="class in io.atomix.core.map">AtomicMapConfig</a></td>
 <td class="colLast">
 <div class="block">Consistent map configuration.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/ConsistentMapType.html" title="class in io.atomix.core.map">ConsistentMapType</a>&lt;K,V&gt;</td>
-<td class="colLast">
-<div class="block">Consistent map primitive type.</div>
-</td>
-</tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/ConsistentTreeMapBuilder.html" title="class in io.atomix.core.map">ConsistentTreeMapBuilder</a>&lt;V&gt;</td>
-<td class="colLast">
-<div class="block">Builder for <a href="../../../../io/atomix/core/map/ConsistentTreeMap.html" title="interface in io.atomix.core.map"><code>ConsistentTreeMap</code></a>.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/ConsistentTreeMapConfig.html" title="class in io.atomix.core.map">ConsistentTreeMapConfig</a></td>
-<td class="colLast">
-<div class="block">Consistent tree-map configuration.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/ConsistentTreeMapType.html" title="class in io.atomix.core.map">ConsistentTreeMapType</a>&lt;V&gt;</td>
-<td class="colLast">
-<div class="block">Consistent tree map primitive type.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/MapEvent.html" title="class in io.atomix.core.map">MapEvent</a>&lt;K,V&gt;</td>
+<td class="colFirst"><a href="../../../../io/atomix/core/map/AtomicMapEvent.html" title="class in io.atomix.core.map">AtomicMapEvent</a>&lt;K,V&gt;</td>
 <td class="colLast">
 <div class="block">Representation of a ConsistentMap update notification.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="../../../../io/atomix/core/map/AtomicMapType.html" title="class in io.atomix.core.map">AtomicMapType</a>&lt;K,V&gt;</td>
+<td class="colLast">
+<div class="block">Consistent map primitive type.</div>
 </td>
 </tr>
 </tbody>
@@ -218,7 +158,7 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><a href="../../../../io/atomix/core/map/MapEvent.Type.html" title="enum in io.atomix.core.map">MapEvent.Type</a></td>
+<td class="colFirst"><a href="../../../../io/atomix/core/map/AtomicMapEvent.Type.html" title="enum in io.atomix.core.map">AtomicMapEvent.Type</a></td>
 <td class="colLast">
 <div class="block">MapEvent type.</div>
 </td>
@@ -231,7 +171,7 @@
 <!--   -->
 </a>
 <h2 title="Package io.atomix.core.map Description">Package io.atomix.core.map Description</h2>
-<div class="block">Distributed map primitive interfaces.</div>
+<div class="block">Atomic map primitive.</div>
 </div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar.bottom">

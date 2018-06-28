@@ -163,7 +163,8 @@ var activeTableTab = "activeTableTab";
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/transaction/TransactionService.html#preparing-io.atomix.core.transaction.TransactionId-">preparing</a></span>(<a href="../../../../io/atomix/core/transaction/TransactionId.html" title="class in io.atomix.core.transaction">TransactionId</a>&nbsp;transactionId)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/transaction/TransactionService.html#preparing-io.atomix.core.transaction.TransactionId-java.util.Set-">preparing</a></span>(<a href="../../../../io/atomix/core/transaction/TransactionId.html" title="class in io.atomix.core.transaction">TransactionId</a>&nbsp;transactionId,
+         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../io/atomix/core/transaction/ParticipantInfo.html" title="class in io.atomix.core.transaction">ParticipantInfo</a>&gt;&nbsp;participants)</code>
 <div class="block">Marks the given transaction as preparing.</div>
 </td>
 </tr>
@@ -226,17 +227,19 @@ var activeTableTab = "activeTableTab";
 </dl>
 </li>
 </ul>
-<a name="preparing-io.atomix.core.transaction.TransactionId-">
+<a name="preparing-io.atomix.core.transaction.TransactionId-java.util.Set-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>preparing</h4>
-<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;preparing(<a href="../../../../io/atomix/core/transaction/TransactionId.html" title="class in io.atomix.core.transaction">TransactionId</a>&nbsp;transactionId)</pre>
+<pre><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html?is-external=true" title="class or interface in java.lang">Void</a>&gt;&nbsp;preparing(<a href="../../../../io/atomix/core/transaction/TransactionId.html" title="class in io.atomix.core.transaction">TransactionId</a>&nbsp;transactionId,
+                                  <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../io/atomix/core/transaction/ParticipantInfo.html" title="class in io.atomix.core.transaction">ParticipantInfo</a>&gt;&nbsp;participants)</pre>
 <div class="block">Marks the given transaction as preparing.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>transactionId</code> - the transaction to mark as preparing</dd>
+<dd><code>participants</code> - the set of participants in the transaction</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>a future to be completed once the transaction state has been updated</dd>
 </dl>

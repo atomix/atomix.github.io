@@ -85,13 +85,13 @@
 <tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.core.map">io.atomix.core.map</a></td>
 <td class="colLast">
-<div class="block">Distributed map primitive interfaces.</div>
+<div class="block">Atomic map primitive.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.core.multimap">io.atomix.core.multimap</a></td>
 <td class="colLast">
-<div class="block">Distributed multimap primitive interfaces.</div>
+<div class="block">Atomic multimap primitive.</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -101,6 +101,12 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.core.treemap">io.atomix.core.treemap</a></td>
+<td class="colLast">
+<div class="block">Atomic tree map primitive.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.utils.time">io.atomix.utils.time</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for representing and operating on both logical and physical representations of time.</div>
@@ -123,133 +129,125 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#compute-K-java.util.function.BiFunction-">compute</a></span>(<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>&nbsp;key,
-       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html?is-external=true" title="class or interface in java.util.function">BiFunction</a>&lt;? super <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>,? super <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>,? extends <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;&nbsp;remappingFunction)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#compute-K-java.util.function.BiFunction-">compute</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>&nbsp;key,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html?is-external=true" title="class or interface in java.util.function">BiFunction</a>&lt;? super <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>,? super <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>,? extends <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;&nbsp;remappingFunction)</code>
 <div class="block">Attempts to compute a mapping for the specified key and its current mapped value (or
  null if there is no current mapping).</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#computeIf-K-java.util.function.Predicate-java.util.function.BiFunction-">computeIf</a></span>(<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>&nbsp;key,
-         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html?is-external=true" title="class or interface in java.util.function">Predicate</a>&lt;? super <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;&nbsp;condition,
-         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html?is-external=true" title="class or interface in java.util.function">BiFunction</a>&lt;? super <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>,? super <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>,? extends <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;&nbsp;remappingFunction)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#computeIf-K-java.util.function.Predicate-java.util.function.BiFunction-">computeIf</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>&nbsp;key,
+         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html?is-external=true" title="class or interface in java.util.function">Predicate</a>&lt;? super <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;&nbsp;condition,
+         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html?is-external=true" title="class or interface in java.util.function">BiFunction</a>&lt;? super <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>,? super <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>,? extends <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;&nbsp;remappingFunction)</code>
 <div class="block">If the value for the specified key satisfies a condition, attempts to compute a new
  mapping given the key and its current mapped value.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#computeIfAbsent-K-java.util.function.Function-">computeIfAbsent</a></span>(<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>&nbsp;key,
-               <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;? super <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>,? extends <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;&nbsp;mappingFunction)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#computeIfAbsent-K-java.util.function.Function-">computeIfAbsent</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>&nbsp;key,
+               <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;? super <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>,? extends <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;&nbsp;mappingFunction)</code>
 <div class="block">If the specified key is not already associated with a value (or is mapped to null),
  attempts to compute its value using the given mapping function and enters it into
  this map unless null.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#computeIfPresent-K-java.util.function.BiFunction-">computeIfPresent</a></span>(<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>&nbsp;key,
-                <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html?is-external=true" title="class or interface in java.util.function">BiFunction</a>&lt;? super <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>,? super <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>,? extends <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;&nbsp;remappingFunction)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#computeIfPresent-K-java.util.function.BiFunction-">computeIfPresent</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>&nbsp;key,
+                <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html?is-external=true" title="class or interface in java.util.function">BiFunction</a>&lt;? super <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>,? super <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>,? extends <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;&nbsp;remappingFunction)</code>
 <div class="block">If the value for the specified key is present and non-null, attempts to compute a new
  mapping given the key and its current mapped value.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#get-K-">get</a></span>(<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>&nbsp;key)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#get-K-">get</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>&nbsp;key)</code>
 <div class="block">Returns the value (and version) to which the specified key is mapped, or null if this
  map contains no mapping for the key.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#getOrDefault-K-V-">getOrDefault</a></span>(<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>&nbsp;key,
-            <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&nbsp;defaultValue)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#getOrDefault-K-V-">getOrDefault</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>&nbsp;key,
+            <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&nbsp;defaultValue)</code>
 <div class="block">Returns the value (and version) to which the specified key is mapped, or the provided
  default value if this map contains no mapping for the key.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/MapEvent.html" title="type parameter in MapEvent">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">MapEvent.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/MapEvent.html#newValue--">newValue</a></span>()</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMapEvent.html" title="type parameter in AtomicMapEvent">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMapEvent.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMapEvent.html#newValue--">newValue</a></span>()</code>
 <div class="block">Returns the new value in the map associated with the key.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/MapEvent.html" title="type parameter in MapEvent">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">MapEvent.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/MapEvent.html#oldValue--">oldValue</a></span>()</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMapEvent.html" title="type parameter in AtomicMapEvent">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMapEvent.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMapEvent.html#oldValue--">oldValue</a></span>()</code>
 <div class="block">Returns the value associated with the key, before it was updated.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>default <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#put-K-V-">put</a></span>(<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>&nbsp;key,
-   <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&nbsp;value)</code>
+<td class="colFirst"><code>default <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#put-K-V-">put</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>&nbsp;key,
+   <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&nbsp;value)</code>
 <div class="block">Associates the specified value with the specified key in this map (optional operation).</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#put-K-V-java.time.Duration-">put</a></span>(<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>&nbsp;key,
-   <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&nbsp;value,
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#put-K-V-java.time.Duration-">put</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>&nbsp;key,
+   <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&nbsp;value,
    <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</code>
 <div class="block">Associates the specified value with the specified key in this map (optional operation).</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>default <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#putAndGet-K-V-">putAndGet</a></span>(<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>&nbsp;key,
-         <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&nbsp;value)</code>
+<td class="colFirst"><code>default <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#putAndGet-K-V-">putAndGet</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>&nbsp;key,
+         <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&nbsp;value)</code>
 <div class="block">Associates the specified value with the specified key in this map (optional operation).</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#putAndGet-K-V-java.time.Duration-">putAndGet</a></span>(<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>&nbsp;key,
-         <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&nbsp;value,
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#putAndGet-K-V-java.time.Duration-">putAndGet</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>&nbsp;key,
+         <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&nbsp;value,
          <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</code>
 <div class="block">Associates the specified value with the specified key in this map (optional operation).</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>default <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#putIfAbsent-K-V-">putIfAbsent</a></span>(<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>&nbsp;key,
-           <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&nbsp;value)</code>
+<td class="colFirst"><code>default <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#putIfAbsent-K-V-">putIfAbsent</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>&nbsp;key,
+           <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&nbsp;value)</code>
 <div class="block">If the specified key is not already associated with a value
  associates it with the given value and returns null, else returns the current value.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#putIfAbsent-K-V-java.time.Duration-">putIfAbsent</a></span>(<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>&nbsp;key,
-           <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&nbsp;value,
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#putIfAbsent-K-V-java.time.Duration-">putIfAbsent</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>&nbsp;key,
+           <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&nbsp;value,
            <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</code>
 <div class="block">If the specified key is not already associated with a value
  associates it with the given value and returns null, else returns the current value.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#remove-K-">remove</a></span>(<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>&nbsp;key)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#remove-K-">remove</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>&nbsp;key)</code>
 <div class="block">Removes the mapping for a key from this map if it is present (optional operation).</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#replace-K-V-">replace</a></span>(<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>&nbsp;key,
-       <a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&nbsp;value)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#replace-K-V-">replace</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>&nbsp;key,
+       <a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&nbsp;value)</code>
 <div class="block">Replaces the entry for the specified key only if there is any value
  which associated with specified key.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/MapEvent.html" title="type parameter in MapEvent">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">MapEvent.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/MapEvent.html#value--">value</a></span>()</code>
-<div class="block"><span class="deprecatedLabel">Deprecated.</span>&nbsp;
-<div class="block"><span class="deprecationComment">1.5.0 Falcon release. Use <a href="../../../../../io/atomix/core/map/MapEvent.html#newValue--"><code>MapEvent.newValue()</code></a> or <a href="../../../../../io/atomix/core/map/MapEvent.html#oldValue--"><code>MapEvent.oldValue()</code></a> instead.</span></div>
-</div>
 </td>
 </tr>
 </tbody>
@@ -262,195 +260,121 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentTreeMap.html" title="type parameter in AsyncConsistentTreeMap">V</a>&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentTreeMap.html#ceilingEntry-java.lang.String-">ceilingEntry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
-<div class="block">Returns the entry associated with the least key greater than or equal to
- the key.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentTreeMap.html" title="type parameter in ConsistentTreeMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentTreeMap.html#ceilingEntry-java.lang.String-">ceilingEntry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
-<div class="block">Returns the entry associated with the least key greater than or equal to the key.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#compute-K-java.util.function.BiFunction-">compute</a></span>(<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>&nbsp;key,
-       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html?is-external=true" title="class or interface in java.util.function">BiFunction</a>&lt;? super <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>,? super <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>,? extends <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&nbsp;remappingFunction)</code>
+<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#compute-K-java.util.function.BiFunction-">compute</a></span>(<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>&nbsp;key,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html?is-external=true" title="class or interface in java.util.function">BiFunction</a>&lt;? super <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>,? super <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>,? extends <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&nbsp;remappingFunction)</code>
 <div class="block">Attempts to compute a mapping for the specified key and its current mapped value (or
  null if there is no current mapping).</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#computeIf-K-java.util.function.Predicate-java.util.function.BiFunction-">computeIf</a></span>(<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>&nbsp;key,
-         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html?is-external=true" title="class or interface in java.util.function">Predicate</a>&lt;? super <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&nbsp;condition,
-         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html?is-external=true" title="class or interface in java.util.function">BiFunction</a>&lt;? super <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>,? super <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>,? extends <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&nbsp;remappingFunction)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#computeIf-K-java.util.function.Predicate-java.util.function.BiFunction-">computeIf</a></span>(<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>&nbsp;key,
+         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html?is-external=true" title="class or interface in java.util.function">Predicate</a>&lt;? super <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&nbsp;condition,
+         <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html?is-external=true" title="class or interface in java.util.function">BiFunction</a>&lt;? super <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>,? super <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>,? extends <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&nbsp;remappingFunction)</code>
 <div class="block">If the value for the specified key satisfies a condition, attempts to compute a new
  mapping given the key and its current mapped value.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#computeIfAbsent-K-java.util.function.Function-">computeIfAbsent</a></span>(<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>&nbsp;key,
-               <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;? super <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>,? extends <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&nbsp;mappingFunction)</code>
+<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#computeIfAbsent-K-java.util.function.Function-">computeIfAbsent</a></span>(<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>&nbsp;key,
+               <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html?is-external=true" title="class or interface in java.util.function">Function</a>&lt;? super <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>,? extends <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&nbsp;mappingFunction)</code>
 <div class="block">If the specified key is not already associated with a value (or is mapped to null),
  attempts to compute its value using the given mapping function and enters it into
  this map unless null.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#computeIfPresent-K-java.util.function.BiFunction-">computeIfPresent</a></span>(<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>&nbsp;key,
-                <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html?is-external=true" title="class or interface in java.util.function">BiFunction</a>&lt;? super <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>,? super <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>,? extends <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&nbsp;remappingFunction)</code>
+<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#computeIfPresent-K-java.util.function.BiFunction-">computeIfPresent</a></span>(<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>&nbsp;key,
+                <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/BiFunction.html?is-external=true" title="class or interface in java.util.function">BiFunction</a>&lt;? super <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>,? super <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>,? extends <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&nbsp;remappingFunction)</code>
 <div class="block">If the value for the specified key is present and non-null, attempts to compute a new
  mapping given the key and its current mapped value.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#entrySet--">entrySet</a></span>()</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/core/set/DistributedSet.html" title="interface in io.atomix.core.set">DistributedSet</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#entrySet--">entrySet</a></span>()</code>
 <div class="block">Returns the set of entries contained in this map.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#entrySet--">entrySet</a></span>()</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/core/set/AsyncDistributedSet.html" title="interface in io.atomix.core.set">AsyncDistributedSet</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#entrySet--">entrySet</a></span>()</code>
 <div class="block">Returns the set of entries contained in this map.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentTreeMap.html" title="type parameter in AsyncConsistentTreeMap">V</a>&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentTreeMap.html#firstEntry--">firstEntry</a></span>()</code>
-<div class="block">Return the entry associated with the lowest key in the map.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentTreeMap.html" title="type parameter in ConsistentTreeMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentTreeMap.html#firstEntry--">firstEntry</a></span>()</code>
-<div class="block">Returns the entry associated with the lowest key in the map.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentTreeMap.html" title="type parameter in AsyncConsistentTreeMap">V</a>&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentTreeMap.html#floorEntry-java.lang.String-">floorEntry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
-<div class="block">Returns the entry associated with the greatest key less than or equal
- to key.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentTreeMap.html" title="type parameter in ConsistentTreeMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentTreeMap.html#floorEntry-java.lang.String-">floorEntry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
-<div class="block">Returns the entry associated with the greatest key less than or equal to key.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#get-K-">get</a></span>(<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>&nbsp;key)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#get-K-">get</a></span>(<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>&nbsp;key)</code>
 <div class="block">Returns the value (and version) to which the specified key is mapped, or null if this
  map contains no mapping for the key.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#getAllPresent-java.lang.Iterable-">getAllPresent</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">K</a>&gt;&nbsp;keys)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#getAllPresent-java.lang.Iterable-">getAllPresent</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">K</a>&gt;&nbsp;keys)</code>
 <div class="block">Returns a map of the values associated with the <code>keys</code> in this map.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#getAllPresent-java.lang.Iterable-">getAllPresent</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>&gt;&nbsp;keys)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#getAllPresent-java.lang.Iterable-">getAllPresent</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Iterable.html?is-external=true" title="class or interface in java.lang">Iterable</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>&gt;&nbsp;keys)</code>
 <div class="block">Returns a map of the values associated with the <code>keys</code> in this map.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#getOrDefault-K-V-">getOrDefault</a></span>(<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>&nbsp;key,
-            <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&nbsp;defaultValue)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#getOrDefault-K-V-">getOrDefault</a></span>(<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>&nbsp;key,
+            <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&nbsp;defaultValue)</code>
 <div class="block">Returns the value (and version) to which the specified key is mapped, or the provided
  default value if this map contains no mapping for the key.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentTreeMap.html" title="type parameter in AsyncConsistentTreeMap">V</a>&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentTreeMap.html#higherEntry-java.lang.String-">higherEntry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
-<div class="block">Returns the entry associated with the least key greater than key.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentTreeMap.html" title="type parameter in ConsistentTreeMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentTreeMap.html#higherEntry-java.lang.String-">higherEntry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
-<div class="block">Returns the entry associated with the lest key greater than key.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentTreeMap.html" title="type parameter in AsyncConsistentTreeMap">V</a>&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentTreeMap.html#lastEntry--">lastEntry</a></span>()</code>
-<div class="block">Return the entry associated with the highest key in the map.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentTreeMap.html" title="type parameter in ConsistentTreeMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentTreeMap.html#lastEntry--">lastEntry</a></span>()</code>
-<div class="block">Returns the entry associated with the highest key in the map.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentTreeMap.html" title="type parameter in AsyncConsistentTreeMap">V</a>&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentTreeMap.html#lowerEntry-java.lang.String-">lowerEntry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
-<div class="block">Returns the entry associated with the largest key less than key.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentTreeMap.html" title="type parameter in ConsistentTreeMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentTreeMap.html#lowerEntry-java.lang.String-">lowerEntry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
-<div class="block">Returns the entry associated with the largest key less than key.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#put-K-V-">put</a></span>(<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>&nbsp;key,
-   <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&nbsp;value)</code>
+<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#put-K-V-">put</a></span>(<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>&nbsp;key,
+   <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&nbsp;value)</code>
 <div class="block">Associates the specified value with the specified key in this map (optional operation).</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#put-K-V-java.time.Duration-">put</a></span>(<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>&nbsp;key,
-   <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&nbsp;value,
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#put-K-V-java.time.Duration-">put</a></span>(<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>&nbsp;key,
+   <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&nbsp;value,
    <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</code>
 <div class="block">Associates the specified value with the specified key in this map (optional operation).</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#putAndGet-K-V-">putAndGet</a></span>(<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>&nbsp;key,
-         <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&nbsp;value)</code>
+<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#putAndGet-K-V-">putAndGet</a></span>(<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>&nbsp;key,
+         <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&nbsp;value)</code>
 <div class="block">Associates the specified value with the specified key in this map (optional operation).</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#putAndGet-K-V-java.time.Duration-">putAndGet</a></span>(<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>&nbsp;key,
-         <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&nbsp;value,
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#putAndGet-K-V-java.time.Duration-">putAndGet</a></span>(<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>&nbsp;key,
+         <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&nbsp;value,
          <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</code>
 <div class="block">Associates the specified value with the specified key in this map (optional operation).</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#putIfAbsent-K-V-">putIfAbsent</a></span>(<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>&nbsp;key,
-           <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&nbsp;value)</code>
+<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#putIfAbsent-K-V-">putIfAbsent</a></span>(<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>&nbsp;key,
+           <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&nbsp;value)</code>
 <div class="block">If the specified key is not already associated with a value associates
  it with the given value and returns null, else behaves as a get
  returning the existing mapping without making any changes.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#putIfAbsent-K-V-java.time.Duration-">putIfAbsent</a></span>(<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>&nbsp;key,
-           <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&nbsp;value,
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#putIfAbsent-K-V-java.time.Duration-">putIfAbsent</a></span>(<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>&nbsp;key,
+           <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&nbsp;value,
            <a href="http://docs.oracle.com/javase/8/docs/api/java/time/Duration.html?is-external=true" title="class or interface in java.time">Duration</a>&nbsp;ttl)</code>
 <div class="block">If the specified key is not already associated with a value associates
  it with the given value and returns null, else behaves as a get
@@ -458,28 +382,28 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#remove-K-">remove</a></span>(<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>&nbsp;key)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#remove-K-">remove</a></span>(<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>&nbsp;key)</code>
 <div class="block">Removes the mapping for a key from this map if it is present (optional operation).</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#replace-K-V-">replace</a></span>(<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">K</a>&nbsp;key,
-       <a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&nbsp;value)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#replace-K-V-">replace</a></span>(<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">K</a>&nbsp;key,
+       <a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&nbsp;value)</code>
 <div class="block">Replaces the entry for the specified key only if there is any value
  which associated with specified key.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/ConsistentMap.html" title="type parameter in ConsistentMap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/ConsistentMap.html#values--">values</a></span>()</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/core/collection/DistributedCollection.html" title="interface in io.atomix.core.collection">DistributedCollection</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMap.html" title="type parameter in AtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMap.html#values--">values</a></span>()</code>
 <div class="block">Returns the collection of values (and associated versions) contained in this map.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html" title="type parameter in AsyncConsistentMap">V</a>&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncConsistentMap.html#values--">values</a></span>()</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/core/collection/AsyncDistributedCollection.html" title="interface in io.atomix.core.collection">AsyncDistributedCollection</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html" title="type parameter in AsyncAtomicMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AsyncAtomicMap.html#values--">values</a></span>()</code>
 <div class="block">Returns the collection of values (and associated versions) contained in this map.</div>
 </td>
 </tr>
@@ -492,36 +416,36 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/MapEvent.html#MapEvent-io.atomix.core.map.MapEvent.Type-java.lang.String-K-io.atomix.utils.time.Versioned-io.atomix.utils.time.Versioned-">MapEvent</a></span>(<a href="../../../../../io/atomix/core/map/MapEvent.Type.html" title="enum in io.atomix.core.map">MapEvent.Type</a>&nbsp;type,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-        <a href="../../../../../io/atomix/core/map/MapEvent.html" title="type parameter in MapEvent">K</a>&nbsp;key,
-        <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/MapEvent.html" title="type parameter in MapEvent">V</a>&gt;&nbsp;currentValue,
-        <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/MapEvent.html" title="type parameter in MapEvent">V</a>&gt;&nbsp;previousValue)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMapEvent.html#AtomicMapEvent-io.atomix.core.map.AtomicMapEvent.Type-java.lang.String-K-io.atomix.utils.time.Versioned-io.atomix.utils.time.Versioned-">AtomicMapEvent</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMapEvent.Type.html" title="enum in io.atomix.core.map">AtomicMapEvent.Type</a>&nbsp;type,
+              <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+              <a href="../../../../../io/atomix/core/map/AtomicMapEvent.html" title="type parameter in AtomicMapEvent">K</a>&nbsp;key,
+              <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMapEvent.html" title="type parameter in AtomicMapEvent">V</a>&gt;&nbsp;currentValue,
+              <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMapEvent.html" title="type parameter in AtomicMapEvent">V</a>&gt;&nbsp;previousValue)</code>
 <div class="block">Creates a new event object.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/MapEvent.html#MapEvent-io.atomix.core.map.MapEvent.Type-java.lang.String-K-io.atomix.utils.time.Versioned-io.atomix.utils.time.Versioned-">MapEvent</a></span>(<a href="../../../../../io/atomix/core/map/MapEvent.Type.html" title="enum in io.atomix.core.map">MapEvent.Type</a>&nbsp;type,
-        <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-        <a href="../../../../../io/atomix/core/map/MapEvent.html" title="type parameter in MapEvent">K</a>&nbsp;key,
-        <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/MapEvent.html" title="type parameter in MapEvent">V</a>&gt;&nbsp;currentValue,
-        <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/MapEvent.html" title="type parameter in MapEvent">V</a>&gt;&nbsp;previousValue)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMapEvent.html#AtomicMapEvent-io.atomix.core.map.AtomicMapEvent.Type-java.lang.String-K-io.atomix.utils.time.Versioned-io.atomix.utils.time.Versioned-">AtomicMapEvent</a></span>(<a href="../../../../../io/atomix/core/map/AtomicMapEvent.Type.html" title="enum in io.atomix.core.map">AtomicMapEvent.Type</a>&nbsp;type,
+              <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+              <a href="../../../../../io/atomix/core/map/AtomicMapEvent.html" title="type parameter in AtomicMapEvent">K</a>&nbsp;key,
+              <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMapEvent.html" title="type parameter in AtomicMapEvent">V</a>&gt;&nbsp;currentValue,
+              <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMapEvent.html" title="type parameter in AtomicMapEvent">V</a>&gt;&nbsp;previousValue)</code>
 <div class="block">Creates a new event object.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/MapEvent.html#MapEvent-java.lang.String-K-io.atomix.utils.time.Versioned-io.atomix.utils.time.Versioned-">MapEvent</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-        <a href="../../../../../io/atomix/core/map/MapEvent.html" title="type parameter in MapEvent">K</a>&nbsp;key,
-        <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/MapEvent.html" title="type parameter in MapEvent">V</a>&gt;&nbsp;currentValue,
-        <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/MapEvent.html" title="type parameter in MapEvent">V</a>&gt;&nbsp;previousValue)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMapEvent.html#AtomicMapEvent-java.lang.String-K-io.atomix.utils.time.Versioned-io.atomix.utils.time.Versioned-">AtomicMapEvent</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+              <a href="../../../../../io/atomix/core/map/AtomicMapEvent.html" title="type parameter in AtomicMapEvent">K</a>&nbsp;key,
+              <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMapEvent.html" title="type parameter in AtomicMapEvent">V</a>&gt;&nbsp;currentValue,
+              <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMapEvent.html" title="type parameter in AtomicMapEvent">V</a>&gt;&nbsp;previousValue)</code>
 <div class="block">Creates a new event object.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/MapEvent.html#MapEvent-java.lang.String-K-io.atomix.utils.time.Versioned-io.atomix.utils.time.Versioned-">MapEvent</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
-        <a href="../../../../../io/atomix/core/map/MapEvent.html" title="type parameter in MapEvent">K</a>&nbsp;key,
-        <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/MapEvent.html" title="type parameter in MapEvent">V</a>&gt;&nbsp;currentValue,
-        <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/MapEvent.html" title="type parameter in MapEvent">V</a>&gt;&nbsp;previousValue)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/map/AtomicMapEvent.html#AtomicMapEvent-java.lang.String-K-io.atomix.utils.time.Versioned-io.atomix.utils.time.Versioned-">AtomicMapEvent</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
+              <a href="../../../../../io/atomix/core/map/AtomicMapEvent.html" title="type parameter in AtomicMapEvent">K</a>&nbsp;key,
+              <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMapEvent.html" title="type parameter in AtomicMapEvent">V</a>&gt;&nbsp;currentValue,
+              <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/map/AtomicMapEvent.html" title="type parameter in AtomicMapEvent">V</a>&gt;&nbsp;previousValue)</code>
 <div class="block">Creates a new event object.</div>
 </td>
 </tr>
@@ -540,23 +464,23 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../../io/atomix/core/multimap/ConsistentMultimap.html" title="type parameter in ConsistentMultimap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMultimap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/multimap/ConsistentMultimap.html#get-K-">get</a></span>(<a href="../../../../../io/atomix/core/multimap/ConsistentMultimap.html" title="type parameter in ConsistentMultimap">K</a>&nbsp;key)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../../io/atomix/core/multimap/AtomicMultimap.html" title="type parameter in AtomicMultimap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMultimap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/multimap/AtomicMultimap.html#get-K-">get</a></span>(<a href="../../../../../io/atomix/core/multimap/AtomicMultimap.html" title="type parameter in AtomicMultimap">K</a>&nbsp;key)</code>
 <div class="block">Returns a collection of values associated with the specified key, if the
  key is not in the map it will return an empty collection.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../../io/atomix/core/multimap/ConsistentMultimap.html" title="type parameter in ConsistentMultimap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMultimap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/multimap/ConsistentMultimap.html#removeAll-K-">removeAll</a></span>(<a href="../../../../../io/atomix/core/multimap/ConsistentMultimap.html" title="type parameter in ConsistentMultimap">K</a>&nbsp;key)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../../io/atomix/core/multimap/AtomicMultimap.html" title="type parameter in AtomicMultimap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMultimap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/multimap/AtomicMultimap.html#removeAll-K-">removeAll</a></span>(<a href="../../../../../io/atomix/core/multimap/AtomicMultimap.html" title="type parameter in AtomicMultimap">K</a>&nbsp;key)</code>
 <div class="block">Removes all values associated with the specified key as well as the key
  itself.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../../io/atomix/core/multimap/ConsistentMultimap.html" title="type parameter in ConsistentMultimap">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">ConsistentMultimap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/multimap/ConsistentMultimap.html#replaceValues-K-java.util.Collection-">replaceValues</a></span>(<a href="../../../../../io/atomix/core/multimap/ConsistentMultimap.html" title="type parameter in ConsistentMultimap">K</a>&nbsp;key,
-             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/core/multimap/ConsistentMultimap.html" title="type parameter in ConsistentMultimap">V</a>&gt;&nbsp;values)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../../io/atomix/core/multimap/AtomicMultimap.html" title="type parameter in AtomicMultimap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicMultimap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/multimap/AtomicMultimap.html#replaceValues-K-java.util.Collection-">replaceValues</a></span>(<a href="../../../../../io/atomix/core/multimap/AtomicMultimap.html" title="type parameter in AtomicMultimap">K</a>&nbsp;key,
+             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/core/multimap/AtomicMultimap.html" title="type parameter in AtomicMultimap">V</a>&gt;&nbsp;values)</code>
 <div class="block">Stores all the values in values associated with the key specified,
  removes all preexisting values and returns a collection of the removed
  values which may be empty if the entry did not exist.</div>
@@ -572,23 +496,23 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../../io/atomix/core/multimap/AsyncConsistentMultimap.html" title="type parameter in AsyncConsistentMultimap">V</a>&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMultimap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/multimap/AsyncConsistentMultimap.html#get-K-">get</a></span>(<a href="../../../../../io/atomix/core/multimap/AsyncConsistentMultimap.html" title="type parameter in AsyncConsistentMultimap">K</a>&nbsp;key)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../../io/atomix/core/multimap/AsyncAtomicMultimap.html" title="type parameter in AsyncAtomicMultimap">V</a>&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMultimap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/multimap/AsyncAtomicMultimap.html#get-K-">get</a></span>(<a href="../../../../../io/atomix/core/multimap/AsyncAtomicMultimap.html" title="type parameter in AsyncAtomicMultimap">K</a>&nbsp;key)</code>
 <div class="block">Returns a collection of values associated with the specified key, if the
  key is not in the map it will return an empty collection.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../../io/atomix/core/multimap/AsyncConsistentMultimap.html" title="type parameter in AsyncConsistentMultimap">V</a>&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMultimap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/multimap/AsyncConsistentMultimap.html#removeAll-K-">removeAll</a></span>(<a href="../../../../../io/atomix/core/multimap/AsyncConsistentMultimap.html" title="type parameter in AsyncConsistentMultimap">K</a>&nbsp;key)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../../io/atomix/core/multimap/AsyncAtomicMultimap.html" title="type parameter in AsyncAtomicMultimap">V</a>&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMultimap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/multimap/AsyncAtomicMultimap.html#removeAll-K-">removeAll</a></span>(<a href="../../../../../io/atomix/core/multimap/AsyncAtomicMultimap.html" title="type parameter in AsyncAtomicMultimap">K</a>&nbsp;key)</code>
 <div class="block">Removes all values associated with the specified key as well as the key
  itself.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../../io/atomix/core/multimap/AsyncConsistentMultimap.html" title="type parameter in AsyncConsistentMultimap">V</a>&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncConsistentMultimap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/multimap/AsyncConsistentMultimap.html#replaceValues-K-java.util.Collection-">replaceValues</a></span>(<a href="../../../../../io/atomix/core/multimap/AsyncConsistentMultimap.html" title="type parameter in AsyncConsistentMultimap">K</a>&nbsp;key,
-             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/core/multimap/AsyncConsistentMultimap.html" title="type parameter in AsyncConsistentMultimap">V</a>&gt;&nbsp;values)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;? extends <a href="../../../../../io/atomix/core/multimap/AsyncAtomicMultimap.html" title="type parameter in AsyncAtomicMultimap">V</a>&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicMultimap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/multimap/AsyncAtomicMultimap.html#replaceValues-K-java.util.Collection-">replaceValues</a></span>(<a href="../../../../../io/atomix/core/multimap/AsyncAtomicMultimap.html" title="type parameter in AsyncAtomicMultimap">K</a>&nbsp;key,
+             <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="../../../../../io/atomix/core/multimap/AsyncAtomicMultimap.html" title="type parameter in AsyncAtomicMultimap">V</a>&gt;&nbsp;values)</code>
 <div class="block">Stores all the values in values associated with the key specified,
  removes all preexisting values and returns a collection of the removed
  values which may be empty if the entry did not exist.</div>
@@ -609,21 +533,21 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/DocumentTree.html" title="type parameter in DocumentTree">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DocumentTree.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/DocumentTree.html#get-io.atomix.core.tree.DocumentPath-">get</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentPath.html" title="class in io.atomix.core.tree">DocumentPath</a>&nbsp;path)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/AtomicDocumentTree.html" title="type parameter in AtomicDocumentTree">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicDocumentTree.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/AtomicDocumentTree.html#get-io.atomix.core.tree.DocumentPath-">get</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentPath.html" title="class in io.atomix.core.tree">DocumentPath</a>&nbsp;path)</code>
 <div class="block">Returns a document tree node.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/DocumentTree.html" title="type parameter in DocumentTree">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DocumentTree.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/DocumentTree.html#removeNode-io.atomix.core.tree.DocumentPath-">removeNode</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentPath.html" title="class in io.atomix.core.tree">DocumentPath</a>&nbsp;path)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/AtomicDocumentTree.html" title="type parameter in AtomicDocumentTree">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicDocumentTree.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/AtomicDocumentTree.html#removeNode-io.atomix.core.tree.DocumentPath-">removeNode</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentPath.html" title="class in io.atomix.core.tree">DocumentPath</a>&nbsp;path)</code>
 <div class="block">Removes the node with the specified path.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/DocumentTree.html" title="type parameter in DocumentTree">V</a>&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DocumentTree.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/DocumentTree.html#set-io.atomix.core.tree.DocumentPath-V-">set</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentPath.html" title="class in io.atomix.core.tree">DocumentPath</a>&nbsp;path,
-   <a href="../../../../../io/atomix/core/tree/DocumentTree.html" title="type parameter in DocumentTree">V</a>&nbsp;value)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/AtomicDocumentTree.html" title="type parameter in AtomicDocumentTree">V</a>&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicDocumentTree.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/AtomicDocumentTree.html#set-io.atomix.core.tree.DocumentPath-V-">set</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentPath.html" title="class in io.atomix.core.tree">DocumentPath</a>&nbsp;path,
+   <a href="../../../../../io/atomix/core/tree/AtomicDocumentTree.html" title="type parameter in AtomicDocumentTree">V</a>&nbsp;value)</code>
 <div class="block">Creates or updates a document tree node.</div>
 </td>
 </tr>
@@ -643,20 +567,20 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/AsyncDocumentTree.html" title="type parameter in AsyncDocumentTree">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncDocumentTree.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/AsyncDocumentTree.html#get-io.atomix.core.tree.DocumentPath-">get</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentPath.html" title="class in io.atomix.core.tree">DocumentPath</a>&nbsp;path)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/AsyncAtomicDocumentTree.html" title="type parameter in AsyncAtomicDocumentTree">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicDocumentTree.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/AsyncAtomicDocumentTree.html#get-io.atomix.core.tree.DocumentPath-">get</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentPath.html" title="class in io.atomix.core.tree">DocumentPath</a>&nbsp;path)</code>
 <div class="block">Returns the value of the tree node at specified path.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/AsyncDocumentTree.html" title="type parameter in AsyncDocumentTree">V</a>&gt;&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncDocumentTree.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/AsyncDocumentTree.html#getChildren-io.atomix.core.tree.DocumentPath-">getChildren</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentPath.html" title="class in io.atomix.core.tree">DocumentPath</a>&nbsp;path)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/AsyncAtomicDocumentTree.html" title="type parameter in AsyncAtomicDocumentTree">V</a>&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicDocumentTree.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/AsyncAtomicDocumentTree.html#getChildren-io.atomix.core.tree.DocumentPath-">getChildren</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentPath.html" title="class in io.atomix.core.tree">DocumentPath</a>&nbsp;path)</code>
 <div class="block">Returns the children of node at specified path in the form of a mapping from child name to child value.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/DocumentTree.html" title="type parameter in DocumentTree">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">DocumentTree.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/DocumentTree.html#getChildren-io.atomix.core.tree.DocumentPath-">getChildren</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentPath.html" title="class in io.atomix.core.tree">DocumentPath</a>&nbsp;path)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/AtomicDocumentTree.html" title="type parameter in AtomicDocumentTree">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicDocumentTree.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/AtomicDocumentTree.html#getChildren-io.atomix.core.tree.DocumentPath-">getChildren</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentPath.html" title="class in io.atomix.core.tree">DocumentPath</a>&nbsp;path)</code>
 <div class="block">Returns the child values for this node.</div>
 </td>
 </tr>
@@ -673,15 +597,15 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/AsyncDocumentTree.html" title="type parameter in AsyncDocumentTree">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncDocumentTree.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/AsyncDocumentTree.html#removeNode-io.atomix.core.tree.DocumentPath-">removeNode</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentPath.html" title="class in io.atomix.core.tree">DocumentPath</a>&nbsp;path)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/AsyncAtomicDocumentTree.html" title="type parameter in AsyncAtomicDocumentTree">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicDocumentTree.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/AsyncAtomicDocumentTree.html#removeNode-io.atomix.core.tree.DocumentPath-">removeNode</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentPath.html" title="class in io.atomix.core.tree">DocumentPath</a>&nbsp;path)</code>
 <div class="block">Removes the node with the specified path.</div>
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/AsyncDocumentTree.html" title="type parameter in AsyncDocumentTree">V</a>&gt;&gt;</code></td>
-<td class="colLast"><span class="typeNameLabel">AsyncDocumentTree.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/AsyncDocumentTree.html#set-io.atomix.core.tree.DocumentPath-V-">set</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentPath.html" title="class in io.atomix.core.tree">DocumentPath</a>&nbsp;path,
-   <a href="../../../../../io/atomix/core/tree/AsyncDocumentTree.html" title="type parameter in AsyncDocumentTree">V</a>&nbsp;value)</code>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/AsyncAtomicDocumentTree.html" title="type parameter in AsyncAtomicDocumentTree">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicDocumentTree.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/tree/AsyncAtomicDocumentTree.html#set-io.atomix.core.tree.DocumentPath-V-">set</a></span>(<a href="../../../../../io/atomix/core/tree/DocumentPath.html" title="class in io.atomix.core.tree">DocumentPath</a>&nbsp;path,
+   <a href="../../../../../io/atomix/core/tree/AsyncAtomicDocumentTree.html" title="type parameter in AsyncAtomicDocumentTree">V</a>&nbsp;value)</code>
 <div class="block">Creates or updates a document tree node.</div>
 </td>
 </tr>
@@ -707,6 +631,94 @@
                  <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/DocumentTreeEvent.html" title="type parameter in DocumentTreeEvent">V</a>&gt;&gt;&nbsp;newValue,
                  <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html?is-external=true" title="class or interface in java.util">Optional</a>&lt;<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/tree/DocumentTreeEvent.html" title="type parameter in DocumentTreeEvent">V</a>&gt;&gt;&nbsp;oldValue)</code>
 <div class="block">Constructs a new <code>DocumentTreeEvent</code>.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.core.treemap">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a> in <a href="../../../../../io/atomix/core/treemap/package-summary.html">io.atomix.core.treemap</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/core/treemap/package-summary.html">io.atomix.core.treemap</a> that return types with arguments of type <a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/treemap/AsyncAtomicTreeMap.html" title="type parameter in AsyncAtomicTreeMap">V</a>&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/treemap/AsyncAtomicTreeMap.html#ceilingEntry-java.lang.String-">ceilingEntry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
+<div class="block">Returns the entry associated with the least key greater than or equal to
+ the key.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/treemap/AtomicTreeMap.html" title="type parameter in AtomicTreeMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/treemap/AtomicTreeMap.html#ceilingEntry-java.lang.String-">ceilingEntry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
+<div class="block">Returns the entry associated with the least key greater than or equal to the key.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/treemap/AsyncAtomicTreeMap.html" title="type parameter in AsyncAtomicTreeMap">V</a>&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/treemap/AsyncAtomicTreeMap.html#firstEntry--">firstEntry</a></span>()</code>
+<div class="block">Return the entry associated with the lowest key in the map.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/treemap/AtomicTreeMap.html" title="type parameter in AtomicTreeMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/treemap/AtomicTreeMap.html#firstEntry--">firstEntry</a></span>()</code>
+<div class="block">Returns the entry associated with the lowest key in the map.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/treemap/AsyncAtomicTreeMap.html" title="type parameter in AsyncAtomicTreeMap">V</a>&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/treemap/AsyncAtomicTreeMap.html#floorEntry-java.lang.String-">floorEntry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
+<div class="block">Returns the entry associated with the greatest key less than or equal
+ to key.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/treemap/AtomicTreeMap.html" title="type parameter in AtomicTreeMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/treemap/AtomicTreeMap.html#floorEntry-java.lang.String-">floorEntry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
+<div class="block">Returns the entry associated with the greatest key less than or equal to key.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/treemap/AsyncAtomicTreeMap.html" title="type parameter in AsyncAtomicTreeMap">V</a>&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/treemap/AsyncAtomicTreeMap.html#higherEntry-java.lang.String-">higherEntry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
+<div class="block">Returns the entry associated with the least key greater than key.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/treemap/AtomicTreeMap.html" title="type parameter in AtomicTreeMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/treemap/AtomicTreeMap.html#higherEntry-java.lang.String-">higherEntry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
+<div class="block">Returns the entry associated with the lest key greater than key.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/treemap/AsyncAtomicTreeMap.html" title="type parameter in AsyncAtomicTreeMap">V</a>&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/treemap/AsyncAtomicTreeMap.html#lastEntry--">lastEntry</a></span>()</code>
+<div class="block">Return the entry associated with the highest key in the map.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/treemap/AtomicTreeMap.html" title="type parameter in AtomicTreeMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/treemap/AtomicTreeMap.html#lastEntry--">lastEntry</a></span>()</code>
+<div class="block">Returns the entry associated with the highest key in the map.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html?is-external=true" title="class or interface in java.util.concurrent">CompletableFuture</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/treemap/AsyncAtomicTreeMap.html" title="type parameter in AsyncAtomicTreeMap">V</a>&gt;&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AsyncAtomicTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/treemap/AsyncAtomicTreeMap.html#lowerEntry-java.lang.String-">lowerEntry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
+<div class="block">Returns the entry associated with the largest key less than key.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.Entry.html?is-external=true" title="class or interface in java.util">Map.Entry</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../../../io/atomix/utils/time/Versioned.html" title="class in io.atomix.utils.time">Versioned</a>&lt;<a href="../../../../../io/atomix/core/treemap/AtomicTreeMap.html" title="type parameter in AtomicTreeMap">V</a>&gt;&gt;</code></td>
+<td class="colLast"><span class="typeNameLabel">AtomicTreeMap.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/treemap/AtomicTreeMap.html#lowerEntry-java.lang.String-">lowerEntry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;key)</code>
+<div class="block">Returns the entry associated with the largest key less than key.</div>
 </td>
 </tr>
 </tbody>
