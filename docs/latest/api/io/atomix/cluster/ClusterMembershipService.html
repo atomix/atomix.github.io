@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":18,"i3":6};
+var methods = {"i0":6,"i1":18,"i2":6,"i3":18,"i4":6,"i5":18};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../io/atomix/cluster/ClusterMembershipEventListener.html" title="interface in io.atomix.cluster"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../io/atomix/cluster/GroupMembershipConfig.html" title="class in io.atomix.cluster"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/cluster/ManagedClusterMembershipService.html" title="interface in io.atomix.cluster"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/cluster/ClusterMembershipService.html" target="_top">Frames</a></li>
@@ -138,21 +138,33 @@ extends <a href="../../../io/atomix/utils/event/ListenerService.html" title="int
 </td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>default <a href="../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterMembershipService.html#getMember-io.atomix.utils.net.Address-">getMember</a></span>(<a href="../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>
+<div class="block">Returns a member by address.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterMembershipService.html#getMember-io.atomix.cluster.MemberId-">getMember</a></span>(<a href="../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId)</code>
 <div class="block">Returns the specified member.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>default <a href="../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterMembershipService.html#getMember-java.lang.String-">getMember</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</code>
 <div class="block">Returns the specified member node.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterMembershipService.html#getMembers--">getMembers</a></span>()</code>
 <div class="block">Returns the set of current cluster members.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>default <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a>&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterMembershipService.html#getReachableMembers--">getReachableMembers</a></span>()</code>
+<div class="block">Returns the set of active reachable members.</div>
 </td>
 </tr>
 </table>
@@ -205,6 +217,20 @@ extends <a href="../../../io/atomix/utils/event/ListenerService.html" title="int
 </dl>
 </li>
 </ul>
+<a name="getReachableMembers--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getReachableMembers</h4>
+<pre>default&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a>&gt;&nbsp;getReachableMembers()</pre>
+<div class="block">Returns the set of active reachable members.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the set of active reachable members</dd>
+</dl>
+</li>
+</ul>
 <a name="getMember-java.lang.String-">
 <!--   -->
 </a>
@@ -227,7 +253,7 @@ extends <a href="../../../io/atomix/utils/event/ListenerService.html" title="int
 <a name="getMember-io.atomix.cluster.MemberId-">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>getMember</h4>
 <pre><a href="../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a>&nbsp;getMember(<a href="../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId)</pre>
@@ -237,6 +263,22 @@ extends <a href="../../../io/atomix/utils/event/ListenerService.html" title="int
 <dd><code>memberId</code> - the member identifier</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the member or <code>null</code> if no node with the given identifier exists</dd>
+</dl>
+</li>
+</ul>
+<a name="getMember-io.atomix.utils.net.Address-">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getMember</h4>
+<pre>default&nbsp;<a href="../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a>&nbsp;getMember(<a href="../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</pre>
+<div class="block">Returns a member by address.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>address</code> - the member address</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the member or <code>null</code> if no member with the given address could be found</dd>
 </dl>
 </li>
 </ul>
@@ -269,7 +311,7 @@ extends <a href="../../../io/atomix/utils/event/ListenerService.html" title="int
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../io/atomix/cluster/ClusterMembershipEventListener.html" title="interface in io.atomix.cluster"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../io/atomix/cluster/GroupMembershipConfig.html" title="class in io.atomix.cluster"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/cluster/ManagedClusterMembershipService.html" title="interface in io.atomix.cluster"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/cluster/ClusterMembershipService.html" target="_top">Frames</a></li>

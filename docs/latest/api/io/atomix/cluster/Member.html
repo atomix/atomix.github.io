@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":9,"i2":9,"i3":9,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":9,"i11":9,"i12":9,"i13":9,"i14":10,"i15":10,"i16":10,"i17":10};
+var methods = {"i0":9,"i1":9,"i2":9,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":9,"i11":9,"i12":9,"i13":9,"i14":10,"i15":10,"i16":10,"i17":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -50,7 +50,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../io/atomix/cluster/ManagedClusterMembershipService.html" title="interface in io.atomix.cluster"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/cluster/MemberBuilder.html" title="class in io.atomix.cluster"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/cluster/Member.html" target="_top">Frames</a></li>
@@ -74,7 +74,7 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
@@ -100,7 +100,12 @@ var activeTableTab = "activeTableTab";
 <li><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">java.lang.Object</a></li>
 <li>
 <ul class="inheritance">
+<li><a href="../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">io.atomix.cluster.Node</a></li>
+<li>
+<ul class="inheritance">
 <li>io.atomix.cluster.Member</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -109,47 +114,19 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><a href="../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a>&lt;<a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a>&gt;</dd>
+<dd><a href="../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a>&lt;<a href="../../../io/atomix/cluster/NodeConfig.html" title="class in io.atomix.cluster">NodeConfig</a>&gt;</dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="typeNameLabel">Member</span>
-extends <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
-implements <a href="../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a>&lt;<a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a>&gt;</pre>
-<div class="block">Represents a controller instance as a member in a cluster.</div>
+extends <a href="../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a></pre>
+<div class="block">Represents a node as a member in a cluster.</div>
 </li>
 </ul>
 </div>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
-<!-- ======== NESTED CLASS SUMMARY ======== -->
-<ul class="blockList">
-<li class="blockList"><a name="nested.class.summary">
-<!--   -->
-</a>
-<h3>Nested Class Summary</h3>
-<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
-<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Class and Description</th>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a></span></code>
-<div class="block">Member builder.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.State.html" title="enum in io.atomix.cluster">Member.State</a></span></code>
-<div class="block">Represents the operational state of the instance.</div>
-</td>
-</tr>
-</table>
-</li>
-</ul>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <ul class="blockList">
 <li class="blockList"><a name="constructor.summary">
@@ -180,59 +157,59 @@ implements <a href="../../../io/atomix/utils/config/Configured.html" title="inte
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.html#address--">address</a></span>()</code>
-<div class="block">Returns the node address.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
-<td class="colFirst"><code>static <a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a></code></td>
+<td class="colFirst"><code>static <a href="../../../io/atomix/cluster/MemberBuilder.html" title="class in io.atomix.cluster">MemberBuilder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.html#builder--">builder</a></span>()</code>
 <div class="block">Returns a new member builder with no ID.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
-<td class="colFirst"><code>static <a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a></code></td>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>static <a href="../../../io/atomix/cluster/MemberBuilder.html" title="class in io.atomix.cluster">MemberBuilder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.html#builder-io.atomix.cluster.MemberId-">builder</a></span>(<a href="../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId)</code>
 <div class="block">Returns a new member builder.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>static <a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a></code></td>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>static <a href="../../../io/atomix/cluster/MemberBuilder.html" title="class in io.atomix.cluster">MemberBuilder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.html#builder-java.lang.String-">builder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</code>
 <div class="block">Returns a new member builder.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.html#config--">config</a></span>()</code>
 <div class="block">Returns the object configuration.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.html#equals-java.lang.Object-">equals</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;object)</code>&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/cluster/Member.State.html" title="enum in io.atomix.cluster">Member.State</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.html#getState--">getState</a></span>()</code>
-<div class="block">Returns the node state.</div>
-</td>
-</tr>
-<tr id="i7" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.html#hashCode--">hashCode</a></span>()</code>&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.html#host--">host</a></span>()</code>
-<div class="block">Returns the host to which the rack belongs.</div>
+<div class="block">Returns the host to which the member belongs.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.html#id--">id</a></span>()</code>
 <div class="block">Returns the instance identifier.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.html#isActive--">isActive</a></span>()</code>
+<div class="block">Returns a boolean indicating whether this member is an active member of the cluster.</div>
+</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>boolean</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.html#isReachable--">isReachable</a></span>()</code>
+<div class="block">Returns the node reachability.</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
@@ -262,15 +239,15 @@ implements <a href="../../../io/atomix/utils/config/Configured.html" title="inte
 </td>
 </tr>
 <tr id="i14" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.html#metadata--">metadata</a></span>()</code>
-<div class="block">Returns the node metadata.</div>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.html#properties--">properties</a></span>()</code>
+<div class="block">Returns the member properties.</div>
 </td>
 </tr>
 <tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.html#rack--">rack</a></span>()</code>
-<div class="block">Returns the rack to which the node belongs.</div>
+<div class="block">Returns the rack to which the member belongs.</div>
 </td>
 </tr>
 <tr id="i16" class="altColor">
@@ -280,10 +257,17 @@ implements <a href="../../../io/atomix/utils/config/Configured.html" title="inte
 <tr id="i17" class="rowColor">
 <td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/Member.html#zone--">zone</a></span>()</code>
-<div class="block">Returns the zone to which the node belongs.</div>
+<div class="block">Returns the zone to which the member belongs.</div>
 </td>
 </tr>
 </table>
+<ul class="blockList">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.cluster.Node">
+<!--   -->
+</a>
+<h3>Methods inherited from class&nbsp;io.atomix.cluster.<a href="../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a></h3>
+<code><a href="../../../io/atomix/cluster/Node.html#address--">address</a></code></li>
+</ul>
 <ul class="blockList">
 <li class="blockList"><a name="methods.inherited.from.class.java.lang.Object">
 <!--   -->
@@ -328,7 +312,7 @@ implements <a href="../../../io/atomix/utils/config/Configured.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>builder</h4>
-<pre>public static&nbsp;<a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a>&nbsp;builder()</pre>
+<pre>public static&nbsp;<a href="../../../io/atomix/cluster/MemberBuilder.html" title="class in io.atomix.cluster">MemberBuilder</a>&nbsp;builder()</pre>
 <div class="block">Returns a new member builder with no ID.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -342,7 +326,7 @@ implements <a href="../../../io/atomix/utils/config/Configured.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>builder</h4>
-<pre>public static&nbsp;<a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a>&nbsp;builder(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</pre>
+<pre>public static&nbsp;<a href="../../../io/atomix/cluster/MemberBuilder.html" title="class in io.atomix.cluster">MemberBuilder</a>&nbsp;builder(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;memberId)</pre>
 <div class="block">Returns a new member builder.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -360,7 +344,7 @@ implements <a href="../../../io/atomix/utils/config/Configured.html" title="inte
 <ul class="blockList">
 <li class="blockList">
 <h4>builder</h4>
-<pre>public static&nbsp;<a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a>&nbsp;builder(<a href="../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId)</pre>
+<pre>public static&nbsp;<a href="../../../io/atomix/cluster/MemberBuilder.html" title="class in io.atomix.cluster">MemberBuilder</a>&nbsp;builder(<a href="../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId)</pre>
 <div class="block">Returns a new member builder.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -447,38 +431,41 @@ implements <a href="../../../io/atomix/utils/config/Configured.html" title="inte
 <li class="blockList">
 <h4>id</h4>
 <pre>public&nbsp;<a href="../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;id()</pre>
+<div class="block"><span class="descfrmTypeLabel">Description copied from class:&nbsp;<code><a href="../../../io/atomix/cluster/Node.html#id--">Node</a></code></span></div>
 <div class="block">Returns the instance identifier.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/cluster/Node.html#id--">id</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>instance identifier</dd>
 </dl>
 </li>
 </ul>
-<a name="address--">
+<a name="isActive--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>address</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address()</pre>
-<div class="block">Returns the node address.</div>
+<h4>isActive</h4>
+<pre>public&nbsp;boolean&nbsp;isActive()</pre>
+<div class="block">Returns a boolean indicating whether this member is an active member of the cluster.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the node address</dd>
+<dd>indicates whether this member is an active member of the cluster</dd>
 </dl>
 </li>
 </ul>
-<a name="getState--">
+<a name="isReachable--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getState</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/cluster/Member.State.html" title="enum in io.atomix.cluster">Member.State</a>&nbsp;getState()</pre>
-<div class="block">Returns the node state.</div>
+<h4>isReachable</h4>
+<pre>public&nbsp;boolean&nbsp;isReachable()</pre>
+<div class="block">Returns the node reachability.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the node state</dd>
+<dd>the node reachability</dd>
 </dl>
 </li>
 </ul>
@@ -489,10 +476,10 @@ implements <a href="../../../io/atomix/utils/config/Configured.html" title="inte
 <li class="blockList">
 <h4>zone</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;zone()</pre>
-<div class="block">Returns the zone to which the node belongs.</div>
+<div class="block">Returns the zone to which the member belongs.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the zone to which the node belongs</dd>
+<dd>the zone to which the member belongs</dd>
 </dl>
 </li>
 </ul>
@@ -503,10 +490,10 @@ implements <a href="../../../io/atomix/utils/config/Configured.html" title="inte
 <li class="blockList">
 <h4>rack</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;rack()</pre>
-<div class="block">Returns the rack to which the node belongs.</div>
+<div class="block">Returns the rack to which the member belongs.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the rack to which the node belongs</dd>
+<dd>the rack to which the member belongs</dd>
 </dl>
 </li>
 </ul>
@@ -517,24 +504,24 @@ implements <a href="../../../io/atomix/utils/config/Configured.html" title="inte
 <li class="blockList">
 <h4>host</h4>
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;host()</pre>
-<div class="block">Returns the host to which the rack belongs.</div>
+<div class="block">Returns the host to which the member belongs.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the host to which the rack belongs</dd>
+<dd>the host to which the member belongs</dd>
 </dl>
 </li>
 </ul>
-<a name="metadata--">
+<a name="properties--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>metadata</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;metadata()</pre>
-<div class="block">Returns the node metadata.</div>
+<h4>properties</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Properties.html?is-external=true" title="class or interface in java.util">Properties</a>&nbsp;properties()</pre>
+<div class="block">Returns the member properties.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the node metadata</dd>
+<dd>the member properties</dd>
 </dl>
 </li>
 </ul>
@@ -549,7 +536,9 @@ implements <a href="../../../io/atomix/utils/config/Configured.html" title="inte
 <div class="block">Returns the object configuration.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../../../io/atomix/utils/config/Configured.html#config--">config</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a>&lt;<a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a>&gt;</code></dd>
+<dd><code><a href="../../../io/atomix/utils/config/Configured.html#config--">config</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a>&lt;<a href="../../../io/atomix/cluster/NodeConfig.html" title="class in io.atomix.cluster">NodeConfig</a>&gt;</code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code><a href="../../../io/atomix/cluster/Node.html#config--">config</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the object configuration</dd>
 </dl>
@@ -564,7 +553,7 @@ implements <a href="../../../io/atomix/utils/config/Configured.html" title="inte
 <pre>public&nbsp;int&nbsp;hashCode()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#hashCode--" title="class or interface in java.lang">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dd><code><a href="../../../io/atomix/cluster/Node.html#hashCode--">hashCode</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -577,7 +566,7 @@ implements <a href="../../../io/atomix/utils/config/Configured.html" title="inte
 <pre>public&nbsp;boolean&nbsp;equals(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>&nbsp;object)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#equals-java.lang.Object-" title="class or interface in java.lang">equals</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dd><code><a href="../../../io/atomix/cluster/Node.html#equals-java.lang.Object-">equals</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -590,7 +579,7 @@ implements <a href="../../../io/atomix/utils/config/Configured.html" title="inte
 <pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;toString()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
-<dd><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
+<dd><code><a href="../../../io/atomix/cluster/Node.html#toString--">toString</a></code>&nbsp;in class&nbsp;<code><a href="../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -623,7 +612,7 @@ implements <a href="../../../io/atomix/utils/config/Configured.html" title="inte
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../io/atomix/cluster/ManagedClusterMembershipService.html" title="interface in io.atomix.cluster"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/cluster/MemberBuilder.html" title="class in io.atomix.cluster"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?io/atomix/cluster/Member.html" target="_top">Frames</a></li>
@@ -647,7 +636,7 @@ implements <a href="../../../io/atomix/utils/config/Configured.html" title="inte
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li>Nested&nbsp;|&nbsp;</li>
 <li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>

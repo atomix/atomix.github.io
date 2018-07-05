@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -49,7 +49,7 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html" title="class in io.atomix.cluster"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/cluster/BootstrapService.html" title="interface in io.atomix.cluster"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../io/atomix/cluster/ClusterMembershipEvent.html" title="class in io.atomix.cluster"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
@@ -153,93 +153,63 @@ implements <a href="../../../io/atomix/utils/config/Config.html" title="interfac
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#addMember-io.atomix.cluster.MemberConfig-">addMember</a></span>(<a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a>&nbsp;member)</code>
-<div class="block">Adds a member to the configuration.</div>
+<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#getClusterId--">getClusterId</a></span>()</code>
+<div class="block">Returns the cluster identifier.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#getLocalMember--">getLocalMember</a></span>()</code>
-<div class="block">Returns the local node configuration.</div>
+<td class="colFirst"><code><a href="../../../io/atomix/cluster/discovery/NodeDiscoveryConfig.html" title="class in io.atomix.cluster.discovery">NodeDiscoveryConfig</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#getDiscoveryConfig--">getDiscoveryConfig</a></span>()</code>
+<div class="block">Returns the node discovery provider configuration.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#getLocalMemberId--">getLocalMemberId</a></span>()</code>
-<div class="block">Returns the local member identifier.</div>
+<td class="colFirst"><code><a href="../../../io/atomix/cluster/MembershipConfig.html" title="class in io.atomix.cluster">MembershipConfig</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#getMembershipConfig--">getMembershipConfig</a></span>()</code>
+<div class="block">Returns the cluster membership configuration.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a>&gt;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#getMembers--">getMembers</a></span>()</code>
-<div class="block">Returns the cluster nodes.</div>
+<td class="colFirst"><code><a href="../../../io/atomix/cluster/MulticastConfig.html" title="class in io.atomix.cluster">MulticastConfig</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#getMulticastConfig--">getMulticastConfig</a></span>()</code>
+<div class="block">Returns the multicast configuration.</div>
 </td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/cluster/GroupMembershipConfig.html" title="class in io.atomix.cluster">GroupMembershipConfig</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#getMembershipConfig--">getMembershipConfig</a></span>()</code>
-<div class="block">Returns the group membership configuration.</div>
+<td class="colFirst"><code><a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#getNodeConfig--">getNodeConfig</a></span>()</code>
+<div class="block">Returns the local member configuration.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#getMulticastAddress--">getMulticastAddress</a></span>()</code>
-<div class="block">Returns the multicast address.</div>
+<td class="colFirst"><code><a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#setClusterId-java.lang.String-">setClusterId</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;clusterId)</code>
+<div class="block">Sets the cluster identifier.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
-<td class="colFirst"><code><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#getName--">getName</a></span>()</code>
-<div class="block">Returns the cluster name.</div>
+<td class="colFirst"><code><a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#setDiscoveryConfig-io.atomix.cluster.discovery.NodeDiscoveryConfig-">setDiscoveryConfig</a></span>(<a href="../../../io/atomix/cluster/discovery/NodeDiscoveryConfig.html" title="class in io.atomix.cluster.discovery">NodeDiscoveryConfig</a>&nbsp;discoveryConfig)</code>
+<div class="block">Sets the node discovery provider configuration.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#isMulticastEnabled--">isMulticastEnabled</a></span>()</code>
-<div class="block">Returns whether multicast is enabled.</div>
+<td class="colFirst"><code><a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#setMembershipConfig-io.atomix.cluster.MembershipConfig-">setMembershipConfig</a></span>(<a href="../../../io/atomix/cluster/MembershipConfig.html" title="class in io.atomix.cluster">MembershipConfig</a>&nbsp;membershipConfig)</code>
+<div class="block">Sets the cluster membership configuration.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#setLocalMember-io.atomix.cluster.MemberConfig-">setLocalMember</a></span>(<a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a>&nbsp;localMember)</code>
-<div class="block">Sets the local node configuration.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#setMulticastConfig-io.atomix.cluster.MulticastConfig-">setMulticastConfig</a></span>(<a href="../../../io/atomix/cluster/MulticastConfig.html" title="class in io.atomix.cluster">MulticastConfig</a>&nbsp;multicastConfig)</code>
+<div class="block">Sets the multicast configuration.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#setLocalMemberId-java.lang.String-">setLocalMemberId</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;localMemberId)</code>
-<div class="block">Sets the local member identifier.</div>
-</td>
-</tr>
-<tr id="i10" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#setMembers-java.util.List-">setMembers</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a>&gt;&nbsp;members)</code>
-<div class="block">Sets the cluster nodes.</div>
-</td>
-</tr>
-<tr id="i11" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#setMembershipConfig-io.atomix.cluster.GroupMembershipConfig-">setMembershipConfig</a></span>(<a href="../../../io/atomix/cluster/GroupMembershipConfig.html" title="class in io.atomix.cluster">GroupMembershipConfig</a>&nbsp;membershipConfig)</code>
-<div class="block">Sets the group membership configuration.</div>
-</td>
-</tr>
-<tr id="i12" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#setMulticastAddress-io.atomix.utils.net.Address-">setMulticastAddress</a></span>(<a href="../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;multicastAddress)</code>
-<div class="block">Sets the multicast address.</div>
-</td>
-</tr>
-<tr id="i13" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#setMulticastEnabled-boolean-">setMulticastEnabled</a></span>(boolean&nbsp;multicastEnabled)</code>
-<div class="block">Sets whether multicast is enabled.</div>
-</td>
-</tr>
-<tr id="i14" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#setName-java.lang.String-">setName</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
-<div class="block">Sets the cluster name.</div>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/cluster/ClusterConfig.html#setNodeConfig-io.atomix.cluster.MemberConfig-">setNodeConfig</a></span>(<a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a>&nbsp;nodeConfig)</code>
+<div class="block">Sets the local member configuration.</div>
 </td>
 </tr>
 </table>
@@ -281,197 +251,121 @@ implements <a href="../../../io/atomix/utils/config/Config.html" title="interfac
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="getName--">
+<a name="getClusterId--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getName</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getName()</pre>
-<div class="block">Returns the cluster name.</div>
+<h4>getClusterId</h4>
+<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getClusterId()</pre>
+<div class="block">Returns the cluster identifier.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the cluster name</dd>
+<dd>the cluster identifier</dd>
 </dl>
 </li>
 </ul>
-<a name="setName-java.lang.String-">
+<a name="setClusterId-java.lang.String-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setName</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a>&nbsp;setName(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
-<div class="block">Sets the cluster name.</div>
+<h4>setClusterId</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a>&nbsp;setClusterId(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;clusterId)</pre>
+<div class="block">Sets the cluster identifier.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>name</code> - the cluster name</dd>
+<dd><code>clusterId</code> - the cluster identifier</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the cluster configuration</dd>
 </dl>
 </li>
 </ul>
-<a name="getLocalMemberId--">
+<a name="getNodeConfig--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getLocalMemberId</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;getLocalMemberId()</pre>
-<div class="block">Returns the local member identifier.</div>
+<h4>getNodeConfig</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a>&nbsp;getNodeConfig()</pre>
+<div class="block">Returns the local member configuration.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the local member identifier</dd>
+<dd>the local member configuration</dd>
 </dl>
 </li>
 </ul>
-<a name="setLocalMemberId-java.lang.String-">
+<a name="setNodeConfig-io.atomix.cluster.MemberConfig-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setLocalMemberId</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a>&nbsp;setLocalMemberId(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;localMemberId)</pre>
-<div class="block">Sets the local member identifier.</div>
+<h4>setNodeConfig</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a>&nbsp;setNodeConfig(<a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a>&nbsp;nodeConfig)</pre>
+<div class="block">Sets the local member configuration.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>localMemberId</code> - the local member identifier</dd>
+<dd><code>nodeConfig</code> - the local member configuration</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the cluster configuration</dd>
 </dl>
 </li>
 </ul>
-<a name="getLocalMember--">
+<a name="getDiscoveryConfig--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getLocalMember</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a>&nbsp;getLocalMember()</pre>
-<div class="block">Returns the local node configuration.</div>
+<h4>getDiscoveryConfig</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/cluster/discovery/NodeDiscoveryConfig.html" title="class in io.atomix.cluster.discovery">NodeDiscoveryConfig</a>&nbsp;getDiscoveryConfig()</pre>
+<div class="block">Returns the node discovery provider configuration.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the local node configuration</dd>
+<dd>the node discovery provider configuration</dd>
 </dl>
 </li>
 </ul>
-<a name="setLocalMember-io.atomix.cluster.MemberConfig-">
+<a name="setDiscoveryConfig-io.atomix.cluster.discovery.NodeDiscoveryConfig-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setLocalMember</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a>&nbsp;setLocalMember(<a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a>&nbsp;localMember)</pre>
-<div class="block">Sets the local node configuration.</div>
+<h4>setDiscoveryConfig</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a>&nbsp;setDiscoveryConfig(<a href="../../../io/atomix/cluster/discovery/NodeDiscoveryConfig.html" title="class in io.atomix.cluster.discovery">NodeDiscoveryConfig</a>&nbsp;discoveryConfig)</pre>
+<div class="block">Sets the node discovery provider configuration.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>localMember</code> - the local node configuration</dd>
+<dd><code>discoveryConfig</code> - the node discovery provider configuration</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the cluster configuration</dd>
+<dd>the node configuration</dd>
 </dl>
 </li>
 </ul>
-<a name="getMembers--">
+<a name="getMulticastConfig--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getMembers</h4>
-<pre>public&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a>&gt;&nbsp;getMembers()</pre>
-<div class="block">Returns the cluster nodes.</div>
+<h4>getMulticastConfig</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/cluster/MulticastConfig.html" title="class in io.atomix.cluster">MulticastConfig</a>&nbsp;getMulticastConfig()</pre>
+<div class="block">Returns the multicast configuration.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the cluster nodes</dd>
+<dd>the multicast configuration</dd>
 </dl>
 </li>
 </ul>
-<a name="setMembers-java.util.List-">
+<a name="setMulticastConfig-io.atomix.cluster.MulticastConfig-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>setMembers</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a>&nbsp;setMembers(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a>&gt;&nbsp;members)</pre>
-<div class="block">Sets the cluster nodes.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>members</code> - the cluster nodes</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the cluster configuration</dd>
-</dl>
-</li>
-</ul>
-<a name="addMember-io.atomix.cluster.MemberConfig-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>addMember</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a>&nbsp;addMember(<a href="../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a>&nbsp;member)</pre>
-<div class="block">Adds a member to the configuration.</div>
+<h4>setMulticastConfig</h4>
+<pre>public&nbsp;<a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a>&nbsp;setMulticastConfig(<a href="../../../io/atomix/cluster/MulticastConfig.html" title="class in io.atomix.cluster">MulticastConfig</a>&nbsp;multicastConfig)</pre>
+<div class="block">Sets the multicast configuration.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>member</code> - the member to add</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the cluster configuration</dd>
-</dl>
-</li>
-</ul>
-<a name="isMulticastEnabled--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>isMulticastEnabled</h4>
-<pre>public&nbsp;boolean&nbsp;isMulticastEnabled()</pre>
-<div class="block">Returns whether multicast is enabled.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>whether multicast is enabled</dd>
-</dl>
-</li>
-</ul>
-<a name="setMulticastEnabled-boolean-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setMulticastEnabled</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a>&nbsp;setMulticastEnabled(boolean&nbsp;multicastEnabled)</pre>
-<div class="block">Sets whether multicast is enabled.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>multicastEnabled</code> - whether multicast is enabled</dd>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the cluster configuration</dd>
-</dl>
-</li>
-</ul>
-<a name="getMulticastAddress--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>getMulticastAddress</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;getMulticastAddress()</pre>
-<div class="block">Returns the multicast address.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the multicast address</dd>
-</dl>
-</li>
-</ul>
-<a name="setMulticastAddress-io.atomix.utils.net.Address-">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>setMulticastAddress</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a>&nbsp;setMulticastAddress(<a href="../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;multicastAddress)</pre>
-<div class="block">Sets the multicast address.</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>multicastAddress</code> - the multicast address</dd>
+<dd><code>multicastConfig</code> - the multicast configuration</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the cluster configuration</dd>
 </dl>
@@ -483,25 +377,25 @@ implements <a href="../../../io/atomix/utils/config/Config.html" title="interfac
 <ul class="blockList">
 <li class="blockList">
 <h4>getMembershipConfig</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/cluster/GroupMembershipConfig.html" title="class in io.atomix.cluster">GroupMembershipConfig</a>&nbsp;getMembershipConfig()</pre>
-<div class="block">Returns the group membership configuration.</div>
+<pre>public&nbsp;<a href="../../../io/atomix/cluster/MembershipConfig.html" title="class in io.atomix.cluster">MembershipConfig</a>&nbsp;getMembershipConfig()</pre>
+<div class="block">Returns the cluster membership configuration.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the group membership configuration</dd>
+<dd>the cluster membership configuration</dd>
 </dl>
 </li>
 </ul>
-<a name="setMembershipConfig-io.atomix.cluster.GroupMembershipConfig-">
+<a name="setMembershipConfig-io.atomix.cluster.MembershipConfig-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>setMembershipConfig</h4>
-<pre>public&nbsp;<a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a>&nbsp;setMembershipConfig(<a href="../../../io/atomix/cluster/GroupMembershipConfig.html" title="class in io.atomix.cluster">GroupMembershipConfig</a>&nbsp;membershipConfig)</pre>
-<div class="block">Sets the group membership configuration.</div>
+<pre>public&nbsp;<a href="../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a>&nbsp;setMembershipConfig(<a href="../../../io/atomix/cluster/MembershipConfig.html" title="class in io.atomix.cluster">MembershipConfig</a>&nbsp;membershipConfig)</pre>
+<div class="block">Sets the cluster membership configuration.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>membershipConfig</code> - the group membership configuration</dd>
+<dd><code>membershipConfig</code> - the cluster membership configuration</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>the cluster configuration</dd>
 </dl>
@@ -535,7 +429,7 @@ implements <a href="../../../io/atomix/utils/config/Config.html" title="interfac
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../io/atomix/cluster/AtomixCluster.Builder.html" title="class in io.atomix.cluster"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../io/atomix/cluster/BootstrapService.html" title="interface in io.atomix.cluster"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
 <li><a href="../../../io/atomix/cluster/ClusterMembershipEvent.html" title="class in io.atomix.cluster"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">

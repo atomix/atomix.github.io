@@ -18,7 +18,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":17,"i5":17};
+var methods = {"i0":6,"i1":6,"i2":17,"i3":17};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -122,36 +122,25 @@ var activeTableTab = "activeTableTab";
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/primitive/partition/PartitionGroupTypeRegistry.html" title="interface in io.atomix.primitive.partition">PartitionGroupTypeRegistry</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixRegistry.html#partitionGroupTypes--">partitionGroupTypes</a></span>()</code>
-<div class="block">Returns the partition group types.</div>
+<td class="colFirst"><code>&lt;T extends <a href="../../../io/atomix/utils/NamedType.html" title="interface in io.atomix.utils">NamedType</a>&gt;<br>T</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixRegistry.html#getType-java.lang.Class-java.lang.String-">getType</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
+       <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</code>
+<div class="block">Returns a named registration by type.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/primitive/PrimitiveTypeRegistry.html" title="interface in io.atomix.primitive">PrimitiveTypeRegistry</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixRegistry.html#primitiveTypes--">primitiveTypes</a></span>()</code>
-<div class="block">Returns the primitive types.</div>
+<td class="colFirst"><code>&lt;T extends <a href="../../../io/atomix/utils/NamedType.html" title="interface in io.atomix.utils">NamedType</a>&gt;<br><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;T&gt;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixRegistry.html#getTypes-java.lang.Class-">getTypes</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type)</code>
+<div class="block">Returns the collection of registrations for the given type.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../../../io/atomix/core/profile/ProfileRegistry.html" title="interface in io.atomix.core.profile">ProfileRegistry</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixRegistry.html#profiles--">profiles</a></span>()</code>
-<div class="block">Returns the registered profile types.</div>
-</td>
-</tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code><a href="../../../io/atomix/primitive/protocol/PrimitiveProtocolTypeRegistry.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocolTypeRegistry</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixRegistry.html#protocolTypes--">protocolTypes</a></span>()</code>
-<div class="block">Returns the primitive protocol types.</div>
-</td>
-</tr>
-<tr id="i4" class="altColor">
 <td class="colFirst"><code>static <a href="../../../io/atomix/core/AtomixRegistry.html" title="interface in io.atomix.core">AtomixRegistry</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixRegistry.html#registry--">registry</a></span>()</code>
 <div class="block">Creates a new registry.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>static <a href="../../../io/atomix/core/AtomixRegistry.html" title="interface in io.atomix.core">AtomixRegistry</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/core/AtomixRegistry.html#registry-java.lang.ClassLoader-">registry</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/ClassLoader.html?is-external=true" title="class or interface in java.lang">ClassLoader</a>&nbsp;classLoader)</code>
 <div class="block">Creates a new registry instance using the given class loader.</div>
@@ -202,59 +191,41 @@ var activeTableTab = "activeTableTab";
 </dl>
 </li>
 </ul>
-<a name="partitionGroupTypes--">
+<a name="getTypes-java.lang.Class-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>partitionGroupTypes</h4>
-<pre><a href="../../../io/atomix/primitive/partition/PartitionGroupTypeRegistry.html" title="interface in io.atomix.primitive.partition">PartitionGroupTypeRegistry</a>&nbsp;partitionGroupTypes()</pre>
-<div class="block">Returns the partition group types.</div>
+<h4>getTypes</h4>
+<pre>&lt;T extends <a href="../../../io/atomix/utils/NamedType.html" title="interface in io.atomix.utils">NamedType</a>&gt;&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;T&gt;&nbsp;getTypes(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type)</pre>
+<div class="block">Returns the collection of registrations for the given type.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - the type for which to return registrations</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>type</code> - the type for which to return registrations</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the partition group types</dd>
+<dd>a collection of registrations for the given type</dd>
 </dl>
 </li>
 </ul>
-<a name="primitiveTypes--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>primitiveTypes</h4>
-<pre><a href="../../../io/atomix/primitive/PrimitiveTypeRegistry.html" title="interface in io.atomix.primitive">PrimitiveTypeRegistry</a>&nbsp;primitiveTypes()</pre>
-<div class="block">Returns the primitive types.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the primitive types</dd>
-</dl>
-</li>
-</ul>
-<a name="protocolTypes--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>protocolTypes</h4>
-<pre><a href="../../../io/atomix/primitive/protocol/PrimitiveProtocolTypeRegistry.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocolTypeRegistry</a>&nbsp;protocolTypes()</pre>
-<div class="block">Returns the primitive protocol types.</div>
-<dl>
-<dt><span class="returnLabel">Returns:</span></dt>
-<dd>the primitive protocol types</dd>
-</dl>
-</li>
-</ul>
-<a name="profiles--">
+<a name="getType-java.lang.Class-java.lang.String-">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>profiles</h4>
-<pre><a href="../../../io/atomix/core/profile/ProfileRegistry.html" title="interface in io.atomix.core.profile">ProfileRegistry</a>&nbsp;profiles()</pre>
-<div class="block">Returns the registered profile types.</div>
+<h4>getType</h4>
+<pre>&lt;T extends <a href="../../../io/atomix/utils/NamedType.html" title="interface in io.atomix.utils">NamedType</a>&gt;&nbsp;T&nbsp;getType(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;T&gt;&nbsp;type,
+                                <a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name)</pre>
+<div class="block">Returns a named registration by type.</div>
 <dl>
+<dt><span class="paramLabel">Type Parameters:</span></dt>
+<dd><code>T</code> - the registration type</dd>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>type</code> - the registration type</dd>
+<dd><code>name</code> - the registration name</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the registered profile types</dd>
+<dd>the registration instance</dd>
 </dl>
 </li>
 </ul>

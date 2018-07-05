@@ -89,18 +89,22 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.cluster.discovery">io.atomix.cluster.discovery</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.cluster.messaging">io.atomix.cluster.messaging</a></td>
 <td class="colLast">
 <div class="block">Provides high-level interfaces for direct and publish-subscribe inter-cluster communication.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.core">io.atomix.core</a></td>
 <td class="colLast">
 <div class="block">Core APIs for managing Atomix clusters and operating on distributed primitives.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.utils.net">io.atomix.utils.net</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for representing and operating on IP addresses.</div>
@@ -124,20 +128,20 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Member.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/Member.html#address--">address</a></span>()</code>
+<td class="colLast"><span class="typeNameLabel">Node.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/Node.html#address--">address</a></span>()</code>
 <div class="block">Returns the node address.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a></code></td>
-<td class="colLast"><span class="typeNameLabel">MemberConfig.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/MemberConfig.html#getAddress--">getAddress</a></span>()</code>
+<td class="colLast"><span class="typeNameLabel">NodeConfig.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/NodeConfig.html#getAddress--">getAddress</a></span>()</code>
 <div class="block">Returns the node address.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ClusterConfig.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/ClusterConfig.html#getMulticastAddress--">getMulticastAddress</a></span>()</code>
-<div class="block">Returns the multicast address.</div>
+<td class="colLast"><span class="typeNameLabel">MemberConfig.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/MemberConfig.html#getAddress--">getAddress</a></span>()</code>
+<div class="block">Returns the member address.</div>
 </td>
 </tr>
 </tbody>
@@ -150,40 +154,78 @@
 </tr>
 <tbody>
 <tr class="altColor">
+<td class="colFirst"><code>default <a href="../../../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a></code></td>
+<td class="colLast"><span class="typeNameLabel">ClusterMembershipService.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/ClusterMembershipService.html#getMember-io.atomix.utils.net.Address-">getMember</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>
+<div class="block">Returns a member by address.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><code>static <a href="../../../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Member.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/Member.html#member-io.atomix.utils.net.Address-">member</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>
 <div class="block">Returns a new anonymous cluster member.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Member.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/Member.html#member-io.atomix.cluster.MemberId-io.atomix.utils.net.Address-">member</a></span>(<a href="../../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId,
       <a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>
 <div class="block">Returns a new named cluster member.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a></code></td>
-<td class="colLast"><span class="typeNameLabel">MemberConfig.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/MemberConfig.html#setAddress-io.atomix.utils.net.Address-">setAddress</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/cluster/NodeConfig.html" title="class in io.atomix.cluster">NodeConfig</a></code></td>
+<td class="colLast"><span class="typeNameLabel">NodeConfig.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/NodeConfig.html#setAddress-io.atomix.utils.net.Address-">setAddress</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>
 <div class="block">Sets the node address.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/cluster/ClusterConfig.html" title="class in io.atomix.cluster">ClusterConfig</a></code></td>
-<td class="colLast"><span class="typeNameLabel">ClusterConfig.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/ClusterConfig.html#setMulticastAddress-io.atomix.utils.net.Address-">setMulticastAddress</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;multicastAddress)</code>
-<div class="block">Sets the multicast address.</div>
-</td>
-</tr>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Member.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/Member.Builder.html#withAddress-io.atomix.utils.net.Address-">withAddress</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a></code></td>
+<td class="colLast"><span class="typeNameLabel">MemberConfig.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/MemberConfig.html#setAddress-io.atomix.utils.net.Address-">setAddress</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>
 <div class="block">Sets the member address.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/cluster/AtomixCluster.Builder.html" title="class in io.atomix.cluster">AtomixCluster.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">AtomixCluster.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/AtomixCluster.Builder.html#withMulticastAddress-io.atomix.utils.net.Address-">withMulticastAddress</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/cluster/MemberBuilder.html" title="class in io.atomix.cluster">MemberBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">MemberBuilder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/MemberBuilder.html#withAddress-io.atomix.utils.net.Address-">withAddress</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>
+<div class="block">Sets the member address.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/cluster/AtomixClusterBuilder.html" title="class in io.atomix.cluster">AtomixClusterBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AtomixClusterBuilder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/AtomixClusterBuilder.html#withAddress-io.atomix.utils.net.Address-">withAddress</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>
+<div class="block">Sets the member address.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/cluster/NodeBuilder.html" title="class in io.atomix.cluster">NodeBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">NodeBuilder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/NodeBuilder.html#withAddress-io.atomix.utils.net.Address-">withAddress</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>
+<div class="block">Sets the node address.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/cluster/AtomixClusterBuilder.html" title="class in io.atomix.cluster">AtomixClusterBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AtomixClusterBuilder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/AtomixClusterBuilder.html#withMulticastAddress-io.atomix.utils.net.Address-">withMulticastAddress</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>
 <div class="block">Sets the multicast address.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.cluster.discovery">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a> in <a href="../../../../../io/atomix/cluster/discovery/package-summary.html">io.atomix.cluster.discovery</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../../io/atomix/cluster/discovery/package-summary.html">io.atomix.cluster.discovery</a> with parameters of type <a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/cluster/discovery/BootstrapDiscoveryBuilder.html" title="class in io.atomix.cluster.discovery">BootstrapDiscoveryBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">BootstrapDiscoveryBuilder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/discovery/BootstrapDiscoveryBuilder.html#withNodes-io.atomix.utils.net.Address...-">withNodes</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>...&nbsp;nodes)</code>
+<div class="block">Sets the bootstrap nodes.</div>
 </td>
 </tr>
 </tbody>
@@ -323,8 +365,12 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Atomix.Builder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/Atomix.Builder.html#withMulticastAddress-io.atomix.utils.net.Address-">withMulticastAddress</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>&nbsp;</td>
+<td class="colFirst"><code><a href="../../../../../io/atomix/core/AtomixBuilder.html" title="class in io.atomix.core">AtomixBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AtomixBuilder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/AtomixBuilder.html#withAddress-io.atomix.utils.net.Address-">withAddress</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>&nbsp;</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/core/AtomixBuilder.html" title="class in io.atomix.core">AtomixBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AtomixBuilder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/AtomixBuilder.html#withMulticastAddress-io.atomix.utils.net.Address-">withMulticastAddress</a></span>(<a href="../../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

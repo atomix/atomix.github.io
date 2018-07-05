@@ -95,38 +95,44 @@
 </td>
 </tr>
 <tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.core">io.atomix.core</a></td>
+<td class="colLast">
+<div class="block">Core APIs for managing Atomix clusters and operating on distributed primitives.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.primitive.partition">io.atomix.primitive.partition</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for managing primitive partitions, partition groups, and member groups.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.primitive.session">io.atomix.primitive.session</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for managing primitive sessions.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.protocols.backup.partition">io.atomix.protocols.backup.partition</a></td>
 <td class="colLast">
 <div class="block">Provides <a href="../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition"><code>PartitionGroup</code></a> and <a href="../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition"><code>Partition</code></a>
  implementations for primary-backup.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft">io.atomix.protocols.raft</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for managing Raft clients and servers.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.partition">io.atomix.protocols.raft.partition</a></td>
 <td class="colLast">
 <div class="block">Provides <a href="../../../../io/atomix/primitive/partition/PartitionGroup.html" title="interface in io.atomix.primitive.partition"><code>PartitionGroup</code></a> and <a href="../../../../io/atomix/primitive/partition/Partition.html" title="interface in io.atomix.primitive.partition"><code>Partition</code></a>
  implementations for the Raft consensus protocol.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.protocols.raft.session">io.atomix.protocols.raft.session</a></td>
 <td class="colLast">
 <div class="block">Provides a <a href="../../../../io/atomix/primitive/session/Session.html" title="interface in io.atomix.primitive.session"><code>Session</code></a> implementation for the Raft consensus protocol.</div>
@@ -163,14 +169,12 @@
 <tr class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a></code></td>
 <td class="colLast"><span class="typeNameLabel">MemberConfig.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/MemberConfig.html#getId--">getId</a></span>()</code>
-<div class="block">Returns the node identifier.</div>
+<div class="block">Returns the member identifier.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Member.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/Member.html#id--">id</a></span>()</code>
-<div class="block">Returns the instance identifier.</div>
-</td>
+<td class="colLast"><span class="typeNameLabel">Member.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/Member.html#id--">id</a></span>()</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>
@@ -182,38 +186,40 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a></code></td>
+<td class="colFirst"><code>static <a href="../../../../io/atomix/cluster/MemberBuilder.html" title="class in io.atomix.cluster">MemberBuilder</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Member.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/Member.html#builder-io.atomix.cluster.MemberId-">builder</a></span>(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId)</code>
 <div class="block">Returns a new member builder.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<td class="colLast"><span class="typeNameLabel">MemberId.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/MemberId.html#compareTo-io.atomix.cluster.MemberId-">compareTo</a></span>(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;that)</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a></code></td>
 <td class="colLast"><span class="typeNameLabel">ClusterMembershipService.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/ClusterMembershipService.html#getMember-io.atomix.cluster.MemberId-">getMember</a></span>(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId)</code>
 <div class="block">Returns the specified member.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><code>static <a href="../../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a></code></td>
 <td class="colLast"><span class="typeNameLabel">Member.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/Member.html#member-io.atomix.cluster.MemberId-io.atomix.utils.net.Address-">member</a></span>(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;memberId,
       <a href="../../../../io/atomix/utils/net/Address.html" title="class in io.atomix.utils.net">Address</a>&nbsp;address)</code>
 <div class="block">Returns a new named cluster member.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../io/atomix/cluster/MemberConfig.html" title="class in io.atomix.cluster">MemberConfig</a></code></td>
 <td class="colLast"><span class="typeNameLabel">MemberConfig.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/MemberConfig.html#setId-io.atomix.cluster.MemberId-">setId</a></span>(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;id)</code>
-<div class="block">Sets the node identifier.</div>
+<div class="block">Sets the member identifier.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/cluster/MemberBuilder.html" title="class in io.atomix.cluster">MemberBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">MemberBuilder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/MemberBuilder.html#withId-io.atomix.cluster.MemberId-">withId</a></span>(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;id)</code>
+<div class="block">Sets the member identifier.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Member.Builder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/Member.Builder.html#withId-io.atomix.cluster.MemberId-">withId</a></span>(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;id)</code>
-<div class="block">Sets the member identifier.</div>
+<td class="colFirst"><code><a href="../../../../io/atomix/cluster/AtomixClusterBuilder.html" title="class in io.atomix.cluster">AtomixClusterBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AtomixClusterBuilder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/AtomixClusterBuilder.html#withMemberId-io.atomix.cluster.MemberId-">withMemberId</a></span>(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;localMemberId)</code>
+<div class="block">Sets the local member identifier.</div>
 </td>
 </tr>
 </tbody>
@@ -310,6 +316,24 @@
          <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&gt;&nbsp;memberIds)</code>
 <div class="block">Multicasts a message to a set of controller nodes.</div>
 </td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.core">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a> in <a href="../../../../io/atomix/core/package-summary.html">io.atomix.core</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing methods, and an explanation">
+<caption><span>Methods in <a href="../../../../io/atomix/core/package-summary.html">io.atomix.core</a> with parameters of type <a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Method and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../io/atomix/core/AtomixBuilder.html" title="class in io.atomix.core">AtomixBuilder</a></code></td>
+<td class="colLast"><span class="typeNameLabel">AtomixBuilder.</span><code><span class="memberNameLink"><a href="../../../../io/atomix/core/AtomixBuilder.html#withMemberId-io.atomix.cluster.MemberId-">withMemberId</a></span>(<a href="../../../../io/atomix/cluster/MemberId.html" title="class in io.atomix.cluster">MemberId</a>&nbsp;localMemberId)</code>&nbsp;</td>
 </tr>
 </tbody>
 </table>

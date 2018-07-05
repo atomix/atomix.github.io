@@ -89,6 +89,16 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.cluster.discovery">io.atomix.cluster.discovery</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.core.profile">io.atomix.core.profile</a></td>
+<td class="colLast">
+<div class="block">Distributed queueing primitive interfaces.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.primitive.partition">io.atomix.primitive.partition</a></td>
 <td class="colLast">
 <div class="block">Provides classes and interfaces for managing primitive partitions, partition groups, and member groups.</div>
@@ -127,7 +137,101 @@
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/Member.html" title="class in io.atomix.cluster">Member</a></span></code>
-<div class="block">Represents a controller instance as a member in a cluster.</div>
+<div class="block">Represents a node as a member in a cluster.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/Node.html" title="class in io.atomix.cluster">Node</a></span></code>
+<div class="block">Represents a node.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.cluster.discovery">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a> in <a href="../../../../../io/atomix/cluster/discovery/package-summary.html">io.atomix.cluster.discovery</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing subinterfaces, and an explanation">
+<caption><span>Subinterfaces of <a href="../../../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a> in <a href="../../../../../io/atomix/cluster/discovery/package-summary.html">io.atomix.cluster.discovery</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Interface and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>interface&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/discovery/NodeDiscoveryProvider.html" title="interface in io.atomix.cluster.discovery">NodeDiscoveryProvider</a></span></code>
+<div class="block">Cluster membership provider.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../io/atomix/cluster/discovery/package-summary.html">io.atomix.cluster.discovery</a> that implement <a href="../../../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/discovery/BootstrapDiscoveryProvider.html" title="class in io.atomix.cluster.discovery">BootstrapDiscoveryProvider</a></span></code>
+<div class="block">Cluster membership provider that bootstraps membership from a pre-defined set of peers.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/cluster/discovery/MulticastDiscoveryProvider.html" title="class in io.atomix.cluster.discovery">MulticastDiscoveryProvider</a></span></code>
+<div class="block">Cluster membership provider that uses multicast for member discovery.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.core.profile">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a> in <a href="../../../../../io/atomix/core/profile/package-summary.html">io.atomix.core.profile</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing subinterfaces, and an explanation">
+<caption><span>Subinterfaces of <a href="../../../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a> in <a href="../../../../../io/atomix/core/profile/package-summary.html">io.atomix.core.profile</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Interface and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>interface&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a></span></code>
+<div class="block">Atomix profile.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../../io/atomix/core/profile/package-summary.html">io.atomix.core.profile</a> that implement <a href="../../../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/profile/ClientProfile.html" title="class in io.atomix.core.profile">ClientProfile</a></span></code>
+<div class="block">Client profile.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/profile/ConsensusProfile.html" title="class in io.atomix.core.profile">ConsensusProfile</a></span></code>
+<div class="block">Consensus profile.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/profile/DataGridProfile.html" title="class in io.atomix.core.profile">DataGridProfile</a></span></code>
+<div class="block">In-memory data grid profile.</div>
 </td>
 </tr>
 </tbody>

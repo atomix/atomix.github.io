@@ -18,8 +18,8 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6};
-var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
+var methods = {"i0":17,"i1":6,"i2":17,"i3":17,"i4":17,"i5":17};
+var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],16:["t5","Default Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
 var tableTab = "tableTab";
@@ -49,8 +49,8 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../io/atomix/core/profile/DataGridProfile.html" title="class in io.atomix.core.profile"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/core/profile/ProfileRegistry.html" title="interface in io.atomix.core.profile"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/core/profile/DataGridProfileConfig.html" title="class in io.atomix.core.profile"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/core/profile/Profile.Type.html" title="interface in io.atomix.core.profile"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/core/profile/Profile.html" target="_top">Frames</a></li>
@@ -74,14 +74,14 @@ var activeTableTab = "activeTableTab";
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -101,7 +101,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Superinterfaces:</dt>
-<dd><a href="../../../../io/atomix/utils/Named.html" title="interface in io.atomix.utils">Named</a>, <a href="../../../../io/atomix/utils/NamedType.html" title="interface in io.atomix.utils">NamedType</a>, <a href="../../../../io/atomix/utils/Type.html" title="interface in io.atomix.utils">Type</a></dd>
+<dd><a href="../../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a>&lt;<a href="../../../../io/atomix/core/profile/ProfileConfig.html" title="class in io.atomix.core.profile">ProfileConfig</a>&gt;</dd>
 </dl>
 <dl>
 <dt>All Known Implementing Classes:</dt>
@@ -110,7 +110,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">Profile</span>
-extends <a href="../../../../io/atomix/utils/NamedType.html" title="interface in io.atomix.utils">NamedType</a></pre>
+extends <a href="../../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a>&lt;<a href="../../../../io/atomix/core/profile/ProfileConfig.html" title="class in io.atomix.core.profile">ProfileConfig</a>&gt;</pre>
 <div class="block">Atomix profile.</div>
 </li>
 </ul>
@@ -118,35 +118,22 @@ extends <a href="../../../../io/atomix/utils/NamedType.html" title="interface in
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
-<!-- =========== FIELD SUMMARY =========== -->
+<!-- ======== NESTED CLASS SUMMARY ======== -->
 <ul class="blockList">
-<li class="blockList"><a name="field.summary">
+<li class="blockList"><a name="nested.class.summary">
 <!--   -->
 </a>
-<h3>Field Summary</h3>
-<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Field Summary table, listing fields, and an explanation">
-<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+<h3>Nested Class Summary</h3>
+<table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Nested Class Summary table, listing nested classes, and an explanation">
+<caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colLast" scope="col">Field and Description</th>
+<th class="colLast" scope="col">Interface and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/profile/Profile.html#CLIENT">CLIENT</a></span></code>
-<div class="block">The client profile does not change the configuration of a node.</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/profile/Profile.html#CONSENSUS">CONSENSUS</a></span></code>
-<div class="block">The consensus profile configures an Atomix instance with a Raft system partition and a multi-Raft data partition group.</div>
-</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>static <a href="../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/profile/Profile.html#DATA_GRID">DATA_GRID</a></span></code>
-<div class="block">The data grid profile configures an Atomix instance with a primary-backup system partition if no system partition
- is configured, and a primary-backup data partition group.</div>
+<td class="colFirst"><code>static interface&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/profile/Profile.Type.html" title="interface in io.atomix.core.profile">Profile.Type</a>&lt;<a href="../../../../io/atomix/core/profile/Profile.Type.html" title="type parameter in Profile.Type">C</a> extends <a href="../../../../io/atomix/core/profile/ProfileConfig.html" title="class in io.atomix.core.profile">ProfileConfig</a>&gt;</span></code>
+<div class="block">Profile type.</div>
 </td>
 </tr>
 </table>
@@ -159,31 +146,54 @@ extends <a href="../../../../io/atomix/utils/NamedType.html" title="interface in
 </a>
 <h3>Method Summary</h3>
 <table class="memberSummary" border="0" cellpadding="3" cellspacing="0" summary="Method Summary table, listing methods, and an explanation">
-<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Methods</span><span class="tabEnd">&nbsp;</span></span><span id="t1" class="tableTab"><span><a href="javascript:show(1);">Static Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Instance Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Abstract Methods</a></span><span class="tabEnd">&nbsp;</span></span><span id="t5" class="tableTab"><span><a href="javascript:show(16);">Default Methods</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Modifier and Type</th>
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>static <a href="../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/profile/Profile.html#client--">client</a></span>()</code>
+<div class="block">Creates a new client profile.</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/profile/Profile.html#configure-io.atomix.core.AtomixConfig-">configure</a></span>(<a href="../../../../io/atomix/core/AtomixConfig.html" title="class in io.atomix.core">AtomixConfig</a>&nbsp;config)</code>
 <div class="block">Configures the Atomix instance.</div>
 </td>
 </tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>static <a href="../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/profile/Profile.html#consensus-java.util.Collection-">consensus</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;members)</code>
+<div class="block">Creates a consensus profile.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/profile/Profile.html#consensus-java.lang.String...-">consensus</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>...&nbsp;members)</code>
+<div class="block">Creates a consensus profile.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>static <a href="../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/profile/Profile.html#dataGrid--">dataGrid</a></span>()</code>
+<div class="block">Creates a new data grid profile.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>static <a href="../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/profile/Profile.html#dataGrid-int-">dataGrid</a></span>(int&nbsp;numPartitions)</code>
+<div class="block">Creates a new data grid profile with the given number of partitions.</div>
+</td>
+</tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.io.atomix.utils.Named">
+<li class="blockList"><a name="methods.inherited.from.class.io.atomix.utils.config.Configured">
 <!--   -->
 </a>
-<h3>Methods inherited from interface&nbsp;io.atomix.utils.<a href="../../../../io/atomix/utils/Named.html" title="interface in io.atomix.utils">Named</a></h3>
-<code><a href="../../../../io/atomix/utils/Named.html#name--">name</a></code></li>
-</ul>
-<ul class="blockList">
-<li class="blockList"><a name="methods.inherited.from.class.io.atomix.utils.Type">
-<!--   -->
-</a>
-<h3>Methods inherited from interface&nbsp;io.atomix.utils.<a href="../../../../io/atomix/utils/Type.html" title="interface in io.atomix.utils">Type</a></h3>
-<code><a href="../../../../io/atomix/utils/Type.html#name--">name</a></code></li>
+<h3>Methods inherited from interface&nbsp;io.atomix.utils.config.<a href="../../../../io/atomix/utils/config/Configured.html" title="interface in io.atomix.utils.config">Configured</a></h3>
+<code><a href="../../../../io/atomix/utils/config/Configured.html#config--">config</a></code></li>
 </ul>
 </li>
 </ul>
@@ -193,51 +203,88 @@ extends <a href="../../../../io/atomix/utils/NamedType.html" title="interface in
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
-<!-- ============ FIELD DETAIL =========== -->
-<ul class="blockList">
-<li class="blockList"><a name="field.detail">
-<!--   -->
-</a>
-<h3>Field Detail</h3>
-<a name="CONSENSUS">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>CONSENSUS</h4>
-<pre>static final&nbsp;<a href="../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a> CONSENSUS</pre>
-<div class="block">The consensus profile configures an Atomix instance with a Raft system partition and a multi-Raft data partition group.</div>
-</li>
-</ul>
-<a name="DATA_GRID">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>DATA_GRID</h4>
-<pre>static final&nbsp;<a href="../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a> DATA_GRID</pre>
-<div class="block">The data grid profile configures an Atomix instance with a primary-backup system partition if no system partition
- is configured, and a primary-backup data partition group.</div>
-</li>
-</ul>
-<a name="CLIENT">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>CLIENT</h4>
-<pre>static final&nbsp;<a href="../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a> CLIENT</pre>
-<div class="block">The client profile does not change the configuration of a node. It is intended only for code clarity.</div>
-</li>
-</ul>
-</li>
-</ul>
 <!-- ============ METHOD DETAIL ========== -->
 <ul class="blockList">
 <li class="blockList"><a name="method.detail">
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a name="consensus-java.lang.String...-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>consensus</h4>
+<pre>static&nbsp;<a href="../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a>&nbsp;consensus(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>...&nbsp;members)</pre>
+<div class="block">Creates a consensus profile.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>members</code> - the consensus members</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the consensus profile</dd>
+</dl>
+</li>
+</ul>
+<a name="consensus-java.util.Collection-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>consensus</h4>
+<pre>static&nbsp;<a href="../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a>&nbsp;consensus(<a href="http://docs.oracle.com/javase/8/docs/api/java/util/Collection.html?is-external=true" title="class or interface in java.util">Collection</a>&lt;<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;members)</pre>
+<div class="block">Creates a consensus profile.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>members</code> - the consensus members</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the consensus profile</dd>
+</dl>
+</li>
+</ul>
+<a name="dataGrid--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>dataGrid</h4>
+<pre>static&nbsp;<a href="../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a>&nbsp;dataGrid()</pre>
+<div class="block">Creates a new data grid profile.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a new data grid profile</dd>
+</dl>
+</li>
+</ul>
+<a name="dataGrid-int-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>dataGrid</h4>
+<pre>static&nbsp;<a href="../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a>&nbsp;dataGrid(int&nbsp;numPartitions)</pre>
+<div class="block">Creates a new data grid profile with the given number of partitions.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>numPartitions</code> - the number of partitions</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the data grid profile</dd>
+</dl>
+</li>
+</ul>
+<a name="client--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>client</h4>
+<pre>static&nbsp;<a href="../../../../io/atomix/core/profile/Profile.html" title="interface in io.atomix.core.profile">Profile</a>&nbsp;client()</pre>
+<div class="block">Creates a new client profile.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>a new client profile</dd>
+</dl>
+</li>
+</ul>
 <a name="configure-io.atomix.core.AtomixConfig-">
 <!--   -->
 </a>
@@ -280,8 +327,8 @@ extends <a href="../../../../io/atomix/utils/NamedType.html" title="interface in
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../../../../io/atomix/core/profile/DataGridProfile.html" title="class in io.atomix.core.profile"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../../io/atomix/core/profile/ProfileRegistry.html" title="interface in io.atomix.core.profile"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/core/profile/DataGridProfileConfig.html" title="class in io.atomix.core.profile"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../../../../io/atomix/core/profile/Profile.Type.html" title="interface in io.atomix.core.profile"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../../index.html?io/atomix/core/profile/Profile.html" target="_top">Frames</a></li>
@@ -305,14 +352,14 @@ extends <a href="../../../../io/atomix/utils/NamedType.html" title="interface in
 <div>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
+<li><a href="#nested.class.summary">Nested</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li>Constr&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>

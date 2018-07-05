@@ -93,7 +93,7 @@ var activeTableTab = "activeTableTab";
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
 <div class="subTitle">io.atomix.primitive</div>
-<h2 title="Interface PrimitiveType" class="title">Interface PrimitiveType&lt;B extends <a href="../../../io/atomix/primitive/DistributedPrimitiveBuilder.html" title="class in io.atomix.primitive">DistributedPrimitiveBuilder</a>,C extends <a href="../../../io/atomix/primitive/config/PrimitiveConfig.html" title="class in io.atomix.primitive.config">PrimitiveConfig</a>,P extends <a href="../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a>&gt;</h2>
+<h2 title="Interface PrimitiveType" class="title">Interface PrimitiveType&lt;B extends <a href="../../../io/atomix/primitive/PrimitiveBuilder.html" title="class in io.atomix.primitive">PrimitiveBuilder</a>,C extends <a href="../../../io/atomix/primitive/config/PrimitiveConfig.html" title="class in io.atomix.primitive.config">PrimitiveConfig</a>,P extends <a href="../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a>&gt;</h2>
 </div>
 <div class="contentContainer">
 <div class="description">
@@ -101,7 +101,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <dl>
 <dt>All Superinterfaces:</dt>
-<dd><a href="../../../io/atomix/utils/Named.html" title="interface in io.atomix.utils">Named</a>, <a href="../../../io/atomix/utils/NamedType.html" title="interface in io.atomix.utils">NamedType</a>, <a href="../../../io/atomix/utils/Type.html" title="interface in io.atomix.utils">Type</a></dd>
+<dd><a href="../../../io/atomix/utils/ConfiguredType.html" title="interface in io.atomix.utils">ConfiguredType</a>&lt;C&gt;, <a href="../../../io/atomix/utils/Named.html" title="interface in io.atomix.utils">Named</a>, <a href="../../../io/atomix/utils/NamedType.html" title="interface in io.atomix.utils">NamedType</a>, <a href="../../../io/atomix/utils/Type.html" title="interface in io.atomix.utils">Type</a></dd>
 </dl>
 <dl>
 <dt>All Known Implementing Classes:</dt>
@@ -109,8 +109,8 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public interface <span class="typeNameLabel">PrimitiveType&lt;B extends <a href="../../../io/atomix/primitive/DistributedPrimitiveBuilder.html" title="class in io.atomix.primitive">DistributedPrimitiveBuilder</a>,C extends <a href="../../../io/atomix/primitive/config/PrimitiveConfig.html" title="class in io.atomix.primitive.config">PrimitiveConfig</a>,P extends <a href="../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a>&gt;</span>
-extends <a href="../../../io/atomix/utils/NamedType.html" title="interface in io.atomix.utils">NamedType</a></pre>
+<pre>public interface <span class="typeNameLabel">PrimitiveType&lt;B extends <a href="../../../io/atomix/primitive/PrimitiveBuilder.html" title="class in io.atomix.primitive">PrimitiveBuilder</a>,C extends <a href="../../../io/atomix/primitive/config/PrimitiveConfig.html" title="class in io.atomix.primitive.config">PrimitiveConfig</a>,P extends <a href="../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a>&gt;</span>
+extends <a href="../../../io/atomix/utils/ConfiguredType.html" title="interface in io.atomix.utils">ConfiguredType</a>&lt;C&gt;</pre>
 <div class="block">Primitive type.</div>
 </li>
 </ul>
@@ -147,7 +147,7 @@ extends <a href="../../../io/atomix/utils/NamedType.html" title="interface in io
 <tr id="i2" class="altColor">
 <td class="colFirst"><code><a href="../../../io/atomix/primitive/PrimitiveType.html" title="type parameter in PrimitiveType">C</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../io/atomix/primitive/PrimitiveType.html#newConfig--">newConfig</a></span>()</code>
-<div class="block">Returns a new configuration for the primitive type.</div>
+<div class="block">Returns a new instance of the primitive configuration.</div>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
@@ -212,10 +212,12 @@ extends <a href="../../../io/atomix/utils/NamedType.html" title="interface in io
 <li class="blockList">
 <h4>newConfig</h4>
 <pre><a href="../../../io/atomix/primitive/PrimitiveType.html" title="type parameter in PrimitiveType">C</a>&nbsp;newConfig()</pre>
-<div class="block">Returns a new configuration for the primitive type.</div>
+<div class="block">Returns a new instance of the primitive configuration.</div>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../../../io/atomix/utils/ConfiguredType.html#newConfig--">newConfig</a></code>&nbsp;in interface&nbsp;<code><a href="../../../io/atomix/utils/ConfiguredType.html" title="interface in io.atomix.utils">ConfiguredType</a>&lt;<a href="../../../io/atomix/primitive/PrimitiveType.html" title="type parameter in PrimitiveType">C</a> extends <a href="../../../io/atomix/primitive/config/PrimitiveConfig.html" title="class in io.atomix.primitive.config">PrimitiveConfig</a>&gt;</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>a new primitive configuration</dd>
+<dd>a new instance of the primitive configuration</dd>
 </dl>
 </li>
 </ul>

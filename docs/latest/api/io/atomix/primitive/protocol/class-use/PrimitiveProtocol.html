@@ -260,7 +260,7 @@
 </td>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>default &lt;B extends <a href="../../../../../io/atomix/primitive/DistributedPrimitiveBuilder.html" title="class in io.atomix.primitive">DistributedPrimitiveBuilder</a>&lt;B,C,P&gt;,C extends <a href="../../../../../io/atomix/primitive/config/PrimitiveConfig.html" title="class in io.atomix.primitive.config">PrimitiveConfig</a>&lt;C&gt;,P extends <a href="../../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a>&gt;<br>B</code></td>
+<td class="colFirst"><code>default &lt;B extends <a href="../../../../../io/atomix/primitive/PrimitiveBuilder.html" title="class in io.atomix.primitive">PrimitiveBuilder</a>&lt;B,C,P&gt;,C extends <a href="../../../../../io/atomix/primitive/config/PrimitiveConfig.html" title="class in io.atomix.primitive.config">PrimitiveConfig</a>&lt;C&gt;,P extends <a href="../../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a>&gt;<br>B</code></td>
 <td class="colLast"><span class="typeNameLabel">PrimitivesService.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/core/PrimitivesService.html#primitiveBuilder-java.lang.String-io.atomix.primitive.PrimitiveType-io.atomix.primitive.protocol.PrimitiveProtocol-">primitiveBuilder</a></span>(<a href="http://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;name,
                 <a href="../../../../../io/atomix/primitive/PrimitiveType.html" title="interface in io.atomix.primitive">PrimitiveType</a>&lt;B,C,P&gt;&nbsp;primitiveType,
                 <a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a>&nbsp;protocol)</code>
@@ -357,19 +357,15 @@
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedPrimitiveBuilder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/DistributedPrimitiveBuilder.html#protocol--">protocol</a></span>()</code>
+<td class="colLast"><span class="typeNameLabel">Synchronous.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/Synchronous.html#protocol--">protocol</a></span>()</code>&nbsp;</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PrimitiveBuilder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/PrimitiveBuilder.html#protocol--">protocol</a></span>()</code>
 <div class="block">Returns the primitive protocol.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a></code></td>
-<td class="colLast"><span class="typeNameLabel">Synchronous.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/Synchronous.html#protocol--">protocol</a></span>()</code>&nbsp;</td>
-</tr>
 <tr class="rowColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DelegatingAsyncPrimitive.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/DelegatingAsyncPrimitive.html#protocol--">protocol</a></span>()</code>&nbsp;</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code><a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a></code></td>
 <td class="colLast"><span class="typeNameLabel">DistributedPrimitive.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/DistributedPrimitive.html#protocol--">protocol</a></span>()</code>
 <div class="block">Returns the primitive protocol.</div>
@@ -385,8 +381,8 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/DistributedPrimitiveBuilder.html" title="type parameter in DistributedPrimitiveBuilder">B</a></code></td>
-<td class="colLast"><span class="typeNameLabel">DistributedPrimitiveBuilder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/DistributedPrimitiveBuilder.html#withProtocol-io.atomix.primitive.protocol.PrimitiveProtocol-">withProtocol</a></span>(<a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a>&nbsp;protocol)</code>
+<td class="colFirst"><code><a href="../../../../../io/atomix/primitive/PrimitiveBuilder.html" title="type parameter in PrimitiveBuilder">B</a></code></td>
+<td class="colLast"><span class="typeNameLabel">PrimitiveBuilder.</span><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/PrimitiveBuilder.html#withProtocol-io.atomix.primitive.protocol.PrimitiveProtocol-">withProtocol</a></span>(<a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a>&nbsp;protocol)</code>
 <div class="block">Sets the primitive protocol.</div>
 </td>
 </tr>
@@ -440,9 +436,9 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Builder.html" title="class in io.atomix.primitive.protocol">PrimitiveProtocol.Builder</a>&lt;C extends <a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfig.html" title="class in io.atomix.primitive.protocol">PrimitiveProtocolConfig</a>&lt;C&gt;,P extends <a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a>&gt;</span></code>
-<div class="block">Primitive protocol.</div>
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocolBuilder.html" title="class in io.atomix.primitive.protocol">PrimitiveProtocolBuilder</a>&lt;C extends <a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfig.html" title="class in io.atomix.primitive.protocol">PrimitiveProtocolConfig</a>&lt;C&gt;,P extends <a href="../../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a>&gt;</span></code>
+<div class="block">Primitive protocol builder.</div>
 </td>
 </tr>
 </tbody>

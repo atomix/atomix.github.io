@@ -89,73 +89,85 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="#io.atomix.cluster.discovery">io.atomix.cluster.discovery</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.cluster.messaging">io.atomix.cluster.messaging</a></td>
 <td class="colLast">
 <div class="block">Provides high-level interfaces for direct and publish-subscribe inter-cluster communication.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.core">io.atomix.core</a></td>
 <td class="colLast">
 <div class="block">Core APIs for managing Atomix clusters and operating on distributed primitives.</div>
 </td>
 </tr>
-<tr class="rowColor">
-<td class="colFirst"><a href="#io.atomix.core.barrier">io.atomix.core.barrier</a></td>
-<td class="colLast">&nbsp;</td>
-</tr>
 <tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.core.barrier">io.atomix.core.barrier</a></td>
+<td class="colLast">
+<div class="block">Distributed barrier primitive.</div>
+</td>
+</tr>
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.core.counter">io.atomix.core.counter</a></td>
 <td class="colLast">
 <div class="block">Atomic counter primitive.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.core.countermap">io.atomix.core.countermap</a></td>
 <td class="colLast">
 <div class="block">Atomic counter map primitive.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.core.idgenerator">io.atomix.core.idgenerator</a></td>
 <td class="colLast">
 <div class="block">Atomic ID generator primitive.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.core.leadership">io.atomix.core.leadership</a></td>
 <td class="colLast">
 <div class="block">Distributed leader election primitives.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.core.list">io.atomix.core.list</a></td>
 <td class="colLast">
 <div class="block">Distributed list primitive.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.core.lock">io.atomix.core.lock</a></td>
 <td class="colLast">
 <div class="block">Distributed lock primitive.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.core.map">io.atomix.core.map</a></td>
 <td class="colLast">
 <div class="block">Atomic map primitive.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="#io.atomix.core.multimap">io.atomix.core.multimap</a></td>
 <td class="colLast">
 <div class="block">Atomic multimap primitive.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="#io.atomix.core.multiset">io.atomix.core.multiset</a></td>
 <td class="colLast">
 <div class="block">Distributed multiset primitive.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><a href="#io.atomix.core.profile">io.atomix.core.profile</a></td>
+<td class="colLast">
+<div class="block">Distributed queueing primitive interfaces.</div>
 </td>
 </tr>
 <tr class="rowColor">
@@ -286,15 +298,53 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/AtomixCluster.Builder.html" title="class in io.atomix.cluster">AtomixCluster.Builder</a></span></code>
-<div class="block">Cluster builder.</div>
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/AtomixClusterBuilder.html" title="class in io.atomix.cluster">AtomixClusterBuilder</a></span></code>
+<div class="block">Atomix cluster builder.</div>
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/Member.Builder.html" title="class in io.atomix.cluster">Member.Builder</a></span></code>
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/MemberBuilder.html" title="class in io.atomix.cluster">MemberBuilder</a></span></code>
 <div class="block">Member builder.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/NodeBuilder.html" title="class in io.atomix.cluster">NodeBuilder</a></span></code>
+<div class="block">Node builder.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="blockList"><a name="io.atomix.cluster.discovery">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../io/atomix/utils/Builder.html" title="interface in io.atomix.utils">Builder</a> in <a href="../../../../io/atomix/cluster/discovery/package-summary.html">io.atomix.cluster.discovery</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../io/atomix/cluster/discovery/package-summary.html">io.atomix.cluster.discovery</a> that implement <a href="../../../../io/atomix/utils/Builder.html" title="interface in io.atomix.utils">Builder</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/discovery/BootstrapDiscoveryBuilder.html" title="class in io.atomix.cluster.discovery">BootstrapDiscoveryBuilder</a></span></code>
+<div class="block">Bootstrap discovery builder.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/discovery/MulticastDiscoveryBuilder.html" title="class in io.atomix.cluster.discovery">MulticastDiscoveryBuilder</a></span></code>
+<div class="block">Multicast discovery provider builder.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/cluster/discovery/NodeDiscoveryBuilder.html" title="class in io.atomix.cluster.discovery">NodeDiscoveryBuilder</a></span></code>
+<div class="block">Node discovery builder.</div>
 </td>
 </tr>
 </tbody>
@@ -347,8 +397,8 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/Atomix.Builder.html" title="class in io.atomix.core">Atomix.Builder</a></span></code>
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/AtomixBuilder.html" title="class in io.atomix.core">AtomixBuilder</a></span></code>
 <div class="block">Atomix builder.</div>
 </td>
 </tr>
@@ -561,6 +611,38 @@
 </tbody>
 </table>
 </li>
+<li class="blockList"><a name="io.atomix.core.profile">
+<!--   -->
+</a>
+<h3>Uses of <a href="../../../../io/atomix/utils/Builder.html" title="interface in io.atomix.utils">Builder</a> in <a href="../../../../io/atomix/core/profile/package-summary.html">io.atomix.core.profile</a></h3>
+<table class="useSummary" border="0" cellpadding="3" cellspacing="0" summary="Use table, listing classes, and an explanation">
+<caption><span>Classes in <a href="../../../../io/atomix/core/profile/package-summary.html">io.atomix.core.profile</a> that implement <a href="../../../../io/atomix/utils/Builder.html" title="interface in io.atomix.utils">Builder</a></span><span class="tabEnd">&nbsp;</span></caption>
+<tr>
+<th class="colFirst" scope="col">Modifier and Type</th>
+<th class="colLast" scope="col">Class and Description</th>
+</tr>
+<tbody>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/profile/ConsensusProfileBuilder.html" title="class in io.atomix.core.profile">ConsensusProfileBuilder</a></span></code>
+<div class="block">Consensus profile builder.</div>
+</td>
+</tr>
+<tr class="rowColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/profile/DataGridProfileBuilder.html" title="class in io.atomix.core.profile">DataGridProfileBuilder</a></span></code>
+<div class="block">Data grid profile builder.</div>
+</td>
+</tr>
+<tr class="altColor">
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/core/profile/ProfileBuilder.html" title="class in io.atomix.core.profile">ProfileBuilder</a></span></code>
+<div class="block">Profile builder.</div>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
 <li class="blockList"><a name="io.atomix.core.queue">
 <!--   -->
 </a>
@@ -744,7 +826,7 @@
 <tbody>
 <tr class="altColor">
 <td class="colFirst"><code>class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/DistributedPrimitiveBuilder.html" title="class in io.atomix.primitive">DistributedPrimitiveBuilder</a>&lt;B extends <a href="../../../../io/atomix/primitive/DistributedPrimitiveBuilder.html" title="class in io.atomix.primitive">DistributedPrimitiveBuilder</a>&lt;B,C,P&gt;,C extends <a href="../../../../io/atomix/primitive/config/PrimitiveConfig.html" title="class in io.atomix.primitive.config">PrimitiveConfig</a>,P extends <a href="../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a>&gt;</span></code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/PrimitiveBuilder.html" title="class in io.atomix.primitive">PrimitiveBuilder</a>&lt;B extends <a href="../../../../io/atomix/primitive/PrimitiveBuilder.html" title="class in io.atomix.primitive">PrimitiveBuilder</a>&lt;B,C,P&gt;,C extends <a href="../../../../io/atomix/primitive/config/PrimitiveConfig.html" title="class in io.atomix.primitive.config">PrimitiveConfig</a>,P extends <a href="../../../../io/atomix/primitive/DistributedPrimitive.html" title="interface in io.atomix.primitive">DistributedPrimitive</a>&gt;</span></code>
 <div class="block">Abstract builder for distributed primitives.</div>
 </td>
 </tr>
@@ -783,9 +865,9 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.Builder.html" title="class in io.atomix.primitive.protocol">PrimitiveProtocol.Builder</a>&lt;C extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfig.html" title="class in io.atomix.primitive.protocol">PrimitiveProtocolConfig</a>&lt;C&gt;,P extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a>&gt;</span></code>
-<div class="block">Primitive protocol.</div>
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocolBuilder.html" title="class in io.atomix.primitive.protocol">PrimitiveProtocolBuilder</a>&lt;C extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocolConfig.html" title="class in io.atomix.primitive.protocol">PrimitiveProtocolConfig</a>&lt;C&gt;,P extends <a href="../../../../io/atomix/primitive/protocol/PrimitiveProtocol.html" title="interface in io.atomix.primitive.protocol">PrimitiveProtocol</a>&gt;</span></code>
+<div class="block">Primitive protocol builder.</div>
 </td>
 </tr>
 </tbody>
@@ -823,8 +905,8 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocol.Builder.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocol.Builder</a></span></code>
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/backup/MultiPrimaryProtocolBuilder.html" title="class in io.atomix.protocols.backup">MultiPrimaryProtocolBuilder</a></span></code>
 <div class="block">Multi-primary protocol builder.</div>
 </td>
 </tr>
@@ -895,8 +977,8 @@
 </tr>
 <tbody>
 <tr class="altColor">
-<td class="colFirst"><code>static class&nbsp;</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/MultiRaftProtocol.Builder.html" title="class in io.atomix.protocols.raft">MultiRaftProtocol.Builder</a></span></code>
+<td class="colFirst"><code>class&nbsp;</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../io/atomix/protocols/raft/MultiRaftProtocolBuilder.html" title="class in io.atomix.protocols.raft">MultiRaftProtocolBuilder</a></span></code>
 <div class="block">Multi-Raft protocol builder.</div>
 </td>
 </tr>
