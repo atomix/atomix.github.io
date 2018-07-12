@@ -15,9 +15,9 @@ Some distributed primitives can be partitioned while others can't. Partitions ar
 
 Many distributed applications rely on distributed locking for controlling concurrent access to a shared resource. But locks are extremely costly. They require significant amounts of coordination. Instead, consider whether the same level of access control can be used to elect a longer running leader through which changes can be proxied via the `ClusterCommunicationService`.
 
-The `DistributedLock` primitive provides a pessimistic lock, but optimistic locking - e.g. in a `ConsistentMap#replace` call - can be just as problematic for scalability. Optimistic locking can result in a significant increase in network traffic at times of high contention. Consider falling back to a pessimistic lock when an optimistic lock fails, or better yet build a primitive that avoids distributed locks altogether.
+The `DistributedLock` primitive provides a pessimistic lock, but optimistic locking - e.g. in a `AtomicMap#replace` call - can be just as problematic for scalability. Optimistic locking can result in a significant increase in network traffic at times of high contention. Consider falling back to a pessimistic lock when an optimistic lock fails, or better yet build a primitive that avoids distributed locks altogether.
 
-It's also important to note that the optimistic locking rule applies also to `ConsistentMap#compute` and similar methods. These methods use optimistic locking internally to ensure a map is updated atomically after applying the compute function locally. Sometimes compute methods can be avoided with more complex data structures like a `ConsistentMultimap`.
+It's also important to note that the optimistic locking rule applies also to `AtomicMap#compute` and similar methods. These methods use optimistic locking internally to ensure a map is updated atomically after applying the compute function locally. Sometimes compute methods can be avoided with more complex data structures like a `AtomicMultimap`.
 
 ## Never poll primitives
 

@@ -69,6 +69,8 @@
   * [MultiRaftProtocol](primitive-protocols#multiraftprotocol)
   * [MultiPrimaryProtocol](primitive-protocols#multiprimaryprotocol)
   * [Protocol Partitioners](primitive-protocols#protocol-partitioners)
+  * [AntiEntropyProtocol](primitive-protocols#antientropyprotocol)
+  * [CrdtProtocol](primitive-protocols#crdtprotocol)
 * [AtomicCounter](AtomicCounter)
 * [AtomicCounterMap](AtomicCounterMap)
 * [AtomicDocumentTree](AtomicDocumentTree)
