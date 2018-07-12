@@ -7,7 +7,7 @@ title: Installation and Setup
 
 Atomix is packaged in a hierarchy of modules that allow users to depend only on those features they intend to use. Almost all users will want to use the Atomix core module, which is identified by the `atomix` artifact ID:
 
-```
+```xml
 <dependencies>
   <dependency>
     <groupId>io.atomix</groupId>
@@ -17,11 +17,12 @@ Atomix is packaged in a hierarchy of modules that allow users to depend only on 
 </dependencies>
 ```
 
-Additionally, most clusters are configured with a set of partition groups. The partition groups that are used depend on the consistency, fault-tolerance, and persistence requirements of the system. Different use cases may require different dependencies. But packaged with Atomix are two primary protocols:
-* `atomix-raft`
-* `atomix-primary-backup`
+Additionally, most clusters are configured with a set of partition groups. The partition groups that are used depend on the consistency, fault-tolerance, and persistence requirements of the system. Different use cases may require different dependencies. But packaged with Atomix are several protocol implementations:
+* `atomix-raft` - `RaftPartitionGroup` and `MultiRaftProtocol`
+* `atomix-primary-backup` - `PrimaryBackupPartitionGroup` and `MultiPrimaryProtocol`
+* `atomix-gossip` - `AntiEntropyProtocol` and `CrdtProtocol`
 
-```
+```xml
 <dependencies>
   <dependency>
     <groupId>io.atomix</groupId>
@@ -36,6 +37,11 @@ Additionally, most clusters are configured with a set of partition groups. The p
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix-primary-backup</artifactId>
+    <version>3.0.0-rc1</version>
+  </dependency>
+  <dependency>
+    <groupId>io.atomix</groupId>
+    <artifactId>atomix-gossip</artifactId>
     <version>3.0.0-rc1</version>
   </dependency>
 </dependencies>
