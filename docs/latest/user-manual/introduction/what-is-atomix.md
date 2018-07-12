@@ -6,20 +6,77 @@ title: What is Atomix?
 ---
 
 Atomix is a tool for solving common distributed systems problems in a variety of different ways. It is unopinionated about the problems it solves, instead providing primitives with which to solve problems. Some examples of the primitives it provides are:
-* Distributed data structures (maps, sets, trees, etc)
+* Distributed data structures (maps, sets, trees, counters, values, etc)
 * Distributed communication (direct, publish-subscribe, etc)
-* Distributed coordination (locks, leader elections, semaphores, etc)
+* Distributed coordination (locks, leader elections, semaphores, barriers, etc)
 * Group membership
 
-Each of these primitives can be accessed in a variety of different ways, including:
+```java
+AtomicMap<String, String> map = atomix.<String, String>mapBuilder("my-map")
+  .withCacheEnabled()
+  .build();
+```
+
+Each of these primitives can be replicated using a variety of configurable distributed systems protocols with varying guarantees:
+* Multi-Raft - a strongly consistent partitioned consensus algorithm
+* Multi-Primary - a consistent partitioned leader-based synchronous/asynchronous replication algorithm
+* Anti-entropy - a highly scalable eventually consistent gossip/reconciliation protocol
+* CRDT - an eventually strongly consistent gossip-style replication protocol
+
+```java
+MultiRaftProtocol protocol = MultiRaftProtocol.builder()
+  .withReadConsistency(ReadConsistency.LINEARIZABLE)
+  .build()
+
+AtomicMap<String, String> map = atomix.<String, String>mapBuilder("my-map")
+  .withProtocol(protocol)
+  .withCacheEnabled()
+  .build();
+
+map.put("foo", "bar");
+```
+
+Primitives are thread-safe, asynchronous, and reactive, relying heavily on event notifications to detect state changes in the system:
+
+```java
+LeaderElection<MemberId> election = atomix.getElection("my-election");
+
+election.addListener(event -> {
+  Leader leader = event.newLeadership().leader();
+  ...
+});
+
+election.run(atomix.getClusterService().getLocalMember().id());
+```
+
+And can be accessed in a variety of different ways, including:
 * Asynchronous APIs
 * Synchronous APIs
 * REST API
+
+```java
+AsyncAtomicMap<String, String> asyncMap = map.async();
+
+asyncMap.put("foo", "baz").thenRun(() -> {
+  ...
+});
+```
 
 Similarly, they can be configured either in code or in configuration files:
 * Java builders
 * HOCON configurations
 * JSON configurations
+
+```hocon
+primitives.my-map {
+  type: atomic-map
+  protocol {
+    type: multi-raft
+    group: raft
+    read-consistency: linearizable
+  }
+}
+```
 
 This flexibility allows architects to build extremely diverse systems.
 

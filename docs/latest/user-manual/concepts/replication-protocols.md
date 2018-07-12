@@ -5,7 +5,7 @@ menu: user-manual
 title: Replication Protocols
 ---
 
-Replication protocols are specific distributed systems protocols implemented by Atomix to share state across nodes. Atomix core depends on several different types of protocols for state replication.
+Replication protocols are specific distributed systems protocols implemented by Atomix to share state across nodes. Atomix core depends on several different types of protocols for state replication ranging from strong to weak consistency.
 
 ## Raft
 
@@ -16,5 +16,9 @@ The [Raft][Raft] protocol is a consensus protocol used in Atomix for strongly co
 The primary-backup protocol is a simpler in-memory replication protocol with weaker consistency properties. Unlike with Raft, the Atomix primary-backup protocol can tolerate the loss of all but one node, and changes may be replicated either synchronously or asynchronously to any number of nodes. This makes the primary-backup protocol far better suited to high-performance use cases.
 
 The primary-backup protocol works by electing a primary through which writes are replicated to backups. If the Atomix cluster is configured with a Raft management partition, primary election for all instances of the primary-backup protocol will be done through a Raft replicated state machine for strong consistency. Otherwise, an eventually consistent primary election algorithm will be used.
+
+## Gossip
+
+Gossip is a class of eventually consistent replication protocols that rely on periodically exchanging information with random peers. Atomix's gossip protocol uses a variety of flavors to provide eventual consistency and eventual strong consistency using CRDTs. In some cases, anti-entropy protocols are used to account for certain types of failures.
 
 {% include common-links.html %}

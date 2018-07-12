@@ -49,7 +49,7 @@ partition-groups.raft {
 The groups listed under the `partition-groups` section of the configuration are accessible to distributed primitives. To create a primitive replicated in the Raft partition group named `raft`, construct a `MultiRaftProtocol` configuration indicating the Raft partition group name:
 
 ```java
-Atomix atomix = new Atomix("my.yaml");
+Atomix atomix = new Atomix("my.conf");
 atomix.start().join();
 
 DistributedLock lock = atomix.lockBuilder("my-lock")
@@ -76,6 +76,7 @@ Individual primitives' protocols may also be configured via the Atomix configura
 
 ```hocon
 primitives.my-lock {
+  type: lock
   protocol {
     type: multi-raft
     read-consistency: linearizable
@@ -125,10 +126,10 @@ partition-groups.data {
 To configure a multi-primary-based primitive, use the [`MultiPrimaryProtocol`][MultiPrimaryProtocol] builder, passing the name of the primary-backup group to the `builder` method:
 
 ```java
-Atomix atomix = new Atomix("my.yaml");
+Atomix atomix = new Atomix("my.conf");
 atomix.start().join();
 
-ConsistentMap<String, String> map = atomix.<String, String>consistentMapBuilder("my-map")
+AtomicMap<String, String> map = atomix.<String, String>atomicMapBuilder("my-map")
   .withProtocol(MultiPrimaryProtocol.builder("data")
     .withNumBackups(2)
     .withReplication(Replication.ASYNCHRONOUS)
@@ -140,6 +141,7 @@ Individual primitives' protocols may also be configured via the Atomix configura
 
 ```hocon
 primitives.my-map {
+  type: atomic-map
   protocol {
     type: multi-primary
     backups: 2
@@ -155,12 +157,84 @@ Many distributed primitives are partitioned among all the partitions in the conf
 For partitioned primitives, most primitive implementations encode keys to strings and then use the default Murmur 3 hash to map the key to a partition. Users can provide custom [`Partitioner`][Partitioner]s to alter this behavior in the protocol configuration:
 
 ```java
-ConsistentMap<String, String> map = atomix.<String, String>consistentMapBuilder("my-map")
+AtomicMap<String, String> map = atomix.<String, String>atomicMapBuilder("my-map")
   .withProtocol(MultiPrimaryProtocol.builder()
     .withPartitioner((key, partitions) -> partitions.get(Math.abs(key.hashCode() % partitions.size())))
     .withNumBackups(2)
     .build())
   .build();
+```
+
+## Anti-entropy Protocol
+
+The anti-entropy protocol is a gossip protocol that uses a background process to detect missing changes among peers. Gossip protocols are designed for high throughput eventual consistency.
+
+To enabled the anti-entropy protocol, the `atomix-gossip` jar must be on the classpath.
+
+```xml
+<dependency>
+  <groupId>io.atomix</groupId>
+  <artifactId>atomix-gossip</artifactId>
+</dependency>
+```
+
+The anti-entropy protocol can only be configured on primitives supported by the protocol implementation. These currently include:
+* `DistributedMap`
+* `DistributedSet`
+
+To configure a primitive to use the anti-entropy protocol, use the [`AntiEntropyProtocolBuilder`][AntiEntropyProtocolBuilder].
+
+```java
+DistributedMap<String, String> map = atomix.<String, String>mapBuilder("my-map")
+  .withProtocol(AntiEntropyProtocol.builder()
+    .withTimestampProvider(() -> new WallClockTimestamp())
+    .build())
+  .withCacheEnabled()
+  .build();
+```
+
+The protocol can be tuned for consistency and performance. The most important component of the protocol configuration is the `TimestampProvider` shown above. The anti-entropy protocol orders changes by timestamp, so the timestamp provider is critical to consistency.
+
+Primitives may also be configured with the anti-entropy protocol in configuration files:
+
+```hocon
+primitives.my-set {
+  type: set
+  protocol {
+    type: anti-entropy
+    gossip-interval: 50ms
+    anti-entropy-interval: 1s
+  }
+}
+```
+
+## CRDT Protocol
+
+[Conflict-free replicated data types (CRDT)][CRDT] are special types of data structures that guarantee strong eventual consistency. The [`CrdtProtocol`][CrdtProtocol] implements CRDTs for certain primitives:
+* `DistribuetedCounter`
+* `DistributedValue`
+* `DistributedSet`
+* `DistributedSortedSet`
+* `DistributedNavigableSet`
+
+To configure a primitive to use a CRDT-based protocol, use the [`CrdtProtocolBuilder`][CrdtProtocolBuilder]:
+
+```java
+DistributedCounter counter = atomix.counterBuilder("my-counter")
+  .withProtocol(CrdtProtocol.builder().build())
+  .build();
+```
+
+The CRDT protocol can also be configured in configuration files:
+
+```hocon
+primitives.my-counter {
+  type: counter
+  protocol {
+    type: crdt
+    gossip-interval: 100ms
+  }
+}
 ```
 
 {% include common-links.html %}

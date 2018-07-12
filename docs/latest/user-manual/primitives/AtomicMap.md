@@ -2,7 +2,7 @@
 layout: user-manual
 project: atomix
 menu: user-manual
-title: ConsistentMap
+title: AtomicMap
 ---
 
 {% include work-in-progress.html %}

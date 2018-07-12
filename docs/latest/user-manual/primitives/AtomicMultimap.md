@@ -2,7 +2,7 @@
 layout: user-manual
 project: atomix
 menu: user-manual
-title: ConsistentMultimap
+title: AtomicMultimap
 ---
 
 {% include work-in-progress.html %}
