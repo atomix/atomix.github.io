@@ -110,6 +110,7 @@
 * [LeaderElection](LeaderElection)
 * [WorkQueue](WorkQueue)
 * [Transactions](transactions)
+  * [Working with Transactions](transactions#working-with-transactions)
 * [Anti-Patterns](anti-patterns)
 {% endcapture %}
 {{ toc | markdownify }}
