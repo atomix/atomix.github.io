@@ -9,7 +9,7 @@ The [`AtomicMap`][AtomicMap] primitive is a version of Java's [`Map`][Map] utili
 
 [`AtomicMap`][AtomicMap] supports event-based notifications of changes to the map. Clients can listen for inserted/updated/removed entries by registering event listeners on an atomic map.
 
-Finally, [`AtomicMap`][AtomicMap] supports key set, values, and entry set views 
+Finally, [`AtomicMap`][AtomicMap] supports key set, values, and entry set views that are iterable and support Java 8 streams.
 
 ## Configuration
 
@@ -301,4 +301,5 @@ While a map is in use, Atomix may consume some network, memory, and disk resourc
 ```java
 map.close();
 ```
+
 {% include common-links.html %}
