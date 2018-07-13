@@ -48,8 +48,27 @@ MultiRaftProtocol protocol = MultiRaftProtocol.builder()
   .withSerializer(serializer)
   .build();
 
-AtomicMapBuilder<String, MemberId> map = atomix.<String, MemberId>atomicMapBuilder("my-map")
+AtomicMap<String, MemberId> map = atomix.<String, MemberId>atomicMapBuilder("my-map")
   .withProtocol(protocol)
+  .build();
+```
+
+Atomic maps support caching. When caching is enabled, the map will transparently listen for change events and update a local cache. To enable caching, use `withCacheEnabled()`:
+
+```java
+AtomicMap<String, String> map = atomix.<String, String>atomicMapBuilder("my-map")
+  .withProtocol(protocol)
+  .withCacheEnabled()
+  .withCacheSize(1000)
+  .build();
+```
+
+A map can also be constructed in read-only mode using `withReadOnly()`:
+
+```java
+AtomicMap<String, String> map = atomix.<String, String>atomicMapBuilder("my-map")
+  .withProtocol(protocol)
+  .withReadOnly()
   .build();
 ```
 
@@ -60,6 +79,7 @@ Atomic maps can also be configured in configuration files. To configure an atomi
 ```hocon
 primitives.my-map {
   type: atomic-map
+  cache.enabled: true
   protocol {
     type: multi-raft
     group: raft
