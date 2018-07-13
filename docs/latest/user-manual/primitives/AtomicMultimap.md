@@ -5,7 +5,7 @@ menu: user-manual
 title: AtomicMultimap
 ---
 
-The [`AtomicMultimap`][AtomicMultimap] primitive is a version of Guava's [`Multimap`][Multimap] that provides version numbers for entries. The default implementation is a set-based multimap where values are sets. All operations on the `AtomicMultimap` are guaranteed to be atomic, and values in the multimap are represented as [`Versioned`][Versioned] objects which associate a monotonically increasing `long` version number with each value. The version number can be used to perform atomic check-and-set operations using optimistic locking.
+The [`AtomicMultimap`][AtomicMultimap] primitive is a version of Guava's `Multimap` that provides version numbers for entries. The default implementation is a set-based multimap where values are sets. All operations on the `AtomicMultimap` are guaranteed to be atomic, and values in the multimap are represented as [`Versioned`][Versioned] objects which associate a monotonically increasing `long` version number with each value. The version number can be used to perform atomic check-and-set operations using optimistic locking.
 
 [`AtomicMultimap`][AtomicMultimap] supports event-based notifications of changes to the multimap. Clients can listen for inserted/updated/removed entries by registering event listeners on an atomic multimap.
 
@@ -16,7 +16,7 @@ Finally, [`AtomicMultimap`][AtomicMultimap] supports key set, values, and entry 
 The [`AtomicMultimap`][AtomicMultimap] can be configured programmatically using the [`AtomicMultimapBuilder`][AtomicMultimapBuilder]. To create a new multimap builder, use the `atomicMultimapBuilder` method, passing the name of the multimap to construct:
 
 ```java
-AtomicMultimapBuilder<String> multimapBuilder = atomix.<String, String>atomicMultimapBuilder("my-multimap");
+AtomicMultimapBuilder<String, String> multimapBuilder = atomix.<String, String>atomicMultimapBuilder("my-multimap");
 ```
 
 The multimap can be configured with a [protocol][primitive-protocols] to use to replicate changes. Since `AtomicMultimap` is a consistent primitive, the only protocols supported are:
@@ -30,7 +30,7 @@ MultiRaftProtocol protocol = MultiRaftProtocol.builder()
   .withReadConsistency(ReadConsistency.LINEARIZABLE)
   .build();
 
-AtomicMultimap<String> multimap = atomix.<String, String>atomicMultimapBuilder("my-multimap")
+AtomicMultimap<String, String> multimap = atomix.<String, String>atomicMultimapBuilder("my-multimap")
   .withProtocol(protocol)
   .build();
 ```

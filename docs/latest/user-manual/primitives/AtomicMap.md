@@ -16,7 +16,7 @@ Finally, [`AtomicMap`][AtomicMap] supports key set, values, and entry set views 
 The [`AtomicMap`][AtomicMap] can be configured programmatically using the [`AtomicMapBuilder`][AtomicMapBuilder]. To create a new map builder, use the `atomicMapBuilder` method, passing the name of the map to construct:
 
 ```java
-AtomicMapBuilder<String> mapBuilder = atomix.<String, String>atomicMapBuilder("my-map");
+AtomicMapBuilder<String, String> mapBuilder = atomix.<String, String>atomicMapBuilder("my-map");
 ```
 
 The map can be configured with a [protocol][primitive-protocols] to use to replicate changes. Since `AtomicMap` is a consistent primitive, the only protocols supported are:
@@ -30,7 +30,7 @@ MultiRaftProtocol protocol = MultiRaftProtocol.builder()
   .withReadConsistency(ReadConsistency.LINEARIZABLE)
   .build();
 
-AtomicMap<String> map = atomix.<String, String>atomicMapBuilder("my-map")
+AtomicMap<String, String> map = atomix.<String, String>atomicMapBuilder("my-map")
   .withProtocol(protocol)
   .build();
 ```
