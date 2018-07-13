@@ -150,9 +150,9 @@ primitives.my-map {
 }
 ```
 
-## Protocol Partitioners
+### Protocol Partitioners
 
-Many distributed primitives are partitioned among all the partitions in the configured [`PartitionGroup`][PartitionGroup]. For example, when putting a key/value in a [`ConsistentMap`][ConsistentMap], the key is mapped to a partition using a configured [`Partitioner`][Partitioner]. This allows the cluster to scale by spreading data across multiple partitions.
+Many distributed primitives are partitioned among all the partitions in the configured [`PartitionGroup`][PartitionGroup]. For example, when putting a key/value in a [`AtomicMap`][AtomicMap], the key is mapped to a partition using a configured [`Partitioner`][Partitioner]. This allows the cluster to scale by spreading data across multiple partitions.
 
 For partitioned primitives, most primitive implementations encode keys to strings and then use the default Murmur 3 hash to map the key to a partition. Users can provide custom [`Partitioner`][Partitioner]s to alter this behavior in the protocol configuration:
 
@@ -179,8 +179,12 @@ To enabled the anti-entropy protocol, the `atomix-gossip` jar must be on the cla
 ```
 
 The anti-entropy protocol can only be configured on primitives supported by the protocol implementation. These currently include:
+* `DistribuetedCounter`
+* `DistributedValue`
 * `DistributedMap`
 * `DistributedSet`
+* `DistributedSortedSet`
+* `DistributedNavigableSet`
 
 To configure a primitive to use the anti-entropy protocol, use the [`AntiEntropyProtocolBuilder`][AntiEntropyProtocolBuilder].
 
