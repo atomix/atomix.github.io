@@ -37,6 +37,9 @@ AtomicLock lock = atomix.atomicLockBuilder("my-lock")
   .build();
 ```
 
+{:.callout .callout-warning}
+It's important that distributed locks can tolerate network partitions without split brain, so it is strongly recommended that users configure at least one [Raft partition group][partition-groups] to use for distributed locking.
+
 Atomic locks can also be configured in configuration files. To configure an atomic lock primitive, use the `atomic-lock` primitive type:
 
 `atomix.conf`

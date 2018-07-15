@@ -35,21 +35,13 @@ AtomicMap<String, String> map = atomix.<String, String>atomicMapBuilder("my-map"
   .build();
 ```
 
-The generic parameters in the map configuration are the map key and value types. To support non-standard types, the protocol must be configured with a custom serializer:
+The generic parameters in the map configuration are the map key and value types. By default, arbitrary key and value types may be used. However, when non-standard types are used, class names will be serialized with map entries, and the thread context class loader will be used to load classes from names. To avoid serializing class names, register a key and value type via `withKeyType` and `withValueType`. Class-based serialization can also be disabled via `withRegistrationRequired()`.
 
 ```java
-Serializer serializer = Serializer.using(Namespace.builder()
-  .register(Namespaces.BASIC)
-  .register(MemberId.class)
-  .build());
-
-MultiRaftProtocol protocol = MultiRaftProtocol.builder()
-  .withReadConsistency(ReadConsistency.LINEARIZABLE)
-  .withSerializer(serializer)
-  .build();
-
 AtomicMap<String, MemberId> map = atomix.<String, MemberId>atomicMapBuilder("my-map")
   .withProtocol(protocol)
+  .withKeyType(String.class)
+  .withValueType(MemberId.class)
   .build();
 ```
 
