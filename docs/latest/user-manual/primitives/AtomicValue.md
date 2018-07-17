@@ -63,7 +63,7 @@ The value's protocol and configuration will be loaded from the Atomix configurat
 
 ## Operation
 
-The [`AtomicValue`][AtomicValue] supports most of the same operations as Java's core `AtomicLong`. All operations performed on the atomic value are, as suggested, guaranteed to be atomic. Beyond that atomicity guarantee, the consistency guarantees of read and write operations are specified by the configured protocol.
+The [`AtomicValue`][AtomicValue] supports most of the same operations as Java's core `AtomicReference`. All operations performed on the atomic value are, as suggested, guaranteed to be atomic. Beyond that atomicity guarantee, the consistency guarantees of read and write operations are specified by the configured protocol.
 
 ```java
 AtomicValue<String> value = atomix.<String>atomicValueBuilder("my-value")
