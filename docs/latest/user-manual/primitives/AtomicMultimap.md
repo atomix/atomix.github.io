@@ -156,7 +156,7 @@ switch (event.type()) {
 }
 ```
 
-The [`AtomicMultimapEvent`][AtomicMultimapEvent] provides both the previous value and the updated value for all updates. The previous value can be read via `oldValue()` and the updated value via `newValue()`. Additionally, values are contained in `Versioned` wrappers to facilitate further updates to the multimap.
+The [`AtomicMultimapEvent`][AtomicMultimapEvent] provides both the previous value and the updated value for all updates. The previous value can be read via `oldValue()` and the updated value via `newValue()`.
 
 ```java
 String value;
