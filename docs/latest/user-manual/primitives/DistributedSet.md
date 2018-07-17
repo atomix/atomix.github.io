@@ -37,7 +37,7 @@ Set<String> set = atomix.<String>setBuilder("my-set")
   .build();
 ```
 
-The generic parameter in the value configuration is the element type. By default, arbitrary element types may be used. However, when non-standard types are used, class names will be serialized with elements, and the thread context class loader will be used to load classes from names. To avoid serializing class names, register an element type via `withElementType`. Class-based serialization can also be disabled via `withRegistrationRequired()`.
+The generic parameter in the set configuration is the element type. By default, arbitrary element types may be used. However, when non-standard types are used, class names will be serialized with elements, and the thread context class loader will be used to load classes from names. To avoid serializing class names, register an element type via `withElementType`. Class-based serialization can also be disabled via `withRegistrationRequired()`.
 
 ```java
 Set<Foo> set = atomix.<Foo>setBuilder("my-set")
