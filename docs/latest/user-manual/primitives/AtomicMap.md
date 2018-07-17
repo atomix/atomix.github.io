@@ -143,7 +143,7 @@ As with all Atomix primitives, an asynchronous analogue of the map API - [`Async
 AsyncAtomicMap<String, String> asyncMap = map.async();
 
 asyncMap.get("foo").thenAccept(value -> {
-  asyncMap.replace("foo", "bar", value.version()).thenAccept(succeeded -> {
+  asyncMap.replace("foo", value.version(), "bar").thenAccept(succeeded -> {
     System.out.println("Optimistic lock successful!");
   });
 });
