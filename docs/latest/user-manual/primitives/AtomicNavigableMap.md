@@ -60,7 +60,7 @@ AtomicNavigableMap<String, String> navigableMap = atomix.<String, String>atomicN
   .build();
 ```
 
-Atomic maps can also be configured in configuration files. To configure an atomic map primitive, use the `atomic-map` primitive type:
+Atomic maps can also be configured in configuration files. To configure an atomic map primitive, use the `atomic-navigable-map` primitive type:
 
 `atomix.conf`
 
@@ -86,7 +86,7 @@ The map's protocol and configuration will be loaded from the Atomix configuratio
 
 ## Operation
 
-The [`AtomicNavigableMap`][AtomicNavigableMap] supports most of the same operations as Java's core `Map`. All operations performed on the atomic map are, as suggested by the name, guaranteed to be atomic. Beyond that atomicity guarantee, the consistency guarantees of read and write operations are specified by the configured protocol.
+The [`AtomicNavigableMap`][AtomicNavigableMap] supports most of the same operations as Java's core `NavigableMap`. All operations performed on the atomic map are, as suggested by the name, guaranteed to be atomic. Beyond that atomicity guarantee, the consistency guarantees of read and write operations are specified by the configured protocol.
 
 ```java
 AtomicNavigableMap<String, String> navigableMap = atomix.<String, String>atomicNavigableMapBuilder("my-navigable-map")
