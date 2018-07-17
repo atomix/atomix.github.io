@@ -60,7 +60,7 @@ AtomicSortedMap<String, String> sortedMap = atomix.<String, String>atomicSortedM
   .build();
 ```
 
-Atomic maps can also be configured in configuration files. To configure an atomic map primitive, use the `atomic-map` primitive type:
+Atomic maps can also be configured in configuration files. To configure an atomic map primitive, use the `atomic-sorted-map` primitive type:
 
 `atomix.conf`
 

@@ -118,7 +118,7 @@ AsyncDistributedNavigableSet<String> asyncSet = set.async();
 
 asyncSet.add("foo").thenRun(() -> {
   AsyncDistributedNavigableSet<String> subSet = set.subSet("b", true, "y", false).descendingSet();
-  subSet.first().thenAccept(first -> {
+  subSet.pollFirst().thenAccept(first -> {
     ...
   });
 });

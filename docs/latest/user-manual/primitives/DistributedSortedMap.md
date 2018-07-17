@@ -60,13 +60,13 @@ SortedMap<String, String> sortedMap = atomix.<String, String>sortedMapBuilder("m
   .build();
 ```
 
-Atomic maps can also be configured in configuration files. To configure an atomic map primitive, use the `atomic-map` primitive type:
+Atomic maps can also be configured in configuration files. To configure an atomic map primitive, use the `sorted-map` primitive type:
 
 `atomix.conf`
 
 ```hocon
 primitives.my-sorted-map {
-  type: atomic-sorted-map
+  type: sorted-map
   cache.enabled: true
   protocol {
     type: multi-raft

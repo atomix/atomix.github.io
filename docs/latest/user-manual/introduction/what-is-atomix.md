@@ -28,7 +28,7 @@ MultiRaftProtocol protocol = MultiRaftProtocol.builder()
   .withReadConsistency(ReadConsistency.LINEARIZABLE)
   .build()
 
-AtomicMap<String, String> map = atomix.<String, String>mapBuilder("my-map")
+Map<String, String> map = atomix.<String, String>mapBuilder("my-map")
   .withProtocol(protocol)
   .withCacheEnabled()
   .build();
@@ -46,7 +46,7 @@ election.addListener(event -> {
   ...
 });
 
-election.run(atomix.getClusterService().getLocalMember().id());
+election.run(atomix.getMembershipService().getLocalMember().id());
 ```
 
 And can be accessed in a variety of different ways, including:
@@ -55,7 +55,7 @@ And can be accessed in a variety of different ways, including:
 * REST API
 
 ```java
-AsyncAtomicMap<String, String> asyncMap = map.async();
+AsyncAtomicMap<String, String> asyncMap = atomix.getMap("my-map").async();
 
 asyncMap.put("foo", "baz").thenRun(() -> {
   ...
@@ -69,7 +69,7 @@ Similarly, they can be configured either in code or in configuration files:
 
 ```hocon
 primitives.my-map {
-  type: atomic-map
+  type: map
   protocol {
     type: multi-raft
     group: raft
