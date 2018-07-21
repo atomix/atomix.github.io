@@ -2,7 +2,7 @@
 layout: user-manual
 project: atomix
 menu: user-manual
-title: AtomicMap
+title: AtomicNavigableMap
 ---
 
 The [`AtomicNavigableMap`][AtomicNavigableMap] primitive is an extension of [`AtomicMap`][AtomicMap] that provides an interface consistent with Java's [`NavigableMap`][NavigableMap]. Navigable maps are stored only in a single partition in order to maintain order for iteration.
