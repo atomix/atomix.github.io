@@ -15,24 +15,12 @@ To configure zone/rack/host awareness, members of the cluster must first be conf
 * `host` - a `String` host name, useful when deploying Atomix nodes in containers
 
 ```java
-Atomix.Builder builder = Atomix.builder()
-  .withLocalMember(Member.builder("member-4")
-    .withAddress("localhost:5004")
-    .withRack("rack-1")
-    .build())
-  .withMembers(
-      Member.builder("member-1")
-        .withAddress("localhost:5001")
-        .withRack("rack-1")
-        .build(),
-      Member.builder("member-2")
-        .withAddress("localhost:5002")
-        .withRack("rack-2")
-        .build(),
-      Member.builder("member-3")
-        .withAddress("localhost:5003")
-        .withRack("rack-2")
-        .build());
+Atomix atomix = Atomix.builder()
+  .withMemberId("member-1")
+  .withAddress("localhost:5001")
+  .withRack("rack-1")
+  .withMembershipProvider(membershipProvider)
+  .build();
 ```
 
 In addition to configuring the member properties, the [`PrimaryBackupPartitionGroup`][PrimaryBackupPartitionGroup] must also be configured for rack awareness by providing a [`MemberGroupStrategy`][MemberGroupStrategy]:
@@ -58,25 +46,22 @@ Member group strategies can also be configured via configuration files:
 
 ```hocon
 cluster {
-  local-member {
-    id: member-4
-    address: "localhost:5004"
-    rack: rack-1
-  }
-  members.1 {
-    id: member-1
-    address: "localhost:5001"
-    rack: rack-1
-  }
-  members.2 {
-    id: member-2
-    address: "localhost:5002"
-    rack: rack-2
-  }
-  members.3 {
-    id: member-3
-    address: "localhost:5003"
-    rack: rack-3
+  member-id: member-1
+  rack: rack-1 # Set the rack ID for this node
+  disovery {
+    type: bootstrap
+    nodes.1 {
+      id: member-1
+      address: "localhost:5001"
+    }
+    nodes.2 {
+      id: member-2
+      address: "localhost:5002"
+    }
+    nodes.3 {
+      id: member-3
+      address: "localhost:5003"
+    }
   }
 }
 

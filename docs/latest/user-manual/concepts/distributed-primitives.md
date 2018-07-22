@@ -10,7 +10,7 @@ Distributed primitives are at the core of how Atomix replicates state and coordi
 Each Atomix primitive is identified by a `String` name. The name can be used to reference the same state on multiple nodes within an Atomix cluster:
 
 ```java
-DistributedSet<String> set = atomix.getSet("my-set");
+Set<String> set = atomix.getSet("my-set");
 set.add("foo");
 ```
 

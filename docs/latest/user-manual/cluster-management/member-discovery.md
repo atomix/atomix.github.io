@@ -27,7 +27,7 @@ Atomix atomix = Atomix.builder()
       Node.builder()
         .withId("member3")
         .withAddress("localhost:5003")
-        .build(),)
+        .build())
     .build())
 
 atomix.start().join();

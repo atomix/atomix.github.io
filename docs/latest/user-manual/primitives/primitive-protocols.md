@@ -11,27 +11,18 @@ For example, to configure a [`DistributedLock`][DistributedLock] primitive to ru
 
 ## MultiRaftProtocol
 
+To enabled the Multi-Raft protocol, the `atomix-raft` jar must be on the classpath.
+
+```xml
+<dependency>
+  <groupId>io.atomix</groupId>
+  <artifactId>atomix-raft</artifactId>
+</dependency>
+```
+
 The [`MultiRaftProtocol`][MultiRaftProtocol] is the protocol configuration required by [`RaftPartitionGroup`][RaftPartitionGroup]s. To replicate a primitive using the Raft consensus protocol, the cluster must first be configured with a Raft partition group:
 
 ```hocon
-cluster {
-  local-member {
-    id: member-1
-  }
-  members.1 {
-    id: member-1
-    address: "localhost:5001"
-  }
-  members.2 {
-    id: member-2
-    address: "localhost:5002"
-  }
-  members.3 {
-    id: member-3
-    address: "localhost:5003"
-  }
-}
-
 management-group {
   type: raft
   name: system
@@ -52,7 +43,7 @@ The groups listed under the `partition-groups` section of the configuration are 
 Atomix atomix = new Atomix("my.conf");
 atomix.start().join();
 
-DistributedLock lock = atomix.lockBuilder("my-lock")
+Lock lock = atomix.lockBuilder("my-lock")
   .withProtocol(MultiRaftProtocol.builder("raft")
     .withReadConsistency(ReadConsistency.LINEARIZABLE)
     .withCommunicationStrategy(CommunicationStrategy.LEADER)
@@ -65,7 +56,7 @@ This will construct a [`DistributedLock`][DistributedLock] primitive stored in t
 As shorthand, the [`MultiRaftProtocol`][MultiRaftProtocol] instance can be configured without a partition group name if the `raft` partition group is the only `RaftPartitionGroup` configured in the cluster:
 
 ```java
-DistributedLock lock = atomix.lockBuilder("my-lock")
+Lock lock = atomix.lockBuilder("my-lock")
   .withProtocol(MultiRaftProtocol.builder()
     ...
     .build())
@@ -87,29 +78,20 @@ primitives.my-lock {
 
 ## MultiPrimaryProtocol
 
+To enabled the multi-primary protocol, the `atomix-primary-backup` jar must be on the classpath.
+
+```xml
+<dependency>
+  <groupId>io.atomix</groupId>
+  <artifactId>atomix-primary-backup</artifactId>
+</dependency>
+```
+
 The multi-primary protocol is used to configure primitives to be replicated in a [`PrimaryBackupPartitionGroup`][PrimaryBackupPartitionGroup]. Multi-primary protocols are designed for high scalability and availability. Users can configure the number of backups to maintain in each partition and whether to backup the primitive synchronously or asynchronously.
 
 To use multi-primary primitives, the cluster must first be configured with a [`PrimaryBackupPartitionGroup`][PrimaryBackupPartitionGroup]:
 
 ```hocon
-cluster {
-  local-member {
-    id: member-1
-  }
-  members.1 {
-    id: member-1
-    address: "localhost:5001"
-  }
-  members.2 {
-    id: member-2
-    address: "localhost:5002"
-  }
-  members.3 {
-    id: member-3
-    address: "localhost:5003"
-  }
-}
-
 management-group {
   type: raft
   name: system
@@ -129,7 +111,7 @@ To configure a multi-primary-based primitive, use the [`MultiPrimaryProtocol`][M
 Atomix atomix = new Atomix("my.conf");
 atomix.start().join();
 
-AtomicMap<String, String> map = atomix.<String, String>atomicMapBuilder("my-map")
+Map<String, String> map = atomix.<String, String>mapBuilder("my-map")
   .withProtocol(MultiPrimaryProtocol.builder("data")
     .withNumBackups(2)
     .withReplication(Replication.ASYNCHRONOUS)
@@ -141,7 +123,7 @@ Individual primitives' protocols may also be configured via the Atomix configura
 
 ```hocon
 primitives.my-map {
-  type: atomic-map
+  type: map
   protocol {
     type: multi-primary
     backups: 2
@@ -152,12 +134,12 @@ primitives.my-map {
 
 ### Protocol Partitioners
 
-Many distributed primitives are partitioned among all the partitions in the configured [`PartitionGroup`][PartitionGroup]. For example, when putting a key/value in a [`AtomicMap`][AtomicMap], the key is mapped to a partition using a configured [`Partitioner`][Partitioner]. This allows the cluster to scale by spreading data across multiple partitions.
+Many distributed primitives are partitioned among all the partitions in the configured [`PartitionGroup`][PartitionGroup]. For example, when putting a key/value in a [`DistributedMap`][DistributedMap], the key is mapped to a partition using a configured [`Partitioner`][Partitioner]. This allows the cluster to scale by spreading data across multiple partitions.
 
 For partitioned primitives, most primitive implementations encode keys to strings and then use the default Murmur 3 hash to map the key to a partition. Users can provide custom [`Partitioner`][Partitioner]s to alter this behavior in the protocol configuration:
 
 ```java
-AtomicMap<String, String> map = atomix.<String, String>atomicMapBuilder("my-map")
+Map<String, String> map = atomix.<String, String>mapBuilder("my-map")
   .withProtocol(MultiPrimaryProtocol.builder()
     .withPartitioner((key, partitions) -> partitions.get(Math.abs(key.hashCode() % partitions.size())))
     .withNumBackups(2)
@@ -189,7 +171,7 @@ The anti-entropy protocol can only be configured on primitives supported by the 
 To configure a primitive to use the anti-entropy protocol, use the [`AntiEntropyProtocolBuilder`][AntiEntropyProtocolBuilder].
 
 ```java
-DistributedMap<String, String> map = atomix.<String, String>mapBuilder("my-map")
+Map<String, String> map = atomix.<String, String>mapBuilder("my-map")
   .withProtocol(AntiEntropyProtocol.builder()
     .withTimestampProvider(() -> new WallClockTimestamp())
     .build())

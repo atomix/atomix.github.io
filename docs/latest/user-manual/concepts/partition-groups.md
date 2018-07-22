@@ -10,11 +10,6 @@ Distributed primitives in Atomix are replicated using the [replication protocols
 When a cluster is formed, the members of the cluster must define the set of partition groups in which they participate. For example, a node that participates in a primary-backup partition group might be configured as follows:
 
 ```hocon
-cluster.local-member {
-  id: member1
-  address: "localhost:5000"
-}
-
 management-group {
   type: primary-backup
   name: system

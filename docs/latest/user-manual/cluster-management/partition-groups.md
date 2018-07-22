@@ -38,8 +38,8 @@ To configure the system management group on an [`Atomix`][Atomix] builder, use t
 
 ```java
 Atomix atomix = Atomix.builder()
-  .withLocalMember(...)
-  .withMembers(...)
+  .withMemberId(...)
+  .withMembershipProvider(...)
   .withManagementGroup(RaftPartitionGroup.builder("system")
     .withNumPartitions(1)
     .withMembers("member-1", "member-2", "member-3")
@@ -53,10 +53,7 @@ When using a file-based configuration, configure the `management-group`:
 
 ```hocon
 cluster {
-  local-member {
-    ...
-  }
-  members: [...]
+  ...
 }
 
 management-group {
@@ -75,8 +72,8 @@ To configure the primitive partition groups, use the `withPartitionGroups` metho
 
 ```java
 Atomix atomix = Atomix.builder()
-  .withLocalMember(...)
-  .withMembers(...)
+  .withMemberId(...)
+  .withMembershipProvider(...)
   .withManagementGroup(RaftPartitionGroup.builder("system")
     .withNumPartitions(1)
     .withMembers("member-1", "member-2", "member-3")
@@ -118,17 +115,23 @@ Raft partition groups are strongly recommended for use in the management of the 
 
 ```java
 Atomix atomix = Atomix.builder()
-  .withLocalMember("member-1")
-  .withMembers(
-      Member.builder("member-1")
+  .withMemberId("member-1")
+  .withAddress("localhost:5001")
+  .withMembershipProvider(BootstrapDiscoveryProvider.builder()
+    .withNodes(
+      Node.builder()
+        .withId("member1")
         .withAddress("localhost:5001")
         .build(),
-      Member.builder("member-2")
+      Node.builder()
+        .withId("member2")
         .withAddress("localhost:5002")
         .build(),
-      Member.builder("member-3")
+      Node.builder()
+        .withId("member3")
         .withAddress("localhost:5003")
         .build())
+    .build())
   .withManagementGroup(RaftPartitionGroup.builder("system")
     .withNumPartitions(1)
     .withMembers("member-1", "member-2", "member-3")
@@ -144,20 +147,22 @@ As with other partition groups, Raft groups can be configured via configuration 
 
 ```hocon
 cluster {
-  local-member {
-    id: member-1
-  }
-  members.1 {
-    id: member-1
-    address: "localhost:5001"
-  }
-  members.2 {
-    nidame: member-2
-    address: "localhost:5002"
-  }
-  members.3 {
-    id: member-3
-    address: "localhost:5003"
+  member-id: member-1
+  address: "localhost:5001"
+  disovery {
+    type: bootstrap
+    nodes.1 {
+      id: member1
+      address: "localhost:5001"
+    }
+    nodes.2 {
+      id: member2
+      address: "localhost:5002"
+    }
+    nodes.3 {
+      id: member3
+      address: "localhost:5003"
+    }
   }
 }
 
@@ -212,9 +217,9 @@ Atomix provides an abstraction for common partition configurations known as _pro
 
 ```java
 Atomix atomix = Atomix.builder()
-  .withLocalMember("member-1")
-  .withMembers(members)
-  .withProfiles(Profile.CONSENSUS, Profile.DATA_GRID)
+  .withMemberId("member-1")
+  .withAddress("localhost:5001")
+  .withProfiles(Profile.consensus("member-1", "member-2", "member-3"), Profile.dataGrid())
   .build();
 ```
 
@@ -229,48 +234,48 @@ The [`Atomix`][Atomix] configuration, of course, supports profiles via the `prof
 
 ```hocon
 cluster {
-  local-member {
-    id: member-1
-  }
-  members.1 {
-    id: member-1
-    address: "localhost:5001"
-  }
-  members.2 {
-    id: member-2
-    address: "localhost:5002"
-  }
-  members.3 {
-    id: member-3
-    address: "localhost:5003"
+  member-id: member-1
+  address: "localhost:5001"
+  disovery {
+    type: bootstrap
+    nodes.1 {
+      id: member1
+      address: "localhost:5001"
+    }
+    nodes.2 {
+      id: member2
+      address: "localhost:5002"
+    }
+    nodes.3 {
+      id: member3
+      address: "localhost:5003"
+    }
   }
 }
 
-profiles: [consensus, data-grid]
+profiles.1 {
+  type: consensus
+  members: [member-1, member-2, member-3]
+}
+
+profiles.2 {
+  type: data-grid
+  partitions: 32
+}
 ```
 
 Additional partition groups may be added to profiles as well:
 
 ```hocon
-cluster {
-  local-member {
-    id: member-1
-  }
-  members.1 {
-    id: member-1
-    address: "localhost:5001"
-  }
-  members.2 {
-    id: member-2
-    address: "localhost:5002"
-  }
-  members.3 {
-    id: member-3
-    address: "localhost:5003"
-  }
+profiles.1 {
+  type: consensus
+  members: [member-1, member-2, member-3]
 }
 
-profiles: [consensus, data-grid]
+profiles.2 {
+  type: data-grid
+  partitions: 32
+}
 
 partition-groups.more-data {
   type: primary-backup

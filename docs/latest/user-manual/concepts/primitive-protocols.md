@@ -22,6 +22,7 @@ The protocol configuration can also be provided in the primitive configuration:
 
 ```hocon
 primitives.my-set {
+  type: set
   protocol {
     type: multi-primary
     backups: 2
