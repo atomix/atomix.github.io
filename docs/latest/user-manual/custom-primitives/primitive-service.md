@@ -105,12 +105,12 @@ The lock service as currently designed can lead to a deadlock when a client acqu
 
 ```java
   @Override
-  public void onExpire(PrimitiveSession session) {
+  public void onExpire(Session session) {
     release(session.sessionId());
   }
   
   @Override
-  public void onClose(PrimitiveSession session) {
+  public void onClose(Session session) {
     release(session.sessionId());
   }
   

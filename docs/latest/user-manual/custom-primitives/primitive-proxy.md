@@ -7,11 +7,11 @@ title: Creating a Proxy
 
 The primitive service is the stateful component of distributed primitives. Atomix creates multiple instances of a service on different nodes and replicates changes between them. On the client side, primitives must provide a primitive proxy which interacts with the replicated services using service and client proxies.
 
-The client-side primitive proxy should extend the [`AbstractAsyncPrimitiveProxy`][AbstractAsyncPrimitiveProxy] base class, and just as with the primitive service, the client should implement the client proxy interface for the primitive:
+The client-side primitive proxy should extend the [`AbstractAsyncPrimitive`][AbstractAsyncPrimitive] base class, and just as with the primitive service, the client should implement the client proxy interface for the primitive:
 
 ```java
 public class DistributedLockProxy
-    extends AbstractAsyncPrimitiveProxy<AsyncDistributedLock, DistributedLockService>
+    extends AbstractAsyncPrimitive<AsyncDistributedLock, DistributedLockService>
     implements AsyncDistributedLock, DistributedLockClient {
   private volatile CompletableFuture<Optional<Long>> lockFuture;
 

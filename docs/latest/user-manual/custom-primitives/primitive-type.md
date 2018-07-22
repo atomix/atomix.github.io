@@ -8,10 +8,10 @@ title: Defining the Primitive Type
 The first step to creating a custom distributed primitive is defining the primitive type. To create a new type, implement the [`PrimitiveType`][PrimitiveType] interface:
 
 ```java
-public class DistributedSemaphoreType implements PrimitiveType<DistributedSemaphoreBuilder, DistributedSemaphoreConfig, DistributedSemaphore> {
+public class DistributedLockType implements PrimitiveType<DistributedLockBuilder, DistributedLockConfig, DistributedLock> {
     @Override
     public String id() {
-        return "semaphore";
+        return "lock";
     }
 }
 ```
