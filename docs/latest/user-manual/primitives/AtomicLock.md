@@ -83,18 +83,22 @@ try {
 }
 ```
 
-A fencing token - the lock ID - is returned by the `lock()` method once the lock has been acquired:
+A fencing token - the lock [`Version`][Version] - is returned by the `lock()` method once the lock has been acquired:
 
 ```java
-long lockId = lock.lock();
+Version lockVersion = lock.lock();
 ```
 
-This value is guaranteed to be a monotinically increasing, globally unique identifier. These semantics ensure that lock acquisitions can be ordered across nodes. For example, if node A acquires a lock with version 10, and node B acquires the same lock with version 11, and both nodes try to operate on node C at the same time, node C will know that the lock with version 11 is more recent than the lock with version 10, and considering the atomicity guarantees of the lock, that must necessarily indicate the node A no longer holds the lock and can thus be ignored.
+This value is guaranteed to be a monotinically increasing, globally unique logical timestamp. These semantics ensure that lock acquisitions can be ordered across nodes. For example, if node A acquires a lock with version 10, and node B acquires the same lock with version 11, and both nodes try to operate on node C at the same time, node C will know that the lock with version 11 is more recent than the lock with version 10, and considering the atomicity guarantees of the lock, that must necessarily indicate the node A no longer holds the lock and can thus be ignored.
+
+```java
+long lockId = lockVersion.value();
+```
 
 The lock also supports timed methods:
 
 ```java
-Optional<Long> result = lock.tryLock(Duration.ofSeconds(10));
+Optional<Version> result = lock.tryLock(Duration.ofSeconds(10));
 ```
 
 When using `tryLock` methods, an `Optional` will be returned. If the attempt is successful, the `Optional` will be completed with the lock ID. If it fails, the `Optional` value will not be present.
