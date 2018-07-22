@@ -2,7 +2,7 @@
 layout: user-manual
 project: atomix
 menu: user-manual
-title: Overview
+title: Anti-patterns
 ---
 
 Atomix distributed primitives have been in use in the [ONOS](http://onosproject.org) project for years. During that time, Atomix engineers have learned some anti-patterns to help ensure systems built on Atomix remain scalable and performant.
