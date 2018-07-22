@@ -12,7 +12,7 @@ Atomix is packaged in a hierarchy of modules that allow users to depend only on 
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix</artifactId>
-    <version>3.0.0-rc1</version>
+    <version>3.0.0-rc4</version>
   </dependency>
 </dependencies>
 ```
@@ -27,22 +27,22 @@ Additionally, most clusters are configured with a set of partition groups. The p
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix</artifactId>
-    <version>3.0.0-rc1</version>
+    <version>3.0.0-rc4</version>
   </dependency>
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix-raft</artifactId>
-    <version>3.0.0-rc1</version>
+    <version>3.0.0-rc4</version>
   </dependency>
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix-primary-backup</artifactId>
-    <version>3.0.0-rc1</version>
+    <version>3.0.0-rc4</version>
   </dependency>
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix-gossip</artifactId>
-    <version>3.0.0-rc1</version>
+    <version>3.0.0-rc4</version>
   </dependency>
 </dependencies>
 ```
@@ -76,20 +76,32 @@ When working with the agent, it's most convenient to provide a JSON or YAML conf
 `atomix.conf`
 
 ```
-cluster.members.1 {
-  id: member1
-  address: "localhost:5001"
-}
-cluster.members.2 {
-  id: member2
-  address: "localhost:5002"
-}
-cluster.members.3 {
-  id: member3
-  address: "localhost:5003"
+cluster.discovery {
+  type: bootstrap
+  nodes.1 {
+    id: member1
+    address: "localhost:5001"
+  }
+  nodes.2 {
+    id: member2
+    address: "localhost:5002"
+  }
+  nodes.3 {
+    id: member3
+    address: "localhost:5003"
+  }
 }
 
-profiles: [consensus, data-grid]
+profiles.1 {
+  type: consensus
+  partitions: 3
+  members: [member1, member2, member3]
+}
+
+profiles.2 {
+  type: data-grid
+  partitions: 32
+}
 ```
 
 {:.callout .callout-info}
@@ -98,15 +110,15 @@ The Java API supports configuration files as well. To configure an `Atomix` inst
 Once the configuration file has been created, start the cluster by bootstrapping the configured nodes:
 
 ```
-bin/atomix-agent member1
+bin/atomix-agent -m member1 -a localhost:5001
 ```
 
 ```
-bin/atomix-agent member2
+bin/atomix-agent -m member2 -a localhost:5002
 ```
 
 ```
-bin/atomix-agent member3
+bin/atomix-agent -m member3 -a localhost:5003
 ```
 
 {% include common-links.html %}
