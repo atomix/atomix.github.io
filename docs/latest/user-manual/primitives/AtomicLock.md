@@ -117,7 +117,7 @@ AsyncAtomicLock asyncLock = lock.async();
 
 asyncLock.lock().thenAccept(lockId -> {
   ...
-  lock.unlock().thenRun(() -> {
+  asyncLock.unlock().thenRun(() -> {
     
   });
 });

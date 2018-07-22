@@ -99,7 +99,7 @@ AsyncDistributedLock asyncLock = atomic.getLock("my-lock").async();
 
 asyncLock.lock().thenAccept(lockId -> {
   ...
-  lock.unlock().thenRun(() -> {
+  asyncLock.unlock().thenRun(() -> {
     
   });
 });
