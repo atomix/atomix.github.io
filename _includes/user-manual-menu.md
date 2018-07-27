@@ -6,6 +6,7 @@
 * [Comparisons](comparisons)
   * [Hazelcast](comparisons#hazelcast)
   * [ZooKeeper](comparisons#zookeeper)
+* [Architectures](architectures)
 {% endcapture %}
 {{ toc | markdownify }}
 </div>
