@@ -116,20 +116,20 @@ Raft partition groups are strongly recommended for use in the management of the 
 ```java
 Atomix atomix = Atomix.builder()
   .withMemberId("member-1")
-  .withAddress("localhost:5001")
+  .withAddress("10.192.19.181:5679")
   .withMembershipProvider(BootstrapDiscoveryProvider.builder()
     .withNodes(
       Node.builder()
         .withId("member1")
-        .withAddress("localhost:5001")
+        .withAddress("10.192.19.181:5679")
         .build(),
       Node.builder()
         .withId("member2")
-        .withAddress("localhost:5002")
+        .withAddress("10.192.19.182:5679")
         .build(),
       Node.builder()
         .withId("member3")
-        .withAddress("localhost:5003")
+        .withAddress("10.192.19.183:5679")
         .build())
     .build())
   .withManagementGroup(RaftPartitionGroup.builder("system")
@@ -143,25 +143,28 @@ Atomix atomix = Atomix.builder()
   .build();
 ```
 
+{:.callout .callout-warning}
+If configuring multiple Atomix nodes on a single host, you must set the Raft data directory to a unique path on each node to avoid conflicts.
+
 As with other partition groups, Raft groups can be configured via configuration files. The above configuration when translated to YAML looks like this:
 
 ```hocon
 cluster {
   member-id: member-1
-  address: "localhost:5001"
+  address: "10.192.19.180:5679"
   disovery {
     type: bootstrap
     nodes.1 {
       id: member1
-      address: "localhost:5001"
+      address: "10.192.19.181:5679"
     }
     nodes.2 {
       id: member2
-      address: "localhost:5002"
+      address: "10.192.19.182:5679"
     }
     nodes.3 {
       id: member3
-      address: "localhost:5003"
+      address: "10.192.19.183:5679"
     }
   }
 }
@@ -218,7 +221,7 @@ Atomix provides an abstraction for common partition configurations known as _pro
 ```java
 Atomix atomix = Atomix.builder()
   .withMemberId("member-1")
-  .withAddress("localhost:5001")
+  .withAddress("10.192.19.181:5679")
   .withProfiles(Profile.consensus("member-1", "member-2", "member-3"), Profile.dataGrid())
   .build();
 ```
@@ -235,20 +238,20 @@ The [`Atomix`][Atomix] configuration, of course, supports profiles via the `prof
 ```hocon
 cluster {
   member-id: member-1
-  address: "localhost:5001"
+  address: "10.192.19.181:5679"
   disovery {
     type: bootstrap
     nodes.1 {
       id: member1
-      address: "localhost:5001"
+      address: "10.192.19.181:5679"
     }
     nodes.2 {
       id: member2
-      address: "localhost:5002"
+      address: "10.192.19.182:5679"
     }
     nodes.3 {
       id: member3
-      address: "localhost:5003"
+      address: "10.192.19.183:5679"
     }
   }
 }

@@ -13,20 +13,20 @@ The simplest way to form a cluster is by simply listing the nodes to which to co
 
 ```java
 Atomix atomix = Atomix.builder()
-  .withAddress("localhost:5000")
+  .withAddress("10.192.19.180:5679")
   .withMembershipProvider(BootstrapDiscoveryProvider.builder()
     .withNodes(
       Node.builder()
         .withId("member1")
-        .withAddress("localhost:5001")
+        .withAddress("10.192.19.181:5679")
         .build(),
       Node.builder()
         .withId("member2")
-        .withAddress("localhost:5002")
+        .withAddress("10.192.19.182:5679")
         .build(),
       Node.builder()
         .withId("member3")
-        .withAddress("localhost:5003")
+        .withAddress("10.192.19.183:5679")
         .build())
     .build())
 
@@ -37,20 +37,20 @@ When configuring the cluster in configuration files, the provider can be configu
 
 ```hocon
 cluster {
-  address: "localhost:5000"
+  address: "10.192.19.180:5679"
   disovery {
     type: bootstrap
     nodes.1 {
       id: member1
-      address: "localhost:5001"
+      address: "10.192.19.181:5679"
     }
     nodes.2 {
       id: member2
-      address: "localhost:5002"
+      address: "10.192.19.182:5679"
     }
     nodes.3 {
       id: member3
-      address: "localhost:5003"
+      address: "10.192.19.183:5679"
     }
   }
 }
@@ -62,7 +62,7 @@ Multicast discovery can be used to dynamically locate members of the cluster. To
 
 ```java
 Atomix atomix = Atomix.builder()
-  .withAddress("localhost:5000")
+  .withAddress("10.192.19.180:5679")
   .withMulticastEnabled()
   .build();
 ```
@@ -71,7 +71,7 @@ An optional multicast [`Address`][Address] can also be provided via `withMultica
 
 ```java
 Atomix atomix = Atomix.builder()
-  .withAddress("localhost:5000")
+  .withAddress("10.192.19.180:5679")
   .withMulticastEnabled()
   .withMulticastAddress("230.0.0.1:54321")
   .build();
@@ -88,7 +88,7 @@ For more complex multicast configurations, a custom `MulticastDiscoveryProvider`
 
 ```java
 Atomix atomix = Atomix.builder()
-  .withAddress("localhost:5000")
+  .withAddress("10.192.19.180:5679")
   .withMulticastEnabled()
   .withMembershipProvider(MulticastDiscoveryProvider.builder()
     .withBroadcastInterval(Duration.ofSeconds(1))

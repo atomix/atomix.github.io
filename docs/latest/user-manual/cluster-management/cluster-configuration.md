@@ -21,7 +21,7 @@ Members are constructed using the builder pattern. To configure an `AtomixCluste
 ```java
 AtomixBuilder builder = Atomix.builder()
   .withMemberId("member1")
-  .withAddress("localhost:5000");
+  .withAddress("10.192.19.181:5679");
 ```
 
 ## Bootstrapping the cluster
@@ -31,7 +31,7 @@ To bootstrap an Atomix cluster, configure the [`Atomix`][Atomix] instance with a
 ```java
 Atomix atomix = Atomix.builder()
   .withMemberId("member1")
-  .withAddress("localhost:5000")
+  .withAddress("10.192.19.181:5679")
   .withMulticastEnabled()
   .build();
 
@@ -52,20 +52,20 @@ As with all other components of Atomix, clusters support file-based configuratio
 ```hocon
 cluster {
   member-id: member4
-  address: "localhost:5004"
+  address: "10.192.19.180:5679"
   discovery {
     type: bootstrap
     nodes.1 {
       id: member1
-      address: "localhost:5001"
+      address: "10.192.19.181:5679"
     }
     nodes.2 {
       id: member2
-      address: "localhost:5002"
+      address: "10.192.19.182:5679"
     }
     nodes.3 {
       id: member3
-      address: "localhost:5003"
+      address: "10.192.19.183:5679"
     }
   }
 }
@@ -84,7 +84,7 @@ Additionally, builders can be initialized using the cluster configuration. This 
 
 ```java
 Atomix atomix = Atomix.builder()
-  .withAddress("localhost:5004")
+  .withAddress("10.192.19.180:5679")
   .build();
 ```
 

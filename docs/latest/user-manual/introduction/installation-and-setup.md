@@ -12,7 +12,7 @@ Atomix is packaged in a hierarchy of modules that allow users to depend only on 
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix</artifactId>
-    <version>3.0.0-rc4</version>
+    <version>3.0.0-rc5</version>
   </dependency>
 </dependencies>
 ```
@@ -27,22 +27,22 @@ Additionally, most clusters are configured with a set of partition groups. The p
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix</artifactId>
-    <version>3.0.0-rc4</version>
+    <version>3.0.0-rc5</version>
   </dependency>
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix-raft</artifactId>
-    <version>3.0.0-rc4</version>
+    <version>3.0.0-rc5</version>
   </dependency>
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix-primary-backup</artifactId>
-    <version>3.0.0-rc4</version>
+    <version>3.0.0-rc5</version>
   </dependency>
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix-gossip</artifactId>
-    <version>3.0.0-rc4</version>
+    <version>3.0.0-rc5</version>
   </dependency>
 </dependencies>
 ```
@@ -80,15 +80,15 @@ cluster.discovery {
   type: bootstrap
   nodes.1 {
     id: member1
-    address: "localhost:5001"
+    address: "10.192.19.181:5679"
   }
   nodes.2 {
     id: member2
-    address: "localhost:5002"
+    address: "10.192.19.182:5679"
   }
   nodes.3 {
     id: member3
-    address: "localhost:5003"
+    address: "10.192.19.183:5679"
   }
 }
 
@@ -96,6 +96,7 @@ profiles.1 {
   type: consensus
   partitions: 3
   members: [member1, member2, member3]
+  data-directory: .data/consensus
 }
 
 profiles.2 {
@@ -110,15 +111,15 @@ The Java API supports configuration files as well. To configure an `Atomix` inst
 Once the configuration file has been created, start the cluster by bootstrapping the configured nodes:
 
 ```
-bin/atomix-agent -m member1 -a localhost:5001
+bin/atomix-agent -m member1 -a 10.192.19.181:5679
 ```
 
 ```
-bin/atomix-agent -m member2 -a localhost:5002
+bin/atomix-agent -m member2 -a 10.192.19.182:5679
 ```
 
 ```
-bin/atomix-agent -m member3 -a localhost:5003
+bin/atomix-agent -m member3 -a 10.192.19.183:5679
 ```
 
 {% include common-links.html %}

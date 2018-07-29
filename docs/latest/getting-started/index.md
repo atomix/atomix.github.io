@@ -85,7 +85,7 @@ The builder should be configured with the local node configuration:
 ```java
 
 builder.withId("member1")
-  .withAddress("localhost:5000")
+  .withAddress("10.192.19.181")
   .build();
 ```
 
@@ -96,15 +96,15 @@ builder.withMembershipProvider(BootstrapDiscoveryProvider.builder()
   .withNodes(
     Node.builder()
       .withId("member1")
-      .withAddress("localhost:5001")
+      .withAddress("10.192.19.181")
       .build(),
     Node.builder()
       .withId("member2")
-      .withAddress("localhost:5002")
+      .withAddress("10.192.19.182")
       .build(),
     Node.builder()
       .withId("member3")
-      .withAddress("localhost:5003")
+      .withAddress("10.192.19.183")
       .build())
   .build());
 ```
@@ -115,7 +115,7 @@ To read more about membership discovery, see the [user manual][member-discovery]
 Finally, the instance must be configured with one or more partition groups. Common partition groups can be configured using [profiles][profiles].
 
 ```java
-builder.addProfiles(Profile.DATA_GRID);
+builder.addProfiles(Profile.dataGrid());
 ```
 
 Typically, clusters that require strong consistency guarantees are configured with `CORE` nodes and at least one `RaftPartitionGroup`, and clusters designed for performance and scalability with `DATA` nodes use `PrimaryBackupPartitionGroup`s.
@@ -163,20 +163,27 @@ When working with the agent, it's most convenient to provide a JSON or YAML conf
 
 `atomix.conf`
 
-```
+```hocon
+cluster {
+  node {
+    id: ${atomix.node.id}
+    address: ${atomix.node.address}
+  }
+}
+
 cluster.discovery {
   type: bootstrap
   nodes.1 {
     id: member1
-    address: "localhost:5001"
+    address: "10.192.19.181"
   }
   nodes.2 {
     id: member2
-    address: "localhost:5002"
+    address: "10.192.19.182"
   }
   nodes.3 {
     id: member3
-    address: "localhost:5003"
+    address: "10.192.19.183"
   }
 }
 
@@ -184,6 +191,7 @@ profiles.1 {
   type: consensus
   partitions: 3
   members: [member1, member2, member3]
+  data-directory: .data/${atomix.node.id}
 }
 
 profiles.2 {
@@ -198,19 +206,19 @@ The Java API supports configuration files as well. To configure an `Atomix` inst
 Once the configuration file has been created, start the cluster by bootstrapping the configured nodes:
 
 ```
-bin/atomix-agent -m member1 -a localhost:5001
+bin/atomix-agent -Datomix.node.id=member1 -Datomix.node.address=10.192.19.181
 ```
 
 ```
-bin/atomix-agent -m member2 -a localhost:5002
+bin/atomix-agent -Datomix.node.id=member2 -Datomix.node.address=10.192.19.182
 ```
 
 ```
-bin/atomix-agent -m member3 -a localhost:5003
+bin/atomix-agent -Datomix.node.id=member3 -Datomix.node.address=10.192.19.183
 ```
 
 {:.callout .callout-info}
-The local node could be specified in the configuration file, but specifying the local instance name in the `atomix-agent` arguments allows the configuration file to be shared across all the instances.
+The local node could be specified in the configuration file, but using system properties or environment variables or specifying the local instance name in the `atomix-agent` arguments allows the configuration file to be shared across all the instances.
 
 ## Creating a Java Client
 
@@ -221,20 +229,20 @@ Client nodes are constructed in the same way as all other nodes except that they
 ```java
 Atomix atomic = Atomix.builder()
   .withMemberId("client1")
-  .withAddress("localhost:6000")
+  .withAddress("10.192.19.180:6000")
   .withMembershipProvider(BootstrapDiscoveryProvider.builder()
     .withNodes(
       Node.builder()
         .withId("member1")
-        .withAddress("localhost:5001")
+        .withAddress("10.192.19.181:5000")
         .build(),
       Node.builder()
         .withId("member2")
-        .withAddress("localhost:5002")
+        .withAddress("10.192.19.182:5000")
         .build(),
       Node.builder()
         .withId("member3")
-        .withAddress("localhost:5003")
+        .withAddress("10.192.19.183:5000")
         .build())
     .build());
 ```

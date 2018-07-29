@@ -17,7 +17,7 @@ To configure zone/rack/host awareness, members of the cluster must first be conf
 ```java
 Atomix atomix = Atomix.builder()
   .withMemberId("member-1")
-  .withAddress("localhost:5001")
+  .withAddress("10.192.19.181:5679")
   .withRack("rack-1")
   .withMembershipProvider(membershipProvider)
   .build();
@@ -52,15 +52,15 @@ cluster {
     type: bootstrap
     nodes.1 {
       id: member-1
-      address: "localhost:5001"
+      address: "10.192.19.181:5679"
     }
     nodes.2 {
       id: member-2
-      address: "localhost:5002"
+      address: "10.192.19.182:5679"
     }
     nodes.3 {
       id: member-3
-      address: "localhost:5003"
+      address: "10.192.19.183:5679"
     }
   }
 }
