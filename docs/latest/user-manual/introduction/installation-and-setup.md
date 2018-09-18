@@ -96,7 +96,7 @@ profiles.1 {
   type: consensus
   partitions: 3
   members: [member1, member2, member3]
-  data-directory: .data/consensus
+  data-path: .data/consensus
 }
 
 profiles.2 {

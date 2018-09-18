@@ -191,7 +191,7 @@ profiles.1 {
   type: consensus
   partitions: 3
   members: [member1, member2, member3]
-  data-directory: .data/${atomix.node.id}
+  data-path: .data/${atomix.node.id}
 }
 
 profiles.2 {
