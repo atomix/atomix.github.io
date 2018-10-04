@@ -29,7 +29,7 @@ Atomix is packaged in a hierarchy of modules that allow users to depend only on 
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix</artifactId>
-    <version>3.0.0-rc4</version>
+    <version>3.0.6</version>
   </dependency>
 </dependencies>
 ```
@@ -44,22 +44,22 @@ Additionally, most clusters depend on a set of protocols used for replicating di
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix</artifactId>
-    <version>3.0.0-rc4</version>
+    <version>3.0.6</version>
   </dependency>
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix-raft</artifactId>
-    <version>3.0.0-rc4</version>
+    <version>3.0.6</version>
   </dependency>
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix-primary-backup</artifactId>
-    <version>3.0.0-rc4</version>
+    <version>3.0.6</version>
   </dependency>
   <dependency>
     <groupId>io.atomix</groupId>
     <artifactId>atomix-gossip</artifactId>
-    <version>3.0.0-rc4</version>
+    <version>3.0.6</version>
   </dependency>
 </dependencies>
 ```
