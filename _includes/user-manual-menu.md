@@ -298,6 +298,15 @@
 {{ toc | markdownify }}
 </div>
 
+<h3 class="user-guide-menu-header"><img src="/assets/img/icons/deployment.png" class="deployment"> Deployment</h3>
+<div>
+{% capture toc %}
+* [Docker](docker)
+* [Kubernetes](kubernetes)
+{% endcapture %}
+{{ toc | markdownify }}
+</div>
+
 <h3 class="user-guide-menu-header"><img src="/assets/img/icons/rest.svg" class="rest"> REST API</h3>
 <div markdown="1">
 {% capture toc %}
