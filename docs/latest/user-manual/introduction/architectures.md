@@ -70,7 +70,7 @@ Atomix includes one of the most advanced implementations of the [Raft consensus 
 # The cluster configuration defines how nodes discover and communicate with one another
 cluster {
   node {
-    id: ${atomix.node.id}
+    id: ${atomix.node.id}   # Should be one of management-group.members
     address: ${atomix.node.address}
   }
   multicast.enabled: true   # Enable multicast discovery
@@ -95,7 +95,7 @@ The management group is used by Atomix to coordinate the cluster: elect primarie
 # The cluster configuration defines how nodes discover and communicate with one another
 cluster {
   node {
-    id: ${atomix.node.id}
+    id: ${atomix.node.id}   # Must not be any one of management-group.members
     address: ${atomix.node.address}
   }
   multicast.enabled: true   # Enable multicast discovery
@@ -143,7 +143,7 @@ To scale Raft based primitives in the same manner as we've done for primary-back
 # The cluster configuration defines how nodes discover and communicate with one another
 cluster {
   node {
-    id: ${atomix.node.id}
+    id: ${atomix.node.id}   # Should be one of management-group.members
     address: ${atomix.node.address}
   }
   multicast.enabled: true   # Enable multicast discovery
@@ -181,7 +181,7 @@ Once we've configured the set of Raft nodes with a `raft` partition group, clien
 # The cluster configuration defines how nodes discover and communicate with one another
 cluster {
   node {
-    id: ${atomix.node.id}
+    id: ${atomix.node.id}   # Must not be any one of management-group.members
     address: ${atomix.node.address}
   }
   multicast.enabled: true   # Enable multicast discovery
