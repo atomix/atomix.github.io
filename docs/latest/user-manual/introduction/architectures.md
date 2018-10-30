@@ -69,7 +69,11 @@ Atomix includes one of the most advanced implementations of the [Raft consensus 
 ```hocon
 # The cluster configuration defines how nodes discover and communicate with one another
 cluster {
-  multicast-enabled: true   # Enable multicast discovery
+  node {
+    id: ${atomix.node.id}
+    address: ${atomix.node.address}
+  }
+  multicast.enabled: true   # Enable multicast discovery
   discovery.type: multicast # Configure the cluster membership to use multicast
 }
 
@@ -90,7 +94,11 @@ The management group is used by Atomix to coordinate the cluster: elect primarie
 ```hocon
 # The cluster configuration defines how nodes discover and communicate with one another
 cluster {
-  multicast-enabled: true   # Enable multicast discovery
+  node {
+    id: ${atomix.node.id}
+    address: ${atomix.node.address}
+  }
+  multicast.enabled: true   # Enable multicast discovery
   discovery.type: multicast # Configure the cluster membership to use multicast
 }
 
@@ -134,7 +142,11 @@ To scale Raft based primitives in the same manner as we've done for primary-back
 ```hocon
 # The cluster configuration defines how nodes discover and communicate with one another
 cluster {
-  multicast-enabled: true   # Enable multicast discovery
+  node {
+    id: ${atomix.node.id}
+    address: ${atomix.node.address}
+  }
+  multicast.enabled: true   # Enable multicast discovery
   discovery.type: multicast # Configure the cluster membership to use multicast
 }
 
@@ -145,6 +157,9 @@ management-group {
   type: raft # Use the Raft consensus protocol for system management
   partitions: 1 # Use only a single partition
   members: [raft-1, raft-2, raft-3] # Raft requires a static membership list
+  storage: {
+  	directory: ${atomix.raft.dir}
+  }
 }
 
 # Configure a Raft partition group named "raft"
@@ -152,6 +167,9 @@ partition-groups.raft {
   type: raft # Use the Raft consensus protocol for this group
   partitions: 7 # Configure the group with 7 partitions
   members: [raft-1, raft-2, raft-3] # Raft requires a static membership list
+  storage: {
+  	directory: ${atomix.raft.data.dir}
+  }
 }
 ```
 
@@ -162,7 +180,11 @@ Once we've configured the set of Raft nodes with a `raft` partition group, clien
 ```hocon
 # The cluster configuration defines how nodes discover and communicate with one another
 cluster {
-  multicast-enabled: true   # Enable multicast discovery
+  node {
+    id: ${atomix.node.id}
+    address: ${atomix.node.address}
+  }
+  multicast.enabled: true   # Enable multicast discovery
   discovery.type: multicast # Configure the cluster membership to use multicast
 }
 
