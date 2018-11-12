@@ -276,6 +276,7 @@
 * [Partition Group Configuration](partition-group-configuration)
 * [Primitive Configurations](primitive-configurations)
 * [Serializer Configurations](serializer-configurations)
+* [Configuration Reference](configuration-reference)
 {% endcapture %}
 {{ toc | markdownify }}
 </div>
