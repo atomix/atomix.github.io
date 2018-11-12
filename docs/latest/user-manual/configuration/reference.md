@@ -6,63 +6,14 @@ title: Reference
 ---
 
 ## Atomix
-* `cluster`*
-  * `clusterId` - The unique cluster identifier. This is used to validate
-    communication between Atomix nodes.
-  * `node`* - The local node description.
-    * `id` - The local node identifier. This must be unique among all nodes
-    in the cluster. If no identifier is provided, a universally unique
-    identifier (UUID) will be used.
-    * `address`* - The local node address. This may be a `host:port` tuple,
-    a `host`, or a `port`. Defaults to the first interface, port: `5679`.
-    * `zone` - The zone in which the node resides. This can be used for
-    zone-aware replication in certain protocols. Defaults to `null`.
-    * `rack` - The rack in which the node resides. This can be used for
-    rack-aware replication in certain protocols. Defaults to `null`.
-    * `host` - The host on which the node resides. This can be used for
-    host-aware replication in certain protocols. Defaults to `null`.
-    * `properties` - An mapping of arbitrary node properties replicated
-    by the cluster membership protocol.
-      * `{key}`: `{value}`
-      * ...
-  * `discovery`* - The node [discovery protocol](#cluster-discovery-protocols)
-  configuration, used to determine initial cluster membership.
-    * `type`* - The [discovery protocol](#cluster-discovery-protocols) type
-    name. This may be one of `bootstrap`, `multicast`, `dns`, or a custom
-    protocol.
-    * ... - Additional discovery protocol specific options.
-  * `protocol` - The [cluster membership protocol](#cluster-membership-protocols)
-  configuration, used for managing cluster membership, failure detection,
-  and membership replication.
-    * `type` - The [cluster membership protocol](#cluster-membership-protocols)
-    type name. This may be one of `heartbeat`, `swim`, or a custom protocol
-    implementation.
-    * ... - Additional protocol-specific options.
-  * `multicast` - The multicast service configuration.
-    * `enabled` - Whether to enable multicast support. Defaults to `false`.
-    Before enabling multicast, ensure multicast is supported by your network.
-    * `group` - The multicast group. Defaults to `230.0.0.1`.
-    * `port` - The multicast port. Defaults to `54321`.
-  * `messaging` - The messaging service configuration.
-    * `interfaces` - The interfaces to which to bind to listen for messages
-    from peers. This may differ from the `cluster.node.address` hostname e.g.
-    in containerized environments. Defaults to `0.0.0.0`.
-    * `port` - The local port to which to bind to listen for messages from peers.
-    This may differ from the `cluster.node.address` port e.g. in containerized
-    environments.
-    * `connectTimeout` - The messaging connect timeout. This may be specified
-    in human readable format with a time unit, e.g. `1m` or `15s`. Defaults to `10s`.
-    * `tls` - The messaging TLS configuration.
-      * `enabled` - Whether to enable TLS for the messaging service. Defaults
-      to `false`.
-      * `keyStore` - The key store path. Defaults to the `javax.net.ssl.keyStore`
-      system property or `conf/atomix.jks`.
-      * `keyStorePassword` - The key store password. Defaults to the
-      `javax.net.ssl.keyStorePassword` system property or `changeit`.
-      * `trustStore` - The trust store path. Defaults to the
-      `javax.net.ssl.trustStore` system property or `conf/atomix.jks`.
-      * `trustStorePassword` - The trust store password. Defaults to the
-      `javax.net.ssl.trustStorePassword` system property or `changeit`.
+
+The `Atomix` instance is configured via a primary configuration file either
+supplied to the Atomix agent or to the `Atomix` builder constructor.
+Following is a complete reference of available configuration options:
+
+* `cluster`* - The Atomix [cluster configuration](#cluster-configuration).
+Specifies the initial structure of the cluster and defines how nodes join
+and communicate with one another and detect failures.
 * `managementGroup`* - The partition group to use for managing primitives,
   transactions, sessions, etc.
   * `type` - The management partition group type. This may be one of
@@ -95,7 +46,183 @@ keyed by primitive type.
 * `enableShutdownHook` - Enables a hook that shuts down the Atomix node
 when the JVM is shut down.
 
+#### Example
+
+```
+cluster {
+
+  # Configure the local node information.
+  node {
+    id: member-id
+    address: localhost:5000
+  }
+
+  # Configure the node discovery protocol.
+  discovery {
+    type: bootstrap
+    nodes.1 {
+      id: member-1
+      address: localhost:5000
+    }
+    nodes.2 {
+      id: member-2
+      address: localhost:5001
+    }
+  }
+}
+
+# Configure the system management group.
+managementGroup {
+  type: raft
+  partitions: 1
+  members: [member-1, member-2]
+}
+
+# Configure a Raft partition group.
+partitionGroups.one {
+  type: raft
+  partitions: 3
+  members: [member-1, member-2]
+}
+
+# Configure a primary-backup partition group.
+partitionGroups.two {
+  type: primary-backup
+  partitions: 7
+}
+
+# Configure a named lock primitive.
+primitives.one {
+  type: lock
+  protocol {
+    type: multi-raft
+    group: one
+  }
+}
+
+# Configure a named map primitive.
+primitives.two {
+  type: map
+  protocol {
+    type: multi-primary
+    group: two
+    backups: 2
+  }
+}
+```
+
 \* required
+
+## Cluster Configuration
+
+The cluster configuration is defined by the top-level `cluster` object and
+specifies how the Atomix node joins the cluster, communicates with peers,
+and detects failures.
+
+```
+cluster {
+  node {
+    ...
+  }
+
+  discovery {
+    type: bootstrap
+    ...
+  }
+}
+```
+
+* `clusterId` - The unique cluster identifier. This is used to validate
+  communication between Atomix nodes.
+* `node`* - The local node description.
+  * `id` - The local node identifier. This must be unique among all nodes
+  in the cluster. If no identifier is provided, a universally unique
+  identifier (UUID) will be used.
+  * `address`* - The local node address. This may be a `host:port` tuple,
+  a `host`, or a `port`. Defaults to the first interface, port: `5679`.
+  * `zone` - The zone in which the node resides. This can be used for
+  zone-aware replication in certain protocols. Defaults to `null`.
+  * `rack` - The rack in which the node resides. This can be used for
+  rack-aware replication in certain protocols. Defaults to `null`.
+  * `host` - The host on which the node resides. This can be used for
+  host-aware replication in certain protocols. Defaults to `null`.
+  * `properties` - An mapping of arbitrary node properties replicated
+  by the cluster membership protocol.
+    * `{key}`: `{value}`
+    * ...
+* `discovery`* - The node [discovery protocol](#cluster-discovery-protocols)
+configuration, used to determine initial cluster membership.
+  * `type`* - The [discovery protocol](#cluster-discovery-protocols) type
+  name. This may be one of `bootstrap`, `multicast`, `dns`, or a custom
+  protocol.
+  * ... - Additional discovery protocol specific options.
+* `protocol` - The [cluster membership protocol](#cluster-membership-protocols)
+configuration, used for managing cluster membership, failure detection,
+and membership replication. *Pluggable membership protocols are supported
+in Atomix 3.1 and up*.
+  * `type` - The [cluster membership protocol](#cluster-membership-protocols)
+  type name. This may be one of `heartbeat`, `swim`, or a custom protocol
+  implementation.
+  * ... - Additional protocol-specific options.
+* `multicast` - The multicast service configuration.
+  * `enabled` - Whether to enable multicast support. Defaults to `false`.
+  Before enabling multicast, ensure multicast is supported by your network.
+  * `group` - The multicast group. Defaults to `230.0.0.1`.
+  * `port` - The multicast port. Defaults to `54321`.
+* `messaging` - The messaging service configuration.
+  * `interfaces` - The interfaces to which to bind to listen for messages
+  from peers. This may differ from the `cluster.node.address` hostname e.g.
+  in containerized environments. Defaults to `0.0.0.0`.
+  * `port` - The local port to which to bind to listen for messages from peers.
+  This may differ from the `cluster.node.address` port e.g. in containerized
+  environments.
+  * `connectTimeout` - The messaging connect timeout. This may be specified
+  in human readable format with a time unit, e.g. `1m` or `15s`. Defaults to `10s`.
+  * `tls` - The messaging TLS configuration.
+    * `enabled` - Whether to enable TLS for the messaging service. Defaults
+    to `false`.
+    * `keyStore` - The key store path. Defaults to the `javax.net.ssl.keyStore`
+    system property or `conf/atomix.jks`.
+    * `keyStorePassword` - The key store password. Defaults to the
+    `javax.net.ssl.keyStorePassword` system property or `changeit`.
+    * `trustStore` - The trust store path. Defaults to the
+    `javax.net.ssl.trustStore` system property or `conf/atomix.jks`.
+    * `trustStorePassword` - The trust store password. Defaults to the
+    `javax.net.ssl.trustStorePassword` system property or `changeit`.
+
+#### Example
+
+```
+cluster {
+
+  # Configure the local node information.
+  node {
+    id: member-id
+    address: "10.192.19.111:5000"
+  }
+
+  # Enable multicast and multicast-based discovery.
+  discovery.type: multicast
+  multicast.enabled: true
+
+  # Configure the SWIM membership protocol.
+  protocol {
+    type: swim
+    broadcastUpdates: true
+    gossipInterval: 500ms
+    probeInterval: 2s
+    suspectProbes: 2
+  }
+
+  # Bind to a specific local interface.
+  messaging {
+    interfaces: ["10.192.19.111"]
+  }
+
+  # Enable TLS.
+  messaging.tls.enabled: true
+}
+```
 
 ## Cluster Discovery Protocols
 
@@ -123,21 +250,19 @@ join the cluster.
 #### Example
 
 ```
-cluster {
-  discovery {
-    type: bootstrap
-    nodes.1 {
-      id: member-1
-      address: localhost:5000
-    }
-    nodes.2 {
-      id: member-2
-      address: localhost:5001
-    }
-    nodes.3 {
-      id: member-3
-      address: localhost:5002
-    }
+cluster.discovery {
+  type: bootstrap
+  nodes.1 {
+    id: member-1
+    address: localhost:5000
+  }
+  nodes.2 {
+    id: member-2
+    address: localhost:5001
+  }
+  nodes.3 {
+    id: member-3
+    address: localhost:5002
   }
 }
 ```
@@ -152,11 +277,9 @@ format with a time unit, e.g. `100ms` or `5s`. Defaults to `1s`.
 #### Example
 
 ```
-cluster {
-  discovery {
-    type: multicast
-    broadcastInterval: 5s
-  }
+cluster.discovery {
+  type: multicast
+  broadcastInterval: 5s
 }
 ```
 
@@ -173,11 +296,9 @@ or `5s`. Defaults to `15s`.
 #### Example
 
 ```
-cluster {
-  discovery {
-    type: dns
-    service: atomix
-  }
+cluster.discovery {
+  type: dns
+  service: atomix
 }
 ```
 
@@ -213,11 +334,9 @@ Defaults to `10s`.
 #### Example
 
 ```
-cluster {
-  protocol {
-    type: heartbeat
-    heartbeatInterval: 1s
-  }
+cluster.protocol {
+  type: heartbeat
+  heartbeatInterval: 1s
 }
 ```
 
@@ -251,15 +370,13 @@ format with a time unit, e.g. `100ms` or `5s`. Defaults to `10s`.
 #### Example
 
 ```
-cluster {
-  protocol {
-    type: swim
-    broadcastUpdates: true
-    gossipInterval: 500ms
-    probeInterval: 2s
-    suspectProbes: 2
-    failureTimeout: 15s
-  }
+cluster.protocol {
+  type: swim
+  broadcastUpdates: true
+  gossipInterval: 500ms
+  probeInterval: 2s
+  suspectProbes: 2
+  failureTimeout: 15s
 }
 ```
 
@@ -477,8 +594,9 @@ primitives.my-map {
 
 ## Distributed Log
 
-The log protocol provides both a [partition group](#log-partition-group)
-and a [primitive protocol](#log-protocol). The partition group and
+The log protocol is added in Atomix 3.1 and provides both a
+[partition group](#log-partition-group) and a
+[primitive protocol](#log-protocol). The partition group and
 protocol are used in a pair to configure partitions/replication and
 primitive/session level options respectively:
 
@@ -550,7 +668,7 @@ partitionGroups.logs {
 
 ### Log Protocol
 
-* `type`: `log`
+* `type`: `multi-log`
 * `group` - The name of the [log partition group](#log-partition-group)
 on which to operate. If no group name is specified and only a single log
 group is configured, the single group will be used.
@@ -568,7 +686,7 @@ Defaults to `100ms`.
 
 ```
 primitives.my-log {
-  type: log
+  type: multi-log
   protocol {
     type: log
     group: logs

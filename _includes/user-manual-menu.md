@@ -272,11 +272,7 @@
 <h3 class="user-guide-menu-header"><img src="/assets/img/icons/configuration.svg" class="configuration"> Configuration</h3>
 <div markdown="1">
 {% capture toc %}
-* [Cluster Configuration](cluster-configuration)
-* [Partition Group Configuration](partition-group-configuration)
-* [Primitive Configurations](primitive-configurations)
-* [Serializer Configurations](serializer-configurations)
-* [Configuration Reference](configuration-reference)
+* [Configuration Reference](reference)
 {% endcapture %}
 {{ toc | markdownify }}
 </div>
