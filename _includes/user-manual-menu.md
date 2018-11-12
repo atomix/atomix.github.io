@@ -273,6 +273,24 @@
 <div markdown="1">
 {% capture toc %}
 * [Configuration Reference](reference)
+  * [Atomix Configuration](reference#atomix-configuration)
+  * [Cluster Configuration](reference#cluster-configuration)
+  * [Cluster Discovery Protocols](reference#cluster-discovery-protocols)
+    * [Bootstrap Discovery Protocol](reference#bootstrap-discovery-protocol)
+    * [Multicast Discovery Protocol](reference#multicast-discovery-protocol)
+    * [DNS Discovery Protocol](reference#dns-discovery-protocol)
+  * [Cluster Membership Protocols](reference#cluster-membership-protocols)
+    * [Heartbeat Protocol](reference#heartbeat-protocol)
+    * [SWIM Protocol](reference#swim-protocol)
+  * [Raft](reference#raft)
+    * [Raft Partition Group](refrence#raft-partition-group)
+    * [Multi-Raft Protocol](reference#multi-raft-protocol)
+  * [Primary-Backup](reference#primary-backup)
+    * [Primary-Backup Partition Group](reference#primary-backup-partition-group)
+    * [Multi-Primary Protocol](reference#multi-primary-protocol)
+  * [Distributed Log](reference#distributed-log)
+    * [Log Partition Group](reference#log-partition-group)
+    * [Multi-Log Protocol](reference#multi-log-protocol)
 {% endcapture %}
 {{ toc | markdownify }}
 </div>

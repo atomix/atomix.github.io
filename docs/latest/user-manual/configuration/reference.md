@@ -2,10 +2,28 @@
 layout: user-manual
 project: atomix
 menu: user-manual
-title: Reference
+title: Configuration Reference
 ---
 
-## Atomix
+Atomix instances may be configured either in HOCON or JSON format. This
+page supplies a complete reference for available configuration options
+for Atomix configuration files. Note that each file-based configuration
+option has a counterpart API for programmatic configuration, typically
+via a builder class. Configuration files support two option name formats:
+* `camelCase`
+* `kebab-case`
+
+Enums specified in configuration files may also be written in lower case
+or kebab case, e.g.:
+* `RACK_AWARE`
+* `rack_aware`
+* `rack-aware`
+
+Note, however, that some formats may be deprecated in the future. The
+following options are documented in the recommended format to avoid
+refactoring due to deprecation and removal.
+
+## Atomix Configuration
 
 The `Atomix` instance is configured via a primary configuration file either
 supplied to the Atomix agent or to the `Atomix` builder constructor.
@@ -19,21 +37,21 @@ and communicate with one another and detect failures.
   * `type` - The management partition group type. This may be one of
   [`raft`](#raft), [`primary-backup`](#primary-backup), [`log`](#log),
   or a custom partition group type.
-  * ... - Additional partition group specific options.
+  * `...` - Additional partition group specific options.
 * `partitionGroups`* - A mapping of named primitive partition groups in
 which the configured node participates.
   * `{name}` - The unique partition group name.
     * `type` - The partition group type. This may be one of
     [`raft`](#raft), [`primary-backup`](#primary-backup), [`log`](#log),
     or a custom partition group type.
-    * ... - Additional partition group specific options. See partition
+    * `...` - Additional partition group specific options. See partition
     group reference below.
 * `primitiveDefaults` - A mapping of default primitive configurations,
 keyed by primitive type.
   * `{type}` - The primitive type name key, e.g. `map`, `atomic-map`, `lock`,
     `set`, `queue`, `leader-election`, etc.
     * `protocol` - The default protocol to use for primitives of the type.
-    * ... - Additional primitive default options. See primitive reference below.
+    * `...` - Additional primitive default options. See primitive reference below.
 * `primitives`
   * `{name}`
     * `type` - The primitive type name, e.g. `map`, `atomic-map`, `lock`,
@@ -41,8 +59,8 @@ keyed by primitive type.
     * `protocol` - The protocol to use for the primitive.
       * `type` - The primitive protocol type name. This may be one of
       `multi-raft`, `multi-primary`, `log`, or a custom protocol.
-      * ... - Additional protocol-specific options. See protocol reference below.
-    * ... - Additional primitive options. See primitive reference below.
+      * `...` - Additional protocol-specific options. See protocol reference below.
+    * `...` - Additional primitive options. See primitive reference below.
 * `enableShutdownHook` - Enables a hook that shuts down the Atomix node
 when the JVM is shut down.
 
@@ -149,13 +167,13 @@ cluster {
   * `properties` - An mapping of arbitrary node properties replicated
   by the cluster membership protocol.
     * `{key}`: `{value}`
-    * ...
+    * `...`
 * `discovery`* - The node [discovery protocol](#cluster-discovery-protocols)
 configuration, used to determine initial cluster membership.
   * `type`* - The [discovery protocol](#cluster-discovery-protocols) type
   name. This may be one of `bootstrap`, `multicast`, `dns`, or a custom
   protocol.
-  * ... - Additional discovery protocol specific options.
+  * `...` - Additional discovery protocol specific options.
 * `protocol` - The [cluster membership protocol](#cluster-membership-protocols)
 configuration, used for managing cluster membership, failure detection,
 and membership replication. *Pluggable membership protocols are supported
@@ -163,7 +181,7 @@ in Atomix 3.1 and up*.
   * `type` - The [cluster membership protocol](#cluster-membership-protocols)
   type name. This may be one of `heartbeat`, `swim`, or a custom protocol
   implementation.
-  * ... - Additional protocol-specific options.
+  * `...` - Additional protocol-specific options.
 * `multicast` - The multicast service configuration.
   * `enabled` - Whether to enable multicast support. Defaults to `false`.
   Before enabling multicast, ensure multicast is supported by your network.
@@ -666,7 +684,7 @@ partitionGroups.logs {
 }
 ```
 
-### Log Protocol
+### Multi-Log Protocol
 
 * `type`: `multi-log`
 * `group` - The name of the [log partition group](#log-partition-group)
