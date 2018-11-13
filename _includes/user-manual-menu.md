@@ -307,8 +307,7 @@
 <h3 class="user-guide-menu-header"><img src="/assets/img/icons/agent.png" class="agent"> Agent</h3>
 <div>
 {% capture toc %}
-* [Starting the Agent](starting-the-agent)
-* [Client Agents](client-agents)
+* [Running the Agent](running-the-agent)
 {% endcapture %}
 {{ toc | markdownify }}
 </div>
