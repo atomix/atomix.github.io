@@ -21,22 +21,22 @@ The data-grid architecture can be achieved in Atomix using primary-backup partit
 ```hocon
 # The cluster configuration defines how nodes discover and communicate with one another
 cluster {
-  multicast-enabled: true   # Enable multicast discovery
+  multicast.enabled: true   # Enable multicast discovery
   discovery.type: multicast # Configure the cluster membership to use multicast
 }
 
 # The management group coordinates higher level partition groups and is required
-management-group {
+managementGroup {
   type: primary-backup # Use the primary-backup protocol
   partitions: 1        # Use only a single partition for system management
 }
 
 # Partition groups are collections of partitions in which primitives are replicated
 # This sets up a partition group named `data` on this node
-partition-groups.data {
+partitionGroups.data {
   type: primary-backup # Use the primary-backup protocol
   partitions: 71       # Use 71 partitions for scalability
-  member-group-strategy: RACK_AWARE # Replicate partitions across physical racks
+  memberGroupStrategy: RACK_AWARE # Replicate partitions across physical racks
 }
 ```
 
@@ -80,7 +80,7 @@ cluster {
 # The management group coordinates higher level partition groups and is required
 # This node configures only a management group and no partition groups since it's
 # used only for partition/primitive management
-management-group {
+managementGroup {
   type: raft # Use the Raft consensus protocol for system management
   partitions: 1 # Use only a single partition
   members: [raft-1, raft-2, raft-3] # Raft requires a static membership list
@@ -108,10 +108,10 @@ cluster {
 
 # Partition groups are collections of partitions in which primitives are replicated
 # This sets up a partition group named `data` on this node
-partition-groups.data {
+partitionGroups.data {
   type: primary-backup # Use the primary-backup protocol
   partitions: 71       # Use 71 partitions for scalability
-  member-group-strategy: RACK_AWARE # Replicate partitions across physical racks
+  memberGroupStrategy: RACK_AWARE # Replicate partitions across physical racks
 }
 ```
 
@@ -143,7 +143,7 @@ To scale Raft based primitives in the same manner as we've done for primary-back
 # The cluster configuration defines how nodes discover and communicate with one another
 cluster {
   node {
-    id: ${atomix.node.id}   # Should be one of management-group.members
+    id: ${atomix.node.id}   # Should be one of managementGroup.members
     address: ${atomix.node.address}
   }
   multicast.enabled: true   # Enable multicast discovery
@@ -153,7 +153,7 @@ cluster {
 # The management group coordinates higher level partition groups and is required
 # This node configures only a management group and no partition groups since it's
 # used only for partition/primitive management
-management-group {
+managementGroup {
   type: raft # Use the Raft consensus protocol for system management
   partitions: 1 # Use only a single partition
   members: [raft-1, raft-2, raft-3] # Raft requires a static membership list
@@ -163,7 +163,7 @@ management-group {
 }
 
 # Configure a Raft partition group named "raft"
-partition-groups.raft {
+partitionGroups.raft {
   type: raft # Use the Raft consensus protocol for this group
   partitions: 7 # Configure the group with 7 partitions
   members: [raft-1, raft-2, raft-3] # Raft requires a static membership list
@@ -181,7 +181,7 @@ Once we've configured the set of Raft nodes with a `raft` partition group, clien
 # The cluster configuration defines how nodes discover and communicate with one another
 cluster {
   node {
-    id: ${atomix.node.id}   # Must not be any one of management-group.members
+    id: ${atomix.node.id}   # Must not be any one of managementGroup.members
     address: ${atomix.node.address}
   }
   multicast.enabled: true   # Enable multicast discovery
@@ -219,26 +219,26 @@ Similarly, these protocols can be configured on a single node:
 ```hocon
 # The cluster configuration defines how nodes discover and communicate with one another
 cluster {
-  multicast-enabled: true   # Enable multicast discovery
+  multicast.enabled: true   # Enable multicast discovery
   discovery.type: multicast # Configure the cluster membership to use multicast
 }
 
 # The management group coordinates higher level partition groups and is required
-management-group {
+managementGroup {
   type: raft # Use the Raft consensus protocol for system management
   partitions: 1 # Use only a single partition
   members: [raft-1, raft-2, raft-3] # Raft requires a static membership list
 }
 
 # Configure a primary-backup group named "data"
-partition-groups.data {
+partitionGroups.data {
   type: primary-backup # Use the primary-backup protocol
   partitions: 71       # Use 71 partitions for scalability
-  member-group-strategy: RACK_AWARE # Replicate partitions across physical racks
+  memberGroupStrategy: RACK_AWARE # Replicate partitions across physical racks
 }
 
 # Configure a Raft partition group named "raft"
-partition-groups.raft {
+partitionGroups.raft {
   type: raft # Use the Raft consensus protocol for this group
   partitions: 7 # Configure the group with 7 partitions
   members: [raft-1, raft-2, raft-3] # Raft requires a static membership list

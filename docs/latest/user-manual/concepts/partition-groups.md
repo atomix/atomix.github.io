@@ -10,20 +10,20 @@ Distributed primitives in Atomix are replicated using the [replication protocols
 When a cluster is formed, the members of the cluster must define the set of partition groups in which they participate. For example, a node that participates in a primary-backup partition group might be configured as follows:
 
 ```hocon
-management-group {
+managementGroup {
   type: primary-backup
   name: system
   partitions: 1
 }
 
-partition-groups.data {
+partitionGroups.data {
   type: primary-backup
   name: data
   partitions: 32
 }
 ```
 
-This configuration specifies a primitive `management-group` in which the member participates as well as an additional primary-backup group used for storing primitives. The `management-group` is used to store primitive metadata and elect primaries in the primary-backup protocol. The `partition-groups` are used to store primitive state.
+This configuration specifies a primitive `managementGroup` in which the member participates as well as an additional primary-backup group used for storing primitives. The `managementGroup` is used to store primitive metadata and elect primaries in the primary-backup protocol. The `partitionGroups` are used to store primitive state.
 
 Remember, nodes only need to be configured with the partition groups in which they participate. Multiple partition groups may exist on different nodes in a cluster, and when a primitive instance is created it can be assigned to be replicated within a specific partition group. This allows different primitives to be replicated on different nodes depending simply on the configuration of the cluster.
 

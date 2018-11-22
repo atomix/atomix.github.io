@@ -73,7 +73,7 @@ primitives.my-map {
   protocol {
     type: multi-raft
     group: raft
-    read-consistency: linearizable
+    readConsistency: linearizable
   }
 }
 ```
