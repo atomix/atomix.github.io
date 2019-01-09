@@ -84,7 +84,7 @@ The builder should be configured with the local node configuration:
 
 ```java
 
-builder.withId("member1")
+builder.withMemberId("member1")
   .withAddress("10.192.19.181")
   .build();
 ```
