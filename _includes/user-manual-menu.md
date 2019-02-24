@@ -14,11 +14,11 @@
 <h3 class="user-guide-menu-header"><img src="/assets/img/icons/concepts.svg" class="concepts"> Concepts</h3>
 <div markdown="1">
 {% capture toc %}
-* [Cluster](concept/scluster)
-* [Replication Protocols](concept/replication-protocols)
-* [Partition Groups](concept/partition-groups)
-* [Distributed Primitives](concept/distributed-primitives)
-* [Primitive Protocols](concept/primitive-protocols)
+* [Cluster](concepts/scluster)
+* [Replication Protocols](concepts/replication-protocols)
+* [Partition Groups](concepts/partition-groups)
+* [Distributed Primitives](concepts/distributed-primitives)
+* [Primitive Protocols](concepts/primitive-protocols)
 {% endcapture %}
 {{ toc | markdownify }}
 </div>
