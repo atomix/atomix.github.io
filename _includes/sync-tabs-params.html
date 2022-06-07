@@ -1,9 +1,0 @@
-{% assign inactive = include.inactive | split: ',' %}
-<ul class="nav nav-tabs" id="sync-tabs">
-  {% assign items = include.active | split: ':' %}
-  <li class="active"><a href="#" data-toggle="tab" data-target="{{ items[0] }}">{{ items[1] }}</a></li>
-  {% for link_hash in inactive %}
-    {% assign items = link_hash | split: ':' %}
-    <li><a href="#" data-toggle="tab" data-target="{{ items[0] }}">{{ items[1] }}</a></li>
-  {% endfor %}
-</ul>

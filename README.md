@@ -1,21 +1,13 @@
 ## Setup
 
 ```
-gem install jekyll
+pip install mkdocs mkdocs-material
 ```
 
 ## Run
 
 ```
-jekyll serve
+mkdocs serve
 ```
 
-Then browse to `http://localhost:4000`
-
-## Other Tasks
-
-#### Re-generating the contributors list
-
-```
-python bin/gen-contributors.py <github_username> <github_password>
-```
+Then browse to `http://localhost:8000`

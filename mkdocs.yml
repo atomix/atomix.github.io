@@ -1,0 +1,111 @@
+site_name: Atomix
+site_url: https://atomix.io
+repo_url: https://github.com/atomix
+copyright: Copyright © 2022 Intel Corporation
+
+plugins:
+  - search
+  - import
+  - minify:
+      minify_html: true
+
+theme:
+  name: material
+  favicon: images/logo.png
+  logo: images/logo.png
+  include_search_page: false
+  search_index_only: true
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep blue
+      accent: deep blue
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep blue
+      accent: deep blue
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - content.code.annotate
+    # - content.tabs.link
+    - content.tooltips
+    - header.autohide
+    # - navigation.expand
+    - navigation.indexes
+    - navigation.instant
+    # - navigation.prune
+    # - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - search.share
+    - toc.follow
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Concepts:
+      - concepts/index.md
+  - User Guide:
+      - user-guide/index.md
+      - Primitives:
+          - Counter: user-guide/primitives/counter.md
+          - Map: user-guide/primitives/map.md
+      - Drivers:
+          - user-guide/drivers/index.md
+          - Local: '!import https://raw.githubusercontent.com/atomix/drivers/master/local/README.md user-guide/drivers/local.md'
+          - Multi-Raft: '!import https://raw.githubusercontent.com/atomix/drivers/master/multi-raft/README.md user-guide/drivers/muti-raft.md'
+      - SDKs:
+          - user-guide/clients/index.md
+          - Go: '!import https://raw.githubusercontent.com/atomix/go-client/master/README.md user-guide/clients/go.md'
+          - Java: '!import https://raw.githubusercontent.com/atomix/java-client/master/README.md user-guide/clients/java.md'
+  - Reference:
+      - reference/index.md
+  - About:
+      - about/index.md
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - smarty
+  - meta
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/atomix
+    - icon: fontawesome/brands/docker
+      link: https://hub.docker.com/orgs/atomix/repositories
+    - icon: fontawesome/brands/slack
+      link: https://join.slack.com/t/atomixio/shared_invite/enQtNDgzNjA5MjMyMDUxLTVmMThjZDcxZDE3ZmU4ZGYwZTc2MGJiYjVjMjFkOWMyNmVjYTc5YjExYTZiOWFjODlkYmE2MjNjYzZhNjU2MjY
+    - icon: fontawesome/brands/java
+      link: https://github.com/atomix/java-client
+    - icon: fontawesome/brands/golang
+      link: https://github.com/atomix/go-client
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/atomixio
+  generator: false
+  version:
+    provider: mike
