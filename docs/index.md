@@ -61,9 +61,9 @@ hide:
 
 <div class="grids steps" markdown>
 
-<div class="grid" markdown>
+<div class="grid grid-left" markdown>
 
-<div class="step step-left" markdown>
+<div class="step" markdown>
 ## :fontawesome-solid-code: Choose your language
 
 Language-specific SDKs provide the building blocks for developing distributed applications.
@@ -113,13 +113,25 @@ Language-specific SDKs provide the building blocks for developing distributed ap
 
 </div>
 
-<div class="grid" markdown>
+<div class="grid grid-right" markdown>
+
+<div class="step" markdown>
+## :fontawesome-solid-toolbox: Build your application
+
+SDKs provide the building blocks of distributed applications. Use data structures to store application state or
+share state across pod or services. Distributed coordination primitives enable safe interaction with other nodes and
+services within the Kubernetes cluster. The building blocks provided by the SDK are database- and protocol-agnostic.
+Simply use the data structures and primitives that are right for your use case.
+
+[:octicons-arrow-right-24: Learn more](/user-guide/development/atoms/)
+</div>
 
 === "Counter"
 
     ```go
     // Build the counter
-    counter, err := atomix.Counter("my-counter").Get(context.Background())
+    counter, err := atomix.Counter("my-counter").
+        Get(context.Background())
     if err != nil {
         ...
     }
@@ -161,22 +173,11 @@ Language-specific SDKs provide the building blocks for developing distributed ap
     }
     ```
 
-<div class="step step-right" markdown>
-## :fontawesome-solid-toolbox: Build your application
-
-SDKs provide the building blocks of distributed applications. Use data structures to store application state or 
-share state across pod or services. Distributed coordination primitives enable safe interaction with other nodes and 
-services within the Kubernetes cluster. The building blocks provided by the SDK are database- and protocol-agnostic.
-Simply use the data structures and primitives that are right for your use case.
-
-[:octicons-arrow-right-24: Learn more](/user-guide/development/atoms/)
 </div>
 
-</div>
+<div class="grid grid-left" markdown>
 
-<div class="grid" markdown>
-
-<div class="step step-left" markdown>
+<div class="step" markdown>
 ## :fontawesome-solid-database: Define your data stores
 
 Write some stuff about data stores here
@@ -224,7 +225,15 @@ Write some stuff about data stores here
 
 </div>
 
-<div class="grid" markdown>
+<div class="grid grid-right" markdown>
+
+<div class="step" markdown>
+## :fontawesome-solid-diagram-project: Wire it all together
+
+Write some stuff about storage profiles here
+
+[:octicons-arrow-right-24: Learn more](/user-guide/deployment/storage-profiles)
+</div>
 
 ```yaml
 apiVersion: atomix.io/v3beta3
@@ -236,14 +245,6 @@ spec:
     - store:
         name: my-consensus-store
 ```
-
-<div class="step step-right" markdown>
-## :fontawesome-solid-diagram-project: Wire it all together
-
-Write some stuff about storage profiles here
-
-[:octicons-arrow-right-24: Learn more](/user-guide/deployment/storage-profiles)
-</div>
 
 </div>
 
