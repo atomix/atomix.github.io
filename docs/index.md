@@ -8,7 +8,7 @@ hide:
 
 <div class="section section-primary" data-md-color-scheme="slate" markdown>
 
-## On the cloud, for the cloud.
+## Distributed application development made easy.
 
 <div class="grid cards features" markdown>
 
