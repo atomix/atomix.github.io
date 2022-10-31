@@ -212,7 +212,7 @@ Write some stuff about data stores here
 
 </div>
 
-## Deploy your application :fontawesome-solid-cloud:
+## Wire it all together :fontawesome-solid-diagram-project:
 
 <div class="grid right-text" markdown>
 
@@ -227,7 +227,7 @@ spec:
         name: my-consensus-store
 ```
 
-Write some stuff about application configuration here
+Write some stuff about storage profiles here
 
 </div>
 
