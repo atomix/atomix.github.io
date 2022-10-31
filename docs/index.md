@@ -79,8 +79,8 @@ that are natural for developers to adopt in their language of choice.
 </div>
 
 <div class="languages" markdown>
-[:fontawesome-brands-golang:{ .language .middle #language-golang }](/user-guide/development/go)
-[:fontawesome-brands-java:{ .language .middle #language-java }](/user-guide/development/java)
+<a href="#" onclick="showGo();return false;" markdown>:fontawesome-brands-golang:{ .language .middle #language-golang }</a>
+<a href="#" onclick="showJava();return false;" markdown>:fontawesome-brands-java:{ .language .middle #language-java }</a>
 </div>
 
 </div>
@@ -97,6 +97,7 @@ with other nodes and services within the Kubernetes cluster. Use the atoms that 
 [:octicons-arrow-right-24: Learn more](/user-guide/development/atoms/)
 </div>
 
+<div id="code-go" markdown>
 === "Counter"
 
     ```go
@@ -144,6 +145,41 @@ with other nodes and services within the Kubernetes cluster. Use the atoms that 
     }
     ```
 
+</div>
+
+<div id="code-java" markdown>
+=== "Counter"
+
+    ```java
+    // Get the "foo" counter
+    AtomicCounter counter = AtomicCounter.builder()
+        .withName("foo")
+        .build();
+
+    // Increment the counter
+    long value = counter.incrementAndGet();
+
+    // Get the counter value
+    value = counter.get();
+    ```
+
+=== "Map"
+
+    ```java
+    // Get the "foo" map
+    Map<String, String> map = AtomicMap.builder()
+        .withName("foo")
+        .withSerializer(mySerializer)
+        .build();
+
+    // Write to the map
+    map.put("foo", "bar");
+
+    // Read from the map
+    Entry<string, string> entry = map.get("foo");
+    ```
+
+</div>
 </div>
 
 <div class="grid grid-left" markdown>
