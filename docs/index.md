@@ -10,7 +10,7 @@ hide:
 
 <div class="grid cards features" markdown>
 
-- :octicons-container-24:{ .lg .middle } __Shared data structures__
+- :octicons-stack-24:{ .lg .middle } __Shared data structures__
 
     ---
 
@@ -18,7 +18,7 @@ hide:
     applications to store and share state. Lists, maps, sets, and purpose-built data structures are provided to 
     enable a variety of use cases.
 
-- :octicons-sync-24:{ .lg .middle } __Distributed coordination primitives__
+- :octicons-git-compare-24:{ .lg .middle } __Distributed coordination primitives__
 
     ---
 
@@ -48,7 +48,7 @@ hide:
     configuration, so Atomix-enabled applications can choose their own data stores and even swap between data stores 
     without changing a single line of code.
 
-- :octicons-cloud-24:{ .lg .middle } __Kubernetes-native architecture__
+- :simple-kubernetes:{ .lg .middle } __Kubernetes-native architecture__
 
     ---
 
