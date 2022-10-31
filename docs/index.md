@@ -243,7 +243,15 @@ metadata:
 spec:
   bindings:
     - store:
-        name: my-consensus-store
+        name: consensus-store
+      tags:
+        - my-app
+        - persistent
+    - store:
+        name: cache-store
+      tags:
+        - my-app
+        - volatile
 ```
 
 </div>
