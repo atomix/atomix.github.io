@@ -3,13 +3,13 @@
 ## Setup
 
 ```
-pip install mkdocs mkdocs-material mike
+pip install mkdocs mkdocs-material mkdocs-minify-plugin
 ```
 
 ## Run
 
 ```
-mike serve
+mkdocs serve
 ```
 
 Then browse to `http://localhost:8000`
@@ -17,5 +17,5 @@ Then browse to `http://localhost:8000`
 ## Publish
 
 ```
-mike deploy --push 0.0.1 latest --update-aliases --no-redirect
+mkdocs gh-deploy
 ```
