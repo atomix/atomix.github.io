@@ -8,6 +8,7 @@ hide:
 
 ## On the cloud, for the cloud.
 
+<div class="section section-primary" markdown>
 <div class="grid cards features" markdown>
 
 - :octicons-stack-24:{ .lg .middle } __Shared data structures__
@@ -56,9 +57,11 @@ hide:
     resources, providing seamless integration with Kubernetes tools like kubectl and Helm.
 
 </div>
+</div>
 
 ## Simple flexibility.
 
+<div class="section section-secondary" markdown>
 <div class="grids steps" markdown>
 
 <div class="grid grid-left" markdown>
@@ -66,52 +69,17 @@ hide:
 <div class="step" markdown>
 ## :fontawesome-solid-language: Choose your language
 
-Application development starts with the SDKs. Atomix is built on top of Protobuf and gRPC, enabling SDKs for a 
-variety of different languages. SDKs adhere to the patterns and idioms of the associated language to present APIs 
+The Atomix runtime API is built on gRPC, enabling SDKs for developing Kubernetes applications using a variety of 
+different languages. The SDK for each language adheres to the patterns and idioms of that language, presenting APIs 
 that are natural for developers to adopt in their language of choice.
 
 [:octicons-arrow-right-24: Learn more](/user-guide/development/)
 </div>
 
-=== ":fontawesome-brands-golang: Go"
-
-    ```go
-    // Get a string:string map
-    m, err := atomix.Map[string, string]("my-map").
-        Codec(generic.Scalar[string]()).
-        Get(context.Background())
-    if err != nil {
-        ...
-    }
-
-    // Write to the map
-    _, err = m.Put(context.Background(), "foo", "bar")
-    if err != nil {
-        ...
-    }
-
-    // Read from the map
-    entry, err := m.Get(context.Background(), "foo")
-    if err != nil {
-        ...
-    }
-    ```
-
-=== ":fontawesome-brands-java: Java"
-
-    ```java
-    // Get the "foo" map
-    Map<String, String> map = AtomicMap.builder()
-        .withName("foo")
-        .withSerializer(mySerializer)
-        .build();
-
-    // Write to the map
-    map.put("foo", "bar");
-
-    // Read from the map
-    Entry<string, string> entry = map.get("foo");
-    ```
+<div class="languages" markdown>
+[:fontawesome-brands-golang:{ .language .middle #language-golang }](/user-guide/development/go)
+[:fontawesome-brands-java:{ .language .middle #language-java }](/user-guide/development/java)
+</div>
 
 </div>
 
@@ -261,4 +229,5 @@ spec:
 
 </div>
 
+</div>
 </div>
