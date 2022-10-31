@@ -10,45 +10,54 @@ hide:
 
 <div class="grid cards features" markdown>
 
--   :octicons-container-24:{ .lg .middle } __Shared data structures__
+- :octicons-container-24:{ .lg .middle } __Shared data structures__
 
     ---
 
-    ...
+    Atomix isn't just a simple key-value store. The runtime API supports common data structures that can be used by 
+    applications to store and share state. Lists, maps, sets, and purpose-built data structures are provided to 
+    enable a variety of use cases.
 
--   :octicons-sync-24:{ .lg .middle } __Distributed coordination primitives__
-
-    ---
-
-    ...
-
--   :octicons-code-square-24:{ .lg .middle } __SDKs for multiple languages__
+- :octicons-sync-24:{ .lg .middle } __Distributed coordination primitives__
 
     ---
 
-    ...
+    Primitives for solving common distributed systems problems like leader election, distributed locking, scheduling,
+    and more. Atomix distributed coordination primitives enable developers to implement distributed systems solutions 
+    without distributed systems expertise.
 
--   :octicons-database-24:{ .lg .middle } __Storage abstraction layer__
-
-    ---
-
-    ...
-
--   :octicons-plug-24:{ .lg .middle } __Pluggable data stores__
+- :octicons-code-square-24:{ .lg .middle } __Cross-language compatibility__
 
     ---
 
-    ...
+    The Atomix runtime is built on gRPC, enabling SDKs in a variety of different languages. Applications can be 
+    written in your language of choice, and containers or services can share state across languages.
 
--   :octicons-cloud-24:{ .lg .middle } __Built for Kubernetes__
+- :octicons-database-24:{ .lg .middle } __Storage abstraction layer__
 
     ---
 
-    ...
+    The Atomix runtime provides a unified API across numerous databases and protocols, decoupling application code from 
+    data stores to enable applications to be developed independent of the underlying architecture.
+
+- :octicons-plug-24:{ .lg .middle } __Pluggable data stores__
+
+    ---
+
+    Atomix provides both custom distributed systems protocols and database proxies. Data storage is driven by 
+    configuration, so Atomix-enabled applications can choose their own data stores and even swap between data stores 
+    without changing a single line of code.
+
+- :octicons-cloud-24:{ .lg .middle } __Built for Kubernetes__
+
+    ---
+
+    Atomix is built from the ground up for Kubernetes. Data stores and applications are managed via custom 
+    resources, providing seamless integration with Kubernetes tools like kubectl and Helm.
 
 </div>
 
-## How you get it
+## Simple flexibility
 
 <div class="grids steps" markdown>
 
