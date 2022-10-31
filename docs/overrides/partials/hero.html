@@ -1,0 +1,208 @@
+<!-- SPDX-FileCopyrightText: 2022-present Intel Corporation -->
+<!-- -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+<style>
+    :root {
+        --atomix-primary-color: #3b5672;
+    }
+
+    .md-main .md-main__inner {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .md-content h1 {
+        display: none;
+    }
+
+    .tabbed-set div {
+        width: 25rem;
+    }
+
+    .md-header {
+        position: initial
+    }
+
+    .md-main__inner {
+        margin: 0
+    }
+
+    .grids h2 {
+        font-weight: 700;
+        padding-top: 5rem;
+    }
+
+    .cards strong {
+        padding-left: .5rem;
+    }
+
+    h2#build-your-application {
+        text-align: right;
+    }
+
+    h2#choose-your-language .twemoji {
+        padding-right: .5rem;
+    }
+
+    h2#build-your-application .twemoji {
+        padding-left: .5rem;
+    }
+
+    h2#configure-your-data-store .twemoji {
+        padding-right: .5rem;
+    }
+
+    h2#choose-your-language .headerlink {
+        display: none;
+    }
+
+    h2#build-your-application .headerlink {
+        display: none;
+    }
+
+    h2#configure-your-data-store .headerlink {
+        display: none;
+    }
+
+    .md-content__button {
+        display: none;
+    }
+
+    .grids .grid p {
+        font-size: 1.4em;
+        font-weight: 100;
+        line-height: 1.4;
+    }
+
+    .tabbed-set div {
+        width: 30rem;
+    }
+
+    .right-text p {
+        text-align: right;
+    }
+
+    [data-md-color-scheme=slate] .home-container {
+        background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1123 258'><path d='M1124,2c0,0 0,256 0,256l-1125,0l0,-48c0,0 16,5 55,5c116,0 197,-92 325,-92c121,0 114,46 254,46c140,0 214,-167 572,-166Z' style='fill: hsla(232, 15%, 21%, 1)'/></svg>") no-repeat bottom, linear-gradient(to bottom, var(--md-primary-fg-color), var(--atomix-primary-color) 99%, #fff 99%)
+    }
+
+    .home-container {
+        height: 90vh;
+        background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1123 258'><path d='M1124,2c0,0 0,256 0,256l-1125,0l0,-48c0,0 16,5 55,5c116,0 197,-92 325,-92c121,0 114,46 254,46c140,0 214,-167 572,-166Z' style='fill: white' /></svg>") no-repeat bottom, linear-gradient(to bottom, var(--md-primary-fg-color), var(--atomix-primary-color) 99%, #fff 99%)
+    }
+
+    .home-container .md-grid {
+        height: 90vh;
+        position: relative;
+    }
+
+    .home-hero {
+        position: absolute;
+        bottom: 0;
+        margin: 5rem .8rem;
+        color: var(--md-primary-bg-color)
+    }
+
+    .home-hero h1 {
+        margin-bottom: 1rem;
+        color: currentColor;
+        font-weight: 700
+    }
+
+    .home-hero__content {
+        padding-bottom: 6rem
+    }
+
+    .home-hero .md-button {
+        margin-top: .5rem;
+        margin-right: .5rem;
+        color: var(--md-primary-bg-color)
+    }
+
+    .home-hero .md-button--primary {
+        background-color: var(--md-primary-bg-color);
+        color: var(--atomix-primary-color);
+        border-color: var(--md-primary-bg-color)
+    }
+
+    .home-hero .md-button:focus,
+    .home-hero .md-button:hover {
+        background-color: var(--md-accent-fg-color);
+        color: var(--md-default-bg-color);
+        border-color: var(--md-accent-fg-color)
+    }
+
+    @media screen and (max-width:70em) {
+        .home-hero h1 {
+            font-size: 1.4rem
+        }
+
+        .home-hero__image {
+            text-align: center;
+        }
+
+        .home-hero__image img {
+            max-width: 10rem;
+        }
+    }
+
+    @media screen and (min-width:70em) {
+        .md-sidebar--secondary {
+            display: none
+        }
+
+        .home-hero {
+            display: flex;
+            align-items: stretch
+        }
+
+        .home-hero__content {
+            max-width: 40rem;
+            margin-top: 3.5rem;
+            padding-bottom: 14vw
+        }
+
+        .home-hero__image {
+            order: 1;
+            margin-left: auto;
+            margin-top: 3.5rem;
+        }
+
+        .home-hero__image img {
+            max-width: 15rem;
+        }
+    }
+
+    @media screen and (min-width:76.25em) {
+        .md-sidebar--primary {
+            display: none
+        }
+
+        .home-hero__image {
+            margin-left: auto;
+        }
+
+        .home-hero__image img {
+            max-width: 20rem;
+        }
+    }
+
+</style>
+<section class="home-container">
+    <div class="md-grid md-typeset">
+        <div class="home-hero">
+            <div class="home-hero__content">
+                <h1>Distributed application runtime for Kubernetes</h1>
+                <h2>Atomix is an open source toolkit that provides building blocks for developing and maintaining data-centric Kubernetes applications</h2>
+                <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | striptags }}"
+                   class="md-button md-button--primary">
+                    Get started
+                </a>
+                <a href="/user-guide/" title="{{ lang.t('source.link.title') }}" class="md-button">
+                    Learn more
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

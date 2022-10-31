@@ -5,17 +5,12 @@ repo_url: https://github.com/atomix
 
 plugins:
   - search
-  - import
-  - mike:
-      version_selector: true
-      css_dir: css
-      javascript_dir: js
-      canonical_version: null
   - minify:
       minify_html: true
 
 theme:
   name: material
+  custom_dir: docs/overrides
   favicon: images/logo.png
   logo: images/logo.png
   include_search_page: false
@@ -47,7 +42,7 @@ theme:
     - navigation.indexes
     - navigation.instant
     # - navigation.prune
-    # - navigation.sections
+    - navigation.sections
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.top
@@ -60,55 +55,59 @@ theme:
 nav:
   - Home: index.md
   - Getting Started: getting-started.md
-  - Concepts:
-      - concepts/index.md
   - User Guide:
       - user-guide/index.md
-      - Distributed Primitives:
-          - Counter: user-guide/primitives/counter.md
-          - IndexedMap: user-guide/primitives/indexed-map.md
-          - LeaderElection: user-guide/primitives/leader-election.md
-          - List: user-guide/primitives/list.md
-          - Lock: user-guide/primitives/lock.md
-          - Map: user-guide/primitives/map.md
-          - Set: user-guide/primitives/set.md
-          - Topic: user-guide/primitives/topic.md
-          - Value: user-guide/primitives/value.md
-      - Protocol Drivers:
-          - user-guide/drivers/index.md
-          - Memory: '!import url(https://raw.githubusercontent.com/atomix/drivers/master/memory/README.md) path(user-guide/drivers/memory.md)'
-          - Multi-Raft: '!import url(https://raw.githubusercontent.com/atomix/drivers/master/multi-raft/README.md) path(user-guide/drivers/muti-raft.md)'
-      - Client Libraries:
-          - user-guide/clients/index.md
-          - Go: '!import icon(fontawesome/brands/golang) url(https://raw.githubusercontent.com/atomix/go-client/master/README.md) path(user-guide/clients/go.md)'
-          - Java: '!import icon(fontawesome/brands/java) url(https://raw.githubusercontent.com/atomix/java-client/master/README.md) path(user-guide/clients/java.md)'
+      - Architecture: user-guide/architecture.md
+      - Application Development:
+          - user-guide/development/index.md
+          - Go: user-guide/development/go.md
+          - Java: user-guide/development/java.md
+          - Atoms:
+              - user-guide/development/atoms/index.md
+              - Counter: user-guide/development/atoms/counter.md
+              - CounterMap: user-guide/development/atoms/countermap.md
+              - IndexedMap: user-guide/development/atoms/indexedmap.md
+              - LeaderElection: user-guide/development/atoms/election.md
+              - List: user-guide/development/atoms/list.md
+              - Lock: user-guide/development/atoms/lock.md
+              - Map: user-guide/development/atoms/map.md
+              - MultiMap: user-guide/development/atoms/multimap.md
+              - Set: user-guide/development/atoms/set.md
+              - Topic: user-guide/development/atoms/topic.md
+              - Value: user-guide/development/atoms/value.md
+      - Deployment and Operations:
+          - user-guide/deployment/index.md
+          - Installation: user-guide/deployment/installation.md
+          - Storage Profiles: user-guide/deployment/storage-profiles.md
+          - Storage:
+              - user-guide/deployment/storage/index.md
+              - ConsensusStore: user-guide/deployment/storage/consensus.md
+              - GossipStore: user-guide/deployment/storage/gossip.md
+              - PodMemoryStore: user-guide/deployment/storage/pod-memory.md
+              - SharedMemoryStore: user-guide/deployment/storage/shared-memory.md
   - Contributor Guide:
       - contributor-guide/index.md
-      - Clients: contributor-guide/clients.md
-      - Drivers: contributor-guide/drivers.md
-      - Controllers: contributor-guide/controllers.md
-  - Reference:
+      - SDK: contributor-guide/sdk.md
+      - Storage: contributor-guide/storage.md
+  - API Reference:
       - reference/index.md
-      - Protobuf API:
-          - atomix.counter.v1: '!import hide(toc) url(https://raw.githubusercontent.com/atomix/runtime/master/api/atomix/counter/v1/counter.md) path(reference/api/counter/v1/counter.md)'
-          - atomix.election.v1: '!import hide(toc) url(https://raw.githubusercontent.com/atomix/runtime/master/api/atomix/election/v1/election.md) path(reference/api/election/v1/election.md)'
-          - atomix.indexed_map.v1: '!import hide(toc) url(https://raw.githubusercontent.com/atomix/runtime/master/api/atomix/indexed_map/v1/indexed_map.md) path(reference/api/indexed_map/v1/indexed_map.md)'
-          - atomix.list.v1: '!import hide(toc) url(https://raw.githubusercontent.com/atomix/runtime/master/api/atomix/list/v1/list.md) path(reference/api/list/v1/list.md)'
-          - atomix.lock.v1: '!import hide(toc) url(https://raw.githubusercontent.com/atomix/runtime/master/api/atomix/lock/v1/lock.md) path(reference/api/lock/v1/lock.md)'
-          - atomix.map.v1: '!import hide(toc) url(https://raw.githubusercontent.com/atomix/runtime/master/api/atomix/map/v1/map.md) path(reference/api/map/v1/map.md)'
-          - atomix.runtime.v1:
-                  - Application: '!import hide(toc) url(https://raw.githubusercontent.com/atomix/runtime/master/api/atomix/runtime/v1/application.md) path(reference/api/runtime/v1/application.md)'
-                  - Cluster: '!import hide(toc) url(https://raw.githubusercontent.com/atomix/runtime/master/api/atomix/runtime/v1/cluster.md) path(reference/api/runtime/v1/cluster.md)'
-                  - Driver: '!import hide(toc) url(https://raw.githubusercontent.com/atomix/runtime/master/api/atomix/runtime/v1/driver.md) path(reference/api/runtime/v1/driver.md)'
-                  - Primitive: '!import hide(toc) url(https://raw.githubusercontent.com/atomix/runtime/master/api/atomix/runtime/v1/primitive.md) path(reference/api/runtime/v1/primitive.md)'
-                  - Runtime: '!import hide(toc) url(https://raw.githubusercontent.com/atomix/runtime/master/api/atomix/runtime/v1/runtime.md) path(reference/api/runtime/v1/runtime.md)'
-          - atomix.set.v1: '!import hide(toc) url(https://raw.githubusercontent.com/atomix/runtime/master/api/atomix/set/v1/set.md) path(reference/api/set/v1/set.md)'
-          - atomix.time.v1: '!import hide(toc) url(https://raw.githubusercontent.com/atomix/runtime/master/api/atomix/time/v1/timestamp.md) path(reference/api/time/v1/timestamp.md)'
-          - atomix.topic.v1: '!import hide(toc) url(https://raw.githubusercontent.com/atomix/runtime/master/api/atomix/topic/v1/topic.md) path(reference/api/topic/v1/topic.md)'
-          - atomix.value.v1: '!import hide(toc) url(https://raw.githubusercontent.com/atomix/runtime/master/api/atomix/value/v1/value.md) path(reference/api/value/v1/value.md)'
-  - About:
-      - about/index.md
-      - License: about/license.md
+      - Go: https://pkg.go.dev/github.com/atomix/go-sdk
+      - Protobuf:
+          - atomix.runtime.counter.v1: reference/api/atomix/runtime/counter/v1/counter.md
+          - atomix.runtime.countermap.v1: reference/api/atomix/runtime/countermap/v1/countermap.md
+          - atomix.runtime.election.v1: reference/api/atomix/runtime/election/v1/election.md
+          - atomix.runtime.indexedmap.v1: reference/api/atomix/runtime/indexedmap/v1/indexedmap.md
+          - atomix.runtime.list.v1: reference/api/atomix/runtime/list/v1/list.md
+          - atomix.runtime.lock.v1: reference/api/atomix/runtime/lock/v1/lock.md
+          - atomix.runtime.map.v1: reference/api/atomix/runtime/map/v1/map.md
+          - atomix.runtime.multimap.v1: reference/api/atomix/runtime/multimap/v1/multimap.md
+          - atomix.runtime.v1: reference/api/atomix/runtime/v1/primitive.md
+          - atomix.runtime.set.v1: reference/api/atomix/runtime/set/v1/set.md
+          - atomix.runtime.topic.v1: reference/api/atomix/runtime/topic/v1/topic.md
+          - atomix.runtime.value.v1: reference/api/atomix/runtime/value/v1/value.md
+  - Resources:
+      - resources/index.md
+      - License: resources/license.md
 
 markdown_extensions:
   - toc:
@@ -117,6 +116,7 @@ markdown_extensions:
   - smarty
   - meta
   - attr_list
+  - md_in_html
   - admonition
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
