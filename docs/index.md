@@ -75,7 +75,7 @@ The Atomix runtime API is built on gRPC, enabling SDKs for developing Kubernetes
 different languages. The SDK for each language adheres to the patterns and idioms of that language, presenting APIs
 that are natural for developers to adopt in their language of choice.
 
-[:octicons-arrow-right-24: Learn more](/user-guide/development/)
+<span id="language-select" markdown>Select a language to view code samples :octicons-arrow-right-24:</span>
 </div>
 
 <div class="languages" markdown>
