@@ -71,8 +71,8 @@ hide:
 <div class="step" markdown>
 ## :fontawesome-solid-language: Choose your language
 
-The Atomix runtime API is built on gRPC, enabling SDKs for developing Kubernetes applications using a variety of 
-different languages. The SDK for each language adheres to the patterns and idioms of that language, presenting APIs 
+The Atomix runtime API is built on gRPC, enabling SDKs for developing Kubernetes applications using a variety of
+different languages. The SDK for each language adheres to the patterns and idioms of that language, presenting APIs
 that are natural for developers to adopt in their language of choice.
 
 [:octicons-arrow-right-24: Learn more](/user-guide/development/)
@@ -151,7 +151,7 @@ with other nodes and services within the Kubernetes cluster. Use the atoms that 
 <div class="step" markdown>
 ## :fontawesome-solid-database: Deploy your data stores
 
-The Atomix runtime API acts as an abstraction layer for data stores, decoupling your application's code from specific 
+The Atomix runtime API acts as an abstraction layer for data stores, decoupling your application's code from specific
 databases and protocols, and enabling developers to choose the tools they like without concern for vendor lock-in.
 
 [:octicons-arrow-right-24: Learn more](/user-guide/deployment/data-stores/)
@@ -202,7 +202,7 @@ databases and protocols, and enabling developers to choose the tools they like w
 <div class="step" markdown>
 ## :fontawesome-solid-diagram-project: Wire everything together
 
-Atomix is designed around the same principles of cloud-native architecture that are familiar to Kubernetes 
+Atomix is designed around the same principles of cloud-native architecture that are familiar to Kubernetes
 developers. Storage is defined for each application via the `StorageProfile` custom resource. A tag-based routing
 system enables applications to use multiple data stores while allowing application developers and their users to
 optimize applications and the atoms within them without having to change a single line of code.
@@ -231,5 +231,25 @@ spec:
 
 </div>
 
+</div>
+</div>
+
+<div class="section section-secondary" data-md-color-scheme="slate" markdown>
+
+<div class="grids steps" markdown>
+
+<div class="grid grid-left" markdown>
+
+<div class="contribute" markdown>
+## Want to contribute?
+
+We're seeking contributors for new atoms, SDKs, and data stores. Do you know a language Atomix doesn't support yet?
+Is there a database you want to integrate with Atomix? Do you have a use case for a new type of atom? Visit the 
+contributor guide to get started!
+
+[Learn more](/contributor-guide/){ .md-button }
+</div>
+
+</div>
 </div>
 </div>
