@@ -6,7 +6,7 @@ hide:
   - toc
 ---
 
-## Built on the cloud, for the cloud.
+## On the cloud, for the cloud.
 
 <div class="grid cards features" markdown>
 
@@ -48,7 +48,7 @@ hide:
     configuration, so Atomix-enabled applications can choose their own data stores and even swap between data stores 
     without changing a single line of code.
 
-- :simple-kubernetes:{ .lg .middle } __Kubernetes-native architecture__
+- :simple-kubernetes:{ .lg .middle } __Built for Kubernetes__
 
     ---
 
