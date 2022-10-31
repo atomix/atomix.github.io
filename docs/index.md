@@ -8,7 +8,7 @@ hide:
 
 ## What you get...
 
-<div class="grid cards" markdown>
+<div class="grid cards features" markdown>
 
 -   :octicons-container-24:{ .lg .middle } __Shared data structures__
 
@@ -48,9 +48,9 @@ hide:
 
 </div>
 
-## How you get it...
+## How you get it
 
-<div class="grids" markdown>
+<div class="grids steps" markdown>
 
 ## :fontawesome-solid-code: Choose your language
 
@@ -58,7 +58,7 @@ hide:
 
 Write some stuff about SDKs here
 
-=== ":fontawesome-brands-golang:"
+=== ":fontawesome-brands-golang: Go"
 
     ```go
     // Get a string:string map
@@ -82,7 +82,7 @@ Write some stuff about SDKs here
     }
     ```
 
-=== ":fontawesome-brands-java:"
+=== ":fontawesome-brands-java: Java"
 
     ```java
     // Get the "foo" map
