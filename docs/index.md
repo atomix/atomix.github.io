@@ -6,7 +6,7 @@ hide:
   - toc
 ---
 
-## What you get...
+## Built on the cloud, for the cloud.
 
 <div class="grid cards features" markdown>
 
@@ -48,7 +48,7 @@ hide:
     configuration, so Atomix-enabled applications can choose their own data stores and even swap between data stores 
     without changing a single line of code.
 
-- :octicons-cloud-24:{ .lg .middle } __Built for Kubernetes__
+- :octicons-cloud-24:{ .lg .middle } __Kubernetes-native architecture__
 
     ---
 
@@ -57,16 +57,18 @@ hide:
 
 </div>
 
-## Simple flexibility
+## Simple flexibility.
 
 <div class="grids steps" markdown>
 
 <div class="grid grid-left" markdown>
 
 <div class="step" markdown>
-## :fontawesome-solid-code: Choose your language
+## :fontawesome-solid-language: Choose your language
 
-Language-specific SDKs provide the building blocks for developing distributed applications.
+Application development starts with the SDKs. Atomix is built on top of Protobuf and gRPC, enabling SDKs for a 
+variety of different languages. SDKs adhere to the patterns and idioms of the associated language to present APIs 
+that are natural for developers to adopt in their language of choice.
 
 [:octicons-arrow-right-24: Learn more](/user-guide/development/)
 </div>
@@ -116,12 +118,11 @@ Language-specific SDKs provide the building blocks for developing distributed ap
 <div class="grid grid-right" markdown>
 
 <div class="step" markdown>
-## :fontawesome-solid-toolbox: Build your application
+## :fontawesome-solid-code: Code your application
 
-SDKs provide the building blocks of distributed applications. Use data structures to store application state or
-share state across pod or services. Distributed coordination primitives enable safe interaction with other nodes and
-services within the Kubernetes cluster. The building blocks provided by the SDK are database- and protocol-agnostic.
-Simply use the data structures and primitives that are right for your use case.
+Atoms are the building blocks of distributed systems. Choose from a variety of different data structures to store
+application state or share state across pod or services. Distributed coordination primitives enable safe interaction
+with other nodes and services within the Kubernetes cluster. Use the atoms that are right for your use case.
 
 [:octicons-arrow-right-24: Learn more](/user-guide/development/atoms/)
 </div>
@@ -178,11 +179,12 @@ Simply use the data structures and primitives that are right for your use case.
 <div class="grid grid-left" markdown>
 
 <div class="step" markdown>
-## :fontawesome-solid-database: Define your data stores
+## :fontawesome-solid-database: Deploy your data stores
 
-Write some stuff about data stores here
+The Atomix runtime API acts as an abstraction layer for data stores, decoupling your application's code from specific 
+databases and protocols, and enabling developers to choose the tools they like without concern for vendor lock-in.
 
-[:octicons-arrow-right-24: Learn more](/user-guide/deployment/stores/)
+[:octicons-arrow-right-24: Learn more](/user-guide/deployment/data-stores/)
 </div>
 
 === "Consensus"
@@ -228,9 +230,12 @@ Write some stuff about data stores here
 <div class="grid grid-right" markdown>
 
 <div class="step" markdown>
-## :fontawesome-solid-diagram-project: Wire it all together
+## :fontawesome-solid-diagram-project: Wire everything together
 
-Write some stuff about storage profiles here
+Atomix is designed around the same principles of cloud-native architecture that are familiar to Kubernetes 
+developers. Storage is defined for each application via the `StorageProfile` custom resource. A tag-based routing
+system enables applications to use multiple data stores while allowing application developers and their users to
+optimize applications and the atoms within them without having to change a single line of code.
 
 [:octicons-arrow-right-24: Learn more](/user-guide/deployment/storage-profiles)
 </div>
