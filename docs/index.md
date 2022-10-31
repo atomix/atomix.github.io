@@ -6,7 +6,7 @@ hide:
   - toc
 ---
 
-## What you get
+## What you get...
 
 <div class="grid cards" markdown>
 
@@ -16,15 +16,11 @@ hide:
 
     ...
 
-    [:octicons-arrow-right-24: Getting started](#)
-
 -   :octicons-sync-24:{ .lg .middle } __Distributed coordination primitives__
 
     ---
 
     ...
-
-    [:octicons-arrow-right-24: Getting started](#)
 
 -   :octicons-code-square-24:{ .lg .middle } __SDKs for multiple languages__
 
@@ -32,15 +28,11 @@ hide:
 
     ...
 
-    [:octicons-arrow-right-24: Getting started](#)
-
 -   :octicons-database-24:{ .lg .middle } __Storage abstraction layer__
 
     ---
 
     ...
-
-    [:octicons-arrow-right-24: Getting started](#)
 
 -   :octicons-plug-24:{ .lg .middle } __Pluggable data stores__
 
@@ -48,19 +40,15 @@ hide:
 
     ...
 
-    [:octicons-arrow-right-24: Getting started](#)
-
 -   :octicons-cloud-24:{ .lg .middle } __Built for Kubernetes__
 
     ---
 
     ...
 
-    [:octicons-arrow-right-24: Getting started](#)
-
 </div>
 
-## How you get it
+## How you get it...
 
 <div class="grids" markdown>
 
