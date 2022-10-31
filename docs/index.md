@@ -6,9 +6,10 @@ hide:
   - toc
 ---
 
+<div class="section section-primary" data-md-color-scheme="slate" markdown>
+
 ## On the cloud, for the cloud.
 
-<div class="section section-primary" markdown>
 <div class="grid cards features" markdown>
 
 - :octicons-stack-24:{ .lg .middle } __Shared data structures__
@@ -59,9 +60,10 @@ hide:
 </div>
 </div>
 
+<div class="section section-secondary" data-md-color-scheme="default" markdown>
+
 ## Simple flexibility.
 
-<div class="section section-secondary" markdown>
 <div class="grids steps" markdown>
 
 <div class="grid grid-left" markdown>
