@@ -76,7 +76,7 @@ Write some stuff about SDKs here
     // Get a string:string map
     m, err := atomix.Map[string, string]("my-map").
         Codec(generic.Scalar[string]()).
-        Build(context.Background())
+        Get(context.Background())
     if err != nil {
         ...
     }
@@ -97,11 +97,11 @@ Write some stuff about SDKs here
 === ":fontawesome-brands-java:"
 
     ```java
-    // Create an Atomix client
-    AtomixClient client = new AtomixClient();
-
     // Get the "foo" map
-    Map<String, String> map = client.mapBuilder("foo").build();
+    Map<String, String> map = AtomicMap.builder()
+        .withName("foo")
+        .withSerializer(mySerializer)
+        .build();
 
     // Write to the map
     map.put("foo", "bar");
@@ -144,7 +144,7 @@ Write some stuff about SDKs here
     // Get a string:string map
     m, err := atomix.Map[string, string]("my-map").
         Codec(generic.Scalar[string]()).
-        Build(context.Background())
+        Get(context.Background())
     if err != nil {
         ...
     }
@@ -166,7 +166,7 @@ Write some stuff about primitives here
 
 </div>
 
-## :fontawesome-solid-database: Configure your data store
+## :fontawesome-solid-database: Define your data stores
 
 <div class="grid left-text" markdown>
 
@@ -177,21 +177,20 @@ Write some stuff about data stores here
     ```yaml
     apiVersion: consensus.atomix.io/v1beta1
     kind: ConsensusStore
+    metadata:
+      name: my-consensus-store
+    spec:
+      replicas: 3
+      groups: 30
     ```
 
 === "Etcd"
 
-    ```yaml
-    apiVersion: etcd.atomix.io/v1beta1
-    kind: EtcdStore
-    ```
+    Coming soon!
 
 === "Gossip"
 
-    ```yaml
-    apiVersion: gossip.atomix.io/v1beta1
-    kind: GossipStore
-    ```
+    Coming soon!
 
 === "PodMemory"
 
@@ -202,10 +201,7 @@ Write some stuff about data stores here
 
 === "Redis"
 
-    ```yaml
-    apiVersion: redis.atomix.io/v1beta1
-    kind: RedisStore
-    ```
+    Coming soon!
 
 === "SharedMemory"
 
@@ -215,4 +211,24 @@ Write some stuff about data stores here
     ```
 
 </div>
+
+## Deploy your application :fontawesome-solid-cloud:
+
+<div class="grid right-text" markdown>
+
+```yaml
+apiVersion: atomix.io/v3beta3
+kind: StorageProfile
+metadata:
+  name: my-application-profile
+spec:
+  bindings:
+    - store:
+        name: my-consensus-store
+```
+
+Write some stuff about application configuration here
+
+</div>
+
 </div>
