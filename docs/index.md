@@ -61,11 +61,15 @@ hide:
 
 <div class="grids steps" markdown>
 
+<div class="grid" markdown>
+
+<div class="step step-left" markdown>
 ## :fontawesome-solid-code: Choose your language
 
-<div class="grid left-text" markdown>
+Language-specific SDKs provide the building blocks for developing distributed applications.
 
-Write some stuff about SDKs here
+[:octicons-arrow-right-24: Learn more](/user-guide/development/)
+</div>
 
 === ":fontawesome-brands-golang: Go"
 
@@ -109,9 +113,7 @@ Write some stuff about SDKs here
 
 </div>
 
-## Build your application :fontawesome-solid-toolbox:
-
-<div class="grid right-text" markdown>
+<div class="grid" markdown>
 
 === "Counter"
 
@@ -159,15 +161,28 @@ Write some stuff about SDKs here
     }
     ```
 
-Write some stuff about primitives here
+<div class="step step-right" markdown>
+## :fontawesome-solid-toolbox: Build your application
+
+SDKs provide the building blocks of distributed applications. Use data structures to store application state or 
+share state across pod or services. Distributed coordination primitives enable safe interaction with other nodes and 
+services within the Kubernetes cluster. The building blocks provided by the SDK are database- and protocol-agnostic.
+Simply use the data structures and primitives that are right for your use case.
+
+[:octicons-arrow-right-24: Learn more](/user-guide/development/atoms/)
+</div>
 
 </div>
 
+<div class="grid" markdown>
+
+<div class="step step-left" markdown>
 ## :fontawesome-solid-database: Define your data stores
 
-<div class="grid left-text" markdown>
-
 Write some stuff about data stores here
+
+[:octicons-arrow-right-24: Learn more](/user-guide/deployment/stores/)
+</div>
 
 === "Consensus"
 
@@ -209,9 +224,7 @@ Write some stuff about data stores here
 
 </div>
 
-## Wire it all together :fontawesome-solid-diagram-project:
-
-<div class="grid right-text" markdown>
+<div class="grid" markdown>
 
 ```yaml
 apiVersion: atomix.io/v3beta3
@@ -224,7 +237,13 @@ spec:
         name: my-consensus-store
 ```
 
+<div class="step step-right" markdown>
+## :fontawesome-solid-diagram-project: Wire it all together
+
 Write some stuff about storage profiles here
+
+[:octicons-arrow-right-24: Learn more](/user-guide/deployment/storage-profiles)
+</div>
 
 </div>
 
