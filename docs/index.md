@@ -29,12 +29,14 @@ hide:
   <img
     src="images/golang.svg"
     alt="Built-in search"
+    onclick="showLanguageGo();return false;"
   />
 </a>
 <a href="#" title="Java" tabIndex="-1">
   <img
     src="images/java.svg"
     alt="Java"
+    onclick="showLanguageJava();return false;"
   />
 </a>
 <figcaption class="md-typeset" markdown>
@@ -50,7 +52,7 @@ that are natural for developers to adopt in their language of choice.
 
 <!-- Write your application -->
 <figure class="mdx-spotlight__feature" markdown>
-<div class="mdx-spotlight__code md-typeset" markdown>
+<div class="mdx-spotlight__code md-typeset" id="mdx-spotlight__code-golang" markdown>
 === "Counter"
 
     ```go
@@ -96,6 +98,38 @@ that are natural for developers to adopt in their language of choice.
     if err != nil {
         ...
     }
+    ```
+</div>
+<div class="mdx-spotlight__code md-typeset" id="mdx-spotlight__code-java" markdown>
+=== "Counter"
+
+    ```java
+    // Get the "foo" counter
+    AtomicCounter counter = AtomicCounter.builder()
+        .withName("foo")
+        .build();
+
+    // Increment the counter
+    long value = counter.incrementAndGet();
+
+    // Get the counter value
+    value = counter.get();
+    ```
+
+=== "Map"
+
+    ```java
+    // Get the "foo" map
+    Map<String, String> map = AtomicMap.builder()
+        .withName("foo")
+        .withSerializer(mySerializer)
+        .build();
+
+    // Write to the map
+    map.put("foo", "bar");
+
+    // Read from the map
+    Entry<string, string> entry = map.get("foo");
     ```
 </div>
 <figcaption class="md-typeset" markdown>
