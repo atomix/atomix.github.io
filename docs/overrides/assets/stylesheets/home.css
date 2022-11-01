@@ -38,11 +38,23 @@
 }
 
 .md-typeset .md-button {
-    background-color: #dd2e57;
-    border-width: 0;
+    border-color: var(--md-primary-bg-color);
     color: var(--md-primary-bg-color);
     margin-right: .5rem;
     margin-top: .5rem
+}
+
+.md-typeset .md-button:focus,
+.md-typeset .md-button:hover {
+    background-color: var(--md-accent-fg-color);
+    color: var(--md-default-bg-color);
+    border-color: var(--md-accent-fg-color)
+}
+
+.md-typeset .md-button--primary {
+    border-width: 0;
+    background-color: var(--md-primary-bg-color);
+    color: var(--md-primary-fg-color);
 }
 
 .md-typeset .md-button--secondary {
@@ -74,7 +86,7 @@
 }
 
 .mdx-parallax__group:first-child {
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1123 258'><path d='M1124,2c0,0 0,256 0,256l-1125,0l0,-48c0,0 16,5 55,5c116,0 197,-92 325,-92c121,0 114,46 254,46c140,0 214,-167 572,-166Z' style='fill: hsla(232, 15%, 21%, 1)'/></svg>") no-repeat bottom, linear-gradient(to bottom, var(--md-primary-fg-color), var(--atomix-primary-color) 99%, #fff 99%);
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1123 258'><path d='M1124,2c0,0 0,256 0,256l-1125,0l0,-48c0,0 16,5 55,5c116,0 197,-92 325,-92c121,0 114,46 254,46c140,0 214,-167 572,-166Z' style='fill: hsla(232, 15%, 21%, 1)'/></svg>") no-repeat bottom, linear-gradient(to bottom, var(--md-primary-fg-color), var(--md-primary-fg-color) 99%, #fff 99%);
     contain: strict;
     height: 35rem;
 }
@@ -262,8 +274,8 @@
     margin-bottom: 0
 }
 
-.mdx-hero__teaser :not(.md-button) {
-    text-shadow: 0 0 .2rem rgba(33, 29, 45, .8)
+.mdx-hero__teaser h2 {
+    font-weight: 300;
 }
 
 .mdx-hero .mdx-hero__attribution {
@@ -347,11 +359,10 @@
 
 .mdx-spotlight__feature a > img {
     border-radius: .2rem;
-    box-shadow: var(--md-shadow-z2);
     display: block;
     height: auto;
     max-width: 100%;
-    width: 25rem
+    width: 10rem
 }
 
 .mdx-spotlight__feature a > img, .mdx-spotlight__feature figcaption {

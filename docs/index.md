@@ -25,12 +25,17 @@ hide:
 
 <!-- Choose your language -->
 <figure class="mdx-spotlight__feature" markdown>
-<a href="setup/setting-up-site-search/" title="Go" tabIndex="-1">
-<img
-  src=".icons/golang.svg"
-  alt="Go"
-  loading="lazy" width="500" height="327"
-/>
+<a href="#" title="Go" tabIndex="-1">
+  <img
+    src="images/golang.svg"
+    alt="Built-in search"
+  />
+</a>
+<a href="#" title="Java" tabIndex="-1">
+  <img
+    src="images/java.svg"
+    alt="Java"
+  />
 </a>
 <figcaption class="md-typeset" markdown>
 ## :fontawesome-solid-language: Choose your language
