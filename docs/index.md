@@ -21,10 +21,10 @@ hide:
 </header>
 
 <!-- Section content -->
-<div class="mdx-spotlight" markdown>
+<div class="atx-spotlight" markdown>
 
 <!-- Choose your language -->
-<figure class="mdx-spotlight__feature" markdown>
+<figure class="atx-spotlight__feature" markdown>
 <a href="#" title="Go" tabIndex="-1">
   <img
     src="images/golang.svg"
@@ -51,8 +51,8 @@ that are natural for developers to adopt in their language of choice.
 </figure>
 
 <!-- Write your application -->
-<figure class="mdx-spotlight__feature" markdown>
-<div class="mdx-spotlight__code md-typeset" id="mdx-spotlight__code-golang" markdown>
+<figure class="atx-spotlight__feature" markdown>
+<div class="atx-spotlight__code md-typeset" id="atx-spotlight__code-golang" markdown>
 === "Counter"
 
     ```go
@@ -100,7 +100,7 @@ that are natural for developers to adopt in their language of choice.
     }
     ```
 </div>
-<div class="mdx-spotlight__code md-typeset" id="mdx-spotlight__code-java" markdown>
+<div class="atx-spotlight__code md-typeset" id="atx-spotlight__code-java" markdown>
 === "Counter"
 
     ```java
@@ -144,8 +144,8 @@ with other nodes and services within the Kubernetes cluster. Use the atoms that 
 </figure>
 
 <!-- Deploy your data stores -->
-<figure class="mdx-spotlight__feature" markdown>
-<div class="mdx-spotlight__code md-typeset" markdown>
+<figure class="atx-spotlight__feature" markdown>
+<div class="atx-spotlight__code md-typeset" markdown>
 === "Consensus"
 
     ```yaml
@@ -195,8 +195,8 @@ databases and protocols, and enabling developers to choose the tools they like w
 </figure>
 
 <!-- Wire everything together -->
-<figure class="mdx-spotlight__feature" markdown>
-<div class="mdx-spotlight__code md-typeset" markdown>
+<figure class="atx-spotlight__feature" markdown>
+<div class="atx-spotlight__code md-typeset" markdown>
 ```yaml
 apiVersion: atomix.io/v3beta3
 kind: StorageProfile

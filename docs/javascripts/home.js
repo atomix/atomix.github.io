@@ -3,11 +3,11 @@
 // SPDX-License-Identifier: Apache-2.0
 
 function showLanguageGo() {
-    document.getElementById("mdx-spotlight__code-golang").style.display = "block";
-    document.getElementById("mdx-spotlight__code-java").style.display = "none";
+    document.getElementById("atx-spotlight__code-golang").style.display = "block";
+    document.getElementById("atx-spotlight__code-java").style.display = "none";
 }
 
 function showLanguageJava() {
-    document.getElementById("mdx-spotlight__code-java").style.display = "block";
-    document.getElementById("mdx-spotlight__code-golang").style.display = "none";
+    document.getElementById("atx-spotlight__code-java").style.display = "block";
+    document.getElementById("atx-spotlight__code-golang").style.display = "none";
 }
