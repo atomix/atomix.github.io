@@ -9,20 +9,6 @@
 <title>{{ config.site_name }}</title>
 {% endblock %}
 
-<!-- Theme-related style sheets -->
-{% block styles %}
-{{ super() }}
-
-<!-- Extra style sheet (can't be set in mkdocs.yml due to content hash) -->
-<link rel="stylesheet" href="assets/stylesheets/home.css" />
-
-<!-- Hack: detect Safari, so we can hack around problems with containment -->
-<script>
-    if (navigator.vendor === "Apple Computer, Inc.")
-        document.documentElement.classList.add("safari")
-</script>
-{% endblock %}
-
 <!-- Announcement bar -->
 {% block announce %}{% endblock %}
 
