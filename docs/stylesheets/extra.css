@@ -9,6 +9,20 @@
     --md-accent-bg-color: #8d8c8a;
 }
 
+[data-md-color-scheme="default"] {
+    --md-typeset-a-color: #408697;
+    --md-accent-fg-color: #408697;
+    --md-code-hl-keyword-color: #408697;
+}
+
+.md-typeset .tabbed-labels > label > [href]:first-child {
+    color: var(--md-typeset-a-color);
+}
+
+.md-typeset .tabbed-labels > label {
+    border-bottom-color: transparent;
+}
+
 [data-md-color-scheme="slate"][data-md-color-primary="indigo"] {
     --md-typeset-a-color: #408697;
 }
@@ -327,6 +341,7 @@
 .md-typeset .atx-sponsorship-count, .md-typeset .atx-sponsorship-total {
     font-weight: 700
 }
+
 @media screen and (min-width: 60em) {
     .atx-home .md-sidebar--secondary {
         display: none
