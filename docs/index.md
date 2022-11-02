@@ -79,6 +79,60 @@ with other nodes and services within the Kubernetes cluster. Use the atoms that 
     }
     ```
 
+=== "LeaderElection"
+
+    ```go
+    // Build the leader election
+    election, err := atomix.LeaderElection("my-counter").
+        Get(context.Background())
+    if err != nil {
+        ...
+    }
+
+    // Get the current leadership term
+    term, err := election.GetTerm(context.Background())
+    if err != nil {
+        ...
+    }
+
+    // Enter the election
+    term, err = election.Enter(context.Background())
+    if err != nil {
+        ...
+    }
+    ```
+
+=== "List"
+
+    ```go
+    // Get a string list
+    l, err := atomix.List[string]("my-list").
+        Codec(generic.Scalar[string]()).
+        Get(context.Background())
+    if err != nil {
+        ...
+    }
+
+    // Append a value to the list
+    err = l.Append(context.Background(), "Hello world!")
+    if err != nil {
+        ...
+    }
+
+    // Iterate through the items in the list
+    items, err := l.Items(context.Background())
+    if err != nil {
+        ...
+    }
+    for {
+        item, err := items.Next()
+        if err == io.EOF {
+            break
+        }
+        ...
+    }
+    ```
+
 === "Map"
 
     ```go
@@ -99,6 +153,31 @@ with other nodes and services within the Kubernetes cluster. Use the atoms that 
     // Read from the map
     entry, err := m.Get(context.Background(), "foo")
     if err != nil {
+        ...
+    }
+    ```
+
+=== "Set"
+
+    ```go
+    // Get a string set
+    l, err := atomix.Set[string]("my-set").
+        Codec(generic.Scalar[string]()).
+        Get(context.Background())
+    if err != nil {
+        ...
+    }
+
+    // Add a value to the set
+    err = l.Add(context.Background(), "Hello world!")
+    if err != nil {
+        ...
+    }
+
+    // Check if the set contains the added value
+    if ok, err := l.Contains(context.Background()); err != nil {
+        ...
+    } else if ok {
         ...
     }
     ```
