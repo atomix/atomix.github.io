@@ -28,14 +28,15 @@ that are natural for developers to adopt in their language of choice.
 
 <span class="language-select" markdown>Select a language :octicons-arrow-right-24:</span>
 </figcaption>
-<a href="#" title="Go" tabIndex="-1">
+<a href="#" class="atx-spotlight__language atx-spotlight__language-selected" id="atx-spotlight__language-golang" 
+title="Go" tabIndex="-1">
   <img
     src="images/golang.svg"
     alt="Built-in search"
     onclick="showLanguageGo();return false;"
   />
 </a>
-<a href="#" title="Java" tabIndex="-1">
+<a href="#" class="atx-spotlight__language" id="atx-spotlight__language-java" title="Java" tabIndex="-1">
   <img
     src="images/java.svg"
     alt="Java"
