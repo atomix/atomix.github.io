@@ -133,6 +133,29 @@ with other nodes and services within the Kubernetes cluster. Use the atoms that 
     }
     ```
 
+=== "Lock"
+
+    ```go
+    // Build the lock
+    l, err := atomix.Lock("my-lock").
+        Get(context.Background())
+    if err != nil {
+        ...
+    }
+
+    // Acquire the lock
+    if err := l.Lock(context.Background()); err != nil {
+        ...
+    }
+
+    // Do stuff...
+
+    // Release the lock
+    if err := l.Unlock(context.Background()); err != nil {
+        ...
+    }
+    ```
+
 === "Map"
 
     ```go
@@ -152,6 +175,36 @@ with other nodes and services within the Kubernetes cluster. Use the atoms that 
 
     // Read from the map
     entry, err := m.Get(context.Background(), "foo")
+    if err != nil {
+        ...
+    }
+    ```
+
+=== "MultiMap"
+
+    ```go
+    // Get a string:string multimap
+    m, err := atomix.MultiMap[string, string]("my-multimap").
+        Codec(generic.Scalar[string]()).
+        Get(context.Background())
+    if err != nil {
+        ...
+    }
+
+    // Write to the multimap
+    _, err = m.Put(context.Background(), "foo", "bar")
+    if err != nil {
+        ...
+    }
+
+    // Write to the multimap
+    _, err = m.Put(context.Background(), "foo", "baz")
+    if err != nil {
+        ...
+    }
+
+    // Read from the multimap
+    values, err := m.Get(context.Background(), "foo")
     if err != nil {
         ...
     }
@@ -178,6 +231,30 @@ with other nodes and services within the Kubernetes cluster. Use the atoms that 
     if ok, err := l.Contains(context.Background()); err != nil {
         ...
     } else if ok {
+        ...
+    }
+    ```
+
+=== "Value"
+
+    ```go
+    // Get a string value
+    v, err := atomix.Value[string]("my-value").
+        Codec(generic.Scalar[string]()).
+        Get(context.Background())
+    if err != nil {
+        ...
+    }
+
+    // Set the value
+    err = v.Set(context.Background(), "Hello world!")
+    if err != nil {
+        ...
+    }
+
+    // Get the value
+    value, err := v.Get(context.Background())
+    if err != nil {
         ...
     }
     ```
