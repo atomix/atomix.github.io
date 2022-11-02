@@ -17,10 +17,10 @@ hide:
 <!-- Section content -->
 <div class="atx-spotlight" markdown>
 
-<!-- Choose your language -->
+<!-- Choose a language -->
 <figure class="atx-spotlight__feature" markdown>
 <figcaption class="md-typeset" markdown>
-## :fontawesome-solid-language: Choose your language
+## :fontawesome-solid-language: Choose a language
 
 The Atomix runtime API is built on gRPC, enabling SDKs for developing Kubernetes applications using a variety of
 different languages. The SDK for each language adheres to the patterns and idioms of that language, presenting APIs
@@ -47,7 +47,7 @@ that are natural for developers to adopt in their language of choice.
 <!-- Write your application -->
 <figure class="atx-spotlight__feature" markdown>
 <figcaption class="md-typeset" markdown>
-## :fontawesome-solid-code: Code your application
+## :fontawesome-solid-code: Write your application
 
 Atoms are the building blocks of distributed systems. Choose from a variety of different data structures to store
 application state or share state across pod or services. Distributed coordination primitives enable safe interaction
@@ -216,10 +216,10 @@ with other nodes and services within the Kubernetes cluster. Use the atoms that 
 </div>
 </figure>
 
-<!-- Deploy your data stores -->
+<!-- Deploy data stores -->
 <figure class="atx-spotlight__feature" markdown>
 <figcaption class="md-typeset" markdown>
-## :fontawesome-solid-database: Deploy your data stores
+## :fontawesome-solid-database: Deploy data stores
 
 The Atomix runtime API acts as an abstraction layer for data stores, decoupling your application's code from specific
 databases and protocols, and enabling developers to choose the tools they like without concern for vendor lock-in.
