@@ -1,5 +1,25 @@
 # Getting Started
 
+## Writing your application
+
+=== ":fontawesome-brands-golang:"
+    Add the Go SDK to your Go module:
+
+    ```bash
+    go get github.com/atomix/go-sdk
+    ```
+
+=== ":fontawesome-brands-java:"
+    Add the Java SDK to your Maven configuration:
+
+    ```xml
+    <dependency>
+      <groupId>io.atomix</groupId>
+      <artifactId>atomix-sdk</artifactId>
+      <version>0.11.0</version>
+    </dependency>
+    ```
+
 ## Configuring the Helm repository
 
 ```shell
