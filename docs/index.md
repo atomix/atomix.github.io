@@ -8,15 +8,9 @@ hide:
 
 <!-- Section header -->
 <header class="md-typeset">
-  <h1 id="more-than-just-a-static-site">
-    Simple yet flexible.
-    <a
-      href="#more-than-just-a-static-site"
-      class="headerlink"
-      title="Permanent link"
-    >
-      ¶
-    </a>
+  <h1 id="how-does-it-work">
+    How does it work?
+    <a href="#how-does-it-work" class="headerlink" title="Permanent link">¶</a>
   </h1>
 </header>
 
