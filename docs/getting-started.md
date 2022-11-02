@@ -2,14 +2,14 @@
 
 ## Writing your application
 
-=== ":fontawesome-brands-golang:{ .lg .middle }"
+=== ":fontawesome-brands-golang:{ .xl .middle }"
     Add the Go SDK to your Go module:
 
     ```bash
     go get github.com/atomix/go-sdk
     ```
 
-=== ":fontawesome-brands-java:{ .lg .middle }"
+=== ":fontawesome-brands-java:{ .xl .middle }"
     Add the Java SDK to your Maven configuration:
 
     ```xml
