@@ -12,7 +12,7 @@ Dragonboat.
 ![Consensus](/images/consensus.png#only-light){: width="800" }
 ![Consensus](/images/consensus-dark.png#only-dark){: width="800" }
 
-```yaml
+```yaml title="consensus.yaml"
 apiVersion: consensus.atomix.io/v1beta1
 kind: ConsensusStore
 metadata:
