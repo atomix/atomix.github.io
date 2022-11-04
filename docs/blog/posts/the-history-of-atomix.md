@@ -1,11 +1,13 @@
 ---
-draft: true
+draft: false
 date: 2022-11-03
+authors:
+- kuujo
 categories:
-- About
+- General
 ---
 
-# About Atomix
+# The History of Atomix
 
 Atomix was established in 2013 by [Jordan Halterman](https://github.com/kuujo) as a passion project. Originally
 built on one of the first implementations of the [Raft consensus algorithm](https://raft.github.io/), Atomix soon
