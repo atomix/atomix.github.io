@@ -42,7 +42,10 @@ metadata:
   name: my-consensus-store
 spec:
   volumeClaimTemplate:
-    storageClass: "standard"
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      storageClass: "standard"
 ```
 
 #### Monitoring and Debugging the ConsensusStore
