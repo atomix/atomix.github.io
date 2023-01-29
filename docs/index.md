@@ -22,11 +22,12 @@ hide:
 <figcaption class="md-typeset" markdown>
 ## :fontawesome-solid-code: Write your application
 
-Atoms are the building blocks of distributed systems. Choose from a variety of different data structures to store
-application state or share state across pod or services. Distributed coordination primitives enable safe interaction
-with other nodes and services within the Kubernetes cluster. Use the atoms that are right for your use case.
+Primitives are the building blocks of distributed application in Atomix. Choose from a variety of different data 
+structures to store application state or share state across pod or services. Distributed coordination primitives
+enable safe interaction with other nodes and services within the Kubernetes cluster. Use the primitives that are
+right for your use case.
 
-[:octicons-arrow-right-24: Learn more](/user-guide/development/atoms/)
+[:octicons-arrow-right-24: Learn more](/user-guide/development/primitives/)
 </figcaption>
 <div class="atx-spotlight__code md-typeset" markdown>
 === ":fontawesome-brands-golang:{ .xl .middle }"

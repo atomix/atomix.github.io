@@ -64,7 +64,7 @@ spec:
     ...
 ```
 
-## Routing atoms with tags
+## Routing primitives with tags
 
 Applications can (and should) tag primitives with strings to aid in routing. Storage profiles can use tags to route
 primitives across multiple stores:
@@ -86,7 +86,7 @@ spec:
         - consensus
 ```
 
-## Configuring atom proxies
+## Configuring primitive proxies
 
 ```yaml
 bindings:
