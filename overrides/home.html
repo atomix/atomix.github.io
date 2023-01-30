@@ -1,0 +1,28 @@
+<!-- SPDX-FileCopyrightText: 2022-present Intel Corporation -->
+<!-- -->
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+
+{% extends "main.html" %}
+
+<!-- Site title -->
+{% block htmltitle %}
+<title>{{ config.site_name }}</title>
+{% endblock %}
+
+<!-- Announcement bar -->
+{% block announce %}{% endblock %}
+
+<!-- Parallax container with contents -->
+{% block tabs %}
+{{ super() }}
+<!-- Parallax container with groups -->
+<div class="atx-home" data-atx-component="home">
+    {% include "partials/hero.html" %}
+    {% include "partials/features.html" %}
+    {% include "partials/spotlight.html" %}
+    {% include "partials/contribute.html" %}
+</div>
+{% endblock %}
+
+<!-- Page content -->
+{% block content %}{% endblock %}
